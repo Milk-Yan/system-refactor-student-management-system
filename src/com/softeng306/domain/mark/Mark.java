@@ -1,4 +1,10 @@
-package com.softeng306;
+package com.softeng306.domain.mark;
+
+import com.softeng306.domain.course.component.CourseworkComponent;
+import com.softeng306.domain.course.component.MainComponent;
+import com.softeng306.domain.course.component.SubComponent;
+import com.softeng306.domain.student.Student;
+import com.softeng306.domain.course.Course;
 
 import java.util.HashMap;
 

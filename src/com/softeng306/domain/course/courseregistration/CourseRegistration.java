@@ -1,4 +1,7 @@
-package com.softeng306;
+package com.softeng306.domain.course.courseregistration;
+
+import com.softeng306.domain.course.Course;
+import com.softeng306.domain.student.Student;
 
 import java.util.Comparator;
 

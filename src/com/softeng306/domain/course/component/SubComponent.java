@@ -1,4 +1,4 @@
-package com.softeng306;
+package com.softeng306.domain.course.component;
 
 /**
  * Represents a sub-component of a main component.

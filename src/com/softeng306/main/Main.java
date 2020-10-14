@@ -1,4 +1,15 @@
-package com.softeng306;
+package com.softeng306.main;
+
+import com.softeng306.domain.course.courseregistration.CourseRegistration;
+import com.softeng306.managers.StudentMgr;
+import com.softeng306.domain.course.Course;
+import com.softeng306.domain.mark.Mark;
+import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.student.Student;
+import com.softeng306.managers.CourseMgr;
+import com.softeng306.managers.CourseRegistrationMgr;
+import com.softeng306.io.FILEMgr;
+import com.softeng306.managers.MarkMgr;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,4 +1,10 @@
-package com.softeng306;
+package com.softeng306.domain.course;
+
+import com.softeng306.domain.course.group.LabGroup;
+import com.softeng306.domain.course.group.LectureGroup;
+import com.softeng306.domain.course.component.MainComponent;
+import com.softeng306.domain.course.group.TutorialGroup;
+import com.softeng306.domain.professor.Professor;
 
 import java.util.ArrayList;
 

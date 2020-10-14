@@ -1,5 +1,17 @@
-package com.softeng306;
+package com.softeng306.managers;
 
+
+import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.component.MainComponent;
+import com.softeng306.domain.course.component.SubComponent;
+import com.softeng306.domain.course.group.LabGroup;
+import com.softeng306.domain.course.group.LectureGroup;
+import com.softeng306.domain.course.group.TutorialGroup;
+import com.softeng306.domain.professor.Professor;
+import com.softeng306.io.FILEMgr;
+import com.softeng306.io.HelpInfoMgr;
+import com.softeng306.main.Main;
+import com.softeng306.validation.ValidationMgr;
 
 import java.util.*;
 import java.io.PrintStream;

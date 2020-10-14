@@ -1,5 +1,17 @@
-package com.softeng306;
+package com.softeng306.io;
 
+
+import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.courseregistration.CourseRegistration;
+import com.softeng306.domain.course.component.CourseworkComponent;
+import com.softeng306.domain.course.component.MainComponent;
+import com.softeng306.domain.course.component.SubComponent;
+import com.softeng306.domain.course.group.LabGroup;
+import com.softeng306.domain.course.group.LectureGroup;
+import com.softeng306.domain.course.group.TutorialGroup;
+import com.softeng306.domain.mark.Mark;
+import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.student.Student;
 
 import java.io.*;
 import java.util.*;

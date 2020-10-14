@@ -1,10 +1,19 @@
-package com.softeng306;
+package com.softeng306.managers;
+
+import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.courseregistration.CourseRegistration;
+import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.student.Student;
+import com.softeng306.io.FILEMgr;
+import com.softeng306.io.HelpInfoMgr;
+import com.softeng306.main.Main;
+import com.softeng306.validation.ValidationMgr;
 
 import java.util.*;
 
-import static com.softeng306.CourseRegistration.LabComparator;
-import static com.softeng306.CourseRegistration.LecComparator;
-import static com.softeng306.CourseRegistration.TutComparator;
+import static com.softeng306.domain.course.courseregistration.CourseRegistration.LabComparator;
+import static com.softeng306.domain.course.courseregistration.CourseRegistration.LecComparator;
+import static com.softeng306.domain.course.courseregistration.CourseRegistration.TutComparator;
 
 
 public class CourseRegistrationMgr {
