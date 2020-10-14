@@ -1,4 +1,4 @@
-package com.softeng306;
+package com.softeng306.domain.course.group;
 
 /**
  * Represents a lab group for a course.

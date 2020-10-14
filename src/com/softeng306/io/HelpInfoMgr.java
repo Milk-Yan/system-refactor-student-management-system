@@ -1,6 +1,10 @@
-package com.softeng306;
+package com.softeng306.io;
 
+import com.softeng306.domain.course.Course;
 import com.softeng306.Enum.*;
+import com.softeng306.domain.course.group.Group;
+import com.softeng306.main.Main;
+import com.softeng306.validation.ValidationMgr;
 
 import java.util.*;
 import java.util.stream.Collectors;

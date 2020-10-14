@@ -1,4 +1,4 @@
-package com.softeng306;
+package com.softeng306.domain.course.group;
 
 /**
  * Represents TutorialGroup for a course.

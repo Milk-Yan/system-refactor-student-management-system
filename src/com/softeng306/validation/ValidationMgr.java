@@ -1,4 +1,11 @@
-package com.softeng306;
+package com.softeng306.validation;
+
+import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.courseregistration.CourseRegistration;
+import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.student.Student;
+import com.softeng306.io.HelpInfoMgr;
+import com.softeng306.main.Main;
 
 import java.io.OutputStream;
 import java.io.PrintStream;

@@ -1,4 +1,8 @@
-package com.softeng306;
+package com.softeng306.managers;
+
+import com.softeng306.domain.professor.Professor;
+import com.softeng306.io.HelpInfoMgr;
+import com.softeng306.validation.ValidationMgr;
 
 import java.util.Scanner;
 
