@@ -26,6 +26,10 @@ public class CourseMgr {
             // NO-OP
         }
     });
+    /**
+     * An array list of all the courses in this school.
+     */
+    public static ArrayList<Course> courses = new ArrayList<Course>(0);
 
 
     /**
@@ -412,7 +416,7 @@ public class CourseMgr {
         if (addCourseComponentChoice == 2) {
             //add course into file
             FILEMgr.writeCourseIntoFile(course);
-            Main.courses.add(course);
+            CourseMgr.courses.add(course);
             System.out.println("Course " + courseID + " is added, but assessment components are not initialized.");
             printCourses();
             return;
@@ -421,7 +425,7 @@ public class CourseMgr {
         enterCourseWorkComponentWeightage(course);
 
         FILEMgr.writeCourseIntoFile(course);
-        Main.courses.add(course);
+        CourseMgr.courses.add(course);
         System.out.println("Course " + courseID + " is added");
         printCourses();
     }
@@ -695,7 +699,7 @@ public class CourseMgr {
     public static void printCourses() {
         System.out.println("Course List: ");
         System.out.println("| Course ID | Course Name | Professor in Charge |");
-        for (Course course : Main.courses) {
+        for (Course course : CourseMgr.courses) {
             System.out.println("| " + course.getCourseID() + " | " + course.getCourseName() + " | " + course.getProfInCharge().getProfName() + " |");
         }
         System.out.println();
