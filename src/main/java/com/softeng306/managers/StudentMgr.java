@@ -9,7 +9,6 @@ import com.softeng306.io.FILEMgr;
 /**
  * Manages the student related operations.
  * Contains addStudent.
-
  */
 
 public class StudentMgr {
@@ -18,39 +17,30 @@ public class StudentMgr {
      * Adds a student and put the student into file
      */
     public static void addStudent() {
-        StudentMgrIO io = new StudentMgrIO();
-        String studentID = null;
-        io.printMenu();
-        boolean systemGeneratedID = io.systemGenerateID();
 
+        String studentID = null;
+        StudentMgrIO.printMenu();
+
+        boolean systemGeneratedID = StudentMgrIO.systemGenerateID();
         if (!systemGeneratedID) {
-            System.out.println("Bitch");
-            studentID = io.getStudentID();
+            studentID = StudentMgrIO.getStudentID();
+
         }
 
-        String studentName = io.getStudentName();
-
+        String studentName = StudentMgrIO.getStudentName();
         Student currentStudent = new Student(studentName);
 
         if (!systemGeneratedID) {
             currentStudent.setStudentID(studentID);
         }
 
-        //Set school
-        currentStudent.setStudentSchool(io.getSchoolName());
-
-
-        //gender
-        currentStudent.setGender(io.getStudentGender());
-
-
-        //student year
-        currentStudent.setStudentYear(io.getStudentYear());
-
-
+        currentStudent.setStudentSchool(StudentMgrIO.getSchoolName());  //Set school
+        currentStudent.setGender(StudentMgrIO.getStudentGender());      //gender
+        currentStudent.setStudentYear(StudentMgrIO.getStudentYear());   //student year
+        
         FILEMgr.writeStudentsIntoFile(currentStudent);
         Main.students.add(currentStudent);
 
-        io.printStudentID(currentStudent.getStudentName(), currentStudent.getStudentID());
+        StudentMgrIO.printStudentID(currentStudent.getStudentName(), currentStudent.getStudentID());
     }
 }

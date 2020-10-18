@@ -1,28 +1,26 @@
 package com.softeng306.io;
 
+import com.softeng306.validation.ValidationMgr;
 import com.softeng306.domain.student.Student;
 import com.softeng306.main.Main;
-import com.softeng306.validation.ValidationMgr;
 
 import java.util.Scanner;
 
 public class StudentMgrIO {
 
-    private static Scanner reader;
+
+    private static Scanner reader = new Scanner(System.in);
 
 
-    public StudentMgrIO(){
-        reader = new Scanner(System.in);
-    }
-
-    public void printMenu(){
+    public static void printMenu() {
         System.out.println("addStudent is called");
         System.out.println("Choose the way you want to add a student:");
         System.out.println("1. Manually input the student ID.");
         System.out.println("2. Let the system self-generate the student ID.");
     }
 
-    public boolean systemGenerateID(){
+
+    public static boolean systemGenerateID() {
         int choice;
         do {
             System.out.println("Please input your choice:");
@@ -32,7 +30,7 @@ public class StudentMgrIO {
                 if (choice < 1 || choice > 2) {
                     System.out.println("Invalid input. Please re-enter.");
                 } else {
-                    if(choice == 1){
+                    if (choice == 1) {
                         return false;
                     }
                     return true;
@@ -45,7 +43,7 @@ public class StudentMgrIO {
     }
 
 
-    public String getStudentID(){
+    public static String getStudentID() {
         while (true) {
             System.out.println("The student ID should follow:");
             System.out.println("Length is exactly 9");
@@ -64,7 +62,7 @@ public class StudentMgrIO {
     }
 
 
-    public String getStudentName(){
+    public static String getStudentName() {
         String studentName;
         while (true) {
             System.out.println("Enter student Name: ");
@@ -76,7 +74,7 @@ public class StudentMgrIO {
     }
 
 
-    public String getSchoolName(){
+    public static String getSchoolName() {
         String studentSchool;
         while (true) {
             System.out.println("Enter student's school (uppercase): ");
@@ -94,7 +92,7 @@ public class StudentMgrIO {
     }
 
 
-    public String getStudentGender(){
+    public static String getStudentGender() {
         String studentGender;
         while (true) {
             System.out.println("Enter student gender (uppercase): ");
@@ -111,7 +109,7 @@ public class StudentMgrIO {
         }
     }
 
-    public int getStudentYear(){
+    public static int getStudentYear() {
         int studentYear;
         do {
             System.out.println("Enter student's school year (1-4) : ");
@@ -131,7 +129,8 @@ public class StudentMgrIO {
         } while (true);
     }
 
-    public void printStudentID(String name, String ID){
+
+    public static void printStudentID(String name, String ID) {
         System.out.println("Student named: " + name + " is added, with ID: " + ID);
         System.out.println("Student List: ");
         System.out.println("| Student ID | Student Name | Student School | Gender | Year | GPA |");
@@ -143,6 +142,4 @@ public class StudentMgrIO {
             System.out.println(" " + student.getStudentID() + " | " + student.getStudentName() + " | " + student.getStudentSchool() + " | " + student.getGender() + " | " + student.getStudentYear() + " | " + GPA);
         }
     }
-
-
 }
