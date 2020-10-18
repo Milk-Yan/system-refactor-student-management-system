@@ -2,7 +2,8 @@ package com.softeng306.managers;
 
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.validation.ValidationMgr;
+import com.softeng306.validation.DepartmentValidator;
+import com.softeng306.validation.ProfessorValidator;
 
 import java.util.Scanner;
 
@@ -13,6 +14,8 @@ import java.util.Scanner;
  */
 public class ProfessorMgr {
     private Scanner scanner = new Scanner(System.in);
+    private static final String PROFESSOR_ID_REGEX = "^P[0-9]{7}[A-Z]$";
+
 
     /**
      * Adds a professor.
@@ -24,8 +27,8 @@ public class ProfessorMgr {
         while (true) {
             System.out.println("Give this professor an ID: ");
             profID = scanner.nextLine();
-            if (ValidationMgr.checkValidProfIDInput(profID)) {
-                if (ValidationMgr.checkProfExists(profID) == null) {
+            if (ProfessorValidator.checkValidProfIDInput(profID)) {
+                if (ProfessorValidator.checkProfExists(profID) == null) {
                     break;
                 }
             }
@@ -35,7 +38,7 @@ public class ProfessorMgr {
         while (true) {
             System.out.println("Enter the professor's name: ");
             profName = scanner.nextLine();
-            if (ValidationMgr.checkValidPersonNameInput(profName)) {
+            if (ProfessorValidator.checkValidProfessorNameInput(profName)) {
                 break;
             }
         }
@@ -50,7 +53,7 @@ public class ProfessorMgr {
                 department = scanner.nextLine();
             }
 
-            if (ValidationMgr.checkDepartmentValidation(department)) {
+            if (DepartmentValidator.checkDepartmentValidation(department)) {
                 professor.setProfDepartment(department);
                 break;
             }

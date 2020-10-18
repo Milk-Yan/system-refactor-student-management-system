@@ -5,7 +5,9 @@ import com.softeng306.domain.student.Student;
 import com.softeng306.main.Main;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.validation.ValidationMgr;
+import com.softeng306.validation.DepartmentValidator;
+import com.softeng306.validation.GenderValidator;
+import com.softeng306.validation.StudentValidator;
 
 import java.util.Scanner;
 
@@ -57,8 +59,8 @@ public class StudentMgr {
                 System.out.println();
                 System.out.println("Give this student an ID: ");
                 studentID = scanner.nextLine();
-                if (ValidationMgr.checkValidStudentIDInput(studentID)) {
-                    if (ValidationMgr.checkStudentExists(studentID) == null) {
+                if (StudentValidator.checkValidStudentIDInput(studentID)) {
+                    if (StudentValidator.checkStudentExists(studentID) == null) {
                         break;
                     }
                 }
@@ -68,7 +70,7 @@ public class StudentMgr {
         while (true) {
             System.out.println("Enter student Name: ");
             studentName = scanner.nextLine();
-            if (ValidationMgr.checkValidPersonNameInput(studentName)) {
+            if (StudentValidator.checkValidStudentNameInput(studentName)) {
                 break;
             }
         }
@@ -89,7 +91,7 @@ public class StudentMgr {
                 studentSchool = scanner.nextLine();
             }
 
-            if (ValidationMgr.checkDepartmentValidation(studentSchool)) {
+            if (DepartmentValidator.checkDepartmentValidation(studentSchool)) {
                 currentStudent.setStudentSchool(studentSchool);
                 break;
             }
@@ -107,7 +109,7 @@ public class StudentMgr {
                 studentGender = scanner.nextLine();
             }
 
-            if (ValidationMgr.checkGenderValidation(studentGender)) {
+            if (GenderValidator.checkGenderValidation(studentGender)) {
                 currentStudent.setGender(studentGender);
                 break;
             }

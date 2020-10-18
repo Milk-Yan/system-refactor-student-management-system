@@ -7,7 +7,7 @@ import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.main.Main;
-import com.softeng306.validation.ValidationMgr;
+import com.softeng306.validation.*;
 
 import java.util.*;
 
@@ -28,16 +28,16 @@ public class CourseRegistrationMgr {
         String selectedTutorialGroupName = null;
         String selectedLabGroupName = null;
 
-        Student currentStudent = ValidationMgr.checkStudentExists();
+        Student currentStudent = StudentValidator.checkStudentExists();
         String studentID = currentStudent.getStudentID();
 
-        ValidationMgr.checkCourseDepartmentExists();
+        DepartmentValidator.checkCourseDepartmentExists();
 
-        Course currentCourse = ValidationMgr.checkCourseExists();
+        Course currentCourse = CourseValidator.checkCourseExists();
         String courseID = currentCourse.getCourseID();
 
 
-        if (ValidationMgr.checkCourseRegistrationExists(studentID, courseID) != null) {
+        if (CourseRegistrationValidator.checkCourseRegistrationExists(studentID, courseID) != null) {
             return;
         }
 
@@ -94,7 +94,7 @@ public class CourseRegistrationMgr {
      */
     public static void printStudents() {
         System.out.println("printStudent is called");
-        Course currentCourse = ValidationMgr.checkCourseExists();
+        Course currentCourse = CourseValidator.checkCourseExists();
 
         System.out.println("Print student by: ");
         System.out.println("(1) Lecture group");
