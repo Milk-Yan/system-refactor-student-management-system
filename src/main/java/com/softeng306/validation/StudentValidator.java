@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class StudentValidator {
     private static Scanner scanner = new Scanner(System.in);
     private static PrintStream originalStream = System.out;
-    private static PrintStream dummyStream = new PrintStream(new OutputStream(){
+    private static PrintStream dummyStream = new PrintStream(new OutputStream() {
         public void write(int b) {
             // NO-OP
         }
@@ -25,30 +25,33 @@ public class StudentValidator {
 
     /**
      * Checks whether the inputted student ID is in the correct format.
+     *
      * @param studentID The inputted student ID.
      * @return boolean indicates whether the inputted student ID is valid.
      */
-    public static boolean checkValidStudentIDInput(String studentID){
+    public static boolean checkValidStudentIDInput(String studentID) {
         return RegexValidator.checkStringRegexFormat(studentID, STUDENT_ID_REGEX);
     }
 
     /**
      * Checks whether the inputted student name is in the correct format.
+     *
      * @param studentName The inputted student name.
      * @return boolean indicates whether the student person name is valid.
      */
-    public static boolean checkValidStudentNameInput(String studentName){
+    public static boolean checkValidStudentNameInput(String studentName) {
         return RegexValidator.checkStringRegexFormat(studentName, STUDENT_NAME_REGEX);
     }
 
     /**
      * Checks whether this student ID is used by other students.
+     *
      * @param studentID This student's ID.
      * @return the existing student or else null.
      */
-    public static Student checkStudentExists(String studentID){
-        List<Student> anyStudent = Main.students.stream().filter(s->studentID.equals(s.getStudentID())).collect(Collectors.toList());
-        if(anyStudent.size() == 0){
+    public static Student checkStudentExists(String studentID) {
+        List<Student> anyStudent = Main.students.stream().filter(s -> studentID.equals(s.getStudentID())).collect(Collectors.toList());
+        if (anyStudent.size() == 0) {
             return null;
         }
         System.out.println("Sorry. The student ID is used. This student already exists.");
@@ -57,15 +60,16 @@ public class StudentValidator {
 
     /**
      * Prompts the user to input an existing student.
+     *
      * @return the inputted student.
      */
-    public static Student checkStudentExists(){
+    public static Student checkStudentExists() {
         String studentID;
         Student currentStudent = null;
         while (true) {
             System.out.println("Enter Student ID (-h to print all the student ID):");
             studentID = scanner.nextLine();
-            while("-h".equals(studentID)){
+            while ("-h".equals(studentID)) {
                 HelpInfoMgr.printAllStudents();
                 studentID = scanner.nextLine();
             }
@@ -75,7 +79,7 @@ public class StudentValidator {
             System.setOut(originalStream);
             if (currentStudent == null) {
                 System.out.println("Invalid Student ID. Please re-enter.");
-            }else {
+            } else {
                 break;
             }
 
