@@ -4,15 +4,18 @@ import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.validation.ValidationMgr;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * Manages all the professor related operations
- *
-
  */
 public class ProfessorMgr {
     private Scanner scanner = new Scanner(System.in);
+    /**
+     * An array list of all the professors in this school.
+     */
+    public static ArrayList<Professor> professors = new ArrayList<Professor>(0);
 
     /**
      * Adds a professor.
