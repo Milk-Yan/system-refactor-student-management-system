@@ -11,6 +11,10 @@ import java.util.Scanner;
 public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
 
+
+    /**
+     * Startup the main menu for the application
+     */
     public static void startMainMenu() {
         int choice;
         do {
@@ -30,6 +34,7 @@ public class MainMenuIO {
                 break;
             } while (true);
 
+            // Choose command based on user input choice
             switch (choice) {
                 case 0:
                     break;
@@ -66,7 +71,6 @@ public class MainMenuIO {
                 case 11:
                     exitApplication();
                     break;
-
             }
 
         } while (choice != 11);
@@ -75,7 +79,6 @@ public class MainMenuIO {
     /**
      * Displays the welcome message.
      */
-
     public static void printWelcome() {
         System.out.println();
         System.out.println("****************** Hello! Welcome to SOFTENG 306 Project 2! ******************");
