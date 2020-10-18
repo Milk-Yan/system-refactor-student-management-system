@@ -1,6 +1,7 @@
 package com.softeng306.io;
 
 
+import com.softeng306.Enum.CourseType;
 import com.softeng306.Enum.Department;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
@@ -17,7 +18,6 @@ import com.softeng306.domain.student.Student;
 import java.io.*;
 import java.util.*;
 import java.util.regex.Pattern;
-
 
 
 public class FILEMgr {
@@ -474,7 +474,7 @@ public class FILEMgr {
             fileWriter.append(COMMA_DELIMITER);
             fileWriter.append(course.getCourseDepartment().toString());
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(course.getCourseType());
+            fileWriter.append(course.getCourseType().toString());
             fileWriter.append(COMMA_DELIMITER);
             fileWriter.append(String.valueOf(course.getLecWeeklyHour()));
             fileWriter.append(COMMA_DELIMITER);
@@ -542,7 +542,7 @@ public class FILEMgr {
                         lectureGroups.add(new LectureGroup(thisLectureGroup[0], Integer.parseInt(thisLectureGroup[1]), Integer.parseInt(thisLectureGroup[2])));
                     }
 
-                    Course course = new Course(courseID, courseName, currentProfessor, vacancies, totalSeats, lectureGroups, AU, courseDepartment, courseType, lecWeeklyHr);
+                    Course course = new Course(courseID, courseName, currentProfessor, vacancies, totalSeats, lectureGroups, AU, courseDepartment, CourseType.valueOf(courseType), lecWeeklyHr);
 
                     String tutorialGroupsString = tokens[tutorialGroupIndex];
                     ArrayList<TutorialGroup> tutorialGroups = new ArrayList<TutorialGroup>(0);
@@ -728,7 +728,7 @@ public class FILEMgr {
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(course.getCourseDepartment().toString());
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(course.getCourseType());
+                fileWriter.append(course.getCourseType().toString());
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(String.valueOf(course.getLecWeeklyHour()));
                 fileWriter.append(COMMA_DELIMITER);

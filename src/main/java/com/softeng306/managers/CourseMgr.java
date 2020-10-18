@@ -1,6 +1,7 @@
 package com.softeng306.managers;
 
 
+import com.softeng306.Enum.CourseType;
 import com.softeng306.Enum.Department;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
@@ -393,7 +394,7 @@ public class CourseMgr {
         }
 
 
-        Course course = new Course(courseID, courseName, profInCharge, totalSeats, totalSeats, lectureGroups, tutorialGroups, labGroups, AU, Department.valueOf(courseDepartment), courseType, lecWeeklyHour, tutWeeklyHour, labWeeklyHour);
+        Course course = new Course(courseID, courseName, profInCharge, totalSeats, totalSeats, lectureGroups, tutorialGroups, labGroups, AU, Department.valueOf(courseDepartment), CourseType.valueOf(courseType), lecWeeklyHour, tutWeeklyHour, labWeeklyHour);
 
 
         System.out.println("Create course components and set component weightage now?");
