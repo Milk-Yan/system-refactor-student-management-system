@@ -4,6 +4,9 @@ import com.softeng306.domain.course.Course;
 import com.softeng306.Enum.*;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.main.Main;
+import com.softeng306.managers.CourseMgr;
+import com.softeng306.managers.ProfessorMgr;
+import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.ValidationMgr;
 
 import java.util.*;
@@ -11,7 +14,6 @@ import java.util.stream.Collectors;
 
 /**
  * Manages all the help information display in the system.
-
  */
 
 public class HelpInfoMgr {
@@ -21,12 +23,12 @@ public class HelpInfoMgr {
      * Displays all the professors in the inputted department.
      *
      * @param department The inputted department.
-     * @param printOut Represents whether print out the professor information or not
+     * @param printOut   Represents whether print out the professor information or not
      * @return A list of all the names of professors in the inputted department or else null.
      */
     public static List<String> printProfInDepartment(String department, boolean printOut) {
         if (ValidationMgr.checkDepartmentValidation(department)) {
-            List<String> validProfString = Main.professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
+            List<String> validProfString = ProfessorMgr.professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
             if (printOut) {
                 validProfString.forEach(System.out::println);
             }
@@ -41,14 +43,14 @@ public class HelpInfoMgr {
      * Displays a list of IDs of all the students.
      */
     public static void printAllStudents() {
-        Main.students.stream().map(s -> s.getStudentID()).forEach(System.out::println);
+        StudentMgr.students.stream().map(s -> s.getStudentID()).forEach(System.out::println);
     }
 
     /**
      * Displays a list of IDs of all the courses.
      */
     public static void printAllCourses() {
-        Main.courses.stream().map(c -> c.getCourseID()).forEach(System.out::println);
+        CourseMgr.courses.stream().map(c -> c.getCourseID()).forEach(System.out::println);
 
     }
 
@@ -141,7 +143,7 @@ public class HelpInfoMgr {
      * @return a list of all the department values.
      */
     public static List<String> printCourseInDepartment(String department) {
-        List<Course> validCourses = Main.courses.stream().filter(c -> department.equals(c.getCourseDepartment())).collect(Collectors.toList());
+        List<Course> validCourses = CourseMgr.courses.stream().filter(c -> department.equals(c.getCourseDepartment())).collect(Collectors.toList());
         List<String> validCourseString = validCourses.stream().map(c -> c.getCourseID()).collect(Collectors.toList());
         validCourseString.forEach(System.out::println);
         if (validCourseString.size() == 0) {

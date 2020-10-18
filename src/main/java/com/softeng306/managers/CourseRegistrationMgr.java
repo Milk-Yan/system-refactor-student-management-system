@@ -18,6 +18,11 @@ import static com.softeng306.domain.course.courseregistration.CourseRegistration
 
 public class CourseRegistrationMgr {
     private static Scanner scanner = new Scanner(System.in);
+    /**
+     * An array list of all the course registration records in this school.
+     */
+    public static ArrayList<CourseRegistration> courseRegistrations = new ArrayList<CourseRegistration>(0);
+
 
     /**
      * Registers a course for a student
@@ -73,9 +78,9 @@ public class CourseRegistrationMgr {
         CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
         FILEMgr.writeCourseRegistrationIntoFile(courseRegistration);
 
-        Main.courseRegistrations.add(courseRegistration);
+        CourseRegistrationMgr.courseRegistrations.add(courseRegistration);
 
-        Main.marks.add(MarkMgr.initializeMark(currentStudent, currentCourse));
+        MarkMgr.marks.add(MarkMgr.initializeMark(currentStudent, currentCourse));
 
         System.out.println("Course registration successful!");
         System.out.print("Student: " + currentStudent.getStudentName());

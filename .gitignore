@@ -1,7 +1,6 @@
 target
-.idea/modules.xml
-.idea/vcs.xml
-project-2-team-8.iml
-.idea/misc.xml
 *.class
 testdata
+.idea/
+*.iml
+out/
