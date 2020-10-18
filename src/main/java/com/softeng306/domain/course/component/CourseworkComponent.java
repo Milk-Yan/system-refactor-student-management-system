@@ -38,9 +38,4 @@ public abstract class CourseworkComponent {
     public int getComponentWeight() {
         return this.componentWeight;
     }
-
-    /**
-     * Prints the component type
-     */
-    public abstract void printComponentType();
 }
