@@ -14,7 +14,6 @@ import java.util.Scanner;
 /**
  * Manages the student related operations.
  * Contains addStudent.
-
  */
 
 public class StudentMgr {

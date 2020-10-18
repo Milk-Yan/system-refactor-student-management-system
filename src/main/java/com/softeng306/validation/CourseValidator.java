@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class CourseValidator {
     private static Scanner scanner = new Scanner(System.in);
     private static PrintStream originalStream = System.out;
-    private static PrintStream dummyStream = new PrintStream(new OutputStream(){
+    private static PrintStream dummyStream = new PrintStream(new OutputStream() {
         public void write(int b) {
             // NO-OP
         }
@@ -23,6 +23,7 @@ public class CourseValidator {
 
     /**
      * Checks whether the inputted course ID is in the correct format.
+     *
      * @param courseID The inputted course ID.
      * @return boolean indicates whether the inputted course ID is valid.
      */
@@ -32,11 +33,12 @@ public class CourseValidator {
 
     /**
      * Checks whether the inputted course type is valid.
+     *
      * @param courseType The inputted course type.
      * @return boolean indicates whether the inputted course type is valid.
      */
-    public static boolean checkCourseTypeValidation(String courseType){
-        if(HelpInfoMgr.getAllCourseType().contains(courseType)){
+    public static boolean checkCourseTypeValidation(String courseType) {
+        if (HelpInfoMgr.getAllCourseType().contains(courseType)) {
             return true;
         }
         System.out.println("The course type is invalid. Please re-enter.");
@@ -45,15 +47,16 @@ public class CourseValidator {
 
     /**
      * Prompts the user to input an existing course.
+     *
      * @return the inputted course.
      */
-    public static Course checkCourseExists(){
+    public static Course checkCourseExists() {
         String courseID;
         Course currentCourse;
-        while(true){
+        while (true) {
             System.out.println("Enter course ID (-h to print all the course ID):");
             courseID = scanner.nextLine();
-            while("-h".equals(courseID)){
+            while ("-h".equals(courseID)) {
                 HelpInfoMgr.printAllCourses();
                 courseID = scanner.nextLine();
             }
@@ -63,7 +66,7 @@ public class CourseValidator {
             if (currentCourse == null) {
                 System.setOut(originalStream);
                 System.out.println("Invalid Course ID. Please re-enter.");
-            }else{
+            } else {
                 break;
             }
         }
@@ -72,15 +75,15 @@ public class CourseValidator {
     }
 
 
-
     /**
      * Checks whether this course ID is used by other courses.
+     *
      * @param courseID The inputted course ID.
      * @return the existing course or else null.
      */
-    public static Course checkCourseExists(String courseID){
-        List<Course> anyCourse = Main.courses.stream().filter(c->courseID.equals(c.getCourseID())).collect(Collectors.toList());
-        if(anyCourse.size() == 0){
+    public static Course checkCourseExists(String courseID) {
+        List<Course> anyCourse = Main.courses.stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
+        if (anyCourse.size() == 0) {
             return null;
         }
         System.out.println("Sorry. The course ID is used. This course already exists.");
