@@ -61,7 +61,7 @@ public abstract class AbstractProcess {
 
     protected abstract ProcessBuilder getProcessBuilder() throws URISyntaxException;
 
-    private String getOutputFromInputStreamWithRead(InputStream stdout) throws IOException, InterruptedException {
+    private String getOutputFromInputStreamWithRead(InputStream stdout) throws IOException {
         StringBuilder outputBuilder = new StringBuilder();
         while (stdout.available() != 0) {
             outputBuilder.append((char) stdout.read());
@@ -69,12 +69,12 @@ public abstract class AbstractProcess {
         return outputBuilder.toString();
     }
 
-    private String getOutputFromInputStreamWithBufferedReader(InputStream stdout) throws IOException, InterruptedException {
+    private String getOutputFromInputStreamWithBufferedReader(InputStream stdout) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(stdout));
         StringBuilder outputBuilder = new StringBuilder();
         while (br.ready()) {
             String line = br.readLine();
-            outputBuilder.append(line + "\n");
+            outputBuilder.append(line).append("\n");
         }
         return outputBuilder.toString();
     }

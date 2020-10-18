@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-public class TestCheckAvailableSlotsInClass {
+public class TestEnterCourseworkMark {
     private static AbstractProcess originalProcess;
     private static AbstractProcess refactoredProcess;
 
@@ -19,18 +19,22 @@ public class TestCheckAvailableSlotsInClass {
     }
 
     @Test
-    public void testCheckAvailableSlotsInClass() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
+    public void testEnterCourseworkMark() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
         List<String> inputList = new ArrayList<>();
-        inputList.add("4"); // Check available slots in class
-        inputList.add("SE2001"); // Enter course ID
+        inputList.add("7"); // Enter coursework mark
+        inputList.add("U1722744J"); // Enter student ID
+        inputList.add("SE2005"); // Enter course ID
+        inputList.add("1"); // Select mark to enter
+        inputList.add("99"); // Enter coursework mark
         inputList.add("11"); // Exit program
 
         compareOutputsBetweenRefactoredAndOriginal(inputList);
     }
 
     private void compareOutputsBetweenRefactoredAndOriginal(List<String> inputList) throws InterruptedException, IOException, URISyntaxException, TimeoutException {
-        String originalOutput = TestCheckAvailableSlotsInClass.originalProcess.getOutput(inputList);
-        String refactoredOutput = TestCheckAvailableSlotsInClass.refactoredProcess.getOutput(inputList);
+        String originalOutput = TestEnterCourseworkMark.originalProcess.getOutput(inputList);
+        String refactoredOutput = TestEnterCourseworkMark.refactoredProcess.getOutput(inputList);
         Assert.assertEquals(originalOutput, refactoredOutput);
     }
+
 }
