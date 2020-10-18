@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class OriginalProcess extends AbstractProcess{
+public class OriginalProcess extends AbstractProcess {
     private File originalDataDirectory;
     private File testOriginalDataWorkspace;
 

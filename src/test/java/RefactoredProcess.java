@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class RefactoredProcess extends AbstractProcess{
+public class RefactoredProcess extends AbstractProcess {
     private File originalDataDirectory;
     private File testRefactoredDataWorkspace;
 
@@ -25,6 +25,5 @@ public class RefactoredProcess extends AbstractProcess{
         pb.directory(testRefactoredDataWorkspace);
         pb.redirectErrorStream(true); // merge output and error stream
         return pb;
-
     }
 }

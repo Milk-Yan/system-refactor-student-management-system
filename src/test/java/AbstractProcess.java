@@ -1,11 +1,13 @@
 import java.io.*;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public abstract class AbstractProcess {
 
 
-    public String getOutput(List<String> inputData) throws IOException, InterruptedException, URISyntaxException {
+    public String getOutput(List<String> inputData) throws IOException, InterruptedException, URISyntaxException, TimeoutException {
         ProcessBuilder pb = getProcessBuilder();
         Process p = pb.start();
 
@@ -18,12 +20,16 @@ public abstract class AbstractProcess {
             stdin.flush();
             Thread.sleep(200);
         }
-        p.waitFor();
+
+        boolean timeoutBoolean = p.waitFor(1, TimeUnit.SECONDS);
+        if(!timeoutBoolean){
+            throw new TimeoutException(getOutputFromInputStreamWithRead(stdout));
+        }
 
         return getOutputFromInputStreamWithRead(stdout);
     }
 
-    public String getOutputDebug(List<String> inputData) throws IOException, InterruptedException, URISyntaxException {
+    public String getOutputDebug(List<String> inputData) throws IOException, InterruptedException, URISyntaxException, TimeoutException {
         ProcessBuilder pb = getProcessBuilder();
         Process p = pb.start();
 
@@ -43,7 +49,11 @@ public abstract class AbstractProcess {
             System.out.println(currentOutput);
             outputBuilder.append(currentOutput);
         }
-        p.waitFor();
+
+        boolean timeoutBoolean = p.waitFor(1, TimeUnit.SECONDS);
+        if(!timeoutBoolean){
+            throw new TimeoutException();
+        }
 
         return outputBuilder.toString();
     }
@@ -68,7 +78,6 @@ public abstract class AbstractProcess {
         }
         return outputBuilder.toString();
     }
-
 
 
 }
