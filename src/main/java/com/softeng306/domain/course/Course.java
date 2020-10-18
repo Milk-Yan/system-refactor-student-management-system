@@ -1,5 +1,6 @@
 package com.softeng306.domain.course;
 
+import com.softeng306.Enum.Department;
 import com.softeng306.domain.course.group.LabGroup;
 import com.softeng306.domain.course.group.LectureGroup;
 import com.softeng306.domain.course.component.MainComponent;
@@ -33,7 +34,7 @@ public class Course {
     /**
      * The department this course belongs to.
      */
-    private String courseDepartment;
+    private Department courseDepartment;
 
     /**
      * The type of this course.
@@ -101,7 +102,7 @@ public class Course {
      * @param courseType The course type of this course.
      * @param lecWeeklyHour The lecture weekly hour of this course.
      */
-    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, ArrayList<LectureGroup> lectureGroups, int AU, String courseDepartment, String courseType, int lecWeeklyHour) {
+    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, ArrayList<LectureGroup> lectureGroups, int AU, Department courseDepartment, String courseType, int lecWeeklyHour) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.profInCharge = profInCharge;
@@ -131,7 +132,7 @@ public class Course {
      * @param tutWeeklyHour The tutorial weekly hour of this course.
      * @param labWeeklyHour The lab weekly hour of this course.
      */
-    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, ArrayList<LectureGroup> lectureGroups, ArrayList<TutorialGroup> tutorialGroups, ArrayList<LabGroup> labGroups, int AU, String courseDepartment, String courseType, int lecWeeklyHour, int tutWeeklyHour, int labWeeklyHour) {
+    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, ArrayList<LectureGroup> lectureGroups, ArrayList<TutorialGroup> tutorialGroups, ArrayList<LabGroup> labGroups, int AU, Department courseDepartment, String courseType, int lecWeeklyHour, int tutWeeklyHour, int labWeeklyHour) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.profInCharge = profInCharge;
@@ -196,7 +197,7 @@ public class Course {
      * Gets the course's department.
      * @return the department of this course.
      */
-    public String getCourseDepartment(){
+    public Department getCourseDepartment(){
         return courseDepartment;
     }
 

@@ -472,7 +472,7 @@ public class FILEMgr {
             fileWriter.append(COMMA_DELIMITER);
             fileWriter.append(String.valueOf(course.getAU()));
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(course.getCourseDepartment());
+            fileWriter.append(course.getCourseDepartment().toString());
             fileWriter.append(COMMA_DELIMITER);
             fileWriter.append(course.getCourseType());
             fileWriter.append(COMMA_DELIMITER);
@@ -527,7 +527,7 @@ public class FILEMgr {
                     int vacancies = Integer.parseInt(tokens[vacanciesIndex]);
                     int totalSeats = Integer.parseInt(tokens[totalSeatsIndex]);
                     int AU = Integer.parseInt(tokens[AUIndex]);
-                    String courseDepartment = tokens[courseDepartmentIndex];
+                    Department courseDepartment = Department.valueOf(tokens[courseDepartmentIndex]);
                     String courseType = tokens[courseTypeIndex];
                     int lecWeeklyHr = Integer.parseInt(tokens[lecHrIndex]);
                     int tutWeeklyHr = Integer.parseInt(tokens[tutHrIndex]);
@@ -726,7 +726,7 @@ public class FILEMgr {
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(String.valueOf(course.getAU()));
                 fileWriter.append(COMMA_DELIMITER);
-                fileWriter.append(course.getCourseDepartment());
+                fileWriter.append(course.getCourseDepartment().toString());
                 fileWriter.append(COMMA_DELIMITER);
                 fileWriter.append(course.getCourseType());
                 fileWriter.append(COMMA_DELIMITER);
