@@ -1,54 +1,26 @@
 package com.softeng306.main;
 
-import com.softeng306.domain.course.courseregistration.CourseRegistration;
-import com.softeng306.managers.StudentMgr;
-import com.softeng306.domain.course.Course;
-import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.professor.Professor;
-import com.softeng306.domain.student.Student;
-import com.softeng306.managers.CourseMgr;
-import com.softeng306.managers.CourseRegistrationMgr;
+import com.softeng306.managers.*;
 import com.softeng306.io.FILEMgr;
-import com.softeng306.managers.MarkMgr;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
-    /**
-     * An array list of all the students in this school.
-     */
-    public static ArrayList<Student> students = new ArrayList<Student>(0);
-    /**
-     * An array list of all the courses in this school.
-     */
-    public static ArrayList<Course> courses = new ArrayList<Course>(0);
-    /**
-     * An array list of all the course registration records in this school.
-     */
-    public static ArrayList<CourseRegistration> courseRegistrations = new ArrayList<CourseRegistration>(0);
-    /**
-     * An array list of all the student mark records in this school.
-     */
-    public static ArrayList<Mark> marks = new ArrayList<Mark>(0);
-    /**
-     * An array list of all the professors in this school.
-     */
-    public static ArrayList<Professor> professors = new ArrayList<Professor>(0);
 
     /**
      * The main function of the system.
      * Command line interface.
+     *
      * @param args The command line parameters.
      */
     public static void main(String[] args) {
 
-        students = FILEMgr.loadStudents();
-        courses = FILEMgr.loadCourses();
-        courseRegistrations = FILEMgr.loadCourseRegistration();
-        marks = FILEMgr.loadStudentMarks();
-        professors = FILEMgr.loadProfessors();
+        StudentMgr.students = FILEMgr.loadStudents();
+        CourseMgr.courses = FILEMgr.loadCourses();
+        CourseRegistrationMgr.courseRegistrations = FILEMgr.loadCourseRegistration();
+        MarkMgr.marks = FILEMgr.loadStudentMarks();
+        ProfessorMgr.professors = FILEMgr.loadProfessors();
 
         printWelcome();
 
@@ -124,14 +96,15 @@ public class Main {
         System.out.println("******************************************************************************************************************************");
         System.out.println();
     }
+
     /**
      * Displays the exiting message.
      */
     public static void exitApplication() {
 
         System.out.println("Backing up data before exiting...");
-        FILEMgr.backUpCourse(courses);
-        FILEMgr.backUpMarks(marks);
+        FILEMgr.backUpCourse(CourseMgr.courses);
+        FILEMgr.backUpMarks(MarkMgr.marks);
         System.out.println("********* Bye! Thank you for using Main! *********");
         System.out.println();
         System.out.println("                 ######    #      #   #######                   ");
