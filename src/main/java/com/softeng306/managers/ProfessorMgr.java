@@ -5,17 +5,18 @@ import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.validation.DepartmentValidator;
 import com.softeng306.validation.ProfessorValidator;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * Manages all the professor related operations
- *
-
  */
 public class ProfessorMgr {
     private Scanner scanner = new Scanner(System.in);
-    private static final String PROFESSOR_ID_REGEX = "^P[0-9]{7}[A-Z]$";
-
+    /**
+     * An array list of all the professors in this school.
+     */
+    public static ArrayList<Professor> professors = new ArrayList<Professor>(0);
 
     /**
      * Adds a professor.

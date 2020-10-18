@@ -9,16 +9,20 @@ import com.softeng306.validation.DepartmentValidator;
 import com.softeng306.validation.GenderValidator;
 import com.softeng306.validation.StudentValidator;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * Manages the student related operations.
  * Contains addStudent.
-
  */
 
 public class StudentMgr {
     private static Scanner scanner = new Scanner(System.in);
+    /**
+     * An array list of all the students in this school.
+     */
+    public static ArrayList<Student> students = new ArrayList<Student>(0);
 
 
     /**
@@ -138,12 +142,12 @@ public class StudentMgr {
 
         FILEMgr.writeStudentsIntoFile(currentStudent);
 
-        Main.students.add(currentStudent);
+        StudentMgr.students.add(currentStudent);
         System.out.println("Student named: " + studentName + " is added, with ID: " + currentStudent.getStudentID());
 
         System.out.println("Student List: ");
         System.out.println("| Student ID | Student Name | Student School | Gender | Year | GPA |");
-        for (Student student : Main.students) {
+        for (Student student : StudentMgr.students) {
             if (Double.compare(student.getGPA(), 0.0) != 0) {
                 GPA = String.valueOf(student.getGPA());
             }
