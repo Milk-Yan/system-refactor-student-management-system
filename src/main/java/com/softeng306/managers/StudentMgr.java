@@ -3,7 +3,7 @@ package com.softeng306.managers;
 
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.StudentMgrIO;
-import com.softeng306.main.Main;
+import java.util.ArrayList;
 import com.softeng306.io.FILEMgr;
 
 /**
@@ -12,6 +12,11 @@ import com.softeng306.io.FILEMgr;
  */
 
 public class StudentMgr {
+    /**
+     * An array list of all the students in this school.
+     */
+    public static ArrayList<Student> students = new ArrayList<Student>(0);
+
 
     /**
      * Adds a student and put the student into file
@@ -37,9 +42,9 @@ public class StudentMgr {
         currentStudent.setStudentSchool(StudentMgrIO.getSchoolName());  //Set school
         currentStudent.setGender(StudentMgrIO.getStudentGender());      //gender
         currentStudent.setStudentYear(StudentMgrIO.getStudentYear());   //student year
-        
+
         FILEMgr.writeStudentsIntoFile(currentStudent);
-        Main.students.add(currentStudent);
+        StudentMgr.students.add(currentStudent);
 
         StudentMgrIO.printStudentID(currentStudent.getStudentName(), currentStudent.getStudentID());
     }

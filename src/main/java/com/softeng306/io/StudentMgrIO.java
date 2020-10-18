@@ -1,8 +1,8 @@
 package com.softeng306.io;
 
+import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.ValidationMgr;
 import com.softeng306.domain.student.Student;
-import com.softeng306.main.Main;
 
 import java.util.Scanner;
 
@@ -134,7 +134,7 @@ public class StudentMgrIO {
         System.out.println("Student named: " + name + " is added, with ID: " + ID);
         System.out.println("Student List: ");
         System.out.println("| Student ID | Student Name | Student School | Gender | Year | GPA |");
-        for (Student student : Main.students) {
+        for (Student student : StudentMgr.students) {
             String GPA = "not available";
             if (Double.compare(student.getGPA(), 0.0) != 0) {
                 GPA = String.valueOf(student.getGPA());
