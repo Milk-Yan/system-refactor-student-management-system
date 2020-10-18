@@ -11,8 +11,7 @@ import java.util.Scanner;
 public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
 
-
-    public static void mainMenu() {
+    public static void startMainMenu() {
         int choice;
         do {
             printOptions();
@@ -73,7 +72,6 @@ public class MainMenuIO {
         } while (choice != 11);
     }
 
-
     /**
      * Displays the welcome message.
      */
@@ -86,7 +84,6 @@ public class MainMenuIO {
         System.out.println("******************************************************************************************************************************");
         System.out.println();
     }
-
 
     /**
      * Displays the exiting message.

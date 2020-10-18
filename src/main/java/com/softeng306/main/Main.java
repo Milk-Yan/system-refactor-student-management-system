@@ -45,6 +45,6 @@ public class Main {
         professors = FILEMgr.loadProfessors();
 
         MainMenuIO.printWelcome();
-        MainMenuIO.mainMenu();
+        MainMenuIO.startMainMenu();
     }
 }
