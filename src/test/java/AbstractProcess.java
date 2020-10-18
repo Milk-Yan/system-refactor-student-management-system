@@ -21,7 +21,7 @@ public abstract class AbstractProcess {
             Thread.sleep(200);
         }
 
-        boolean timeoutBoolean = p.waitFor(1, TimeUnit.SECONDS);
+        boolean timeoutBoolean = p.waitFor(2, TimeUnit.SECONDS);
         if(!timeoutBoolean){
             throw new TimeoutException(getOutputFromInputStreamWithRead(stdout));
         }
@@ -50,7 +50,7 @@ public abstract class AbstractProcess {
             outputBuilder.append(currentOutput);
         }
 
-        boolean timeoutBoolean = p.waitFor(1, TimeUnit.SECONDS);
+        boolean timeoutBoolean = p.waitFor(2, TimeUnit.SECONDS);
         if(!timeoutBoolean){
             throw new TimeoutException();
         }
