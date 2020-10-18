@@ -2,7 +2,6 @@ package com.softeng306.validation;
 
 import com.softeng306.domain.course.Course;
 import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.main.Main;
 import com.softeng306.managers.CourseMgr;
 
 import java.io.OutputStream;

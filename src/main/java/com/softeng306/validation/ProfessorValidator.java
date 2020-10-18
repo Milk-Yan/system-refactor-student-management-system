@@ -2,7 +2,6 @@ package com.softeng306.validation;
 
 
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.main.Main;
 import com.softeng306.managers.ProfessorMgr;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.softeng306.validation;
 
 import com.softeng306.io.HelpInfoMgr;
-
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
