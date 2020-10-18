@@ -2,6 +2,7 @@ package com.softeng306.validation;
 
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.main.Main;
+import com.softeng306.managers.CourseRegistrationMgr;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +16,7 @@ public class CourseRegistrationValidator {
      * @return the existing course registration record or else null.
      */
     public static CourseRegistration checkCourseRegistrationExists(String studentID, String courseID) {
-        List<CourseRegistration> courseRegistrations = Main.courseRegistrations.stream().filter(cr -> studentID.equals(cr.getStudent().getStudentID())).filter(cr -> courseID.equals(cr.getCourse().getCourseID())).collect(Collectors.toList());
+        List<CourseRegistration> courseRegistrations = CourseRegistrationMgr.courseRegistrations.stream().filter(cr -> studentID.equals(cr.getStudent().getStudentID())).filter(cr -> courseID.equals(cr.getCourse().getCourseID())).collect(Collectors.toList());
         if (courseRegistrations.size() == 0) {
             return null;
         }

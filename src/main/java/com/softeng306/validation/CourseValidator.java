@@ -3,6 +3,7 @@ package com.softeng306.validation;
 import com.softeng306.domain.course.Course;
 import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.main.Main;
+import com.softeng306.managers.CourseMgr;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -82,7 +83,7 @@ public class CourseValidator {
      * @return the existing course or else null.
      */
     public static Course checkCourseExists(String courseID) {
-        List<Course> anyCourse = Main.courses.stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
+        List<Course> anyCourse = CourseMgr.courses.stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
         if (anyCourse.size() == 0) {
             return null;
         }

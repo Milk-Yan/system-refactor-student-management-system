@@ -3,6 +3,7 @@ package com.softeng306.validation;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.main.Main;
+import com.softeng306.managers.StudentMgr;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -50,7 +51,7 @@ public class StudentValidator {
      * @return the existing student or else null.
      */
     public static Student checkStudentExists(String studentID) {
-        List<Student> anyStudent = Main.students.stream().filter(s -> studentID.equals(s.getStudentID())).collect(Collectors.toList());
+        List<Student> anyStudent = StudentMgr.students.stream().filter(s -> studentID.equals(s.getStudentID())).collect(Collectors.toList());
         if (anyStudent.size() == 0) {
             return null;
         }
