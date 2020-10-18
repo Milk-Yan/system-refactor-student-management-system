@@ -1,5 +1,6 @@
 package com.softeng306.managers;
 
+import com.softeng306.Enum.Department;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.validation.ValidationMgr;
@@ -51,7 +52,7 @@ public class ProfessorMgr {
             }
 
             if (ValidationMgr.checkDepartmentValidation(department)) {
-                professor.setProfDepartment(department);
+                professor.setProfDepartment(Department.valueOf(department));
                 break;
             }
         }

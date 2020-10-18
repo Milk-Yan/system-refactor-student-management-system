@@ -1,6 +1,7 @@
 package com.softeng306.io;
 
 
+import com.softeng306.Enum.Department;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.component.CourseworkComponent;
@@ -772,7 +773,7 @@ public class FILEMgr {
             fileWriter.append(COMMA_DELIMITER);
             fileWriter.append(professor.getProfName());
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(professor.getProfDepartment());
+            fileWriter.append(professor.getProfDepartment().toString());
             fileWriter.append(NEW_LINE_SEPARATOR);
         } catch (Exception e) {
             System.out.println("Error in adding a professor to the file.");
@@ -805,7 +806,7 @@ public class FILEMgr {
                 String[] tokens = line.split(COMMA_DELIMITER);
                 if (tokens.length > 0) {
                     Professor professor = new Professor(tokens[professorIdIndex], tokens[professorNameIndex]);
-                    professor.setProfDepartment(tokens[professorDepartmentIndex]);
+                    professor.setProfDepartment(Department.valueOf(tokens[professorDepartmentIndex]));
                     professors.add(professor);
                 }
             }
