@@ -5,11 +5,10 @@ public class GroupValidator {
 
     /**
      * Checks whether the inputted group name is in the correct format.
-     *
      * @param groupName The inputted group name.
      * @return boolean indicates whether the inputted group name is valid.
      */
-    public static boolean checkValidGroupNameInput(String groupName) {
+    public static boolean checkValidGroupNameInput(String groupName){
         return RegexValidator.checkStringRegexFormat(groupName, GROUP_NAME_REGEX);
     }
 }

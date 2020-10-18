@@ -16,6 +16,7 @@ import java.util.*;
 
 /**
  * Manages all the mark related operations.
+
  */
 
 public class MarkMgr {
@@ -23,9 +24,8 @@ public class MarkMgr {
 
     /**
      * Initializes marks for a student when he/she just registered a course.
-     *
      * @param student the student this mark record belongs to.
-     * @param course  the course this mark record about.
+     * @param course the course this mark record about.
      * @return the new added mark.
      */
     public static Mark initializeMark(Student student, Course course) {
@@ -48,7 +48,6 @@ public class MarkMgr {
 
     /**
      * Sets the coursework mark for the mark record.
-     *
      * @param isExam whether this coursework component refers to "Exam"
      */
     public static void setCourseWorkMark(boolean isExam) {
@@ -57,7 +56,7 @@ public class MarkMgr {
         String studentID = StudentValidator.checkStudentExists().getStudentID();
         String courseID = CourseValidator.checkCourseExists().getCourseID();
 
-        for (Mark mark : Main.marks) {
+        for(Mark mark: Main.marks) {
             if (mark.getCourse().getCourseID().equals(courseID) && mark.getStudent().getStudentID().equals(studentID)) {
                 //put the set mark function here
                 if (!isExam) {
@@ -65,17 +64,17 @@ public class MarkMgr {
                     ArrayList<String> availableChoices = new ArrayList<String>(0);
                     ArrayList<Double> weights = new ArrayList<Double>(0);
                     ArrayList<Boolean> isMainAss = new ArrayList<Boolean>(0);
-                    for (HashMap.Entry<CourseworkComponent, Double> assessmentResult : mark.getCourseWorkMarks().entrySet()) {
+                    for (HashMap.Entry<CourseworkComponent, Double> assessmentResult : mark.getCourseWorkMarks().entrySet()){
                         CourseworkComponent key = assessmentResult.getKey();
                         if (key instanceof MainComponent) {
                             if ((!key.getComponentName().equals("Exam")) && ((MainComponent) key).getSubComponents().size() == 0) {
                                 availableChoices.add(key.getComponentName());
-                                weights.add((double) key.getComponentWeight());
+                                weights.add((double)key.getComponentWeight());
                                 isMainAss.add(true);
                             } else {
                                 for (SubComponent subComponent : ((MainComponent) key).getSubComponents()) {
                                     availableChoices.add(key.getComponentName() + "-" + subComponent.getComponentName());
-                                    weights.add((double) key.getComponentWeight() * (double) subComponent.getComponentWeight() / 100d);
+                                    weights.add((double)key.getComponentWeight() * (double)subComponent.getComponentWeight() / 100d);
                                     isMainAss.add(false);
                                 }
                             }
@@ -100,7 +99,7 @@ public class MarkMgr {
                     }
 
                     if (choice == (availableChoices.size() + 1)) {
-                        return;
+                        return ;
                     }
 
                     double assessmentMark;
@@ -116,11 +115,14 @@ public class MarkMgr {
                     if (isMainAss.get(choice - 1)) {
                         // This is a stand alone main assessment
                         mark.setMainCourseWorkMarks(availableChoices.get(choice - 1), assessmentMark);
-                    } else {
+                    }
+                    else {
                         mark.setSubCourseWorkMarks(availableChoices.get(choice - 1).split("-")[1], assessmentMark);
                     }
 
-                } else {
+                }
+
+                else {
                     // The user want to enter exam mark.
                     double examMark;
                     System.out.println("Enter exam mark:");
@@ -144,12 +146,11 @@ public class MarkMgr {
 
     /**
      * Computes the sum of marks for a particular component of a particular course
-     *
-     * @param thisCourseMark    the array list of mark records belong to a particular course
+     * @param thisCourseMark the array list of mark records belong to a particular course
      * @param thisComponentName the component name interested.
      * @return the sum of component marks
      */
-    public static double computeMark(ArrayList<Mark> thisCourseMark, String thisComponentName) {
+    public static double computeMark(ArrayList<Mark> thisCourseMark, String thisComponentName){
         double averageMark = 0;
         for (Mark mark : thisCourseMark) {
             HashMap<CourseworkComponent, Double> thisComponentMarks = mark.getCourseWorkMarks();
@@ -175,7 +176,7 @@ public class MarkMgr {
         String courseID = currentCourse.getCourseID();
 
         ArrayList<Mark> thisCourseMark = new ArrayList<Mark>(0);
-        for (Mark mark : Main.marks) {
+        for(Mark mark : Main.marks) {
             if (mark.getCourse().getCourseID().equals(courseID)) {
                 thisCourseMark.add(mark);
             }
@@ -188,7 +189,7 @@ public class MarkMgr {
         System.out.print("Total Slots: " + currentCourse.getTotalSeats());
         int enrolledNumber = (currentCourse.getTotalSeats() - currentCourse.getVacancies());
         System.out.println("\tEnrolled Student: " + enrolledNumber);
-        System.out.printf("Enrollment Rate: %4.2f %%\n", ((double) enrolledNumber / (double) currentCourse.getTotalSeats() * 100d));
+        System.out.printf("Enrollment Rate: %4.2f %%\n", ((double)enrolledNumber / (double)currentCourse.getTotalSeats() * 100d));
         System.out.println();
 
 
@@ -203,7 +204,9 @@ public class MarkMgr {
                 examWeight = courseworkComponent.getComponentWeight();
 //                Leave the exam report to the last
                 hasExam = true;
-            } else {
+            }
+
+            else {
                 averageMark = 0;
                 System.out.print("Main Component: " + courseworkComponent.getComponentName());
                 System.out.print("\tWeight: " + courseworkComponent.getComponentWeight() + "%");
@@ -213,10 +216,8 @@ public class MarkMgr {
                 averageMark = averageMark / thisCourseMark.size();
                 System.out.println("\t Average: " + averageMark);
 
-                ArrayList<SubComponent> thisSubComponents = ((MainComponent) courseworkComponent).getSubComponents();
-                if (thisSubComponents.size() == 0) {
-                    continue;
-                }
+                ArrayList<SubComponent> thisSubComponents = ((MainComponent)courseworkComponent).getSubComponents();
+                if (thisSubComponents.size() == 0) { continue; }
                 for (SubComponent subComponent : thisSubComponents) {
                     averageMark = 0;
                     System.out.print("Sub Component: " + subComponent.getComponentName());
@@ -276,13 +277,13 @@ public class MarkMgr {
     /**
      * Prints transcript (Results of course taken) for a particular student
      */
-    public static void printStudentTranscript() {
+    public static void  printStudentTranscript() {
         String studentID = StudentValidator.checkStudentExists().getStudentID();
 
         double studentGPA = 0d;
         int thisStudentAU = 0;
         ArrayList<Mark> thisStudentMark = new ArrayList<Mark>(0);
-        for (Mark mark : Main.marks) {
+        for(Mark mark : Main.marks) {
             if (mark.getStudent().getStudentID().equals(studentID)) {
                 thisStudentMark.add(mark);
                 thisStudentAU += mark.getCourse().getAU();
@@ -307,7 +308,7 @@ public class MarkMgr {
             for (HashMap.Entry<CourseworkComponent, Double> entry : mark.getCourseWorkMarks().entrySet()) {
                 CourseworkComponent assessment = entry.getKey();
                 Double result = entry.getValue();
-                if (assessment instanceof MainComponent) {
+                if(assessment instanceof MainComponent) {
                     System.out.println("Main Assessment: " + assessment.getComponentName() + " ----- (" + assessment.getComponentWeight() + "%)");
                     int mainAssessmentWeight = assessment.getComponentWeight();
                     ArrayList<SubComponent> subAssessments = ((MainComponent) assessment).getSubComponents();
@@ -350,7 +351,6 @@ public class MarkMgr {
 
     /**
      * Computes the gpa gained for this course from the result of this course.
-     *
      * @param result result of this course
      * @return the grade (in A, B ... )
      */
@@ -363,13 +363,13 @@ public class MarkMgr {
             return 4.5;
         } else if (result > 75) {
             // B+
-            return 4d;
+            return  4d;
         } else if (result > 70) {
             // B
             return 3.5;
         } else if (result > 65) {
             // B-
-            return 3d;
+            return  3d;
         } else if (result > 60) {
             // C+
             return 2.5d;

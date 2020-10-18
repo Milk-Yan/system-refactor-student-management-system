@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 /**
  * Manages all the help information display in the system.
+
  */
 
 public class HelpInfoMgr {
@@ -20,7 +21,7 @@ public class HelpInfoMgr {
      * Displays all the professors in the inputted department.
      *
      * @param department The inputted department.
-     * @param printOut   Represents whether print out the professor information or not
+     * @param printOut Represents whether print out the professor information or not
      * @return A list of all the names of professors in the inputted department or else null.
      */
     public static List<String> printProfInDepartment(String department, boolean printOut) {

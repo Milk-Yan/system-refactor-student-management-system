@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class DepartmentValidator {
     private static Scanner scanner = new Scanner(System.in);
     private static PrintStream originalStream = System.out;
-    private static PrintStream dummyStream = new PrintStream(new OutputStream() {
+    private static PrintStream dummyStream = new PrintStream(new OutputStream(){
         public void write(int b) {
             // NO-OP
         }
@@ -18,12 +18,11 @@ public class DepartmentValidator {
 
     /**
      * Checks whether the inputted department is valid.
-     *
      * @param department The inputted department.
      * @return boolean indicates whether the inputted department is valid.
      */
-    public static boolean checkDepartmentValidation(String department) {
-        if (HelpInfoMgr.getAllDepartment().contains(department)) {
+    public static boolean checkDepartmentValidation(String department){
+        if(HelpInfoMgr.getAllDepartment().contains(department)){
             return true;
         }
         System.out.println("The department is invalid. Please re-enter.");
@@ -32,26 +31,25 @@ public class DepartmentValidator {
 
     /**
      * Prompts the user to input an existing department.
-     *
      * @return the inputted department.
      */
-    public static String checkCourseDepartmentExists() {
+    public static String checkCourseDepartmentExists(){
         String courseDepartment;
-        while (true) {
+        while(true){
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = scanner.nextLine();
-            while ("-h".equals(courseDepartment)) {
+            while("-h".equals(courseDepartment)){
                 HelpInfoMgr.printAllDepartment();
                 courseDepartment = scanner.nextLine();
             }
-            if (checkDepartmentValidation(courseDepartment)) {
+            if(checkDepartmentValidation(courseDepartment)){
                 List<String> validCourseString;
                 System.setOut(dummyStream);
                 validCourseString = HelpInfoMgr.printCourseInDepartment(courseDepartment);
                 System.setOut(originalStream);
-                if (validCourseString.size() == 0) {
+                if(validCourseString.size() == 0){
                     System.out.println("Invalid choice of department.");
-                } else {
+                }else{
                     break;
                 }
             }
