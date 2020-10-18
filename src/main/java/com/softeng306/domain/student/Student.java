@@ -1,5 +1,6 @@
 package com.softeng306.domain.student;
 
+import com.softeng306.Enum.Gender;
 import com.softeng306.main.Main;
 
 /**
@@ -8,7 +9,6 @@ import com.softeng306.main.Main;
  * A student can enroll many courses.
 
  */
-
 public class Student {
 
     /**
@@ -34,7 +34,7 @@ public class Student {
     /**
      * The gender of this student.
      */
-    private String gender;
+    private Gender gender;
 
     /**
      * The GPA of this student.
@@ -95,7 +95,7 @@ public class Student {
      * Gets the student's gender.
      * @return this student's gender.
      */
-    public String getGender(){
+    public Gender getGender(){
         return gender;
     }
 
@@ -143,7 +143,7 @@ public class Student {
      * Sets the gender of this student.
      * @param gender this student's gender.
      */
-    public void setGender(String gender){
+    public void setGender(Gender gender){
         this.gender = gender;
     }
 

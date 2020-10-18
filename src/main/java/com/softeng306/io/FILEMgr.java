@@ -3,6 +3,7 @@ package com.softeng306.io;
 
 import com.softeng306.Enum.CourseType;
 import com.softeng306.Enum.Department;
+import com.softeng306.Enum.Gender;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.component.CourseworkComponent;
@@ -289,7 +290,7 @@ public class FILEMgr {
             fileWriter.append(COMMA_DELIMITER);
             fileWriter.append(student.getStudentSchool());
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(student.getGender());
+            fileWriter.append(student.getGender().toString());
             fileWriter.append(COMMA_DELIMITER);
             fileWriter.append(String.valueOf(student.getGPA()));
             fileWriter.append(COMMA_DELIMITER);
@@ -329,7 +330,7 @@ public class FILEMgr {
                     recentStudentID = Math.max(recentStudentID, Integer.parseInt(tokens[studentIdIndex].substring(1, 8)));
                     Student student = new Student(tokens[studentIdIndex], tokens[studentNameIndex]);
                     student.setStudentSchool(tokens[studentSchoolIndex]);
-                    student.setGender(tokens[studentGenderIndex]);
+                    student.setGender(Gender.valueOf(tokens[studentGenderIndex]));
                     student.setGPA(Double.parseDouble(tokens[studentGPAIndex]));
                     student.setStudentYear(Integer.parseInt(tokens[studentYearIndex]));
                     students.add(student);

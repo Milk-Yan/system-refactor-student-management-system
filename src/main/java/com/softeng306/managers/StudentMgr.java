@@ -1,6 +1,7 @@
 package com.softeng306.managers;
 
 
+import com.softeng306.Enum.Gender;
 import com.softeng306.domain.student.Student;
 import com.softeng306.main.Main;
 import com.softeng306.io.FILEMgr;
@@ -108,7 +109,7 @@ public class StudentMgr {
             }
 
             if (ValidationMgr.checkGenderValidation(studentGender)) {
-                currentStudent.setGender(studentGender);
+                currentStudent.setGender(Gender.valueOf(studentGender));
                 break;
             }
         }
