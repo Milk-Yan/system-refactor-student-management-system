@@ -8,9 +8,7 @@ import java.util.Scanner;
 
 public class StudentMgrIO {
 
-
     private static Scanner reader = new Scanner(System.in);
-
 
     public static void printMenu() {
         System.out.println("addStudent is called");
@@ -18,8 +16,7 @@ public class StudentMgrIO {
         System.out.println("1. Manually input the student ID.");
         System.out.println("2. Let the system self-generate the student ID.");
     }
-
-
+    
     public static boolean systemGenerateID() {
         int choice;
         do {
@@ -42,7 +39,6 @@ public class StudentMgrIO {
 
     }
 
-
     public static String getStudentID() {
         while (true) {
             System.out.println("The student ID should follow:");
@@ -61,7 +57,6 @@ public class StudentMgrIO {
         }
     }
 
-
     public static String getStudentName() {
         String studentName;
         while (true) {
@@ -72,7 +67,6 @@ public class StudentMgrIO {
             }
         }
     }
-
 
     public static String getSchoolName() {
         String studentSchool;
@@ -90,7 +84,6 @@ public class StudentMgrIO {
             }
         }
     }
-
 
     public static String getStudentGender() {
         String studentGender;
@@ -128,7 +121,6 @@ public class StudentMgrIO {
             }
         } while (true);
     }
-
 
     public static void printStudentID(String name, String ID) {
         System.out.println("Student named: " + name + " is added, with ID: " + ID);
