@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -8,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-public class TestCheckAvailableSlotsInClass {
-    private static AbstractProcess originalProcess;
-    private static AbstractProcess refactoredProcess;
+public class TestCheckAvailableSlotsInClass extends AbstractTestProcess{
 
     @BeforeClass
     public static void setupResources() throws URISyntaxException, IOException {
@@ -28,9 +25,4 @@ public class TestCheckAvailableSlotsInClass {
         compareOutputsBetweenRefactoredAndOriginal(inputList);
     }
 
-    private void compareOutputsBetweenRefactoredAndOriginal(List<String> inputList) throws InterruptedException, IOException, URISyntaxException, TimeoutException {
-        String originalOutput = TestCheckAvailableSlotsInClass.originalProcess.getOutput(inputList);
-        String refactoredOutput = TestCheckAvailableSlotsInClass.refactoredProcess.getOutput(inputList);
-        Assert.assertEquals(originalOutput, refactoredOutput);
-    }
 }
