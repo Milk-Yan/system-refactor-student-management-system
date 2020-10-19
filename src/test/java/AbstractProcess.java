@@ -6,14 +6,21 @@ import java.util.concurrent.TimeoutException;
 
 public abstract class AbstractProcess {
 
-
+    /**
+     * Gets the output of the process specified by the subclass
+     * @param inputData the list of commands to be inputted to the commandline during execution
+     * @return the command line output as a string
+     */
     public String getOutput(List<String> inputData) throws IOException, InterruptedException, URISyntaxException, TimeoutException {
+        // Hook method to get specific process
         ProcessBuilder pb = getProcessBuilder();
         Process p = pb.start();
 
+        // Gets specific streams to be used
         PrintWriter stdin = new PrintWriter(p.getOutputStream());//input
         InputStream stdout = p.getInputStream(); // output and error stream
 
+        // Requirement of sleeping thread to allow the process to execute
         Thread.sleep(200);
         for (String input : inputData) {
             stdin.write(input + "\n");
@@ -21,6 +28,7 @@ public abstract class AbstractProcess {
             Thread.sleep(200);
         }
 
+        // Wait for the program, if does not terminate on its own throw an error
         boolean timeoutBoolean = p.waitFor(2, TimeUnit.SECONDS);
         if(!timeoutBoolean){
             throw new TimeoutException(getOutputFromInputStreamWithRead(stdout));
@@ -29,6 +37,12 @@ public abstract class AbstractProcess {
         return getOutputFromInputStreamWithRead(stdout);
     }
 
+    /**
+     * Gets the output of the process specified by the subclass. Different to getOutput in that it will
+     * print the output as it is read.
+     * @param inputData the list of commands to be inputted to the commandline during execution
+     * @return the command line output as a string
+     */
     public String getOutputDebug(List<String> inputData) throws IOException, InterruptedException, URISyntaxException, TimeoutException {
         ProcessBuilder pb = getProcessBuilder();
         Process p = pb.start();
@@ -58,11 +72,21 @@ public abstract class AbstractProcess {
         return outputBuilder.toString();
     }
 
-
+    /**
+     * Hook method to get the specific processbuilder that will need to be implemented by subclasses
+     * @return a processbuilder that will be run in getOutput
+     * @throws URISyntaxException
+     */
     protected abstract ProcessBuilder getProcessBuilder() throws URISyntaxException;
 
+    /**
+     * Reads the input stream given
+     * @param stdout the stream to be read
+     * @return a string with the contents of the input stream
+     */
     private String getOutputFromInputStreamWithRead(InputStream stdout) throws IOException {
         StringBuilder outputBuilder = new StringBuilder();
+        // While thre is still information available, read from the stream
         while (stdout.available() != 0) {
             outputBuilder.append((char) stdout.read());
         }
@@ -78,6 +102,4 @@ public abstract class AbstractProcess {
         }
         return outputBuilder.toString();
     }
-
-
 }
