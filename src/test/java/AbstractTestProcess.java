@@ -21,6 +21,18 @@ public class AbstractTestProcess {
     }
 
     /**
+     * Compares output between the class files of the system generated and the jar of the original system
+     * Also prints the output for debugging
+     * @param inputList the list of inputs to provide to both programs
+     * @throws TimeoutException Indicates that the program took too long to respond most likely due to a stall
+     */
+    protected void compareOutputsBetweenRefactoredAndOriginalDebug(List<String> inputList) throws InterruptedException, IOException, URISyntaxException, TimeoutException {
+        String originalOutput = AbstractTestProcess.originalProcess.getOutputDebug(inputList);
+        String refactoredOutput = AbstractTestProcess.refactoredProcess.getOutput(inputList);
+        Assert.assertEquals(originalOutput, refactoredOutput);
+    }
+
+    /**
      * Compares lines between the class files of the system generated and the jar of the original system
      * Ensures every line of information in the original jar is in the new class files
      * @param inputList the list of inputs to provide to both programs
