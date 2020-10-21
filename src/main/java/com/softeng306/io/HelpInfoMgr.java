@@ -19,13 +19,6 @@ public class HelpInfoMgr {
     private static Scanner scanner = new Scanner(System.in);
 
     /**
-     * Displays a list of IDs of all the students.
-     */
-    public static void printAllStudents() {
-        StudentMgr.students.stream().map(s -> s.getStudentID()).forEach(System.out::println);
-    }
-
-    /**
      * Displays a list of IDs of all the courses.
      */
     public static void printAllCourses() {
