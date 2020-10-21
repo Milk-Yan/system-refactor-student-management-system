@@ -77,7 +77,7 @@ public class StudentValidator {
             System.out.println("Enter Student ID (-h to print all the student ID):");
             studentID = scanner.nextLine();
             while ("-h".equals(studentID)) {
-                StudentMgr.printAllStudents();
+                StudentMgr.printAllStudentIds();
                 studentID = scanner.nextLine();
             }
 

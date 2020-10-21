@@ -48,12 +48,13 @@ public class StudentMgr {
         StudentMgrIO.printStudentID(currentStudent.getStudentName(), currentStudent.getStudentID());
     }
 
-
     /**
      * Displays a list of IDs of all the students.
      */
-    public static void printAllStudents() {
-        StudentMgr.students.stream().map(s -> s.getStudentID()).forEach(System.out::println);
+    public static void printAllStudentIds() {
+        for (Student s : StudentMgr.students) {
+            System.out.println(s.getStudentID());
+        }
     }
 
 }
