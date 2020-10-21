@@ -65,6 +65,7 @@ public class TestAddStudent extends AbstractTestProcess{
         inputList.add("1"); // Manually enter student ID
         inputList.add("INVALIDID"); // Enter invalid student ID
         inputList.add("U1829394E"); // Enter student ID
+        inputList.add("21"); // Enter invalid student name
         inputList.add("Gerald"); // Enter student name
         inputList.add("INVALIDDEPARTMENT"); // Enter invalid department
         inputList.add("ECSE"); // Enter student department

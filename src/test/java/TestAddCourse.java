@@ -101,6 +101,7 @@ public class TestAddCourse extends AbstractTestProcess{
         inputList.add("4"); // Enter invalid weekly lecture hour
         inputList.add("one"); // Enter non-integer format weekly lecture hour
         inputList.add("1"); // Enter weekly lecture hour
+        inputList.add("???"); // Enter invalid group name
         inputList.add("lec1"); // Enter name of lecture group
         inputList.add("-1"); // Enter invalid capacity of lecture group
         inputList.add("three"); // Enter non-integer format capacity of lecture group
@@ -115,6 +116,7 @@ public class TestAddCourse extends AbstractTestProcess{
         inputList.add("4"); // Enter invalid weekly lab hour
         inputList.add("one"); // Enter non-integer format weekly lab hour
         inputList.add("1"); // Enter weekly lab hour
+        inputList.add("???"); // Enter invalid group name
         inputList.add("lab1"); // Enter name of lab group
         inputList.add("-1"); // Enter invalid capacity of lab group
         inputList.add("3"); // Enter capacity of lab group
@@ -126,6 +128,7 @@ public class TestAddCourse extends AbstractTestProcess{
         inputList.add("4"); // Enter invalid weekly tutorial hour
         inputList.add("one"); // Enter non-integer format weekly tutorial hour
         inputList.add("1"); // Enter weekly tutorial hour
+        inputList.add("???"); // Enter invalid group name
         inputList.add("tut1"); // Enter name of tutorial group
         inputList.add("-1"); // Enter invalid capacity of tutorial group
         inputList.add("3"); // Enter capacity of tutorial group
