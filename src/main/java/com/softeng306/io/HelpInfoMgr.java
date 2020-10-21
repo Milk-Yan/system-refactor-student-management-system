@@ -19,18 +19,6 @@ public class HelpInfoMgr {
     private static Scanner scanner = new Scanner(System.in);
 
     /**
-     * Displays a list of all the departments.
-     */
-    public static void printAllDepartment() {
-        int index = 1;
-        for (Department department : Department.values()) {
-            System.out.println(index + ": " + department);
-            index++;
-        }
-
-    }
-
-    /**
      * Displays a list of all the genders.
      */
     public static void printAllGender() {
