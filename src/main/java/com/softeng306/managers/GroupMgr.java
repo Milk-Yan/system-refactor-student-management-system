@@ -1,23 +1,13 @@
-package com.softeng306.io;
+package com.softeng306.managers;
 
-import com.softeng306.domain.course.Course;
-import com.softeng306.Enum.*;
 import com.softeng306.domain.course.group.Group;
-import com.softeng306.validation.DepartmentValidator;
-import com.softeng306.managers.CourseMgr;
-import com.softeng306.managers.ProfessorMgr;
-import com.softeng306.managers.StudentMgr;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
-/**
- * Manages all the help information display in the system.
- */
-
-public class HelpInfoMgr {
+public class GroupMgr {
     private static Scanner scanner = new Scanner(System.in);
-
 
     /**
      * Checks whether the inputted department is valid.
@@ -72,5 +62,4 @@ public class HelpInfoMgr {
         }
         return selectedGroupName;
     }
-
 }
