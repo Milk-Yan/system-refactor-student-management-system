@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 public enum CourseType {
-    CORE,MPE,GREPEBM,GREPELA,GREPESTS,UE
     CORE, MPE, GREPEBM, GREPELA, GREPESTS, UE;
 
     /**
@@ -20,4 +19,19 @@ public enum CourseType {
         }
     }
 
+
+    /**
+     * Gets all the course types as an array list.
+     *
+     * @return an array list of all the course types.
+     */
+    public static ArrayList<String> getAllCourseType() {
+        Set<CourseType> courseTypeEnumSet = EnumSet.allOf(CourseType.class);
+        ArrayList<String> courseTypeStringSet = new ArrayList<String>(0);
+        Iterator iter = courseTypeEnumSet.iterator();
+        while (iter.hasNext()) {
+            courseTypeStringSet.add(iter.next().toString());
+        }
+        return courseTypeStringSet;
+    }
 }

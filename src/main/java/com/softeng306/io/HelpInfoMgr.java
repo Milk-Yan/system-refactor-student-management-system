@@ -18,21 +18,6 @@ import java.util.stream.Collectors;
 public class HelpInfoMgr {
     private static Scanner scanner = new Scanner(System.in);
 
-    /**
-     * Gets all the course types as an array list.
-     *
-     * @return an array list of all the course types.
-     */
-    public static ArrayList<String> getAllCourseType() {
-        Set<CourseType> courseTypeEnumSet = EnumSet.allOf(CourseType.class);
-        ArrayList<String> courseTypeStringSet = new ArrayList<String>(0);
-        Iterator iter = courseTypeEnumSet.iterator();
-        while (iter.hasNext()) {
-            courseTypeStringSet.add(iter.next().toString());
-        }
-        return courseTypeStringSet;
-    }
-
 
     /**
      * Displays a list of all the courses in the inputted department.
