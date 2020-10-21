@@ -45,7 +45,7 @@ public class StudentValidator {
      */
     public static boolean checkValidStudentNameInput(String studentName) {
         boolean valid = RegexValidator.checkStringRegexFormat(studentName, STUDENT_NAME_REGEX);
-        if(!valid){
+        if (!valid) {
             System.out.println("Wrong format of name.");
         }
         return valid;
@@ -78,7 +78,7 @@ public class StudentValidator {
             System.out.println("Enter Student ID (-h to print all the student ID):");
             studentID = scanner.nextLine();
             while ("-h".equals(studentID)) {
-                HelpInfoMgr.printAllStudents();
+                StudentMgr.printAllStudents();
                 studentID = scanner.nextLine();
             }
 
