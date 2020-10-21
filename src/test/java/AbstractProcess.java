@@ -21,20 +21,24 @@ public abstract class AbstractProcess {
         InputStream stdout = p.getInputStream(); // output and error stream
 
         // Requirement of sleeping thread to allow the process to execute
+        StringBuilder outputBuilder = new StringBuilder();
         Thread.sleep(200);
+        outputBuilder.append(getOutputFromInputStreamWithRead(stdout));
         for (String input : inputData) {
             stdin.write(input + "\n");
             stdin.flush();
             Thread.sleep(200);
+            outputBuilder.append(getOutputFromInputStreamWithRead(stdout));
         }
 
         // Wait for the program, if does not terminate on its own throw an error
-        boolean timeoutBoolean = p.waitFor(2, TimeUnit.SECONDS);
+        boolean timeoutBoolean = p.waitFor(5, TimeUnit.SECONDS);
         if(!timeoutBoolean){
+            System.err.println(outputBuilder.toString());
             throw new TimeoutException(getOutputFromInputStreamWithRead(stdout));
         }
 
-        return getOutputFromInputStreamWithRead(stdout);
+        return outputBuilder.toString();
     }
 
     /**
@@ -56,6 +60,7 @@ public abstract class AbstractProcess {
         System.out.println(currentOutput);
         outputBuilder.append(currentOutput);
         for (String input : inputData) {
+            System.out.println(input);
             stdin.write(input + "\n");
             stdin.flush();
             Thread.sleep(200);
@@ -64,7 +69,7 @@ public abstract class AbstractProcess {
             outputBuilder.append(currentOutput);
         }
 
-        boolean timeoutBoolean = p.waitFor(2, TimeUnit.SECONDS);
+        boolean timeoutBoolean = p.waitFor(5, TimeUnit.SECONDS);
         if(!timeoutBoolean){
             throw new TimeoutException();
         }

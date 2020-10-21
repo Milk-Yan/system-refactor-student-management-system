@@ -1,5 +1,4 @@
-import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -8,16 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-public class TestPrintStudentTranscript {
-    private static AbstractProcess originalProcess;
-    private static AbstractProcess refactoredProcess;
+public class TestPrintStudentTranscript extends AbstractTestProcess {
 
-    @BeforeClass
-    public static void setupResources() throws URISyntaxException, IOException {
+    @Before
+    public void setupResources() throws URISyntaxException, IOException {
         originalProcess = new OriginalProcess();
         refactoredProcess = new RefactoredProcess();
     }
 
+    /**
+     * Tests general case where user gets student transcript
+     */
     @Test
     public void testPrintStudentTranscript() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
         List<String> inputList = new ArrayList<>();
@@ -25,23 +25,38 @@ public class TestPrintStudentTranscript {
         inputList.add("U1234567L"); // Enter course ID
         inputList.add("11"); // Exit program
 
+        // Compare output lines as original system uses HashMap#entrySet() which is pseudorandom
         compareLinesBetweenRefactoredAndOriginal(inputList);
     }
 
-    private void compareOutputsBetweenRefactoredAndOriginal(List<String> inputList) throws InterruptedException, IOException, URISyntaxException, TimeoutException {
-        String originalOutput = TestPrintStudentTranscript.originalProcess.getOutput(inputList);
-        String refactoredOutput = TestPrintStudentTranscript.refactoredProcess.getOutput(inputList);
-        Assert.assertEquals(originalOutput, refactoredOutput);
+    /**
+     * Tests case where user gets student transcript with help
+     */
+    @Test
+    public void testPrintStudentTranscriptWithHelp() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
+        List<String> inputList = new ArrayList<>();
+        inputList.add("10"); // Print course statistics
+        inputList.add("-h"); // List all course statistics
+        inputList.add("U1234567L"); // Enter course ID
+        inputList.add("11"); // Exit program
+
+        // Compare output lines as original system uses HashMap#entrySet() which is pseudorandom
+        compareLinesBetweenRefactoredAndOriginal(inputList);
     }
 
-    private void compareLinesBetweenRefactoredAndOriginal(List<String> inputList) throws InterruptedException, IOException, URISyntaxException, TimeoutException {
-        String originalOutput = TestPrintStudentTranscript.originalProcess.getOutput(inputList);
-        String refactoredOutput = TestPrintStudentTranscript.refactoredProcess.getOutput(inputList);
+    /**
+     * Tests case where user gets student transcript encountering every error statements
+     */
+    @Test
+    public void testPrintStudentTranscriptErrors() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
+        List<String> inputList = new ArrayList<>();
+        inputList.add("10"); // Print course statistics
+        inputList.add("INVALIDSTUDENT"); // Enter invalid course
+        inputList.add("U1234567L"); // Enter course ID
+        inputList.add("11"); // Exit program
 
-        String[] originalOutputList = originalOutput.split("\n");
-        Assert.assertEquals(originalOutput.length(), refactoredOutput.length());
-        for(String originalLine : originalOutputList) {
-            Assert.assertTrue(refactoredOutput.contains(originalLine));
-        }
+        // Compare output lines as original system uses HashMap#entrySet() which is pseudorandom
+        compareLinesBetweenRefactoredAndOriginal(inputList);
     }
+
 }
