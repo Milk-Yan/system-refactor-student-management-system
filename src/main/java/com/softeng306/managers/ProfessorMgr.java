@@ -18,6 +18,18 @@ public class ProfessorMgr {
      */
     public static ArrayList<Professor> professors = new ArrayList<Professor>(0);
 
+    private static ProfessorMgr singleInstance = null;
+
+    private ProfessorMgr() {
+    }
+
+    public static ProfessorMgr getInstance() {
+        if (singleInstance == null)
+            singleInstance = new ProfessorMgr();
+
+        return singleInstance;
+    }
+
     /**
      * Adds a professor.
      *

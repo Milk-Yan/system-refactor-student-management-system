@@ -24,6 +24,19 @@ public class MarkMgr {
      */
     public static ArrayList<Mark> marks = new ArrayList<Mark>(0);
 
+    private static MarkMgr singleInstance = null;
+
+    private MarkMgr() {
+    }
+
+    public static MarkMgr getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new MarkMgr();
+        }
+
+        return singleInstance;
+    }
+
 
     /**
      * Initializes marks for a student when he/she just registered a course.
@@ -32,7 +45,7 @@ public class MarkMgr {
      * @param course  the course this mark record about.
      * @return the new added mark.
      */
-    public static Mark initializeMark(Student student, Course course) {
+    public Mark initializeMark(Student student, Course course) {
         HashMap<CourseworkComponent, Double> courseWorkMarks = new HashMap<CourseworkComponent, Double>();
         double totalMark = 0d;
         ArrayList<MainComponent> mainComponents = course.getMainComponents();
@@ -55,7 +68,7 @@ public class MarkMgr {
      *
      * @param isExam whether this coursework component refers to "Exam"
      */
-    public static void setCourseWorkMark(boolean isExam) {
+    public void setCourseWorkMark(boolean isExam) {
         System.out.println("enterCourseWorkMark is called");
 
         String studentID = StudentValidator.checkStudentExists().getStudentID();
@@ -153,7 +166,7 @@ public class MarkMgr {
      * @param thisComponentName the component name interested.
      * @return the sum of component marks
      */
-    public static double computeMark(ArrayList<Mark> thisCourseMark, String thisComponentName) {
+    public double computeMark(ArrayList<Mark> thisCourseMark, String thisComponentName) {
         double averageMark = 0;
         for (Mark mark : thisCourseMark) {
             HashMap<CourseworkComponent, Double> thisComponentMarks = mark.getCourseWorkMarks();
@@ -172,7 +185,7 @@ public class MarkMgr {
     /**
      * Prints the course statics including enrollment rate, average result for every assessment component and the average overall performance of this course.
      */
-    public static void printCourseStatistics() {
+    public void printCourseStatistics() {
         System.out.println("printCourseStatistics is called");
 
         Course currentCourse = CourseValidator.checkCourseExists();
@@ -280,7 +293,7 @@ public class MarkMgr {
     /**
      * Prints transcript (Results of course taken) for a particular student
      */
-    public static void  printStudentTranscript() {
+    public void printStudentTranscript() {
         String studentID = StudentValidator.checkStudentExists().getStudentID();
 
         double studentGPA = 0d;
@@ -358,7 +371,7 @@ public class MarkMgr {
      * @param result result of this course
      * @return the grade (in A, B ... )
      */
-    public static double gpaCalcualtor(double result) {
+    public double gpaCalcualtor(double result) {
         if (result > 85) {
             // A+, A
             return 5d;

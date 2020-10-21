@@ -9,7 +9,6 @@ import com.softeng306.domain.course.group.TutorialGroup;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.main.Main;
 import com.softeng306.validation.*;
 
 import java.util.*;
@@ -18,9 +17,9 @@ import java.io.OutputStream;
 
 
 public class CourseMgr {
-    private static Scanner scanner = new Scanner(System.in);
-    private static PrintStream originalStream = System.out;
-    private static PrintStream dummyStream = new PrintStream(new OutputStream() {
+    private Scanner scanner = new Scanner(System.in);
+    private PrintStream originalStream = System.out;
+    private PrintStream dummyStream = new PrintStream(new OutputStream() {
         public void write(int b) {
             // NO-OP
         }
@@ -30,11 +29,22 @@ public class CourseMgr {
      */
     public static ArrayList<Course> courses = new ArrayList<Course>(0);
 
+    private static CourseMgr singleInstance = null;
+
+    private CourseMgr() {
+    }
+
+    public static CourseMgr getInstance() {
+        if (singleInstance == null)
+            singleInstance = new CourseMgr();
+
+        return singleInstance;
+    }
 
     /**
      * Creates a new course and stores it in the file.
      */
-    public static void addCourse() {
+    public void addCourse() {
         String courseID;
         String courseName;
         String profID;
@@ -432,7 +442,7 @@ public class CourseMgr {
     /**
      * Checks whether a course (with all of its groups) have available slots and displays the result.
      */
-    public static void checkAvailableSlots() {
+    public void checkAvailableSlots() {
         //printout the result directly
         System.out.println("checkAvailableSlots is called");
         Course currentCourse;
@@ -471,7 +481,7 @@ public class CourseMgr {
      *
      * @param currentCourse The course which course work component is to be set.
      */
-    public static void enterCourseWorkComponentWeightage(Course currentCourse) {
+    public void enterCourseWorkComponentWeightage(Course currentCourse) {
         // Assume when course is created, no components are added yet
         // Assume once components are created and set, cannot be changed.
         int numberOfMain;
@@ -695,7 +705,7 @@ public class CourseMgr {
     /**
      * Prints the list of courses
      */
-    public static void printCourses() {
+    public void printCourses() {
         System.out.println("Course List: ");
         System.out.println("| Course ID | Course Name | Professor in Charge |");
         for (Course course : CourseMgr.courses) {

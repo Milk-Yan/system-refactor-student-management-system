@@ -24,11 +24,23 @@ public class StudentMgr {
      */
     public static ArrayList<Student> students = new ArrayList<Student>(0);
 
+    private static StudentMgr singleInstance = null;
+
+    private StudentMgr() {
+    }
+
+    public static StudentMgr getInstance() {
+        if (singleInstance == null)
+            singleInstance = new StudentMgr();
+
+        return singleInstance;
+    }
+
 
     /**
      * Adds a student and put the student into file
      */
-    public static void addStudent() {
+    public void addStudent() {
         String studentID = null;
         StudentMgrIO.printMenu();
 

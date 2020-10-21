@@ -23,6 +23,18 @@ public class CourseRegistrationMgr {
      */
     public static ArrayList<CourseRegistration> courseRegistrations = new ArrayList<CourseRegistration>(0);
 
+    private static CourseRegistrationMgr singleInstance = null;
+
+    private CourseRegistrationMgr() {
+    }
+
+    public static CourseRegistrationMgr getInstance() {
+        if (singleInstance == null)
+            singleInstance = new CourseRegistrationMgr();
+
+        return singleInstance;
+    }
+
 
     /**
      * Registers a course for a student
@@ -80,7 +92,7 @@ public class CourseRegistrationMgr {
 
         CourseRegistrationMgr.courseRegistrations.add(courseRegistration);
 
-        MarkMgr.marks.add(MarkMgr.initializeMark(currentStudent, currentCourse));
+        MarkMgr.marks.add(MarkMgr.getInstance().initializeMark(currentStudent, currentCourse));
 
         System.out.println("Course registration successful!");
         System.out.print("Student: " + currentStudent.getStudentName());
