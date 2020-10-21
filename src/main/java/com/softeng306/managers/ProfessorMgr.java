@@ -1,12 +1,15 @@
 package com.softeng306.managers;
 
+import com.softeng306.Enum.Department;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.validation.DepartmentValidator;
 import com.softeng306.validation.ProfessorValidator;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * Manages all the professor related operations
@@ -50,7 +53,7 @@ public class ProfessorMgr {
             System.out.println("Enter -h to print all the departments.");
             department = scanner.nextLine();
             while (department.equals("-h")) {
-                HelpInfoMgr.getAllDepartment();
+                Department.getAllDepartment();
                 department = scanner.nextLine();
             }
 
@@ -62,6 +65,27 @@ public class ProfessorMgr {
 
 
         return professor;
+    }
+
+    /**
+     * Displays all the professors in the inputted department.
+     *
+     * @param department The inputted department.
+     * @param printOut   Represents whether print out the professor information or not
+     * @return A list of all the names of professors in the inputted department or else null.
+     */
+    public static List<String> printProfInDepartment(String department, boolean printOut) {
+        if (DepartmentValidator.checkDepartmentValidation(department)) {
+            List<String> validProfString = ProfessorMgr.professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
+
+            if (printOut) {
+                validProfString.forEach(System.out::println);
+            }
+            return validProfString;
+        }
+        System.out.println("None.");
+        return null;
+
     }
 
 }

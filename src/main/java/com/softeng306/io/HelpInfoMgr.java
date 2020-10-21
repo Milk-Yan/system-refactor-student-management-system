@@ -19,27 +19,6 @@ public class HelpInfoMgr {
     private static Scanner scanner = new Scanner(System.in);
 
     /**
-     * Displays all the professors in the inputted department.
-     *
-     * @param department The inputted department.
-     * @param printOut   Represents whether print out the professor information or not
-     * @return A list of all the names of professors in the inputted department or else null.
-     */
-    public static List<String> printProfInDepartment(String department, boolean printOut) {
-        if (DepartmentValidator.checkDepartmentValidation(department)) {
-            List<String> validProfString = ProfessorMgr.professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
-
-            if (printOut) {
-                validProfString.forEach(System.out::println);
-            }
-            return validProfString;
-        }
-        System.out.println("None.");
-        return null;
-
-    }
-
-    /**
      * Displays a list of IDs of all the students.
      */
     public static void printAllStudents() {
