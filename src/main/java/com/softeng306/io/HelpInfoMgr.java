@@ -90,13 +90,13 @@ public class HelpInfoMgr {
     }
 
     /**
-     * Gets all the departments as an array list.
+     * Gets all the departments as a list.
      *
-     * @return an array list of all the departments.
+     * @return a list of all the departments.
      */
-    public static ArrayList<String> getAllDepartment() {
+    public static List<String> getAllDepartment() {
         Set<Department> departmentEnumSet = EnumSet.allOf(Department.class);
-        ArrayList<String> departmentStringList = new ArrayList<String>(0);
+        List<String> departmentStringList = new ArrayList<String>(0);
         Iterator iter = departmentEnumSet.iterator();
         while (iter.hasNext()) {
             departmentStringList.add(iter.next().toString());
@@ -106,13 +106,13 @@ public class HelpInfoMgr {
     }
 
     /**
-     * Gets all the genders as an array list.
+     * Gets all the genders as a list.
      *
-     * @return an array list of all the genders.
+     * @return a list of all the genders.
      */
-    public static ArrayList<String> getAllGender() {
+    public static List<String> getAllGender() {
         Set<Gender> genderEnumSet = EnumSet.allOf(Gender.class);
-        ArrayList<String> genderStringList = new ArrayList<String>(0);
+        List<String> genderStringList = new ArrayList<String>(0);
         Iterator iter = genderEnumSet.iterator();
         while (iter.hasNext()) {
             genderStringList.add(iter.next().toString());
@@ -121,13 +121,13 @@ public class HelpInfoMgr {
     }
 
     /**
-     * Gets all the course types as an array list.
+     * Gets all the course types as a list.
      *
-     * @return an array list of all the course types.
+     * @return a list of all the course types.
      */
-    public static ArrayList<String> getAllCourseType() {
+    public static List<String> getAllCourseType() {
         Set<CourseType> courseTypeEnumSet = EnumSet.allOf(CourseType.class);
-        ArrayList<String> courseTypeStringSet = new ArrayList<String>(0);
+        List<String> courseTypeStringSet = new ArrayList<String>(0);
         Iterator iter = courseTypeEnumSet.iterator();
         while (iter.hasNext()) {
             courseTypeStringSet.add(iter.next().toString());
@@ -156,10 +156,10 @@ public class HelpInfoMgr {
      * Checks whether the inputted department is valid.
      *
      * @param groupType The type of this group.
-     * @param groups    An array list of a certain type of groups in a course.
+     * @param groups    A list of a certain type of groups in a course.
      * @return the name of the group chosen by the user.
      */
-    public static String printGroupWithVacancyInfo(String groupType, ArrayList<Group> groups) {
+    public static String printGroupWithVacancyInfo(String groupType, List<Group> groups) {
         int index;
         HashMap<String, Integer> groupAssign = new HashMap<String, Integer>(0);
         int selectedGroupNum;
