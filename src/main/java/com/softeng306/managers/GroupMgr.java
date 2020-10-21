@@ -18,7 +18,7 @@ public class GroupMgr {
      */
     public static String printGroupWithVacancyInfo(String groupType, ArrayList<Group> groups) {
         int index;
-        HashMap<String, Integer> groupAssign = new HashMap<String, Integer>(0);
+        HashMap<String, Integer> groupAssign = new HashMap<>(0);
         int selectedGroupNum;
         String selectedGroupName = null;
 
