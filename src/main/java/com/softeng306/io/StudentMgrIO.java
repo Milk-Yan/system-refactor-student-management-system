@@ -1,5 +1,6 @@
 package com.softeng306.io;
 
+import com.softeng306.Enum.Gender;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.DepartmentValidator;
 import com.softeng306.validation.GenderValidator;
@@ -87,7 +88,7 @@ public class StudentMgrIO {
         }
     }
 
-    public static String getStudentGender() {
+    public static Gender getStudentGender() {
         String studentGender;
         while (true) {
             System.out.println("Enter student gender (uppercase): ");
@@ -99,7 +100,7 @@ public class StudentMgrIO {
             }
 
             if (GenderValidator.checkGenderValidation(studentGender)) {
-                return studentGender;
+                return Gender.valueOf(studentGender);
             }
         }
     }
