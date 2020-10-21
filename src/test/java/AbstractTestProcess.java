@@ -5,7 +5,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-public class AbstractTestProcess {
+public abstract class AbstractTestProcess {
     protected static AbstractProcess originalProcess;
     protected static AbstractProcess refactoredProcess;
 
