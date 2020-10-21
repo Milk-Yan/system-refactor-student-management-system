@@ -2,7 +2,6 @@ package com.softeng306.Enum;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.Iterator;
 import java.util.Set;
 
 public enum Gender {
@@ -29,10 +28,9 @@ public enum Gender {
      */
     public static ArrayList<String> getAllGender() {
         Set<Gender> genderEnumSet = EnumSet.allOf(Gender.class);
-        ArrayList<String> genderStringList = new ArrayList<String>(0);
-        Iterator iter = genderEnumSet.iterator();
-        while (iter.hasNext()) {
-            genderStringList.add(iter.next().toString());
+        ArrayList<String> genderStringList = new ArrayList<>(0);
+        for (Gender gender : genderEnumSet) {
+            genderStringList.add(gender.toString());
         }
         return genderStringList;
     }

@@ -2,7 +2,6 @@ package com.softeng306.Enum;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.Iterator;
 import java.util.Set;
 
 public enum CourseType {
@@ -27,10 +26,9 @@ public enum CourseType {
      */
     public static ArrayList<String> getAllCourseType() {
         Set<CourseType> courseTypeEnumSet = EnumSet.allOf(CourseType.class);
-        ArrayList<String> courseTypeStringSet = new ArrayList<String>(0);
-        Iterator iter = courseTypeEnumSet.iterator();
-        while (iter.hasNext()) {
-            courseTypeStringSet.add(iter.next().toString());
+        ArrayList<String> courseTypeStringSet = new ArrayList<>(0);
+        for (CourseType courseType : courseTypeEnumSet) {
+            courseTypeStringSet.add(courseType.toString());
         }
         return courseTypeStringSet;
     }
