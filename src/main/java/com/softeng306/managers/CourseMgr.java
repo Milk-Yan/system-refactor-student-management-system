@@ -703,4 +703,13 @@ public class CourseMgr {
         }
         System.out.println();
     }
+
+
+    /**
+     * Displays a list of IDs of all the courses.
+     */
+    public static void printAllCourses() {
+        CourseMgr.courses.stream().map(c -> c.getCourseID()).forEach(System.out::println);
+    }
+
 }
