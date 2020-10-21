@@ -65,6 +65,7 @@ public class ProfessorMgr {
 
         return professor;
     }
+    // TODO: fix name of this method
 
     /**
      * Displays all the professors in the inputted department.

@@ -714,6 +714,7 @@ public class CourseMgr {
         CourseMgr.courses.stream().map(c -> c.getCourseID()).forEach(System.out::println);
     }
 
+    // TODO: fix name of this method
 
     /**
      * Displays a list of all the courses in the inputted department.

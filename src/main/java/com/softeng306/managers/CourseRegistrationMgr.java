@@ -121,6 +121,7 @@ public class CourseRegistrationMgr {
             opt = scanner.nextInt();
             scanner.nextLine();
 
+            // TODO: replace these common ui elements with a library
             System.out.println("------------------------------------------------------");
 
             if (stuArray.size() == 0) {
