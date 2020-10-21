@@ -1,5 +1,6 @@
 target
 *.class
+testdata
 .idea/
 *.iml
 out/

@@ -7,7 +7,7 @@ import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.main.Main;
-import com.softeng306.validation.ValidationMgr;
+import com.softeng306.validation.*;
 
 import java.util.*;
 
@@ -18,6 +18,11 @@ import static com.softeng306.domain.course.courseregistration.CourseRegistration
 
 public class CourseRegistrationMgr {
     private static Scanner scanner = new Scanner(System.in);
+    /**
+     * An array list of all the course registration records in this school.
+     */
+    public static ArrayList<CourseRegistration> courseRegistrations = new ArrayList<CourseRegistration>(0);
+
 
     /**
      * Registers a course for a student
@@ -28,16 +33,16 @@ public class CourseRegistrationMgr {
         String selectedTutorialGroupName = null;
         String selectedLabGroupName = null;
 
-        Student currentStudent = ValidationMgr.checkStudentExists();
+        Student currentStudent = StudentValidator.checkStudentExists();
         String studentID = currentStudent.getStudentID();
 
-        ValidationMgr.checkCourseDepartmentExists();
+        DepartmentValidator.checkCourseDepartmentExists();
 
-        Course currentCourse = ValidationMgr.checkCourseExists();
+        Course currentCourse = CourseValidator.checkCourseExists();
         String courseID = currentCourse.getCourseID();
 
 
-        if (ValidationMgr.checkCourseRegistrationExists(studentID, courseID) != null) {
+        if (CourseRegistrationValidator.checkCourseRegistrationExists(studentID, courseID) != null) {
             return;
         }
 
@@ -73,9 +78,9 @@ public class CourseRegistrationMgr {
         CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
         FILEMgr.writeCourseRegistrationIntoFile(courseRegistration);
 
-        Main.courseRegistrations.add(courseRegistration);
+        CourseRegistrationMgr.courseRegistrations.add(courseRegistration);
 
-        Main.marks.add(MarkMgr.initializeMark(currentStudent, currentCourse));
+        MarkMgr.marks.add(MarkMgr.initializeMark(currentStudent, currentCourse));
 
         System.out.println("Course registration successful!");
         System.out.print("Student: " + currentStudent.getStudentName());
@@ -94,7 +99,7 @@ public class CourseRegistrationMgr {
      */
     public static void printStudents() {
         System.out.println("printStudent is called");
-        Course currentCourse = ValidationMgr.checkCourseExists();
+        Course currentCourse = CourseValidator.checkCourseExists();
 
         System.out.println("Print student by: ");
         System.out.println("(1) Lecture group");

@@ -3,17 +3,21 @@ package com.softeng306.managers;
 import com.softeng306.Enum.Department;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.validation.ValidationMgr;
+import com.softeng306.validation.DepartmentValidator;
+import com.softeng306.validation.ProfessorValidator;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * Manages all the professor related operations
- *
-
  */
 public class ProfessorMgr {
     private Scanner scanner = new Scanner(System.in);
+    /**
+     * An array list of all the professors in this school.
+     */
+    public static ArrayList<Professor> professors = new ArrayList<Professor>(0);
 
     /**
      * Adds a professor.
@@ -25,8 +29,8 @@ public class ProfessorMgr {
         while (true) {
             System.out.println("Give this professor an ID: ");
             profID = scanner.nextLine();
-            if (ValidationMgr.checkValidProfIDInput(profID)) {
-                if (ValidationMgr.checkProfExists(profID) == null) {
+            if (ProfessorValidator.checkValidProfIDInput(profID)) {
+                if (ProfessorValidator.checkProfExists(profID) == null) {
                     break;
                 }
             }
@@ -36,7 +40,7 @@ public class ProfessorMgr {
         while (true) {
             System.out.println("Enter the professor's name: ");
             profName = scanner.nextLine();
-            if (ValidationMgr.checkValidPersonNameInput(profName)) {
+            if (ProfessorValidator.checkValidProfessorNameInput(profName)) {
                 break;
             }
         }
@@ -51,7 +55,7 @@ public class ProfessorMgr {
                 department = scanner.nextLine();
             }
 
-            if (ValidationMgr.checkDepartmentValidation(department)) {
+            if (DepartmentValidator.checkDepartmentValidation(department)) {
                 professor.setProfDepartment(Department.valueOf(department));
                 break;
             }

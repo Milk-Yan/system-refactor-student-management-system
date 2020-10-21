@@ -13,7 +13,7 @@ import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.main.Main;
-import com.softeng306.validation.ValidationMgr;
+import com.softeng306.validation.*;
 
 import java.util.*;
 import java.io.PrintStream;
@@ -28,6 +28,10 @@ public class CourseMgr {
             // NO-OP
         }
     });
+    /**
+     * An array list of all the courses in this school.
+     */
+    public static ArrayList<Course> courses = new ArrayList<Course>(0);
 
 
     /**
@@ -43,8 +47,8 @@ public class CourseMgr {
         while (true) {
             System.out.println("Give this course an ID: ");
             courseID = scanner.nextLine();
-            if (ValidationMgr.checkValidCourseIDInput(courseID)) {
-                if (ValidationMgr.checkCourseExists(courseID) == null) {
+            if (CourseValidator.checkValidCourseIDInput(courseID)) {
+                if (CourseValidator.checkCourseExists(courseID) == null) {
                     break;
                 }
             }
@@ -94,7 +98,7 @@ public class CourseMgr {
                 HelpInfoMgr.printAllDepartment();
                 courseDepartment = scanner.nextLine();
             }
-            if (ValidationMgr.checkDepartmentValidation(courseDepartment)) {
+            if (DepartmentValidator.checkDepartmentValidation(courseDepartment)) {
                 break;
             }
         }
@@ -108,7 +112,7 @@ public class CourseMgr {
                 HelpInfoMgr.printAllCourseType();
                 courseType = scanner.nextLine();
             }
-            if (ValidationMgr.checkCourseTypeValidation(courseType)) {
+            if (CourseValidator.checkCourseTypeValidation(courseType)) {
                 break;
             }
         }
@@ -159,7 +163,7 @@ public class CourseMgr {
                 groupNameExists = false;
                 System.out.println("Enter a group Name: ");
                 lectureGroupName = scanner.nextLine();
-                if (!ValidationMgr.checkValidGroupNameInput(lectureGroupName)) {
+                if (!GroupValidator.checkValidGroupNameInput(lectureGroupName)) {
                     groupNameExists = true;
                     continue;
                 }
@@ -250,7 +254,7 @@ public class CourseMgr {
                 groupNameExists = false;
                 System.out.println("Enter a group Name: ");
                 tutorialGroupName = scanner.nextLine();
-                if (!ValidationMgr.checkValidGroupNameInput(tutorialGroupName)) {
+                if (!GroupValidator.checkValidGroupNameInput(tutorialGroupName)) {
                     groupNameExists = true;
                     continue;
                 }
@@ -333,7 +337,7 @@ public class CourseMgr {
                 groupNameExists = false;
                 System.out.println("Enter a group Name: ");
                 labGroupName = scanner.nextLine();
-                if (!ValidationMgr.checkValidGroupNameInput(labGroupName)) {
+                if (!GroupValidator.checkValidGroupNameInput(labGroupName)) {
                     groupNameExists = true;
                     continue;
                 }
@@ -379,7 +383,7 @@ public class CourseMgr {
             }
 
             System.setOut(dummyStream);
-            profInCharge = ValidationMgr.checkProfExists(profID);
+            profInCharge = ProfessorValidator.checkProfExists(profID);
             System.setOut(originalStream);
             if (profInCharge != null) {
                 if (professorsInDepartment.contains(profID)) {
@@ -414,7 +418,7 @@ public class CourseMgr {
         if (addCourseComponentChoice == 2) {
             //add course into file
             FILEMgr.writeCourseIntoFile(course);
-            Main.courses.add(course);
+            CourseMgr.courses.add(course);
             System.out.println("Course " + courseID + " is added, but assessment components are not initialized.");
             printCourses();
             return;
@@ -423,7 +427,7 @@ public class CourseMgr {
         enterCourseWorkComponentWeightage(course);
 
         FILEMgr.writeCourseIntoFile(course);
-        Main.courses.add(course);
+        CourseMgr.courses.add(course);
         System.out.println("Course " + courseID + " is added");
         printCourses();
     }
@@ -437,7 +441,7 @@ public class CourseMgr {
         Course currentCourse;
 
         do {
-            currentCourse = ValidationMgr.checkCourseExists();
+            currentCourse = CourseValidator.checkCourseExists();
             if (currentCourse != null) {
                 System.out.println(currentCourse.getCourseID() + " " + currentCourse.getCourseName() + " (Available/Total): " + currentCourse.getVacancies() + "/" + currentCourse.getTotalSeats());
                 System.out.println("--------------------------------------------");
@@ -480,7 +484,7 @@ public class CourseMgr {
 
         System.out.println("enterCourseWorkComponentWeightage is called");
         if (currentCourse == null) {
-            currentCourse = ValidationMgr.checkCourseExists();
+            currentCourse = CourseValidator.checkCourseExists();
         }
 
 
@@ -697,7 +701,7 @@ public class CourseMgr {
     public static void printCourses() {
         System.out.println("Course List: ");
         System.out.println("| Course ID | Course Name | Professor in Charge |");
-        for (Course course : Main.courses) {
+        for (Course course : CourseMgr.courses) {
             System.out.println("| " + course.getCourseID() + " | " + course.getCourseName() + " | " + course.getProfInCharge().getProfName() + " |");
         }
         System.out.println();
