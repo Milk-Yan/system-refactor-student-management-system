@@ -79,17 +79,6 @@ public class HelpInfoMgr {
     }
 
     /**
-     * Displays a list of all the course types.
-     */
-    public static void printAllCourseType() {
-        int index = 1;
-        for (CourseType courseType : CourseType.values()) {
-            System.out.println(index + ": " + courseType);
-            index++;
-        }
-    }
-
-    /**
      * Gets all the departments as an array list.
      *
      * @return an array list of all the departments.
