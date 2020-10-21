@@ -28,7 +28,11 @@ public class CourseValidator {
      * @return boolean indicates whether the inputted course ID is valid.
      */
     public static boolean checkValidCourseIDInput(String courseID) {
-        return RegexValidator.checkStringRegexFormat(courseID, COURSE_ID_REGEX);
+        boolean valid = RegexValidator.checkStringRegexFormat(courseID, COURSE_ID_REGEX);
+        if (!valid) {
+            System.out.println("Wrong format of course ID.");
+        }
+        return valid;
     }
 
     /**
