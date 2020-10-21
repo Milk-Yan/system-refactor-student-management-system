@@ -15,6 +15,9 @@ public class TestCheckAvailableSlotsInClass extends AbstractTestProcess{
         refactoredProcess = new RefactoredProcess();
     }
 
+    /**
+     * Tests the general case of user checking slots in class successfully
+     */
     @Test
     public void testCheckAvailableSlotsInClass() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
         List<String> inputList = new ArrayList<>();
@@ -25,6 +28,9 @@ public class TestCheckAvailableSlotsInClass extends AbstractTestProcess{
         compareOutputsBetweenRefactoredAndOriginal(inputList);
     }
 
+    /**
+     * Tests the case of user checking slots in class while encountering every error statement
+     */
     @Test
     public void testCheckAvailableSlotsInClassErrors() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
         List<String> inputList = new ArrayList<>();
@@ -33,10 +39,13 @@ public class TestCheckAvailableSlotsInClass extends AbstractTestProcess{
         inputList.add("SE2001"); // Enter course ID
         inputList.add("11"); // Exit program
 
-        compareOutputsBetweenRefactoredAndOriginalDebug(inputList);
+        compareOutputsBetweenRefactoredAndOriginal(inputList);
     }
 
 
+    /**
+     * Tests the case of user checking slots in class while asking for help where possible
+     */
     @Test
     public void testCheckAvailableSlotsInClassWithHelp() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
         List<String> inputList = new ArrayList<>();
@@ -45,7 +54,7 @@ public class TestCheckAvailableSlotsInClass extends AbstractTestProcess{
         inputList.add("SE2001"); // Enter course ID
         inputList.add("11"); // Exit program
 
-        compareOutputsBetweenRefactoredAndOriginalDebug(inputList);
+        compareOutputsBetweenRefactoredAndOriginal(inputList);
     }
 
 }
