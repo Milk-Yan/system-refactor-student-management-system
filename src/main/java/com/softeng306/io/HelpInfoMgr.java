@@ -19,22 +19,6 @@ public class HelpInfoMgr {
     private static Scanner scanner = new Scanner(System.in);
 
     /**
-     * Gets all the departments as an array list.
-     *
-     * @return an array list of all the departments.
-     */
-    public static ArrayList<String> getAllDepartment() {
-        Set<Department> departmentEnumSet = EnumSet.allOf(Department.class);
-        ArrayList<String> departmentStringList = new ArrayList<String>(0);
-        Iterator iter = departmentEnumSet.iterator();
-        while (iter.hasNext()) {
-            departmentStringList.add(iter.next().toString());
-        }
-        return departmentStringList;
-
-    }
-
-    /**
      * Gets all the genders as an array list.
      *
      * @return an array list of all the genders.
