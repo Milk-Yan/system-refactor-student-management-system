@@ -18,7 +18,11 @@ public class ProfessorValidator {
      * @return boolean indicates whether the inputted professor ID is valid.
      */
     public static boolean checkValidProfIDInput(String profID) {
-        return RegexValidator.checkStringRegexFormat(profID, PROFESSOR_ID_REGEX);
+        boolean valid = RegexValidator.checkStringRegexFormat(profID, PROFESSOR_ID_REGEX);
+        if (!valid) {
+            System.out.println("Wrong format of prof ID.");
+        }
+        return valid;
     }
 
     /**
@@ -28,7 +32,11 @@ public class ProfessorValidator {
      * @return boolean indicates whether the professor person name is valid.
      */
     public static boolean checkValidProfessorNameInput(String professorName) {
-        return RegexValidator.checkStringRegexFormat(professorName, PROFESSOR_NAME_REGEX);
+        boolean valid = RegexValidator.checkStringRegexFormat(professorName, PROFESSOR_NAME_REGEX);
+        if(!valid){
+            System.out.println("Wrong format of name.");
+        }
+        return valid;
     }
 
     /**

@@ -30,7 +30,11 @@ public class StudentValidator {
      * @return boolean indicates whether the inputted student ID is valid.
      */
     public static boolean checkValidStudentIDInput(String studentID) {
-        return RegexValidator.checkStringRegexFormat(studentID, STUDENT_ID_REGEX);
+        boolean valid = RegexValidator.checkStringRegexFormat(studentID, STUDENT_ID_REGEX);
+        if (!valid) {
+            System.out.println("Wrong format of student ID.");
+        }
+        return valid;
     }
 
     /**
@@ -40,7 +44,11 @@ public class StudentValidator {
      * @return boolean indicates whether the student person name is valid.
      */
     public static boolean checkValidStudentNameInput(String studentName) {
-        return RegexValidator.checkStringRegexFormat(studentName, STUDENT_NAME_REGEX);
+        boolean valid = RegexValidator.checkStringRegexFormat(studentName, STUDENT_NAME_REGEX);
+        if(!valid){
+            System.out.println("Wrong format of name.");
+        }
+        return valid;
     }
 
     /**
