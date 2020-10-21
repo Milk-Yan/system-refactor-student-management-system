@@ -1,5 +1,4 @@
-import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -8,16 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-public class TestPrintCourseStatistics {
-    private static AbstractProcess originalProcess;
-    private static AbstractProcess refactoredProcess;
+public class TestPrintCourseStatistics extends AbstractTestProcess {
 
-    @BeforeClass
-    public static void setupResources() throws URISyntaxException, IOException {
+    @Before
+    public void setupResources() throws URISyntaxException, IOException {
         originalProcess = new OriginalProcess();
         refactoredProcess = new RefactoredProcess();
     }
 
+    /**
+     * Tests general case where user gets course statistics
+     */
     @Test
     public void testPrintCourseStatistics() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
         List<String> inputList = new ArrayList<>();
@@ -28,9 +28,32 @@ public class TestPrintCourseStatistics {
         compareOutputsBetweenRefactoredAndOriginal(inputList);
     }
 
-    private void compareOutputsBetweenRefactoredAndOriginal(List<String> inputList) throws InterruptedException, IOException, URISyntaxException, TimeoutException {
-        String originalOutput = TestPrintCourseStatistics.originalProcess.getOutput(inputList);
-        String refactoredOutput = TestPrintCourseStatistics.refactoredProcess.getOutput(inputList);
-        Assert.assertEquals(originalOutput, refactoredOutput);
+    /**
+     * Tests case where user gets course statistics with help
+     */
+    @Test
+    public void testPrintCourseStatisticsWithHelp() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
+        List<String> inputList = new ArrayList<>();
+        inputList.add("9"); // Print course statistics
+        inputList.add("-h"); // List all course statistics
+        inputList.add("SE2005"); // Enter course ID
+        inputList.add("11"); // Exit program
+
+        compareOutputsBetweenRefactoredAndOriginal(inputList);
     }
+
+    /**
+     * Tests case where user gets course statistics encountering every error statements
+     */
+    @Test
+    public void testPrintCourseStatisticsErrors() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
+        List<String> inputList = new ArrayList<>();
+        inputList.add("9"); // Print course statistics
+        inputList.add("INVALIDCOURSE"); // Enter invalid course
+        inputList.add("SE2005"); // Enter course ID
+        inputList.add("11"); // Exit program
+
+        compareOutputsBetweenRefactoredAndOriginal(inputList);
+    }
+
 }
