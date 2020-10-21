@@ -9,9 +9,6 @@ import java.util.concurrent.TimeoutException;
 
 public class TestEnterCourseAssessmentComponents extends AbstractTestProcess {
 
-    /**
-     * Will be run before every test case
-     */
     @Before
     public void setupResources() throws URISyntaxException, IOException {
         originalProcess = new OriginalProcess();

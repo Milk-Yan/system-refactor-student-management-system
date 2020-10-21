@@ -1,4 +1,4 @@
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -10,8 +10,8 @@ import java.util.concurrent.TimeoutException;
 
 public class TestAddCourse extends AbstractTestProcess{
 
-    @BeforeClass
-    public static void setupResources() throws URISyntaxException, IOException {
+    @Before
+    public void setupResources() throws URISyntaxException, IOException {
         originalProcess = new OriginalProcess();
         refactoredProcess = new RefactoredProcess();
     }

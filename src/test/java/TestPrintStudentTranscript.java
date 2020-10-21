@@ -1,4 +1,4 @@
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -9,8 +9,8 @@ import java.util.concurrent.TimeoutException;
 
 public class TestPrintStudentTranscript extends AbstractTestProcess {
 
-    @BeforeClass
-    public static void setupResources() throws URISyntaxException, IOException {
+    @Before
+    public void setupResources() throws URISyntaxException, IOException {
         originalProcess = new OriginalProcess();
         refactoredProcess = new RefactoredProcess();
     }
@@ -41,7 +41,7 @@ public class TestPrintStudentTranscript extends AbstractTestProcess {
         inputList.add("11"); // Exit program
 
         // Compare output lines as original system uses HashMap#entrySet() which is pseudorandom
-        compareOutputsBetweenRefactoredAndOriginal(inputList);
+        compareLinesBetweenRefactoredAndOriginal(inputList);
     }
 
     /**
@@ -56,7 +56,7 @@ public class TestPrintStudentTranscript extends AbstractTestProcess {
         inputList.add("11"); // Exit program
 
         // Compare output lines as original system uses HashMap#entrySet() which is pseudorandom
-        compareOutputsBetweenRefactoredAndOriginal(inputList);
+        compareLinesBetweenRefactoredAndOriginal(inputList);
     }
 
 }
