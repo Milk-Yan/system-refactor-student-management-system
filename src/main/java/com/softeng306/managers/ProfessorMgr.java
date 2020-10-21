@@ -2,7 +2,6 @@ package com.softeng306.managers;
 
 import com.softeng306.Enum.Department;
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.validation.DepartmentValidator;
 import com.softeng306.validation.ProfessorValidator;
 

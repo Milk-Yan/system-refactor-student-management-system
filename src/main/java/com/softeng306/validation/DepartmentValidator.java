@@ -1,7 +1,6 @@
 package com.softeng306.validation;
 
 import com.softeng306.Enum.Department;
-import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.managers.CourseMgr;
 
 import java.io.OutputStream;

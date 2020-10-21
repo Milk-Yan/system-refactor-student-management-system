@@ -1,7 +1,6 @@
 package com.softeng306.validation;
 
 import com.softeng306.domain.student.Student;
-import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.managers.StudentMgr;
 
 import java.io.OutputStream;

@@ -10,8 +10,6 @@ import com.softeng306.domain.course.group.LectureGroup;
 import com.softeng306.domain.course.group.TutorialGroup;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.FILEMgr;
-import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.main.Main;
 import com.softeng306.validation.*;
 
 import java.util.*;
