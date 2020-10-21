@@ -20,6 +20,7 @@ public class MainMenuIO {
         CourseMgr courseMgr = CourseMgr.getInstance();
         MarkMgr markMgr = MarkMgr.getInstance();
         StudentMgr studentMgr = StudentMgr.getInstance();
+        CourseRegistrationMgr courseRegistrationMgr = CourseRegistrationMgr.getInstance();
         do {
             printOptions();
             do {
@@ -48,13 +49,13 @@ public class MainMenuIO {
                     courseMgr.addCourse();
                     break;
                 case 3:
-                    CourseRegistrationMgr.registerCourse();
+                    courseRegistrationMgr.registerCourse();
                     break;
                 case 4:
                     courseMgr.checkAvailableSlots();
                     break;
                 case 5:
-                    CourseRegistrationMgr.printStudents();
+                    courseRegistrationMgr.printStudents();
                     break;
                 case 6:
                     courseMgr.enterCourseWorkComponentWeightage(null);

@@ -39,7 +39,7 @@ public class CourseRegistrationMgr {
     /**
      * Registers a course for a student
      */
-    public static void registerCourse() {
+    public void registerCourse() {
         System.out.println("registerCourse is called");
         String selectedLectureGroupName = null;
         String selectedTutorialGroupName = null;
@@ -109,7 +109,7 @@ public class CourseRegistrationMgr {
     /**
      * Prints the students in a course according to their lecture group, tutorial group or lab group.
      */
-    public static void printStudents() {
+    public void printStudents() {
         System.out.println("printStudent is called");
         Course currentCourse = CourseValidator.checkCourseExists();
 
