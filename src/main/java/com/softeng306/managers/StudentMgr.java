@@ -2,8 +2,15 @@ package com.softeng306.managers;
 
 
 import com.softeng306.domain.student.Student;
+import com.softeng306.io.FILEMgr;
+import com.softeng306.io.HelpInfoMgr;
+import com.softeng306.validation.DepartmentValidator;
+import com.softeng306.validation.GenderValidator;
+import com.softeng306.validation.StudentValidator;
 import com.softeng306.io.StudentMgrIO;
+
 import java.util.ArrayList;
+
 import com.softeng306.io.FILEMgr;
 
 /**
@@ -22,14 +29,12 @@ public class StudentMgr {
      * Adds a student and put the student into file
      */
     public static void addStudent() {
-
         String studentID = null;
         StudentMgrIO.printMenu();
 
         boolean systemGeneratedID = StudentMgrIO.systemGenerateID();
         if (!systemGeneratedID) {
             studentID = StudentMgrIO.getStudentID();
-
         }
 
         String studentName = StudentMgrIO.getStudentName();

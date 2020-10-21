@@ -3,11 +3,10 @@ package com.softeng306.io;
 import com.softeng306.domain.course.Course;
 import com.softeng306.Enum.*;
 import com.softeng306.domain.course.group.Group;
-import com.softeng306.main.Main;
+import com.softeng306.validation.DepartmentValidator;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.ProfessorMgr;
 import com.softeng306.managers.StudentMgr;
-import com.softeng306.validation.ValidationMgr;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -27,8 +26,9 @@ public class HelpInfoMgr {
      * @return A list of all the names of professors in the inputted department or else null.
      */
     public static List<String> printProfInDepartment(String department, boolean printOut) {
-        if (ValidationMgr.checkDepartmentValidation(department)) {
+        if (DepartmentValidator.checkDepartmentValidation(department)) {
             List<String> validProfString = ProfessorMgr.professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
+
             if (printOut) {
                 validProfString.forEach(System.out::println);
             }

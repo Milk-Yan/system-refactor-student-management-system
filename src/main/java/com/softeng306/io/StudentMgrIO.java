@@ -1,7 +1,9 @@
 package com.softeng306.io;
 
 import com.softeng306.managers.StudentMgr;
-import com.softeng306.validation.ValidationMgr;
+import com.softeng306.validation.DepartmentValidator;
+import com.softeng306.validation.GenderValidator;
+import com.softeng306.validation.StudentValidator;
 import com.softeng306.domain.student.Student;
 
 import java.util.Scanner;
@@ -16,7 +18,7 @@ public class StudentMgrIO {
         System.out.println("1. Manually input the student ID.");
         System.out.println("2. Let the system self-generate the student ID.");
     }
-    
+
     public static boolean systemGenerateID() {
         int choice;
         do {
@@ -49,8 +51,8 @@ public class StudentMgrIO {
             System.out.println();
             System.out.println("Give this student an ID: ");
             String studentID = reader.nextLine();
-            if (ValidationMgr.checkValidStudentIDInput(studentID)) {
-                if (ValidationMgr.checkStudentExists(studentID) == null) {
+            if (StudentValidator.checkValidStudentIDInput(studentID)) {
+                if (StudentValidator.checkStudentExists(studentID) == null) {
                     return studentID;
                 }
             }
@@ -62,7 +64,7 @@ public class StudentMgrIO {
         while (true) {
             System.out.println("Enter student Name: ");
             studentName = reader.nextLine();
-            if (ValidationMgr.checkValidPersonNameInput(studentName)) {
+            if (StudentValidator.checkValidStudentNameInput(studentName)) {
                 return studentName;
             }
         }
@@ -79,7 +81,7 @@ public class StudentMgrIO {
                 studentSchool = reader.nextLine();
             }
 
-            if (ValidationMgr.checkDepartmentValidation(studentSchool)) {
+            if (DepartmentValidator.checkDepartmentValidation(studentSchool)) {
                 return studentSchool;
             }
         }
@@ -96,7 +98,7 @@ public class StudentMgrIO {
                 studentGender = reader.nextLine();
             }
 
-            if (ValidationMgr.checkGenderValidation(studentGender)) {
+            if (GenderValidator.checkGenderValidation(studentGender)) {
                 return studentGender;
             }
         }
