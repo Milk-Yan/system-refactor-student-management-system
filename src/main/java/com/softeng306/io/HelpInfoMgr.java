@@ -19,21 +19,6 @@ public class HelpInfoMgr {
     private static Scanner scanner = new Scanner(System.in);
 
     /**
-     * Gets all the genders as an array list.
-     *
-     * @return an array list of all the genders.
-     */
-    public static ArrayList<String> getAllGender() {
-        Set<Gender> genderEnumSet = EnumSet.allOf(Gender.class);
-        ArrayList<String> genderStringList = new ArrayList<String>(0);
-        Iterator iter = genderEnumSet.iterator();
-        while (iter.hasNext()) {
-            genderStringList.add(iter.next().toString());
-        }
-        return genderStringList;
-    }
-
-    /**
      * Gets all the course types as an array list.
      *
      * @return an array list of all the course types.
