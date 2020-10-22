@@ -3,15 +3,9 @@ package com.softeng306.managers;
 
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
-import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.validation.DepartmentValidator;
-import com.softeng306.validation.GenderValidator;
-import com.softeng306.validation.StudentValidator;
 import com.softeng306.io.StudentMgrIO;
 
 import java.util.ArrayList;
-
-import com.softeng306.io.FILEMgr;
 
 /**
  * Manages the student related operations.
@@ -53,4 +47,14 @@ public class StudentMgr {
 
         StudentMgrIO.printStudentID(currentStudent.getStudentName(), currentStudent.getStudentID());
     }
+
+    /**
+     * Displays a list of IDs of all the students.
+     */
+    public static void printAllStudentIds() {
+        for (Student s : StudentMgr.students) {
+            System.out.println(s.getStudentID());
+        }
+    }
+
 }

@@ -1,7 +1,7 @@
 package com.softeng306.validation;
 
+import com.softeng306.Enum.CourseType;
 import com.softeng306.domain.course.Course;
-import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.managers.CourseMgr;
 
 import java.io.OutputStream;
@@ -42,7 +42,7 @@ public class CourseValidator {
      * @return boolean indicates whether the inputted course type is valid.
      */
     public static boolean checkCourseTypeValidation(String courseType) {
-        if (HelpInfoMgr.getAllCourseType().contains(courseType)) {
+        if (CourseType.getAllCourseType().contains(courseType)) {
             return true;
         }
         System.out.println("The course type is invalid. Please re-enter.");
@@ -61,7 +61,7 @@ public class CourseValidator {
             System.out.println("Enter course ID (-h to print all the course ID):");
             courseID = scanner.nextLine();
             while ("-h".equals(courseID)) {
-                HelpInfoMgr.printAllCourses();
+                CourseMgr.printAllCourses();
                 courseID = scanner.nextLine();
             }
 
