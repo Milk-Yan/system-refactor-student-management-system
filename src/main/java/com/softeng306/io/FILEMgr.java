@@ -18,7 +18,6 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 
-
 public class FILEMgr {
 
     /**
@@ -312,11 +311,11 @@ public class FILEMgr {
     /**
      * Load all the students' information from file into the system.
      *
-     * @return an array list of all the students.
+     * @return a list of all the students.
      */
-    public static ArrayList<Student> loadStudents() {
+    public static List<Student> loadStudents() {
         BufferedReader fileReader = null;
-        ArrayList<Student> students = new ArrayList<Student>(0);
+        List<Student> students = new ArrayList<>(0);
         try {
             String line;
             fileReader = new BufferedReader(new FileReader(studentFileName));
@@ -384,7 +383,7 @@ public class FILEMgr {
             fileWriter.append(String.valueOf(course.getTotalSeats()));
             fileWriter.append(COMMA_DELIMITER);
 
-            ArrayList<LectureGroup> lectureGroups = course.getLectureGroups();
+            List<LectureGroup> lectureGroups = course.getLectureGroups();
             if (lectureGroups.size() != 0) {
                 int index = 0;
                 for (LectureGroup lectureGroup : lectureGroups) {
@@ -403,7 +402,7 @@ public class FILEMgr {
             }
             fileWriter.append(COMMA_DELIMITER);
 
-            ArrayList<TutorialGroup> tutorialGroups = course.getTutorialGroups();
+            List<TutorialGroup> tutorialGroups = course.getTutorialGroups();
             if (tutorialGroups.size() != 0) {
                 int index = 0;
                 for (TutorialGroup tutorialGroup : tutorialGroups) {
@@ -422,7 +421,7 @@ public class FILEMgr {
             }
             fileWriter.append(COMMA_DELIMITER);
 
-            ArrayList<LabGroup> labGroups = course.getLabGroups();
+            List<LabGroup> labGroups = course.getLabGroups();
             if (labGroups.size() != 0) {
                 int index = 0;
                 for (LabGroup labGroup : labGroups) {
@@ -441,7 +440,7 @@ public class FILEMgr {
             }
             fileWriter.append(COMMA_DELIMITER);
 
-            ArrayList<MainComponent> mainComponents = course.getMainComponents();
+            List<MainComponent> mainComponents = course.getMainComponents();
             if (mainComponents.size() != 0) {
                 int index = 0;
                 for (MainComponent mainComponent : mainComponents) {
@@ -449,7 +448,7 @@ public class FILEMgr {
                     fileWriter.append(EQUAL_SIGN);
                     fileWriter.append(String.valueOf(mainComponent.getComponentWeight()));
                     fileWriter.append(EQUAL_SIGN);
-                    ArrayList<SubComponent> subComponents = mainComponent.getSubComponents();
+                    List<SubComponent> subComponents = mainComponent.getSubComponents();
                     int inner_index = 0;
                     for (SubComponent subComponent : subComponents) {
                         fileWriter.append(subComponent.getComponentName());
@@ -499,16 +498,16 @@ public class FILEMgr {
     /**
      * Load all the courses' information from file into the system.
      *
-     * @return an array list of all the courses.
+     * @return a list of all the courses.
      */
-    public static ArrayList<Course> loadCourses() {
-        ArrayList<Course> courses = new ArrayList<Course>(0);
+    public static List<Course> loadCourses() {
+        List<Course> courses = new ArrayList<>(0);
         BufferedReader fileReader = null;
         try {
             String line;
             int thisProfessor = 0;
             Professor currentProfessor = null;
-            ArrayList<Professor> professors = loadProfessors();
+            List<Professor> professors = loadProfessors();
             fileReader = new BufferedReader(new FileReader(courseFileName));
             fileReader.readLine();//read the header to skip it
             while ((line = fileReader.readLine()) != null) {
@@ -533,7 +532,7 @@ public class FILEMgr {
                     int labWeeklyHr = Integer.parseInt(tokens[labHrIndex]);
 
                     String lectureGroupsString = tokens[lectureGroupsIndex];
-                    ArrayList<LectureGroup> lectureGroups = new ArrayList<LectureGroup>(0);
+                    List<LectureGroup> lectureGroups = new ArrayList<>(0);
                     String[] eachLectureGroupsString = lectureGroupsString.split(Pattern.quote(LINE_DELIMITER));
 
                     for (int i = 0; i < eachLectureGroupsString.length; i++) {
@@ -544,7 +543,7 @@ public class FILEMgr {
                     Course course = new Course(courseID, courseName, currentProfessor, vacancies, totalSeats, lectureGroups, AU, courseDepartment, courseType, lecWeeklyHr);
 
                     String tutorialGroupsString = tokens[tutorialGroupIndex];
-                    ArrayList<TutorialGroup> tutorialGroups = new ArrayList<TutorialGroup>(0);
+                    List<TutorialGroup> tutorialGroups = new ArrayList<>(0);
 
                     if (!tutorialGroupsString.equals("NULL")) {
                         String[] eachTutorialGroupsString = tutorialGroupsString.split(Pattern.quote(LINE_DELIMITER));
@@ -557,7 +556,7 @@ public class FILEMgr {
                     course.setTutWeeklyHour(tutWeeklyHr);
 
                     String labGroupsString = tokens[labGroupIndex];
-                    ArrayList<LabGroup> labGroups = new ArrayList<LabGroup>(0);
+                    List<LabGroup> labGroups = new ArrayList<>(0);
                     if (!labGroupsString.equals("NULL")) {
                         String[] eachLabGroupString = labGroupsString.split(Pattern.quote(LINE_DELIMITER));
                         for (int i = 0; i < eachLabGroupString.length; i++) {
@@ -569,12 +568,12 @@ public class FILEMgr {
                     course.setLabWeeklyHour(labWeeklyHr);
 
                     String mainComponentsString = tokens[mainComponentsIndex];
-                    ArrayList<MainComponent> mainComponents = new ArrayList<MainComponent>(0);
+                    List<MainComponent> mainComponents = new ArrayList<>(0);
                     if (!mainComponentsString.equals("NULL")) {
                         String[] eachMainComponentsString = mainComponentsString.split(Pattern.quote(LINE_DELIMITER));
                         for (int i = 0; i < eachMainComponentsString.length; i++) {
                             String[] thisMainComponent = eachMainComponentsString[i].split(EQUAL_SIGN);
-                            ArrayList<SubComponent> subComponents = new ArrayList<SubComponent>(0);
+                            List<SubComponent> subComponents = new ArrayList<>(0);
                             if (thisMainComponent.length > 2) {
                                 String[] subComponentsString = thisMainComponent[2].split(SLASH);
                                 for (int j = 0; j < subComponentsString.length; j++) {
@@ -610,7 +609,7 @@ public class FILEMgr {
      *
      * @param courses courses to be backed up
      */
-    public static void backUpCourse(ArrayList<Course> courses) {
+    public static void backUpCourse(List<Course> courses) {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(courseFileName);
@@ -635,7 +634,7 @@ public class FILEMgr {
                 fileWriter.append(String.valueOf(course.getTotalSeats()));
                 fileWriter.append(COMMA_DELIMITER);
 
-                ArrayList<LectureGroup> lectureGroups = course.getLectureGroups();
+                List<LectureGroup> lectureGroups = course.getLectureGroups();
 
                 if (lectureGroups.size() != 0) {
                     int index = 0;
@@ -656,7 +655,7 @@ public class FILEMgr {
 
                 fileWriter.append(COMMA_DELIMITER);
 
-                ArrayList<TutorialGroup> tutorialGroups = course.getTutorialGroups();
+                List<TutorialGroup> tutorialGroups = course.getTutorialGroups();
                 if (tutorialGroups.size() != 0) {
                     int index = 0;
                     for (TutorialGroup tutorialGroup : tutorialGroups) {
@@ -675,7 +674,7 @@ public class FILEMgr {
                 }
                 fileWriter.append(COMMA_DELIMITER);
 
-                ArrayList<LabGroup> labGroups = course.getLabGroups();
+                List<LabGroup> labGroups = course.getLabGroups();
                 if (labGroups.size() != 0) {
                     int index = 0;
                     for (LabGroup labGroup : labGroups) {
@@ -695,7 +694,7 @@ public class FILEMgr {
 
                 fileWriter.append(COMMA_DELIMITER);
 
-                ArrayList<MainComponent> mainComponents = course.getMainComponents();
+                List<MainComponent> mainComponents = course.getMainComponents();
                 if (mainComponents.size() != 0) {
                     int index = 0;
                     for (MainComponent mainComponent : mainComponents) {
@@ -703,7 +702,7 @@ public class FILEMgr {
                         fileWriter.append(EQUAL_SIGN);
                         fileWriter.append(String.valueOf(mainComponent.getComponentWeight()));
                         fileWriter.append(EQUAL_SIGN);
-                        ArrayList<SubComponent> subComponents = mainComponent.getSubComponents();
+                        List<SubComponent> subComponents = mainComponent.getSubComponents();
                         int inner_index = 0;
                         for (SubComponent subComponent : subComponents) {
                             fileWriter.append(subComponent.getComponentName());
@@ -791,11 +790,11 @@ public class FILEMgr {
     /**
      * Load all the professors' information from file into the system.
      *
-     * @return an array list of all the professors.
+     * @return a list of all the professors.
      */
-    public static ArrayList<Professor> loadProfessors() {
+    public static List<Professor> loadProfessors() {
         BufferedReader fileReader = null;
-        ArrayList<Professor> professors = new ArrayList<Professor>(0);
+        List<Professor> professors = new ArrayList<>(0);
         try {
             String line;
             fileReader = new BufferedReader(new FileReader(professorFileName));
@@ -866,16 +865,16 @@ public class FILEMgr {
     /**
      * Load all the course registration records from file into the system.
      *
-     * @return an array list of all the course registration records.
+     * @return a list of all the course registration records.
      */
-    public static ArrayList<CourseRegistration> loadCourseRegistration() {
+    public static List<CourseRegistration> loadCourseRegistration() {
         BufferedReader fileReader = null;
-        ArrayList<CourseRegistration> courseRegistrations = new ArrayList<CourseRegistration>(0);
+        List<CourseRegistration> courseRegistrations = new ArrayList<>(0);
         try {
             String line;
             Student currentStudent = null;
             Course currentCourse = null;
-            ArrayList<Student> students = loadStudents();
+            List<Student> students = loadStudents();
 
             fileReader = new BufferedReader(new FileReader(courseRegistrationFileName));
             fileReader.readLine();//read the header to skip it
@@ -892,7 +891,7 @@ public class FILEMgr {
                         }
                     }
                     String courseID = tokens[courseIdInRegistrationIndex];
-                    ArrayList<Course> courses = loadCourses();
+                    List<Course> courses = loadCourses();
                     for (Course course : courses) {
                         if (course.getCourseID().equals(courseID)) {
                             currentCourse = course;
@@ -950,7 +949,7 @@ public class FILEMgr {
                         fileWriter.append(EQUAL_SIGN);
                         fileWriter.append(String.valueOf(value));
                         fileWriter.append(EQUAL_SIGN);
-                        ArrayList<SubComponent> subComponents = ((MainComponent) key).getSubComponents();
+                        List<SubComponent> subComponents = ((MainComponent) key).getSubComponents();
                         int subComponent_index = 0;
                         for (SubComponent subComponent : subComponents) {
                             fileWriter.append(subComponent.getComponentName());
@@ -992,16 +991,16 @@ public class FILEMgr {
     /**
      * Load all the student mark records from file into the system.
      *
-     * @return an array list of all the student mark records.
+     * @return a list of all the student mark records.
      */
-    public static ArrayList<Mark> loadStudentMarks() {
+    public static List<Mark> loadStudentMarks() {
         BufferedReader fileReader = null;
-        ArrayList<Mark> marks = new ArrayList<Mark>(0);
+        List<Mark> marks = new ArrayList<>(0);
         try {
             String line;
 
-            ArrayList<Student> students = loadStudents();
-            ArrayList<Course> courses = loadCourses();
+            List<Student> students = loadStudents();
+            List<Course> courses = loadCourses();
 
             fileReader = new BufferedReader(new FileReader(markFileName));
             //read the header to skip it
@@ -1043,7 +1042,7 @@ public class FILEMgr {
                     for (int i = 0; i < eachCourseWorkMark.length; i++) {
                         thisCourseWorkMark = eachCourseWorkMark[i].split(EQUAL_SIGN);
 
-                        ArrayList<SubComponent> subComponents = new ArrayList<SubComponent>(0);
+                        List<SubComponent> subComponents = new ArrayList<>(0);
                         HashMap<SubComponent, Double> subComponentMarks = new HashMap<SubComponent, Double>();
                         for (int j = 3; j < thisCourseWorkMark.length; j++) {
                             if (thisCourseWorkMark[3].equals("")) {
@@ -1095,7 +1094,7 @@ public class FILEMgr {
      *
      * @param marks marks to be backed up into file
      */
-    public static void backUpMarks(ArrayList<Mark> marks) {
+    public static void backUpMarks(List<Mark> marks) {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(markFileName);
@@ -1122,7 +1121,7 @@ public class FILEMgr {
                             fileWriter.append(EQUAL_SIGN);
                             fileWriter.append(String.valueOf(value));
                             fileWriter.append(EQUAL_SIGN);
-                            ArrayList<SubComponent> subComponents = ((MainComponent) key).getSubComponents();
+                            List<SubComponent> subComponents = ((MainComponent) key).getSubComponents();
                             int subComponent_index = 0;
                             for (SubComponent subComponent : subComponents) {
                                 fileWriter.append(subComponent.getComponentName());

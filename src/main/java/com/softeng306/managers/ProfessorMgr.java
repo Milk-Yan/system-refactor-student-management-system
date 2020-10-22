@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
  */
 public class ProfessorMgr {
     /**
-     * An array list of all the professors in this school.
+     * A list of all the professors in this school.
      */
-    public static ArrayList<Professor> professors = new ArrayList<Professor>(0);
+    public static List<Professor> professors = new ArrayList<>(0);
 
     private static ProfessorMgr singleInstance = null;
 

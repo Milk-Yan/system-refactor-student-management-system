@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 public abstract class AbstractProcess {
+    protected static final int PROCESS_SLEEP_MILLI = 500;
+    protected static final int WAITFOR_SEC = 5;
 
     /**
      * Gets the output of the process specified by the subclass
@@ -22,21 +24,24 @@ public abstract class AbstractProcess {
 
         // Requirement of sleeping thread to allow the process to execute
         StringBuilder outputBuilder = new StringBuilder();
-        Thread.sleep(200);
+        Thread.sleep(PROCESS_SLEEP_MILLI);
         outputBuilder.append(getOutputFromInputStreamWithRead(stdout));
         for (String input : inputData) {
             stdin.write(input + "\n");
             stdin.flush();
-            Thread.sleep(200);
+            Thread.sleep(PROCESS_SLEEP_MILLI);
             outputBuilder.append(getOutputFromInputStreamWithRead(stdout));
         }
 
         // Wait for the program, if does not terminate on its own throw an error
-        boolean timeoutBoolean = p.waitFor(5, TimeUnit.SECONDS);
+        boolean timeoutBoolean = p.waitFor(WAITFOR_SEC, TimeUnit.SECONDS);
         if(!timeoutBoolean){
             System.err.println(outputBuilder.toString());
             throw new TimeoutException(getOutputFromInputStreamWithRead(stdout));
         }
+
+        // Final read in the case that the program generated output during wait
+        outputBuilder.append(getOutputFromInputStreamWithRead(stdout));
 
         return outputBuilder.toString();
     }
@@ -55,7 +60,7 @@ public abstract class AbstractProcess {
         InputStream stdout = p.getInputStream(); // output and error stream
 
         StringBuilder outputBuilder = new StringBuilder();
-        Thread.sleep(200);
+        Thread.sleep(PROCESS_SLEEP_MILLI);
         String currentOutput = getOutputFromInputStreamWithRead(stdout);
         System.out.println(currentOutput);
         outputBuilder.append(currentOutput);
@@ -63,16 +68,19 @@ public abstract class AbstractProcess {
             System.out.println(input);
             stdin.write(input + "\n");
             stdin.flush();
-            Thread.sleep(200);
+            Thread.sleep(PROCESS_SLEEP_MILLI);
             currentOutput = getOutputFromInputStreamWithRead(stdout);
             System.out.println(currentOutput);
             outputBuilder.append(currentOutput);
         }
 
-        boolean timeoutBoolean = p.waitFor(5, TimeUnit.SECONDS);
+        boolean timeoutBoolean = p.waitFor(WAITFOR_SEC, TimeUnit.SECONDS);
         if(!timeoutBoolean){
             throw new TimeoutException();
         }
+
+        // Final read in the case that the program generated output during wait
+        outputBuilder.append(getOutputFromInputStreamWithRead(stdout));
 
         return outputBuilder.toString();
     }

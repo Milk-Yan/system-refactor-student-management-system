@@ -17,9 +17,9 @@ import static com.softeng306.domain.course.courseregistration.CourseRegistration
 public class CourseRegistrationMgr {
     private static Scanner scanner = new Scanner(System.in);
     /**
-     * An array list of all the course registration records in this school.
+     * A list of all the course registration records in this school.
      */
-    public static ArrayList<CourseRegistration> courseRegistrations = new ArrayList<CourseRegistration>(0);
+    public static List<CourseRegistration> courseRegistrations = new ArrayList<>(0);
 
     private static CourseRegistrationMgr singleInstance = null;
 
@@ -78,19 +78,19 @@ public class CourseRegistrationMgr {
         System.out.println("Student " + currentStudent.getStudentName() + " with ID: " + currentStudent.getStudentID() +
                 " wants to register " + currentCourse.getCourseID() + " " + currentCourse.getCourseName());
 
-        ArrayList<Group> lecGroups = new ArrayList<>(0);
+        List<Group> lecGroups = new ArrayList<>(0);
         lecGroups.addAll(currentCourse.getLectureGroups());
 
         GroupMgr groupMgr = GroupMgr.getInstance();
 
         selectedLectureGroupName = groupMgr.printGroupWithVacancyInfo("lecture", lecGroups);
 
-        ArrayList<Group> tutGroups = new ArrayList<>(0);
+        List<Group> tutGroups = new ArrayList<>(0);
         tutGroups.addAll(currentCourse.getTutorialGroups());
 
         selectedTutorialGroupName = groupMgr.printGroupWithVacancyInfo("tutorial", tutGroups);
 
-        ArrayList<Group> labGroups = new ArrayList<>(0);
+        List<Group> labGroups = new ArrayList<>(0);
         labGroups.addAll(currentCourse.getLabGroups());
 
         selectedLabGroupName = groupMgr.printGroupWithVacancyInfo("lab", labGroups);
@@ -127,11 +127,11 @@ public class CourseRegistrationMgr {
         System.out.println("(2) Tutorial group");
         System.out.println("(3) Lab group");
         // READ courseRegistrationFILE
-        // return ArrayList of Object(student,course,lecture,tut,lab)
-        ArrayList<CourseRegistration> allStuArray = FILEMgr.loadCourseRegistration();
+        // return List of Object(student,course,lecture,tut,lab)
+        List<CourseRegistration> allStuArray = FILEMgr.loadCourseRegistration();
 
 
-        ArrayList<CourseRegistration> stuArray = new ArrayList<CourseRegistration>(0);
+        List<CourseRegistration> stuArray = new ArrayList<>(0);
         for (CourseRegistration courseRegistration : allStuArray) {
             if (courseRegistration.getCourse().getCourseID().equals(currentCourse.getCourseID())) {
                 stuArray.add(courseRegistration);

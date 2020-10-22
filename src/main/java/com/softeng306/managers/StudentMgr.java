@@ -6,6 +6,7 @@ import com.softeng306.io.FILEMgr;
 import com.softeng306.io.StudentMgrIO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Manages the student related operations.
@@ -13,9 +14,9 @@ import java.util.ArrayList;
  */
 public class StudentMgr {
     /**
-     * An array list of all the students in this school.
+     * A list of all the students in this school.
      */
-    public static ArrayList<Student> students = new ArrayList<Student>(0);
+    public static List<Student> students = new ArrayList<>(0);
 
     private static StudentMgr singleInstance = null;
 
