@@ -33,6 +33,11 @@ public class MarkMgr {
     private MarkMgr() {
     }
 
+    /**
+     * Return the MarkMgr singleton, if not initialised already, create an instance.
+     *
+     * @return MarkMgr the singleton instance
+     */
     public static MarkMgr getInstance() {
         if (singleInstance == null) {
             singleInstance = new MarkMgr();

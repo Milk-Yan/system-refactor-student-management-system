@@ -26,6 +26,11 @@ public class ProfessorMgr {
     private ProfessorMgr() {
     }
 
+    /**
+     * Return the ProfessorMgr singleton, if not initialised already, create an instance.
+     *
+     * @return ProfessorMgr the singleton instance
+     */
     public static ProfessorMgr getInstance() {
         if (singleInstance == null) {
             singleInstance = new ProfessorMgr();

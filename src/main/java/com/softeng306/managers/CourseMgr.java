@@ -37,6 +37,11 @@ public class CourseMgr {
     private CourseMgr() {
     }
 
+    /**
+     * Return the CourseMgr singleton, if not initialised already, create an instance.
+     *
+     * @return CourseMgr the singleton instance
+     */
     public static CourseMgr getInstance() {
         if (singleInstance == null) {
             singleInstance = new CourseMgr();

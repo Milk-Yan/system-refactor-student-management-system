@@ -32,6 +32,11 @@ public class StudentMgr {
     private StudentMgr() {
     }
 
+    /**
+     * Return the StudentMgr singleton, if not initialised already, create an instance.
+     *
+     * @return StudentMgr the singleton instance
+     */
     public static StudentMgr getInstance() {
         if (singleInstance == null) {
             singleInstance = new StudentMgr();
