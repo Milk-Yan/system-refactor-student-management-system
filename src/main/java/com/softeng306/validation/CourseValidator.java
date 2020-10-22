@@ -61,7 +61,7 @@ public class CourseValidator {
             System.out.println("Enter course ID (-h to print all the course ID):");
             courseID = scanner.nextLine();
             while ("-h".equals(courseID)) {
-                CourseMgr.printAllCourses();
+                CourseMgr.getInstance().printAllCourses();
                 courseID = scanner.nextLine();
             }
 

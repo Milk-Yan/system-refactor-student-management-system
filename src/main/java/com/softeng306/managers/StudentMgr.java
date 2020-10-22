@@ -71,7 +71,7 @@ public class StudentMgr {
     /**
      * Displays a list of IDs of all the students.
      */
-    public static void printAllStudentIds() {
+    public void printAllStudentIds() {
         for (Student s : StudentMgr.students) {
             System.out.println(s.getStudentID());
         }

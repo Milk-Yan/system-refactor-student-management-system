@@ -1,13 +1,10 @@
 package com.softeng306.managers;
 
-import com.softeng306.Enum.Department;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.validation.DepartmentValidator;
-import com.softeng306.validation.ProfessorValidator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 /**
@@ -49,7 +46,7 @@ public class ProfessorMgr {
      * @param printOut   Represents whether print out the professor information or not
      * @return A list of all the names of professors in the inputted department or else null.
      */
-    public static List<String> printProfInDepartment(String department, boolean printOut) {
+    public List<String> printProfInDepartment(String department, boolean printOut) {
         if (DepartmentValidator.checkDepartmentValidation(department)) {
             List<String> validProfString = ProfessorMgr.professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
 

@@ -7,7 +7,28 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class GroupMgr {
-    private static Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+
+    private static GroupMgr singleInstance = null;
+
+    /**
+     * Override default constructor to implement singleton pattern
+     */
+    private GroupMgr() {
+    }
+
+    /**
+     * Return the GroupMgr singleton, if not initialised already, create an instance.
+     *
+     * @return GroupMgr the singleton instance
+     */
+    public static GroupMgr getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new GroupMgr();
+        }
+
+        return singleInstance;
+    }
 
     /**
      * Checks whether the inputted department is valid.
@@ -16,7 +37,7 @@ public class GroupMgr {
      * @param groups    An array list of a certain type of groups in a course.
      * @return the name of the group chosen by the user.
      */
-    public static String printGroupWithVacancyInfo(String groupType, ArrayList<Group> groups) {
+    public String printGroupWithVacancyInfo(String groupType, ArrayList<Group> groups) {
         int index;
         HashMap<String, Integer> groupAssign = new HashMap<>(0);
         int selectedGroupNum;
