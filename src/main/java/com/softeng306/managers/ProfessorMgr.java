@@ -12,7 +12,6 @@ import java.util.Scanner;
  * Manages all the professor related operations
  */
 public class ProfessorMgr {
-    private Scanner scanner = new Scanner(System.in);
     /**
      * An array list of all the professors in this school.
      */
