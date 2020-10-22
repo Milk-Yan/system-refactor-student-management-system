@@ -3,21 +3,14 @@ package com.softeng306.managers;
 
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
-import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.validation.DepartmentValidator;
-import com.softeng306.validation.GenderValidator;
-import com.softeng306.validation.StudentValidator;
 import com.softeng306.io.StudentMgrIO;
 
 import java.util.ArrayList;
-
-import com.softeng306.io.FILEMgr;
 
 /**
  * Manages the student related operations.
  * Contains addStudent.
  */
-
 public class StudentMgr {
     /**
      * An array list of all the students in this school.

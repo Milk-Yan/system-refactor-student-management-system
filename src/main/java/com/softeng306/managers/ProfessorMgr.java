@@ -1,12 +1,8 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.validation.DepartmentValidator;
-import com.softeng306.validation.ProfessorValidator;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Manages all the professor related operations

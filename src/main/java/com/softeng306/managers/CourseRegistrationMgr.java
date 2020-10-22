@@ -6,7 +6,6 @@ import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.main.Main;
 import com.softeng306.validation.*;
 
 import java.util.*;
