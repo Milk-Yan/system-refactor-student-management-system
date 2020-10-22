@@ -17,7 +17,7 @@ public class ProfessorMgr {
     /**
      * A list of all the professors in this school.
      */
-    public static List<Professor> professors = new ArrayList<Professor>(0);
+    public static List<Professor> professors = new ArrayList<>(0);
 
     /**
      * Adds a professor.

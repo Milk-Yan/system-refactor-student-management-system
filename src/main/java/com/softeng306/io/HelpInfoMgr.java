@@ -96,7 +96,7 @@ public class HelpInfoMgr {
      */
     public static List<String> getAllDepartment() {
         Set<Department> departmentEnumSet = EnumSet.allOf(Department.class);
-        List<String> departmentStringList = new ArrayList<String>(0);
+        List<String> departmentStringList = new ArrayList<>(0);
         Iterator iter = departmentEnumSet.iterator();
         while (iter.hasNext()) {
             departmentStringList.add(iter.next().toString());
@@ -112,7 +112,7 @@ public class HelpInfoMgr {
      */
     public static List<String> getAllGender() {
         Set<Gender> genderEnumSet = EnumSet.allOf(Gender.class);
-        List<String> genderStringList = new ArrayList<String>(0);
+        List<String> genderStringList = new ArrayList<>(0);
         Iterator iter = genderEnumSet.iterator();
         while (iter.hasNext()) {
             genderStringList.add(iter.next().toString());
@@ -127,7 +127,7 @@ public class HelpInfoMgr {
      */
     public static List<String> getAllCourseType() {
         Set<CourseType> courseTypeEnumSet = EnumSet.allOf(CourseType.class);
-        List<String> courseTypeStringSet = new ArrayList<String>(0);
+        List<String> courseTypeStringSet = new ArrayList<>(0);
         Iterator iter = courseTypeEnumSet.iterator();
         while (iter.hasNext()) {
             courseTypeStringSet.add(iter.next().toString());

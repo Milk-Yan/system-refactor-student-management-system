@@ -28,7 +28,7 @@ public class CourseMgr {
     /**
      * A list of all the courses in this school.
      */
-    public static List<Course> courses = new ArrayList<Course>(0);
+    public static List<Course> courses = new ArrayList<>(0);
 
 
     /**
@@ -150,7 +150,7 @@ public class CourseMgr {
         }
 
 
-        List<LectureGroup> lectureGroups = new ArrayList<LectureGroup>();
+        List<LectureGroup> lectureGroups = new ArrayList<>();
         String lectureGroupName;
         int lectureGroupCapacity;
         seatsLeft = totalSeats;
@@ -242,7 +242,7 @@ public class CourseMgr {
             }
         }
 
-        List<TutorialGroup> tutorialGroups = new ArrayList<TutorialGroup>();
+        List<TutorialGroup> tutorialGroups = new ArrayList<>();
         String tutorialGroupName;
         int tutorialGroupCapacity;
         for (int i = 0; i < noOfTutorialGroups; i++) {
@@ -325,7 +325,7 @@ public class CourseMgr {
             }
         }
 
-        List<LabGroup> labGroups = new ArrayList<LabGroup>();
+        List<LabGroup> labGroups = new ArrayList<>();
         String labGroupName;
         int labGroupCapacity;
         for (int i = 0; i < noOfLabGroups; i++) {
@@ -368,7 +368,7 @@ public class CourseMgr {
         }
 
         Professor profInCharge;
-        List<String> professorsInDepartment = new ArrayList<String>(0);
+        List<String> professorsInDepartment = new ArrayList<>(0);
         professorsInDepartment = HelpInfoMgr.printProfInDepartment(courseDepartment, false);
         while (true) {
             System.out.println("Enter the ID for the professor in charge please:");
@@ -485,7 +485,7 @@ public class CourseMgr {
         }
 
 
-        List<MainComponent> mainComponents = new ArrayList<MainComponent>(0);
+        List<MainComponent> mainComponents = new ArrayList<>(0);
         // Check if mainComponent is empty
         if (currentCourse.getMainComponents().size() == 0) {
             // empty course
@@ -511,7 +511,7 @@ public class CourseMgr {
                         examWeight = scanner.nextInt();
                         scanner.nextLine();
                     }
-                    MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<SubComponent>(0));
+                    MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>(0));
                     mainComponents.add(exam);
                     break;
                 } else if (hasFinalExamChoice == 2) {
@@ -542,7 +542,7 @@ public class CourseMgr {
             do {
                 int totalWeightage = 100 - examWeight;
                 for (int i = 0; i < numberOfMain; i++) {
-                    List<SubComponent> subComponents = new ArrayList<SubComponent>(0);
+                    List<SubComponent> subComponents = new ArrayList<>(0);
                     do {
                         componentExist = false;
                         System.out.println("Total weightage left to assign: " + totalWeightage);

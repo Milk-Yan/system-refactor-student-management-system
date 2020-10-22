@@ -22,7 +22,7 @@ public class MarkMgr {
     /**
      * A list of all the student mark records in this school.
      */
-    public static List<Mark> marks = new ArrayList<Mark>(0);
+    public static List<Mark> marks = new ArrayList<>(0);
 
 
     /**
@@ -66,9 +66,9 @@ public class MarkMgr {
                 //put the set mark function here
                 if (!isExam) {
                     System.out.println("Here are the choices you can have: ");
-                    List<String> availableChoices = new ArrayList<String>(0);
-                    List<Double> weights = new ArrayList<Double>(0);
-                    List<Boolean> isMainAss = new ArrayList<Boolean>(0);
+                    List<String> availableChoices = new ArrayList<>(0);
+                    List<Double> weights = new ArrayList<>(0);
+                    List<Boolean> isMainAss = new ArrayList<>(0);
                     for (HashMap.Entry<CourseworkComponent, Double> assessmentResult : mark.getCourseWorkMarks().entrySet()) {
                         CourseworkComponent key = assessmentResult.getKey();
                         if (key instanceof MainComponent) {
@@ -178,7 +178,7 @@ public class MarkMgr {
         Course currentCourse = CourseValidator.checkCourseExists();
         String courseID = currentCourse.getCourseID();
 
-        List<Mark> thisCourseMark = new ArrayList<Mark>(0);
+        List<Mark> thisCourseMark = new ArrayList<>(0);
         for (Mark mark : MarkMgr.marks) {
             if (mark.getCourse().getCourseID().equals(courseID)) {
                 thisCourseMark.add(mark);
@@ -285,7 +285,7 @@ public class MarkMgr {
 
         double studentGPA = 0d;
         int thisStudentAU = 0;
-        List<Mark> thisStudentMark = new ArrayList<Mark>(0);
+        List<Mark> thisStudentMark = new ArrayList<>(0);
         for (Mark mark : MarkMgr.marks) {
             if (mark.getStudent().getStudentID().equals(studentID)) {
                 thisStudentMark.add(mark);

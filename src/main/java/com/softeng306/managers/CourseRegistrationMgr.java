@@ -21,7 +21,7 @@ public class CourseRegistrationMgr {
     /**
      * A list of all the course registration records in this school.
      */
-    public static List<CourseRegistration> courseRegistrations = new ArrayList<CourseRegistration>(0);
+    public static List<CourseRegistration> courseRegistrations = new ArrayList<>(0);
 
 
     /**
@@ -110,7 +110,7 @@ public class CourseRegistrationMgr {
         List<CourseRegistration> allStuArray = FILEMgr.loadCourseRegistration();
 
 
-        List<CourseRegistration> stuArray = new ArrayList<CourseRegistration>(0);
+        List<CourseRegistration> stuArray = new ArrayList<>(0);
         for (CourseRegistration courseRegistration : allStuArray) {
             if (courseRegistration.getCourse().getCourseID().equals(currentCourse.getCourseID())) {
                 stuArray.add(courseRegistration);

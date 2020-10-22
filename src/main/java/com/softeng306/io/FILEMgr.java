@@ -315,7 +315,7 @@ public class FILEMgr {
      */
     public static List<Student> loadStudents() {
         BufferedReader fileReader = null;
-        List<Student> students = new ArrayList<Student>(0);
+        List<Student> students = new ArrayList<>(0);
         try {
             String line;
             fileReader = new BufferedReader(new FileReader(studentFileName));
@@ -501,7 +501,7 @@ public class FILEMgr {
      * @return a list of all the courses.
      */
     public static List<Course> loadCourses() {
-        List<Course> courses = new ArrayList<Course>(0);
+        List<Course> courses = new ArrayList<>(0);
         BufferedReader fileReader = null;
         try {
             String line;
@@ -532,7 +532,7 @@ public class FILEMgr {
                     int labWeeklyHr = Integer.parseInt(tokens[labHrIndex]);
 
                     String lectureGroupsString = tokens[lectureGroupsIndex];
-                    List<LectureGroup> lectureGroups = new ArrayList<LectureGroup>(0);
+                    List<LectureGroup> lectureGroups = new ArrayList<>(0);
                     String[] eachLectureGroupsString = lectureGroupsString.split(Pattern.quote(LINE_DELIMITER));
 
                     for (int i = 0; i < eachLectureGroupsString.length; i++) {
@@ -543,7 +543,7 @@ public class FILEMgr {
                     Course course = new Course(courseID, courseName, currentProfessor, vacancies, totalSeats, lectureGroups, AU, courseDepartment, courseType, lecWeeklyHr);
 
                     String tutorialGroupsString = tokens[tutorialGroupIndex];
-                    List<TutorialGroup> tutorialGroups = new ArrayList<TutorialGroup>(0);
+                    List<TutorialGroup> tutorialGroups = new ArrayList<>(0);
 
                     if (!tutorialGroupsString.equals("NULL")) {
                         String[] eachTutorialGroupsString = tutorialGroupsString.split(Pattern.quote(LINE_DELIMITER));
@@ -556,7 +556,7 @@ public class FILEMgr {
                     course.setTutWeeklyHour(tutWeeklyHr);
 
                     String labGroupsString = tokens[labGroupIndex];
-                    List<LabGroup> labGroups = new ArrayList<LabGroup>(0);
+                    List<LabGroup> labGroups = new ArrayList<>(0);
                     if (!labGroupsString.equals("NULL")) {
                         String[] eachLabGroupString = labGroupsString.split(Pattern.quote(LINE_DELIMITER));
                         for (int i = 0; i < eachLabGroupString.length; i++) {
@@ -568,12 +568,12 @@ public class FILEMgr {
                     course.setLabWeeklyHour(labWeeklyHr);
 
                     String mainComponentsString = tokens[mainComponentsIndex];
-                    List<MainComponent> mainComponents = new ArrayList<MainComponent>(0);
+                    List<MainComponent> mainComponents = new ArrayList<>(0);
                     if (!mainComponentsString.equals("NULL")) {
                         String[] eachMainComponentsString = mainComponentsString.split(Pattern.quote(LINE_DELIMITER));
                         for (int i = 0; i < eachMainComponentsString.length; i++) {
                             String[] thisMainComponent = eachMainComponentsString[i].split(EQUAL_SIGN);
-                            List<SubComponent> subComponents = new ArrayList<SubComponent>(0);
+                            List<SubComponent> subComponents = new ArrayList<>(0);
                             if (thisMainComponent.length > 2) {
                                 String[] subComponentsString = thisMainComponent[2].split(SLASH);
                                 for (int j = 0; j < subComponentsString.length; j++) {
@@ -794,7 +794,7 @@ public class FILEMgr {
      */
     public static List<Professor> loadProfessors() {
         BufferedReader fileReader = null;
-        List<Professor> professors = new ArrayList<Professor>(0);
+        List<Professor> professors = new ArrayList<>(0);
         try {
             String line;
             fileReader = new BufferedReader(new FileReader(professorFileName));
@@ -869,7 +869,7 @@ public class FILEMgr {
      */
     public static List<CourseRegistration> loadCourseRegistration() {
         BufferedReader fileReader = null;
-        List<CourseRegistration> courseRegistrations = new ArrayList<CourseRegistration>(0);
+        List<CourseRegistration> courseRegistrations = new ArrayList<>(0);
         try {
             String line;
             Student currentStudent = null;
@@ -995,7 +995,7 @@ public class FILEMgr {
      */
     public static List<Mark> loadStudentMarks() {
         BufferedReader fileReader = null;
-        List<Mark> marks = new ArrayList<Mark>(0);
+        List<Mark> marks = new ArrayList<>(0);
         try {
             String line;
 
@@ -1042,7 +1042,7 @@ public class FILEMgr {
                     for (int i = 0; i < eachCourseWorkMark.length; i++) {
                         thisCourseWorkMark = eachCourseWorkMark[i].split(EQUAL_SIGN);
 
-                        List<SubComponent> subComponents = new ArrayList<SubComponent>(0);
+                        List<SubComponent> subComponents = new ArrayList<>(0);
                         HashMap<SubComponent, Double> subComponentMarks = new HashMap<SubComponent, Double>();
                         for (int j = 3; j < thisCourseWorkMark.length; j++) {
                             if (thisCourseWorkMark[3].equals("")) {

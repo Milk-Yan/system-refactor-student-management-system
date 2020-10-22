@@ -71,7 +71,7 @@ public class Course {
     /**
      * The tutorial groups of this course.
      */
-    private List<TutorialGroup> tutorialGroups = new ArrayList<TutorialGroup>(0);
+    private List<TutorialGroup> tutorialGroups = new ArrayList<>(0);
 
     /**
      * The weekly lab hour of this course.
@@ -81,12 +81,12 @@ public class Course {
     /**
      * The lab groups of this course.
      */
-    private List<LabGroup> labGroups = new ArrayList<LabGroup>(0);
+    private List<LabGroup> labGroups = new ArrayList<>(0);
 
     /**
      * The assessment components of this course.
      */
-    private List<MainComponent> mainComponents = new ArrayList<MainComponent>(0);
+    private List<MainComponent> mainComponents = new ArrayList<>(0);
 
 
     /**

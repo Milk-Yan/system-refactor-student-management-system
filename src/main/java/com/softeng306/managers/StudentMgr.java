@@ -17,7 +17,7 @@ public class StudentMgr {
     /**
      * A list of all the students in this school.
      */
-    public static List<Student> students = new ArrayList<Student>(0);
+    public static List<Student> students = new ArrayList<>(0);
 
 
     /**
