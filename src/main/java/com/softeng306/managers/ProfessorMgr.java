@@ -20,12 +20,16 @@ public class ProfessorMgr {
 
     private static ProfessorMgr singleInstance = null;
 
+    /**
+     * Override default constructor to implement singleton pattern
+     */
     private ProfessorMgr() {
     }
 
     public static ProfessorMgr getInstance() {
-        if (singleInstance == null)
+        if (singleInstance == null) {
             singleInstance = new ProfessorMgr();
+        }
 
         return singleInstance;
     }

@@ -31,12 +31,16 @@ public class CourseMgr {
 
     private static CourseMgr singleInstance = null;
 
+    /**
+     * Override default constructor to implement singleton pattern
+     */
     private CourseMgr() {
     }
 
     public static CourseMgr getInstance() {
-        if (singleInstance == null)
+        if (singleInstance == null) {
             singleInstance = new CourseMgr();
+        }
 
         return singleInstance;
     }

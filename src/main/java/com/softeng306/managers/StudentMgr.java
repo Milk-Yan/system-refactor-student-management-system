@@ -26,12 +26,16 @@ public class StudentMgr {
 
     private static StudentMgr singleInstance = null;
 
+    /**
+     * Override default constructor to implement singleton pattern
+     */
     private StudentMgr() {
     }
 
     public static StudentMgr getInstance() {
-        if (singleInstance == null)
+        if (singleInstance == null) {
             singleInstance = new StudentMgr();
+        }
 
         return singleInstance;
     }

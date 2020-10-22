@@ -25,12 +25,16 @@ public class CourseRegistrationMgr {
 
     private static CourseRegistrationMgr singleInstance = null;
 
+    /**
+     * Override default constructor to implement singleton pattern
+     */
     private CourseRegistrationMgr() {
     }
 
     public static CourseRegistrationMgr getInstance() {
-        if (singleInstance == null)
+        if (singleInstance == null) {
             singleInstance = new CourseRegistrationMgr();
+        }
 
         return singleInstance;
     }

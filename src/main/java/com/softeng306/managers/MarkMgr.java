@@ -26,6 +26,10 @@ public class MarkMgr {
 
     private static MarkMgr singleInstance = null;
 
+
+    /**
+     * Override default constructor to implement singleton pattern
+     */
     private MarkMgr() {
     }
 
