@@ -1,5 +1,7 @@
 package com.softeng306.io;
 
+import com.softeng306.Enum.Department;
+import com.softeng306.Enum.Gender;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.DepartmentValidator;
 import com.softeng306.validation.GenderValidator;
@@ -77,7 +79,7 @@ public class StudentMgrIO {
             System.out.println("Enter -h to print all the schools.");
             studentSchool = reader.nextLine();
             while ("-h".equals(studentSchool)) {
-                HelpInfoMgr.printAllDepartment();
+                Department.printAllDepartment();
                 studentSchool = reader.nextLine();
             }
 
@@ -94,7 +96,7 @@ public class StudentMgrIO {
             System.out.println("Enter -h to print all the genders.");
             studentGender = reader.nextLine();
             while ("-h".equals(studentGender)) {
-                HelpInfoMgr.printAllGender();
+                Gender.printAllGender();
                 studentGender = reader.nextLine();
             }
 

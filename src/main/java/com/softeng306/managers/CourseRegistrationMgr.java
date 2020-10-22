@@ -5,8 +5,6 @@ import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
-import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.main.Main;
 import com.softeng306.validation.*;
 
 import java.util.*;
@@ -62,17 +60,17 @@ public class CourseRegistrationMgr {
         ArrayList<Group> lecGroups = new ArrayList<>(0);
         lecGroups.addAll(currentCourse.getLectureGroups());
 
-        selectedLectureGroupName = HelpInfoMgr.printGroupWithVacancyInfo("lecture", lecGroups);
+        selectedLectureGroupName = GroupMgr.printGroupWithVacancyInfo("lecture", lecGroups);
 
         ArrayList<Group> tutGroups = new ArrayList<>(0);
         tutGroups.addAll(currentCourse.getTutorialGroups());
 
-        selectedTutorialGroupName = HelpInfoMgr.printGroupWithVacancyInfo("tutorial", tutGroups);
+        selectedTutorialGroupName = GroupMgr.printGroupWithVacancyInfo("tutorial", tutGroups);
 
         ArrayList<Group> labGroups = new ArrayList<>(0);
         labGroups.addAll(currentCourse.getLabGroups());
 
-        selectedLabGroupName = HelpInfoMgr.printGroupWithVacancyInfo("lab", labGroups);
+        selectedLabGroupName = GroupMgr.printGroupWithVacancyInfo("lab", labGroups);
 
         currentCourse.enrolledIn();
         CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
@@ -123,6 +121,7 @@ public class CourseRegistrationMgr {
             opt = scanner.nextInt();
             scanner.nextLine();
 
+            // TODO: replace these common ui elements with a library
             System.out.println("------------------------------------------------------");
 
             if (stuArray.size() == 0) {
