@@ -2,8 +2,8 @@ package com.softeng306.managers;
 
 import com.softeng306.domain.course.group.Group;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class GroupMgr {
@@ -16,7 +16,7 @@ public class GroupMgr {
      * @param groups    An array list of a certain type of groups in a course.
      * @return the name of the group chosen by the user.
      */
-    public static String printGroupWithVacancyInfo(String groupType, ArrayList<Group> groups) {
+    public static String printGroupWithVacancyInfo(String groupType, List<Group> groups) {
         int index;
         HashMap<String, Integer> groupAssign = new HashMap<>(0);
         int selectedGroupNum;
