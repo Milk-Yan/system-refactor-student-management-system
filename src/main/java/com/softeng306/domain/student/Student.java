@@ -1,6 +1,5 @@
 package com.softeng306.domain.student;
 
-import com.softeng306.main.Main;
 import com.softeng306.managers.StudentMgr;
 
 /**

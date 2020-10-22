@@ -1,6 +1,6 @@
 package com.softeng306.domain.course.component;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a main assessment component of a course.
@@ -12,7 +12,7 @@ public class MainComponent extends CourseworkComponent {
     /**
      * This main component's sub components.
      */
-    private ArrayList<SubComponent> subComponents;
+    private List<SubComponent> subComponents;
 
     /**
      * Creates a main component with component name, component weightage and sub components.
@@ -21,7 +21,7 @@ public class MainComponent extends CourseworkComponent {
      * @param componentWeight the componentWeight of the assessment component
      * @param subComponents   the sub components of the assessment component
      */
-    public MainComponent(String componentName, int componentWeight, ArrayList<SubComponent> subComponents) {
+    public MainComponent(String componentName, int componentWeight, List<SubComponent> subComponents) {
         super(componentName, componentWeight);
         this.subComponents = subComponents;
     }
@@ -31,7 +31,7 @@ public class MainComponent extends CourseworkComponent {
      *
      * @return the sub components of this main component.
      */
-    public ArrayList<SubComponent> getSubComponents() {
+    public List<SubComponent> getSubComponents() {
         return this.subComponents;
     }
 }

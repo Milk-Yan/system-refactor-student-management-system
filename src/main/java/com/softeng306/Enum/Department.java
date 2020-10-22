@@ -2,6 +2,7 @@ package com.softeng306.Enum;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 
 public enum Department {
@@ -22,13 +23,13 @@ public enum Department {
 
 
     /**
-     * Gets all the departments as an array list.
+     * Gets all the departments as a list.
      *
-     * @return an array list of all the departments.
+     * @return a list of all the departments.
      */
-    public static ArrayList<String> getAllDepartment() {
+    public static List<String> getAllDepartment() {
         Set<Department> departmentEnumSet = EnumSet.allOf(Department.class);
-        ArrayList<String> departmentStringList = new ArrayList<>(0);
+        List<String> departmentStringList = new ArrayList<>(0);
         for (Department department : departmentEnumSet) {
             departmentStringList.add(department.toString());
         }
