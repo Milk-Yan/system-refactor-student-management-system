@@ -67,4 +67,14 @@ public class StudentMgr {
 
         StudentMgrIO.printStudentID(currentStudent.getStudentName(), currentStudent.getStudentID());
     }
+
+    /**
+     * Displays a list of IDs of all the students.
+     */
+    public static void printAllStudentIds() {
+        for (Student s : StudentMgr.students) {
+            System.out.println(s.getStudentID());
+        }
+    }
+
 }

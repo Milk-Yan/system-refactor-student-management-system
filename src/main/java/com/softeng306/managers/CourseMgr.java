@@ -1,5 +1,7 @@
 package com.softeng306.managers;
 
+import com.softeng306.Enum.CourseType;
+import com.softeng306.Enum.Department;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
@@ -14,6 +16,7 @@ import com.softeng306.validation.*;
 import java.util.*;
 import java.io.PrintStream;
 import java.io.OutputStream;
+import java.util.stream.Collectors;
 
 
 public class CourseMgr {
@@ -111,7 +114,7 @@ public class CourseMgr {
             System.out.println("Enter -h to print all the departments.");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                HelpInfoMgr.printAllDepartment();
+                Department.printAllDepartment();
                 courseDepartment = scanner.nextLine();
             }
             if (DepartmentValidator.checkDepartmentValidation(courseDepartment)) {
@@ -125,7 +128,7 @@ public class CourseMgr {
             System.out.println("Enter -h to print all the course types.");
             courseType = scanner.nextLine();
             while (courseType.equals("-h")) {
-                HelpInfoMgr.printAllCourseType();
+                CourseType.printAllCourseType();
                 courseType = scanner.nextLine();
             }
             if (CourseValidator.checkCourseTypeValidation(courseType)) {
@@ -388,13 +391,14 @@ public class CourseMgr {
 
         Professor profInCharge;
         List<String> professorsInDepartment = new ArrayList<String>(0);
-        professorsInDepartment = HelpInfoMgr.printProfInDepartment(courseDepartment, false);
+        // TODO: Fix name of method
+        professorsInDepartment = ProfessorMgr.printProfInDepartment(courseDepartment, false);
         while (true) {
             System.out.println("Enter the ID for the professor in charge please:");
             System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
             profID = scanner.nextLine();
             while ("-h".equals(profID)) {
-                professorsInDepartment = HelpInfoMgr.printProfInDepartment(courseDepartment, true);
+                professorsInDepartment = ProfessorMgr.printProfInDepartment(courseDepartment, true);
                 profID = scanner.nextLine();
             }
 
@@ -722,4 +726,31 @@ public class CourseMgr {
         }
         System.out.println();
     }
+
+
+    /**
+     * Displays a list of IDs of all the courses.
+     */
+    public void printAllCourses() {
+        CourseMgr.courses.stream().map(c -> c.getCourseID()).forEach(System.out::println);
+    }
+
+    // TODO: fix name of this method
+
+    /**
+     * Displays a list of all the courses in the inputted department.
+     *
+     * @param department The inputted department.
+     * @return a list of all the department values.
+     */
+    public List<String> printCourseInDepartment(String department) {
+        List<Course> validCourses = CourseMgr.courses.stream().filter(c -> department.equals(c.getCourseDepartment())).collect(Collectors.toList());
+        List<String> validCourseString = validCourses.stream().map(c -> c.getCourseID()).collect(Collectors.toList());
+        validCourseString.forEach(System.out::println);
+        if (validCourseString.size() == 0) {
+            System.out.println("None.");
+        }
+        return validCourseString;
+    }
+
 }
