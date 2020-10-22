@@ -1,6 +1,8 @@
 package com.softeng306.validation;
 
-import com.softeng306.io.HelpInfoMgr;
+import com.softeng306.Enum.Department;
+import com.softeng306.managers.CourseMgr;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
@@ -22,7 +24,7 @@ public class DepartmentValidator {
      * @return boolean indicates whether the inputted department is valid.
      */
     public static boolean checkDepartmentValidation(String department) {
-        if (HelpInfoMgr.getAllDepartment().contains(department)) {
+        if (Department.getAllDepartment().contains(department)) {
             return true;
         }
         System.out.println("The department is invalid. Please re-enter.");
@@ -40,13 +42,13 @@ public class DepartmentValidator {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                HelpInfoMgr.printAllDepartment();
+                Department.printAllDepartment();
                 courseDepartment = scanner.nextLine();
             }
             if (checkDepartmentValidation(courseDepartment)) {
                 List<String> validCourseString;
                 System.setOut(dummyStream);
-                validCourseString = HelpInfoMgr.printCourseInDepartment(courseDepartment);
+                validCourseString = CourseMgr.printCourseInDepartment(courseDepartment);
                 System.setOut(originalStream);
                 if (validCourseString.size() == 0) {
                     System.out.println("Invalid choice of department.");
