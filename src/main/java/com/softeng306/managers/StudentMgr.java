@@ -3,15 +3,10 @@ package com.softeng306.managers;
 
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
-import com.softeng306.io.HelpInfoMgr;
-import com.softeng306.validation.DepartmentValidator;
-import com.softeng306.validation.GenderValidator;
-import com.softeng306.validation.StudentValidator;
 import com.softeng306.io.StudentMgrIO;
 
 import java.util.ArrayList;
-
-import com.softeng306.io.FILEMgr;
+import java.util.List;
 
 /**
  * Manages the student related operations.
@@ -20,9 +15,9 @@ import com.softeng306.io.FILEMgr;
 
 public class StudentMgr {
     /**
-     * An array list of all the students in this school.
+     * A list of all the students in this school.
      */
-    public static ArrayList<Student> students = new ArrayList<Student>(0);
+    public static List<Student> students = new ArrayList<Student>(0);
 
 
     /**

@@ -6,6 +6,7 @@ import com.softeng306.validation.DepartmentValidator;
 import com.softeng306.validation.ProfessorValidator;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -14,9 +15,9 @@ import java.util.Scanner;
 public class ProfessorMgr {
     private Scanner scanner = new Scanner(System.in);
     /**
-     * An array list of all the professors in this school.
+     * A list of all the professors in this school.
      */
-    public static ArrayList<Professor> professors = new ArrayList<Professor>(0);
+    public static List<Professor> professors = new ArrayList<Professor>(0);
 
     /**
      * Adds a professor.
