@@ -58,7 +58,9 @@ public abstract class AbstractTestProcess {
         while (filestream.available() != 0) {
             outputBuilder.append((char) filestream.read());
         }
-        return outputBuilder.toString();
+
+        // Remove carriage returns
+        return outputBuilder.toString().replaceAll("\r", "");
     }
 
 

@@ -45,7 +45,8 @@ public abstract class AbstractProcess {
         // Final read in the case that the program generated output during wait
         outputBuilder.append(getOutputFromInputStreamWithRead(stdout));
 
-        return outputBuilder.toString();
+        // Remove carriage returns
+        return outputBuilder.toString().replaceAll("\r", "");
     }
 
     /**
@@ -84,7 +85,8 @@ public abstract class AbstractProcess {
         // Final read in the case that the program generated output during wait
         outputBuilder.append(getOutputFromInputStreamWithRead(stdout));
 
-        return outputBuilder.toString();
+        // Remove carriage returns
+        return outputBuilder.toString().replaceAll("\r", "");
     }
 
     /**
