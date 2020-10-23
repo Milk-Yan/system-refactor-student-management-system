@@ -48,7 +48,7 @@ public class DepartmentValidator {
             if (checkDepartmentValidation(courseDepartment)) {
                 List<String> validCourseString;
                 System.setOut(dummyStream);
-                validCourseString = CourseMgr.printCourseInDepartment(courseDepartment);
+                validCourseString = CourseMgr.getInstance().printCourseInDepartment(courseDepartment);
                 System.setOut(originalStream);
                 if (validCourseString.size() == 0) {
                     System.out.println("Invalid choice of department.");

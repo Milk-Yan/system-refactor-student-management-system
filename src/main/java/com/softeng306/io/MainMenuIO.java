@@ -17,6 +17,10 @@ public class MainMenuIO {
      */
     public static void startMainMenu() {
         int choice;
+        CourseMgr courseMgr = CourseMgr.getInstance();
+        MarkMgr markMgr = MarkMgr.getInstance();
+        StudentMgr studentMgr = StudentMgr.getInstance();
+        CourseRegistrationMgr courseRegistrationMgr = CourseRegistrationMgr.getInstance();
         do {
             printOptions();
             do {
@@ -39,34 +43,34 @@ public class MainMenuIO {
                 case 0:
                     break;
                 case 1:
-                    StudentMgr.addStudent();
+                    studentMgr.addStudent();
                     break;
                 case 2:
-                    CourseMgr.addCourse();
+                    courseMgr.addCourse();
                     break;
                 case 3:
-                    CourseRegistrationMgr.registerCourse();
+                    courseRegistrationMgr.registerCourse();
                     break;
                 case 4:
-                    CourseMgr.checkAvailableSlots();
+                    courseMgr.checkAvailableSlots();
                     break;
                 case 5:
-                    CourseRegistrationMgr.printStudents();
+                    courseRegistrationMgr.printStudents();
                     break;
                 case 6:
-                    CourseMgr.enterCourseWorkComponentWeightage(null);
+                    courseMgr.enterCourseWorkComponentWeightage(null);
                     break;
                 case 7:
-                    MarkMgr.setCourseWorkMark(false);
+                    markMgr.setCourseWorkMark(false);
                     break;
                 case 8:
-                    MarkMgr.setCourseWorkMark(true);
+                    markMgr.setCourseWorkMark(true);
                     break;
                 case 9:
-                    MarkMgr.printCourseStatistics();
+                    markMgr.printCourseStatistics();
                     break;
                 case 10:
-                    MarkMgr.printStudentTranscript();
+                    markMgr.printStudentTranscript();
                     break;
                 case 11:
                     exitApplication();
