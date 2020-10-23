@@ -389,7 +389,7 @@ public class CourseMgr {
         }
 
         Professor profInCharge;
-        List<String> professorsInDepartment = new ArrayList<>(0);
+        List<String> professorsInDepartment;
         // TODO: Fix name of method
         professorsInDepartment = ProfessorMgr.getInstance().printProfInDepartment(courseDepartment, false);
         while (true) {

@@ -1033,12 +1033,8 @@ public class FILEMgr {
                     }
 
                     String courseWorkMarksString = tokens[courseWorkMarksIndex];
-//                    System.out.println("From File, This course work components is: " + courseWorkMarksString);
-
                     String[] eachCourseWorkMark = courseWorkMarksString.split(Pattern.quote(LINE_DELIMITER));
                     // Get all the main components
-//                    System.out.println("From the file: " + eachCourseWorkMark.length + " main components.");
-
                     for (int i = 0; i < eachCourseWorkMark.length; i++) {
                         thisCourseWorkMark = eachCourseWorkMark[i].split(EQUAL_SIGN);
 
@@ -1063,15 +1059,6 @@ public class FILEMgr {
                     }
                     Double totalMark = Double.parseDouble(tokens[totalMarkIndex]);
                     Mark mark = new Mark(currentStudent, currentCourse, courseWorkMarks, totalMark);
-//                    System.out.println();
-//                    System.out.println("Loaded mark...");
-//                    System.out.println("Student ID: " + mark.getStudent().getStudentID() + " Student name: " + mark.getStudent().getStudentName());
-//                    System.out.println("Course ID: " + mark.getCourse().getCourseID() + " Course name: " + mark.getCourse().getCourseName());
-//                    for (HashMap.Entry<CourseworkComponent, Double> entry : mark.getCourseWorkMarks().entrySet()) {
-//                        System.out.println("Course Components: " + entry.getKey().getComponentName());
-//                        System.out.println("Course Component weightage " + entry.getKey().getComponentWeight());
-//                    }
-//                    System.out.println();
                     marks.add(mark);
                 }
             }

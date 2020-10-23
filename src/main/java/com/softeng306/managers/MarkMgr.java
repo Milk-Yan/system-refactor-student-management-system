@@ -343,7 +343,7 @@ public class MarkMgr {
                             CourseworkComponent subKey = subEntry.getKey();
                             Double subValue = subEntry.getValue();
                             if (subKey instanceof SubComponent && subKey.getComponentName().equals(subAssessmentName)) {
-                                System.out.println("Mark: " + String.valueOf(subValue));
+                                System.out.println("Mark: " + subValue);
                                 break;
                             }
                         }
