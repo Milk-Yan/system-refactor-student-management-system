@@ -26,6 +26,7 @@ public class TestPrintStudentList extends AbstractTestProcess {
     @Test
     public void testPrintStudentList() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
         List<String> inputList = new ArrayList<>();
+        // Loop through all group types to print
         for (int i = 1; i <= 3; i++) {
             inputList.add("5"); // Print student list
             inputList.add("SE2005"); // Enter course ID
