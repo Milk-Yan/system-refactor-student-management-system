@@ -2,6 +2,7 @@ package com.softeng306.io;
 
 import com.softeng306.Enum.CourseType;
 import com.softeng306.Enum.Department;
+import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.group.LabGroup;
 import com.softeng306.domain.course.group.LectureGroup;
 import com.softeng306.domain.course.group.TutorialGroup;
@@ -473,4 +474,28 @@ public class CourseMgrIO {
         System.out.println("Course " + courseID + " is added, but assessment components are not initialized.");
     }
 
+    public static void printCourseInfo(Course course) {
+        System.out.println(course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats());
+        System.out.println("--------------------------------------------");
+        for (LectureGroup lectureGroup : course.getLectureGroups()) {
+            System.out.println("Lecture group " + lectureGroup.getGroupName() + " (Available/Total): " + lectureGroup.getAvailableVacancies() + "/" + lectureGroup.getTotalSeats());
+        }
+        if (course.getTutorialGroups() != null) {
+            System.out.println();
+            for (TutorialGroup tutorialGroup : course.getTutorialGroups()) {
+                System.out.println("Tutorial group " + tutorialGroup.getGroupName() + " (Available/Total):  " + tutorialGroup.getAvailableVacancies() + "/" + tutorialGroup.getTotalSeats());
+            }
+        }
+        if (course.getLabGroups() != null) {
+            System.out.println();
+            for (LabGroup labGroup : course.getLabGroups()) {
+                System.out.println("Lab group " + labGroup.getGroupName() + " (Available/Total): " + labGroup.getAvailableVacancies() + "/" + labGroup.getTotalSeats());
+            }
+        }
+        System.out.println();
+    }
+
+    public static void printCourseNotExist() {
+        System.out.println("This course does not exist. Please check again.");
+    }
 }

@@ -110,37 +110,19 @@ public class CourseMgr {
      * Checks whether a course (with all of its groups) have available slots and displays the result.
      */
     public void checkAvailableSlots() {
-        //printout the result directly
+        // TODO: move to MainMenuIO
         System.out.println("checkAvailableSlots is called");
         Course currentCourse;
 
-        do {
+        while (true) {
             currentCourse = CourseValidator.checkCourseExists();
             if (currentCourse != null) {
-                System.out.println(currentCourse.getCourseID() + " " + currentCourse.getCourseName() + " (Available/Total): " + currentCourse.getVacancies() + "/" + currentCourse.getTotalSeats());
-                System.out.println("--------------------------------------------");
-                for (LectureGroup lectureGroup : currentCourse.getLectureGroups()) {
-                    System.out.println("Lecture group " + lectureGroup.getGroupName() + " (Available/Total): " + lectureGroup.getAvailableVacancies() + "/" + lectureGroup.getTotalSeats());
-                }
-                if (currentCourse.getTutorialGroups() != null) {
-                    System.out.println();
-                    for (TutorialGroup tutorialGroup : currentCourse.getTutorialGroups()) {
-                        System.out.println("Tutorial group " + tutorialGroup.getGroupName() + " (Available/Total):  " + tutorialGroup.getAvailableVacancies() + "/" + tutorialGroup.getTotalSeats());
-                    }
-                }
-                if (currentCourse.getLabGroups() != null) {
-                    System.out.println();
-                    for (LabGroup labGroup : currentCourse.getLabGroups()) {
-                        System.out.println("Lab group " + labGroup.getGroupName() + " (Available/Total): " + labGroup.getAvailableVacancies() + "/" + labGroup.getTotalSeats());
-                    }
-                }
-                System.out.println();
+                CourseMgrIO.printCourseInfo(currentCourse);
                 break;
             } else {
-                System.out.println("This course does not exist. Please check again.");
+                CourseMgrIO.printCourseNotExist();
             }
-        } while (true);
-
+        }
     }
 
     /**
