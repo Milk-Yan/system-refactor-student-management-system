@@ -12,18 +12,38 @@ import java.util.List;
  * Manages the student related operations.
  * Contains addStudent.
  */
-
 public class StudentMgr {
     /**
      * A list of all the students in this school.
      */
     public static List<Student> students = new ArrayList<>(0);
 
+    private static StudentMgr singleInstance = null;
+
+    /**
+     * Override default constructor to implement singleton pattern
+     */
+    private StudentMgr() {
+    }
+
+    /**
+     * Return the StudentMgr singleton, if not initialised already, create an instance.
+     *
+     * @return StudentMgr the singleton instance
+     */
+    public static StudentMgr getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new StudentMgr();
+        }
+
+        return singleInstance;
+    }
+
 
     /**
      * Adds a student and put the student into file
      */
-    public static void addStudent() {
+    public void addStudent() {
         String studentID = null;
         StudentMgrIO.printMenu();
 
@@ -52,7 +72,7 @@ public class StudentMgr {
     /**
      * Displays a list of IDs of all the students.
      */
-    public static void printAllStudentIds() {
+    public void printAllStudentIds() {
         for (Student s : StudentMgr.students) {
             System.out.println(s.getStudentID());
         }

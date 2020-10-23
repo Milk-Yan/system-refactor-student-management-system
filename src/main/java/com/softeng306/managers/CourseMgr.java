@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 
 
 public class CourseMgr {
-    private static Scanner scanner = new Scanner(System.in);
-    private static PrintStream originalStream = System.out;
-    private static PrintStream dummyStream = new PrintStream(new OutputStream() {
+    private Scanner scanner = new Scanner(System.in);
+    private PrintStream originalStream = System.out;
+    private PrintStream dummyStream = new PrintStream(new OutputStream() {
         public void write(int b) {
             // NO-OP
         }
@@ -31,11 +31,31 @@ public class CourseMgr {
      */
     public static List<Course> courses = new ArrayList<>(0);
 
+    private static CourseMgr singleInstance = null;
+
+    /**
+     * Override default constructor to implement singleton pattern
+     */
+    private CourseMgr() {
+    }
+
+    /**
+     * Return the CourseMgr singleton, if not initialised already, create an instance.
+     *
+     * @return CourseMgr the singleton instance
+     */
+    public static CourseMgr getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new CourseMgr();
+        }
+
+        return singleInstance;
+    }
 
     /**
      * Creates a new course and stores it in the file.
      */
-    public static void addCourse() {
+    public void addCourse() {
         String courseID;
         String courseName;
         String profID;
@@ -369,15 +389,15 @@ public class CourseMgr {
         }
 
         Professor profInCharge;
-        List<String> professorsInDepartment = new ArrayList<>(0);
+        List<String> professorsInDepartment;
         // TODO: Fix name of method
-        professorsInDepartment = ProfessorMgr.printProfInDepartment(courseDepartment, false);
+        professorsInDepartment = ProfessorMgr.getInstance().printProfInDepartment(courseDepartment, false);
         while (true) {
             System.out.println("Enter the ID for the professor in charge please:");
             System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
             profID = scanner.nextLine();
             while ("-h".equals(profID)) {
-                professorsInDepartment = ProfessorMgr.printProfInDepartment(courseDepartment, true);
+                professorsInDepartment = ProfessorMgr.getInstance().printProfInDepartment(courseDepartment, true);
                 profID = scanner.nextLine();
             }
 
@@ -434,7 +454,7 @@ public class CourseMgr {
     /**
      * Checks whether a course (with all of its groups) have available slots and displays the result.
      */
-    public static void checkAvailableSlots() {
+    public void checkAvailableSlots() {
         //printout the result directly
         System.out.println("checkAvailableSlots is called");
         Course currentCourse;
@@ -473,7 +493,7 @@ public class CourseMgr {
      *
      * @param currentCourse The course which course work component is to be set.
      */
-    public static void enterCourseWorkComponentWeightage(Course currentCourse) {
+    public void enterCourseWorkComponentWeightage(Course currentCourse) {
         // Assume when course is created, no components are added yet
         // Assume once components are created and set, cannot be changed.
         int numberOfMain;
@@ -697,7 +717,7 @@ public class CourseMgr {
     /**
      * Prints the list of courses
      */
-    public static void printCourses() {
+    public void printCourses() {
         System.out.println("Course List: ");
         System.out.println("| Course ID | Course Name | Professor in Charge |");
         for (Course course : CourseMgr.courses) {
@@ -710,7 +730,7 @@ public class CourseMgr {
     /**
      * Displays a list of IDs of all the courses.
      */
-    public static void printAllCourses() {
+    public void printAllCourses() {
         CourseMgr.courses.stream().map(c -> c.getCourseID()).forEach(System.out::println);
     }
 
@@ -722,7 +742,7 @@ public class CourseMgr {
      * @param department The inputted department.
      * @return a list of all the department values.
      */
-    public static List<String> printCourseInDepartment(String department) {
+    public List<String> printCourseInDepartment(String department) {
         List<Course> validCourses = CourseMgr.courses.stream().filter(c -> department.equals(c.getCourseDepartment())).collect(Collectors.toList());
         List<String> validCourseString = validCourses.stream().map(c -> c.getCourseID()).collect(Collectors.toList());
         validCourseString.forEach(System.out::println);

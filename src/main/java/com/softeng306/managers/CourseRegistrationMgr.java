@@ -21,11 +21,32 @@ public class CourseRegistrationMgr {
      */
     public static List<CourseRegistration> courseRegistrations = new ArrayList<>(0);
 
+    private static CourseRegistrationMgr singleInstance = null;
+
+    /**
+     * Override default constructor to implement singleton pattern
+     */
+    private CourseRegistrationMgr() {
+    }
+
+    /**
+     * Return the CourseRegistrationMgr singleton, if not initialised already, create an instance.
+     *
+     * @return CourseRegistrationMgr the singleton instance
+     */
+    public static CourseRegistrationMgr getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new CourseRegistrationMgr();
+        }
+
+        return singleInstance;
+    }
+
 
     /**
      * Registers a course for a student
      */
-    public static void registerCourse() {
+    public void registerCourse() {
         System.out.println("registerCourse is called");
         String selectedLectureGroupName = null;
         String selectedTutorialGroupName = null;
@@ -60,17 +81,19 @@ public class CourseRegistrationMgr {
         List<Group> lecGroups = new ArrayList<>(0);
         lecGroups.addAll(currentCourse.getLectureGroups());
 
-        selectedLectureGroupName = GroupMgr.printGroupWithVacancyInfo("lecture", lecGroups);
+        GroupMgr groupMgr = GroupMgr.getInstance();
+
+        selectedLectureGroupName = groupMgr.printGroupWithVacancyInfo("lecture", lecGroups);
 
         List<Group> tutGroups = new ArrayList<>(0);
         tutGroups.addAll(currentCourse.getTutorialGroups());
 
-        selectedTutorialGroupName = GroupMgr.printGroupWithVacancyInfo("tutorial", tutGroups);
+        selectedTutorialGroupName = groupMgr.printGroupWithVacancyInfo("tutorial", tutGroups);
 
         List<Group> labGroups = new ArrayList<>(0);
         labGroups.addAll(currentCourse.getLabGroups());
 
-        selectedLabGroupName = GroupMgr.printGroupWithVacancyInfo("lab", labGroups);
+        selectedLabGroupName = groupMgr.printGroupWithVacancyInfo("lab", labGroups);
 
         currentCourse.enrolledIn();
         CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
@@ -78,7 +101,7 @@ public class CourseRegistrationMgr {
 
         CourseRegistrationMgr.courseRegistrations.add(courseRegistration);
 
-        MarkMgr.marks.add(MarkMgr.initializeMark(currentStudent, currentCourse));
+        MarkMgr.marks.add(MarkMgr.getInstance().initializeMark(currentStudent, currentCourse));
 
         System.out.println("Course registration successful!");
         System.out.print("Student: " + currentStudent.getStudentName());
@@ -95,7 +118,7 @@ public class CourseRegistrationMgr {
     /**
      * Prints the students in a course according to their lecture group, tutorial group or lab group.
      */
-    public static void printStudents() {
+    public void printStudents() {
         System.out.println("printStudent is called");
         Course currentCourse = CourseValidator.checkCourseExists();
 
