@@ -1,0 +1,85 @@
+
+****************** Hello! Welcome to SOFTENG 306 Project 2! ******************
+Please note this application is not developed in The University of Auckland. All rights reserved for the original developers.
+Permission has been granted by the original developers to anonymize the code and use for education purposes.
+******************************************************************************************************************************
+
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+printStudent is called
+Enter course ID (-h to print all the course ID):
+Invalid Course ID. Please re-enter.
+Enter course ID (-h to print all the course ID):
+Print student by: 
+(1) Lecture group
+(2) Tutorial group
+(3) Lab group
+------------------------------------------------------
+Invalid input. Please re-enter.
+------------------------------------------------------
+------------------------------------------------------
+Invalid input. Please re-enter.
+------------------------------------------------------
+------------------------------------------------------
+Lecture group : LEC1
+Student Name: Chloe Student ID: U1822832L
+Student Name: Ashley Student ID: U1723456K
+Student Name: Daniel Student ID: U1234567J
+Student Name: Charlie Student ID: U1822835D
+Student Name: Gauss Student ID: U1822836B
+Student Name: Clara Student ID: U1822837K
+Student Name: Kevin Student ID: U1822838J
+Student Name: Shannon Student ID: U1822839K
+Student Name: Shaun Student ID: U1822840D
+Student Name: Steven Student ID: U1822841A
+Student Name: Stefan Student ID: U1822842F
+Student Name: Sebas Student ID: U1822843I
+Student Name: Freddy Student ID: U1822821E
+Student Name: Leigh Student ID: U1712312B
+Student Name: Hakeem Student ID: U1812312D
+Student Name: Kourtney Student ID: U1829392I
+Student Name: Elaina Student ID: U1822023E
+Student Name: Chloe Student ID: U1829393K
+Student Name: Chloe Student ID: U1722744J
+Student Name: Eric Student ID: U1800001L
+
+------------------------------------------------------
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+Backing up data before exiting...
+********* Bye! Thank you for using Main! *********
+
+                 ######    #      #   #######                   
+                 #    ##    #    #    #                         
+                 #    ##     #  #     #                         
+                 ######       ##      #######                   
+                 #    ##      ##      #                         
+                 #    ##      ##      #                         
+                 ######       ##      #######                   
+

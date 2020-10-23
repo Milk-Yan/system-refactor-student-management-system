@@ -1,0 +1,68 @@
+
+****************** Hello! Welcome to SOFTENG 306 Project 2! ******************
+Please note this application is not developed in The University of Auckland. All rights reserved for the original developers.
+Permission has been granted by the original developers to anonymize the code and use for education purposes.
+******************************************************************************************************************************
+
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+Enter Student ID (-h to print all the student ID):
+Invalid Student ID. Please re-enter.
+Enter Student ID (-h to print all the student ID):
+----------------- Official Transcript ------------------
+Student Name: Eric	Student ID: U1234567L
+AU for this semester: 3
+
+Course ID: SE2001	Course Name: Algorithm
+Main Assessment: Coursework ----- (40%)
+Sub Assessment: Assignment -- (70% * 40%) --- Mark: 100.0
+Sub Assessment: ClassPart -- (30% * 40%) --- Mark: 60.0
+Main Assessment Total: 88.0
+
+Main Assessment: Exam ----- (60%)
+Main Assessment Total: 100.0
+
+Course Total: 95.2
+
+GPA for this semester: 5.0
+On track of First Class Honor!
+------------------ End of Transcript -------------------
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+Backing up data before exiting...
+********* Bye! Thank you for using Main! *********
+
+                 ######    #      #   #######                   
+                 #    ##    #    #    #                         
+                 #    ##     #  #     #                         
+                 ######       ##      #######                   
+                 #    ##      ##      #                         
+                 #    ##      ##      #                         
+                 ######       ##      #######                   
+
