@@ -1,10 +1,8 @@
 package com.softeng306.domain.course;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.softeng306.domain.course.group.LabGroup;
-import com.softeng306.domain.course.group.LectureGroup;
 import com.softeng306.domain.course.component.MainComponent;
-import com.softeng306.domain.course.group.TutorialGroup;
+import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
 
 import java.util.ArrayList;
@@ -61,7 +59,7 @@ public class Course {
     /**
      * The lecture groups of this course.
      */
-    private List<LectureGroup> lectureGroups;
+    private List<Group> lectureGroups;
 
 
     /**
@@ -73,7 +71,7 @@ public class Course {
     /**
      * The tutorial groups of this course.
      */
-    private List<TutorialGroup> tutorialGroups = new ArrayList<>(0);
+    private List<Group> tutorialGroups = new ArrayList<>(0);
 
     /**
      * The weekly lab hour of this course.
@@ -83,7 +81,7 @@ public class Course {
     /**
      * The lab groups of this course.
      */
-    private List<LabGroup> labGroups = new ArrayList<>(0);
+    private List<Group> labGroups = new ArrayList<>(0);
 
     /**
      * The assessment components of this course.
@@ -111,7 +109,7 @@ public class Course {
      * @param courseType The course type of this course.
      * @param lecWeeklyHour The lecture weekly hour of this course.
      */
-    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, List<LectureGroup> lectureGroups, int AU, String courseDepartment, String courseType, int lecWeeklyHour) {
+    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, List<Group> lectureGroups, int AU, String courseDepartment, String courseType, int lecWeeklyHour) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.profInCharge = profInCharge;
@@ -141,7 +139,7 @@ public class Course {
      * @param tutWeeklyHour The tutorial weekly hour of this course.
      * @param labWeeklyHour The lab weekly hour of this course.
      */
-    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, List<LectureGroup> lectureGroups, List<TutorialGroup> tutorialGroups, List<LabGroup> labGroups, int AU, String courseDepartment, String courseType, int lecWeeklyHour, int tutWeeklyHour, int labWeeklyHour) {
+    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, List<Group> lectureGroups, List<Group> tutorialGroups, List<Group> labGroups, int AU, String courseDepartment, String courseType, int lecWeeklyHour, int tutWeeklyHour, int labWeeklyHour) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.profInCharge = profInCharge;
@@ -246,7 +244,7 @@ public class Course {
      * Gets the course's lecture groups.
      * @return the lecture groups of this course.
      */
-    public List<LectureGroup> getLectureGroups() {
+    public List<Group> getLectureGroups() {
         return lectureGroups;
     }
 
@@ -254,7 +252,7 @@ public class Course {
      * Gets the course's tutorial groups
      * @return the tutorial groups of this course
      */
-    public List<TutorialGroup> getTutorialGroups() {
+    public List<Group> getTutorialGroups() {
         return this.tutorialGroups;
     }
 
@@ -262,7 +260,7 @@ public class Course {
      * Gets the course's lab groups.
      * @return the lab groups of this course.
      */
-    public List<LabGroup> getLabGroups() {
+    public List<Group> getLabGroups() {
         return this.labGroups;
     }
 
@@ -291,7 +289,7 @@ public class Course {
      * Sets the tutorial groups of the lecture groups.
      * @param tutorialGroups this course's tutorial groups.
      */
-    public void setTutorialGroups(List<TutorialGroup> tutorialGroups) {
+    public void setTutorialGroups(List<Group> tutorialGroups) {
         this.tutorialGroups = tutorialGroups;
     }
 
@@ -299,7 +297,7 @@ public class Course {
      * Sets the lab groups of the lecture groups.
      * @param labGroups this course's lab groups.
      */
-    public void setLabGroups(List<LabGroup> labGroups) {
+    public void setLabGroups(List<Group> labGroups) {
         this.labGroups = labGroups;
     }
 
