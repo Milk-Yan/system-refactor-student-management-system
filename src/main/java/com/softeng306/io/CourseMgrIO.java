@@ -161,15 +161,15 @@ public class CourseMgrIO {
         }
     }
 
-    public int readLecWeeklyHour(int AU) {
-        int lecWeeklyHour;
+    public int readWeeklyHour(GroupType type, int AU) {
+        int weeklyHour;
         while (true) {
-            System.out.println("Enter the weekly lecture hour for this course: ");
+            System.out.format("Enter the weekly %s hour for this course: %n", type.toTypeString());
             if (scanner.hasNextInt()) {
-                lecWeeklyHour = scanner.nextInt();
+                weeklyHour = scanner.nextInt();
                 scanner.nextLine();
-                if (lecWeeklyHour < 0 || lecWeeklyHour > AU) {
-                    System.out.println("Weekly lecture hour out of bound. Please re-enter.");
+                if (weeklyHour < 0 || weeklyHour > AU) {
+                    System.out.format("Weekly %s hour out of bound. Please re-enter.%n", type.toTypeString());
                 } else {
                     break;
                 }
@@ -178,7 +178,7 @@ public class CourseMgrIO {
             }
         }
 
-        return lecWeeklyHour;
+        return weeklyHour;
     }
 
     public List<Group> readLectureGroups(int totalSeats, int noOfLectureGroups) {
@@ -342,48 +342,6 @@ public class CourseMgrIO {
         }
 
         return labGroups;
-    }
-
-
-    public int readTutWeeklyHour(int AU) {
-        int tutWeeklyHour;
-        while (true) {
-            System.out.println("Enter the weekly tutorial hour for this course: ");
-            if (scanner.hasNextInt()) {
-                tutWeeklyHour = scanner.nextInt();
-                scanner.nextLine();
-                if (tutWeeklyHour < 0 || tutWeeklyHour > AU) {
-                    System.out.println("Weekly tutorial hour out of bound. Please re-enter.");
-                } else {
-                    break;
-                }
-            } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
-            }
-        }
-
-        return tutWeeklyHour;
-    }
-
-
-    public int readLabWeeklyHour(int AU) {
-        int labWeeklyHour;
-        while (true) {
-            System.out.println("Enter the weekly lab hour for this course: ");
-            if (scanner.hasNextInt()) {
-                labWeeklyHour = scanner.nextInt();
-                scanner.nextLine();
-                if (labWeeklyHour < 0 || labWeeklyHour > AU) {
-                    System.out.println("Weekly lab hour out of bound. Please re-enter.");
-                } else {
-                    break;
-                }
-            } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
-            }
-        }
-
-        return labWeeklyHour;
     }
 
 

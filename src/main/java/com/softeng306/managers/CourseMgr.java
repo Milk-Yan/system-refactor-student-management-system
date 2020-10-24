@@ -65,7 +65,7 @@ public class CourseMgr {
         // TODO: Refactor methods for lecturegroups, tutorialgroups, and labgroups
         int noOfLectureGroups = courseMgrIO.readNoOfGroup(GroupType.LectureGroup, totalSeats, totalSeats);
 
-        int lecWeeklyHour = courseMgrIO.readLecWeeklyHour(AU);
+        int lecWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LectureGroup, AU);
 
         List<Group> lectureGroups = courseMgrIO.readLectureGroups(totalSeats, noOfLectureGroups);
 
@@ -73,7 +73,7 @@ public class CourseMgr {
 
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
-            tutWeeklyHour = courseMgrIO.readTutWeeklyHour(AU);
+            tutWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.TutorialGroup, AU);
         }
 
         List<Group> tutorialGroups = courseMgrIO.readTutorialGroups(noOfTutorialGroups, totalSeats);
@@ -82,7 +82,7 @@ public class CourseMgr {
 
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
-            labWeeklyHour = courseMgrIO.readLabWeeklyHour(AU);
+            labWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LabGroup, AU);
         }
 
         List<Group> labGroups = courseMgrIO.readLabGroups(noOfLabGroups, totalSeats);
