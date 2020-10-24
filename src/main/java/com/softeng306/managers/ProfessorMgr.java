@@ -38,8 +38,6 @@ public class ProfessorMgr {
         return singleInstance;
     }
 
-    // TODO: fix name of this method
-
     public List<String> getProfInDepartment(String department) {
         if (DepartmentValidator.checkDepartmentValidation(department)) {
             return professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
