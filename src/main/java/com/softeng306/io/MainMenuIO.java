@@ -67,10 +67,10 @@ public class MainMenuIO {
                     markMgr.setCourseWorkMark(true);
                     break;
                 case 9:
-                    markMgr.printCourseStatistics();
+                    courseMgr.printCourseStatistics();
                     break;
                 case 10:
-                    markMgr.printStudentTranscript();
+                    studentMgr.printStudentTranscript();
                     break;
                 case 11:
                     exitApplication();

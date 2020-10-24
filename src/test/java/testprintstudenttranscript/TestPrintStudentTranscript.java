@@ -27,7 +27,7 @@ public class TestPrintStudentTranscript extends AbstractTestProcess {
     public void testPrintStudentTranscript() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
         List<String> inputList = new ArrayList<>();
         inputList.add("10"); // Print course statistics
-        inputList.add("U1234567L"); // Enter course ID
+        inputList.add("U1234567L"); // Enter student ID
         inputList.add("11"); // Exit program
 
         // Compare output lines as original system uses HashMap#entrySet() which is pseudorandom
