@@ -468,30 +468,4 @@
   "mainComponents" : [ ],
   "au" : 3,
   "AU" : 3
-}, {
-  "courseID" : "SE4555",
-  "courseName" : "h",
-  "profInCharge" : {
-    "profID" : "P1234568K",
-    "profName" : "Abhisek Ukil",
-    "profDepartment" : "ECSE"
-  },
-  "courseDepartment" : "ECSE",
-  "courseType" : "CORE",
-  "vacancies" : 2,
-  "totalSeats" : 2,
-  "lecWeeklyHour" : 2,
-  "lectureGroups" : [ {
-    "groupName" : "sf",
-    "availableVacancies" : 2,
-    "groupType" : "LectureGroup",
-    "totalSeats" : 2
-  } ],
-  "tutWeeklyHour" : 0,
-  "tutorialGroups" : [ ],
-  "labWeeklyHour" : 0,
-  "labGroups" : [ ],
-  "mainComponents" : [ ],
-  "au" : 2,
-  "AU" : 2
 } ]

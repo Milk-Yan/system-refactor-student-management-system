@@ -1,19 +1,471 @@
-[{"courseID":"SE2001","courseName":"Algorithm","profInCharge":{"profID":"P1234561A","profName":"Reza Shahamiri","profDepartment":"ECSE"},"courseDepartment":"ECSE","courseType":"CORE","vacancies":17,"totalSeats":20,"lecWeeklyHour":3,"lectureGroups":[{"groupName":"Lec1","availableVacancies": 17,"totalSeats": 20}],"tutWeeklyHour":2,"tutorialGroups":[{"groupName":"Tut1","availableVacancies":18,"totalSeats": 20}, {"groupName":"Tut2","availableVacancies":19,"totalSeats":20}],"labWeeklyHour":0,"labGroups":[],"mainComponents":[{"componentName":"Exam","componentWeight":60,"subComponents":[]},{"componentName":"Coursework","componentWeight":40,"subComponents":[{"componentName":"Assignment","componentWeight": 70},{"componentName":"ClassPart","componentWeight":30}]}],"AU":3},
-
-{"courseID":"SE2004","courseName":"Human Computer Interface","profInCharge":{"profID":"P1234566L","profName":"Oliver Sinnen","profDepartment":"ECSE"},"courseDepartment":"ECSE","courseType":"CORE","vacancies":0,"totalSeats":20,"lecWeeklyHour":2,"lectureGroups":[{"groupName":"LEC1","availableVacancies":0,"totalSeats":20}],"tutWeeklyHour":2,"tutorialGroups":[{"groupName":"TUT1","availableVacancies":0,"totalSeats":10},{"groupName":"TUT2","availableVacancies":0,"totalSeats":10}],"labWeeklyHour":1,"labGroups":[{"groupName":"LAB1","availableVacancies":0,"totalSeats":20}],"mainComponents":[{"componentName":"Exam","componentWeight":60,"subComponents":[]},{"componentName":"Quiz","componentWeight":40,"subComponents":[{"componentName":"quiz1","componentWeight":50},{"componentName":"quiz2","componentWeight":50}]}],"AU":4},
-
-{"courseID":"SE2005","courseName":"Operating System","profInCharge":{"profID":"P1234561A","profName":"Reza Shahamiri","profDepartment":"ECSE"},"courseDepartment":"ECSE","courseType":"CORE","vacancies":10,"totalSeats":30,"lecWeeklyHour":2,"lectureGroups":[{"groupName":"LEC1","availableVacancies":10,"totalSeats":30}],"tutWeeklyHour":1,"tutorialGroups":[{"groupName":"TUT1","availableVacancies":5,"totalSeats":15},{"groupName":"TUT2","availableVacancies":5,"totalSeats":15}],"labWeeklyHour":1,"labGroups":[{"groupName":"LAB1","availableVacancies":10,"totalSeats":30}],"mainComponents":[{"componentName":"Exam","componentWeight":60,"subComponents":[]},{"componentName":"Lab Assignments","componentWeight":40,"subComponents":[{"componentName":"Oral Assessment","componentWeight":25},{"componentName":"Lab Report","componentWeight":75}]}],"AU":3},
-
-{"courseID":"SE2007","courseName":"Database","profInCharge":{"profID":"P1234567J","profName":"Ewan Tempero","profDepartment":"CS"},"courseDepartment":"ECSE","courseType":"CORE","vacancies":49,"totalSeats":50,"lecWeeklyHour":3,"lectureGroups":[{"groupName":"Lec1","availableVacancies":49,"totalSeats":50}],"tutWeeklyHour":2,"tutorialGroups":[{"groupName":"SS1","availableVacancies":20,"totalSeats":20},{"groupName":"SS2","availableVacancies":20,"totalSeats":20},{"groupName":"SS3","availableVacancies":20,"totalSeats":20},{"groupName":"SS4","availableVacancies":19,"totalSeats":20},{"groupName":"SS5","availableVacancies":20,"totalSeats":20}],"labWeeklyHour":1,"labGroups":[],"mainComponents":[{"componentName":"Exam","componentWeight":60,"subComponents":[]},{"componentName":"Coursework","componentWeight":40,"subComponents":[{"componentName":"Labwork","componentWeight":70},{"componentName":"Presentation","componentWeight":30}]}],"AU":3},
-
-{"courseID":"SE0001","courseName":"ENS","profInCharge":{"profID":"P1234561A","profName":"Reza Shahamiri","profDepartment":"ECSE"},"courseDepartment":"ECSE","courseType":"CORE","vacancies":99,"totalSeats":100,"lecWeeklyHour":2,"lectureGroups":[{"groupName":"LEC1","availableVacancies":98,"totalSeats":100},{"groupName":"LEC2","availableVacancies":95,"totalSeats":100},
-{"groupName":"LEC3","availableVacancies":97,"totalSeats":100}],"tutWeeklyHour":0,"tutorialGroups":[],"labWeeklyHour":0,"labGroups":[],"mainComponents":[{"componentName":"Exam","componentWeight":60,"subComponents":[]},{"componentName":"CourseWork","componentWeight":40,"subComponents":[]}],"AU":3},
-
-{"courseID":"SE1006","courseName":"COA","profInCharge":{"profID":"P1234567J","profName":"Ewan Tempero","profDepartment":"CS"},"courseDepartment":"ECSE","courseType":"CORE","vacancies":98,"totalSeats":100,"lecWeeklyHour":2,"lectureGroups":[{"groupName":"LEC1","availableVacancies":98,"totalSeats":100}],"tutWeeklyHour":1,"tutorialGroups":[{"groupName":"TUT1","availableVacancies":49,"totalSeats":50},{"groupName":"TUT2","availableVacancies":49,"totalSeats":50}],"labWeeklyHour":2,"labGroups":[{"groupName":"LAB1","availableVacancies":48,"totalSeats":50},{"groupName":"LAB2","availableVacancies":50,"totalSeats":50}],"mainComponents":[{"componentName":"Exam","componentWeight":60,"subComponents":[]},{"componentName":"Course Work","componentWeight":40,"subComponents":[{"componentName":"Assignment","componentWeight":70},{"componentName":"Paticipation","componentWeight":30}]}],"AU":3},
-
-{"courseID":"SE2002","courseName":"OODP","profInCharge":{"profID":"P1234561A","profName":"Reza Shahamiri","profDepartment":"ECSE"},"courseDepartment":"ECSE","courseType":"CORE","vacancies":30,"totalSeats":30,"lecWeeklyHour":2,"lectureGroups":[{"groupName":"LEC1","availableVacancies":30,"totalSeats":30}],"tutWeeklyHour":1,"tutorialGroups":[{"groupName":"TUT1","availableVacancies":15,"totalSeats":15},{"groupName":"TUT2","availableVacancies":15,"totalSeats":15}],"labWeeklyHour":1,"labGroups":[{"groupName":"LAB1","availableVacancies":30,"totalSeats":30}],"mainComponents":[{"componentName":"Exam","componentWeight":60,"subComponents":[]},{"componentName":"Assignment","componentWeight":30,"subComponents":[]},{"componentName":"Labs","componentWeight":10,"subComponents":[{"componentName":"Lab1","componentWeight":50},{"componentName":"Lab2","componentWeight":50}]}],"AU":3},
-
-{"courseID":"SE2006","courseName":"Software Engineering","profInCharge":{"profID":"P1234567J","profName":"Ewan Tempero","profDepartment":"CS"},"courseDepartment":"ECSE","courseType":"CORE","vacancies":100,"totalSeats":100,"lecWeeklyHour":1,"lectureGroups":[{"groupName":"LEC1","availableVacancies":100,"totalSeats":100}],"tutWeeklyHour":1,"tutorialGroups":[{"groupName":"TUT1","availableVacancies":50,"totalSeats":50},{"groupName":"TUT2","availableVacancies":50,"totalSeats":50}],"labWeeklyHour":2,"labGroups":[{"groupName":"LAB1","availableVacancies":100,"totalSeats":100}],"mainComponents":[],"AU":3},
-
-{"courseID":"SE3005","courseName":"AI","profInCharge":{"profID":"P1234566L","profName":"Oliver Sinnen","profDepartment":"ECSE"},"courseDepartment":"ECSE","courseType":"CORE","vacancies":30,"totalSeats":30,"lecWeeklyHour":1,"lectureGroups":[{"groupName":"LEC1","availableVacancies":15,"totalSeats":15},{"groupName":"LEC2","availableVacancies":15,"totalSeats":15}],"tutWeeklyHour":1,"tutorialGroups":[{"groupName":"TUT1","availableVacancies":15,"totalSeats":15},{"groupName":"TUT2","availableVacancies":15,"totalSeats":15}],"labWeeklyHour":0,"labGroups":[],"mainComponents":[],"AU":3}
-]
+[ {
+  "courseID" : "SE2001",
+  "courseName" : "Algorithm",
+  "profInCharge" : {
+    "profID" : "P1234561A",
+    "profName" : "Reza Shahamiri",
+    "profDepartment" : "ECSE"
+  },
+  "courseDepartment" : "ECSE",
+  "courseType" : "CORE",
+  "vacancies" : 16,
+  "totalSeats" : 20,
+  "lecWeeklyHour" : 3,
+  "lectureGroups" : [ {
+    "groupName" : "Lec1",
+    "availableVacancies" : 16,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 20
+  } ],
+  "tutWeeklyHour" : 2,
+  "tutorialGroups" : [ {
+    "groupName" : "Tut1",
+    "availableVacancies" : 17,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 20
+  }, {
+    "groupName" : "Tut2",
+    "availableVacancies" : 19,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 20
+  } ],
+  "labWeeklyHour" : 0,
+  "labGroups" : [ ],
+  "mainComponents" : [ {
+    "componentName" : "Exam",
+    "componentWeight" : 60,
+    "subComponents" : [ ]
+  }, {
+    "componentName" : "Coursework",
+    "componentWeight" : 40,
+    "subComponents" : [ {
+      "componentName" : "Assignment",
+      "componentWeight" : 70
+    }, {
+      "componentName" : "ClassPart",
+      "componentWeight" : 30
+    } ]
+  } ],
+  "au" : 3,
+  "AU" : 3
+}, {
+  "courseID" : "SE2004",
+  "courseName" : "Human Computer Interface",
+  "profInCharge" : {
+    "profID" : "P1234566L",
+    "profName" : "Oliver Sinnen",
+    "profDepartment" : "ECSE"
+  },
+  "courseDepartment" : "ECSE",
+  "courseType" : "CORE",
+  "vacancies" : 0,
+  "totalSeats" : 20,
+  "lecWeeklyHour" : 2,
+  "lectureGroups" : [ {
+    "groupName" : "LEC1",
+    "availableVacancies" : 0,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 20
+  } ],
+  "tutWeeklyHour" : 2,
+  "tutorialGroups" : [ {
+    "groupName" : "TUT1",
+    "availableVacancies" : 0,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 10
+  }, {
+    "groupName" : "TUT2",
+    "availableVacancies" : 0,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 10
+  } ],
+  "labWeeklyHour" : 1,
+  "labGroups" : [ {
+    "groupName" : "LAB1",
+    "availableVacancies" : 0,
+    "groupType" : "LabGroup",
+    "totalSeats" : 20
+  } ],
+  "mainComponents" : [ {
+    "componentName" : "Exam",
+    "componentWeight" : 60,
+    "subComponents" : [ ]
+  }, {
+    "componentName" : "Quiz",
+    "componentWeight" : 40,
+    "subComponents" : [ {
+      "componentName" : "quiz1",
+      "componentWeight" : 50
+    }, {
+      "componentName" : "quiz2",
+      "componentWeight" : 50
+    } ]
+  } ],
+  "au" : 4,
+  "AU" : 4
+}, {
+  "courseID" : "SE2005",
+  "courseName" : "Operating System",
+  "profInCharge" : {
+    "profID" : "P1234561A",
+    "profName" : "Reza Shahamiri",
+    "profDepartment" : "ECSE"
+  },
+  "courseDepartment" : "ECSE",
+  "courseType" : "CORE",
+  "vacancies" : 5,
+  "totalSeats" : 30,
+  "lecWeeklyHour" : 2,
+  "lectureGroups" : [ {
+    "groupName" : "LEC1",
+    "availableVacancies" : 5,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 30
+  } ],
+  "tutWeeklyHour" : 1,
+  "tutorialGroups" : [ {
+    "groupName" : "TUT1",
+    "availableVacancies" : 0,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 15
+  }, {
+    "groupName" : "TUT2",
+    "availableVacancies" : 5,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 15
+  } ],
+  "labWeeklyHour" : 1,
+  "labGroups" : [ {
+    "groupName" : "LAB1",
+    "availableVacancies" : 5,
+    "groupType" : "LabGroup",
+    "totalSeats" : 30
+  } ],
+  "mainComponents" : [ {
+    "componentName" : "Exam",
+    "componentWeight" : 60,
+    "subComponents" : [ ]
+  }, {
+    "componentName" : "Lab Assignments",
+    "componentWeight" : 40,
+    "subComponents" : [ {
+      "componentName" : "Oral Assessment",
+      "componentWeight" : 25
+    }, {
+      "componentName" : "Lab Report",
+      "componentWeight" : 75
+    } ]
+  } ],
+  "au" : 3,
+  "AU" : 3
+}, {
+  "courseID" : "SE2007",
+  "courseName" : "Database",
+  "profInCharge" : {
+    "profID" : "P1234567J",
+    "profName" : "Ewan Tempero",
+    "profDepartment" : "CS"
+  },
+  "courseDepartment" : "ECSE",
+  "courseType" : "CORE",
+  "vacancies" : 48,
+  "totalSeats" : 50,
+  "lecWeeklyHour" : 3,
+  "lectureGroups" : [ {
+    "groupName" : "Lec1",
+    "availableVacancies" : 48,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 50
+  } ],
+  "tutWeeklyHour" : 2,
+  "tutorialGroups" : [ {
+    "groupName" : "SS1",
+    "availableVacancies" : 20,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 20
+  }, {
+    "groupName" : "SS2",
+    "availableVacancies" : 20,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 20
+  }, {
+    "groupName" : "SS3",
+    "availableVacancies" : 20,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 20
+  }, {
+    "groupName" : "SS4",
+    "availableVacancies" : 18,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 20
+  }, {
+    "groupName" : "SS5",
+    "availableVacancies" : 20,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 20
+  } ],
+  "labWeeklyHour" : 1,
+  "labGroups" : [ ],
+  "mainComponents" : [ {
+    "componentName" : "Exam",
+    "componentWeight" : 60,
+    "subComponents" : [ ]
+  }, {
+    "componentName" : "Coursework",
+    "componentWeight" : 40,
+    "subComponents" : [ {
+      "componentName" : "Labwork",
+      "componentWeight" : 70
+    }, {
+      "componentName" : "Presentation",
+      "componentWeight" : 30
+    } ]
+  } ],
+  "au" : 3,
+  "AU" : 3
+}, {
+  "courseID" : "SE0001",
+  "courseName" : "ENS",
+  "profInCharge" : {
+    "profID" : "P1234561A",
+    "profName" : "Reza Shahamiri",
+    "profDepartment" : "ECSE"
+  },
+  "courseDepartment" : "ECSE",
+  "courseType" : "CORE",
+  "vacancies" : 89,
+  "totalSeats" : 100,
+  "lecWeeklyHour" : 2,
+  "lectureGroups" : [ {
+    "groupName" : "LEC1",
+    "availableVacancies" : 96,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 100
+  }, {
+    "groupName" : "LEC2",
+    "availableVacancies" : 90,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 100
+  }, {
+    "groupName" : "LEC3",
+    "availableVacancies" : 94,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 100
+  } ],
+  "tutWeeklyHour" : 0,
+  "tutorialGroups" : [ ],
+  "labWeeklyHour" : 0,
+  "labGroups" : [ ],
+  "mainComponents" : [ {
+    "componentName" : "Exam",
+    "componentWeight" : 60,
+    "subComponents" : [ ]
+  }, {
+    "componentName" : "CourseWork",
+    "componentWeight" : 40,
+    "subComponents" : [ ]
+  } ],
+  "au" : 3,
+  "AU" : 3
+}, {
+  "courseID" : "SE1006",
+  "courseName" : "COA",
+  "profInCharge" : {
+    "profID" : "P1234567J",
+    "profName" : "Ewan Tempero",
+    "profDepartment" : "CS"
+  },
+  "courseDepartment" : "ECSE",
+  "courseType" : "CORE",
+  "vacancies" : 96,
+  "totalSeats" : 100,
+  "lecWeeklyHour" : 2,
+  "lectureGroups" : [ {
+    "groupName" : "LEC1",
+    "availableVacancies" : 96,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 100
+  } ],
+  "tutWeeklyHour" : 1,
+  "tutorialGroups" : [ {
+    "groupName" : "TUT1",
+    "availableVacancies" : 48,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 50
+  }, {
+    "groupName" : "TUT2",
+    "availableVacancies" : 48,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 50
+  } ],
+  "labWeeklyHour" : 2,
+  "labGroups" : [ {
+    "groupName" : "LAB1",
+    "availableVacancies" : 46,
+    "groupType" : "LabGroup",
+    "totalSeats" : 50
+  }, {
+    "groupName" : "LAB2",
+    "availableVacancies" : 50,
+    "groupType" : "LabGroup",
+    "totalSeats" : 50
+  } ],
+  "mainComponents" : [ {
+    "componentName" : "Exam",
+    "componentWeight" : 60,
+    "subComponents" : [ ]
+  }, {
+    "componentName" : "Course Work",
+    "componentWeight" : 40,
+    "subComponents" : [ {
+      "componentName" : "Assignment",
+      "componentWeight" : 70
+    }, {
+      "componentName" : "Paticipation",
+      "componentWeight" : 30
+    } ]
+  } ],
+  "au" : 3,
+  "AU" : 3
+}, {
+  "courseID" : "SE2002",
+  "courseName" : "OODP",
+  "profInCharge" : {
+    "profID" : "P1234561A",
+    "profName" : "Reza Shahamiri",
+    "profDepartment" : "ECSE"
+  },
+  "courseDepartment" : "ECSE",
+  "courseType" : "CORE",
+  "vacancies" : 30,
+  "totalSeats" : 30,
+  "lecWeeklyHour" : 2,
+  "lectureGroups" : [ {
+    "groupName" : "LEC1",
+    "availableVacancies" : 30,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 30
+  } ],
+  "tutWeeklyHour" : 1,
+  "tutorialGroups" : [ {
+    "groupName" : "TUT1",
+    "availableVacancies" : 15,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 15
+  }, {
+    "groupName" : "TUT2",
+    "availableVacancies" : 15,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 15
+  } ],
+  "labWeeklyHour" : 1,
+  "labGroups" : [ {
+    "groupName" : "LAB1",
+    "availableVacancies" : 30,
+    "groupType" : "LabGroup",
+    "totalSeats" : 30
+  } ],
+  "mainComponents" : [ {
+    "componentName" : "Exam",
+    "componentWeight" : 60,
+    "subComponents" : [ ]
+  }, {
+    "componentName" : "Assignment",
+    "componentWeight" : 30,
+    "subComponents" : [ ]
+  }, {
+    "componentName" : "Labs",
+    "componentWeight" : 10,
+    "subComponents" : [ {
+      "componentName" : "Lab1",
+      "componentWeight" : 50
+    }, {
+      "componentName" : "Lab2",
+      "componentWeight" : 50
+    } ]
+  } ],
+  "au" : 3,
+  "AU" : 3
+}, {
+  "courseID" : "SE2006",
+  "courseName" : "Software Engineering",
+  "profInCharge" : {
+    "profID" : "P1234567J",
+    "profName" : "Ewan Tempero",
+    "profDepartment" : "CS"
+  },
+  "courseDepartment" : "ECSE",
+  "courseType" : "CORE",
+  "vacancies" : 100,
+  "totalSeats" : 100,
+  "lecWeeklyHour" : 1,
+  "lectureGroups" : [ {
+    "groupName" : "LEC1",
+    "availableVacancies" : 100,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 100
+  } ],
+  "tutWeeklyHour" : 1,
+  "tutorialGroups" : [ {
+    "groupName" : "TUT1",
+    "availableVacancies" : 50,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 50
+  }, {
+    "groupName" : "TUT2",
+    "availableVacancies" : 50,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 50
+  } ],
+  "labWeeklyHour" : 2,
+  "labGroups" : [ {
+    "groupName" : "LAB1",
+    "availableVacancies" : 100,
+    "groupType" : "LabGroup",
+    "totalSeats" : 100
+  } ],
+  "mainComponents" : [ ],
+  "au" : 3,
+  "AU" : 3
+}, {
+  "courseID" : "SE3005",
+  "courseName" : "AI",
+  "profInCharge" : {
+    "profID" : "P1234566L",
+    "profName" : "Oliver Sinnen",
+    "profDepartment" : "ECSE"
+  },
+  "courseDepartment" : "ECSE",
+  "courseType" : "CORE",
+  "vacancies" : 30,
+  "totalSeats" : 30,
+  "lecWeeklyHour" : 1,
+  "lectureGroups" : [ {
+    "groupName" : "LEC1",
+    "availableVacancies" : 15,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 15
+  }, {
+    "groupName" : "LEC2",
+    "availableVacancies" : 15,
+    "groupType" : "LectureGroup",
+    "totalSeats" : 15
+  } ],
+  "tutWeeklyHour" : 1,
+  "tutorialGroups" : [ {
+    "groupName" : "TUT1",
+    "availableVacancies" : 15,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 15
+  }, {
+    "groupName" : "TUT2",
+    "availableVacancies" : 15,
+    "groupType" : "TutorialGroup",
+    "totalSeats" : 15
+  } ],
+  "labWeeklyHour" : 0,
+  "labGroups" : [ ],
+  "mainComponents" : [ ],
+  "au" : 3,
+  "AU" : 3
+} ]
