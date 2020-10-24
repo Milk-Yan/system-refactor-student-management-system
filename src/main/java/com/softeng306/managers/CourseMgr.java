@@ -8,6 +8,8 @@ import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
+import com.softeng306.factories.concrete.CourseBuilder;
+import com.softeng306.factories.interfaces.ICourseBuilder;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.validation.*;
 
@@ -56,12 +58,12 @@ public class CourseMgr {
      * Creates a new course and stores it in the file.
      */
     public void addCourse() {
-        String courseID;
-        String courseName;
-        String profID;
+        ICourseBuilder builder = new CourseBuilder();
+
         boolean groupNameExists;
-        int seatsLeft;
         // Can make the sameCourseID as boolean, set to false.
+
+        String courseID;
         while (true) {
             System.out.println("Give this course an ID: ");
             courseID = scanner.nextLine();
@@ -72,6 +74,7 @@ public class CourseMgr {
             }
         }
 
+        String courseName;
         System.out.println("Enter course Name: ");
         courseName = scanner.nextLine();
 
@@ -135,7 +138,6 @@ public class CourseMgr {
             }
         }
 
-
         int noOfLectureGroups;
         do {
             System.out.println("Enter the number of lecture groups: ");
@@ -170,11 +172,10 @@ public class CourseMgr {
             }
         }
 
-
         List<Group> lectureGroups = new ArrayList<>();
         String lectureGroupName;
         int lectureGroupCapacity;
-        seatsLeft = totalSeats;
+        int seatsLeft = totalSeats;
         for (int i = 0; i < noOfLectureGroups; i++) {
             System.out.println("Give a name to the lecture group");
             do {
@@ -392,6 +393,7 @@ public class CourseMgr {
         List<String> professorsInDepartment;
         // TODO: Fix name of method
         professorsInDepartment = ProfessorMgr.getInstance().printProfInDepartment(courseDepartment, false);
+        String profID;
         while (true) {
             System.out.println("Enter the ID for the professor in charge please:");
             System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
@@ -416,9 +418,21 @@ public class CourseMgr {
             }
         }
 
+        builder.setID(courseID);
+        builder.setName(courseName);
+        builder.setProfInCharge(profInCharge);
+        builder.setTotalSeats(totalSeats);
+        builder.setLectureGroups(lectureGroups);
+        builder.setTutorialGroups(tutorialGroups);
+        builder.setLabGroups(labGroups);
+        builder.setAU(AU);
+        builder.setDepartment(courseDepartment);
+        builder.setType(courseType);
+        builder.setLecWeeklyHour(lecWeeklyHour);
+        builder.setTutWeeklyHour(tutWeeklyHour);
+        builder.setLabWeeklyHour(labWeeklyHour);
 
-        Course course = new Course(courseID, courseName, profInCharge, totalSeats, totalSeats, lectureGroups, tutorialGroups, labGroups, AU, courseDepartment, courseType, lecWeeklyHour, tutWeeklyHour, labWeeklyHour);
-
+        Course course = builder.getCourse();
 
         System.out.println("Create course components and set component weightage now?");
         System.out.println("1. Yes");
