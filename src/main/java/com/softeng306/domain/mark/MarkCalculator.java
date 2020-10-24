@@ -81,7 +81,7 @@ public class MarkCalculator {
      * @return the grade (in A, B ... )
      */
     public double gpaCalculator(Mark mark) {
-        double gradePercentage = mark.getTotalMark() * mark.getCourse().getAU();
+        double gradePercentage = mark.getTotalMark();
         
         if (gradePercentage > 85) {
             // A+, A

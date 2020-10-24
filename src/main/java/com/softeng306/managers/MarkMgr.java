@@ -309,7 +309,7 @@ public class MarkMgr {
             }
 
             System.out.println("Course Total: " + mark.getTotalMark());
-            studentGPA += markCalculator.gpaCalculator(mark);
+            studentGPA += markCalculator.gpaCalculator(mark) * mark.getCourse().getAU();
             System.out.println();
         }
         studentGPA /= thisStudentAU;
