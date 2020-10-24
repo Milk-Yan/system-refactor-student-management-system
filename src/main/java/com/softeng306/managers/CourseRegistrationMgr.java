@@ -19,7 +19,7 @@ public class CourseRegistrationMgr {
     /**
      * A list of all the course registration records in this school.
      */
-    public static List<CourseRegistration> courseRegistrations = new ArrayList<>(0);
+    private List<CourseRegistration> courseRegistrations;
 
     private static CourseRegistrationMgr singleInstance = null;
 
@@ -100,7 +100,7 @@ public class CourseRegistrationMgr {
         CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
         FILEMgr.writeCourseRegistrationIntoFile(courseRegistration);
 
-        CourseRegistrationMgr.courseRegistrations.add(courseRegistration);
+        courseRegistrations.add(courseRegistration);
 
         MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initializeMark(currentStudent, currentCourse));
 
@@ -207,8 +207,14 @@ public class CourseRegistrationMgr {
             }
             System.out.println("------------------------------------------------------");
         } while (opt < 1 || opt > 3);
+    }
 
-
+    /**
+     * Return the list of all course registrations in the system.
+     * @return An list of all course registrations.
+     */
+    public List<CourseRegistration> getCourseRegistrations() {
+        return courseRegistrations;
     }
 
 
