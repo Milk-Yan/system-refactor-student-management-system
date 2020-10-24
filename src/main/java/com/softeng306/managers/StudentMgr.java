@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * Manages the student related operations.
- * Contains addStudent.
+ * Contains addStudent, generateStudentId
  */
 public class StudentMgr {
     /**
@@ -26,8 +26,13 @@ public class StudentMgr {
     public static List<Student> students = new ArrayList<>(0);
 
     private static StudentMgr singleInstance = null;
-
+    
     private static MarkCalculator markCalculator;
+
+    /**
+     * Uses idNumber to generate student ID.
+     */
+    private static int idNumber = 1800000;
 
     /**
      * Override default constructor to implement singleton pattern
@@ -61,14 +66,12 @@ public class StudentMgr {
         boolean systemGeneratedID = StudentMgrIO.systemGenerateID();
         if (!systemGeneratedID) {
             studentID = StudentMgrIO.getStudentID();
+        } else {
+            studentID = generateStudentID();
         }
 
         String studentName = StudentMgrIO.getStudentName();
-        Student currentStudent = new Student(studentName);
-
-        if (!systemGeneratedID) {
-            currentStudent.setStudentID(studentID);
-        }
+        Student currentStudent = new Student(studentID, studentName);
 
         currentStudent.setStudentSchool(StudentMgrIO.getSchoolName());  //Set school
         currentStudent.setGender(StudentMgrIO.getStudentGender());      //gender
@@ -159,4 +162,39 @@ public class StudentMgr {
         }
     }
 
+    /**
+     * Sets the idNumber variable of this student manager class.
+     *
+     * @param idNumber static variable idNumber of this class.
+     */
+    public static void setIdNumber(int idNumber) {
+        StudentMgr.idNumber = idNumber;
+    }
+
+    /**
+     * Generates the ID of a new student.
+     *
+     * @return the generated student ID.
+     */
+    private String generateStudentID() {
+        String generateStudentID;
+        boolean studentIDUsed;
+        do {
+            int rand = (int) (Math.random() * ((76 - 65) + 1)) + 65;
+            String lastPlace = Character.toString((char) rand);
+            idNumber += 1;
+            generateStudentID = "U" + String.valueOf(idNumber) + lastPlace;
+            studentIDUsed = false;
+            for (Student student : this.students) {
+                if (generateStudentID.equals(student.getStudentID())) {
+                    studentIDUsed = true;
+                    break;
+                }
+            }
+            if (!studentIDUsed) {
+                break;
+            }
+        } while (true);
+        return generateStudentID;
+    }
 }
