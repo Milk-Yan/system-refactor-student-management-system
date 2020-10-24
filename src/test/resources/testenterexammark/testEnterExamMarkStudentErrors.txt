@@ -1,0 +1,59 @@
+
+****************** Hello! Welcome to SOFTENG 306 Project 2! ******************
+Please note this application is not developed in The University of Auckland. All rights reserved for the original developers.
+Permission has been granted by the original developers to anonymize the code and use for education purposes.
+******************************************************************************************************************************
+
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+enterCourseWorkMark is called
+Enter Student ID (-h to print all the student ID):
+Invalid Student ID. Please re-enter.
+Enter Student ID (-h to print all the student ID):
+Enter course ID (-h to print all the course ID):
+Invalid Course ID. Please re-enter.
+Enter course ID (-h to print all the course ID):
+Enter exam mark:
+Please enter mark in range 0 ~ 100.
+Please enter mark in range 0 ~ 100.
+The course work component is successfully set to: 100.0
+The course total mark is updated to: 88.0
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+Backing up data before exiting...
+********* Bye! Thank you for using Main! *********
+
+                 ######    #      #   #######                   
+                 #    ##    #    #    #                         
+                 #    ##     #  #     #                         
+                 ######       ##      #######                   
+                 #    ##      ##      #                         
+                 #    ##      ##      #                         
+                 ######       ##      #######                   
+

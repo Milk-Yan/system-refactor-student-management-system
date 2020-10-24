@@ -1,0 +1,99 @@
+
+****************** Hello! Welcome to SOFTENG 306 Project 2! ******************
+Please note this application is not developed in The University of Auckland. All rights reserved for the original developers.
+Permission has been granted by the original developers to anonymize the code and use for education purposes.
+******************************************************************************************************************************
+
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+enterCourseWorkComponentWeightage is called
+Enter course ID (-h to print all the course ID):
+Invalid Course ID. Please re-enter.
+Enter course ID (-h to print all the course ID):
+Currently course SE3005 AI does not have any assessment component.
+Does this course have a final exam? Enter your choice:
+1. Yes! 
+2. No, all CAs.
+Does this course have a final exam? Enter your choice:
+1. Yes! 
+2. No, all CAs.
+Does this course have a final exam? Enter your choice:
+1. Yes! 
+2. No, all CAs.
+Please enter weight of the exam: 
+According to the course assessment policy, final exam cannot take up more than 80%...
+Weight entered is invalid, please enter again: 
+Enter number of main component(s) to add:
+Please enter a valid positive integer:
+Enter number of main component(s) to add:
+Total weightage left to assign: 60
+Enter main component 1 name: 
+Enter main component 1 weightage: 
+Please enter a weight between 0 ~ 60:
+Enter main component 1 weightage: 
+Please enter a weight between 0 ~ 60:
+Enter main component 1 weightage: 
+Enter number of sub component under main component 1:
+Weightage assigned does not tally to 100!
+You have to reassign!
+Total weightage left to assign: 60
+Enter main component 1 name: 
+Enter main component 1 weightage: 
+Enter number of sub component under main component 1:
+Total weightage left to assign to sub component: 100
+Enter sub component 1 name: 
+Enter sub component 1 weightage: 
+Please enter a weight between 0 ~ 100:
+Enter sub component 1 weightage: 
+Please enter a weight between 0 ~ 100:
+Enter sub component 1 weightage: 
+Total weightage left to assign to sub component: 30
+Enter sub component 2 name: 
+Enter sub component 2 weightage: 
+Please enter a weight between 0 ~ 30:
+Enter sub component 2 weightage: 
+Please enter a weight between 0 ~ 30:
+Enter sub component 2 weightage: 
+SE3005 AI components: 
+    Coursework : 60%
+        Assignment : 70%
+        Lab : 30%
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+Backing up data before exiting...
+********* Bye! Thank you for using Main! *********
+
+                 ######    #      #   #######                   
+                 #    ##    #    #    #                         
+                 #    ##     #  #     #                         
+                 ######       ##      #######                   
+                 #    ##      ##      #                         
+                 #    ##      ##      #                         
+                 ######       ##      #######                   
+
