@@ -26,7 +26,8 @@ public class CourseRegistrationMgr {
     /**
      * Override default constructor to implement singleton pattern
      */
-    private CourseRegistrationMgr() {
+    private CourseRegistrationMgr(List<CourseRegistration> courseRegistrations) {
+        this.courseRegistrations = courseRegistrations;
     }
 
     /**
@@ -36,7 +37,7 @@ public class CourseRegistrationMgr {
      */
     public static CourseRegistrationMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new CourseRegistrationMgr();
+            singleInstance = new CourseRegistrationMgr(FILEMgr.loadCourseRegistration());
         }
 
         return singleInstance;

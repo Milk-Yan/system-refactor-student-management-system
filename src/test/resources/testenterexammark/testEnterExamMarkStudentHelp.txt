@@ -1,0 +1,84 @@
+
+****************** Hello! Welcome to SOFTENG 306 Project 2! ******************
+Please note this application is not developed in The University of Auckland. All rights reserved for the original developers.
+Permission has been granted by the original developers to anonymize the code and use for education purposes.
+******************************************************************************************************************************
+
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+enterCourseWorkMark is called
+Enter Student ID (-h to print all the student ID):
+U1734756J
+U1822832L
+U1723456K
+U1234567J
+U1822835D
+U1822836B
+U1822837K
+U1822838J
+U1822839K
+U1822840D
+U1822841A
+U1822842F
+U1822843I
+U1822821E
+U1712312B
+U1812312D
+U1829392I
+U1822023E
+U1829393K
+U1722744J
+U1800001L
+U1234567L
+Enter course ID (-h to print all the course ID):
+SE2001
+SE2004
+SE2005
+SE2007
+SE0001
+SE1006
+SE2002
+SE2006
+SE3005
+Enter exam mark:
+The course work component is successfully set to: 99.0
+The course total mark is updated to: 59.4
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+Backing up data before exiting...
+********* Bye! Thank you for using Main! *********
+
+                 ######    #      #   #######                   
+                 #    ##    #    #    #                         
+                 #    ##     #  #     #                         
+                 ######       ##      #######                   
+                 #    ##      ##      #                         
+                 #    ##      ##      #                         
+                 ######       ##      #######                   
+

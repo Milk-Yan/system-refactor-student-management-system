@@ -1,0 +1,91 @@
+
+****************** Hello! Welcome to SOFTENG 306 Project 2! ******************
+Please note this application is not developed in The University of Auckland. All rights reserved for the original developers.
+Permission has been granted by the original developers to anonymize the code and use for education purposes.
+******************************************************************************************************************************
+
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+Give this course an ID: 
+Enter course Name: 
+Enter the total vacancy of this course: 
+Enter number of academic unit(s): 
+Enter course's department (uppercase): 
+Enter -h to print all the departments.
+1: ECSE
+2: CS
+3: ChemENG
+Enter course type (uppercase): 
+Enter -h to print all the course types.
+1: CORE
+2: MPE
+3: GREPEBM
+4: GREPELA
+5: GREPESTS
+6: UE
+Enter the number of lecture groups: 
+Enter the weekly lecture hour for this course: 
+Give a name to the lecture group
+Enter a group Name: 
+Enter this lecture group's capacity: 
+Enter the number of tutorial groups:
+Enter the number of lab groups: 
+Enter the ID for the professor in charge please:
+Enter -h to print all the professors in CS.
+P1234567J
+Create course components and set component weightage now?
+1. Yes
+2. Not yet
+Course SE2222 is added, but assessment components are not initialized.
+Course List: 
+| Course ID | Course Name | Professor in Charge |
+| SE2001 | Algorithm | Reza Shahamiri |
+| SE2004 | Human Computer Interface | Oliver Sinnen |
+| SE2005 | Operating System | Reza Shahamiri |
+| SE2007 | Database | Ewan Tempero |
+| SE0001 | ENS | Reza Shahamiri |
+| SE1006 | COA | Ewan Tempero |
+| SE2002 | OODP | Reza Shahamiri |
+| SE2006 | Software Engineering | Ewan Tempero |
+| SE3005 | AI | Oliver Sinnen |
+| SE2222 | Software Architecture 2 | Ewan Tempero |
+
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+Backing up data before exiting...
+********* Bye! Thank you for using Main! *********
+
+                 ######    #      #   #######                   
+                 #    ##    #    #    #                         
+                 #    ##     #  #     #                         
+                 ######       ##      #######                   
+                 #    ##      ##      #                         
+                 #    ##      ##      #                         
+                 ######       ##      #######                   
+

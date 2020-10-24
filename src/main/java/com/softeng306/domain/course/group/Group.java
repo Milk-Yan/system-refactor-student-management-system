@@ -1,5 +1,7 @@
 package com.softeng306.domain.course.group;
 
+import com.softeng306.Enum.GroupType;
+
 /**
  * Represents study groups (LectureGroup, TutorialGroup and LabGroup) for a course.
  * A course must have at least one lecture group.
@@ -20,6 +22,8 @@ public class Group {
     private int availableVacancies;
 
 
+    private GroupType groupType;
+
     /**
      * The total seates of this group
      */
@@ -39,7 +43,8 @@ public class Group {
      * @param availableVacancies This group's current available vacancy.
      * @param totalSeats         This group's total seats.
      */
-    public Group(String groupName, int availableVacancies, int totalSeats) {
+    public Group(String groupName, int availableVacancies, int totalSeats, GroupType groupType) {
+        this.groupType = groupType;
         this.groupName = groupName;
         this.availableVacancies = availableVacancies;
         this.totalSeats = totalSeats;
@@ -78,4 +83,10 @@ public class Group {
     public void enrolledIn() {
         this.availableVacancies -= 1;
     }
+
+
+    public GroupType getGroupType(){
+        return groupType;
+    }
+
 }
