@@ -1,5 +1,6 @@
 package com.softeng306.managers;
 
+import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.validation.DepartmentValidator;
@@ -15,7 +16,7 @@ public class ProfessorMgr {
     /**
      * A list of all the professors in this school.
      */
-    public static List<Professor> professors = new ArrayList<>(0);
+    private List<Professor> professors;
 
     private static ProfessorMgr singleInstance = null;
 
@@ -50,7 +51,7 @@ public class ProfessorMgr {
      */
     public List<String> printProfInDepartment(String department, boolean printOut) {
         if (DepartmentValidator.checkDepartmentValidation(department)) {
-            List<String> validProfString = ProfessorMgr.professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
+            List<String> validProfString = professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
 
             if (printOut) {
                 validProfString.forEach(System.out::println);
@@ -59,7 +60,14 @@ public class ProfessorMgr {
         }
         System.out.println("None.");
         return null;
+    }
 
+    /**
+     * Return the list of all professors in the system.
+     * @return An list of all professors.
+     */
+    public List<Professor> getProfessors() {
+        return professors;
     }
 
 }

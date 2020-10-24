@@ -8,6 +8,7 @@ import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.validation.*;
 
@@ -28,7 +29,7 @@ public class CourseMgr {
     /**
      * A list of all the courses in this school.
      */
-    public static List<Course> courses = new ArrayList<>(0);
+    private List<Course> courses;
 
     private static CourseMgr singleInstance = null;
 
@@ -437,7 +438,7 @@ public class CourseMgr {
         if (addCourseComponentChoice == 2) {
             //add course into file
             FILEMgr.writeCourseIntoFile(course);
-            CourseMgr.courses.add(course);
+            courses.add(course);
             System.out.println("Course " + courseID + " is added, but assessment components are not initialized.");
             printCourses();
             return;
@@ -446,7 +447,7 @@ public class CourseMgr {
         enterCourseWorkComponentWeightage(course);
 
         FILEMgr.writeCourseIntoFile(course);
-        CourseMgr.courses.add(course);
+        courses.add(course);
         System.out.println("Course " + courseID + " is added");
         printCourses();
     }
@@ -720,7 +721,7 @@ public class CourseMgr {
     public void printCourses() {
         System.out.println("Course List: ");
         System.out.println("| Course ID | Course Name | Professor in Charge |");
-        for (Course course : CourseMgr.courses) {
+        for (Course course : courses) {
             System.out.println("| " + course.getCourseID() + " | " + course.getCourseName() + " | " + course.getProfInCharge().getProfName() + " |");
         }
         System.out.println();
@@ -731,7 +732,7 @@ public class CourseMgr {
      * Displays a list of IDs of all the courses.
      */
     public void printAllCourses() {
-        CourseMgr.courses.stream().map(c -> c.getCourseID()).forEach(System.out::println);
+        courses.stream().map(c -> c.getCourseID()).forEach(System.out::println);
     }
 
     // TODO: fix name of this method
@@ -743,7 +744,7 @@ public class CourseMgr {
      * @return a list of all the department values.
      */
     public List<String> printCourseInDepartment(String department) {
-        List<Course> validCourses = CourseMgr.courses.stream().filter(c -> department.equals(c.getCourseDepartment())).collect(Collectors.toList());
+        List<Course> validCourses = courses.stream().filter(c -> department.equals(c.getCourseDepartment())).collect(Collectors.toList());
         List<String> validCourseString = validCourses.stream().map(c -> c.getCourseID()).collect(Collectors.toList());
         validCourseString.forEach(System.out::println);
         if (validCourseString.size() == 0) {
@@ -809,4 +810,14 @@ public class CourseMgr {
         }
         return courseDepartment;
     }
+
+    /**
+     * Return the list of all courses in the system.
+     *
+     * @return An list of all courses.
+     */
+    public List<Course> getCourses() {
+        return courses;
+    }
+    
 }

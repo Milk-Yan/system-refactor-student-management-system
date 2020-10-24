@@ -23,7 +23,7 @@ public class MarkMgr {
     /**
      * A list of all the student mark records in this school.
      */
-    public static List<Mark> marks = new ArrayList<>(0);
+    private List<Mark> marks;
 
     private static MarkMgr singleInstance = null;
 
@@ -89,7 +89,7 @@ public class MarkMgr {
         String studentID = StudentMgr.getInstance().readStudentFromUser().getStudentID();
         String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
 
-        for (Mark mark : MarkMgr.marks) {
+        for (Mark mark : marks) {
             if (mark.getCourse().getCourseID().equals(courseID) && mark.getStudent().getStudentID().equals(studentID)) {
                 //put the set mark function here
                 if (!isExam) {
@@ -186,7 +186,7 @@ public class MarkMgr {
         String courseID = currentCourse.getCourseID();
 
         List<Mark> thisCourseMark = new ArrayList<>(0);
-        for (Mark mark : MarkMgr.marks) {
+        for (Mark mark : marks) {
             if (mark.getCourse().getCourseID().equals(courseID)) {
                 thisCourseMark.add(mark);
             }
@@ -266,7 +266,7 @@ public class MarkMgr {
         int thisStudentAU = 0;
 
         List<Mark> thisStudentMark = new ArrayList<>(0);
-        for (Mark mark : MarkMgr.marks) {
+        for (Mark mark : marks) {
             if (mark.getStudent().getStudentID().equals(studentID)) {
                 thisStudentMark.add(mark);
                 thisStudentAU += mark.getCourse().getAU();
@@ -324,6 +324,14 @@ public class MarkMgr {
             System.out.println("Advice: Study hard");
         }
         System.out.println("------------------ End of Transcript -------------------");
+    }
+
+    /**
+     * Return the list of all marks in the system.
+     * @return An list of all marks.
+     */
+    public List<Mark> getMarks() {
+        return marks;
     }
 
 }

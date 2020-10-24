@@ -57,7 +57,7 @@ public class CourseValidator {
      * @return the existing course or else null.
      */
     public static Course checkCourseExists(String courseID) {
-        List<Course> anyCourse = CourseMgr.courses.stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
+        List<Course> anyCourse = CourseMgr.getInstance().getCourses().stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
         if (anyCourse.size() == 0) {
             return null;
         }
