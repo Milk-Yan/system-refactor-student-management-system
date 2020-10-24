@@ -14,7 +14,7 @@ public class CourseRegistrationMgr {
     /**
      * A list of all the course registration records in this school.
      */
-    public static List<CourseRegistration> courseRegistrations = new ArrayList<>(0);
+    public static List<CourseRegistration> courseRegistrations = new ArrayList<>();
 
     private static CourseRegistrationMgr singleInstance = null;
 
@@ -124,11 +124,11 @@ public class CourseRegistrationMgr {
         System.out.println("(3) Lab group");
         // READ courseRegistrationFILE
         // return List of Object(student,course,lecture,tut,lab)
-        List<CourseRegistration> allStuArray = FILEMgr.loadCourseRegistration();
+        List<CourseRegistration> allCourseRegistrations = FILEMgr.loadCourseRegistration();
 
 
         List<CourseRegistration> stuArray = new ArrayList<>(0);
-        for (CourseRegistration courseRegistration : allStuArray) {
+        for (CourseRegistration courseRegistration : allCourseRegistrations) {
             if (courseRegistration.getCourse().getCourseID().equals(currentCourse.getCourseID())) {
                 stuArray.add(courseRegistration);
             }
