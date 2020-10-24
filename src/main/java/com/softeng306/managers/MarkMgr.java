@@ -29,12 +29,17 @@ public class MarkMgr {
 
     private static MarkMgr singleInstance = null;
 
+    private MarkCalculator markCalculator;
+
     /**
      * Override default constructor to implement singleton pattern
      */
     private MarkMgr(List<Mark> marks) {
         this.marks = marks;
+        markCalculator = new MarkCalculator();
     }
+
+
 
     /**
      * Return the MarkMgr singleton, if not initialised already, create an instance.
@@ -202,7 +207,6 @@ public class MarkMgr {
 
         int examWeight = 0;
         boolean hasExam = false;
-        MarkCalculator markCalculator = new MarkCalculator();
 
         // Find marks for every assessment components
         for (CourseworkComponent courseworkComponent : currentCourse.getMainComponents()) {
@@ -262,7 +266,6 @@ public class MarkMgr {
 
         double studentGPA = 0d;
         int thisStudentAU = 0;
-        MarkCalculator markCalculator = new MarkCalculator();
 
         List<Mark> thisStudentMark = new ArrayList<>(0);
         for (Mark mark : MarkMgr.marks) {
