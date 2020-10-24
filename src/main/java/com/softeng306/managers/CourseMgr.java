@@ -13,6 +13,7 @@ import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
+import com.softeng306.io.ProfessorMgrIO;
 import com.softeng306.validation.*;
 
 import java.util.*;
@@ -394,14 +395,15 @@ public class CourseMgr {
 
         Professor profInCharge;
         List<String> professorsInDepartment;
-        // TODO: Fix name of method
-        professorsInDepartment = ProfessorMgr.getInstance().printProfInDepartment(courseDepartment, false);
+
+        professorsInDepartment = ProfessorMgr.getInstance().getProfInDepartment(courseDepartment);
         while (true) {
             System.out.println("Enter the ID for the professor in charge please:");
             System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
             profID = scanner.nextLine();
             while ("-h".equals(profID)) {
-                professorsInDepartment = ProfessorMgr.getInstance().printProfInDepartment(courseDepartment, true);
+                professorsInDepartment = ProfessorMgr.getInstance().getProfInDepartment(courseDepartment);
+                ProfessorMgrIO.printProfInDepartment(professorsInDepartment);
                 profID = scanner.nextLine();
             }
 

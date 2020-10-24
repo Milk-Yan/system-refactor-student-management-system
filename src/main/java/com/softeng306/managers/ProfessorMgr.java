@@ -1,11 +1,9 @@
 package com.softeng306.managers;
 
-import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.validation.DepartmentValidator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,23 +40,12 @@ public class ProfessorMgr {
 
     // TODO: fix name of this method
 
-    /**
-     * Displays all the professors in the inputted department.
-     *
-     * @param department The inputted department.
-     * @param printOut   Represents whether print out the professor information or not
-     * @return A list of all the names of professors in the inputted department or else null.
-     */
-    public List<String> printProfInDepartment(String department, boolean printOut) {
+    public List<String> getProfInDepartment(String department) {
         if (DepartmentValidator.checkDepartmentValidation(department)) {
-            List<String> validProfString = professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
-
-            if (printOut) {
-                validProfString.forEach(System.out::println);
-            }
-            return validProfString;
+            return professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
         }
-        System.out.println("None.");
+
+        // the department is invalid so no professors
         return null;
     }
 
