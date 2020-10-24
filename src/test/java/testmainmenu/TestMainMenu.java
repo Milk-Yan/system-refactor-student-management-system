@@ -21,7 +21,7 @@ public class TestMainMenu extends AbstractTestProcess {
     }
 
     /**
-     * Tests general case where user gets student transcript
+     * Tests general case lists all options
      */
     @Test
     public void testPrintOptions() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
@@ -33,7 +33,7 @@ public class TestMainMenu extends AbstractTestProcess {
     }
 
     /**
-     * Tests general case where user gets student transcript
+     * Tests case where user encounters every error statement in main menu
      */
     @Test
     public void testMainMenuErrors() throws IOException, InterruptedException, URISyntaxException, TimeoutException {
