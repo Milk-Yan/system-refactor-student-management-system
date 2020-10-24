@@ -1,5 +1,6 @@
 package com.softeng306.domain.student;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.softeng306.managers.StudentMgr;
 
 /**
@@ -38,6 +39,7 @@ public class Student {
     /**
      * The GPA of this student.
      */
+    @JsonProperty("GPA")
     private double GPA = 0;
 
     /**
@@ -45,6 +47,13 @@ public class Student {
      */
     private int studentYear;
 
+
+    /**
+     * Default constructor, required for Jackson serialization.
+     */
+    public Student() {
+
+    }
 
     /**
      * Creates student with the student name.

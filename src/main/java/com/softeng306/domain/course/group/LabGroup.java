@@ -9,6 +9,12 @@ package com.softeng306.domain.course.group;
 
 public class LabGroup extends Group{
 
+    /**
+     * Default constructor. Required for Jackson serialization.
+     */
+    public LabGroup() {
+
+    }
 
     /**
      * Creates a lab group with the group name, the current available vacancy of this course, and the total seats for this group.

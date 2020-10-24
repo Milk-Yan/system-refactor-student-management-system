@@ -11,6 +11,13 @@ public abstract class CourseworkComponent {
     private int componentWeight;
 
     /**
+     * Default constructor. Required for Jackson serialization.
+     */
+    public CourseworkComponent() {
+
+    }
+
+    /**
      * Creates a course work components with component name and component weight
      *
      * @param componentName   the name of this coursework component

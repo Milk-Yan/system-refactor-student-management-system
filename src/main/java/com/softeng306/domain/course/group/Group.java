@@ -25,6 +25,12 @@ public class Group {
      */
     private int totalSeats;
 
+    /**
+     * Default constructor. Required for Jackson serialization.
+     */
+    public Group() {
+
+    }
 
     /**
      * Creates a group with the group name, the current available vacancy of this course, and the total seats for this group.

@@ -10,6 +10,13 @@ package com.softeng306.domain.course.group;
 public class TutorialGroup extends Group{
 
     /**
+     * Default constructor. Required for Jackson serialization.
+     */
+    public TutorialGroup() {
+
+    }
+
+    /**
      * Creates a tutorial group given group name, available vacancies and total seats.
      * @param groupName This tutorial group's name.
      * @param availableVacancies This tutorial group's current available vacancy.

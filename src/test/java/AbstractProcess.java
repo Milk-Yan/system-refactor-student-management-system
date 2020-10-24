@@ -25,6 +25,7 @@ public abstract class AbstractProcess {
         // Requirement of sleeping thread to allow the process to execute
         StringBuilder outputBuilder = new StringBuilder();
         Thread.sleep(PROCESS_SLEEP_MILLI);
+
         outputBuilder.append(getOutputFromInputStreamWithRead(stdout));
         for (String input : inputData) {
             stdin.write(input + "\n");
@@ -61,6 +62,7 @@ public abstract class AbstractProcess {
 
         StringBuilder outputBuilder = new StringBuilder();
         Thread.sleep(PROCESS_SLEEP_MILLI);
+
         String currentOutput = getOutputFromInputStreamWithRead(stdout);
         System.out.println(currentOutput);
         outputBuilder.append(currentOutput);
@@ -69,6 +71,7 @@ public abstract class AbstractProcess {
             stdin.write(input + "\n");
             stdin.flush();
             Thread.sleep(PROCESS_SLEEP_MILLI);
+            
             currentOutput = getOutputFromInputStreamWithRead(stdout);
             System.out.println(currentOutput);
             outputBuilder.append(currentOutput);

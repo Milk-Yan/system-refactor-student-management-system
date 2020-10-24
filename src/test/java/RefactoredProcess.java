@@ -22,11 +22,11 @@ public class RefactoredProcess extends AbstractProcess {
 
     @Override
     protected ProcessBuilder getProcessBuilder() {
-        String refactoredClassPath = new File("./target/classes").toURI().getPath();
-        String mainClassName = "com.softeng306.main.Main";
+        String refactoredClassPath = new File("target/project-2-team-8-1.0-SNAPSHOT-jar-with-dependencies.jar").getAbsolutePath();
+        //String mainClassName = "com.softeng306.main.Main";
         // Runs the class files in the target folder created from mavem
         // As such the compile lifecycle needs to be run before any test
-        ProcessBuilder pb = new ProcessBuilder("java", "-cp", refactoredClassPath, mainClassName);
+        ProcessBuilder pb = new ProcessBuilder("java", "-jar", refactoredClassPath);
         // Places the path of the process in the test directory specified such that it does not affect
         // the real data files
         pb.directory(testRefactoredDataWorkspace);
