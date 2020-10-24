@@ -132,4 +132,11 @@ public class MainMenuIO {
         System.out.println("11. Quit Main System");
         System.out.println();
     }
+
+    /**
+     * Prints the method call
+     */
+    public static void printMethodCall(String methodName) {
+        System.out.println(methodName + " is called");
+    }
 }

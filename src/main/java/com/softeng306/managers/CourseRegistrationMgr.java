@@ -5,6 +5,7 @@ import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
+import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.*;
 
 import java.util.*;
@@ -43,7 +44,7 @@ public class CourseRegistrationMgr {
      * Registers a course for a student
      */
     public void registerCourse() {
-        System.out.println("registerCourse is called");
+        MainMenuIO.printMethodCall("registerCourse");
         String selectedLectureGroupName = null;
         String selectedTutorialGroupName = null;
         String selectedLabGroupName = null;
@@ -115,7 +116,7 @@ public class CourseRegistrationMgr {
      * Prints the students in a course according to their lecture group, tutorial group or lab group.
      */
     public void printStudents() {
-        System.out.println("printStudent is called");
+        MainMenuIO.printMethodCall("printStudent");
         Course currentCourse = CourseValidator.checkCourseExists();
 
         System.out.println("Print student by: ");
