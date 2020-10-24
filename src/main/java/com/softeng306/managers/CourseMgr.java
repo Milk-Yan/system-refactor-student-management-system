@@ -418,21 +418,21 @@ public class CourseMgr {
             }
         }
 
-        builder.setID(courseID);
-        builder.setName(courseName);
+        builder.setCourseID(courseID);
+        builder.setCourseName(courseName);
         builder.setProfInCharge(profInCharge);
         builder.setTotalSeats(totalSeats);
         builder.setLectureGroups(lectureGroups);
         builder.setTutorialGroups(tutorialGroups);
         builder.setLabGroups(labGroups);
         builder.setAU(AU);
-        builder.setDepartment(courseDepartment);
-        builder.setType(courseType);
+        builder.setCourseDepartment(courseDepartment);
+        builder.setCourseType(courseType);
         builder.setLecWeeklyHour(lecWeeklyHour);
         builder.setTutWeeklyHour(tutWeeklyHour);
         builder.setLabWeeklyHour(labWeeklyHour);
 
-        Course course = builder.getCourse();
+        Course course = builder.build();
 
         System.out.println("Create course components and set component weightage now?");
         System.out.println("1. Yes");

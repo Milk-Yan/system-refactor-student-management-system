@@ -15,12 +15,12 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setID(String id) {
+    public void setCourseID(String id) {
         course.setID(id);
     }
 
     @Override
-    public void setName(String name) {
+    public void setCourseName(String name) {
         course.setName(name);
     }
 
@@ -56,12 +56,12 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setDepartment(String department) {
+    public void setCourseDepartment(String department) {
         course.setCourseDepartment(department);
     }
 
     @Override
-    public void setType(String type) {
+    public void setCourseType(String type) {
         course.setType(type);
     }
 
@@ -81,7 +81,7 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public Course getCourse() {
+    public Course build() {
         return course;
     }
 }

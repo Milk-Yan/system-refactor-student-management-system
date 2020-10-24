@@ -7,8 +7,8 @@ import com.softeng306.domain.professor.Professor;
 import java.util.List;
 
 public interface ICourseBuilder {
-    void setID(String id);
-    void setName(String name);
+    void setCourseID(String id);
+    void setCourseName(String name);
 
     void setProfInCharge(Professor profInCharge);
 
@@ -19,12 +19,12 @@ public interface ICourseBuilder {
     void setLabGroups(List<Group> labGroups);
 
     void setAU(int AU);
-    void setDepartment(String department);
-    void setType(String Type);
+    void setCourseDepartment(String department);
+    void setCourseType(String Type);
 
     void setLecWeeklyHour(int lecWeeklyHour);
     void setTutWeeklyHour(int tutWeeklyHour);
     void setLabWeeklyHour(int labWeeklyHour);
 
-    Course getCourse();
+    Course build();
 }
