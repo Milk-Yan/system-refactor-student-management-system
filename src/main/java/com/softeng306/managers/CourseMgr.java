@@ -10,6 +10,7 @@ import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
+import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.*;
 
 import java.util.*;
@@ -457,7 +458,7 @@ public class CourseMgr {
      */
     public void checkAvailableSlots() {
         //printout the result directly
-        System.out.println("checkAvailableSlots is called");
+        MainMenuIO.printMethodCall("checkAvailableSlots");
         Course currentCourse;
 
         do {
@@ -502,7 +503,7 @@ public class CourseMgr {
         int noOfSub;
         int sub_weight;
 
-        System.out.println("enterCourseWorkComponentWeightage is called");
+        MainMenuIO.printMethodCall("enterCourseWorkComponentWeightage");
         if (currentCourse == null) {
             currentCourse = CourseValidator.checkCourseExists();
         }

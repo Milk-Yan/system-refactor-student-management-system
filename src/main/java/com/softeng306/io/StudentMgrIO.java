@@ -15,7 +15,7 @@ public class StudentMgrIO {
     private static Scanner reader = new Scanner(System.in);
 
     public static void printMenu() {
-        System.out.println("addStudent is called");
+        MainMenuIO.printMethodCall("addStudent");
         System.out.println("Choose the way you want to add a student:");
         System.out.println("1. Manually input the student ID.");
         System.out.println("2. Let the system self-generate the student ID.");

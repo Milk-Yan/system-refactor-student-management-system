@@ -11,6 +11,7 @@ import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.mark.SubComponentMark;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
+import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.StudentValidator;
 
@@ -86,7 +87,7 @@ public class MarkMgr {
      * @param isExam whether this coursework component refers to "Exam"
      */
     public void setCourseWorkMark(boolean isExam) {
-        System.out.println("enterCourseWorkMark is called");
+        MainMenuIO.printMethodCall("enterCourseWorkMark");
 
         String studentID = StudentValidator.checkStudentExists().getStudentID();
         String courseID = CourseValidator.checkCourseExists().getCourseID();
@@ -182,7 +183,7 @@ public class MarkMgr {
      * Prints the course statics including enrollment rate, average result for every assessment component and the average overall performance of this course.
      */
     public void printCourseStatistics() {
-        System.out.println("printCourseStatistics is called");
+        MainMenuIO.printMethodCall("printCourseStatistics");
 
         Course currentCourse = CourseValidator.checkCourseExists();
         String courseID = currentCourse.getCourseID();
