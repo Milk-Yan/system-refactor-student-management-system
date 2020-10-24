@@ -9,17 +9,12 @@ import com.softeng306.validation.*;
 
 import java.util.*;
 
-import static com.softeng306.domain.course.courseregistration.CourseRegistration.LabComparator;
-import static com.softeng306.domain.course.courseregistration.CourseRegistration.LecComparator;
-import static com.softeng306.domain.course.courseregistration.CourseRegistration.TutComparator;
-
-
 public class CourseRegistrationMgr {
     private static Scanner scanner = new Scanner(System.in);
     /**
      * A list of all the course registration records in this school.
      */
-    public static List<CourseRegistration> courseRegistrations = new ArrayList<>(0);
+    private List<CourseRegistration> courseRegistrations;
 
     private static CourseRegistrationMgr singleInstance = null;
 
@@ -100,7 +95,7 @@ public class CourseRegistrationMgr {
         CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
         FILEMgr.writeCourseRegistrationIntoFile(courseRegistration);
 
-        CourseRegistrationMgr.courseRegistrations.add(courseRegistration);
+        courseRegistrations.add(courseRegistration);
 
         MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initializeMark(currentStudent, currentCourse));
 
@@ -129,11 +124,11 @@ public class CourseRegistrationMgr {
         System.out.println("(3) Lab group");
         // READ courseRegistrationFILE
         // return List of Object(student,course,lecture,tut,lab)
-        List<CourseRegistration> allStuArray = FILEMgr.loadCourseRegistration();
+        List<CourseRegistration> allCourseRegistrations = FILEMgr.loadCourseRegistration();
 
 
         List<CourseRegistration> stuArray = new ArrayList<>(0);
-        for (CourseRegistration courseRegistration : allStuArray) {
+        for (CourseRegistration courseRegistration : allCourseRegistrations) {
             if (courseRegistration.getCourse().getCourseID().equals(currentCourse.getCourseID())) {
                 stuArray.add(courseRegistration);
             }
@@ -154,7 +149,7 @@ public class CourseRegistrationMgr {
 
             if (opt == 1) { // print by LECTURE
                 String newLec = "";
-                Collections.sort(stuArray, LecComparator);   // Sort by Lecture group
+                sortByLectureGroup(stuArray);
                 if (stuArray.size() > 0) {
                     for (int i = 0; i < stuArray.size(); i++) {  // loop through all of CourseRegistration Obj
                         if (!newLec.equals(stuArray.get(i).getLectureGroup())) {  // if new lecture group print out group name
@@ -170,7 +165,7 @@ public class CourseRegistrationMgr {
 
             } else if (opt == 2) { // print by TUTORIAL
                 String newTut = "";
-                Collections.sort(stuArray, TutComparator);
+                sortByTutorialGroup(stuArray);
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getTutorialGroups().size() == 0) {
                     System.out.println("This course does not contain any tutorial group.");
                 } else if (stuArray.size() > 0) {
@@ -187,7 +182,7 @@ public class CourseRegistrationMgr {
 
             } else if (opt == 3) { // print by LAB
                 String newLab = "";
-                Collections.sort(stuArray, LabComparator);
+                sortByLabGroup(stuArray);
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getLabGroups().size() == 0) {
                     System.out.println("This course does not contain any lab group.");
                 } else if (stuArray.size() > 0) {
@@ -207,9 +202,82 @@ public class CourseRegistrationMgr {
             }
             System.out.println("------------------------------------------------------");
         } while (opt < 1 || opt > 3);
-
-
     }
+
+    /**
+     * Return the list of all course registrations in the system.
+     * @return An list of all course registrations.
+     */
+    public List<CourseRegistration> getCourseRegistrations() {
+        return courseRegistrations;
+    }
+
+    /**
+     * Sort the list of course registrations of a course according to their ascending
+     * normal alphabetical order of the lecture groups, ignoring cases.
+     * @param courseRegistrations All the course registrations of the course.
+     */
+    private void sortByLectureGroup(List<CourseRegistration> courseRegistrations) {
+        courseRegistrations.sort((o1, o2) -> {
+            // in the case where there are no lectures, we don't care about
+            // the ordering.
+            if (o1.getLectureGroup() == null || o2.getLectureGroup() == null) {
+                return 0;
+            }
+
+            String group1 = o1.getLectureGroup().toUpperCase();
+            String group2 = o2.getLectureGroup().toUpperCase();
+
+            //ascending order
+            return group1.compareTo(group2);
+
+        });
+    }
+
+    /**
+     * Sort the list of course registrations of a course according to their ascending
+     * normal alphabetical order of the tutorial groups, ignoring cases.
+     * @param courseRegistrations All the course registrations of the course.
+     */
+    private void sortByTutorialGroup(List<CourseRegistration> courseRegistrations) {
+        courseRegistrations.sort((s1, s2) -> {
+            // in the case where there are no tutorials, we don't care about
+            // the ordering.
+            if (s1.getTutorialGroup() == null || s2.getTutorialGroup() == null) {
+                return 0;
+            }
+
+            String group1 = s1.getTutorialGroup().toUpperCase();
+            String group2 = s2.getTutorialGroup().toUpperCase();
+
+            //ascending order
+            return group1.compareTo(group2);
+
+        });
+    }
+
+    /**
+     * Sort the list of course registrations of a course according to their ascending
+     * normal alphabetical order of the lab groups, ignoring cases.
+     * @param courseRegistrations All the course registrations of the course.
+     */
+    private void sortByLabGroup(List<CourseRegistration> courseRegistrations) {
+        courseRegistrations.sort((o1, o2) -> {
+            // in the case where there are no labs, we don't care about
+            // the ordering.
+            if (o1.getLabGroup() == null || o2.getLabGroup() == null) {
+                return 0;
+            }
+
+            String group1 = o1.getLabGroup().toUpperCase();
+            String group2 = o2.getLabGroup().toUpperCase();
+
+            //ascending order
+            return group1.compareTo(group2);
+        });
+    }
+
+
 
 
 }

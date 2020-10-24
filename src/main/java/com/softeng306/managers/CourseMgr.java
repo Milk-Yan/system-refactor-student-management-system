@@ -4,9 +4,12 @@ import com.softeng306.Enum.CourseType;
 import com.softeng306.Enum.Department;
 import com.softeng306.Enum.GroupType;
 import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.component.CourseworkComponent;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.mark.MainComponentMark;
+import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
@@ -754,10 +757,116 @@ public class CourseMgr {
     }
 
     /**
-     * Return the list of all courses in the system.
+     * Prints the course statics including enrollment rate, average result for every assessment component and the average overall performance of this course.
+     */
+    public void printCourseStatistics() {
+        System.out.println("printCourseStatistics is called");
+
+        Course currentCourse = CourseValidator.checkCourseExists();
+        String courseID = currentCourse.getCourseID();
+
+        List<Mark> thisCourseMark = new ArrayList<>(0);
+        for (Mark mark : MarkMgr.getInstance().getMarks()) {
+            if (mark.getCourse().getCourseID().equals(courseID)) {
+                thisCourseMark.add(mark);
+            }
+        }
+
+        System.out.println("*************** Course Statistic ***************");
+        System.out.println("Course ID: " + currentCourse.getCourseID() + "\tCourse Name: " + currentCourse.getCourseName());
+        System.out.println("Course AU: " + currentCourse.getAU());
+        System.out.println();
+        System.out.print("Total Slots: " + currentCourse.getTotalSeats());
+        int enrolledNumber = (currentCourse.getTotalSeats() - currentCourse.getVacancies());
+        System.out.println("\tEnrolled Student: " + enrolledNumber);
+        System.out.printf("Enrollment Rate: %4.2f %%\n", ((double) enrolledNumber / (double) currentCourse.getTotalSeats() * 100d));
+        System.out.println();
+
+
+        int examWeight = 0;
+        boolean hasExam = false;
+        double averageMark = 0;
+        // Find marks for every assessment components
+        for (CourseworkComponent courseworkComponent : currentCourse.getMainComponents()) {
+            String thisComponentName = courseworkComponent.getComponentName();
+
+            if (thisComponentName.equals("Exam")) {
+                examWeight = courseworkComponent.getComponentWeight();
+//                Leave the exam report to the last
+                hasExam = true;
+            } else {
+                averageMark = 0;
+                System.out.print("Main Component: " + courseworkComponent.getComponentName());
+                System.out.print("\tWeight: " + courseworkComponent.getComponentWeight() + "%");
+
+                averageMark += MarkMgr.getInstance().computeMark(thisCourseMark, thisComponentName);
+
+                averageMark = averageMark / thisCourseMark.size();
+                System.out.println("\t Average: " + averageMark);
+
+                List<SubComponent> thisSubComponents = ((MainComponent) courseworkComponent).getSubComponents();
+                if (thisSubComponents.size() == 0) {
+                    continue;
+                }
+                for (SubComponent subComponent : thisSubComponents) {
+                    averageMark = 0;
+                    System.out.print("Sub Component: " + subComponent.getComponentName());
+                    System.out.print("\tWeight: " + subComponent.getComponentWeight() + "% (in main component)");
+                    String thisSubComponentName = subComponent.getComponentName();
+
+                    averageMark += MarkMgr.getInstance().computeMark(thisCourseMark, thisSubComponentName);
+
+                    averageMark = averageMark / thisCourseMark.size();
+                    System.out.println("\t Average: " + averageMark);
+                }
+                System.out.println();
+            }
+
+        }
+
+        if (hasExam) {
+            averageMark = 0;
+            System.out.print("Final Exam");
+            System.out.print("\tWeight: " + examWeight + "%");
+            for (Mark mark : thisCourseMark) {
+                List<MainComponentMark> courseMarks = mark.getCourseWorkMarks();
+
+                for (MainComponentMark mainComponentMark : courseMarks) {
+                    MainComponent mainComponent = mainComponentMark.getMainComponent();
+                    double value = mainComponentMark.getMark();
+                    if (mainComponent.getComponentName().equals("Exam")) {
+                        averageMark += value;
+                        break;
+                    }
+                }
+            }
+            averageMark = averageMark / thisCourseMark.size();
+            System.out.println("\t Average: " + averageMark);
+        } else {
+            System.out.println("This course does not have final exam.");
+        }
+
+
+        System.out.println();
+
+        System.out.print("Overall Performance: ");
+        averageMark = 0;
+        for (Mark mark : thisCourseMark) {
+            averageMark += mark.getTotalMark();
+        }
+        averageMark = averageMark / thisCourseMark.size();
+        System.out.printf("%4.2f \n", averageMark);
+
+        System.out.println();
+        System.out.println("***********************************************");
+        System.out.println();
+    }
+
+
+     /* Return the list of all courses in the system.
      * @return An list of all courses.
      */
-    public List<Course> getCourses() {
+    public List<Course> getCourses(){
         return courses;
     }
 

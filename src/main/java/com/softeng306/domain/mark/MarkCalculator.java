@@ -77,7 +77,6 @@ public class MarkCalculator {
     /**
      * Computes the gpa gained for this course from the result of this course.
      *
-     * @param result result of this course
      * @return the grade (in A, B ... )
      */
     public double gpaCalculator(Mark mark) {
