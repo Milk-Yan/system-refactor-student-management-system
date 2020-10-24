@@ -1,11 +1,12 @@
 package com.softeng306.managers;
 
+import com.softeng306.Enum.CourseType;
+import com.softeng306.Enum.Department;
+import com.softeng306.Enum.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.course.group.LabGroup;
-import com.softeng306.domain.course.group.LectureGroup;
-import com.softeng306.domain.course.group.TutorialGroup;
+import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.CourseMgrIO;
 import com.softeng306.io.FILEMgr;
@@ -28,7 +29,8 @@ public class CourseMgr {
     /**
      * Override default constructor to implement singleton pattern
      */
-    private CourseMgr() {
+    private CourseMgr(List<Course> courses) {
+        this.courses = courses;
     }
 
     /**
@@ -38,7 +40,7 @@ public class CourseMgr {
      */
     public static CourseMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new CourseMgr();
+            singleInstance = new CourseMgr(FILEMgr.loadCourses());
         }
 
         return singleInstance;
@@ -64,7 +66,7 @@ public class CourseMgr {
 
         int lecWeeklyHour = CourseMgrIO.readLecWeeklyHour(AU);
 
-        List<LectureGroup> lectureGroups = CourseMgrIO.readLectureGroups(totalSeats, noOfLectureGroups);
+        List<Group> lectureGroups = CourseMgrIO.readLectureGroups(totalSeats, noOfLectureGroups);
 
         int noOfTutorialGroups = CourseMgrIO.readNoOfTutorialGroups(noOfLectureGroups, totalSeats);
 
@@ -73,7 +75,7 @@ public class CourseMgr {
             tutWeeklyHour = CourseMgrIO.readTutWeeklyHour(AU);
         }
 
-        List<TutorialGroup> tutorialGroups = CourseMgrIO.readTutorialGroups(noOfTutorialGroups, totalSeats);
+        List<Group> tutorialGroups = CourseMgrIO.readTutorialGroups(noOfTutorialGroups, totalSeats);
 
 
         int noOfLabGroups = CourseMgrIO.readNoOfLabGroups(noOfLectureGroups, totalSeats);

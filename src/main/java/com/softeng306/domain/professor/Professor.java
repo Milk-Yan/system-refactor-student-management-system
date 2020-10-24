@@ -22,6 +22,13 @@ public class Professor {
     private String profDepartment;
 
     /**
+     * Default constructor. Required for Jackson serialization.
+     */
+    public Professor() {
+
+    }
+
+    /**
      * Creates professor with professor ID and professor name.
      * @param profID the ID of the professor
      * @param profName the name of the professor

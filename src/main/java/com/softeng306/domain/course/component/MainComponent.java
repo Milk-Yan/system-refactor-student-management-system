@@ -15,6 +15,13 @@ public class MainComponent extends CourseworkComponent {
     private List<SubComponent> subComponents;
 
     /**
+     * Default constructor. Required for Jackson serialization.
+     */
+    public MainComponent() {
+
+    }
+
+    /**
      * Creates a main component with component name, component weightage and sub components.
      *
      * @param componentName   the name of the assessment component

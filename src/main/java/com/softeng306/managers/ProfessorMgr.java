@@ -1,6 +1,7 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.professor.Professor;
+import com.softeng306.io.FILEMgr;
 import com.softeng306.validation.DepartmentValidator;
 
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ public class ProfessorMgr {
     /**
      * Override default constructor to implement singleton pattern
      */
-    private ProfessorMgr() {
+    private ProfessorMgr(List<Professor> professors) {
+        this.professors = professors;
     }
 
     /**
@@ -31,7 +33,7 @@ public class ProfessorMgr {
      */
     public static ProfessorMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new ProfessorMgr();
+            singleInstance = new ProfessorMgr(FILEMgr.loadProfessors());
         }
 
         return singleInstance;
