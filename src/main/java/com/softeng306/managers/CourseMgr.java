@@ -1,5 +1,6 @@
 package com.softeng306.managers;
 
+import com.softeng306.Enum.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
@@ -59,13 +60,13 @@ public class CourseMgr {
 
         String courseType = courseMgrIO.readCourseType();
         // TODO: Refactor methods for lecturegroups, tutorialgroups, and labgroups
-        int noOfLectureGroups = courseMgrIO.readNoOfLectureGroups(totalSeats);
+        int noOfLectureGroups = courseMgrIO.readNoOfGroup(GroupType.LectureGroup, totalSeats, totalSeats);
 
         int lecWeeklyHour = courseMgrIO.readLecWeeklyHour(AU);
 
         List<Group> lectureGroups = courseMgrIO.readLectureGroups(totalSeats, noOfLectureGroups);
 
-        int noOfTutorialGroups = courseMgrIO.readNoOfTutorialGroups(noOfLectureGroups, totalSeats);
+        int noOfTutorialGroups = courseMgrIO.readNoOfGroup(GroupType.TutorialGroup, noOfLectureGroups, totalSeats);
 
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
@@ -74,7 +75,7 @@ public class CourseMgr {
 
         List<Group> tutorialGroups = courseMgrIO.readTutorialGroups(noOfTutorialGroups, totalSeats);
 
-        int noOfLabGroups = courseMgrIO.readNoOfLabGroups(noOfLectureGroups, totalSeats);
+        int noOfLabGroups = courseMgrIO.readNoOfGroup(GroupType.LabGroup, noOfLectureGroups, totalSeats);
 
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {

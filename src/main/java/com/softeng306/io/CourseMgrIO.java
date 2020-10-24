@@ -8,7 +8,6 @@ import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.ProfessorMgr;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.DepartmentValidator;
@@ -20,12 +19,11 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class CourseMgrIO {
-    private static Scanner scanner = new Scanner(System.in);
-    private static PrintStream originalStream = System.out;
-    private static PrintStream dummyStream = new PrintStream(new OutputStream() {
+    private Scanner scanner = new Scanner(System.in);
+    private PrintStream originalStream = System.out;
+    private PrintStream dummyStream = new PrintStream(new OutputStream() {
         public void write(int b) {
             // NO-OP
         }
@@ -49,8 +47,7 @@ public class CourseMgrIO {
 
     public String readCourseName() {
         System.out.println("Enter course Name: ");
-        String courseName = scanner.nextLine();
-        return courseName;
+        return scanner.nextLine();
     }
 
     public int readTotalSeats() {
@@ -128,26 +125,45 @@ public class CourseMgrIO {
         return courseType;
     }
 
-    public int readNoOfLectureGroups(int totalSeats) {
-        int noOfLectureGroups;
-        do {
-            System.out.println("Enter the number of lecture groups: ");
-            // lecture group number cannot be 0 and also cannot be larger than totalSeats
+    public int readNoOfGroup(GroupType type, int compareTo, int totalSeats) {
+        int noOfGroups;
+
+        while (true) {
+            System.out.println("Enter the number of " + type.toTypeString() + " groups: ");
             if (scanner.hasNextInt()) {
-                noOfLectureGroups = scanner.nextInt();
+                noOfGroups = scanner.nextInt();
                 scanner.nextLine();
-                if (noOfLectureGroups > 0 && noOfLectureGroups <= totalSeats) {
+
+                if (noGroupInLimit(type, noOfGroups, compareTo, totalSeats)) {
                     break;
                 }
                 System.out.println("Invalid input.");
-                System.out.println("Number of lecture group must be positive but less than total seats in this course.");
+                printInvalidNoGroup(type);
                 System.out.println("Please re-enter");
             } else {
                 System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
             }
-        } while (true);
+        }
 
-        return noOfLectureGroups;
+        return noOfGroups;
+    }
+
+    private void printInvalidNoGroup(GroupType type) {
+        if (type == GroupType.LabGroup) {
+            System.out.println("Number of lab group must be non-negative.");
+        } else if (type == GroupType.LectureGroup) {
+            System.out.println("Number of lecture group must be positive but less than total seats in this course.");
+        } else if (type == GroupType.TutorialGroup) {
+            System.out.println("Number of tutorial group must be non-negative.");
+        }
+    }
+
+    private boolean noGroupInLimit(GroupType type, int noOfGroups, int compareTo, int totalSeats) {
+        if (type == GroupType.LectureGroup) {
+            return noOfGroups > 0 && compareTo <= totalSeats;
+        } else {
+            return noOfGroups >= 0 && compareTo <= totalSeats;
+        }
     }
 
     public int readLecWeeklyHour(int AU) {
@@ -232,46 +248,6 @@ public class CourseMgrIO {
         return lectureGroups;
     }
 
-    public int readNoOfTutorialGroups(int noOfLectureGroups, int totalSeats) {
-        int noOfTutorialGroups;
-        do {
-            System.out.println("Enter the number of tutorial groups:");
-            if (scanner.hasNextInt()) {
-                noOfTutorialGroups = scanner.nextInt();
-                scanner.nextLine();
-                if (noOfTutorialGroups >= 0 && noOfLectureGroups <= totalSeats) {
-                    break;
-                }
-                System.out.println("Invalid input.");
-                System.out.println("Number of tutorial group must be non-negative.");
-                System.out.println("Please re-enter");
-            } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
-            }
-        } while (true);
-
-        return noOfTutorialGroups;
-    }
-
-    public int readTutWeeklyHour(int AU) {
-        int tutWeeklyHour;
-        while (true) {
-            System.out.println("Enter the weekly tutorial hour for this course: ");
-            if (scanner.hasNextInt()) {
-                tutWeeklyHour = scanner.nextInt();
-                scanner.nextLine();
-                if (tutWeeklyHour < 0 || tutWeeklyHour > AU) {
-                    System.out.println("Weekly tutorial hour out of bound. Please re-enter.");
-                } else {
-                    break;
-                }
-            } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
-            }
-        }
-
-        return tutWeeklyHour;
-    }
 
     public List<Group> readTutorialGroups(int noOfTutorialGroups, int totalSeats) {
         List<Group> tutorialGroups = new ArrayList<>();
@@ -326,52 +302,10 @@ public class CourseMgrIO {
         return tutorialGroups;
     }
 
-    public int readNoOfLabGroups(int noOfLectureGroups, int totalSeats) {
-        int noOfLabGroups;
-        do {
-            System.out.println("Enter the number of lab groups: ");
-            if (scanner.hasNextInt()) {
-                noOfLabGroups = scanner.nextInt();
-                scanner.nextLine();
-                if (noOfLabGroups >= 0 && noOfLectureGroups <= totalSeats) {
-                    break;
-                }
-                System.out.println("Invalid input.");
-                System.out.println("Number of lab group must be non-negative.");
-                System.out.println("Please re-enter");
-            } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
-            }
-        } while (true);
-
-        return noOfLabGroups;
-    }
-
-    public int readLabWeeklyHour(int AU) {
-        int labWeeklyHour;
-        while (true) {
-            System.out.println("Enter the weekly lab hour for this course: ");
-            if (scanner.hasNextInt()) {
-                labWeeklyHour = scanner.nextInt();
-                scanner.nextLine();
-                if (labWeeklyHour < 0 || labWeeklyHour > AU) {
-                    System.out.println("Weekly lab hour out of bound. Please re-enter.");
-                } else {
-                    break;
-                }
-            } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
-            }
-        }
-
-        return labWeeklyHour;
-    }
-
     public List<Group> readLabGroups(int noOfLabGroups, int totalSeats) {
         List<Group> labGroups = new ArrayList<>();
         int totalLabSeats = 0;
         String labGroupName;
-        int labGroupCapacity;
         boolean groupNameExists;
         for (int i = 0; i < noOfLabGroups; i++) {
             System.out.println("Give a name to this lab group");
@@ -395,9 +329,9 @@ public class CourseMgrIO {
                 }
             } while (groupNameExists);
 
-            do {
+            while (true) {
                 System.out.println("Enter this lab group's capacity: ");
-                labGroupCapacity = scanner.nextInt();
+                int labGroupCapacity = scanner.nextInt();
                 scanner.nextLine();
                 totalLabSeats += labGroupCapacity;
                 if ((i != noOfLabGroups - 1) || (totalLabSeats >= totalSeats)) {
@@ -409,11 +343,54 @@ public class CourseMgrIO {
                     System.out.println("Please re-enter the capacity for the last lab group " + labGroupName + " you have entered.");
                     totalLabSeats -= labGroupCapacity;
                 }
-            } while (true);
+            }
         }
 
         return labGroups;
     }
+
+
+    public int readTutWeeklyHour(int AU) {
+        int tutWeeklyHour;
+        while (true) {
+            System.out.println("Enter the weekly tutorial hour for this course: ");
+            if (scanner.hasNextInt()) {
+                tutWeeklyHour = scanner.nextInt();
+                scanner.nextLine();
+                if (tutWeeklyHour < 0 || tutWeeklyHour > AU) {
+                    System.out.println("Weekly tutorial hour out of bound. Please re-enter.");
+                } else {
+                    break;
+                }
+            } else {
+                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+            }
+        }
+
+        return tutWeeklyHour;
+    }
+
+
+    public int readLabWeeklyHour(int AU) {
+        int labWeeklyHour;
+        while (true) {
+            System.out.println("Enter the weekly lab hour for this course: ");
+            if (scanner.hasNextInt()) {
+                labWeeklyHour = scanner.nextInt();
+                scanner.nextLine();
+                if (labWeeklyHour < 0 || labWeeklyHour > AU) {
+                    System.out.println("Weekly lab hour out of bound. Please re-enter.");
+                } else {
+                    break;
+                }
+            } else {
+                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+            }
+        }
+
+        return labWeeklyHour;
+    }
+
 
     public Professor readProfessor(String courseDepartment) {
         // TODO: Fix name of method
