@@ -36,10 +36,15 @@ public abstract class AbstractTestProcess {
         String refactoredOutput = AbstractTestProcess.refactoredProcess.getOutput(inputList);
 
         String[] originalOutputList = originalOutput.split("\n");
-        Assert.assertEquals(originalOutput.length(), refactoredOutput.length());
         for (String originalLine : originalOutputList) {
-            Assert.assertTrue(refactoredOutput.contains(originalLine));
+            // Prints message if error occurs
+            Assert.assertTrue("The line \""+originalLine+"\" was not in the refactored output" +
+                            "\nRefactored Output:" +
+                            "\n"+refactoredOutput,
+                    refactoredOutput.contains(originalLine));
         }
+        Assert.assertEquals("Refactored output length was incorrect",
+                originalOutput.length(), refactoredOutput.length());
     }
 
     /**
