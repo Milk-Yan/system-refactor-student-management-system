@@ -766,7 +766,7 @@ public class CourseMgr {
         String courseID = currentCourse.getCourseID();
 
         List<Mark> thisCourseMark = new ArrayList<>(0);
-        for (Mark mark : MarkMgr.marks) {
+        for (Mark mark : MarkMgr.getInstance().getMarks()) {
             if (mark.getCourse().getCourseID().equals(courseID)) {
                 thisCourseMark.add(mark);
             }
@@ -831,7 +831,7 @@ public class CourseMgr {
             for (Mark mark : thisCourseMark) {
                 List<MainComponentMark> courseMarks = mark.getCourseWorkMarks();
 
-                for (MainComponentMark mainComponentMark: courseMarks) {
+                for (MainComponentMark mainComponentMark : courseMarks) {
                     MainComponent mainComponent = mainComponentMark.getMainComponent();
                     double value = mainComponentMark.getMark();
                     if (mainComponent.getComponentName().equals("Exam")) {
@@ -860,12 +860,13 @@ public class CourseMgr {
         System.out.println();
         System.out.println("***********************************************");
         System.out.println();
+    }
 
 
-     * Return the list of all courses in the system.
+     /* Return the list of all courses in the system.
      * @return An list of all courses.
      */
-    public List<Course> getCourses() {
+    public List<Course> getCourses(){
         return courses;
     }
 

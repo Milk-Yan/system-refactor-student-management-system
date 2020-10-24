@@ -93,7 +93,7 @@ public class StudentMgr {
         int thisStudentAU = 0;
 
         List<Mark> thisStudentMark = new ArrayList<>(0);
-        for (Mark mark : MarkMgr.marks) {
+        for (Mark mark : MarkMgr.getInstance().getMarks()) {
             if (mark.getStudent().getStudentID().equals(studentID)) {
                 thisStudentMark.add(mark);
                 thisStudentAU += mark.getCourse().getAU();
@@ -115,14 +115,14 @@ public class StudentMgr {
             System.out.print("Course ID: " + mark.getCourse().getCourseID());
             System.out.println("\tCourse Name: " + mark.getCourse().getCourseName());
 
-            for (MainComponentMark mainComponentMark: mark.getCourseWorkMarks()) {
+            for (MainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();
                 Double result = mainComponentMark.getMark();
 
                 System.out.println("Main Assessment: " + mainComponent.getComponentName() + " ----- (" + mainComponent.getComponentWeight() + "%)");
                 int mainAssessmentWeight = mainComponent.getComponentWeight();
 
-                for (SubComponentMark subComponentMark: mainComponentMark.getSubComponentMarks()) {
+                for (SubComponentMark subComponentMark : mainComponentMark.getSubComponentMarks()) {
                     SubComponent subComponent = subComponentMark.getSubComponent();
                     System.out.print("Sub Assessment: " + subComponent.getComponentName() + " -- (" + subComponent.getComponentWeight() + "% * " + mainAssessmentWeight + "%) --- ");
                     String subAssessmentName = subComponent.getComponentName();
@@ -151,7 +151,9 @@ public class StudentMgr {
             System.out.println("Advice: Study hard");
         }
         System.out.println("------------------ End of Transcript -------------------");
-     * Return the list of all students in the system.
+
+    }
+     /* Return the list of all students in the system.
      * @return An list of all students.
      */
     public List<Student> getStudents() {
