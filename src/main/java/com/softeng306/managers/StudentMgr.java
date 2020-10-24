@@ -30,9 +30,7 @@ public class StudentMgr {
      * Override default constructor to implement singleton pattern
      */
     private StudentMgr(List<Student> students) {
-
         this.students = students;
-        students = new ArrayList<>(0);
     }
 
     /**
