@@ -62,7 +62,7 @@ public class StudentMgr {
         }
 
         String studentName = StudentMgrIO.getStudentName();
-        Student currentStudent = new Student(studentName, studentID);
+        Student currentStudent = new Student(studentID, studentName);
 
         currentStudent.setStudentSchool(StudentMgrIO.getSchoolName());  //Set school
         currentStudent.setGender(StudentMgrIO.getStudentGender());      //gender
@@ -106,7 +106,7 @@ public class StudentMgr {
             idNumber += 1;
             generateStudentID = "U" + String.valueOf(idNumber) + lastPlace;
             studentIDUsed = false;
-            for (Student student : StudentMgr.students) {
+            for (Student student : this.students) {
                 if (generateStudentID.equals(student.getStudentID())) {
                     studentIDUsed = true;
                     break;
