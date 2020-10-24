@@ -14,6 +14,7 @@ public class StudentMgrIO {
 
     private static Scanner reader = new Scanner(System.in);
 
+
     public static void printMenu() {
         System.out.println("addStudent is called");
         System.out.println("Choose the way you want to add a student:");
