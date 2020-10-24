@@ -9,11 +9,6 @@ import com.softeng306.validation.*;
 
 import java.util.*;
 
-import static com.softeng306.domain.course.courseregistration.CourseRegistration.LabComparator;
-import static com.softeng306.domain.course.courseregistration.CourseRegistration.LecComparator;
-import static com.softeng306.domain.course.courseregistration.CourseRegistration.TutComparator;
-
-
 public class CourseRegistrationMgr {
     private static Scanner scanner = new Scanner(System.in);
     /**
@@ -154,7 +149,7 @@ public class CourseRegistrationMgr {
 
             if (opt == 1) { // print by LECTURE
                 String newLec = "";
-                Collections.sort(stuArray, LecComparator);   // Sort by Lecture group
+                sortByLectureGroup(stuArray);
                 if (stuArray.size() > 0) {
                     for (int i = 0; i < stuArray.size(); i++) {  // loop through all of CourseRegistration Obj
                         if (!newLec.equals(stuArray.get(i).getLectureGroup())) {  // if new lecture group print out group name
@@ -170,7 +165,7 @@ public class CourseRegistrationMgr {
 
             } else if (opt == 2) { // print by TUTORIAL
                 String newTut = "";
-                Collections.sort(stuArray, TutComparator);
+                sortByTutorialGroup(stuArray);
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getTutorialGroups().size() == 0) {
                     System.out.println("This course does not contain any tutorial group.");
                 } else if (stuArray.size() > 0) {
@@ -187,7 +182,7 @@ public class CourseRegistrationMgr {
 
             } else if (opt == 3) { // print by LAB
                 String newLab = "";
-                Collections.sort(stuArray, LabComparator);
+                sortByLabGroup(stuArray);
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getLabGroups().size() == 0) {
                     System.out.println("This course does not contain any lab group.");
                 } else if (stuArray.size() > 0) {
@@ -207,9 +202,59 @@ public class CourseRegistrationMgr {
             }
             System.out.println("------------------------------------------------------");
         } while (opt < 1 || opt > 3);
-
-
     }
+
+    private void sortByLectureGroup(List<CourseRegistration> courseRegistrations) {
+        courseRegistrations.sort((o1, o2) -> {
+            // in the case where there are no lectures, we don't care about
+            // the ordering.
+            if (o1.getLectureGroup() == null || o2.getLectureGroup() == null) {
+                return 0;
+            }
+
+            String group1 = o1.getLectureGroup().toUpperCase();
+            String group2 = o2.getLectureGroup().toUpperCase();
+
+            //ascending order
+            return group1.compareTo(group2);
+
+        });
+    }
+
+    private void sortByTutorialGroup(List<CourseRegistration> courseRegistrations) {
+        courseRegistrations.sort((s1, s2) -> {
+            // in the case where there are no tutorials, we don't care about
+            // the ordering.
+            if (s1.getTutorialGroup() == null || s2.getTutorialGroup() == null) {
+                return 0;
+            }
+
+            String group1 = s1.getTutorialGroup().toUpperCase();
+            String group2 = s2.getTutorialGroup().toUpperCase();
+
+            //ascending order
+            return group1.compareTo(group2);
+
+        });
+    }
+
+    private void sortByLabGroup(List<CourseRegistration> courseRegistrations) {
+        courseRegistrations.sort((o1, o2) -> {
+            // in the case where there are no labs, we don't care about
+            // the ordering.
+            if (o1.getLabGroup() == null || o2.getLabGroup() == null) {
+                return 0;
+            }
+
+            String group1 = o1.getLabGroup().toUpperCase();
+            String group2 = o2.getLabGroup().toUpperCase();
+
+            //ascending order
+            return group1.compareTo(group2);
+        });
+    }
+
+
 
 
 }
