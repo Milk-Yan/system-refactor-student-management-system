@@ -1,7 +1,12 @@
 package com.softeng306.domain.student;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.managers.StudentMgr;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a student enrolled in a school.
@@ -29,6 +34,7 @@ public class Student {
      * The gender of this student.
      */
     private String gender;
+
 
     /**
      * The GPA of this student.
@@ -119,8 +125,7 @@ public class Student {
      *
      * @param studentID this student's ID.
      */
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
+    public void setStudentID(String studentID) { this.studentID = studentID;
     }
 
     /**
@@ -158,4 +163,5 @@ public class Student {
     public void setStudentYear(int studentYear) {
         this.studentYear = studentYear;
     }
+
 }
