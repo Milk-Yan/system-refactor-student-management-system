@@ -70,7 +70,7 @@ public class MainMenuIO {
                     courseMgr.printCourseStatistics();
                     break;
                 case 10:
-                    markMgr.printStudentTranscript();
+                    studentMgr.printStudentTranscript();
                     break;
                 case 11:
                     exitApplication();
