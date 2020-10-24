@@ -36,8 +36,6 @@ public class Student {
     private String gender;
 
 
-    private List<CourseRegistration> courseRegistrations;
-
     /**
      * The GPA of this student.
      */
@@ -64,7 +62,6 @@ public class Student {
      * @param studentName This student's ID.
      */
     public Student(String studentID, String studentName) {
-        this.courseRegistrations = new ArrayList<>();
         this.studentID = studentID;
         this.studentName = studentName;
     }
