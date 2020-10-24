@@ -199,7 +199,7 @@ public class Student {
             idNumber += 1;
             generateStudentID = "U" + String.valueOf(idNumber) + lastPlace;
             studentIDUsed = false;
-            for (Student student : StudentMgr.students) {
+            for (Student student : StudentMgr.getInstance().getStudents()) {
                 if (generateStudentID.equals(student.getStudentID())) {
                     studentIDUsed = true;
                     break;
