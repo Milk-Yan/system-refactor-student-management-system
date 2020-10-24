@@ -798,6 +798,8 @@ public class CourseMgr {
 //                Leave the exam report to the last
                 hasExam = true;
             } else {
+                System.out.print("Main Component: " + courseworkComponent.getComponentName());
+                System.out.print("\tWeight: " + courseworkComponent.getComponentWeight() + "%");
                 System.out.println("\t Average: " + markCalculator.computeComponentMark(thisCourseMark, thisComponentName));
 
                 List<SubComponent> thisSubComponents = ((MainComponent) courseworkComponent).getSubComponents();
