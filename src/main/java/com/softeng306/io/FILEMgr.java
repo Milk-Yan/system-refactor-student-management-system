@@ -8,6 +8,7 @@ import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.domain.student.Student;
+import com.softeng306.managers.StudentMgr;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -106,7 +107,7 @@ public class FILEMgr {
         for (Student student: students) {
             recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentID().substring(1,8)));
         }
-        Student.setIdNumber(recentStudentID > 0 ? recentStudentID : 1800000);
+        StudentMgr.setIdNumber(recentStudentID > 0 ? recentStudentID : 1800000);
     }
 
     /**
