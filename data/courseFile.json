@@ -100,7 +100,6 @@
       "componentWeight" : 50
     } ]
   } ],
-  "au" : 4,
   "AU" : 4
 }, {
   "courseID" : "SE2005",
@@ -112,19 +111,19 @@
   },
   "courseDepartment" : "ECSE",
   "courseType" : "CORE",
-  "vacancies" : 5,
+  "vacancies" : 10,
   "totalSeats" : 30,
   "lecWeeklyHour" : 2,
   "lectureGroups" : [ {
     "groupName" : "LEC1",
-    "availableVacancies" : 5,
+    "availableVacancies" : 10,
     "groupType" : "LectureGroup",
     "totalSeats" : 30
   } ],
   "tutWeeklyHour" : 1,
   "tutorialGroups" : [ {
     "groupName" : "TUT1",
-    "availableVacancies" : 0,
+    "availableVacancies" : 5,
     "groupType" : "TutorialGroup",
     "totalSeats" : 15
   }, {
@@ -136,7 +135,7 @@
   "labWeeklyHour" : 1,
   "labGroups" : [ {
     "groupName" : "LAB1",
-    "availableVacancies" : 5,
+    "availableVacancies" : 10,
     "groupType" : "LabGroup",
     "totalSeats" : 30
   } ],
@@ -155,7 +154,6 @@
       "componentWeight" : 75
     } ]
   } ],
-  "au" : 3,
   "AU" : 3
 }, {
   "courseID" : "SE2007",
@@ -167,12 +165,12 @@
   },
   "courseDepartment" : "ECSE",
   "courseType" : "CORE",
-  "vacancies" : 48,
+  "vacancies" : 49,
   "totalSeats" : 50,
   "lecWeeklyHour" : 3,
   "lectureGroups" : [ {
     "groupName" : "Lec1",
-    "availableVacancies" : 48,
+    "availableVacancies" : 49,
     "groupType" : "LectureGroup",
     "totalSeats" : 50
   } ],
@@ -194,7 +192,7 @@
     "totalSeats" : 20
   }, {
     "groupName" : "SS4",
-    "availableVacancies" : 18,
+    "availableVacancies" : 19,
     "groupType" : "TutorialGroup",
     "totalSeats" : 20
   }, {
@@ -220,7 +218,6 @@
       "componentWeight" : 30
     } ]
   } ],
-  "au" : 3,
   "AU" : 3
 }, {
   "courseID" : "SE0001",
@@ -232,22 +229,22 @@
   },
   "courseDepartment" : "ECSE",
   "courseType" : "CORE",
-  "vacancies" : 89,
+  "vacancies" : 99,
   "totalSeats" : 100,
   "lecWeeklyHour" : 2,
   "lectureGroups" : [ {
     "groupName" : "LEC1",
-    "availableVacancies" : 96,
+    "availableVacancies" : 98,
     "groupType" : "LectureGroup",
     "totalSeats" : 100
   }, {
     "groupName" : "LEC2",
-    "availableVacancies" : 90,
+    "availableVacancies" : 95,
     "groupType" : "LectureGroup",
     "totalSeats" : 100
   }, {
     "groupName" : "LEC3",
-    "availableVacancies" : 94,
+    "availableVacancies" : 97,
     "groupType" : "LectureGroup",
     "totalSeats" : 100
   } ],
@@ -264,7 +261,6 @@
     "componentWeight" : 40,
     "subComponents" : [ ]
   } ],
-  "au" : 3,
   "AU" : 3
 }, {
   "courseID" : "SE1006",
@@ -276,31 +272,31 @@
   },
   "courseDepartment" : "ECSE",
   "courseType" : "CORE",
-  "vacancies" : 96,
+  "vacancies" : 98,
   "totalSeats" : 100,
   "lecWeeklyHour" : 2,
   "lectureGroups" : [ {
     "groupName" : "LEC1",
-    "availableVacancies" : 96,
+    "availableVacancies" : 98,
     "groupType" : "LectureGroup",
     "totalSeats" : 100
   } ],
   "tutWeeklyHour" : 1,
   "tutorialGroups" : [ {
     "groupName" : "TUT1",
-    "availableVacancies" : 48,
+    "availableVacancies" : 49,
     "groupType" : "TutorialGroup",
     "totalSeats" : 50
   }, {
     "groupName" : "TUT2",
-    "availableVacancies" : 48,
+    "availableVacancies" : 49,
     "groupType" : "TutorialGroup",
     "totalSeats" : 50
   } ],
   "labWeeklyHour" : 2,
   "labGroups" : [ {
     "groupName" : "LAB1",
-    "availableVacancies" : 46,
+    "availableVacancies" : 48,
     "groupType" : "LabGroup",
     "totalSeats" : 50
   }, {
@@ -324,7 +320,6 @@
       "componentWeight" : 30
     } ]
   } ],
-  "au" : 3,
   "AU" : 3
 }, {
   "courseID" : "SE2002",
@@ -383,7 +378,6 @@
       "componentWeight" : 50
     } ]
   } ],
-  "au" : 3,
   "AU" : 3
 }, {
   "courseID" : "SE2006",
@@ -424,7 +418,6 @@
     "totalSeats" : 100
   } ],
   "mainComponents" : [ ],
-  "au" : 3,
   "AU" : 3
 }, {
   "courseID" : "SE3005",
@@ -465,6 +458,5 @@
   "labWeeklyHour" : 0,
   "labGroups" : [ ],
   "mainComponents" : [ ],
-  "au" : 3,
   "AU" : 3
 } ]
