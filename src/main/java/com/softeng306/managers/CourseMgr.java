@@ -1,8 +1,5 @@
 package com.softeng306.managers;
 
-import com.softeng306.Enum.CourseType;
-import com.softeng306.Enum.Department;
-import com.softeng306.Enum.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
@@ -17,14 +14,14 @@ import java.util.stream.Collectors;
 
 
 public class CourseMgr {
-    private Scanner scanner = new Scanner(System.in);
-
     /**
      * A list of all the courses in this school.
      */
     public static List<Course> courses = new ArrayList<>(0);
 
     private static CourseMgr singleInstance = null;
+
+    private CourseMgrIO courseMgrIO = new CourseMgrIO();
 
     /**
      * Override default constructor to implement singleton pattern
@@ -51,43 +48,42 @@ public class CourseMgr {
      */
     public void addCourse() {
         // Read in parameters to create new Course
-        String courseID = CourseMgrIO.readCourseId();
-        String courseName = CourseMgrIO.readCourseName();
+        String courseID = courseMgrIO.readCourseId();
+        String courseName = courseMgrIO.readCourseName();
 
-        int totalSeats = CourseMgrIO.readTotalSeats();
+        int totalSeats = courseMgrIO.readTotalSeats();
 
-        int AU = CourseMgrIO.readAU();
+        int AU = courseMgrIO.readAU();
 
-        String courseDepartment = CourseMgrIO.readCourseDepartment();
+        String courseDepartment = courseMgrIO.readCourseDepartment();
 
-        String courseType = CourseMgrIO.readCourseType();
+        String courseType = courseMgrIO.readCourseType();
+        // TODO: Refactor methods for lecturegroups, tutorialgroups, and labgroups
+        int noOfLectureGroups = courseMgrIO.readNoOfLectureGroups(totalSeats);
 
-        int noOfLectureGroups = CourseMgrIO.readNoOfLectureGroups(totalSeats);
+        int lecWeeklyHour = courseMgrIO.readLecWeeklyHour(AU);
 
-        int lecWeeklyHour = CourseMgrIO.readLecWeeklyHour(AU);
+        List<Group> lectureGroups = courseMgrIO.readLectureGroups(totalSeats, noOfLectureGroups);
 
-        List<Group> lectureGroups = CourseMgrIO.readLectureGroups(totalSeats, noOfLectureGroups);
-
-        int noOfTutorialGroups = CourseMgrIO.readNoOfTutorialGroups(noOfLectureGroups, totalSeats);
+        int noOfTutorialGroups = courseMgrIO.readNoOfTutorialGroups(noOfLectureGroups, totalSeats);
 
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
-            tutWeeklyHour = CourseMgrIO.readTutWeeklyHour(AU);
+            tutWeeklyHour = courseMgrIO.readTutWeeklyHour(AU);
         }
 
-        List<Group> tutorialGroups = CourseMgrIO.readTutorialGroups(noOfTutorialGroups, totalSeats);
+        List<Group> tutorialGroups = courseMgrIO.readTutorialGroups(noOfTutorialGroups, totalSeats);
 
-
-        int noOfLabGroups = CourseMgrIO.readNoOfLabGroups(noOfLectureGroups, totalSeats);
+        int noOfLabGroups = courseMgrIO.readNoOfLabGroups(noOfLectureGroups, totalSeats);
 
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
-            labWeeklyHour = CourseMgrIO.readLabWeeklyHour(AU);
+            labWeeklyHour = courseMgrIO.readLabWeeklyHour(AU);
         }
 
-        List<LabGroup> labGroups = CourseMgrIO.readLabGroups(noOfLabGroups, totalSeats);
+        List<Group> labGroups = courseMgrIO.readLabGroups(noOfLabGroups, totalSeats);
 
-        Professor profInCharge = CourseMgrIO.readProfessor(courseDepartment);
+        Professor profInCharge = courseMgrIO.readProfessor(courseDepartment);
 
         // Create new Course
         // TODO: Replace with builder
@@ -96,14 +92,14 @@ public class CourseMgr {
         FILEMgr.writeCourseIntoFile(course);
         CourseMgr.courses.add(course);
 
-        int addCourseComponentChoice = CourseMgrIO.readCreateCourseComponentChoice();
+        int addCourseComponentChoice = courseMgrIO.readCreateCourseComponentChoice();
 
         // Don't add course components option selected
         if (addCourseComponentChoice == 2) {
-            CourseMgrIO.printComponentsNotInitialized(courseID);
+            courseMgrIO.printComponentsNotInitialized(courseID);
         } else {
             enterCourseWorkComponentWeightage(course);
-            CourseMgrIO.printCourseAdded(courseID);
+            courseMgrIO.printCourseAdded(courseID);
         }
         printCourses();
     }
@@ -114,15 +110,14 @@ public class CourseMgr {
     public void checkAvailableSlots() {
         // TODO: move to MainMenuIO
         System.out.println("checkAvailableSlots is called");
-        Course currentCourse;
 
         while (true) {
-            currentCourse = CourseValidator.checkCourseExists();
+            Course currentCourse = CourseValidator.checkCourseExists();
             if (currentCourse != null) {
-                CourseMgrIO.printCourseInfo(currentCourse);
+                courseMgrIO.printCourseInfo(currentCourse);
                 break;
             } else {
-                CourseMgrIO.printCourseNotExist();
+                courseMgrIO.printCourseNotExist();
             }
         }
     }
@@ -133,103 +128,58 @@ public class CourseMgr {
      * @param currentCourse The course which course work component is to be set.
      */
     public void enterCourseWorkComponentWeightage(Course currentCourse) {
+        System.out.println("enterCourseWorkComponentWeightage is called");
         // Assume when course is created, no components are added yet
         // Assume once components are created and set, cannot be changed.
-        int weight;
-        int noOfSub;
-        int subWeight;
 
-        System.out.println("enterCourseWorkComponentWeightage is called");
         if (currentCourse == null) {
             currentCourse = CourseValidator.checkCourseExists();
         }
-
 
         List<MainComponent> mainComponents = new ArrayList<>(0);
         // Check if mainComponent is empty
         if (currentCourse.getMainComponents().isEmpty()) {
             // empty course
-            System.out.println("Currently course " + currentCourse.getCourseID() + " " + currentCourse.getCourseName() + " does not have any assessment component.");
+            courseMgrIO.printEmptyCourseComponents(currentCourse);
 
             int hasFinalExamChoice = 0;
             int examWeight = 0;
             while (hasFinalExamChoice < 1 || hasFinalExamChoice > 2) {
-                hasFinalExamChoice = CourseMgrIO.readHasFinalExamChoice();
+                hasFinalExamChoice = courseMgrIO.readHasFinalExamChoice();
                 if (hasFinalExamChoice == 1) {
-                    examWeight = CourseMgrIO.readExamWeight();
+                    examWeight = courseMgrIO.readExamWeight();
                     MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>(0));
                     mainComponents.add(exam);
                 } else if (hasFinalExamChoice == 2) {
-                    CourseMgrIO.printEnterContinuousAssessments();
+                    courseMgrIO.printEnterContinuousAssessments();
                 }
             }
 
-            int numberOfMain = CourseMgrIO.readNoOfMainComponents();
+            int numberOfMain = courseMgrIO.readNoOfMainComponents();
 
-            boolean componentExist;
             String mainComponentName;
             String subComponentName;
             while (true) {
                 int totalWeightage = 100 - examWeight;
                 for (int i = 0; i < numberOfMain; i++) {
                     List<SubComponent> subComponents = new ArrayList<>(0);
-                    do {
-                        componentExist = false;
-                        System.out.println("Total weightage left to assign: " + totalWeightage);
-                        System.out.println("Enter main component " + (i + 1) + " name: ");
-                        mainComponentName = scanner.nextLine();
 
-                        if (mainComponents.size() == 0) {
-                            break;
-                        }
-                        if (mainComponentName.equals("Exam")) {
-                            System.out.println("Exam is a reserved assessment.");
-                            componentExist = true;
-                            continue;
-                        }
-                        for (MainComponent mainComponent : mainComponents) {
-                            if (mainComponent.getComponentName().equals(mainComponentName)) {
-                                componentExist = true;
-                                System.out.println("This sub component already exist. Please enter.");
-                                break;
-                            }
-                        }
-                    } while (componentExist);
+                    mainComponentName = courseMgrIO.readMainComponentName(totalWeightage, i, mainComponents);
 
-                    weight = CourseMgrIO.readMainComponentWeightage(i, totalWeightage);
+                    int weight = courseMgrIO.readMainComponentWeightage(i, totalWeightage);
                     totalWeightage -= weight;
 
-                    noOfSub = CourseMgrIO.readNoOfSub(i);
+                    int noOfSub = courseMgrIO.readNoOfSub(i);
 
                     boolean flagSub = true;
                     while (flagSub) {
 
                         int sub_totWeight = 100;
                         for (int j = 0; j < noOfSub; j++) {
-                            do {
-                                componentExist = false;
-                                System.out.println("Total weightage left to assign to sub component: " + sub_totWeight);
-                                System.out.println("Enter sub component " + (j + 1) + " name: ");
-                                subComponentName = scanner.nextLine();
 
-                                if (subComponents.size() == 0) {
-                                    break;
-                                }
-                                if (subComponentName.equals("Exam")) {
-                                    System.out.println("Exam is a reserved assessment.");
-                                    componentExist = true;
-                                    continue;
-                                }
-                                for (SubComponent subComponent : subComponents) {
-                                    if (subComponent.getComponentName().equals(subComponentName)) {
-                                        componentExist = true;
-                                        System.out.println("This sub component already exist. Please enter.");
-                                        break;
-                                    }
-                                }
-                            } while (componentExist);
+                            subComponentName = courseMgrIO.readSubComponentName(subComponents, sub_totWeight, j);
 
-                            subWeight = CourseMgrIO.readSubWeight(j, sub_totWeight);
+                            int subWeight = courseMgrIO.readSubWeight(j, sub_totWeight);
 
                             //Create Subcomponent
                             SubComponent sub = new SubComponent(subComponentName, subWeight);
@@ -237,7 +187,7 @@ public class CourseMgr {
                             sub_totWeight -= subWeight;
                         }
                         if (sub_totWeight != 0 && noOfSub != 0) {
-                            CourseMgrIO.printSubComponentWeightageError();
+                            courseMgrIO.printSubComponentWeightageError();
                             subComponents.clear();
                             flagSub = true;
                         } else {
@@ -252,7 +202,7 @@ public class CourseMgr {
 
                 if (totalWeightage != 0) {
                     // weightage assign is not tallied
-                    CourseMgrIO.printWeightageError();
+                    courseMgrIO.printWeightageError();
                     mainComponents.clear();
                 } else {
                     break;
@@ -263,10 +213,10 @@ public class CourseMgr {
             currentCourse.setMainComponents(mainComponents);
 
         } else {
-            System.out.println("Course Assessment has been settled already!");
+            courseMgrIO.printCourseworkWeightageEnteredError();
         }
 
-        CourseMgrIO.printComponentsForCourse(currentCourse);
+        courseMgrIO.printComponentsForCourse(currentCourse);
 
         // Update course into course.csv
     }
@@ -275,38 +225,20 @@ public class CourseMgr {
      * Prints the list of courses
      */
     public void printCourses() {
-        System.out.println("Course List: ");
-        System.out.println("| Course ID | Course Name | Professor in Charge |");
-        for (Course course : CourseMgr.courses) {
-            System.out.println("| " + course.getCourseID() + " | " + course.getCourseName() + " | " + course.getProfInCharge().getProfName() + " |");
-        }
-        System.out.println();
+        courseMgrIO.printCourses(CourseMgr.courses);
     }
-
 
     /**
      * Displays a list of IDs of all the courses.
      */
-    public void printAllCourses() {
-        CourseMgr.courses.stream().map(c -> c.getCourseID()).forEach(System.out::println);
+    public void printAllCourseIds() {
+        courseMgrIO.printAllCourseIds(CourseMgr.courses);
     }
 
-    // TODO: fix name of this method
-
-    /**
-     * Displays a list of all the courses in the inputted department.
-     *
-     * @param department The inputted department.
-     * @return a list of all the department values.
-     */
-    public List<String> printCourseInDepartment(String department) {
+    public List<String> getCourseIdsInDepartment(String department) {
         List<Course> validCourses = CourseMgr.courses.stream().filter(c -> department.equals(c.getCourseDepartment())).collect(Collectors.toList());
-        List<String> validCourseString = validCourses.stream().map(c -> c.getCourseID()).collect(Collectors.toList());
-        validCourseString.forEach(System.out::println);
-        if (validCourseString.size() == 0) {
-            System.out.println("None.");
-        }
-        return validCourseString;
+        List<String> courseIdsForDepartment = validCourses.stream().map(c -> c.getCourseID()).collect(Collectors.toList());
+        return courseIdsForDepartment;
     }
 
 }
