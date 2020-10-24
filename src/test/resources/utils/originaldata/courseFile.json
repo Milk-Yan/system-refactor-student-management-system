@@ -8,19 +8,19 @@
   },
   "courseDepartment" : "ECSE",
   "courseType" : "CORE",
-  "vacancies" : 16,
+  "vacancies" : 17,
   "totalSeats" : 20,
   "lecWeeklyHour" : 3,
   "lectureGroups" : [ {
     "groupName" : "Lec1",
-    "availableVacancies" : 16,
+    "availableVacancies" : 17,
     "groupType" : "LectureGroup",
     "totalSeats" : 20
   } ],
   "tutWeeklyHour" : 2,
   "tutorialGroups" : [ {
     "groupName" : "Tut1",
-    "availableVacancies" : 17,
+    "availableVacancies" : 18,
     "groupType" : "TutorialGroup",
     "totalSeats" : 20
   }, {
@@ -46,7 +46,6 @@
       "componentWeight" : 30
     } ]
   } ],
-  "au" : 3,
   "AU" : 3
 }, {
   "courseID" : "SE2004",
