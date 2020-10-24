@@ -12,11 +12,6 @@ public class Main {
      * @param args The command line parameters.
      */
     public static void main(String[] args) {
-        StudentMgr.getInstance();
-        CourseMgr.getInstance();
-        CourseRegistrationMgr.getInstance();
-        MarkMgr.getInstance();
-        ProfessorMgr.getInstance();
         MainMenuIO.printWelcome();
         MainMenuIO.startMainMenu();
     }
