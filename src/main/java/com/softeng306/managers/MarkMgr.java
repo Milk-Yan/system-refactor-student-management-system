@@ -25,7 +25,7 @@ public class MarkMgr {
     /**
      * A list of all the student mark records in this school.
      */
-    public static List<Mark> marks = new ArrayList<>(0);
+    private List<Mark> marks;
 
     private static MarkMgr singleInstance = null;
 
@@ -91,7 +91,7 @@ public class MarkMgr {
         String studentID = StudentValidator.checkStudentExists().getStudentID();
         String courseID = CourseValidator.checkCourseExists().getCourseID();
 
-        for (Mark mark : MarkMgr.marks) {
+        for (Mark mark : marks) {
             if (mark.getCourse().getCourseID().equals(courseID) && mark.getStudent().getStudentID().equals(studentID)) {
                 //put the set mark function here
                 if (!isExam) {
@@ -208,4 +208,13 @@ public class MarkMgr {
         }
         return averageMark;
     }
+
+    /**
+     * Return the list of all marks in the system.
+     * @return An list of all marks.
+     */
+    public List<Mark> getMarks() {
+        return marks;
+    }
+
 }

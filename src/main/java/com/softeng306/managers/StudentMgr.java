@@ -23,7 +23,7 @@ public class StudentMgr {
     /**
      * A list of all the students in this school.
      */
-    public static List<Student> students = new ArrayList<>(0);
+    private List<Student> students;
 
     private static StudentMgr singleInstance = null;
     
@@ -78,7 +78,7 @@ public class StudentMgr {
         currentStudent.setStudentYear(StudentMgrIO.getStudentYear());   //student year
 
         FILEMgr.writeStudentsIntoFile(currentStudent);
-        StudentMgr.students.add(currentStudent);
+        students.add(currentStudent);
 
         StudentMgrIO.printStudentID(currentStudent.getStudentName(), currentStudent.getStudentID());
     }
@@ -151,13 +151,18 @@ public class StudentMgr {
             System.out.println("Advice: Study hard");
         }
         System.out.println("------------------ End of Transcript -------------------");
+     * Return the list of all students in the system.
+     * @return An list of all students.
+     */
+    public List<Student> getStudents() {
+        return students;
     }
 
     /**
      * Displays a list of IDs of all the students.
      */
     public void printAllStudentIds() {
-        for (Student s : StudentMgr.students) {
+        for (Student s : students) {
             System.out.println(s.getStudentID());
         }
     }
