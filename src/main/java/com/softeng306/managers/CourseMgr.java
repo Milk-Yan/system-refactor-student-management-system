@@ -10,7 +10,6 @@ import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.CourseMgrIO;
-import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.validation.*;
 
@@ -351,10 +350,10 @@ public class CourseMgr {
     }
 
 
-     /* Return the list of all courses in the system.
+    /* Return the list of all courses in the system.
      * @return An list of all courses.
      */
-    public List<Course> getCourses(){
+    public List<Course> getCourses() {
         return courses;
     }
 

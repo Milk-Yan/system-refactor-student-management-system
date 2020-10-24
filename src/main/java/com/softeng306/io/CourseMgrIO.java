@@ -133,10 +133,13 @@ public class CourseMgrIO {
             if (scanner.hasNextInt()) {
                 noOfGroups = scanner.nextInt();
                 scanner.nextLine();
-
-                if (noGroupInLimit(type, noOfGroups, compareTo, totalSeats)) {
-                    break;
+                boolean checkLimit;
+                if (type == GroupType.LectureGroup) {
+                    checkLimit = noOfGroups > 0 && noOfGroups <= totalSeats;
+                } else {
+                    checkLimit = noOfGroups >= 0 && compareTo <= totalSeats;
                 }
+                if (checkLimit) break;
                 System.out.println("Invalid input.");
                 printInvalidNoGroup(type);
                 System.out.println("Please re-enter");
@@ -155,14 +158,6 @@ public class CourseMgrIO {
             System.out.println("Number of lecture group must be positive but less than total seats in this course.");
         } else if (type == GroupType.TutorialGroup) {
             System.out.println("Number of tutorial group must be non-negative.");
-        }
-    }
-
-    private boolean noGroupInLimit(GroupType type, int noOfGroups, int compareTo, int totalSeats) {
-        if (type == GroupType.LectureGroup) {
-            return noOfGroups > 0 && compareTo <= totalSeats;
-        } else {
-            return noOfGroups >= 0 && compareTo <= totalSeats;
         }
     }
 
