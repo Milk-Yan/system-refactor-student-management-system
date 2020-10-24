@@ -1,4 +1,4 @@
-package com.softeng306.factories.interfaces;
+package com.softeng306.builders.interfaces;
 
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.group.Group;
