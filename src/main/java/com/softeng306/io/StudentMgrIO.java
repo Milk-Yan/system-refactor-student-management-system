@@ -130,7 +130,7 @@ public class StudentMgrIO {
         System.out.println("Student named: " + name + " is added, with ID: " + ID);
         System.out.println("Student List: ");
         System.out.println("| Student ID | Student Name | Student School | Gender | Year | GPA |");
-        for (Student student : StudentMgr.students) {
+        for (Student student : StudentMgr.getInstance().getStudents()) {
             String GPA = "not available";
             if (Double.compare(student.getGPA(), 0.0) != 0) {
                 GPA = String.valueOf(student.getGPA());
