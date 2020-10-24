@@ -180,37 +180,6 @@ public class MarkMgr {
     }
 
     /**
-     * Computes the sum of marks for a particular component of a particular course
-     *
-     * @param thisCourseMark    the list of mark records belong to a particular course
-     * @param thisComponentName the component name interested.
-     * @return the sum of component marks
-     */
-    public double computeMark(List<Mark> thisCourseMark, String thisComponentName) {
-        double averageMark = 0;
-        for (Mark mark : thisCourseMark) {
-            List<MainComponentMark> thisComponentMarks = mark.getCourseWorkMarks();
-
-            for (MainComponentMark mainComponentMark : thisComponentMarks) {
-                MainComponent mainComponent = mainComponentMark.getMainComponent();
-                if (mainComponent.getComponentName().equals((thisComponentName))) {
-                    averageMark += mainComponentMark.getMark();
-                    break;
-                }
-
-                for (SubComponentMark subComponentMark: mainComponentMark.getSubComponentMarks()) {
-                    SubComponent subComponent = subComponentMark.getSubComponent();
-                    if (subComponent.getComponentName().equals((thisComponentName))) {
-                        averageMark += subComponentMark.getMark();
-                        break;
-                    }
-                }
-            }
-        }
-        return averageMark;
-    }
-
-    /**
      * Return the list of all marks in the system.
      * @return An list of all marks.
      */
