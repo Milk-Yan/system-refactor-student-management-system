@@ -4,15 +4,27 @@ package com.softeng306.managers;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.StudentMgrIO;
+import com.softeng306.validation.StudentValidator;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Manages the student related operations.
  * Contains addStudent, generateStudentId
  */
 public class StudentMgr {
+    private Scanner scanner = new Scanner(System.in);
+    private PrintStream originalStream = System.out;
+    private PrintStream dummyStream = new PrintStream(new OutputStream() {
+        public void write(int b) {
+            // NO-OP
+        }
+    });
+
     /**
      * A list of all the students in this school.
      */
@@ -117,5 +129,34 @@ public class StudentMgr {
             }
         } while (true);
         return generateStudentID;
+    }
+
+    /**
+     * Prompts the user to input an existing student.
+     *
+     * @return the inputted student.
+     */
+    public Student readStudentFromUser() {
+        String studentID;
+        Student currentStudent = null;
+        while (true) {
+            System.out.println("Enter Student ID (-h to print all the student ID):");
+            studentID = scanner.nextLine();
+            while ("-h".equals(studentID)) {
+                StudentMgr.getInstance().printAllStudentIds();
+                studentID = scanner.nextLine();
+            }
+
+            System.setOut(dummyStream);
+            currentStudent = StudentValidator.checkStudentExists(studentID);
+            System.setOut(originalStream);
+            if (currentStudent == null) {
+                System.out.println("Invalid Student ID. Please re-enter.");
+            } else {
+                break;
+            }
+
+        }
+        return currentStudent;
     }
 }

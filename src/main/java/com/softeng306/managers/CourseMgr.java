@@ -460,7 +460,7 @@ public class CourseMgr {
         Course currentCourse;
 
         do {
-            currentCourse = CourseValidator.checkCourseExists();
+            currentCourse = readCourseFromUser();
             if (currentCourse != null) {
                 System.out.println(currentCourse.getCourseID() + " " + currentCourse.getCourseName() + " (Available/Total): " + currentCourse.getVacancies() + "/" + currentCourse.getTotalSeats());
                 System.out.println("--------------------------------------------");
@@ -503,7 +503,7 @@ public class CourseMgr {
 
         System.out.println("enterCourseWorkComponentWeightage is called");
         if (currentCourse == null) {
-            currentCourse = CourseValidator.checkCourseExists();
+            currentCourse = readCourseFromUser();
         }
 
 
@@ -752,4 +752,61 @@ public class CourseMgr {
         return validCourseString;
     }
 
+    /**
+     * Prompts the user to input an existing course.
+     *
+     * @return the inputted course.
+     */
+    public Course readCourseFromUser() {
+        String courseID;
+        Course currentCourse;
+        while (true) {
+            System.out.println("Enter course ID (-h to print all the course ID):");
+            courseID = scanner.nextLine();
+            while ("-h".equals(courseID)) {
+                CourseMgr.getInstance().printAllCourses();
+                courseID = scanner.nextLine();
+            }
+
+            System.setOut(dummyStream);
+            currentCourse = CourseValidator.checkCourseExists(courseID);
+            if (currentCourse == null) {
+                System.setOut(originalStream);
+                System.out.println("Invalid Course ID. Please re-enter.");
+            } else {
+                break;
+            }
+        }
+        System.setOut(originalStream);
+        return currentCourse;
+    }
+
+    /**
+     * Prompts the user to input an existing department.
+     *
+     * @return the inputted department.
+     */
+    public String readDepartmentFromUser() {
+        String courseDepartment;
+        while (true) {
+            System.out.println("Which department's courses are you interested? (-h to print all the departments)");
+            courseDepartment = scanner.nextLine();
+            while ("-h".equals(courseDepartment)) {
+                Department.printAllDepartment();
+                courseDepartment = scanner.nextLine();
+            }
+            if (DepartmentValidator.checkDepartmentValidation(courseDepartment)) {
+                List<String> validCourseString;
+                System.setOut(dummyStream);
+                validCourseString = CourseMgr.getInstance().printCourseInDepartment(courseDepartment);
+                System.setOut(originalStream);
+                if (validCourseString.size() == 0) {
+                    System.out.println("Invalid choice of department.");
+                } else {
+                    break;
+                }
+            }
+        }
+        return courseDepartment;
+    }
 }

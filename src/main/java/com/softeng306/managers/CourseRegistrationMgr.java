@@ -53,12 +53,12 @@ public class CourseRegistrationMgr {
         String selectedTutorialGroupName = null;
         String selectedLabGroupName = null;
 
-        Student currentStudent = StudentValidator.checkStudentExists();
+        Student currentStudent = StudentMgr.getInstance().readStudentFromUser();
         String studentID = currentStudent.getStudentID();
 
-        DepartmentValidator.checkCourseDepartmentExists();
+        CourseMgr.getInstance().readDepartmentFromUser();
 
-        Course currentCourse = CourseValidator.checkCourseExists();
+        Course currentCourse = CourseMgr.getInstance().readCourseFromUser();
         String courseID = currentCourse.getCourseID();
 
 
@@ -121,7 +121,7 @@ public class CourseRegistrationMgr {
      */
     public void printStudents() {
         System.out.println("printStudent is called");
-        Course currentCourse = CourseValidator.checkCourseExists();
+        Course currentCourse = CourseMgr.getInstance().readCourseFromUser();
 
         System.out.println("Print student by: ");
         System.out.println("(1) Lecture group");

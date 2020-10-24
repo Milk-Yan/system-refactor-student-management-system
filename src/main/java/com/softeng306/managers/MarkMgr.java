@@ -11,8 +11,6 @@ import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.mark.SubComponentMark;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
-import com.softeng306.validation.CourseValidator;
-import com.softeng306.validation.StudentValidator;
 
 import java.util.*;
 
@@ -88,8 +86,8 @@ public class MarkMgr {
     public void setCourseWorkMark(boolean isExam) {
         System.out.println("enterCourseWorkMark is called");
 
-        String studentID = StudentValidator.checkStudentExists().getStudentID();
-        String courseID = CourseValidator.checkCourseExists().getCourseID();
+        String studentID = StudentMgr.getInstance().readStudentFromUser().getStudentID();
+        String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
 
         for (Mark mark : MarkMgr.marks) {
             if (mark.getCourse().getCourseID().equals(courseID) && mark.getStudent().getStudentID().equals(studentID)) {
@@ -184,7 +182,7 @@ public class MarkMgr {
     public void printCourseStatistics() {
         System.out.println("printCourseStatistics is called");
 
-        Course currentCourse = CourseValidator.checkCourseExists();
+        Course currentCourse = CourseMgr.getInstance().readCourseFromUser();
         String courseID = currentCourse.getCourseID();
 
         List<Mark> thisCourseMark = new ArrayList<>(0);
@@ -262,7 +260,7 @@ public class MarkMgr {
      * Prints transcript (Results of course taken) for a particular student
      */
     public void printStudentTranscript() {
-        String studentID = StudentValidator.checkStudentExists().getStudentID();
+        String studentID = StudentMgr.getInstance().readStudentFromUser().getStudentID();
 
         double studentGPA = 0d;
         int thisStudentAU = 0;

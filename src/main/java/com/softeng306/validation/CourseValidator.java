@@ -49,35 +49,6 @@ public class CourseValidator {
         return false;
     }
 
-    /**
-     * Prompts the user to input an existing course.
-     *
-     * @return the inputted course.
-     */
-    public static Course checkCourseExists() {
-        String courseID;
-        Course currentCourse;
-        while (true) {
-            System.out.println("Enter course ID (-h to print all the course ID):");
-            courseID = scanner.nextLine();
-            while ("-h".equals(courseID)) {
-                CourseMgr.getInstance().printAllCourses();
-                courseID = scanner.nextLine();
-            }
-
-            System.setOut(dummyStream);
-            currentCourse = checkCourseExists(courseID);
-            if (currentCourse == null) {
-                System.setOut(originalStream);
-                System.out.println("Invalid Course ID. Please re-enter.");
-            } else {
-                break;
-            }
-        }
-        System.setOut(originalStream);
-        return currentCourse;
-    }
-
 
     /**
      * Checks whether this course ID is used by other courses.
@@ -93,6 +64,5 @@ public class CourseValidator {
         System.out.println("Sorry. The course ID is used. This course already exists.");
         return anyCourse.get(0);
     }
-
 
 }

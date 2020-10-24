@@ -65,32 +65,4 @@ public class StudentValidator {
         return anyStudent.get(0);
     }
 
-    /**
-     * Prompts the user to input an existing student.
-     *
-     * @return the inputted student.
-     */
-    public static Student checkStudentExists() {
-        String studentID;
-        Student currentStudent = null;
-        while (true) {
-            System.out.println("Enter Student ID (-h to print all the student ID):");
-            studentID = scanner.nextLine();
-            while ("-h".equals(studentID)) {
-                StudentMgr.getInstance().printAllStudentIds();
-                studentID = scanner.nextLine();
-            }
-
-            System.setOut(dummyStream);
-            currentStudent = checkStudentExists(studentID);
-            System.setOut(originalStream);
-            if (currentStudent == null) {
-                System.out.println("Invalid Student ID. Please re-enter.");
-            } else {
-                break;
-            }
-
-        }
-        return currentStudent;
-    }
 }
