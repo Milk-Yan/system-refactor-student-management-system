@@ -36,7 +36,8 @@ public class CourseMgr {
     /**
      * Override default constructor to implement singleton pattern
      */
-    private CourseMgr() {
+    private CourseMgr(List<Course> courses) {
+        this.courses = courses;
     }
 
     /**
@@ -46,7 +47,7 @@ public class CourseMgr {
      */
     public static CourseMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new CourseMgr();
+            singleInstance = new CourseMgr(FILEMgr.loadCourses());
         }
 
         return singleInstance;

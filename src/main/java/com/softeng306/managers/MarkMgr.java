@@ -31,7 +31,8 @@ public class MarkMgr {
     /**
      * Override default constructor to implement singleton pattern
      */
-    private MarkMgr() {
+    private MarkMgr(List<Mark> marks) {
+        this.marks = marks;
     }
 
     /**
@@ -41,7 +42,7 @@ public class MarkMgr {
      */
     public static MarkMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new MarkMgr();
+            singleInstance = new MarkMgr(FILEMgr.loadStudentMarks());
         }
 
         return singleInstance;
