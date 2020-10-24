@@ -7,6 +7,7 @@ import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
+import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.mark.SubComponentMark;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
@@ -28,12 +29,17 @@ public class MarkMgr {
 
     private static MarkMgr singleInstance = null;
 
+    private MarkCalculator markCalculator;
+
     /**
      * Override default constructor to implement singleton pattern
      */
     private MarkMgr(List<Mark> marks) {
         this.marks = marks;
+        markCalculator = new MarkCalculator();
     }
+
+
 
     /**
      * Return the MarkMgr singleton, if not initialised already, create an instance.
@@ -173,37 +179,6 @@ public class MarkMgr {
     }
 
     /**
-     * Computes the sum of marks for a particular component of a particular course
-     *
-     * @param thisCourseMark    the list of mark records belong to a particular course
-     * @param thisComponentName the component name interested.
-     * @return the sum of component marks
-     */
-    public double computeMark(List<Mark> thisCourseMark, String thisComponentName) {
-        double averageMark = 0;
-        for (Mark mark : thisCourseMark) {
-            List<MainComponentMark> thisComponentMarks = mark.getCourseWorkMarks();
-
-            for (MainComponentMark mainComponentMark : thisComponentMarks) {
-                MainComponent mainComponent = mainComponentMark.getMainComponent();
-                if (mainComponent.getComponentName().equals((thisComponentName))) {
-                    averageMark += mainComponentMark.getMark();
-                    break;
-                }
-
-                for (SubComponentMark subComponentMark: mainComponentMark.getSubComponentMarks()) {
-                    SubComponent subComponent = subComponentMark.getSubComponent();
-                    if (subComponent.getComponentName().equals((thisComponentName))) {
-                        averageMark += subComponentMark.getMark();
-                        break;
-                    }
-                }
-            }
-        }
-        return averageMark;
-    }
-
-    /**
      * Prints the course statics including enrollment rate, average result for every assessment component and the average overall performance of this course.
      */
     public void printCourseStatistics() {
@@ -232,7 +207,7 @@ public class MarkMgr {
 
         int examWeight = 0;
         boolean hasExam = false;
-        double averageMark = 0;
+
         // Find marks for every assessment components
         for (CourseworkComponent courseworkComponent : currentCourse.getMainComponents()) {
             String thisComponentName = courseworkComponent.getComponentName();
@@ -242,29 +217,21 @@ public class MarkMgr {
 //                Leave the exam report to the last
                 hasExam = true;
             } else {
-                averageMark = 0;
                 System.out.print("Main Component: " + courseworkComponent.getComponentName());
                 System.out.print("\tWeight: " + courseworkComponent.getComponentWeight() + "%");
 
-                averageMark += computeMark(thisCourseMark, thisComponentName);
-
-                averageMark = averageMark / thisCourseMark.size();
-                System.out.println("\t Average: " + averageMark);
+                System.out.println("\t Average: " + markCalculator.computeComponentMark(thisCourseMark, thisComponentName));
 
                 List<SubComponent> thisSubComponents = ((MainComponent) courseworkComponent).getSubComponents();
                 if (thisSubComponents.size() == 0) {
                     continue;
                 }
                 for (SubComponent subComponent : thisSubComponents) {
-                    averageMark = 0;
                     System.out.print("Sub Component: " + subComponent.getComponentName());
                     System.out.print("\tWeight: " + subComponent.getComponentWeight() + "% (in main component)");
                     String thisSubComponentName = subComponent.getComponentName();
 
-                    averageMark += computeMark(thisCourseMark, thisSubComponentName);
-
-                    averageMark = averageMark / thisCourseMark.size();
-                    System.out.println("\t Average: " + averageMark);
+                    System.out.println("\t Average: " + markCalculator.computeComponentMark(thisCourseMark, thisSubComponentName));
                 }
                 System.out.println();
             }
@@ -272,37 +239,16 @@ public class MarkMgr {
         }
 
         if (hasExam) {
-            averageMark = 0;
             System.out.print("Final Exam");
             System.out.print("\tWeight: " + examWeight + "%");
-            for (Mark mark : thisCourseMark) {
-                List<MainComponentMark> courseMarks = mark.getCourseWorkMarks();
-
-                for (MainComponentMark mainComponentMark: courseMarks) {
-                    MainComponent mainComponent = mainComponentMark.getMainComponent();
-                    double value = mainComponentMark.getMark();
-                    if (mainComponent.getComponentName().equals("Exam")) {
-                        averageMark += value;
-                        break;
-                    }
-                }
-            }
-            averageMark = averageMark / thisCourseMark.size();
-            System.out.println("\t Average: " + averageMark);
+            System.out.println("\t Average: " + markCalculator.computeExamMark(thisCourseMark));
         } else {
             System.out.println("This course does not have final exam.");
         }
 
-
         System.out.println();
-
         System.out.print("Overall Performance: ");
-        averageMark = 0;
-        for (Mark mark : thisCourseMark) {
-            averageMark += mark.getTotalMark();
-        }
-        averageMark = averageMark / thisCourseMark.size();
-        System.out.printf("%4.2f \n", averageMark);
+        System.out.printf("%4.2f \n", markCalculator.computerOverallMark(thisCourseMark));
 
         System.out.println();
         System.out.println("***********************************************");
@@ -320,6 +266,7 @@ public class MarkMgr {
 
         double studentGPA = 0d;
         int thisStudentAU = 0;
+
         List<Mark> thisStudentMark = new ArrayList<>(0);
         for (Mark mark : MarkMgr.marks) {
             if (mark.getStudent().getStudentID().equals(studentID)) {
@@ -362,7 +309,7 @@ public class MarkMgr {
             }
 
             System.out.println("Course Total: " + mark.getTotalMark());
-            studentGPA += gpaCalcualtor(mark.getTotalMark()) * mark.getCourse().getAU();
+            studentGPA += markCalculator.gpaCalculator(mark) * mark.getCourse().getAU();
             System.out.println();
         }
         studentGPA /= thisStudentAU;
@@ -381,44 +328,4 @@ public class MarkMgr {
         System.out.println("------------------ End of Transcript -------------------");
     }
 
-    /**
-     * Computes the gpa gained for this course from the result of this course.
-     *
-     * @param result result of this course
-     * @return the grade (in A, B ... )
-     */
-    public double gpaCalcualtor(double result) {
-        if (result > 85) {
-            // A+, A
-            return 5d;
-        } else if (result > 80) {
-            // A-
-            return 4.5;
-        } else if (result > 75) {
-            // B+
-            return 4d;
-        } else if (result > 70) {
-            // B
-            return 3.5;
-        } else if (result > 65) {
-            // B-
-            return 3d;
-        } else if (result > 60) {
-            // C+
-            return 2.5d;
-        } else if (result > 55) {
-            // C
-            return 2d;
-        } else if (result > 50) {
-            // D+
-            return 1.5d;
-        } else if (result > 45) {
-            // D
-            return 1d;
-        } else {
-            // F
-            return 0d;
-        }
-
-    }
 }
