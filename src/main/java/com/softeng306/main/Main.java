@@ -2,12 +2,8 @@ package com.softeng306.main;
 
 import com.softeng306.io.MainMenuIO;
 import com.softeng306.managers.*;
-import com.softeng306.io.FILEMgr;
-
-import java.util.Scanner;
 
 public class Main {
-    public static Scanner scanner = new Scanner(System.in);
 
     /**
      * The main function of the system.
