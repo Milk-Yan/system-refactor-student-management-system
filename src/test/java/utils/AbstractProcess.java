@@ -110,8 +110,12 @@ public abstract class AbstractProcess {
         while (stdout.available() != 0) {
             char c = (char) stdout.read();
             // There is a problem reading \u2013 for inputstream from processbuilder, so need to replace with '?'
-            if(c=='\u0096') {
+            if(c=='\u0096' || c=='\u00E2') {
                 c='?';
+            }
+            if(c=='\u0080' || c=='\u0093') {
+                // do nothing
+                continue;
             }
             outputBuilder.append(c);
         }
