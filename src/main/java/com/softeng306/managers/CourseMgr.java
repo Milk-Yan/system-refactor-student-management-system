@@ -157,14 +157,12 @@ public class CourseMgr {
 
             int numberOfMain = courseMgrIO.readNoOfMainComponents();
 
-            String mainComponentName;
-            String subComponentName;
             while (true) {
                 int totalWeightage = 100 - examWeight;
                 for (int i = 0; i < numberOfMain; i++) {
                     List<SubComponent> subComponents = new ArrayList<>(0);
 
-                    mainComponentName = courseMgrIO.readMainComponentName(totalWeightage, i, mainComponents);
+                    String mainComponentName = courseMgrIO.readMainComponentName(totalWeightage, i, mainComponents);
 
                     int weight = courseMgrIO.readMainComponentWeightage(i, totalWeightage);
                     totalWeightage -= weight;
@@ -177,7 +175,7 @@ public class CourseMgr {
                         int sub_totWeight = 100;
                         for (int j = 0; j < noOfSub; j++) {
 
-                            subComponentName = courseMgrIO.readSubComponentName(subComponents, sub_totWeight, j);
+                            String subComponentName = courseMgrIO.readSubComponentName(subComponents, sub_totWeight, j);
 
                             int subWeight = courseMgrIO.readSubWeight(j, sub_totWeight);
 
