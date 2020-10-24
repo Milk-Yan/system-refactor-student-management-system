@@ -9,6 +9,13 @@ package com.softeng306.domain.course.group;
 public class LectureGroup extends Group{
 
     /**
+     * Default constructor. Required for Jackson serialization.
+     */
+    public LectureGroup() {
+
+    }
+
+    /**
      * Creates a lecture group with the group name, the current available vacancy of this course, and the total seats for this group.
      * This function makes use of its super class.
      * @param groupName This lecture group's name.

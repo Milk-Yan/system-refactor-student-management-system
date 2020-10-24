@@ -6,6 +6,14 @@ package com.softeng306.domain.course.component;
  * This class extends {@code CourseWorkComponent}.
  */
 public class SubComponent extends CourseworkComponent {
+
+    /**
+     * Default constructor. Required for Jackson serialization.
+     */
+    public SubComponent() {
+
+    }
+
     /**
      * Creates a sub-component with this sub-component's name and this sub-component's weightage.
      * This function makes use of the interface {@code CourseWorkComponent}.

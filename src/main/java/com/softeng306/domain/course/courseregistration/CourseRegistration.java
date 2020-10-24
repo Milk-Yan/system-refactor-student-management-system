@@ -13,6 +13,13 @@ public class CourseRegistration {
     private String tutorialGroup;
     private String labGroup;
 
+    /**
+     * Default constructor. Required for Jackson serialization.
+     */
+    public CourseRegistration() {
+
+    }
+
     public CourseRegistration(Student student, Course course, String lectureGroup, String tutorialGroup, String labGroup) {
         this.student = student;
         this.course = course;
@@ -44,6 +51,12 @@ public class CourseRegistration {
     public static Comparator<CourseRegistration> LecComparator = new Comparator<CourseRegistration>() {
         @Override
         public int compare(CourseRegistration o1, CourseRegistration o2) {
+            // in the case where there are no lectures, we don't care about
+            // the ordering.
+            if (o1.getLectureGroup() == null || o2.getLectureGroup() == null) {
+                return 0;
+            }
+
             String group1 = o1.getLectureGroup().toUpperCase();
             String group2 = o2.getLectureGroup().toUpperCase();
 
@@ -55,6 +68,12 @@ public class CourseRegistration {
     public static Comparator<CourseRegistration> TutComparator = new Comparator<CourseRegistration>() {
         @Override
         public int compare(CourseRegistration s1, CourseRegistration s2) {
+            // in the case where there are no tutorials, we don't care about
+            // the ordering.
+            if (s1.getTutorialGroup() == null || s2.getTutorialGroup() == null) {
+                return 0;
+            }
+
             String group1 = s1.getTutorialGroup().toUpperCase();
             String group2 = s2.getTutorialGroup().toUpperCase();
 
@@ -67,6 +86,12 @@ public class CourseRegistration {
 
         @Override
         public int compare(CourseRegistration o1, CourseRegistration o2) {
+            // in the case where there are no labs, we don't care about
+            // the ordering.
+            if (o1.getLabGroup() == null || o2.getLabGroup() == null) {
+                return 0;
+            }
+
             String group1 = o1.getLabGroup().toUpperCase();
             String group2 = o2.getLabGroup().toUpperCase();
 

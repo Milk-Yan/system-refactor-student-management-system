@@ -1,5 +1,6 @@
 package com.softeng306.domain.course;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.softeng306.domain.course.group.LabGroup;
 import com.softeng306.domain.course.group.LectureGroup;
 import com.softeng306.domain.course.component.MainComponent;
@@ -24,6 +25,7 @@ public class Course {
     /** The AU of this course.
      *
      */
+    @JsonProperty("AU")
     private int AU;
 
     /**
@@ -88,6 +90,13 @@ public class Course {
      */
     private List<MainComponent> mainComponents = new ArrayList<>(0);
 
+
+    /**
+     * Default constructor. Required for Jackson serialization.
+     */
+    public Course() {
+
+    }
 
     /**
      * Creates the course with course ID, course name, professor in charge, current vacancies, total seats lectures groups, AU, course department, course type and weekly lecture hour
@@ -318,4 +327,9 @@ public class Course {
         this.labWeeklyHour = labWeeklyHour;
     }
 
+    /**
+     * Sets the academic unit for the course.
+     * @param AU Academic unit for course.
+     */
+    public void setAU(int AU) { this.AU = AU; }
 }
