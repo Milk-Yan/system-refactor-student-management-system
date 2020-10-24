@@ -8,8 +8,8 @@ import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.builders.concrete.CourseBuilder;
-import com.softeng306.builders.interfaces.ICourseBuilder;
+import com.softeng306.domain.course.CourseBuilder;
+import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.validation.*;
 

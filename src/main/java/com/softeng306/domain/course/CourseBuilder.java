@@ -1,9 +1,7 @@
-package com.softeng306.builders.concrete;
+package com.softeng306.domain.course;
 
-import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.builders.interfaces.ICourseBuilder;
 
 import java.util.List;
 
