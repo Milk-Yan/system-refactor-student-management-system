@@ -199,7 +199,7 @@ public class CourseMgrIO {
                     groupNameExists = true;
                     continue;
                 }
-                if (lectureGroups.size() == 0) {
+                if (lectureGroups.isEmpty()) {
                     break;
                 }
                 for (Group lectureGroup : lectureGroups) {
@@ -261,7 +261,7 @@ public class CourseMgrIO {
                     groupNameExists = true;
                     continue;
                 }
-                if (tutorialGroups.size() == 0) {
+                if (tutorialGroups.isEmpty()) {
                     break;
                 }
                 for (Group tutorialGroup : tutorialGroups) {
@@ -312,7 +312,7 @@ public class CourseMgrIO {
                     groupNameExists = true;
                     continue;
                 }
-                if (labGroups.size() == 0) {
+                if (labGroups.isEmpty()) {
                     break;
                 }
                 for (Group labGroup : labGroups) {
@@ -346,7 +346,6 @@ public class CourseMgrIO {
 
 
     public Professor readProfessor(String courseDepartment) {
-        // TODO: Fix name of method
         List<String> professorsInDepartment = ProfessorMgr.getInstance().printProfInDepartment(courseDepartment, false);
         String profID;
         Professor profInCharge;
@@ -621,7 +620,7 @@ public class CourseMgrIO {
                     System.out.println("Enter sub component " + (j + 1) + " name: ");
                     subComponentName = scanner.nextLine();
 
-                    if (subComponents.size() == 0) {
+                    if (subComponents.isEmpty()) {
                         break;
                     }
                     if (subComponentName.equals("Exam")) {
@@ -667,7 +666,7 @@ public class CourseMgrIO {
             System.out.println("Enter sub component " + (j + 1) + " name: ");
             subComponentName = scanner.nextLine();
 
-            if (subComponents.size() == 0) {
+            if (subComponents.isEmpty()) {
                 break;
             }
             if (subComponentName.equals("Exam")) {
