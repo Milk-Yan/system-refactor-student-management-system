@@ -16,13 +16,11 @@ public class Main {
      * @param args The command line parameters.
      */
     public static void main(String[] args) {
-
-        StudentMgr.students = FILEMgr.loadStudents();
-        CourseMgr.courses = FILEMgr.loadCourses();
-        CourseRegistrationMgr.courseRegistrations = FILEMgr.loadCourseRegistration();
-        MarkMgr.marks = FILEMgr.loadStudentMarks();
-        ProfessorMgr.professors = FILEMgr.loadProfessors();
-
+        StudentMgr.getInstance();
+        CourseMgr.getInstance();
+        CourseRegistrationMgr.getInstance();
+        MarkMgr.getInstance();
+        ProfessorMgr.getInstance();
         MainMenuIO.printWelcome();
         MainMenuIO.startMainMenu();
     }

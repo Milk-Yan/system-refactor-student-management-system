@@ -23,7 +23,8 @@ public class StudentMgr {
     /**
      * Override default constructor to implement singleton pattern
      */
-    private StudentMgr() {
+    private StudentMgr(List<Student> students) {
+        this.students = students;
     }
 
     /**
@@ -33,7 +34,7 @@ public class StudentMgr {
      */
     public static StudentMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new StudentMgr();
+            singleInstance = new StudentMgr(FILEMgr.loadStudents());
         }
 
         return singleInstance;
