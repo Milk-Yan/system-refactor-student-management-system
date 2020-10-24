@@ -99,7 +99,7 @@ public class MainMenuIO {
 
         System.out.println("Backing up data before exiting...");
         FILEMgr.backUpCourse(CourseMgr.getInstance().getCourses());
-        FILEMgr.backUpMarks(MarkMgr.marks);
+        FILEMgr.backUpMarks(MarkMgr.getInstance().getMarks());
         System.out.println("********* Bye! Thank you for using Main! *********");
         System.out.println();
         System.out.println("                 ######    #      #   #######                   ");
