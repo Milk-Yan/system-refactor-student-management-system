@@ -133,7 +133,11 @@ public class CourseMgrIO {
         int noOfGroups;
 
         while (true) {
-            System.out.println("Enter the number of " + type.toTypeString().toLowerCase() + " groups: ");
+            if (type == GroupType.TutorialGroup) {
+                System.out.println("Enter the number of " + type.toTypeString().toLowerCase() + " groups:");
+            } else {
+                System.out.println("Enter the number of " + type.toTypeString().toLowerCase() + " groups: ");
+            }
             if (scanner.hasNextInt()) {
                 noOfGroups = scanner.nextInt();
                 scanner.nextLine();
@@ -426,10 +430,16 @@ public class CourseMgrIO {
         System.out.println();
     }
 
-    private void printVacanciesForGroups(List<Group> groups, GroupType groupType) {
+    private void printVacanciesForGroups(List<Group> groups, GroupType type) {
         for (Group group : groups) {
-            System.out.format("%s group %s (Available/Total): %d/%d%n",
-                    groupType.toTypeString(), group.getGroupName(), group.getAvailableVacancies(), group.getTotalSeats());
+            if (type == GroupType.TutorialGroup) {
+                System.out.format("%s group %s (Available/Total):  %d/%d%n",
+                        type.toTypeString(), group.getGroupName(), group.getAvailableVacancies(), group.getTotalSeats());
+            } else {
+                System.out.format("%s group %s (Available/Total): %d/%d%n",
+                        type.toTypeString(), group.getGroupName(), group.getAvailableVacancies(), group.getTotalSeats());
+            }
+
         }
     }
 
