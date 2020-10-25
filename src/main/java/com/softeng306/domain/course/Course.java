@@ -2,8 +2,6 @@ package com.softeng306.domain.course;
 
 import com.softeng306.Enum.CourseType;
 import com.softeng306.Enum.Department;
-import com.softeng306.domain.course.group.LabGroup;
-import com.softeng306.domain.course.group.LectureGroup;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.group.Group;

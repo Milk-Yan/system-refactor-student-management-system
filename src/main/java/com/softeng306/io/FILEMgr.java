@@ -182,7 +182,7 @@ public class FILEMgr {
             fileWriter.append(COMMA_DELIMITER);
             fileWriter.append(professor.getProfName());
             fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(professor.getProfDepartment());
+            fileWriter.append(professor.getProfDepartment().toString());
             fileWriter.append(NEW_LINE_SEPARATOR);
         } catch (Exception e) {
             System.out.println("Error in adding a professor to the file.");

@@ -1,5 +1,7 @@
 package com.softeng306.managers;
 
+import com.softeng306.Enum.CourseType;
+import com.softeng306.Enum.Department;
 import com.softeng306.Enum.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
@@ -67,10 +69,10 @@ public class CourseMgr {
         int AU = courseMgrIO.readAU();
         builder.setAU(AU);
 
-        String courseDepartment = courseMgrIO.readCourseDepartment();
+        Department courseDepartment = Department.valueOf(courseMgrIO.readCourseDepartment());
         builder.setCourseDepartment(courseDepartment);
 
-        String courseType = courseMgrIO.readCourseType();
+        CourseType courseType = CourseType.valueOf(courseMgrIO.readCourseType());
         builder.setCourseType(courseType);
 
         // Lecture groups
@@ -100,7 +102,7 @@ public class CourseMgr {
         builder.setLabWeeklyHour(labWeeklyHour);
         builder.setLabGroups(labGroups);
 
-        Professor profInCharge = courseMgrIO.readProfessor(courseDepartment);
+        Professor profInCharge = courseMgrIO.readProfessor(courseDepartment.toString());
         builder.setProfInCharge(profInCharge);
 
         Course course = builder.build();
