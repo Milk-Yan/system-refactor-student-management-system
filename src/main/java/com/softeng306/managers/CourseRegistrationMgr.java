@@ -150,7 +150,7 @@ public class CourseRegistrationMgr {
                 sortByLectureGroup(stuArray);
                 if (stuArray.size() > 0) {
                     for (int i = 0; i < stuArray.size(); i++) {  // loop through all of CourseRegistration Obj
-                        if (newLecGroup == null || !newLecGroup.equals(stuArray.get(i).getLectureGroup())) {  // if new lecture group print out group name
+                        if (newLecGroup == null || !newLecGroup.getGroupName().equals(stuArray.get(i).getLectureGroup().getGroupName())) {  // if new lecture group print out group name
                             newLecGroup = stuArray.get(i).getLectureGroup();
                             System.out.println("Lecture group : " + newLecGroup.getGroupName());
                         }
@@ -168,9 +168,9 @@ public class CourseRegistrationMgr {
                     System.out.println("This course does not contain any tutorial group.");
                 } else if (stuArray.size() > 0) {
                     for (int i = 0; i < stuArray.size(); i++) {
-                        if (newTutGroup == null || !newTutGroup.equals(stuArray.get(i).getTutorialGroup())) {
+                        if (newTutGroup == null || !newTutGroup.getGroupName().equals(stuArray.get(i).getTutorialGroup().getGroupName())) {
                             newTutGroup = stuArray.get(i).getTutorialGroup();
-                            System.out.println("Tutorial group : " + newTutGroup);
+                            System.out.println("Tutorial group : " + newTutGroup.getGroupName());
                         }
                         System.out.print("Student Name: " + stuArray.get(i).getStudent().getStudentName());
                         System.out.println(" Student ID: " + stuArray.get(i).getStudent().getStudentID());
@@ -185,9 +185,9 @@ public class CourseRegistrationMgr {
                     System.out.println("This course does not contain any lab group.");
                 } else if (stuArray.size() > 0) {
                     for (int i = 0; i < stuArray.size(); i++) {
-                        if (newLabGroup == null || !newLabGroup.equals(stuArray.get(i).getLabGroup())) {
+                        if (newLabGroup == null || !newLabGroup.getGroupName().equals(stuArray.get(i).getLabGroup().getGroupName())) {
                             newLabGroup = stuArray.get(i).getLabGroup();
-                            System.out.println("Lab group : " + newLabGroup);
+                            System.out.println("Lab group : " + newLabGroup.getGroupName());
                         }
                         System.out.print("Student Name: " + stuArray.get(i).getStudent().getStudentName());
                         System.out.println(" Student ID: " + stuArray.get(i).getStudent().getStudentID());
