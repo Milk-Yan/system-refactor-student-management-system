@@ -219,7 +219,7 @@ public class CourseMgr {
                 } while (true);
                 seatsLeft -= lectureGroupCapacity;
                 if ((seatsLeft > 0 && i != (noOfLectureGroups - 1)) || (seatsLeft == 0 && i == noOfLectureGroups - 1)) {
-                    Group lectureGroup = new Group(lectureGroupName, lectureGroupCapacity, lectureGroupCapacity, GroupType.LectureGroup);
+                    Group lectureGroup = new Group(lectureGroupName, lectureGroupCapacity, lectureGroupCapacity, GroupType.LECTURE_GROUP);
 
                     lectureGroups.add(lectureGroup);
                     break;
@@ -300,7 +300,7 @@ public class CourseMgr {
                     scanner.nextLine();
                     totalTutorialSeats += tutorialGroupCapacity;
                     if ((i != noOfTutorialGroups - 1) || (totalTutorialSeats >= totalSeats)) {
-                        Group tutorialGroup = new Group(tutorialGroupName, tutorialGroupCapacity, tutorialGroupCapacity, GroupType.TutorialGroup);
+                        Group tutorialGroup = new Group(tutorialGroupName, tutorialGroupCapacity, tutorialGroupCapacity, GroupType.TUTORIAL_GROUP);
                         tutorialGroups.add(tutorialGroup);
                         break;
                     } else {
@@ -382,7 +382,7 @@ public class CourseMgr {
                 scanner.nextLine();
                 totalLabSeats += labGroupCapacity;
                 if ((i != noOfLabGroups - 1) || (totalLabSeats >= totalSeats)) {
-                    Group labGroup = new Group(labGroupName, labGroupCapacity, labGroupCapacity, GroupType.LabGroup);
+                    Group labGroup = new Group(labGroupName, labGroupCapacity, labGroupCapacity, GroupType.LAB_GROUP);
                     labGroups.add(labGroup);
                     break;
                 } else {
