@@ -2,11 +2,9 @@ package com.softeng306.managers;
 
 import com.softeng306.Enum.GroupType;
 import com.softeng306.domain.course.Course;
-import com.softeng306.domain.course.component.CourseworkComponent;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
-import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.professor.Professor;
@@ -16,7 +14,6 @@ import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class CourseMgr {
@@ -56,37 +53,27 @@ public class CourseMgr {
         // Read in parameters to create new Course
         String courseID = courseMgrIO.readCourseId();
         String courseName = courseMgrIO.readCourseName();
-
         int totalSeats = courseMgrIO.readTotalSeats();
-
         int AU = courseMgrIO.readAU();
-
         String courseDepartment = courseMgrIO.readCourseDepartment();
-
         String courseType = courseMgrIO.readCourseType();
-        // TODO: Refactor methods for lecturegroups, tutorialgroups, and labgroups
+
         int noOfLectureGroups = courseMgrIO.readNoOfGroup(GroupType.LectureGroup, totalSeats, totalSeats);
-
         int lecWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LectureGroup, AU);
-
         List<Group> lectureGroups = courseMgrIO.readLectureGroups(totalSeats, noOfLectureGroups);
 
         int noOfTutorialGroups = courseMgrIO.readNoOfGroup(GroupType.TutorialGroup, noOfLectureGroups, totalSeats);
-
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
             tutWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.TutorialGroup, AU);
         }
-
         List<Group> tutorialGroups = courseMgrIO.readTutorialGroups(noOfTutorialGroups, totalSeats);
 
         int noOfLabGroups = courseMgrIO.readNoOfGroup(GroupType.LabGroup, noOfLectureGroups, totalSeats);
-
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
             labWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LabGroup, AU);
         }
-
         List<Group> labGroups = courseMgrIO.readLabGroups(noOfLabGroups, totalSeats);
 
         Professor profInCharge = courseMgrIO.readProfessor(courseDepartment);
@@ -134,7 +121,6 @@ public class CourseMgr {
      * @param currentCourse The course which course work component is to be set.
      */
     public void enterCourseWorkComponentWeightage(Course currentCourse) {
-        System.out.println("enterCourseWorkComponentWeightage is called");
         // Assume when course is created, no components are added yet
         // Assume once components are created and set, cannot be changed.
 
@@ -260,7 +246,7 @@ public class CourseMgr {
      * Prints the course statics including enrollment rate, average result for every assessment component and the average overall performance of this course.
      */
     public void printCourseStatistics() {
-        System.out.println("printCourseStatistics is called");
+        MainMenuIO.printMethodCall("printCourseStatistics");
 
         Course currentCourse = CourseValidator.checkCourseExists();
         String courseID = currentCourse.getCourseID();
@@ -276,10 +262,6 @@ public class CourseMgr {
 
         MainComponent exam = null;
 
-        int examWeight = 0;
-        boolean hasExam = false;
-        MarkCalculator markCalculator = new MarkCalculator();
-
         // Find marks for every assessment components
         for (MainComponent mainComponent : currentCourse.getMainComponents()) {
             String componentName = mainComponent.getComponentName();
@@ -292,43 +274,17 @@ public class CourseMgr {
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     courseMgrIO.printSubcomponents(subComponents, courseMarks);
-                System.out.print("Main Component: " + courseworkComponent.getComponentName());
-                System.out.print("\tWeight: " + courseworkComponent.getComponentWeight() + "%");
-                System.out.println("\t Average: " + markCalculator.computeComponentMark(thisCourseMark, thisComponentName));
-
-                List<SubComponent> thisSubComponents = ((MainComponent) courseworkComponent).getSubComponents();
-                if (thisSubComponents.size() == 0) {
-                    continue;
-                }
-                for (SubComponent subComponent : thisSubComponents) {
-                    System.out.print("Sub Component: " + subComponent.getComponentName());
-                    System.out.print("\tWeight: " + subComponent.getComponentWeight() + "% (in main component)");
-                    String thisSubComponentName = subComponent.getComponentName();
-
-                    System.out.println("\t Average: " + markCalculator.computeComponentMark(thisCourseMark, thisSubComponentName));
                 }
             }
 
+
+            if (exam != null) {
+                courseMgrIO.printExamStatistics(exam, courseMarks);
+            } else {
+                courseMgrIO.printNoExamMessage();
+            }
+            courseMgrIO.printOverallPerformance(courseMarks);
         }
-
-        if (hasExam) {
-            System.out.print("Final Exam");
-            System.out.print("\tWeight: " + examWeight + "%");
-            System.out.println("\t Average: " + markCalculator.computeExamMark(thisCourseMark));
-        if (exam != null) {
-            courseMgrIO.printExamStatistics(exam, courseMarks);
-        } else {
-            courseMgrIO.printNoExamMessage();
-        }
-
-        courseMgrIO.printOverallPerformance(courseMarks);
-        System.out.println();
-        System.out.print("Overall Performance: ");
-        System.out.printf("%4.2f \n", markCalculator.computerOverallMark(thisCourseMark));
-
-        System.out.println();
-        System.out.println("***********************************************");
-        System.out.println();
     }
 
     /* Return the list of all courses in the system.

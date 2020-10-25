@@ -8,6 +8,7 @@ import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.Mark;
+import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.managers.MarkMgr;
 import com.softeng306.managers.ProfessorMgr;
@@ -729,18 +730,15 @@ public class CourseMgrIO {
         System.out.print("Main Component: " + mainComponent.getComponentName());
         System.out.print("\tWeight: " + mainComponent.getComponentWeight() + "%");
 
-        double averageMark = MarkMgr.getInstance().computeMark(courseMarks, mainComponent.getComponentName());
-
-        averageMark = averageMark / courseMarks.size();
-        System.out.println("\t Average: " + averageMark);
+        MarkCalculator markCalculator = new MarkCalculator();
+        System.out.println("\t Average: " + markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
     }
 
     public void printSubcomponents(List<SubComponent> subComponents, List<Mark> courseMarks) {
         for (SubComponent subComponent : subComponents) {
             printSubComponentInfo(subComponent);
-            double averageMark = MarkMgr.getInstance().computeMark(courseMarks, subComponent.getComponentName());
-            averageMark /= courseMarks.size();
-            System.out.println("\t Average: " + averageMark);
+            MarkCalculator markCalculator = new MarkCalculator();
+            System.out.println("\t Average: " + markCalculator.computeComponentMark(courseMarks, subComponent.getComponentName()));
         }
         System.out.println();
     }
@@ -753,7 +751,8 @@ public class CourseMgrIO {
     public void printExamStatistics(MainComponent exam, List<Mark> courseMarks) {
         System.out.print("Final Exam");
         System.out.print("\tWeight: " + exam.getComponentWeight() + "%");
-        System.out.println("\t Average: " + MarkMgr.getInstance().computeMark(courseMarks, "Exam") / courseMarks.size());
+        MarkCalculator markCalculator = new MarkCalculator();
+        System.out.println("\t Average: " + markCalculator.computeComponentMark(courseMarks, "Exam"));
     }
 
     public void printNoExamMessage() {
