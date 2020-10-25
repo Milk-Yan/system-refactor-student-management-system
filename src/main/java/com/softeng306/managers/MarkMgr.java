@@ -14,6 +14,7 @@ import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.StudentValidator;
+import com.softeng306.io.MarkMgrIO;
 
 import java.util.*;
 
@@ -22,7 +23,6 @@ import java.util.*;
  */
 
 public class MarkMgr {
-    private static Scanner scanner = new Scanner(System.in);
     /**
      * A list of all the student mark records in this school.
      */
@@ -63,7 +63,7 @@ public class MarkMgr {
      * @param course  the course this mark record about.
      * @return the new added mark.
      */
-    public static Mark initializeMark(Student student, Course course) {
+    public Mark initializeMark(Student student, Course course) {
         List<MainComponentMark> courseWorkMarks = new ArrayList<>();
         double totalMark = 0d;
         List<MainComponent> mainComponents = course.getMainComponents();
@@ -87,7 +87,7 @@ public class MarkMgr {
      * @param isExam whether this coursework component refers to "Exam"
      */
     public void setCourseWorkMark(boolean isExam) {
-        MainMenuIO.printMethodCall("enterCourseWorkMark");
+        MarkMgrIO.printFunctionCall("enterCourseWorkMark");
 
         String studentID = StudentValidator.checkStudentExists().getStudentID();
         String courseID = CourseValidator.checkCourseExists().getCourseID();
@@ -96,11 +96,9 @@ public class MarkMgr {
             if (mark.getCourse().getCourseID().equals(courseID) && mark.getStudent().getStudentID().equals(studentID)) {
                 //put the set mark function here
                 if (!isExam) {
-                    System.out.println("Here are the choices you can have: ");
-
-                    ArrayList<String> availableChoices = new ArrayList<String>(0);
-                    ArrayList<Double> weights = new ArrayList<Double>(0);
-                    ArrayList<Boolean> isMainAss = new ArrayList<Boolean>(0);
+                    ArrayList<String> availableChoices = new ArrayList<>();
+                    ArrayList<Double> weights = new ArrayList<>();
+                    ArrayList<Boolean> isMainAss = new ArrayList<>();
 
                     for (MainComponentMark mainComponentMark: mark.getCourseWorkMarks()) {
                         MainComponent mainComponent = mainComponentMark.getMainComponent();
@@ -119,37 +117,14 @@ public class MarkMgr {
                         }
                     }
 
-                    for (int i = 0; i < availableChoices.size(); i++) {
-                        System.out.println((i + 1) + ". " + availableChoices.get(i) + " Weight in Total: " + weights.get(i) + "%");
-                    }
-                    System.out.println((availableChoices.size() + 1) + ". Quit");
+                    MarkMgrIO.printCourseComponentChoices(availableChoices, weights);
 
-                    int choice;
-                    System.out.println("Enter your choice");
-                    choice = scanner.nextInt();
-                    scanner.nextLine();
-
-                    while (choice > (availableChoices.size() + 1) || choice < 0) {
-                        System.out.println("Please enter choice between " + 0 + "~" + (availableChoices.size() + 1));
-                        System.out.println("Enter your choice");
-                        choice = scanner.nextInt();
-                        scanner.nextLine();
-                    }
-
+                    int choice = MarkMgrIO.readCourseComponentChoice(availableChoices.size());
                     if (choice == (availableChoices.size() + 1)) {
                         return;
                     }
 
-                    double assessmentMark;
-                    System.out.println("Enter the mark for this assessment:");
-                    assessmentMark = scanner.nextDouble();
-                    scanner.nextLine();
-                    while (assessmentMark > 100 || assessmentMark < 0) {
-                        System.out.println("Please enter mark in range 0 ~ 100.");
-                        assessmentMark = scanner.nextDouble();
-                        scanner.nextLine();
-                    }
-
+                    double assessmentMark = MarkMgrIO.readCourseComponentMark();
                     if (isMainAss.get(choice - 1)) {
                         // This is a stand alone main assessment
                         mark.setMainCourseWorkMarks(availableChoices.get(choice - 1), assessmentMark);
@@ -159,15 +134,7 @@ public class MarkMgr {
 
                 } else {
                     // The user want to enter exam mark.
-                    double examMark;
-                    System.out.println("Enter exam mark:");
-                    examMark = scanner.nextDouble();
-                    scanner.nextLine();
-                    while (examMark > 100 || examMark < 0) {
-                        System.out.println("Please enter mark in range 0 ~ 100.");
-                        examMark = scanner.nextDouble();
-                        scanner.nextLine();
-                    }
+                    double examMark =  MarkMgrIO.readExamMark();
                     mark.setMainCourseWorkMarks("Exam", examMark);
                 }
 
@@ -175,8 +142,7 @@ public class MarkMgr {
             }
         }
 
-        System.out.println("This student haven't registered " + courseID);
-
+        MarkMgrIO.printStudentNotRegisteredToCourse(courseID);
     }
 
     /**
