@@ -220,9 +220,9 @@ public class CourseMgrIO {
             } while (groupNameExists);
 
 
-            do {
+            while (true) {
                 System.out.println("Enter this lecture group's capacity: ");
-                do {
+                while (true) {
                     if (scanner.hasNextInt()) {
                         lectureGroupCapacity = scanner.nextInt();
                         scanner.nextLine();
@@ -233,7 +233,7 @@ public class CourseMgrIO {
                     } else {
                         System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
                     }
-                } while (true);
+                }
                 seatsLeft -= lectureGroupCapacity;
                 if ((seatsLeft > 0 && i != (noOfLectureGroups - 1)) || (seatsLeft == 0 && i == noOfLectureGroups - 1)) {
                     Group lectureGroup = new Group(lectureGroupName, lectureGroupCapacity, lectureGroupCapacity, GroupType.LectureGroup);
@@ -245,7 +245,7 @@ public class CourseMgrIO {
                     System.out.println("Please re-enter the capacity for the last lecture group " + lectureGroupName + " you have entered.");
                     seatsLeft += lectureGroupCapacity;
                 }
-            } while (true);
+            }
         }
 
         return lectureGroups;
@@ -281,7 +281,7 @@ public class CourseMgrIO {
                 }
             } while (groupNameExists);
 
-            do {
+            while (true) {
                 System.out.println("Enter this tutorial group's capacity: ");
                 if (scanner.hasNextInt()) {
                     tutorialGroupCapacity = scanner.nextInt();
@@ -299,7 +299,7 @@ public class CourseMgrIO {
                 } else {
                     System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
                 }
-            } while (true);
+            }
         }
 
         return tutorialGroups;
@@ -484,7 +484,7 @@ public class CourseMgrIO {
     public int readNoOfMainComponents() {
         int numberOfMain;
 
-        do {
+        while (true) {
             System.out.println("Enter number of main component(s) to add:");
             while (!scanner.hasNextInt()) {
                 String input = scanner.next();
@@ -497,7 +497,7 @@ public class CourseMgrIO {
                 continue;
             }
             break;
-        } while (true);
+        }
         scanner.nextLine();
 
         return numberOfMain;
@@ -548,7 +548,7 @@ public class CourseMgrIO {
 
     public int readSubWeight(int j, int sub_totWeight) {
         int sub_weight;
-        do {
+        while (true) {
             System.out.println("Enter sub component " + (j + 1) + " weightage: ");
             while (!scanner.hasNextInt()) {
                 String input = scanner.next();
@@ -561,7 +561,7 @@ public class CourseMgrIO {
                 continue;
             }
             break;
-        } while (true);
+        }
         scanner.nextLine();
 
         return sub_weight;
