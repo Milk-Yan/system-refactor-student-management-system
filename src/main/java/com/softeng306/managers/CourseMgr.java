@@ -10,9 +10,11 @@ import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
+import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
+import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.*;
 
 import java.util.*;
@@ -460,7 +462,7 @@ public class CourseMgr {
      */
     public void checkAvailableSlots() {
         //printout the result directly
-        System.out.println("checkAvailableSlots is called");
+        MainMenuIO.printMethodCall("checkAvailableSlots");
         Course currentCourse;
 
         do {
@@ -505,7 +507,7 @@ public class CourseMgr {
         int noOfSub;
         int sub_weight;
 
-        System.out.println("enterCourseWorkComponentWeightage is called");
+        MainMenuIO.printMethodCall("enterCourseWorkComponentWeightage");
         if (currentCourse == null) {
             currentCourse = CourseValidator.checkCourseExists();
         }
@@ -785,7 +787,8 @@ public class CourseMgr {
 
         int examWeight = 0;
         boolean hasExam = false;
-        double averageMark = 0;
+        MarkCalculator markCalculator = new MarkCalculator();
+
         // Find marks for every assessment components
         for (CourseworkComponent courseworkComponent : currentCourse.getMainComponents()) {
             String thisComponentName = courseworkComponent.getComponentName();
@@ -795,29 +798,20 @@ public class CourseMgr {
 //                Leave the exam report to the last
                 hasExam = true;
             } else {
-                averageMark = 0;
                 System.out.print("Main Component: " + courseworkComponent.getComponentName());
                 System.out.print("\tWeight: " + courseworkComponent.getComponentWeight() + "%");
-
-                averageMark += MarkMgr.getInstance().computeMark(thisCourseMark, thisComponentName);
-
-                averageMark = averageMark / thisCourseMark.size();
-                System.out.println("\t Average: " + averageMark);
+                System.out.println("\t Average: " + markCalculator.computeComponentMark(thisCourseMark, thisComponentName));
 
                 List<SubComponent> thisSubComponents = ((MainComponent) courseworkComponent).getSubComponents();
                 if (thisSubComponents.size() == 0) {
                     continue;
                 }
                 for (SubComponent subComponent : thisSubComponents) {
-                    averageMark = 0;
                     System.out.print("Sub Component: " + subComponent.getComponentName());
                     System.out.print("\tWeight: " + subComponent.getComponentWeight() + "% (in main component)");
                     String thisSubComponentName = subComponent.getComponentName();
 
-                    averageMark += MarkMgr.getInstance().computeMark(thisCourseMark, thisSubComponentName);
-
-                    averageMark = averageMark / thisCourseMark.size();
-                    System.out.println("\t Average: " + averageMark);
+                    System.out.println("\t Average: " + markCalculator.computeComponentMark(thisCourseMark, thisSubComponentName));
                 }
                 System.out.println();
             }
@@ -825,37 +819,16 @@ public class CourseMgr {
         }
 
         if (hasExam) {
-            averageMark = 0;
             System.out.print("Final Exam");
             System.out.print("\tWeight: " + examWeight + "%");
-            for (Mark mark : thisCourseMark) {
-                List<MainComponentMark> courseMarks = mark.getCourseWorkMarks();
-
-                for (MainComponentMark mainComponentMark : courseMarks) {
-                    MainComponent mainComponent = mainComponentMark.getMainComponent();
-                    double value = mainComponentMark.getMark();
-                    if (mainComponent.getComponentName().equals("Exam")) {
-                        averageMark += value;
-                        break;
-                    }
-                }
-            }
-            averageMark = averageMark / thisCourseMark.size();
-            System.out.println("\t Average: " + averageMark);
+            System.out.println("\t Average: " + markCalculator.computeExamMark(thisCourseMark));
         } else {
             System.out.println("This course does not have final exam.");
         }
 
-
         System.out.println();
-
         System.out.print("Overall Performance: ");
-        averageMark = 0;
-        for (Mark mark : thisCourseMark) {
-            averageMark += mark.getTotalMark();
-        }
-        averageMark = averageMark / thisCourseMark.size();
-        System.out.printf("%4.2f \n", averageMark);
+        System.out.printf("%4.2f \n", markCalculator.computerOverallMark(thisCourseMark));
 
         System.out.println();
         System.out.println("***********************************************");
