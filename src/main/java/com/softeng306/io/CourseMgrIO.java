@@ -1,5 +1,6 @@
 package com.softeng306.io;
 
+import com.softeng306.domain.course.component.CourseworkComponent;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
@@ -755,6 +756,8 @@ public class CourseMgrIO {
         boolean componentExist;
         String mainComponentName;
 
+
+        return getComponentName(totalWeightage, mainComponents, mainComponentNo, " main component ");
         do {
             componentExist = false;
             System.out.println("Total weightage left to assign: " + totalWeightage);
@@ -789,58 +792,69 @@ public class CourseMgrIO {
      */
     public List<SubComponent> readSubComponents(int noOfSub) {
         List<SubComponent> subComponents = new ArrayList<>();
-
-        boolean flagSub = true;
-        int subWeight;
+        boolean invalidDistributionOfWeights = true;
+        int subComponentWeight;
         String subComponentName;
-        boolean componentExist;
 
-        while (flagSub) {
+        while (invalidDistributionOfWeights) {
 
-            int sub_totWeight = 100;
+            int subComponenttotalWeight = 100;
             for (int j = 0; j < noOfSub; j++) {
-                do {
-                    componentExist = false;
-                    System.out.println("Total weightage left to assign to sub component: " + sub_totWeight);
-                    System.out.println("Enter sub component " + (j + 1) + " name: ");
-                    subComponentName = scanner.nextLine();
-
-                    if (subComponents.isEmpty()) {
-                        break;
-                    }
-                    if (subComponentName.equals("Exam")) {
-                        System.out.println("Exam is a reserved assessment.");
-                        componentExist = true;
-                        continue;
-                    }
-                    for (SubComponent subComponent : subComponents) {
-                        if (subComponent.getComponentName().equals(subComponentName)) {
-                            componentExist = true;
-                            System.out.println("This sub component already exist. Please enter.");
-                            break;
-                        }
-                    }
-                } while (componentExist);
-
-                subWeight = readSubWeight(j, sub_totWeight);
-
+                subComponentName = getComponentName(subComponenttotalWeight, subComponents, j, "sub component");
+                subComponentWeight = readSubWeight(j, subComponenttotalWeight);
                 //Create Subcomponent
-                SubComponent sub = new SubComponent(subComponentName, subWeight);
-                subComponents.add(sub);
-                sub_totWeight -= subWeight;
+                SubComponent subComponent = new SubComponent(subComponentName, subComponentWeight);
+                subComponents.add(subComponent);
+                subComponenttotalWeight -= subComponentWeight;
             }
-            if (sub_totWeight != 0 && noOfSub != 0) {
+
+            if (subComponenttotalWeight != 0 && noOfSub != 0) {
                 printSubComponentWeightageError();
                 subComponents.clear();
-                flagSub = true;
+                invalidDistributionOfWeights = true;
             } else {
-                flagSub = false;
+                invalidDistributionOfWeights = false;
             }
             //exit if weight is fully allocated
         }
-
         return subComponents;
     }
+
+    /**
+     * This method reads in the name for a particular subComponent
+     * @return List of sub components user has specified
+     */
+    private String getComponentName(int totalWeightAssignable, List<? extends CourseworkComponent> components, int componentNumber, String type){
+
+        String subComponentName;
+        boolean componentExist;
+        do {
+            componentExist = false;
+            System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
+            System.out.println("Enter sub component " + (componentNumber + 1) + " name: ");
+            subComponentName = scanner.nextLine();
+
+            if (components.isEmpty()) {
+                break;
+            }
+            if (subComponentName.equals("Exam")) {
+                System.out.println("Exam is a reserved assessment.");
+                componentExist = true;
+                continue;
+            }
+            for (CourseworkComponent component : components) {
+                if (component.getComponentName().equals(subComponentName)) {
+                    componentExist = true;
+                    System.out.println("This sub component already exist. Please enter.");
+                    break;
+                }
+            }
+        } while (componentExist);
+
+        return subComponentName;
+
+    }
+
 
     /**
      * Read in a sub component name from the user
