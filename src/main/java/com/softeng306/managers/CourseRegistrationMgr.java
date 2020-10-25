@@ -5,6 +5,7 @@ import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
+import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.*;
 
 import java.util.*;
@@ -14,7 +15,7 @@ public class CourseRegistrationMgr {
     /**
      * A list of all the course registration records in this school.
      */
-    public static List<CourseRegistration> courseRegistrations = new ArrayList<>();
+    private List<CourseRegistration> courseRegistrations;
 
     private static CourseRegistrationMgr singleInstance = null;
 
@@ -43,7 +44,7 @@ public class CourseRegistrationMgr {
      * Registers a course for a student
      */
     public void registerCourse() {
-        System.out.println("registerCourse is called");
+        MainMenuIO.printMethodCall("registerCourse");
         String selectedLectureGroupName = null;
         String selectedTutorialGroupName = null;
         String selectedLabGroupName = null;
@@ -95,7 +96,7 @@ public class CourseRegistrationMgr {
         CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
         FILEMgr.writeCourseRegistrationIntoFile(courseRegistration);
 
-        CourseRegistrationMgr.courseRegistrations.add(courseRegistration);
+        courseRegistrations.add(courseRegistration);
 
         MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initializeMark(currentStudent, currentCourse));
 
@@ -115,7 +116,7 @@ public class CourseRegistrationMgr {
      * Prints the students in a course according to their lecture group, tutorial group or lab group.
      */
     public void printStudents() {
-        System.out.println("printStudent is called");
+        MainMenuIO.printMethodCall("printStudent");
         Course currentCourse = CourseValidator.checkCourseExists();
 
         System.out.println("Print student by: ");
@@ -204,6 +205,19 @@ public class CourseRegistrationMgr {
         } while (opt < 1 || opt > 3);
     }
 
+    /**
+     * Return the list of all course registrations in the system.
+     * @return An list of all course registrations.
+     */
+    public List<CourseRegistration> getCourseRegistrations() {
+        return courseRegistrations;
+    }
+
+    /**
+     * Sort the list of course registrations of a course according to their ascending
+     * normal alphabetical order of the lecture groups, ignoring cases.
+     * @param courseRegistrations All the course registrations of the course.
+     */
     private void sortByLectureGroup(List<CourseRegistration> courseRegistrations) {
         courseRegistrations.sort((o1, o2) -> {
             // in the case where there are no lectures, we don't care about
@@ -221,6 +235,11 @@ public class CourseRegistrationMgr {
         });
     }
 
+    /**
+     * Sort the list of course registrations of a course according to their ascending
+     * normal alphabetical order of the tutorial groups, ignoring cases.
+     * @param courseRegistrations All the course registrations of the course.
+     */
     private void sortByTutorialGroup(List<CourseRegistration> courseRegistrations) {
         courseRegistrations.sort((s1, s2) -> {
             // in the case where there are no tutorials, we don't care about
@@ -238,6 +257,11 @@ public class CourseRegistrationMgr {
         });
     }
 
+    /**
+     * Sort the list of course registrations of a course according to their ascending
+     * normal alphabetical order of the lab groups, ignoring cases.
+     * @param courseRegistrations All the course registrations of the course.
+     */
     private void sortByLabGroup(List<CourseRegistration> courseRegistrations) {
         courseRegistrations.sort((o1, o2) -> {
             // in the case where there are no labs, we don't care about

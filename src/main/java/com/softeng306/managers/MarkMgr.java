@@ -11,6 +11,7 @@ import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.mark.SubComponentMark;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
+import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.StudentValidator;
 
@@ -86,7 +87,7 @@ public class MarkMgr {
      * @param isExam whether this coursework component refers to "Exam"
      */
     public void setCourseWorkMark(boolean isExam) {
-        System.out.println("enterCourseWorkMark is called");
+        MainMenuIO.printMethodCall("enterCourseWorkMark");
 
         String studentID = StudentValidator.checkStudentExists().getStudentID();
         String courseID = CourseValidator.checkCourseExists().getCourseID();
@@ -176,37 +177,6 @@ public class MarkMgr {
 
         System.out.println("This student haven't registered " + courseID);
 
-    }
-
-    /**
-     * Computes the sum of marks for a particular component of a particular course
-     *
-     * @param thisCourseMark    the list of mark records belong to a particular course
-     * @param thisComponentName the component name interested.
-     * @return the sum of component marks
-     */
-    public double computeMark(List<Mark> thisCourseMark, String thisComponentName) {
-        double averageMark = 0;
-        for (Mark mark : thisCourseMark) {
-            List<MainComponentMark> thisComponentMarks = mark.getCourseWorkMarks();
-
-            for (MainComponentMark mainComponentMark : thisComponentMarks) {
-                MainComponent mainComponent = mainComponentMark.getMainComponent();
-                if (mainComponent.getComponentName().equals((thisComponentName))) {
-                    averageMark += mainComponentMark.getMark();
-                    break;
-                }
-
-                for (SubComponentMark subComponentMark: mainComponentMark.getSubComponentMarks()) {
-                    SubComponent subComponent = subComponentMark.getSubComponent();
-                    if (subComponent.getComponentName().equals((thisComponentName))) {
-                        averageMark += subComponentMark.getMark();
-                        break;
-                    }
-                }
-            }
-        }
-        return averageMark;
     }
 
     /**
