@@ -8,6 +8,8 @@ import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.course.CourseBuilder;
+import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.io.CourseMgrIO;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
@@ -50,35 +52,59 @@ public class CourseMgr {
      * Creates a new course and stores it in the file.
      */
     public void addCourse() {
+        ICourseBuilder builder = new CourseBuilder();
+
         // Read in parameters to create new Course
         String courseID = courseMgrIO.readCourseId();
-        String courseName = courseMgrIO.readCourseName();
-        int totalSeats = courseMgrIO.readTotalSeats();
-        int AU = courseMgrIO.readAU();
-        String courseDepartment = courseMgrIO.readCourseDepartment();
-        String courseType = courseMgrIO.readCourseType();
+        builder.setCourseID(courseID);
 
+        String courseName = courseMgrIO.readCourseName();
+        builder.setCourseName(courseName);
+
+        int totalSeats = courseMgrIO.readTotalSeats();
+        builder.setTotalSeats(totalSeats);
+
+        int AU = courseMgrIO.readAU();
+        builder.setAU(AU);
+
+        String courseDepartment = courseMgrIO.readCourseDepartment();
+        builder.setCourseDepartment(courseDepartment);
+
+        String courseType = courseMgrIO.readCourseType();
+        builder.setCourseType(courseType);
+
+        // Lecture groups
         int noOfLectureGroups = courseMgrIO.readNoOfGroup(GroupType.LectureGroup, totalSeats, totalSeats);
         int lecWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LectureGroup, AU);
         List<Group> lectureGroups = courseMgrIO.readLectureGroups(totalSeats, noOfLectureGroups);
+        builder.setLecWeeklyHour(lecWeeklyHour);
+        builder.setLectureGroups(lectureGroups);
 
+        // Tutorial groups
         int noOfTutorialGroups = courseMgrIO.readNoOfGroup(GroupType.TutorialGroup, noOfLectureGroups, totalSeats);
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
             tutWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.TutorialGroup, AU);
         }
         List<Group> tutorialGroups = courseMgrIO.readTutorialGroups(noOfTutorialGroups, totalSeats);
+        builder.setTutWeeklyHour(tutWeeklyHour);
+        builder.setTutorialGroups(tutorialGroups);
 
+        // Lab groups
         int noOfLabGroups = courseMgrIO.readNoOfGroup(GroupType.LabGroup, noOfLectureGroups, totalSeats);
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
             labWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LabGroup, AU);
         }
         List<Group> labGroups = courseMgrIO.readLabGroups(noOfLabGroups, totalSeats);
+        builder.setLabWeeklyHour(labWeeklyHour);
+        builder.setLabGroups(labGroups);
 
         Professor profInCharge = courseMgrIO.readProfessor(courseDepartment);
+        builder.setProfInCharge(profInCharge);
 
-        Course course = new Course(courseID, courseName, profInCharge, totalSeats, totalSeats, lectureGroups, tutorialGroups, labGroups, AU, courseDepartment, courseType, lecWeeklyHour, tutWeeklyHour, labWeeklyHour);
+        Course course = builder.build();
+
         // Update Course in files
         FILEMgr.writeCourseIntoFile(course);
         courses.add(course);
