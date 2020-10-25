@@ -10,6 +10,7 @@ import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.CourseMgrIO;
 import com.softeng306.io.FILEMgr;
+import com.softeng306.io.ProfessorMgrIO;
 import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.*;
 
@@ -80,6 +81,53 @@ public class CourseMgr {
 
         // Create new Course
         // TODO: Replace with builder
+            do {
+                System.out.println("Enter this lab group's capacity: ");
+                labGroupCapacity = scanner.nextInt();
+                scanner.nextLine();
+                totalLabSeats += labGroupCapacity;
+                if ((i != noOfLabGroups - 1) || (totalLabSeats >= totalSeats)) {
+                    Group labGroup = new Group(labGroupName, labGroupCapacity, labGroupCapacity, GroupType.LabGroup);
+                    labGroups.add(labGroup);
+                    break;
+                } else {
+                    System.out.println("Sorry, the total capacity you allocated for all the lab groups is not enough for this course.");
+                    System.out.println("Please re-enter the capacity for the last lab group " + labGroupName + " you have entered.");
+                    totalLabSeats -= labGroupCapacity;
+                }
+            } while (true);
+        }
+
+        Professor profInCharge;
+        List<String> professorsInDepartment;
+
+        professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
+        while (true) {
+            System.out.println("Enter the ID for the professor in charge please:");
+            System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
+            profID = scanner.nextLine();
+            while ("-h".equals(profID)) {
+                professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
+                ProfessorMgrIO.printAllProfIDsInDepartment(professorsInDepartment);
+                profID = scanner.nextLine();
+            }
+
+            System.setOut(dummyStream);
+            profInCharge = ProfessorValidator.checkProfExists(profID);
+            System.setOut(originalStream);
+            if (profInCharge != null) {
+                if (professorsInDepartment.contains(profID)) {
+                    break;
+                } else {
+                    System.out.println("This prof is not in " + courseDepartment + ".");
+                    System.out.println("Thus he/she cannot teach this course.");
+                }
+            } else {
+                System.out.println("Invalid input. Please re-enter.");
+            }
+        }
+
+
         Course course = new Course(courseID, courseName, profInCharge, totalSeats, totalSeats, lectureGroups, tutorialGroups, labGroups, AU, courseDepartment, courseType, lecWeeklyHour, tutWeeklyHour, labWeeklyHour);
         // Update Course in files
         FILEMgr.writeCourseIntoFile(course);
@@ -123,6 +171,10 @@ public class CourseMgr {
     public void enterCourseWorkComponentWeightage(Course currentCourse) {
         // Assume when course is created, no components are added yet
         // Assume once components are created and set, cannot be changed.
+        int numberOfMain;
+        int weight;
+        int noOfSub;
+        int sub_weight;
 
         MainMenuIO.printMethodCall("enterCourseWorkComponentWeightage");
         if (currentCourse == null) {
