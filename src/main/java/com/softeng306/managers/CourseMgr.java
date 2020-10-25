@@ -403,7 +403,7 @@ public class CourseMgr {
             profID = scanner.nextLine();
             while ("-h".equals(profID)) {
                 professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
-                ProfessorMgrIO.printProfInDepartment(professorsInDepartment);
+                ProfessorMgrIO.printAllProfIDsInDepartment(professorsInDepartment);
                 profID = scanner.nextLine();
             }
 
