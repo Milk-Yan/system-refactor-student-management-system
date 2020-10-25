@@ -11,7 +11,7 @@ public class GenderValidator {
      * @return boolean indicates whether the inputted gender is valid.
      */
     public static boolean checkGenderValidation(String gender) {
-        if (Gender.getAllGender().contains(gender)) {
+        if (Gender.contains(gender)) {
             return true;
         }
         System.out.println("The gender is invalid. Please re-enter.");

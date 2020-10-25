@@ -23,17 +23,16 @@ public enum Gender {
 
 
     /**
-     * Gets all the genders as a list.
-     *
-     * @return a list of all the genders.
+     * Finds whether the string exists as a gender type.
      */
-    public static List<String> getAllGender() {
-        Set<Gender> genderEnumSet = EnumSet.allOf(Gender.class);
-        List<String> genderStringList = new ArrayList<>(0);
-        for (Gender gender : genderEnumSet) {
-            genderStringList.add(gender.toString());
+    public static boolean contains(String possibleGender) {
+        for (Gender gender: Gender.values()) {
+            if (gender.toString().equals(possibleGender)) {
+                return true;
+            }
         }
-        return genderStringList;
+
+        return false;
     }
 
 }
