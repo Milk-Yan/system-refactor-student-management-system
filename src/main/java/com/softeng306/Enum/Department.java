@@ -21,19 +21,16 @@ public enum Department {
 
     }
 
-
     /**
-     * Gets all the departments as a list.
-     *
-     * @return a list of all the departments.
+     * Finds whether the string exists as a department type.
      */
-    public static List<String> getAllDepartment() {
-        Set<Department> departmentEnumSet = EnumSet.allOf(Department.class);
-        List<String> departmentStringList = new ArrayList<>(0);
-        for (Department department : departmentEnumSet) {
-            departmentStringList.add(department.toString());
+    public static boolean contains(String possibleDepartment) {
+        for (Department department: Department.values()) {
+            if (department.toString().equals(possibleDepartment)) {
+                return true;
+            }
         }
-        return departmentStringList;
 
+        return false;
     }
 }

@@ -24,7 +24,7 @@ public class DepartmentValidator {
      * @return boolean indicates whether the inputted department is valid.
      */
     public static boolean checkDepartmentValidation(String department) {
-        if (Department.getAllDepartment().contains(department)) {
+        if (Department.contains(department)) {
             return true;
         }
         System.out.println("The department is invalid. Please re-enter.");
