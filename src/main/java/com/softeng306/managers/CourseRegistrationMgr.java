@@ -45,9 +45,6 @@ public class CourseRegistrationMgr {
      */
     public void registerCourse() {
         MainMenuIO.printMethodCall("registerCourse");
-        String selectedLectureGroupName = null;
-        String selectedTutorialGroupName = null;
-        String selectedLabGroupName = null;
 
         Student currentStudent = StudentValidator.checkStudentExists();
         String studentID = currentStudent.getStudentID();
@@ -80,20 +77,20 @@ public class CourseRegistrationMgr {
 
         GroupMgr groupMgr = GroupMgr.getInstance();
 
-        selectedLectureGroupName = groupMgr.printGroupWithVacancyInfo("lecture", lecGroups);
+        Group selectedLectureGroup = groupMgr.printGroupWithVacancyInfo("lecture", lecGroups);
 
         List<Group> tutGroups = new ArrayList<>(0);
         tutGroups.addAll(currentCourse.getTutorialGroups());
 
-        selectedTutorialGroupName = groupMgr.printGroupWithVacancyInfo("tutorial", tutGroups);
+        Group selectedTutorialGroup = groupMgr.printGroupWithVacancyInfo("tutorial", tutGroups);
 
         List<Group> labGroups = new ArrayList<>(0);
         labGroups.addAll(currentCourse.getLabGroups());
 
-        selectedLabGroupName = groupMgr.printGroupWithVacancyInfo("lab", labGroups);
+        Group selectedLabGroup = groupMgr.printGroupWithVacancyInfo("lab", labGroups);
 
         currentCourse.enrolledIn();
-        CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
+        CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
         FILEMgr.writeCourseRegistrationIntoFile(courseRegistration);
 
         courseRegistrations.add(courseRegistration);
@@ -102,12 +99,12 @@ public class CourseRegistrationMgr {
 
         System.out.println("Course registration successful!");
         System.out.print("Student: " + currentStudent.getStudentName());
-        System.out.print("\tLecture Group: " + selectedLectureGroupName);
+        System.out.print("\tLecture Group: " + selectedLectureGroup.getGroupName());
         if (currentCourse.getTutorialGroups().size() != 0) {
-            System.out.print("\tTutorial Group: " + selectedTutorialGroupName);
+            System.out.print("\tTutorial Group: " + selectedTutorialGroup.getGroupName());
         }
         if (currentCourse.getLabGroups().size() != 0) {
-            System.out.print("\tLab Group: " + selectedLabGroupName);
+            System.out.print("\tLab Group: " + selectedLabGroup.getGroupName());
         }
         System.out.println();
     }
@@ -149,13 +146,13 @@ public class CourseRegistrationMgr {
             }
 
             if (opt == 1) { // print by LECTURE
-                String newLec = "";
+                Group newLecGroup = null;
                 sortByLectureGroup(stuArray);
                 if (stuArray.size() > 0) {
                     for (int i = 0; i < stuArray.size(); i++) {  // loop through all of CourseRegistration Obj
-                        if (!newLec.equals(stuArray.get(i).getLectureGroup())) {  // if new lecture group print out group name
-                            newLec = stuArray.get(i).getLectureGroup();
-                            System.out.println("Lecture group : " + newLec);
+                        if (newLecGroup == null || !newLecGroup.equals(stuArray.get(i).getLectureGroup())) {  // if new lecture group print out group name
+                            newLecGroup = stuArray.get(i).getLectureGroup();
+                            System.out.println("Lecture group : " + newLecGroup.getGroupName());
                         }
                         System.out.print("Student Name: " + stuArray.get(i).getStudent().getStudentName());
                         System.out.println(" Student ID: " + stuArray.get(i).getStudent().getStudentID());
@@ -165,15 +162,15 @@ public class CourseRegistrationMgr {
 
 
             } else if (opt == 2) { // print by TUTORIAL
-                String newTut = "";
+                Group newTutGroup = null;
                 sortByTutorialGroup(stuArray);
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getTutorialGroups().size() == 0) {
                     System.out.println("This course does not contain any tutorial group.");
                 } else if (stuArray.size() > 0) {
                     for (int i = 0; i < stuArray.size(); i++) {
-                        if (!newTut.equals(stuArray.get(i).getTutorialGroup())) {
-                            newTut = stuArray.get(i).getTutorialGroup();
-                            System.out.println("Tutorial group : " + newTut);
+                        if (newTutGroup == null || !newTutGroup.equals(stuArray.get(i).getTutorialGroup())) {
+                            newTutGroup = stuArray.get(i).getTutorialGroup();
+                            System.out.println("Tutorial group : " + newTutGroup);
                         }
                         System.out.print("Student Name: " + stuArray.get(i).getStudent().getStudentName());
                         System.out.println(" Student ID: " + stuArray.get(i).getStudent().getStudentID());
@@ -182,15 +179,15 @@ public class CourseRegistrationMgr {
                 }
 
             } else if (opt == 3) { // print by LAB
-                String newLab = "";
+                Group newLabGroup = null;
                 sortByLabGroup(stuArray);
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getLabGroups().size() == 0) {
                     System.out.println("This course does not contain any lab group.");
                 } else if (stuArray.size() > 0) {
                     for (int i = 0; i < stuArray.size(); i++) {
-                        if (!newLab.equals(stuArray.get(i).getLabGroup())) {
-                            newLab = stuArray.get(i).getLabGroup();
-                            System.out.println("Lab group : " + newLab);
+                        if (newLabGroup == null || !newLabGroup.equals(stuArray.get(i).getLabGroup())) {
+                            newLabGroup = stuArray.get(i).getLabGroup();
+                            System.out.println("Lab group : " + newLabGroup);
                         }
                         System.out.print("Student Name: " + stuArray.get(i).getStudent().getStudentName());
                         System.out.println(" Student ID: " + stuArray.get(i).getStudent().getStudentID());
@@ -215,7 +212,7 @@ public class CourseRegistrationMgr {
 
     /**
      * Sort the list of course registrations of a course according to their ascending
-     * normal alphabetical order of the lecture groups, ignoring cases.
+     * normal alphabetical order of names of the lecture groups, ignoring cases.
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByLectureGroup(List<CourseRegistration> courseRegistrations) {
@@ -226,8 +223,8 @@ public class CourseRegistrationMgr {
                 return 0;
             }
 
-            String group1 = o1.getLectureGroup().toUpperCase();
-            String group2 = o2.getLectureGroup().toUpperCase();
+            String group1 = o1.getLectureGroup().getGroupName().toUpperCase();
+            String group2 = o2.getLectureGroup().getGroupName().toUpperCase();
 
             //ascending order
             return group1.compareTo(group2);
@@ -237,7 +234,7 @@ public class CourseRegistrationMgr {
 
     /**
      * Sort the list of course registrations of a course according to their ascending
-     * normal alphabetical order of the tutorial groups, ignoring cases.
+     * normal alphabetical order of the names of the tutorial groups, ignoring cases.
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByTutorialGroup(List<CourseRegistration> courseRegistrations) {
@@ -248,8 +245,8 @@ public class CourseRegistrationMgr {
                 return 0;
             }
 
-            String group1 = s1.getTutorialGroup().toUpperCase();
-            String group2 = s2.getTutorialGroup().toUpperCase();
+            String group1 = s1.getTutorialGroup().getGroupName().toUpperCase();
+            String group2 = s2.getTutorialGroup().getGroupName().toUpperCase();
 
             //ascending order
             return group1.compareTo(group2);
@@ -259,7 +256,7 @@ public class CourseRegistrationMgr {
 
     /**
      * Sort the list of course registrations of a course according to their ascending
-     * normal alphabetical order of the lab groups, ignoring cases.
+     * normal alphabetical order of the names of the lab groups, ignoring cases.
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByLabGroup(List<CourseRegistration> courseRegistrations) {
@@ -270,8 +267,8 @@ public class CourseRegistrationMgr {
                 return 0;
             }
 
-            String group1 = o1.getLabGroup().toUpperCase();
-            String group2 = o2.getLabGroup().toUpperCase();
+            String group1 = o1.getLabGroup().getGroupName().toUpperCase();
+            String group2 = o2.getLabGroup().getGroupName().toUpperCase();
 
             //ascending order
             return group1.compareTo(group2);

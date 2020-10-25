@@ -1,26 +1,24 @@
 package com.softeng306.domain.course.courseregistration;
 
 import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
-
-import java.util.Comparator;
-
 
 public class CourseRegistration {
     private Student student;
     private Course course;
-    private String lectureGroup;
-    private String tutorialGroup;
-    private String labGroup;
+    private Group lectureGroup;
+    private Group tutorialGroup;
+    private Group labGroup;
 
     /**
      * Default constructor. Required for Jackson serialization.
      */
     public CourseRegistration() {
-
+        
     }
 
-    public CourseRegistration(Student student, Course course, String lectureGroup, String tutorialGroup, String labGroup) {
+    public CourseRegistration(Student student, Course course, Group lectureGroup, Group tutorialGroup, Group labGroup) {
         this.student = student;
         this.course = course;
         this.lectureGroup = lectureGroup;
@@ -36,15 +34,15 @@ public class CourseRegistration {
         return course;
     }
 
-    public String getLectureGroup() {
+    public Group getLectureGroup() {
         return lectureGroup;
     }
 
-    public String getTutorialGroup() {
+    public Group getTutorialGroup() {
         return tutorialGroup;
     }
 
-    public String getLabGroup() {
+    public Group getLabGroup() {
         return labGroup;
     }
 }
