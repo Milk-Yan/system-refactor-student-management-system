@@ -121,7 +121,7 @@ public class CourseMgr {
                 Department.printAllDepartment();
                 courseDepartment = scanner.nextLine();
             }
-            if (DepartmentValidator.checkDepartmentValidation(courseDepartment)) {
+            if (Department.contains(courseDepartment)) {
                 break;
             }
         }

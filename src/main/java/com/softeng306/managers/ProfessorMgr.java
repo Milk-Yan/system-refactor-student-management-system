@@ -1,5 +1,6 @@
 package com.softeng306.managers;
 
+import com.softeng306.Enum.Department;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.validation.DepartmentValidator;
@@ -44,7 +45,7 @@ public class ProfessorMgr {
      * @return A list of all the IDs of the professors.
      */
     public List<String> getAllProfIDInDepartment(String department) {
-        if (DepartmentValidator.checkDepartmentValidation(department)) {
+        if (Department.contains(department)) {
             return professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
         }
 
