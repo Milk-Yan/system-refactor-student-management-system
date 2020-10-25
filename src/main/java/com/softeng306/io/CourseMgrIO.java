@@ -802,8 +802,12 @@ public class CourseMgrIO {
         boolean componentExist;
         do {
             componentExist = false;
-            System.out.println("Total weightage left to assign to : " + totalWeightAssignable);
-            System.out.println("Enter "+ type +" " + (componentNumber + 1) + " name: ");
+            if(type == " sub component "){
+                System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
+            } else {
+                System.out.println("Total weightage left to assign: " + totalWeightAssignable);
+            }
+            System.out.println("Enter"+ type +"" + (componentNumber + 1) + " name: ");
             subComponentName = scanner.nextLine();
 
             if (components.isEmpty()) {
