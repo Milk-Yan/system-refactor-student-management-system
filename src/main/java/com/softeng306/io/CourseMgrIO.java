@@ -10,7 +10,6 @@ import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.managers.MarkMgr;
 import com.softeng306.managers.ProfessorMgr;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.DepartmentValidator;
@@ -31,6 +30,8 @@ public class CourseMgrIO {
             // NO-OP
         }
     });
+
+    private MarkCalculator markCalculator = new MarkCalculator();
 
     public String readCourseId() {
         String courseID;
@@ -737,7 +738,6 @@ public class CourseMgrIO {
     public void printSubcomponents(List<SubComponent> subComponents, List<Mark> courseMarks) {
         for (SubComponent subComponent : subComponents) {
             printSubComponentInfo(subComponent);
-            MarkCalculator markCalculator = new MarkCalculator();
             System.out.println("\t Average: " + markCalculator.computeComponentMark(courseMarks, subComponent.getComponentName()));
         }
         System.out.println();
@@ -751,7 +751,6 @@ public class CourseMgrIO {
     public void printExamStatistics(MainComponent exam, List<Mark> courseMarks) {
         System.out.print("Final Exam");
         System.out.print("\tWeight: " + exam.getComponentWeight() + "%");
-        MarkCalculator markCalculator = new MarkCalculator();
         System.out.println("\t Average: " + markCalculator.computeExamMark(courseMarks));
     }
 
@@ -762,7 +761,6 @@ public class CourseMgrIO {
     public void printOverallPerformance(List<Mark> courseMarks) {
         System.out.println();
         System.out.print("Overall Performance: ");
-        MarkCalculator markCalculator = new MarkCalculator();
         System.out.printf("%4.2f \n", markCalculator.computerOverallMark(courseMarks));
 
         System.out.println();
