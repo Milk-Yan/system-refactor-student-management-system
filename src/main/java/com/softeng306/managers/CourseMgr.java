@@ -396,13 +396,13 @@ public class CourseMgr {
         Professor profInCharge;
         List<String> professorsInDepartment;
 
-        professorsInDepartment = ProfessorMgr.getInstance().getProfInDepartment(courseDepartment);
+        professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
         while (true) {
             System.out.println("Enter the ID for the professor in charge please:");
             System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
             profID = scanner.nextLine();
             while ("-h".equals(profID)) {
-                professorsInDepartment = ProfessorMgr.getInstance().getProfInDepartment(courseDepartment);
+                professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
                 ProfessorMgrIO.printProfInDepartment(professorsInDepartment);
                 profID = scanner.nextLine();
             }

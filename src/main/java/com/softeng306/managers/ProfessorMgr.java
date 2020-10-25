@@ -38,7 +38,12 @@ public class ProfessorMgr {
         return singleInstance;
     }
 
-    public List<String> getProfInDepartment(String department) {
+    /**
+     * Returns the IDs of all professors in the department.
+     * @param department The department the professors are in.
+     * @return A list of all the IDs of the professors.
+     */
+    public List<String> getAllProfIDInDepartment(String department) {
         if (DepartmentValidator.checkDepartmentValidation(department)) {
             return professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
         }
