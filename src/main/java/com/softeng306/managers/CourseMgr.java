@@ -8,12 +8,11 @@ import com.softeng306.domain.course.component.CourseworkComponent;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
-import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
+import com.softeng306.io.ProfessorMgrIO;
 import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.*;
 
@@ -396,14 +395,15 @@ public class CourseMgr {
 
         Professor profInCharge;
         List<String> professorsInDepartment;
-        // TODO: Fix name of method
-        professorsInDepartment = ProfessorMgr.getInstance().printProfInDepartment(courseDepartment, false);
+
+        professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
         while (true) {
             System.out.println("Enter the ID for the professor in charge please:");
             System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
             profID = scanner.nextLine();
             while ("-h".equals(profID)) {
-                professorsInDepartment = ProfessorMgr.getInstance().printProfInDepartment(courseDepartment, true);
+                professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
+                ProfessorMgrIO.printAllProfIDsInDepartment(professorsInDepartment);
                 profID = scanner.nextLine();
             }
 
