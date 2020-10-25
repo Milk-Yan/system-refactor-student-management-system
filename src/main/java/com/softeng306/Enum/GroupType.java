@@ -6,9 +6,9 @@ public enum GroupType {
     private String typeString;
 
     static {
-        LabGroup.typeString = "lab";
-        LectureGroup.typeString = "lecture";
-        TutorialGroup.typeString = "tutorial";
+        LabGroup.typeString = "Lab";
+        LectureGroup.typeString = "Lecture";
+        TutorialGroup.typeString = "Tutorial";
     }
 
     public String toTypeString() {

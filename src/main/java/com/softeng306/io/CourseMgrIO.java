@@ -7,7 +7,9 @@ import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
+import com.softeng306.managers.MarkMgr;
 import com.softeng306.managers.ProfessorMgr;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.DepartmentValidator;
@@ -129,7 +131,7 @@ public class CourseMgrIO {
         int noOfGroups;
 
         while (true) {
-            System.out.println("Enter the number of " + type.toTypeString() + " groups: ");
+            System.out.println("Enter the number of " + type.toTypeString().toLowerCase() + " groups: ");
             if (scanner.hasNextInt()) {
                 noOfGroups = scanner.nextInt();
                 scanner.nextLine();
@@ -164,12 +166,12 @@ public class CourseMgrIO {
     public int readWeeklyHour(GroupType type, int AU) {
         int weeklyHour;
         while (true) {
-            System.out.format("Enter the weekly %s hour for this course: %n", type.toTypeString());
+            System.out.format("Enter the weekly %s hour for this course: %n", type.toTypeString().toLowerCase());
             if (scanner.hasNextInt()) {
                 weeklyHour = scanner.nextInt();
                 scanner.nextLine();
                 if (weeklyHour < 0 || weeklyHour > AU) {
-                    System.out.format("Weekly %s hour out of bound. Please re-enter.%n", type.toTypeString());
+                    System.out.format("Weekly %s hour out of bound. Please re-enter.%n", type.toTypeString().toLowerCase());
                 } else {
                     break;
                 }
@@ -406,26 +408,27 @@ public class CourseMgrIO {
         System.out.println("Course " + courseID + " is added, but assessment components are not initialized.");
     }
 
-    // TODO: Reduce duplication in this method
     public void printCourseInfo(Course course) {
         System.out.println(course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats());
         System.out.println("--------------------------------------------");
-        for (Group lectureGroup : course.getLectureGroups()) {
-            System.out.println("Lecture group " + lectureGroup.getGroupName() + " (Available/Total): " + lectureGroup.getAvailableVacancies() + "/" + lectureGroup.getTotalSeats());
-        }
+        printVacanciesForGroups(course.getLectureGroups(), GroupType.LectureGroup);
+
         if (course.getTutorialGroups() != null) {
             System.out.println();
-            for (Group tutorialGroup : course.getTutorialGroups()) {
-                System.out.println("Tutorial group " + tutorialGroup.getGroupName() + " (Available/Total):  " + tutorialGroup.getAvailableVacancies() + "/" + tutorialGroup.getTotalSeats());
-            }
+            printVacanciesForGroups(course.getTutorialGroups(), GroupType.TutorialGroup);
         }
         if (course.getLabGroups() != null) {
             System.out.println();
-            for (Group labGroup : course.getLabGroups()) {
-                System.out.println("Lab group " + labGroup.getGroupName() + " (Available/Total): " + labGroup.getAvailableVacancies() + "/" + labGroup.getTotalSeats());
-            }
+            printVacanciesForGroups(course.getLabGroups(), GroupType.LabGroup);
         }
         System.out.println();
+    }
+
+    private void printVacanciesForGroups(List<Group> groups, GroupType groupType) {
+        for (Group group : groups) {
+            System.out.format("%s group %s (Available/Total): %d/%d%n",
+                    groupType.toTypeString(), group.getGroupName(), group.getAvailableVacancies(), group.getTotalSeats());
+        }
     }
 
     public void printCourseNotExist() {
@@ -509,7 +512,7 @@ public class CourseMgrIO {
         return weight;
     }
 
-    public int readNoOfSub(int i) {
+    public int readNoOfSubComponents(int i) {
         int noOfSub;
 
         while (true) {
@@ -708,6 +711,68 @@ public class CourseMgrIO {
 
     public void printCourseworkWeightageEnteredError() {
         System.out.println("Course Assessment has been settled already!");
+    }
+
+    public void printCourseStatisticsHeader(Course course) {
+        System.out.println("*************** Course Statistic ***************");
+        System.out.println("Course ID: " + course.getCourseID() + "\tCourse Name: " + course.getCourseName());
+        System.out.println("Course AU: " + course.getAU());
+        System.out.println();
+        System.out.print("Total Slots: " + course.getTotalSeats());
+        int enrolledNumber = (course.getTotalSeats() - course.getVacancies());
+        System.out.println("\tEnrolled Student: " + enrolledNumber);
+        System.out.printf("Enrollment Rate: %4.2f %%\n", ((double) enrolledNumber / (double) course.getTotalSeats() * 100d));
+        System.out.println();
+    }
+
+    public void printMainComponent(MainComponent mainComponent, List<Mark> courseMarks) {
+        System.out.print("Main Component: " + mainComponent.getComponentName());
+        System.out.print("\tWeight: " + mainComponent.getComponentWeight() + "%");
+
+        double averageMark = MarkMgr.getInstance().computeMark(courseMarks, mainComponent.getComponentName());
+
+        averageMark = averageMark / courseMarks.size();
+        System.out.println("\t Average: " + averageMark);
+    }
+
+    public void printSubcomponents(List<SubComponent> subComponents, List<Mark> courseMarks) {
+        for (SubComponent subComponent : subComponents) {
+            printSubComponentInfo(subComponent);
+            double averageMark = MarkMgr.getInstance().computeMark(courseMarks, subComponent.getComponentName());
+            averageMark /= courseMarks.size();
+            System.out.println("\t Average: " + averageMark);
+        }
+        System.out.println();
+    }
+
+    public void printSubComponentInfo(SubComponent subComponent) {
+        System.out.print("Sub Component: " + subComponent.getComponentName());
+        System.out.print("\tWeight: " + subComponent.getComponentWeight() + "% (in main component)");
+    }
+
+    public void printExamStatistics(MainComponent exam, List<Mark> courseMarks) {
+        System.out.print("Final Exam");
+        System.out.print("\tWeight: " + exam.getComponentWeight() + "%");
+        System.out.println("\t Average: " + MarkMgr.getInstance().computeMark(courseMarks, "Exam") / courseMarks.size());
+    }
+
+    public void printNoExamMessage() {
+        System.out.println("This course does not have final exam.");
+    }
+
+    public void printOverallPerformance(List<Mark> courseMarks) {
+        System.out.println();
+        System.out.print("Overall Performance: ");
+        double averageMark = 0;
+        for (Mark mark : courseMarks) {
+            averageMark += mark.getTotalMark();
+        }
+        averageMark = averageMark / courseMarks.size();
+        System.out.printf("%4.2f \n", averageMark);
+
+        System.out.println();
+        System.out.println("***********************************************");
+        System.out.println();
     }
 
 }
