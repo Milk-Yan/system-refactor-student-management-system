@@ -33,6 +33,12 @@ public class CourseMgrIO {
 
     private MarkCalculator markCalculator = new MarkCalculator();
 
+
+    /**
+     * Read in a courseId from the user
+     *
+     * @return String courseId
+     */
     public String readCourseId() {
         String courseID;
         // Can make the sameCourseID as boolean, set to false.
@@ -49,11 +55,22 @@ public class CourseMgrIO {
         return courseID;
     }
 
+    /**
+     * Read in a course name from the user
+     *
+     * @return String courseName
+     */
     public String readCourseName() {
         System.out.println("Enter course Name: ");
         return scanner.nextLine();
     }
 
+
+    /**
+     * Read in the total number of seats for a course
+     *
+     * @return int totalSeats for a course
+     */
     public int readTotalSeats() {
         int totalSeats;
         while (true) {
@@ -74,6 +91,11 @@ public class CourseMgrIO {
         return totalSeats;
     }
 
+    /**
+     * Read in the number of academic units for a course
+     *
+     * @return int AU representing number of Academic Units
+     */
     public int readAU() {
         int AU;
         while (true) {
@@ -94,6 +116,11 @@ public class CourseMgrIO {
         return AU;
     }
 
+    /**
+     * Read in a course department for a course from the user
+     *
+     * @return String courseDepartment for a course
+     */
     public String readCourseDepartment() {
         String courseDepartment;
         while (true) {
@@ -112,6 +139,11 @@ public class CourseMgrIO {
         return courseDepartment;
     }
 
+    /**
+     * Read in a course type from the user
+     *
+     * @return String courseType for a course
+     */
     public String readCourseType() {
         String courseType;
         while (true) {
@@ -129,6 +161,14 @@ public class CourseMgrIO {
         return courseType;
     }
 
+    /**
+     * Read in the number of groups for a particular stream (lecture, lab, tutorial)
+     *
+     * @param type       the type of group we are reading in
+     * @param compareTo  the upper limit to compare it to
+     * @param totalSeats the total number of seats available
+     * @return the number of groups the user has inputted
+     */
     public int readNoOfGroup(GroupType type, int compareTo, int totalSeats) {
         int noOfGroups;
 
@@ -159,6 +199,11 @@ public class CourseMgrIO {
         return noOfGroups;
     }
 
+    /**
+     * Print out a message to console saying that the number of groups is invalid
+     *
+     * @param type the type of the group to output the message for
+     */
     private void printInvalidNoGroup(GroupType type) {
         if (type == GroupType.LabGroup) {
             System.out.println("Number of lab group must be non-negative.");
@@ -169,6 +214,13 @@ public class CourseMgrIO {
         }
     }
 
+    /**
+     * Reads in a weekly hour for a group from the user
+     *
+     * @param type the type of the group the weekly hour is for
+     * @param AU   the number of academic units for the course
+     * @return int the number of weekly hours for that group
+     */
     public int readWeeklyHour(GroupType type, int AU) {
         int weeklyHour;
         while (true) {
@@ -189,6 +241,13 @@ public class CourseMgrIO {
         return weeklyHour;
     }
 
+    /**
+     * Reads in and constructs lecture groups for a course from the user
+     *
+     * @param totalSeats        the total number of seats for the course
+     * @param noOfLectureGroups the number of lecture groups for a course
+     * @return the lecture groups the user has specified
+     */
     public List<Group> readLectureGroups(int totalSeats, int noOfLectureGroups) {
         String lectureGroupName;
         int lectureGroupCapacity;
@@ -251,7 +310,13 @@ public class CourseMgrIO {
         return lectureGroups;
     }
 
-
+    /**
+     * Reads in and constructs tutorial groups for a course from the user
+     *
+     * @param totalSeats         the total number of seats for the course
+     * @param noOfTutorialGroups the number of tutorial groups for a course
+     * @return the tutorial groups the user has specified
+     */
     public List<Group> readTutorialGroups(int noOfTutorialGroups, int totalSeats) {
         List<Group> tutorialGroups = new ArrayList<>();
         String tutorialGroupName;
@@ -305,6 +370,13 @@ public class CourseMgrIO {
         return tutorialGroups;
     }
 
+    /**
+     * Reads in and constructs lab groups for a course from the user
+     *
+     * @param totalSeats    the total number of seats for the course
+     * @param noOfLabGroups the number of lab groups for a course
+     * @return the lab groups the user has specified
+     */
     public List<Group> readLabGroups(int noOfLabGroups, int totalSeats) {
         List<Group> labGroups = new ArrayList<>();
         int totalLabSeats = 0;
@@ -353,6 +425,12 @@ public class CourseMgrIO {
     }
 
 
+    /**
+     * Read in a professor from the user for a particular course department
+     *
+     * @param courseDepartment the course department that the professor should be in
+     * @return Professor the professor the user has specified
+     */
     public Professor readProfessor(String courseDepartment) {
         List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
         String profID;
@@ -386,6 +464,11 @@ public class CourseMgrIO {
         return profInCharge;
     }
 
+    /**
+     * Reads in the user's choice for creating components now
+     *
+     * @return int the choice the user specified for creating a component
+     */
     public int readCreateCourseComponentChoice() {
         // TODO: Use enum instead of int to store choice
         int addCourseComponentChoice;
@@ -406,14 +489,29 @@ public class CourseMgrIO {
         return addCourseComponentChoice;
     }
 
+    /**
+     * Prints a success message that a course has been successfully added
+     *
+     * @param courseID the course to print the success message for
+     */
     public void printCourseAdded(String courseID) {
         System.out.println("Course " + courseID + " is added");
     }
 
+    /**
+     * Prints an information message that the components have not been initialized
+     *
+     * @param courseID the course that the components have not been initialized for
+     */
     public void printComponentsNotInitialized(String courseID) {
         System.out.println("Course " + courseID + " is added, but assessment components are not initialized.");
     }
 
+    /**
+     * Print course information to the console for a user
+     *
+     * @param course the course to print the info for
+     */
     public void printCourseInfo(Course course) {
         System.out.println(course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats());
         System.out.println("--------------------------------------------");
@@ -430,6 +528,12 @@ public class CourseMgrIO {
         System.out.println();
     }
 
+    /**
+     * Helper method to print out the vacancies for groups
+     *
+     * @param groups the groups to print
+     * @param type   the type of the groups
+     */
     private void printVacanciesForGroups(List<Group> groups, GroupType type) {
         for (Group group : groups) {
             if (type == GroupType.TutorialGroup) {
@@ -443,10 +547,18 @@ public class CourseMgrIO {
         }
     }
 
+    /**
+     * Print out an error message that the course specified does not exist
+     */
     public void printCourseNotExist() {
         System.out.println("This course does not exist. Please check again.");
     }
 
+    /**
+     * Reads in the users choice for whether a course should have a final exam
+     *
+     * @return int whether the user wants to have a final exam for a course
+     */
     public int readHasFinalExamChoice() {
         int hasFinalExamChoice;
 
@@ -459,6 +571,11 @@ public class CourseMgrIO {
         return hasFinalExamChoice;
     }
 
+    /**
+     * Reads in an exam weighting for a course from the user
+     *
+     * @return int the exam weight
+     */
     public int readExamWeight() {
         int examWeight;
 
@@ -477,10 +594,18 @@ public class CourseMgrIO {
         return examWeight;
     }
 
+    /**
+     * Print out a message to the user asking to enter assessments
+     */
     public void printEnterContinuousAssessments() {
         System.out.println("Okay, please enter some continuous assessments");
     }
 
+    /**
+     * Reads in the number of main components for a course from the user
+     *
+     * @return int number of main components specified
+     */
     public int readNoOfMainComponents() {
         int numberOfMain;
 
@@ -503,6 +628,13 @@ public class CourseMgrIO {
         return numberOfMain;
     }
 
+    /**
+     * Reads in the main component weightage from the user
+     *
+     * @param i              the number entry for the main component
+     * @param totalWeightage the current total weightage
+     * @return the main component weightage
+     */
     public int readMainComponentWeightage(int i, int totalWeightage) {
         int weight;
         while (true) {
@@ -524,15 +656,21 @@ public class CourseMgrIO {
         return weight;
     }
 
-    public int readNoOfSubComponents(int i) {
+    /**
+     * Reads in the number of sub components for a main component from the user
+     *
+     * @param mainComponentNo the main component number the sub components are for
+     * @return int the number of sub components
+     */
+    public int readNoOfSubComponents(int mainComponentNo) {
         int noOfSub;
 
         while (true) {
-            System.out.println("Enter number of sub component under main component " + (i + 1) + ":");
+            System.out.println("Enter number of sub component under main component " + (mainComponentNo + 1) + ":");
             while (!scanner.hasNextInt()) {
                 String input = scanner.next();
                 System.out.println("Sorry. " + input + " is not an integer.");
-                System.out.println("Enter number of sub component under main component " + (i + 1) + ":");
+                System.out.println("Enter number of sub component under main component " + (mainComponentNo + 1) + ":");
             }
             noOfSub = scanner.nextInt();
             if (noOfSub < 0) {
@@ -546,14 +684,21 @@ public class CourseMgrIO {
         return noOfSub;
     }
 
-    public int readSubWeight(int j, int sub_totWeight) {
+    /**
+     * Reads in the sub component weightage from the user
+     *
+     * @param subComponentNo the sub component to read the weight for
+     * @param sub_totWeight  the total subcomponent weightage
+     * @return int the sub component weight
+     */
+    public int readSubWeight(int subComponentNo, int sub_totWeight) {
         int sub_weight;
         while (true) {
-            System.out.println("Enter sub component " + (j + 1) + " weightage: ");
+            System.out.println("Enter sub component " + (subComponentNo + 1) + " weightage: ");
             while (!scanner.hasNextInt()) {
                 String input = scanner.next();
                 System.out.println("Sorry. " + input + " is not an integer.");
-                System.out.println("Enter sub component " + (j + 1) + " weightage (out of the main component): ");
+                System.out.println("Enter sub component " + (subComponentNo + 1) + " weightage (out of the main component): ");
             }
             sub_weight = scanner.nextInt();
             if (sub_weight < 0 || sub_weight > sub_totWeight) {
@@ -567,16 +712,27 @@ public class CourseMgrIO {
         return sub_weight;
     }
 
+    /**
+     * Prints an error when the sub components do not add to 100
+     */
     public void printSubComponentWeightageError() {
         System.out.println("ERROR! sub component weightage does not tally to 100");
         System.out.println("You have to reassign!");
     }
 
+    /**
+     * Prints an error that the total weightage does not add to 100
+     */
     public void printWeightageError() {
         System.out.println("Weightage assigned does not tally to 100!");
         System.out.println("You have to reassign!");
     }
 
+    /**
+     * Prints the components for a course
+     *
+     * @param course the course to print the components for
+     */
     public void printComponentsForCourse(Course course) {
         System.out.println(course.getCourseID() + " " + course.getCourseName() + " components: ");
         for (MainComponent each_comp : course.getMainComponents()) {
@@ -587,14 +743,22 @@ public class CourseMgrIO {
         }
     }
 
-    public String readMainComponentName(int totalWeightage, int i, List<MainComponent> mainComponents) {
+    /**
+     * Read in the name for a main component from the user
+     *
+     * @param totalWeightage  the total weightage for a course
+     * @param mainComponentNo the main component number
+     * @param mainComponents  the main components
+     * @return the main component name
+     */
+    public String readMainComponentName(int totalWeightage, int mainComponentNo, List<MainComponent> mainComponents) {
         boolean componentExist;
         String mainComponentName;
 
         do {
             componentExist = false;
             System.out.println("Total weightage left to assign: " + totalWeightage);
-            System.out.println("Enter main component " + (i + 1) + " name: ");
+            System.out.println("Enter main component " + (mainComponentNo + 1) + " name: ");
             mainComponentName = scanner.nextLine();
 
             if (mainComponents.isEmpty()) {
@@ -617,6 +781,12 @@ public class CourseMgrIO {
         return mainComponentName;
     }
 
+    /**
+     * Read in the sub components specified by a user for a course
+     *
+     * @param noOfSub the number of subcomponents
+     * @return List of sub components user has specified
+     */
     public List<SubComponent> readSubComponents(int noOfSub) {
         List<SubComponent> subComponents = new ArrayList<>();
 
@@ -672,13 +842,21 @@ public class CourseMgrIO {
         return subComponents;
     }
 
-    public String readSubComponentName(List<SubComponent> subComponents, int sub_totWeight, int j) {
+    /**
+     * Read in a sub component name from the user
+     *
+     * @param subComponents  the current sub components
+     * @param sub_totWeight  the total sub component weight
+     * @param subComponentNo the sub component number
+     * @return String the name of the sub component specified
+     */
+    public String readSubComponentName(List<SubComponent> subComponents, int sub_totWeight, int subComponentNo) {
         boolean componentExist;
         String subComponentName;
         do {
             componentExist = false;
             System.out.println("Total weightage left to assign to sub component: " + sub_totWeight);
-            System.out.println("Enter sub component " + (j + 1) + " name: ");
+            System.out.println("Enter sub component " + (subComponentNo + 1) + " name: ");
             subComponentName = scanner.nextLine();
 
             if (subComponents.isEmpty()) {
@@ -701,10 +879,18 @@ public class CourseMgrIO {
         return subComponentName;
     }
 
+    /**
+     * Print an info message that the course specified is empty
+     */
     public void printEmptyCourseComponents(Course course) {
         System.out.println("Currently course " + course.getCourseID() + " " + course.getCourseName() + " does not have any assessment component.");
     }
 
+    /**
+     * Print courses
+     *
+     * @param courses the courses to print
+     */
     public void printCourses(List<Course> courses) {
         System.out.println("Course List: ");
         System.out.println("| Course ID | Course Name | Professor in Charge |");
@@ -714,6 +900,11 @@ public class CourseMgrIO {
         System.out.println();
     }
 
+    /**
+     * Print all the course ids
+     *
+     * @param courses the courses to print ids for
+     */
     public void printAllCourseIds(List<Course> courses) {
         for (Course course : courses) {
             String courseID = course.getCourseID();
@@ -721,10 +912,18 @@ public class CourseMgrIO {
         }
     }
 
+    /**
+     * Print error that course assessment is settled
+     */
     public void printCourseworkWeightageEnteredError() {
         System.out.println("Course Assessment has been settled already!");
     }
 
+    /**
+     * Print course statistics header for a particular course
+     *
+     * @param course the course to print statistics for
+     */
     public void printCourseStatisticsHeader(Course course) {
         System.out.println("*************** Course Statistic ***************");
         System.out.println("Course ID: " + course.getCourseID() + "\tCourse Name: " + course.getCourseName());
@@ -737,6 +936,12 @@ public class CourseMgrIO {
         System.out.println();
     }
 
+    /**
+     * Print a main component to the user
+     *
+     * @param mainComponent the main component to print
+     * @param courseMarks   needed to calculate the average mark
+     */
     public void printMainComponent(MainComponent mainComponent, List<Mark> courseMarks) {
         System.out.print("Main Component: " + mainComponent.getComponentName());
         System.out.print("\tWeight: " + mainComponent.getComponentWeight() + "%");
@@ -745,6 +950,12 @@ public class CourseMgrIO {
         System.out.println("\t Average: " + markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
     }
 
+    /**
+     * Print statistics for subcomponents
+     *
+     * @param subComponents the subcomponents to print out
+     * @param courseMarks   needed to calculate the average mark
+     */
     public void printSubcomponents(List<SubComponent> subComponents, List<Mark> courseMarks) {
         for (SubComponent subComponent : subComponents) {
             printSubComponentInfo(subComponent);
@@ -753,21 +964,40 @@ public class CourseMgrIO {
         System.out.println();
     }
 
+    /**
+     * Print the info for a sub component
+     *
+     * @param subComponent the sub component to print the info for
+     */
     public void printSubComponentInfo(SubComponent subComponent) {
         System.out.print("Sub Component: " + subComponent.getComponentName());
         System.out.print("\tWeight: " + subComponent.getComponentWeight() + "% (in main component)");
     }
 
+    /**
+     * Print statistics for an exam to the user
+     *
+     * @param exam        the exam to print statistics on
+     * @param courseMarks needed to calculate average
+     */
     public void printExamStatistics(MainComponent exam, List<Mark> courseMarks) {
         System.out.print("Final Exam");
         System.out.print("\tWeight: " + exam.getComponentWeight() + "%");
         System.out.println("\t Average: " + markCalculator.computeExamMark(courseMarks));
     }
 
+    /**
+     * Print message that course has no exam
+     */
     public void printNoExamMessage() {
         System.out.println("This course does not have final exam.");
     }
 
+    /**
+     * Print overall performance based on course marks
+     *
+     * @param courseMarks the coursemarks to calculate statistics for
+     */
     public void printOverallPerformance(List<Mark> courseMarks) {
         System.out.println();
         System.out.print("Overall Performance: ");
