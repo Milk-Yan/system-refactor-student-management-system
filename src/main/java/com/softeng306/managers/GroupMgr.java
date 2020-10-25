@@ -1,5 +1,6 @@
 package com.softeng306.managers;
 
+import com.softeng306.Enum.GroupType;
 import com.softeng306.domain.course.group.Group;
 
 import java.util.HashMap;
@@ -37,7 +38,7 @@ public class GroupMgr {
      * @param groups    A list of a certain type of groups in a course.
      * @return the name of the group chosen by the user.
      */
-    public Group printGroupWithVacancyInfo(String groupType, List<Group> groups) {
+    public Group printGroupWithVacancyInfo(GroupType groupType, List<Group> groups) {
         int index;
         HashMap<String, Integer> groupAssign = new HashMap<>(0);
         int selectedGroupNum;

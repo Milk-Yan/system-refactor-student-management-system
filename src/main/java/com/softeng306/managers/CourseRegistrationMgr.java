@@ -1,5 +1,6 @@
 package com.softeng306.managers;
 
+import com.softeng306.Enum.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
@@ -77,17 +78,17 @@ public class CourseRegistrationMgr {
 
         GroupMgr groupMgr = GroupMgr.getInstance();
 
-        Group selectedLectureGroup = groupMgr.printGroupWithVacancyInfo("lecture", lecGroups);
+        Group selectedLectureGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LectureGroup, lecGroups);
 
         List<Group> tutGroups = new ArrayList<>(0);
         tutGroups.addAll(currentCourse.getTutorialGroups());
 
-        Group selectedTutorialGroup = groupMgr.printGroupWithVacancyInfo("tutorial", tutGroups);
+        Group selectedTutorialGroup = groupMgr.printGroupWithVacancyInfo(GroupType.TutorialGroup, tutGroups);
 
         List<Group> labGroups = new ArrayList<>(0);
         labGroups.addAll(currentCourse.getLabGroups());
 
-        Group selectedLabGroup = groupMgr.printGroupWithVacancyInfo("lab", labGroups);
+        Group selectedLabGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LabGroup, labGroups);
 
         currentCourse.enrolledIn();
         CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
