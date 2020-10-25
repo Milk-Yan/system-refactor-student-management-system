@@ -753,35 +753,7 @@ public class CourseMgrIO {
      * @return the main component name
      */
     public String readMainComponentName(int totalWeightage, int mainComponentNo, List<MainComponent> mainComponents) {
-        boolean componentExist;
-        String mainComponentName;
-
-
         return getComponentName(totalWeightage, mainComponents, mainComponentNo, " main component ");
-        do {
-            componentExist = false;
-            System.out.println("Total weightage left to assign: " + totalWeightage);
-            System.out.println("Enter main component " + (mainComponentNo + 1) + " name: ");
-            mainComponentName = scanner.nextLine();
-
-            if (mainComponents.isEmpty()) {
-                break;
-            }
-            if (mainComponentName.equals("Exam")) {
-                System.out.println("Exam is a reserved assessment.");
-                componentExist = true;
-                continue;
-            }
-            for (MainComponent mainComponent : mainComponents) {
-                if (mainComponent.getComponentName().equals(mainComponentName)) {
-                    componentExist = true;
-                    System.out.println("This sub component already exist. Please enter.");
-                    break;
-                }
-            }
-        } while (componentExist);
-
-        return mainComponentName;
     }
 
     /**
@@ -800,7 +772,7 @@ public class CourseMgrIO {
 
             int subComponenttotalWeight = 100;
             for (int j = 0; j < noOfSub; j++) {
-                subComponentName = getComponentName(subComponenttotalWeight, subComponents, j, "sub component");
+                subComponentName = getComponentName(subComponenttotalWeight, subComponents, j, " sub component ");
                 subComponentWeight = readSubWeight(j, subComponenttotalWeight);
                 //Create Subcomponent
                 SubComponent subComponent = new SubComponent(subComponentName, subComponentWeight);
@@ -830,8 +802,8 @@ public class CourseMgrIO {
         boolean componentExist;
         do {
             componentExist = false;
-            System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
-            System.out.println("Enter sub component " + (componentNumber + 1) + " name: ");
+            System.out.println("Total weightage left to assign to "+ type +": " + totalWeightAssignable);
+            System.out.println("Enter "+ type +" " + (componentNumber + 1) + " name: ");
             subComponentName = scanner.nextLine();
 
             if (components.isEmpty()) {
