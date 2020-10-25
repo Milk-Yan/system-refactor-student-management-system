@@ -61,7 +61,7 @@ public class CourseValidator {
             System.out.println("Enter course ID (-h to print all the course ID):");
             courseID = scanner.nextLine();
             while ("-h".equals(courseID)) {
-                CourseMgr.getInstance().printAllCourses();
+                CourseMgr.getInstance().printAllCourseIds();
                 courseID = scanner.nextLine();
             }
 
@@ -86,7 +86,7 @@ public class CourseValidator {
      * @return the existing course or else null.
      */
     public static Course checkCourseExists(String courseID) {
-        List<Course> anyCourse = CourseMgr.courses.stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
+        List<Course> anyCourse = CourseMgr.getInstance().getCourses().stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
         if (anyCourse.size() == 0) {
             return null;
         }

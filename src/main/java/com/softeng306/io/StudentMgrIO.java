@@ -14,8 +14,9 @@ public class StudentMgrIO {
 
     private static Scanner reader = new Scanner(System.in);
 
+
     public static void printMenu() {
-        System.out.println("addStudent is called");
+        MainMenuIO.printMethodCall("addStudent");
         System.out.println("Choose the way you want to add a student:");
         System.out.println("1. Manually input the student ID.");
         System.out.println("2. Let the system self-generate the student ID.");
@@ -130,7 +131,7 @@ public class StudentMgrIO {
         System.out.println("Student named: " + name + " is added, with ID: " + ID);
         System.out.println("Student List: ");
         System.out.println("| Student ID | Student Name | Student School | Gender | Year | GPA |");
-        for (Student student : StudentMgr.students) {
+        for (Student student : StudentMgr.getInstance().getStudents()) {
             String GPA = "not available";
             if (Double.compare(student.getGPA(), 0.0) != 0) {
                 GPA = String.valueOf(student.getGPA());

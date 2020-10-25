@@ -4,7 +4,6 @@ import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.validation.DepartmentValidator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +14,7 @@ public class ProfessorMgr {
     /**
      * A list of all the professors in this school.
      */
-    public static List<Professor> professors = new ArrayList<>(0);
+    private List<Professor> professors;
 
     private static ProfessorMgr singleInstance = null;
 
@@ -39,27 +38,26 @@ public class ProfessorMgr {
         return singleInstance;
     }
 
-    // TODO: fix name of this method
+    /**
+     * Returns the IDs of all professors in the department.
+     * @param department The department the professors are in.
+     * @return A list of all the IDs of the professors.
+     */
+    public List<String> getAllProfIDInDepartment(String department) {
+        if (DepartmentValidator.checkDepartmentValidation(department)) {
+            return professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
+        }
+
+        // the department is invalid so no professors
+        return null;
+    }
 
     /**
-     * Displays all the professors in the inputted department.
-     *
-     * @param department The inputted department.
-     * @param printOut   Represents whether print out the professor information or not
-     * @return A list of all the names of professors in the inputted department or else null.
+     * Return the list of all professors in the system.
+     * @return An list of all professors.
      */
-    public List<String> printProfInDepartment(String department, boolean printOut) {
-        if (DepartmentValidator.checkDepartmentValidation(department)) {
-            List<String> validProfString = ProfessorMgr.professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
-
-            if (printOut) {
-                validProfString.forEach(System.out::println);
-            }
-            return validProfString;
-        }
-        System.out.println("None.");
-        return null;
-
+    public List<Professor> getProfessors() {
+        return professors;
     }
 
 }
