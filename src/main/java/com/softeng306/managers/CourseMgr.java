@@ -1,12 +1,11 @@
 package com.softeng306.managers;
 
-import com.softeng306.Enum.GroupType;
+import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
