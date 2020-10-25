@@ -47,7 +47,6 @@ public class CourseRegistrationMgr {
      */
     public void registerCourse() {
         MainMenuIO.printMethodCall("registerCourse");
-        CourseRegistrationManagerIO courseRegistrationManagerIO = new CourseRegistrationManagerIO();
         String selectedLectureGroupName = null;
         String selectedTutorialGroupName = null;
         String selectedLabGroupName = null;
@@ -66,16 +65,16 @@ public class CourseRegistrationMgr {
         }
 
         if (currentCourse.getMainComponents().size() == 0) {
-            courseRegistrationManagerIO.printNoAssessmentMessage(currentCourse);
+            CourseRegistrationManagerIO.printNoAssessmentMessage(currentCourse);
             return;
         }
 
         if (currentCourse.getVacancies() == 0) {
-            courseRegistrationManagerIO.printNoVacancies();
+            CourseRegistrationManagerIO.printNoVacancies();
             return;
         }
 
-        courseRegistrationManagerIO.printPendingRegistrationMethod(currentCourse, currentStudent);
+        CourseRegistrationManagerIO.printPendingRegistrationMethod(currentCourse, currentStudent);
 
         List<Group> lecGroups = new ArrayList<>(0);
         lecGroups.addAll(currentCourse.getLectureGroups());
@@ -102,7 +101,7 @@ public class CourseRegistrationMgr {
 
         MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initializeMark(currentStudent, currentCourse));
 
-        courseRegistrationManagerIO.printSuccessfulRegistration(currentCourse, currentStudent, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
+        CourseRegistrationManagerIO.printSuccessfulRegistration(currentCourse, currentStudent, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
     }
 
     /**
@@ -110,10 +109,9 @@ public class CourseRegistrationMgr {
      */
     public void printStudents() {
         MainMenuIO.printMethodCall("printStudent");
-        CourseRegistrationManagerIO courseRegistrationManagerIO = new CourseRegistrationManagerIO();
 
         Course currentCourse = CourseValidator.checkCourseExists();
-        courseRegistrationManagerIO.printOptions();
+        CourseRegistrationManagerIO.printOptions();
 
         // READ courseRegistrationFILE
         // return List of Object(student,course,lecture,tut,lab)
@@ -135,34 +133,34 @@ public class CourseRegistrationMgr {
             System.out.println("------------------------------------------------------");
 
             if (stuArray.size() == 0) {
-               courseRegistrationManagerIO.printNoEnrolmentsError();
+               CourseRegistrationManagerIO.printNoEnrolmentsError();
             }
             if(opt == 1){
                 sortByLectureGroup(stuArray);
-                courseRegistrationManagerIO.printByGroup(stuArray, GroupType.LectureGroup);
+                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LectureGroup);
 
             } else if (opt == 2){
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getTutorialGroups().size() == 0) {
-                    courseRegistrationManagerIO.printNoGroup(GroupType.TutorialGroup);
-                    courseRegistrationManagerIO.printEndOfSection();
+                    CourseRegistrationManagerIO.printNoGroup(GroupType.TutorialGroup);
+                    CourseRegistrationManagerIO.printEndOfSection();
                     return;
                 }
                 sortByTutorialGroup(stuArray);
-                courseRegistrationManagerIO.printByGroup(stuArray, GroupType.TutorialGroup);
+                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.TutorialGroup);
 
             } else if (opt == 3){
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getLabGroups().size() == 0) {
-                    courseRegistrationManagerIO.printNoGroup(GroupType.LabGroup);
-                    courseRegistrationManagerIO.printEndOfSection();
+                    CourseRegistrationManagerIO.printNoGroup(GroupType.LabGroup);
+                    CourseRegistrationManagerIO.printEndOfSection();
                     return;
                 }
                 sortByLabGroup(stuArray);
-                courseRegistrationManagerIO.printByGroup(stuArray, GroupType.LabGroup);
+                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LabGroup);
 
             } else {
-                courseRegistrationManagerIO.printInvalidInputError();
+                CourseRegistrationManagerIO.printInvalidInputError();
             }
-            courseRegistrationManagerIO.printEndOfSection();
+            CourseRegistrationManagerIO.printEndOfSection();
         } while (opt < 1 || opt > 3);
     }
 

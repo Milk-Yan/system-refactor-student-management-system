@@ -13,7 +13,7 @@ public class CourseRegistrationManagerIO {
     /**
      * This method prints the menu options when printing student lists
      */
-    public void printOptions(){
+    public static void printOptions(){
         System.out.println("Print student by: ");
         System.out.println("(1) Lecture group");
         System.out.println("(2) Tutorial group");
@@ -26,7 +26,7 @@ public class CourseRegistrationManagerIO {
      * @param courseRegistrations the list registrations for a course
      * @param groupType the group of registration that we want to print
      */
-    public void printByGroup(List<CourseRegistration> courseRegistrations, GroupType groupType){
+    public static void printByGroup(List<CourseRegistration> courseRegistrations, GroupType groupType){
         if(courseRegistrations.size() == 0){
             return;
         }
@@ -59,7 +59,7 @@ public class CourseRegistrationManagerIO {
     /**
      * When there is no group of the given type, this method will be called
      */
-    public void printNoGroup(GroupType type){
+    public static void printNoGroup(GroupType type){
         System.out.format("This course does not contain any %s group.%n", type.toTypeString().toLowerCase());
     }
 
@@ -67,19 +67,19 @@ public class CourseRegistrationManagerIO {
      * When there is no enrolments for a course, this method will print an error
      * to the user
      */
-    public void printNoEnrolmentsError(){
+    public static void printNoEnrolmentsError(){
         System.out.println("No one has registered this course yet.");
     }
 
     /**
      * If the input is invalid, this method will let the user know
      */
-    public void printInvalidInputError(){
+    public static void printInvalidInputError(){
         System.out.println("Invalid input. Please re-enter.");
     }
 
 
-    public void printEndOfSection(){
+    public static void printEndOfSection(){
         System.out.println("------------------------------------------------------");
     }
 
@@ -92,7 +92,7 @@ public class CourseRegistrationManagerIO {
      * @param tutorialGroup tutorial group that the student is apart of
      * @param labGroup lab group that the student is apart of
      */
-    public void printSuccessfulRegistration(Course course, Student student, String lectureGroup, String tutorialGroup, String labGroup){
+    public static void printSuccessfulRegistration(Course course, Student student, String lectureGroup, String tutorialGroup, String labGroup){
         System.out.println("Course registration successful!");
         System.out.print("Student: " + student.getStudentName());
         System.out.print("\tLecture Group: " + lectureGroup);
@@ -105,11 +105,11 @@ public class CourseRegistrationManagerIO {
         System.out.println();
     }
 
-    public void printNoVacancies(){
+    public static void printNoVacancies(){
         System.out.println("Sorry, the course has no vacancies any more.");
     }
 
-    public void printNoAssessmentMessage(Course c){
+    public static void printNoAssessmentMessage(Course c){
         System.out.println("Professor " + c.getProfInCharge().getProfName() + " is preparing the assessment. Please try to register other courses.");
     }
 
@@ -118,7 +118,7 @@ public class CourseRegistrationManagerIO {
      * @param course is a Course that we are registering a student for.
      * @param student is the student that is being registered.
      */
-    public void printPendingRegistrationMethod(Course course, Student student){
+    public static void printPendingRegistrationMethod(Course course, Student student){
         System.out.println("Student " + student.getStudentName() + " with ID: " + student.getStudentID() +
                 " wants to register " + course.getCourseID() + " " + course.getCourseName());
     }
