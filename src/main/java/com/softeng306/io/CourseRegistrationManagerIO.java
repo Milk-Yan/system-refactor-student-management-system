@@ -61,7 +61,7 @@ public class CourseRegistrationManagerIO {
      * @param type
      */
     public void printNoGroup(GroupType type){
-        System.out.format("This course does not contain any %s group.%n", type.toTypeString());
+        System.out.format("This course does not contain any %s group.%n", type.toTypeString().toLowerCase());
     }
 
     /**
@@ -109,7 +109,7 @@ public class CourseRegistrationManagerIO {
     public void noVacancies(){
         System.out.println("Sorry, the course has no vacancies any more.");
     }
-    
+
     public void printNoAssessmentMessage(Course c){
         System.out.println("Professor " + c.getProfInCharge().getProfName() + " is preparing the assessment. Please try to register other courses.");
     }

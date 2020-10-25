@@ -144,6 +144,8 @@ public class CourseRegistrationMgr {
             } else if (opt == 2){
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getTutorialGroups().size() == 0) {
                     courseRegistrationManagerIO.printNoGroup(GroupType.TutorialGroup);
+                    courseRegistrationManagerIO.printEndOfSection();
+                    return;
                 }
                 sortByTutorialGroup(stuArray);
                 courseRegistrationManagerIO.printByGroup(stuArray, GroupType.TutorialGroup);
@@ -151,6 +153,8 @@ public class CourseRegistrationMgr {
             } else if (opt == 3){
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getLabGroups().size() == 0) {
                     courseRegistrationManagerIO.printNoGroup(GroupType.LabGroup);
+                    courseRegistrationManagerIO.printEndOfSection();
+                    return;
                 }
                 sortByLabGroup(stuArray);
                 courseRegistrationManagerIO.printByGroup(stuArray, GroupType.LabGroup);
