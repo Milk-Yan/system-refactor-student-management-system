@@ -8,7 +8,6 @@ import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
@@ -102,7 +101,7 @@ public class CourseMgr {
         builder.setLabWeeklyHour(labWeeklyHour);
         builder.setLabGroups(labGroups);
 
-        Professor profInCharge = courseMgrIO.readProfessor(courseDepartment.toString());
+        Professor profInCharge = courseMgrIO.readProfessor(courseDepartment);
         builder.setProfInCharge(profInCharge);
 
         Course course = builder.build();
@@ -255,7 +254,7 @@ public class CourseMgr {
     public List<String> getCourseIdsInDepartment(String department) {
         List<Course> validCourses = new ArrayList<>();
         courses.forEach(course -> {
-            if (department.equals(course.getCourseDepartment())) {
+            if (department.equals(course.getCourseDepartment().toString())) {
                 validCourses.add(course);
             }
         });
