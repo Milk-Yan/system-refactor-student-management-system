@@ -71,7 +71,7 @@ public class CourseRegistrationMgr {
         }
 
         if (currentCourse.getVacancies() == 0) {
-            courseRegistrationManagerIO.noVacancies();
+            courseRegistrationManagerIO.printNoVacancies();
             return;
         }
 

@@ -23,8 +23,8 @@ public class CourseRegistrationManagerIO {
 
     /**
      * This method prints the students of a given group
-     * @param courseRegistrations
-     * @param groupType
+     * @param courseRegistrations the list registrations for a course
+     * @param groupType the group of registration that we want to print
      */
     public void printByGroup(List<CourseRegistration> courseRegistrations, GroupType groupType){
         if(courseRegistrations.size() == 0){
@@ -58,7 +58,6 @@ public class CourseRegistrationManagerIO {
 
     /**
      * When there is no group of the given type, this method will be called
-     * @param type
      */
     public void printNoGroup(GroupType type){
         System.out.format("This course does not contain any %s group.%n", type.toTypeString().toLowerCase());
@@ -87,26 +86,26 @@ public class CourseRegistrationManagerIO {
     /**
      * Upon successful registration, this method will print a success message and
      * the groups that the student has been added to
-     * @param c
-     * @param s
-     * @param lectureGroup
-     * @param tutorialGroup
-     * @param labGroup
+     * @param course that the student has registered in
+     * @param student that that has registered
+     * @param lectureGroup lecture group that the student is apart of
+     * @param tutorialGroup tutorial group that the student is apart of
+     * @param labGroup lab group that the student is apart of
      */
-    public void printSuccessfulRegistration(Course c, Student s, String lectureGroup, String tutorialGroup, String labGroup){
+    public void printSuccessfulRegistration(Course course, Student student, String lectureGroup, String tutorialGroup, String labGroup){
         System.out.println("Course registration successful!");
-        System.out.print("Student: " + s.getStudentName());
+        System.out.print("Student: " + student.getStudentName());
         System.out.print("\tLecture Group: " + lectureGroup);
-        if (c.getTutorialGroups().size() != 0) {
+        if (course.getTutorialGroups().size() != 0) {
             System.out.print("\tTutorial Group: " + tutorialGroup);
         }
-        if (c.getLabGroups().size() != 0) {
+        if (course.getLabGroups().size() != 0) {
             System.out.print("\tLab Group: " + labGroup);
         }
         System.out.println();
     }
 
-    public void noVacancies(){
+    public void printNoVacancies(){
         System.out.println("Sorry, the course has no vacancies any more.");
     }
 
@@ -116,12 +115,12 @@ public class CourseRegistrationManagerIO {
 
     /**
      * Before registration details are known, this will print an pending message.
-     * @param c
-     * @param s
+     * @param course is a Course that we are registering a student for.
+     * @param student is the student that is being registered.
      */
-    public void printPendingRegistrationMethod(Course c, Student s){
-        System.out.println("Student " + s.getStudentName() + " with ID: " + s.getStudentID() +
-                " wants to register " + c.getCourseID() + " " + c.getCourseName());
+    public void printPendingRegistrationMethod(Course course, Student student){
+        System.out.println("Student " + student.getStudentName() + " with ID: " + student.getStudentID() +
+                " wants to register " + course.getCourseID() + " " + course.getCourseName());
     }
 
 
