@@ -27,8 +27,8 @@ SE2001 Algorithm (Available/Total): 17/20
 --------------------------------------------
 Lecture group Lec1 (Available/Total): 17/20
 
-Tutorial group Tut1 (Available/Total): 18/20
-Tutorial group Tut2 (Available/Total): 19/20
+Tutorial group Tut1 (Available/Total):  18/20
+Tutorial group Tut2 (Available/Total):  19/20
 
 
 ************ I can help you with these functions: *************

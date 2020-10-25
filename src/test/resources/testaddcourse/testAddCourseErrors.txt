@@ -80,13 +80,13 @@ Enter this lecture group's capacity:
 Sorry, the total capacity you allocated for all the lecture groups exceeds or does not add up to the total seats for this course.
 Please re-enter the capacity for the last lecture group lec1 you have entered.
 Enter this lecture group's capacity: 
-Enter the number of tutorial groups: 
+Enter the number of tutorial groups:
 Invalid input.
 Number of tutorial group must be non-negative.
 Please re-enter
-Enter the number of tutorial groups: 
+Enter the number of tutorial groups:
 Your input one is not an integer.
-Enter the number of tutorial groups: 
+Enter the number of tutorial groups:
 Enter the weekly tutorial hour for this course: 
 Weekly tutorial hour out of bound. Please re-enter.
 Enter the weekly tutorial hour for this course: 
