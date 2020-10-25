@@ -47,6 +47,7 @@ public class CourseRegistrationMgr {
      */
     public void registerCourse() {
         MainMenuIO.printMethodCall("registerCourse");
+        CourseRegistrationManagerIO courseRegistrationManagerIO = new CourseRegistrationManagerIO();
         String selectedLectureGroupName = null;
         String selectedTutorialGroupName = null;
         String selectedLabGroupName = null;
@@ -65,17 +66,16 @@ public class CourseRegistrationMgr {
         }
 
         if (currentCourse.getMainComponents().size() == 0) {
-            System.out.println("Professor " + currentCourse.getProfInCharge().getProfName() + " is preparing the assessment. Please try to register other courses.");
+            courseRegistrationManagerIO.printNoAssessmentMessage(currentCourse);
             return;
         }
 
         if (currentCourse.getVacancies() == 0) {
-            System.out.println("Sorry, the course has no vacancies any more.");
+            courseRegistrationManagerIO.noVacancies();
             return;
         }
 
-        System.out.println("Student " + currentStudent.getStudentName() + " with ID: " + currentStudent.getStudentID() +
-                " wants to register " + currentCourse.getCourseID() + " " + currentCourse.getCourseName());
+        courseRegistrationManagerIO.printPendingRegistrationMethod(currentCourse, currentStudent);
 
         List<Group> lecGroups = new ArrayList<>(0);
         lecGroups.addAll(currentCourse.getLectureGroups());
@@ -102,16 +102,7 @@ public class CourseRegistrationMgr {
 
         MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initializeMark(currentStudent, currentCourse));
 
-        System.out.println("Course registration successful!");
-        System.out.print("Student: " + currentStudent.getStudentName());
-        System.out.print("\tLecture Group: " + selectedLectureGroupName);
-        if (currentCourse.getTutorialGroups().size() != 0) {
-            System.out.print("\tTutorial Group: " + selectedTutorialGroupName);
-        }
-        if (currentCourse.getLabGroups().size() != 0) {
-            System.out.print("\tLab Group: " + selectedLabGroupName);
-        }
-        System.out.println();
+        courseRegistrationManagerIO.printSuccessfulRegistration(currentCourse, currentStudent, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
     }
 
     /**
@@ -144,7 +135,7 @@ public class CourseRegistrationMgr {
             System.out.println("------------------------------------------------------");
 
             if (stuArray.size() == 0) {
-                System.out.println("No one has registered this course yet.");
+               courseRegistrationManagerIO.printNoEnrolmentsError();
             }
             if(opt == 1){
                 sortByLectureGroup(stuArray);
@@ -152,24 +143,22 @@ public class CourseRegistrationMgr {
 
             } else if (opt == 2){
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getTutorialGroups().size() == 0) {
-                    System.out.println("This course does not contain any tutorial group.");
-                } else {
-                    sortByTutorialGroup(stuArray);
-                    courseRegistrationManagerIO.printByGroup(stuArray, GroupType.TutorialGroup);
+                    courseRegistrationManagerIO.printNoGroup(GroupType.TutorialGroup);
                 }
+                sortByTutorialGroup(stuArray);
+                courseRegistrationManagerIO.printByGroup(stuArray, GroupType.TutorialGroup);
 
             } else if (opt == 3){
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getLabGroups().size() == 0) {
-                    System.out.println("This course does not contain any lab group.");
-                } else {
-                    sortByLabGroup(stuArray);
-                    courseRegistrationManagerIO.printByGroup(stuArray, GroupType.LabGroup);
+                    courseRegistrationManagerIO.printNoGroup(GroupType.LabGroup);
                 }
+                sortByLabGroup(stuArray);
+                courseRegistrationManagerIO.printByGroup(stuArray, GroupType.LabGroup);
 
             } else {
-                System.out.println("Invalid input. Please re-enter.");
+                courseRegistrationManagerIO.printInvalidInputError();
             }
-            System.out.println("------------------------------------------------------");
+            courseRegistrationManagerIO.printEndOfSection();
         } while (opt < 1 || opt > 3);
     }
 
