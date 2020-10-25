@@ -354,7 +354,7 @@ public class CourseMgrIO {
 
 
     public Professor readProfessor(String courseDepartment) {
-        List<String> professorsInDepartment = ProfessorMgr.getInstance().printProfInDepartment(courseDepartment, false);
+        List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
         String profID;
         Professor profInCharge;
 
@@ -364,7 +364,7 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
             profID = scanner.nextLine();
             while ("-h".equals(profID)) {
-                professorsInDepartment = ProfessorMgr.getInstance().printProfInDepartment(courseDepartment, true);
+                ProfessorMgrIO.printAllProfIDsInDepartment(professorsInDepartment);
                 profID = scanner.nextLine();
             }
 
