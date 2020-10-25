@@ -1,6 +1,6 @@
 package com.softeng306.domain.course.group;
 
-import com.softeng306.Enum.GroupType;
+import com.softeng306.enums.GroupType;
 
 /**
  * Represents study groups (LectureGroup, TutorialGroup and LabGroup) for a course.

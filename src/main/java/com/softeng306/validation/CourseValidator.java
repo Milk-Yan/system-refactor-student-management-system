@@ -1,6 +1,6 @@
 package com.softeng306.validation;
 
-import com.softeng306.Enum.CourseType;
+import com.softeng306.enums.CourseType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.managers.CourseMgr;
 
@@ -48,7 +48,6 @@ public class CourseValidator {
         System.out.println("The course type is invalid. Please re-enter.");
         return false;
     }
-
 
     /**
      * Checks whether this course ID is used by other courses.

@@ -1,11 +1,9 @@
 package com.softeng306.validation;
 
-import com.softeng306.Enum.Department;
-import com.softeng306.managers.CourseMgr;
+import com.softeng306.enums.Department;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.List;
 import java.util.Scanner;
 
 public class DepartmentValidator {
@@ -30,4 +28,5 @@ public class DepartmentValidator {
         System.out.println("The department is invalid. Please re-enter.");
         return false;
     }
+
 }

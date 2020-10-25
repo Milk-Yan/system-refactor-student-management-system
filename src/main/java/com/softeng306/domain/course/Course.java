@@ -88,73 +88,10 @@ public class Course {
      */
     private List<MainComponent> mainComponents = new ArrayList<>(0);
 
-
     /**
      * Default constructor. Required for Jackson serialization.
      */
-    public Course() {
-
-    }
-
-    /**
-     * Creates the course with course ID, course name, professor in charge, current vacancies, total seats lectures groups, AU, course department, course type and weekly lecture hour
-     * @param courseID The ID of this course.
-     * @param courseName The name of this course.
-     * @param profInCharge The professor in charge of this course.
-     * @param vacancies The current vacancy of this course.
-     * @param totalSeats The total seats of this course.
-     * @param lectureGroups The lecture groups of this course.
-     * @param AU The AU of this course.
-     * @param courseDepartment The course department of this course.
-     * @param courseType The course type of this course.
-     * @param lecWeeklyHour The lecture weekly hour of this course.
-     */
-    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, List<Group> lectureGroups, int AU, String courseDepartment, String courseType, int lecWeeklyHour) {
-        this.courseID = courseID;
-        this.courseName = courseName;
-        this.profInCharge = profInCharge;
-        this.vacancies = vacancies;
-        this.totalSeats = totalSeats;
-        this.lectureGroups = lectureGroups;
-        this.AU = AU;
-        this.courseDepartment = courseDepartment;
-        this.courseType = courseType;
-        this.lecWeeklyHour = lecWeeklyHour;
-    }
-
-    /**
-     * Creates the course with course ID, course name, professor in charge, current vacancies, total seats lectures groups, tutorial groups, lab groups, AU, course department, course type, weekly lecture hour, weekly tutorial hour, weekly lab hour
-     * @param courseID The ID of this course.
-     * @param courseName The name of this course.
-     * @param profInCharge The professor in charge of this course.
-     * @param vacancies The current vacancy of this course.
-     * @param totalSeats The total seats of this course.
-     * @param lectureGroups The lecture groups of this course.
-     * @param tutorialGroups The tutorial groups of this course.
-     * @param labGroups The lab groups of this course.
-     * @param AU The AU of this course.
-     * @param courseDepartment The course department of this course.
-     * @param courseType The course type of this course.
-     * @param lecWeeklyHour The lecture weekly hour of this course.
-     * @param tutWeeklyHour The tutorial weekly hour of this course.
-     * @param labWeeklyHour The lab weekly hour of this course.
-     */
-    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, List<Group> lectureGroups, List<Group> tutorialGroups, List<Group> labGroups, int AU, String courseDepartment, String courseType, int lecWeeklyHour, int tutWeeklyHour, int labWeeklyHour) {
-        this.courseID = courseID;
-        this.courseName = courseName;
-        this.profInCharge = profInCharge;
-        this.vacancies = vacancies;
-        this.totalSeats = totalSeats;
-        this.lectureGroups = lectureGroups;
-        this.tutorialGroups = tutorialGroups;
-        this.labGroups = labGroups;
-        this.AU = AU;
-        this.courseDepartment = courseDepartment;
-        this.courseType = courseType;
-        this.lecWeeklyHour = lecWeeklyHour;
-        this.tutWeeklyHour = tutWeeklyHour;
-        this.labWeeklyHour = labWeeklyHour;
-    }
+    public Course() {}
 
     /**
      * Gets the course's ID.
@@ -317,6 +254,7 @@ public class Course {
         this.tutWeeklyHour = tutWeeklyHour;
     }
 
+    public void setLecWeeklyHour(int lecWeeklyHour) { this.lecWeeklyHour = lecWeeklyHour; }
     /**
      * Sets the weekly hour of the labs.
      * @param labWeeklyHour this course's weekly lab hour.
@@ -330,4 +268,52 @@ public class Course {
      * @param AU Academic unit for course.
      */
     public void setAU(int AU) { this.AU = AU; }
+
+    /**
+     * Sets the IDfor the course.
+     * @param id ID for course.
+     */
+    public void setID(String id) { this.courseID = id; }
+
+    /**
+     * Sets the name for the course.
+     * @param name Name for course.
+     */
+    public void setName(String name) { this.courseName = name; }
+
+    /**
+     * Sets the Professor in charge of the course.
+     * @param professor Professor in charge of course.
+     */
+    public void setProfInCharge(Professor professor) { this.profInCharge = professor; }
+
+    /**
+     * Sets the total seats available for this course.
+     * @param totalSeats Total seats available for this course.
+     */
+    public void setTotalSeat(int totalSeats) {
+        this.totalSeats = totalSeats;
+    }
+
+    /**
+     * Sets the lecture groups for this course.
+     * @param lectureGroups Lecture groups for this course.
+     */
+    public void setLectureGroups(List<Group> lectureGroups) {
+        this.lectureGroups = lectureGroups;
+    }
+
+    /**
+     * Sets the department for this course.
+     * @param department Department for this course.
+     */
+    public void setCourseDepartment(String department) {
+        this.courseDepartment = department;
+    }
+
+    public void setType(String type) {
+        this.courseType = type;
+    }
+
+
 }
