@@ -61,7 +61,7 @@ public class GroupMgr {
                     System.out.println("Invalid choice. Please re-enter.");
                 } else {
                     // valid selection
-                    Group selectedGroup = groups.get(selectedGroupNum);
+                    Group selectedGroup = groups.get(selectedGroupNum-1);
                     selectedGroup.enrolledIn();
                     return selectedGroup;
                 }
