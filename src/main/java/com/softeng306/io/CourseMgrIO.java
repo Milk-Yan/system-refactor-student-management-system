@@ -752,7 +752,7 @@ public class CourseMgrIO {
         System.out.print("Final Exam");
         System.out.print("\tWeight: " + exam.getComponentWeight() + "%");
         MarkCalculator markCalculator = new MarkCalculator();
-        System.out.println("\t Average: " + markCalculator.computeComponentMark(courseMarks, "Exam"));
+        System.out.println("\t Average: " + markCalculator.computeExamMark(courseMarks));
     }
 
     public void printNoExamMessage() {
@@ -762,12 +762,8 @@ public class CourseMgrIO {
     public void printOverallPerformance(List<Mark> courseMarks) {
         System.out.println();
         System.out.print("Overall Performance: ");
-        double averageMark = 0;
-        for (Mark mark : courseMarks) {
-            averageMark += mark.getTotalMark();
-        }
-        averageMark = averageMark / courseMarks.size();
-        System.out.printf("%4.2f \n", averageMark);
+        MarkCalculator markCalculator = new MarkCalculator();
+        System.out.printf("%4.2f \n", markCalculator.computerOverallMark(courseMarks));
 
         System.out.println();
         System.out.println("***********************************************");

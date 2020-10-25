@@ -276,15 +276,14 @@ public class CourseMgr {
                     courseMgrIO.printSubcomponents(subComponents, courseMarks);
                 }
             }
-
-
-            if (exam != null) {
-                courseMgrIO.printExamStatistics(exam, courseMarks);
-            } else {
-                courseMgrIO.printNoExamMessage();
-            }
-            courseMgrIO.printOverallPerformance(courseMarks);
         }
+
+        if (exam != null) {
+            courseMgrIO.printExamStatistics(exam, courseMarks);
+        } else {
+            courseMgrIO.printNoExamMessage();
+        }
+        courseMgrIO.printOverallPerformance(courseMarks);
     }
 
     /* Return the list of all courses in the system.
