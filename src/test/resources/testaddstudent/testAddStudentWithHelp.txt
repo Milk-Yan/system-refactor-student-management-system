@@ -1,0 +1,97 @@
+
+****************** Hello! Welcome to SOFTENG 306 Project 2! ******************
+Please note this application is not developed in The University of Auckland. All rights reserved for the original developers.
+Permission has been granted by the original developers to anonymize the code and use for education purposes.
+******************************************************************************************************************************
+
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+addStudent is called
+Choose the way you want to add a student:
+1. Manually input the student ID.
+2. Let the system self-generate the student ID.
+Please input your choice:
+The student ID should follow:
+Length is exactly 9
+Start with U (Undergraduate)
+End with a uppercase letter between A and L
+Seven digits in the middle
+
+Give this student an ID: 
+Enter student Name: 
+Enter student's school (uppercase): 
+Enter -h to print all the schools.
+1: ECSE
+2: CS
+3: ChemENG
+Enter student gender (uppercase): 
+Enter -h to print all the genders.
+1: FEMALE
+2: MALE
+3: UNKNOWN
+Enter student's school year (1-4) : 
+Student named: Gerald is added, with ID: U1829394D
+Student List: 
+| Student ID | Student Name | Student School | Gender | Year | GPA |
+ U1734756J | Eric | SCSE | MALE | 1 | not available
+ U1822832L | Chloe | SPMS | FEMALE | 3 | not available
+ U1723456K | Ashley | SBS | MALE | 4 | not available
+ U1234567J | Daniel | SCSE | MALE | 2 | not available
+ U1822835D | Charlie | NIE | MALE | 3 | not available
+ U1822836B | Gauss | ADM | MALE | 3 | not available
+ U1822837K | Clara | HSS | FEMALE | 1 | not available
+ U1822838J | Kevin | SCSE | MALE | 2 | not available
+ U1822839K | Shannon | NBS | FEMALE | 1 | not available
+ U1822840D | Shaun | WKWSCI | MALE | 3 | not available
+ U1822841A | Steven | EEE | MALE | 4 | not available
+ U1822842F | Stefan | NBS | MALE | 1 | not available
+ U1822843I | Sebas | SCSE | MALE | 1 | not available
+ U1822821E | Freddy | EEE | MALE | 1 | not available
+ U1712312B | Leigh | EEE | MALE | 2 | not available
+ U1812312D | Hakeem | SCSE | MALE | 1 | not available
+ U1829392I | Kourtney | MAE | FEMALE | 1 | not available
+ U1822023E | Elaina | MAE | FEMALE | 1 | not available
+ U1829393K | Chloe | CBE | MALE | 1 | not available
+ U1722744J | Chloe | SCSE | FEMALE | 2 | not available
+ U1800001L | Eric | SCSE | MALE | 2 | not available
+ U1234567L | Eric | SCSE | MALE | 2 | not available
+ U1829394D | Gerald | ECSE | MALE | 1 | not available
+************ I can help you with these functions: *************
+ 0. Print Options
+ 1. Add a student
+ 2. Add a course
+ 3. Register student for a course including tutorial/lab classes
+ 4. Check available slots in a class (vacancy in a class)
+ 5. Print student list by lecture, tutorial or laboratory session for a course
+ 6. Enter course assessment components weightage
+ 7. Enter coursework mark ? inclusive of its components
+ 8. Enter exam mark
+ 9. Print course statistics
+10. Print student transcript
+11. Quit Main System
+
+Enter your choice, let me help you:
+Backing up data before exiting...
+********* Bye! Thank you for using Main! *********
+
+                 ######    #      #   #######                   
+                 #    ##    #    #    #                         
+                 #    ##     #  #     #                         
+                 ######       ##      #######                   
+                 #    ##      ##      #                         
+                 #    ##      ##      #                         
+                 ######       ##      #######                   
+

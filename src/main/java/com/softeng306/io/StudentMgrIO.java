@@ -1,5 +1,6 @@
 package com.softeng306.io;
 
+import com.softeng306.Enum.Department;
 import com.softeng306.Enum.Gender;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.DepartmentValidator;
@@ -13,8 +14,9 @@ public class StudentMgrIO {
 
     private static Scanner reader = new Scanner(System.in);
 
+
     public static void printMenu() {
-        System.out.println("addStudent is called");
+        MainMenuIO.printMethodCall("addStudent");
         System.out.println("Choose the way you want to add a student:");
         System.out.println("1. Manually input the student ID.");
         System.out.println("2. Let the system self-generate the student ID.");
@@ -78,7 +80,7 @@ public class StudentMgrIO {
             System.out.println("Enter -h to print all the schools.");
             studentSchool = reader.nextLine();
             while ("-h".equals(studentSchool)) {
-                HelpInfoMgr.printAllDepartment();
+                Department.printAllDepartment();
                 studentSchool = reader.nextLine();
             }
 
@@ -88,19 +90,19 @@ public class StudentMgrIO {
         }
     }
 
-    public static Gender getStudentGender() {
+    public static String getStudentGender() {
         String studentGender;
         while (true) {
             System.out.println("Enter student gender (uppercase): ");
             System.out.println("Enter -h to print all the genders.");
             studentGender = reader.nextLine();
             while ("-h".equals(studentGender)) {
-                HelpInfoMgr.printAllGender();
+                Gender.printAllGender();
                 studentGender = reader.nextLine();
             }
 
             if (GenderValidator.checkGenderValidation(studentGender)) {
-                return Gender.valueOf(studentGender);
+                return studentGender;
             }
         }
     }
@@ -129,7 +131,7 @@ public class StudentMgrIO {
         System.out.println("Student named: " + name + " is added, with ID: " + ID);
         System.out.println("Student List: ");
         System.out.println("| Student ID | Student Name | Student School | Gender | Year | GPA |");
-        for (Student student : StudentMgr.students) {
+        for (Student student : StudentMgr.getInstance().getStudents()) {
             String GPA = "not available";
             if (Double.compare(student.getGPA(), 0.0) != 0) {
                 GPA = String.valueOf(student.getGPA());

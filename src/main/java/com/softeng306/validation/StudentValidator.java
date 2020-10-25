@@ -1,7 +1,6 @@
 package com.softeng306.validation;
 
 import com.softeng306.domain.student.Student;
-import com.softeng306.io.HelpInfoMgr;
 import com.softeng306.managers.StudentMgr;
 
 import java.io.OutputStream;
@@ -45,7 +44,7 @@ public class StudentValidator {
      */
     public static boolean checkValidStudentNameInput(String studentName) {
         boolean valid = RegexValidator.checkStringRegexFormat(studentName, STUDENT_NAME_REGEX);
-        if(!valid){
+        if (!valid) {
             System.out.println("Wrong format of name.");
         }
         return valid;
@@ -58,7 +57,7 @@ public class StudentValidator {
      * @return the existing student or else null.
      */
     public static Student checkStudentExists(String studentID) {
-        List<Student> anyStudent = StudentMgr.students.stream().filter(s -> studentID.equals(s.getStudentID())).collect(Collectors.toList());
+        List<Student> anyStudent = StudentMgr.getInstance().getStudents().stream().filter(s -> studentID.equals(s.getStudentID())).collect(Collectors.toList());
         if (anyStudent.size() == 0) {
             return null;
         }
@@ -78,7 +77,7 @@ public class StudentValidator {
             System.out.println("Enter Student ID (-h to print all the student ID):");
             studentID = scanner.nextLine();
             while ("-h".equals(studentID)) {
-                HelpInfoMgr.printAllStudents();
+                StudentMgr.getInstance().printAllStudentIds();
                 studentID = scanner.nextLine();
             }
 

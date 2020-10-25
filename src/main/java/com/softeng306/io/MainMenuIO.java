@@ -17,6 +17,10 @@ public class MainMenuIO {
      */
     public static void startMainMenu() {
         int choice;
+        CourseMgr courseMgr = CourseMgr.getInstance();
+        MarkMgr markMgr = MarkMgr.getInstance();
+        StudentMgr studentMgr = StudentMgr.getInstance();
+        CourseRegistrationMgr courseRegistrationMgr = CourseRegistrationMgr.getInstance();
         do {
             printOptions();
             do {
@@ -39,34 +43,34 @@ public class MainMenuIO {
                 case 0:
                     break;
                 case 1:
-                    StudentMgr.addStudent();
+                    studentMgr.addStudent();
                     break;
                 case 2:
-                    CourseMgr.addCourse();
+                    courseMgr.addCourse();
                     break;
                 case 3:
-                    CourseRegistrationMgr.registerCourse();
+                    courseRegistrationMgr.registerCourse();
                     break;
                 case 4:
-                    CourseMgr.checkAvailableSlots();
+                    courseMgr.checkAvailableSlots();
                     break;
                 case 5:
-                    CourseRegistrationMgr.printStudents();
+                    courseRegistrationMgr.printStudents();
                     break;
                 case 6:
-                    CourseMgr.enterCourseWorkComponentWeightage(null);
+                    courseMgr.enterCourseWorkComponentWeightage(null);
                     break;
                 case 7:
-                    MarkMgr.setCourseWorkMark(false);
+                    markMgr.setCourseWorkMark(false);
                     break;
                 case 8:
-                    MarkMgr.setCourseWorkMark(true);
+                    markMgr.setCourseWorkMark(true);
                     break;
                 case 9:
-                    MarkMgr.printCourseStatistics();
+                    courseMgr.printCourseStatistics();
                     break;
                 case 10:
-                    MarkMgr.printStudentTranscript();
+                    studentMgr.printStudentTranscript();
                     break;
                 case 11:
                     exitApplication();
@@ -94,8 +98,8 @@ public class MainMenuIO {
     public static void exitApplication() {
 
         System.out.println("Backing up data before exiting...");
-        FILEMgr.backUpCourse(CourseMgr.courses);
-        FILEMgr.backUpMarks(MarkMgr.marks);
+        FILEMgr.backUpCourse(CourseMgr.getInstance().getCourses());
+        FILEMgr.backUpMarks(MarkMgr.getInstance().getMarks());
         System.out.println("********* Bye! Thank you for using Main! *********");
         System.out.println();
         System.out.println("                 ######    #      #   #######                   ");
@@ -127,5 +131,12 @@ public class MainMenuIO {
         System.out.println("10. Print student transcript");
         System.out.println("11. Quit Main System");
         System.out.println();
+    }
+
+    /**
+     * Prints the method call
+     */
+    public static void printMethodCall(String methodName) {
+        System.out.println(methodName + " is called");
     }
 }

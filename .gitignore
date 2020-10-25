@@ -4,3 +4,12 @@ testdata
 .idea/
 *.iml
 out/
+
+# mac files
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+*.DS_Storem
+.DS_Store
+*.json

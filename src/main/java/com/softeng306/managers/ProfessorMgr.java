@@ -1,68 +1,63 @@
 package com.softeng306.managers;
 
-import com.softeng306.Enum.Department;
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.io.HelpInfoMgr;
+import com.softeng306.io.FILEMgr;
 import com.softeng306.validation.DepartmentValidator;
-import com.softeng306.validation.ProfessorValidator;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Manages all the professor related operations
  */
 public class ProfessorMgr {
-    private Scanner scanner = new Scanner(System.in);
     /**
-     * An array list of all the professors in this school.
+     * A list of all the professors in this school.
      */
-    public static ArrayList<Professor> professors = new ArrayList<Professor>(0);
+    private List<Professor> professors;
+
+    private static ProfessorMgr singleInstance = null;
 
     /**
-     * Adds a professor.
+     * Override default constructor to implement singleton pattern
+     */
+    private ProfessorMgr(List<Professor> professors) {
+        this.professors = professors;
+    }
+
+    /**
+     * Return the ProfessorMgr singleton, if not initialised already, create an instance.
      *
-     * @return a newly added professor
+     * @return ProfessorMgr the singleton instance
      */
-    public Professor addProfessor() {
-        String department, profID;
-        while (true) {
-            System.out.println("Give this professor an ID: ");
-            profID = scanner.nextLine();
-            if (ProfessorValidator.checkValidProfIDInput(profID)) {
-                if (ProfessorValidator.checkProfExists(profID) == null) {
-                    break;
-                }
-            }
+    public static ProfessorMgr getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new ProfessorMgr(FILEMgr.loadProfessors());
         }
 
-        String profName;
-        while (true) {
-            System.out.println("Enter the professor's name: ");
-            profName = scanner.nextLine();
-            if (ProfessorValidator.checkValidProfessorNameInput(profName)) {
-                break;
-            }
+        return singleInstance;
+    }
+
+    /**
+     * Returns the IDs of all professors in the department.
+     * @param department The department the professors are in.
+     * @return A list of all the IDs of the professors.
+     */
+    public List<String> getAllProfIDInDepartment(String department) {
+        if (DepartmentValidator.checkDepartmentValidation(department)) {
+            return professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
         }
 
-        Professor professor = new Professor(profID, profName);
-        while (true) {
-            System.out.println("Enter professor's Department: ");
-            System.out.println("Enter -h to print all the departments.");
-            department = scanner.nextLine();
-            while (department.equals("-h")) {
-                HelpInfoMgr.getAllDepartment();
-                department = scanner.nextLine();
-            }
+        // the department is invalid so no professors
+        return null;
+    }
 
-            if (DepartmentValidator.checkDepartmentValidation(department)) {
-                professor.setProfDepartment(Department.valueOf(department));
-                break;
-            }
-        }
-
-
-        return professor;
+    /**
+     * Return the list of all professors in the system.
+     * @return An list of all professors.
+     */
+    public List<Professor> getProfessors() {
+        return professors;
     }
 
 }
