@@ -4,7 +4,6 @@ import com.softeng306.Enum.Department;
 import com.softeng306.Enum.Gender;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.DepartmentValidator;
-import com.softeng306.validation.GenderValidator;
 import com.softeng306.validation.StudentValidator;
 import com.softeng306.domain.student.Student;
 
@@ -84,7 +83,7 @@ public class StudentMgrIO {
                 studentSchool = reader.nextLine();
             }
 
-            if (DepartmentValidator.checkDepartmentValidation(studentSchool)) {
+            if (Department.contains(studentSchool)) {
                 return studentSchool;
             }
         }
@@ -101,7 +100,7 @@ public class StudentMgrIO {
                 studentGender = reader.nextLine();
             }
 
-            if (GenderValidator.checkGenderValidation(studentGender)) {
+            if (Gender.contains(studentGender)) {
                 return studentGender;
             }
         }

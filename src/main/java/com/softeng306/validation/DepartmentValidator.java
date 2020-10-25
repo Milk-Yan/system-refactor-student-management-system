@@ -18,20 +18,6 @@ public class DepartmentValidator {
     });
 
     /**
-     * Checks whether the inputted department is valid.
-     *
-     * @param department The inputted department.
-     * @return boolean indicates whether the inputted department is valid.
-     */
-    public static boolean checkDepartmentValidation(String department) {
-        if (Department.contains(department)) {
-            return true;
-        }
-        System.out.println("The department is invalid. Please re-enter.");
-        return false;
-    }
-
-    /**
      * Prompts the user to input an existing department.
      *
      * @return the inputted department.
@@ -45,7 +31,7 @@ public class DepartmentValidator {
                 Department.printAllDepartment();
                 courseDepartment = scanner.nextLine();
             }
-            if (checkDepartmentValidation(courseDepartment)) {
+            if (Department.contains(courseDepartment)) {
                 List<String> validCourseString;
                 System.setOut(dummyStream);
                 validCourseString = CourseMgr.getInstance().printCourseInDepartment(courseDepartment);
