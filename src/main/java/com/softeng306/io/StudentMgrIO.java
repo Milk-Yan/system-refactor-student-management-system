@@ -14,7 +14,9 @@ public class StudentMgrIO {
 
     private static Scanner reader = new Scanner(System.in);
 
-
+    /**
+     * Displays the menu for adding a student on the console.
+     */
     public static void printMenu() {
         MainMenuIO.printMethodCall("addStudent");
         System.out.println("Choose the way you want to add a student:");
@@ -22,6 +24,10 @@ public class StudentMgrIO {
         System.out.println("2. Let the system self-generate the student ID.");
     }
 
+    /**
+     * Allows the user to choose whether they want to students ID to be auto-generated.
+     * @return true if the system is to auto-generate the students ID, false for the user to manually enter the students ID
+     */
     public static boolean systemGenerateID() {
         int choice;
         do {
@@ -44,6 +50,10 @@ public class StudentMgrIO {
 
     }
 
+    /**
+     * Allows the user to enter the students ID.
+     * @return student ID
+     */
     public static String getStudentID() {
         while (true) {
             System.out.println("The student ID should follow:");
@@ -62,6 +72,10 @@ public class StudentMgrIO {
         }
     }
 
+    /**
+     * Allows the user to enter the students name.
+     * @return students name
+     */
     public static String getStudentName() {
         String studentName;
         while (true) {
@@ -73,6 +87,10 @@ public class StudentMgrIO {
         }
     }
 
+    /**
+     * Allows the user to enter the students school.
+     * @return students school
+     */
     public static String getSchoolName() {
         String studentSchool;
         while (true) {
@@ -90,6 +108,10 @@ public class StudentMgrIO {
         }
     }
 
+    /**
+     * Allows the user to enter the students gender.
+     * @return students gender
+     */
     public static String getStudentGender() {
         String studentGender;
         while (true) {
@@ -107,6 +129,10 @@ public class StudentMgrIO {
         }
     }
 
+    /**
+     * Allows the user to enter the students year level.
+     * @return students year level
+     */
     public static int getStudentYear() {
         int studentYear;
         do {
@@ -127,7 +153,10 @@ public class StudentMgrIO {
         } while (true);
     }
 
-    public static void printStudentID(String name, String ID) {
+    /**
+     * Prints a students data to console, given their student ID.
+     */
+    public static void printStudentData(String name, String ID) {
         System.out.println("Student named: " + name + " is added, with ID: " + ID);
         System.out.println("Student List: ");
         System.out.println("| Student ID | Student Name | Student School | Gender | Year | GPA |");

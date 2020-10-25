@@ -80,7 +80,7 @@ public class StudentMgr {
         FILEMgr.writeStudentsIntoFile(currentStudent);
         students.add(currentStudent);
 
-        StudentMgrIO.printStudentID(currentStudent.getStudentName(), currentStudent.getStudentID());
+        StudentMgrIO.printStudentData(currentStudent.getStudentName(), currentStudent.getStudentID());
     }
 
     /**
