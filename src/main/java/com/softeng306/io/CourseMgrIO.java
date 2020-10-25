@@ -796,7 +796,7 @@ public class CourseMgrIO {
      * This method reads in the name for a particular subComponent
      * @return List of sub components user has specified
      */
-    private String getComponentName(int totalWeightAssignable, List<? extends CourseworkComponent> components, int componentNumber, String type){
+    public String getComponentName(int totalWeightAssignable, List<? extends CourseworkComponent> components, int componentNumber, String type){
 
         String subComponentName;
         boolean componentExist;
@@ -831,43 +831,6 @@ public class CourseMgrIO {
 
     }
 
-
-    /**
-     * Read in a sub component name from the user
-     *
-     * @param subComponents  the current sub components
-     * @param sub_totWeight  the total sub component weight
-     * @param subComponentNo the sub component number
-     * @return String the name of the sub component specified
-     */
-    public String readSubComponentName(List<SubComponent> subComponents, int sub_totWeight, int subComponentNo) {
-        boolean componentExist;
-        String subComponentName;
-        do {
-            componentExist = false;
-            System.out.println("Total weightage left to assign to sub component: " + sub_totWeight);
-            System.out.println("Enter sub component " + (subComponentNo + 1) + " name: ");
-            subComponentName = scanner.nextLine();
-
-            if (subComponents.isEmpty()) {
-                break;
-            }
-            if (subComponentName.equals("Exam")) {
-                System.out.println("Exam is a reserved assessment.");
-                componentExist = true;
-                continue;
-            }
-            for (SubComponent subComponent : subComponents) {
-                if (subComponent.getComponentName().equals(subComponentName)) {
-                    componentExist = true;
-                    System.out.println("This sub component already exist. Please enter.");
-                    break;
-                }
-            }
-        } while (componentExist);
-
-        return subComponentName;
-    }
 
     /**
      * Print an info message that the course specified is empty

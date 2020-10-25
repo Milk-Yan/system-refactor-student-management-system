@@ -191,7 +191,7 @@ public class CourseMgr {
                         int sub_totWeight = 100;
                         for (int j = 0; j < noOfSub; j++) {
 
-                            String subComponentName = courseMgrIO.readSubComponentName(subComponents, sub_totWeight, j);
+                            String subComponentName = courseMgrIO.getComponentName(sub_totWeight, subComponents, j, " sub component ");
 
                             int subWeight = courseMgrIO.readSubWeight(j, sub_totWeight);
 
