@@ -128,7 +128,7 @@ public class CourseMgr {
         MainMenuIO.printMethodCall("checkAvailableSlots");
 
         while (true) {
-            Course currentCourse = currentCourse = readCourseFromUser();;
+            Course currentCourse = readCourseFromUser();
             if (currentCourse != null) {
                 courseMgrIO.printCourseInfo(currentCourse);
                 break;

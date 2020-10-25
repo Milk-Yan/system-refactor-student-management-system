@@ -12,8 +12,6 @@ import com.softeng306.io.FILEMgr;
 import com.softeng306.io.StudentMgrIO;
 import com.softeng306.validation.StudentValidator;
 
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -24,12 +22,6 @@ import java.util.Scanner;
  */
 public class StudentMgr {
     private Scanner scanner = new Scanner(System.in);
-    private PrintStream originalStream = System.out;
-    private PrintStream dummyStream = new PrintStream(new OutputStream() {
-        public void write(int b) {
-            // NO-OP
-        }
-    });
 
     /**
      * A list of all the students in this school.
@@ -37,7 +29,7 @@ public class StudentMgr {
     private List<Student> students;
 
     private static StudentMgr singleInstance = null;
-    
+
     private static MarkCalculator markCalculator;
 
     /**
@@ -98,7 +90,7 @@ public class StudentMgr {
      * Prints transcript (Results of course taken) for a particular student
      */
     public void printStudentTranscript() {
-        String studentID = StudentValidator.checkStudentExists().getStudentID();
+        String studentID = readStudentFromUser().getStudentID();
 
         double studentGPA = 0d;
         int thisStudentAU = 0;
@@ -164,7 +156,8 @@ public class StudentMgr {
         System.out.println("------------------ End of Transcript -------------------");
 
     }
-     /* Return the list of all students in the system.
+
+    /* Return the list of all students in the system.
      * @return An list of all students.
      */
     public List<Student> getStudents() {
@@ -232,9 +225,7 @@ public class StudentMgr {
                 studentID = scanner.nextLine();
             }
 
-            System.setOut(dummyStream);
             currentStudent = StudentValidator.checkStudentExists(studentID);
-            System.setOut(originalStream);
             if (currentStudent == null) {
                 System.out.println("Invalid Student ID. Please re-enter.");
             } else {

@@ -3,20 +3,10 @@ package com.softeng306.validation;
 import com.softeng306.domain.student.Student;
 import com.softeng306.managers.StudentMgr;
 
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class StudentValidator {
-    private static Scanner scanner = new Scanner(System.in);
-    private static PrintStream originalStream = System.out;
-    private static PrintStream dummyStream = new PrintStream(new OutputStream() {
-        public void write(int b) {
-            // NO-OP
-        }
-    });
 
     private static final String STUDENT_ID_REGEX = "^U[0-9]{7}[A-Z]$";
     private static final String STUDENT_NAME_REGEX = "^[ a-zA-Z]+$";
@@ -61,7 +51,6 @@ public class StudentValidator {
         if (anyStudent.size() == 0) {
             return null;
         }
-        System.out.println("Sorry. The student ID is used. This student already exists.");
         return anyStudent.get(0);
     }
 

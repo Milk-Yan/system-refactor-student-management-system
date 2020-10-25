@@ -33,7 +33,7 @@ public class ProfessorValidator {
      */
     public static boolean checkValidProfessorNameInput(String professorName) {
         boolean valid = RegexValidator.checkStringRegexFormat(professorName, PROFESSOR_NAME_REGEX);
-        if(!valid){
+        if (!valid) {
             System.out.println("Wrong format of name.");
         }
         return valid;
@@ -50,7 +50,6 @@ public class ProfessorValidator {
         if (anyProf.size() == 0) {
             return null;
         }
-        System.out.println("Sorry. The professor ID is used. This professor already exists.");
         return anyProf.get(0);
 
     }

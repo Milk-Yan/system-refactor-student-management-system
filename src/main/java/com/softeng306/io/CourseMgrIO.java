@@ -17,23 +17,14 @@ import com.softeng306.validation.DepartmentValidator;
 import com.softeng306.validation.GroupValidator;
 import com.softeng306.validation.ProfessorValidator;
 
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CourseMgrIO {
     private Scanner scanner = new Scanner(System.in);
-    private PrintStream originalStream = System.out;
-    private PrintStream dummyStream = new PrintStream(new OutputStream() {
-        public void write(int b) {
-            // NO-OP
-        }
-    });
 
     private MarkCalculator markCalculator = new MarkCalculator();
-
 
     /**
      * Read in a courseId from the user
@@ -47,9 +38,11 @@ public class CourseMgrIO {
             System.out.println("Give this course an ID: ");
             courseID = scanner.nextLine();
             if (CourseValidator.checkValidCourseIDInput(courseID)) {
-                if (CourseValidator.checkCourseExists(courseID) == null) {
+                // Check course ID does not already exist for a course
+                if (CourseValidator.getCourseFromId(courseID) == null) {
                     break;
                 }
+                System.out.println("Sorry. The course ID is used. This course already exists.");
             }
         }
 
@@ -447,9 +440,7 @@ public class CourseMgrIO {
                 profID = scanner.nextLine();
             }
 
-            System.setOut(dummyStream);
             profInCharge = ProfessorValidator.checkProfExists(profID);
-            System.setOut(originalStream);
             if (profInCharge != null) {
                 if (professorsInDepartment.contains(profID)) {
                     break;
@@ -1021,20 +1012,17 @@ public class CourseMgrIO {
             System.out.println("Enter course ID (-h to print all the course ID):");
             courseID = scanner.nextLine();
             while ("-h".equals(courseID)) {
-                CourseMgr.getInstance().printCourses();
+                printAllCourseIds(CourseMgr.getInstance().getCourses());
                 courseID = scanner.nextLine();
             }
 
-            System.setOut(dummyStream);
-            currentCourse = CourseValidator.checkCourseExists(courseID);
+            currentCourse = CourseValidator.getCourseFromId(courseID);
             if (currentCourse == null) {
-                System.setOut(originalStream);
                 System.out.println("Invalid Course ID. Please re-enter.");
             } else {
                 break;
             }
         }
-        System.setOut(originalStream);
         return currentCourse;
     }
 
@@ -1054,9 +1042,7 @@ public class CourseMgrIO {
             }
             if (DepartmentValidator.checkDepartmentValidation(courseDepartment)) {
                 List<String> validCourseString;
-                System.setOut(dummyStream);
-                validCourseString = CourseMgr.getInstance().printCourseInDepartment(courseDepartment);
-                System.setOut(originalStream);
+                validCourseString = CourseMgr.getInstance().getCourseIdsInDepartment(courseDepartment);
                 if (validCourseString.size() == 0) {
                     System.out.println("Invalid choice of department.");
                 } else {
