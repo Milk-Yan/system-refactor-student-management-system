@@ -24,19 +24,19 @@
     "lectureGroups" : [ {
       "groupName" : "Lec1",
       "availableVacancies" : 14,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 20
     } ],
     "tutWeeklyHour" : 2,
     "tutorialGroups" : [ {
       "groupName" : "Tut1",
       "availableVacancies" : 18,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     }, {
       "groupName" : "Tut2",
       "availableVacancies" : 16,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     } ],
     "labWeeklyHour" : 0,
@@ -62,13 +62,13 @@
   "lectureGroup" :  {
       "groupName" : "Lec1",
       "availableVacancies" : 14,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 20
     } ,
   "tutorialGroup" : {
       "groupName" : "Tut2",
       "availableVacancies" : 16,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     } ,
   "labGroup" : null
@@ -98,19 +98,19 @@
     "lectureGroups" : [ {
       "groupName" : "Lec1",
       "availableVacancies" : 13,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 20
     } ],
     "tutWeeklyHour" : 2,
     "tutorialGroups" : [ {
       "groupName" : "Tut1",
       "availableVacancies" : 18,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     }, {
       "groupName" : "Tut2",
       "availableVacancies" : 15,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     } ],
     "labWeeklyHour" : 0,
@@ -136,13 +136,13 @@
   "lectureGroup" : {
       "groupName" : "Lec1",
       "availableVacancies" : 13,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 20
     } ,
   "tutorialGroup" : {
       "groupName" : "Tut2",
       "availableVacancies" : 15,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     },
   "labGroup" : null
@@ -172,26 +172,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 4,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -215,19 +215,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 4,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ,
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     }
 }, {
@@ -256,26 +256,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 3,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -299,19 +299,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 3,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     }
 }, {
@@ -340,26 +340,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 2,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -383,19 +383,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 2,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ,
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     }
 }, {
@@ -424,26 +424,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 1,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -467,19 +467,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 1,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ,
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     }
 }, {
@@ -508,26 +508,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 0,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -551,19 +551,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 0,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ,
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     }
 }, {
@@ -592,26 +592,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 4,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -635,19 +635,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 4,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } 
 }, {
@@ -676,26 +676,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 3,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -719,19 +719,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 3,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     }
 }, {
@@ -760,26 +760,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 2,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -803,19 +803,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 2,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ,
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } 
 }, {
@@ -844,26 +844,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 1,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -887,19 +887,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 1,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } 
 }, {
@@ -928,26 +928,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 0,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -971,19 +971,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 0,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } 
 }, {
@@ -1012,26 +1012,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 4,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -1055,19 +1055,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 4,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } 
 }, {
@@ -1096,26 +1096,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 3,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -1139,19 +1139,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 3,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } 
 }, {
@@ -1180,26 +1180,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 2,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -1223,19 +1223,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 2,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } 
 }, {
@@ -1264,26 +1264,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 1,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -1307,19 +1307,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 1,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } 
 }, {
@@ -1348,26 +1348,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 0,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -1391,19 +1391,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 0,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     }
 }, {
@@ -1432,26 +1432,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 4,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -1475,19 +1475,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 4,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } 
 }, {
@@ -1516,26 +1516,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 3,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -1559,19 +1559,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 3,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     }
 }, {
@@ -1600,26 +1600,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 2,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -1643,19 +1643,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 2,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } 
 }, {
@@ -1684,26 +1684,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 1,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -1727,19 +1727,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 1,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } 
 }, {
@@ -1768,26 +1768,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 0,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     } ],
     "labWeeklyHour" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     } ],
     "mainComponents" : [ {
@@ -1811,19 +1811,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 0,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 30
     }
 }, {
@@ -1852,19 +1852,19 @@
     "lectureGroups" : [ {
       "groupName" : "Lec1",
       "availableVacancies" : 16,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 20
     } ],
     "tutWeeklyHour" : 2,
     "tutorialGroups" : [ {
       "groupName" : "Tut1",
       "availableVacancies" : 17,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     }, {
       "groupName" : "Tut2",
       "availableVacancies" : 19,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     } ],
     "labWeeklyHour" : 0,
@@ -1890,13 +1890,13 @@
   "lectureGroup" : {
       "groupName" : "Lec1",
       "availableVacancies" : 16,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 20
     },
   "tutorialGroup" : {
       "groupName" : "Tut1",
       "availableVacancies" : 17,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     },
   "labGroup" : null
@@ -1926,26 +1926,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 49,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 50
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 48,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 50
     } ],
     "labWeeklyHour" : 2,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 47,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 50
     }, {
       "groupName" : "LAB2",
@@ -1973,19 +1973,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 48,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 50
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 47,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 50
     }
 }, {
@@ -2014,34 +2014,34 @@
     "lectureGroups" : [ {
       "groupName" : "Lec1",
       "availableVacancies" : 48,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 50
     } ],
     "tutWeeklyHour" : 2,
     "tutorialGroups" : [ {
       "groupName" : "SS1",
       "availableVacancies" : 20,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     }, {
       "groupName" : "SS2",
       "availableVacancies" : 20,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     }, {
       "groupName" : "SS3",
       "availableVacancies" : 20,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     }, {
       "groupName" : "SS4",
       "availableVacancies" : 18,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     }, {
       "groupName" : "SS5",
       "availableVacancies" : 20,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     } ],
     "labWeeklyHour" : 1,
@@ -2067,13 +2067,13 @@
   "lectureGroup" : {
       "groupName" : "Lec1",
       "availableVacancies" : 48,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 50
     } ,
   "tutorialGroup" : {
       "groupName" : "SS4",
       "availableVacancies" : 18,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 20
     },
   "labGroup" : null
@@ -2103,26 +2103,26 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 96,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 48,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 50
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 48,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 50
     } ],
     "labWeeklyHour" : 2,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 46,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 50
     }, {
       "groupName" : "LAB2",
@@ -2150,19 +2150,19 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 96,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 48,
-      "groupType" : "TutorialGroup",
+      "groupType" : "TUTORIAL_GROUP",
       "totalSeats" : 50
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 46,
-      "groupType" : "LabGroup",
+      "groupType" : "LAB_GROUP",
       "totalSeats" : 50
     }
 }, {
@@ -2191,17 +2191,17 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 95,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 0,
@@ -2223,7 +2223,7 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     },
   "tutorialGroup" : null,
@@ -2254,17 +2254,17 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 94,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 0,
@@ -2286,7 +2286,7 @@
   "lectureGroup" : {
       "groupName" : "LEC2",
       "availableVacancies" : 94,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     },
   "tutorialGroup" : null,
@@ -2317,17 +2317,17 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 93,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 0,
@@ -2349,7 +2349,7 @@
   "lectureGroup" : {
       "groupName" : "LEC2",
       "availableVacancies" : 93,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     },
   "tutorialGroup" : null,
@@ -2380,17 +2380,17 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 92,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 0,
@@ -2412,7 +2412,7 @@
   "lectureGroup" : {
       "groupName" : "LEC2",
       "availableVacancies" : 92,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     },
   "tutorialGroup" : null,
@@ -2443,17 +2443,17 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 91,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 0,
@@ -2475,7 +2475,7 @@
   "lectureGroup" : {
       "groupName" : "LEC2",
       "availableVacancies" : 91,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     },
   "tutorialGroup" : null,
@@ -2506,17 +2506,17 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 90,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 0,
@@ -2538,7 +2538,7 @@
   "lectureGroup" : {
       "groupName" : "LEC2",
       "availableVacancies" : 90,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     },
   "tutorialGroup" : null,
@@ -2569,17 +2569,17 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 90,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 96,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 0,
@@ -2601,7 +2601,7 @@
   "lectureGroup" : {
       "groupName" : "LEC3",
       "availableVacancies" : 96,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     },
   "tutorialGroup" : null,
@@ -2632,17 +2632,17 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 90,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 95,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 0,
@@ -2664,7 +2664,7 @@
   "lectureGroup" : {
       "groupName" : "LEC3",
       "availableVacancies" : 95,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     },
   "tutorialGroup" : null,
@@ -2695,17 +2695,17 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 90,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 94,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 0,
@@ -2727,7 +2727,7 @@
   "lectureGroup" : {
       "groupName" : "LEC3",
       "availableVacancies" : 94,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     },
   "tutorialGroup" : null,
@@ -2758,17 +2758,17 @@
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 96,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 90,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 94,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     } ],
     "tutWeeklyHour" : 0,
@@ -2790,7 +2790,7 @@
   "lectureGroup" : {
       "groupName" : "LEC1",
       "availableVacancies" : 96,
-      "groupType" : "LectureGroup",
+      "groupType" : "LECTURE_GROUP",
       "totalSeats" : 100
     },
   "tutorialGroup" : null,
