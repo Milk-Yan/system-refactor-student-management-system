@@ -802,7 +802,7 @@ public class CourseMgrIO {
         boolean componentExist;
         do {
             componentExist = false;
-            System.out.println("Total weightage left to assign to "+ type +": " + totalWeightAssignable);
+            System.out.println("Total weightage left to assign to : " + totalWeightAssignable);
             System.out.println("Enter "+ type +" " + (componentNumber + 1) + " name: ");
             subComponentName = scanner.nextLine();
 
