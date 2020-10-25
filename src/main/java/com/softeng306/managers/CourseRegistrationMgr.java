@@ -1,9 +1,11 @@
 package com.softeng306.managers;
 
+import com.softeng306.Enum.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
+import com.softeng306.io.CourseRegistrationManagerIO;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.*;
@@ -117,16 +119,14 @@ public class CourseRegistrationMgr {
      */
     public void printStudents() {
         MainMenuIO.printMethodCall("printStudent");
-        Course currentCourse = CourseValidator.checkCourseExists();
+        CourseRegistrationManagerIO courseRegistrationManagerIO = new CourseRegistrationManagerIO();
 
-        System.out.println("Print student by: ");
-        System.out.println("(1) Lecture group");
-        System.out.println("(2) Tutorial group");
-        System.out.println("(3) Lab group");
+        Course currentCourse = CourseValidator.checkCourseExists();
+        courseRegistrationManagerIO.printOptions();
+
         // READ courseRegistrationFILE
         // return List of Object(student,course,lecture,tut,lab)
         List<CourseRegistration> allCourseRegistrations = FILEMgr.loadCourseRegistration();
-
 
         List<CourseRegistration> stuArray = new ArrayList<>(0);
         for (CourseRegistration courseRegistration : allCourseRegistrations) {
@@ -134,7 +134,6 @@ public class CourseRegistrationMgr {
                 stuArray.add(courseRegistration);
             }
         }
-
 
         int opt;
         do {
@@ -147,55 +146,24 @@ public class CourseRegistrationMgr {
             if (stuArray.size() == 0) {
                 System.out.println("No one has registered this course yet.");
             }
-
-            if (opt == 1) { // print by LECTURE
-                String newLec = "";
+            if(opt == 1){
                 sortByLectureGroup(stuArray);
-                if (stuArray.size() > 0) {
-                    for (int i = 0; i < stuArray.size(); i++) {  // loop through all of CourseRegistration Obj
-                        if (!newLec.equals(stuArray.get(i).getLectureGroup())) {  // if new lecture group print out group name
-                            newLec = stuArray.get(i).getLectureGroup();
-                            System.out.println("Lecture group : " + newLec);
-                        }
-                        System.out.print("Student Name: " + stuArray.get(i).getStudent().getStudentName());
-                        System.out.println(" Student ID: " + stuArray.get(i).getStudent().getStudentID());
-                    }
-                    System.out.println();
-                }
+                courseRegistrationManagerIO.printByGroup(stuArray, GroupType.LectureGroup);
 
-
-            } else if (opt == 2) { // print by TUTORIAL
-                String newTut = "";
-                sortByTutorialGroup(stuArray);
+            } else if (opt == 2){
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getTutorialGroups().size() == 0) {
                     System.out.println("This course does not contain any tutorial group.");
-                } else if (stuArray.size() > 0) {
-                    for (int i = 0; i < stuArray.size(); i++) {
-                        if (!newTut.equals(stuArray.get(i).getTutorialGroup())) {
-                            newTut = stuArray.get(i).getTutorialGroup();
-                            System.out.println("Tutorial group : " + newTut);
-                        }
-                        System.out.print("Student Name: " + stuArray.get(i).getStudent().getStudentName());
-                        System.out.println(" Student ID: " + stuArray.get(i).getStudent().getStudentID());
-                    }
-                    System.out.println();
+                } else {
+                    sortByTutorialGroup(stuArray);
+                    courseRegistrationManagerIO.printByGroup(stuArray, GroupType.TutorialGroup);
                 }
 
-            } else if (opt == 3) { // print by LAB
-                String newLab = "";
-                sortByLabGroup(stuArray);
+            } else if (opt == 3){
                 if (stuArray.size() > 0 && stuArray.get(0).getCourse().getLabGroups().size() == 0) {
                     System.out.println("This course does not contain any lab group.");
-                } else if (stuArray.size() > 0) {
-                    for (int i = 0; i < stuArray.size(); i++) {
-                        if (!newLab.equals(stuArray.get(i).getLabGroup())) {
-                            newLab = stuArray.get(i).getLabGroup();
-                            System.out.println("Lab group : " + newLab);
-                        }
-                        System.out.print("Student Name: " + stuArray.get(i).getStudent().getStudentName());
-                        System.out.println(" Student ID: " + stuArray.get(i).getStudent().getStudentID());
-                    }
-                    System.out.println();
+                } else {
+                    sortByLabGroup(stuArray);
+                    courseRegistrationManagerIO.printByGroup(stuArray, GroupType.LabGroup);
                 }
 
             } else {
@@ -277,8 +245,5 @@ public class CourseRegistrationMgr {
             return group1.compareTo(group2);
         });
     }
-
-
-
 
 }
