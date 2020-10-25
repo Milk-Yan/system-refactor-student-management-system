@@ -423,7 +423,7 @@ public class CourseMgr {
         }
 
 
-        Course course = new Course(courseID, courseName, profInCharge, totalSeats, totalSeats, lectureGroups, tutorialGroups, labGroups, AU, courseDepartment, courseType, lecWeeklyHour, tutWeeklyHour, labWeeklyHour);
+        Course course = new Course(courseID, courseName, profInCharge, totalSeats, totalSeats, lectureGroups, tutorialGroups, labGroups, AU, Department.valueOf(courseDepartment), CourseType.valueOf(courseType), lecWeeklyHour, tutWeeklyHour, labWeeklyHour);
 
 
         System.out.println("Create course components and set component weightage now?");
@@ -749,8 +749,8 @@ public class CourseMgr {
      * @return a list of all the department values.
      */
     public List<String> printCourseInDepartment(String department) {
-        List<Course> validCourses = courses.stream().filter(c -> department.equals(c.getCourseDepartment())).collect(Collectors.toList());
-        List<String> validCourseString = validCourses.stream().map(c -> c.getCourseID()).collect(Collectors.toList());
+        List<Course> validCourses = courses.stream().filter(c -> department.equals(c.getCourseDepartment().toString())).collect(Collectors.toList());
+        List<String> validCourseString = validCourses.stream().map(Course::getCourseID).collect(Collectors.toList());
         validCourseString.forEach(System.out::println);
         if (validCourseString.size() == 0) {
             System.out.println("None.");

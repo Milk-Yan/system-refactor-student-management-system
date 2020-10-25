@@ -1,6 +1,8 @@
 package com.softeng306.domain.course;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.softeng306.Enum.CourseType;
+import com.softeng306.Enum.Department;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
@@ -34,12 +36,12 @@ public class Course {
     /**
      * The department this course belongs to.
      */
-    private String courseDepartment;
+    private Department courseDepartment;
 
     /**
      * The type of this course.
      */
-    private String courseType;
+    private CourseType courseType;
 
     /**
      * The current vacancy of this course.
@@ -109,7 +111,7 @@ public class Course {
      * @param courseType The course type of this course.
      * @param lecWeeklyHour The lecture weekly hour of this course.
      */
-    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, List<Group> lectureGroups, int AU, String courseDepartment, String courseType, int lecWeeklyHour) {
+    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, List<Group> lectureGroups, int AU, Department courseDepartment, CourseType courseType, int lecWeeklyHour) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.profInCharge = profInCharge;
@@ -139,7 +141,7 @@ public class Course {
      * @param tutWeeklyHour The tutorial weekly hour of this course.
      * @param labWeeklyHour The lab weekly hour of this course.
      */
-    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, List<Group> lectureGroups, List<Group> tutorialGroups, List<Group> labGroups, int AU, String courseDepartment, String courseType, int lecWeeklyHour, int tutWeeklyHour, int labWeeklyHour) {
+    public Course(String courseID, String courseName, Professor profInCharge, int vacancies, int totalSeats, List<Group> lectureGroups, List<Group> tutorialGroups, List<Group> labGroups, int AU, Department courseDepartment, CourseType courseType, int lecWeeklyHour, int tutWeeklyHour, int labWeeklyHour) {
         this.courseID = courseID;
         this.courseName = courseName;
         this.profInCharge = profInCharge;
@@ -204,7 +206,7 @@ public class Course {
      * Gets the course's department.
      * @return the department of this course.
      */
-    public String getCourseDepartment(){
+    public Department getCourseDepartment(){
         return courseDepartment;
     }
 
@@ -212,7 +214,7 @@ public class Course {
      * Gets the course's type.
      * @return the type of this course.
      */
-    public String getCourseType(){
+    public CourseType getCourseType(){
         return courseType;
     }
 
