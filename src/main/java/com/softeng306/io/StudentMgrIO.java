@@ -25,6 +25,7 @@ public class StudentMgrIO {
 
     /**
      * Allows the user to choose whether they want to students ID to be auto-generated.
+     *
      * @return true if the system is to auto-generate the students ID, false for the user to manually enter the students ID
      */
     public static boolean systemGenerateID() {
@@ -51,6 +52,7 @@ public class StudentMgrIO {
 
     /**
      * Allows the user to enter the students ID.
+     *
      * @return student ID
      */
     public static String getStudentID() {
@@ -63,9 +65,12 @@ public class StudentMgrIO {
             System.out.println();
             System.out.println("Give this student an ID: ");
             String studentID = reader.nextLine();
+            // Check the studentId is valid and is also not used by a current student
             if (StudentValidator.checkValidStudentIDInput(studentID)) {
                 if (StudentValidator.checkStudentExists(studentID) == null) {
                     return studentID;
+                } else {
+                    System.out.println("Sorry. The student ID is used. This student already exists.");
                 }
             }
         }
@@ -73,6 +78,7 @@ public class StudentMgrIO {
 
     /**
      * Allows the user to enter the students name.
+     *
      * @return students name
      */
     public static String getStudentName() {
@@ -88,6 +94,7 @@ public class StudentMgrIO {
 
     /**
      * Allows the user to enter the students school.
+     *
      * @return students school
      */
     public static String getSchoolName() {
@@ -111,6 +118,7 @@ public class StudentMgrIO {
 
     /**
      * Allows the user to enter the students gender.
+     *
      * @return students gender
      */
     public static String getStudentGender() {
@@ -134,6 +142,7 @@ public class StudentMgrIO {
 
     /**
      * Allows the user to enter the students year level.
+     *
      * @return students year level
      */
     public static int getStudentYear() {
