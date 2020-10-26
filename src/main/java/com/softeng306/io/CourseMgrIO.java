@@ -1050,6 +1050,8 @@ public class CourseMgrIO {
                 } else {
                     break;
                 }
+            } else {
+                System.out.println("The department is invalid. Please re-enter.");
             }
         }
         return courseDepartment;
