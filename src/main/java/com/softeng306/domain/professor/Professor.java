@@ -5,20 +5,9 @@ package com.softeng306.domain.professor;
  */
 
 public class Professor {
-    /**
-     * this professor's ID
-     */
 
     private String profID;
-
-    /**
-     * this professor's Name
-     */
     private String profName;
-
-    /**
-     * this professor's department
-     */
     private String profDepartment;
 
     /**

@@ -11,17 +11,9 @@ import com.softeng306.enums.GroupType;
  */
 
 public class Group {
-    /**
-     * The name of this group.
-     */
+
     private String groupName;
-
-    /**
-     * The availableVacancies of this group.
-     */
     private int availableVacancies;
-
-
     private GroupType groupType;
 
     /**

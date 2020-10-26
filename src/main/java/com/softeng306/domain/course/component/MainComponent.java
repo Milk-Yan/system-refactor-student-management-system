@@ -9,9 +9,6 @@ import java.util.List;
  */
 public class MainComponent extends CourseworkComponent {
 
-    /**
-     * This main component's sub components.
-     */
     private List<SubComponent> subComponents;
 
     /**

@@ -15,24 +15,10 @@ import java.util.List;
  */
 
 public class Student {
-    /**
-     * The ID of this student.
-     */
+
     private String studentID;
-
-    /**
-     * The name of this student.
-     */
     private String studentName;
-
-    /**
-     * The school this student belongs to.
-     */
     private String studentSchool;
-
-    /**
-     * The gender of this student.
-     */
     private String gender;
 
 
