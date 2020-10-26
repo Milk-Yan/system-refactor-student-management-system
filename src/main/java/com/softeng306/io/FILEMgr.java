@@ -17,29 +17,10 @@ import java.util.*;
 
 public class FILEMgr {
 
-    /**
-     * The file name of studentFile.csv.
-     */
     private static final String studentFileName = "data/studentFile.json";
-
-    /**
-     * The file name of courseFile.csv.
-     */
     private static final String courseFileName = "data/courseFile.json";
-
-    /**
-     * The file name of professorFile.csv.
-     */
     private static final String professorFileName = "data/professorFile.json";
-
-    /**
-     * The file name of courseRegistrationFile.csv.
-     */
     private static final String courseRegistrationFileName = "data/courseRegistrationFile.json";
-
-    /**
-     * The file name of markFile.csv.
-     */
     private static final String markFileName = "data/markFile.json";
 
     /**

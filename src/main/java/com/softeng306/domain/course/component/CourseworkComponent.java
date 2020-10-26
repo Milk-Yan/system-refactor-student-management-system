@@ -1,13 +1,9 @@
 package com.softeng306.domain.course.component;
 
 public abstract class CourseworkComponent {
-    /**
-     * The name of this coursework.
-     */
+
     private String componentName;
-    /**
-     * The weight of this course component.
-     */
+
     private int componentWeight;
 
     /**
