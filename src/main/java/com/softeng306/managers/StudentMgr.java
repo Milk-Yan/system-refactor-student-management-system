@@ -15,19 +15,22 @@ import com.softeng306.validation.StudentValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Manages the student related operations.
  * Contains addStudent, generateStudentId
  */
 public class StudentMgr {
+    private Scanner scanner = new Scanner(System.in);
+
     /**
      * A list of all the students in this school.
      */
     private List<Student> students;
 
     private static StudentMgr singleInstance = null;
-    
+
     private static MarkCalculator markCalculator;
 
     /**
@@ -81,14 +84,14 @@ public class StudentMgr {
         FILEMgr.writeStudentsIntoFile(currentStudent);
         students.add(currentStudent);
 
-        StudentMgrIO.printStudentID(currentStudent.getStudentName(), currentStudent.getStudentID());
+        StudentMgrIO.printStudentData(currentStudent.getStudentName(), currentStudent.getStudentID());
     }
 
     /**
      * Prints transcript (Results of course taken) for a particular student
      */
     public void printStudentTranscript() {
-        String studentID = StudentValidator.checkStudentExists().getStudentID();
+        String studentID = readStudentFromUser().getStudentID();
 
         double studentGPA = 0d;
         int thisStudentAU = 0;
@@ -154,7 +157,8 @@ public class StudentMgr {
         System.out.println("------------------ End of Transcript -------------------");
 
     }
-     /* Return the list of all students in the system.
+
+    /* Return the list of all students in the system.
      * @return An list of all students.
      */
     public List<Student> getStudents() {
@@ -204,5 +208,32 @@ public class StudentMgr {
             }
         } while (true);
         return generateStudentID;
+    }
+
+    /**
+     * Prompts the user to input an existing student.
+     *
+     * @return the inputted student.
+     */
+    public Student readStudentFromUser() {
+        String studentID;
+        Student currentStudent = null;
+        while (true) {
+            System.out.println("Enter Student ID (-h to print all the student ID):");
+            studentID = scanner.nextLine();
+            while ("-h".equals(studentID)) {
+                StudentMgr.getInstance().printAllStudentIds();
+                studentID = scanner.nextLine();
+            }
+
+            currentStudent = StudentValidator.checkStudentExists(studentID);
+            if (currentStudent == null) {
+                System.out.println("Invalid Student ID. Please re-enter.");
+            } else {
+                break;
+            }
+
+        }
+        return currentStudent;
     }
 }

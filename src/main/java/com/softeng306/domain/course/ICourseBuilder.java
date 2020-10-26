@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface ICourseBuilder {
     void setCourseID(String id);
+
     void setCourseName(String name);
 
     void setProfInCharge(Professor profInCharge);
@@ -17,7 +18,9 @@ public interface ICourseBuilder {
     void setTotalSeats(int totalSeats);
 
     void setLectureGroups(List<Group> lectureGroups);
+
     void setTutorialGroups(List<Group> tutorialGroups);
+
     void setLabGroups(List<Group> labGroups);
 
     void setAU(int AU);
@@ -25,7 +28,9 @@ public interface ICourseBuilder {
     void setCourseType(CourseType Type);
 
     void setLecWeeklyHour(int lecWeeklyHour);
+
     void setTutWeeklyHour(int tutWeeklyHour);
+
     void setLabWeeklyHour(int labWeeklyHour);
 
     Course build();

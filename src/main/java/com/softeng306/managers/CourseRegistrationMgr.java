@@ -1,6 +1,6 @@
 package com.softeng306.managers;
 
-import com.softeng306.Enum.GroupType;
+import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
@@ -51,12 +51,12 @@ public class CourseRegistrationMgr {
         String selectedTutorialGroupName = null;
         String selectedLabGroupName = null;
 
-        Student currentStudent = StudentValidator.checkStudentExists();
+        Student currentStudent = StudentMgr.getInstance().readStudentFromUser();
         String studentID = currentStudent.getStudentID();
 
-        DepartmentValidator.checkCourseDepartmentExists();
+        CourseMgr.getInstance().readDepartmentFromUser();
 
-        Course currentCourse = CourseValidator.checkCourseExists();
+        Course currentCourse = CourseMgr.getInstance().readCourseFromUser();
         String courseID = currentCourse.getCourseID();
 
 
@@ -110,7 +110,7 @@ public class CourseRegistrationMgr {
     public void printStudents() {
         MainMenuIO.printMethodCall("printStudent");
 
-        Course currentCourse = CourseValidator.checkCourseExists();
+        Course currentCourse = CourseMgr.getInstance().readCourseFromUser();
         CourseRegistrationManagerIO.printOptions();
 
         // READ courseRegistrationFILE

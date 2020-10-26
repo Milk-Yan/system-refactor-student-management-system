@@ -1,7 +1,6 @@
 package com.softeng306.validation;
 
-import com.softeng306.Enum.Gender;
-import com.softeng306.io.*;
+import com.softeng306.enums.Gender;
 
 public class GenderValidator {
     /**

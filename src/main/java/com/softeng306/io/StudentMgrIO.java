@@ -1,7 +1,7 @@
 package com.softeng306.io;
 
-import com.softeng306.Enum.Department;
-import com.softeng306.Enum.Gender;
+import com.softeng306.enums.Department;
+import com.softeng306.enums.Gender;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.DepartmentValidator;
 import com.softeng306.validation.GenderValidator;
@@ -14,7 +14,9 @@ public class StudentMgrIO {
 
     private static Scanner reader = new Scanner(System.in);
 
-
+    /**
+     * Displays the menu for adding a student on the console.
+     */
     public static void printMenu() {
         MainMenuIO.printMethodCall("addStudent");
         System.out.println("Choose the way you want to add a student:");
@@ -22,6 +24,11 @@ public class StudentMgrIO {
         System.out.println("2. Let the system self-generate the student ID.");
     }
 
+    /**
+     * Allows the user to choose whether they want to students ID to be auto-generated.
+     *
+     * @return true if the system is to auto-generate the students ID, false for the user to manually enter the students ID
+     */
     public static boolean systemGenerateID() {
         int choice;
         do {
@@ -44,6 +51,11 @@ public class StudentMgrIO {
 
     }
 
+    /**
+     * Allows the user to enter the students ID.
+     *
+     * @return student ID
+     */
     public static String getStudentID() {
         while (true) {
             System.out.println("The student ID should follow:");
@@ -54,14 +66,22 @@ public class StudentMgrIO {
             System.out.println();
             System.out.println("Give this student an ID: ");
             String studentID = reader.nextLine();
+            // Check the studentId is valid and is also not used by a current student
             if (StudentValidator.checkValidStudentIDInput(studentID)) {
                 if (StudentValidator.checkStudentExists(studentID) == null) {
                     return studentID;
+                } else {
+                    System.out.println("Sorry. The student ID is used. This student already exists.");
                 }
             }
         }
     }
 
+    /**
+     * Allows the user to enter the students name.
+     *
+     * @return students name
+     */
     public static String getStudentName() {
         String studentName;
         while (true) {
@@ -73,6 +93,11 @@ public class StudentMgrIO {
         }
     }
 
+    /**
+     * Allows the user to enter the students school.
+     *
+     * @return students school
+     */
     public static String getSchoolName() {
         String studentSchool;
         while (true) {
@@ -90,6 +115,11 @@ public class StudentMgrIO {
         }
     }
 
+    /**
+     * Allows the user to enter the students gender.
+     *
+     * @return students gender
+     */
     public static String getStudentGender() {
         String studentGender;
         while (true) {
@@ -107,6 +137,11 @@ public class StudentMgrIO {
         }
     }
 
+    /**
+     * Allows the user to enter the students year level.
+     *
+     * @return students year level
+     */
     public static int getStudentYear() {
         int studentYear;
         do {
@@ -127,7 +162,10 @@ public class StudentMgrIO {
         } while (true);
     }
 
-    public static void printStudentID(String name, String ID) {
+    /**
+     * Prints a students data to console, given their student ID.
+     */
+    public static void printStudentData(String name, String ID) {
         System.out.println("Student named: " + name + " is added, with ID: " + ID);
         System.out.println("Student List: ");
         System.out.println("| Student ID | Student Name | Student School | Gender | Year | GPA |");
