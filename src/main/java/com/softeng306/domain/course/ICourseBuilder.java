@@ -1,7 +1,7 @@
 package com.softeng306.domain.course;
 
-import com.softeng306.Enum.CourseType;
-import com.softeng306.Enum.Department;
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.Department;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;

@@ -3,7 +3,7 @@ package com.softeng306.domain.student;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
-import com.softeng306.Enum.Gender;
+import com.softeng306.enums.Gender;
 import com.softeng306.main.Main;
 import com.softeng306.managers.StudentMgr;
 

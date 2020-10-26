@@ -1,6 +1,6 @@
 package com.softeng306.domain.professor;
 
-import com.softeng306.Enum.Department;
+import com.softeng306.enums.Department;
 
 /**
  * Represents a professor at school
