@@ -11,7 +11,7 @@ public class SubComponent extends CourseworkComponent {
      * Default constructor. Required for Jackson serialization.
      */
 
-    
+
     public final static String COMPONENT_NAME = "sub component";
 
 

@@ -773,7 +773,7 @@ public class CourseMgrIO {
 
             int subComponenttotalWeight = 100;
             for (int j = 0; j < noOfSub; j++) {
-                subComponentName = getComponentName(subComponenttotalWeight, subComponents, j, " sub component ");
+                subComponentName = getComponentName(subComponenttotalWeight, subComponents, j, SubComponent.COMPONENT_NAME);
                 subComponentWeight = readSubWeight(j, subComponenttotalWeight);
                 //Create Subcomponent
                 SubComponent subComponent = new SubComponent(subComponentName, subComponentWeight);
