@@ -103,6 +103,8 @@ public class StudentMgrIO {
 
             if (Department.contains(studentSchool)) {
                 return studentSchool;
+            } else {
+                System.out.println("The department is invalid. Please re-enter.");
             }
         }
     }
@@ -124,6 +126,8 @@ public class StudentMgrIO {
 
             if (Gender.contains(studentGender)) {
                 return studentGender;
+            } else {
+                System.out.println("The gender is invalid. Please re-enter.");
             }
         }
     }

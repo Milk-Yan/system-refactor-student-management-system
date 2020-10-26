@@ -44,13 +44,8 @@ public class ProfessorMgr {
      * @param department The department the professors are in.
      * @return A list of all the IDs of the professors.
      */
-    public List<String> getAllProfIDInDepartment(String department) {
-        if (Department.contains(department)) {
-            return professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
-        }
-
-        // the department is invalid so no professors
-        return null;
+    public List<String> getAllProfIDInDepartment(Department department) {
+        return professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
     }
 
     /**

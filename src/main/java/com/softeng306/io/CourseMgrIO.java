@@ -121,7 +121,7 @@ public class CourseMgrIO {
      *
      * @return String courseDepartment for a course
      */
-    public String readCourseDepartment() {
+    public Department readCourseDepartment() {
         String courseDepartment;
         while (true) {
             System.out.println("Enter course's department (uppercase): ");
@@ -131,12 +131,14 @@ public class CourseMgrIO {
                 Department.printAllDepartment();
                 courseDepartment = scanner.nextLine();
             }
-            if (DepartmentValidator.checkDepartmentValidation(courseDepartment)) {
+            if (Department.contains(courseDepartment)) {
                 break;
+            } else {
+                System.out.println("The department is invalid. Please re-enter.");
             }
         }
 
-        return courseDepartment;
+        return Department.valueOf(courseDepartment);
     }
 
     /**
@@ -144,7 +146,7 @@ public class CourseMgrIO {
      *
      * @return String courseType for a course
      */
-    public String readCourseType() {
+    public CourseType readCourseType() {
         String courseType;
         while (true) {
             System.out.println("Enter course type (uppercase): ");
@@ -158,7 +160,7 @@ public class CourseMgrIO {
                 break;
             }
         }
-        return courseType;
+        return CourseType.valueOf(courseType);
     }
 
     /**
@@ -173,16 +175,16 @@ public class CourseMgrIO {
         int noOfGroups;
 
         while (true) {
-            if (type == GroupType.TutorialGroup) {
-                System.out.println("Enter the number of " + type.toTypeString().toLowerCase() + " groups:");
+            if (type == GroupType.TUTORIAL_GROUP) {
+                System.out.println("Enter the number of " + type + " groups:");
             } else {
-                System.out.println("Enter the number of " + type.toTypeString().toLowerCase() + " groups: ");
+                System.out.println("Enter the number of " + type + " groups: ");
             }
             if (scanner.hasNextInt()) {
                 noOfGroups = scanner.nextInt();
                 scanner.nextLine();
                 boolean checkLimit;
-                if (type == GroupType.LectureGroup) {
+                if (type == GroupType.LECTURE_GROUP) {
                     checkLimit = noOfGroups > 0 && noOfGroups <= totalSeats;
                 } else {
                     checkLimit = noOfGroups >= 0 && compareTo <= totalSeats;
@@ -205,11 +207,11 @@ public class CourseMgrIO {
      * @param type the type of the group to output the message for
      */
     private void printInvalidNoGroup(GroupType type) {
-        if (type == GroupType.LabGroup) {
+        if (type == GroupType.LAB_GROUP) {
             System.out.println("Number of lab group must be non-negative.");
-        } else if (type == GroupType.LectureGroup) {
+        } else if (type == GroupType.LECTURE_GROUP) {
             System.out.println("Number of lecture group must be positive but less than total seats in this course.");
-        } else if (type == GroupType.TutorialGroup) {
+        } else if (type == GroupType.TUTORIAL_GROUP) {
             System.out.println("Number of tutorial group must be non-negative.");
         }
     }
@@ -224,12 +226,12 @@ public class CourseMgrIO {
     public int readWeeklyHour(GroupType type, int AU) {
         int weeklyHour;
         while (true) {
-            System.out.format("Enter the weekly %s hour for this course: %n", type.toTypeString().toLowerCase());
+            System.out.format("Enter the weekly %s hour for this course: %n", type);
             if (scanner.hasNextInt()) {
                 weeklyHour = scanner.nextInt();
                 scanner.nextLine();
                 if (weeklyHour < 0 || weeklyHour > AU) {
-                    System.out.format("Weekly %s hour out of bound. Please re-enter.%n", type.toTypeString().toLowerCase());
+                    System.out.format("Weekly %s hour out of bound. Please re-enter.%n", type);
                 } else {
                     break;
                 }
@@ -295,7 +297,7 @@ public class CourseMgrIO {
                 }
                 seatsLeft -= lectureGroupCapacity;
                 if ((seatsLeft > 0 && i != (noOfLectureGroups - 1)) || (seatsLeft == 0 && i == noOfLectureGroups - 1)) {
-                    Group lectureGroup = new Group(lectureGroupName, lectureGroupCapacity, lectureGroupCapacity, GroupType.LectureGroup);
+                    Group lectureGroup = new Group(lectureGroupName, lectureGroupCapacity, lectureGroupCapacity, GroupType.LECTURE_GROUP);
 
                     lectureGroups.add(lectureGroup);
                     break;
@@ -353,7 +355,7 @@ public class CourseMgrIO {
                     scanner.nextLine();
                     totalTutorialSeats += tutorialGroupCapacity;
                     if ((i != noOfTutorialGroups - 1) || (totalTutorialSeats >= totalSeats)) {
-                        Group tutorialGroup = new Group(tutorialGroupName, tutorialGroupCapacity, tutorialGroupCapacity, GroupType.TutorialGroup);
+                        Group tutorialGroup = new Group(tutorialGroupName, tutorialGroupCapacity, tutorialGroupCapacity, GroupType.TUTORIAL_GROUP);
                         tutorialGroups.add(tutorialGroup);
                         break;
                     } else {
@@ -410,7 +412,7 @@ public class CourseMgrIO {
                 scanner.nextLine();
                 totalLabSeats += labGroupCapacity;
                 if ((i != noOfLabGroups - 1) || (totalLabSeats >= totalSeats)) {
-                    Group labGroup = new Group(labGroupName, labGroupCapacity, labGroupCapacity, GroupType.LabGroup);
+                    Group labGroup = new Group(labGroupName, labGroupCapacity, labGroupCapacity, GroupType.LAB_GROUP);
                     labGroups.add(labGroup);
                     break;
                 } else {
@@ -431,7 +433,7 @@ public class CourseMgrIO {
      * @param courseDepartment the course department that the professor should be in
      * @return Professor the professor the user has specified
      */
-    public Professor readProfessor(String courseDepartment) {
+    public Professor readProfessor(Department courseDepartment) {
         List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
         String profID;
         Professor profInCharge;
@@ -515,15 +517,15 @@ public class CourseMgrIO {
     public void printCourseInfo(Course course) {
         System.out.println(course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats());
         System.out.println("--------------------------------------------");
-        printVacanciesForGroups(course.getLectureGroups(), GroupType.LectureGroup);
+        printVacanciesForGroups(course.getLectureGroups(), GroupType.LECTURE_GROUP);
 
         if (course.getTutorialGroups() != null) {
             System.out.println();
-            printVacanciesForGroups(course.getTutorialGroups(), GroupType.TutorialGroup);
+            printVacanciesForGroups(course.getTutorialGroups(), GroupType.TUTORIAL_GROUP);
         }
         if (course.getLabGroups() != null) {
             System.out.println();
-            printVacanciesForGroups(course.getLabGroups(), GroupType.LabGroup);
+            printVacanciesForGroups(course.getLabGroups(), GroupType.LAB_GROUP);
         }
         System.out.println();
     }
@@ -536,12 +538,12 @@ public class CourseMgrIO {
      */
     private void printVacanciesForGroups(List<Group> groups, GroupType type) {
         for (Group group : groups) {
-            if (type == GroupType.TutorialGroup) {
+            if (type == GroupType.TUTORIAL_GROUP) {
                 System.out.format("%s group %s (Available/Total):  %d/%d%n",
-                        type.toTypeString(), group.getGroupName(), group.getAvailableVacancies(), group.getTotalSeats());
+                        type.getNameWithCapital(), group.getGroupName(), group.getAvailableVacancies(), group.getTotalSeats());
             } else {
                 System.out.format("%s group %s (Available/Total): %d/%d%n",
-                        type.toTypeString(), group.getGroupName(), group.getAvailableVacancies(), group.getTotalSeats());
+                        type.getNameWithCapital(), group.getGroupName(), group.getAvailableVacancies(), group.getTotalSeats());
             }
 
         }
