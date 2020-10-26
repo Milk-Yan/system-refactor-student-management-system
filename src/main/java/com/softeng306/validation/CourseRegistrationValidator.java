@@ -16,7 +16,7 @@ public class CourseRegistrationValidator {
      */
     public static CourseRegistration checkCourseRegistrationExists(String studentID, String courseID) {
         List<CourseRegistration> courseRegistrations = CourseRegistrationMgr.getInstance().getCourseRegistrations().stream().filter(cr -> studentID.equals(cr.getStudent().getStudentID())).filter(cr -> courseID.equals(cr.getCourse().getCourseID())).collect(Collectors.toList());
-        if (courseRegistrations.size() == 0) {
+        if (courseRegistrations.isEmpty()) {
             return null;
         }
         System.out.println("Sorry. This student already registers this course.");

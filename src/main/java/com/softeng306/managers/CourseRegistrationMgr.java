@@ -64,7 +64,7 @@ public class CourseRegistrationMgr {
             return;
         }
 
-        if (currentCourse.getMainComponents().size() == 0) {
+        if (currentCourse.getMainComponents().isEmpty()) {
             CourseRegistrationManagerIO.printNoAssessmentMessage(currentCourse);
             return;
         }
@@ -132,7 +132,7 @@ public class CourseRegistrationMgr {
             // TODO: replace these common ui elements with a library
             System.out.println("------------------------------------------------------");
 
-            if (stuArray.size() == 0) {
+            if (stuArray.isEmpty()) {
                CourseRegistrationManagerIO.printNoEnrolmentsError();
             }
             if(opt == 1){
@@ -140,7 +140,7 @@ public class CourseRegistrationMgr {
                 CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LectureGroup);
 
             } else if (opt == 2){
-                if (stuArray.size() > 0 && stuArray.get(0).getCourse().getTutorialGroups().size() == 0) {
+                if (!stuArray.isEmpty() && stuArray.get(0).getCourse().getTutorialGroups().isEmpty()) {
                     CourseRegistrationManagerIO.printNoGroup(GroupType.TutorialGroup);
                     CourseRegistrationManagerIO.printEndOfSection();
                     return;
@@ -149,7 +149,7 @@ public class CourseRegistrationMgr {
                 CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.TutorialGroup);
 
             } else if (opt == 3){
-                if (stuArray.size() > 0 && stuArray.get(0).getCourse().getLabGroups().size() == 0) {
+                if (!stuArray.isEmpty() && stuArray.get(0).getCourse().getLabGroups().isEmpty()) {
                     CourseRegistrationManagerIO.printNoGroup(GroupType.LabGroup);
                     CourseRegistrationManagerIO.printEndOfSection();
                     return;

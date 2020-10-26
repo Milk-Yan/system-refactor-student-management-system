@@ -47,7 +47,7 @@ public class CourseValidator {
      */
     public static Course getCourseFromId(String courseID) {
         List<Course> anyCourse = CourseMgr.getInstance().getCourses().stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
-        if (anyCourse.size() == 0) {
+        if (anyCourse.isEmpty()) {
             return null;
         }
         return anyCourse.get(0);

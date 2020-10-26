@@ -103,7 +103,7 @@ public class StudentMgr {
             }
         }
 
-        if (thisStudentMark.size() == 0) {
+        if (thisStudentMark.isEmpty()) {
             System.out.println("------ No transcript ready for this student yet ------");
             return;
         }
