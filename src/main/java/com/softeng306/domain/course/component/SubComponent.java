@@ -1,5 +1,7 @@
 package com.softeng306.domain.course.component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Represents a sub-component of a main component.
  * A main component can have many or no sub-components.
@@ -10,6 +12,11 @@ public class SubComponent extends CourseworkComponent {
     /**
      * Default constructor. Required for Jackson serialization.
      */
+
+    @JsonIgnore
+    public final static String COMPONENT_NAME = "sub component";
+
+
     public SubComponent() {
 
     }

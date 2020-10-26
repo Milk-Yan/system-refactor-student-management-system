@@ -18,16 +18,6 @@ import java.util.*;
 public class FILEMgr {
 
     /**
-     * The string of {@code COMMA_DELIMITER}.
-     */
-    private static final String COMMA_DELIMITER = ",";
-
-    /**
-     * The string of {@code NEW_LINE_SEPARATOR}.
-     */
-    private static final String NEW_LINE_SEPARATOR = "\n";
-
-    /**
      * The file name of studentFile.csv.
      */
     private static final String studentFileName = "data/studentFile.json";
@@ -53,11 +43,6 @@ public class FILEMgr {
     private static final String markFileName = "data/markFile.json";
 
     /**
-     * The header of professorFile.csv.
-     */
-    private static final String professor_HEADER = "professorID,professorName,profDepartment";
-
-    /**
      * Write a new student information into the file.
      *
      * @param student a student to be added into the file
@@ -80,7 +65,6 @@ public class FILEMgr {
      *
      * @return a list of all the students.
      */
-
     public static List<Student> loadStudents() {
         ObjectMapper objectMapper = new ObjectMapper();
         File studentFile = Paths.get(studentFileName).toFile();
@@ -100,12 +84,13 @@ public class FILEMgr {
     /**
      * Set the recent student ID, let the newly added student have the ID onwards.
      * If there is no student in DB, set recentStudentID to 1800000 (2018 into Uni)
+     *
      * @param students The students to update.
      */
     private static void updateStudentIDs(List<Student> students) {
         int recentStudentID = 0;
-        for (Student student: students) {
-            recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentID().substring(1,8)));
+        for (Student student : students) {
+            recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentID().substring(1, 8)));
         }
         StudentMgr.setIdNumber(recentStudentID > 0 ? recentStudentID : 1800000);
     }
@@ -138,7 +123,7 @@ public class FILEMgr {
         ArrayList<Course> allCourses = new ArrayList<>();
 
         try {
-            allCourses = new ArrayList<Course>(Arrays.asList(objectMapper.readValue(courseFile, Course[].class)));
+            allCourses = new ArrayList<>(Arrays.asList(objectMapper.readValue(courseFile, Course[].class)));
         } catch (IOException e) {
             System.out.println("Error happens when loading courses.");
             e.printStackTrace();
@@ -150,6 +135,7 @@ public class FILEMgr {
     /**
      * Backs up all the changes of courses made into the file.
      * NOTE THAT BACKUPS MAY NOT WORK, NOT TESTED. WE shouldn't need them in the future.
+     *
      * @param courses courses to be backed up
      */
     public static void backUpCourse(List<Course> courses) {
@@ -159,42 +145,6 @@ public class FILEMgr {
         } catch (IOException e) {
             System.out.println("Error in backing up courses.");
             e.printStackTrace();
-        }
-    }
-
-    /**
-     * Writes a new professor information into the file.
-     * DON'T WANT TO UPDATE SINCE IT ISN'T USED
-     * @param professor professor to be added into file
-     */
-    public static void writeProfIntoFile(Professor professor) {
-        File file;
-        FileWriter fileWriter = null;
-        try {
-            file = new File(professorFileName);
-            //initialize file header if have not done so
-            fileWriter = new FileWriter(professorFileName, true);
-            if (file.length() == 0) {
-                fileWriter.append(professor_HEADER);
-                fileWriter.append(NEW_LINE_SEPARATOR);
-            }
-            fileWriter.append(professor.getProfID());
-            fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(professor.getProfName());
-            fileWriter.append(COMMA_DELIMITER);
-            fileWriter.append(professor.getProfDepartment());
-            fileWriter.append(NEW_LINE_SEPARATOR);
-        } catch (Exception e) {
-            System.out.println("Error in adding a professor to the file.");
-            e.printStackTrace();
-        } finally {
-            try {
-                fileWriter.flush();
-                fileWriter.close();
-            } catch (IOException e) {
-                System.out.println("Error occurs when flushing or closing the file.");
-                e.printStackTrace();
-            }
         }
     }
 
@@ -308,6 +258,11 @@ public class FILEMgr {
         }
     }
 
+    /**
+     * Clears the file contents
+     *
+     * @param filename file to clear
+     */
     private static void clearFileContents(String filename) {
         try {
             new PrintWriter(filename);
@@ -316,6 +271,13 @@ public class FILEMgr {
         }
     }
 
+    /**
+     * Write information into a file
+     *
+     * @param filename          the file to write into
+     * @param collectionToWrite the information to write
+     * @throws IOException
+     */
     private static void writeToFile(String filename, List<?> collectionToWrite) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         File file = Paths.get(filename).toFile();

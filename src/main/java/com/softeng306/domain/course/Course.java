@@ -1,5 +1,7 @@
 package com.softeng306.domain.course;
 
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.Department;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
