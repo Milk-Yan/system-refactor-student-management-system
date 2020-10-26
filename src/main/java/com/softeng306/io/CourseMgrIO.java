@@ -1042,9 +1042,9 @@ public class CourseMgrIO {
                 Department.printAllDepartment();
                 courseDepartment = scanner.nextLine();
             }
-            if (DepartmentValidator.checkDepartmentValidation(courseDepartment)) {
+            if (Department.contains(courseDepartment)) {
                 List<String> validCourseString;
-                validCourseString = CourseMgr.getInstance().getCourseIdsInDepartment(courseDepartment);
+                validCourseString = CourseMgr.getInstance().getCourseIdsInDepartment(Department.valueOf(courseDepartment));
                 if (validCourseString.size() == 0) {
                     System.out.println("Invalid choice of department.");
                 } else {

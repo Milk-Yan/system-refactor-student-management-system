@@ -1,8 +1,14 @@
 package com.softeng306.validation;
 
 import com.softeng306.enums.Department;
+import com.softeng306.managers.CourseMgr;
+
+import java.util.List;
+import java.util.Scanner;
 
 public class DepartmentValidator {
+
+    private static Scanner scanner = new Scanner(System.in);
 
     /**
      * Prompts the user to input an existing department.
