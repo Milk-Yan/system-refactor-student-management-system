@@ -788,7 +788,6 @@ public class CourseMgrIO {
 
     /**
      * This method reads in the name for a particular subComponent
-     * @return List of sub components user has specified
      */
     public String getComponentName(int totalWeightAssignable, List<? extends CourseworkComponent> components, int componentNumber, String type){
 
@@ -797,7 +796,7 @@ public class CourseMgrIO {
 
         do {
             componentExist = false;
-            if(type == SubComponent.COMPONENT_NAME){
+            if(type.equals(SubComponent.COMPONENT_NAME)){
                 System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
             } else {
                 System.out.println("Total weightage left to assign: " + totalWeightAssignable);

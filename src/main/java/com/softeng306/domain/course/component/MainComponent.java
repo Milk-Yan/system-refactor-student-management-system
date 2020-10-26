@@ -1,5 +1,7 @@
 package com.softeng306.domain.course.component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 /**
@@ -17,6 +19,7 @@ public class MainComponent extends CourseworkComponent {
     /**
      *
      */
+    @JsonIgnore
     public final static String COMPONENT_NAME = "main component";
 
     /**
