@@ -11,6 +11,7 @@ import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.professor.Professor;
+import com.softeng306.main.Main;
 import com.softeng306.managers.ProfessorMgr;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.DepartmentValidator;
@@ -753,7 +754,7 @@ public class CourseMgrIO {
      * @return the main component name
      */
     public String readMainComponentName(int totalWeightage, int mainComponentNo, List<MainComponent> mainComponents) {
-        return getComponentName(totalWeightage, mainComponents, mainComponentNo, " main component ");
+        return getComponentName(totalWeightage, mainComponents, mainComponentNo, MainComponent.COMPONENT_NAME);
     }
 
     /**
@@ -792,6 +793,7 @@ public class CourseMgrIO {
         return subComponents;
     }
 
+
     /**
      * This method reads in the name for a particular subComponent
      * @return List of sub components user has specified
@@ -800,14 +802,15 @@ public class CourseMgrIO {
 
         String subComponentName;
         boolean componentExist;
+
         do {
             componentExist = false;
-            if(type == " sub component "){
+            if(type == SubComponent.COMPONENT_NAME){
                 System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
             } else {
                 System.out.println("Total weightage left to assign: " + totalWeightAssignable);
             }
-            System.out.println("Enter"+ type +"" + (componentNumber + 1) + " name: ");
+            System.out.println("Enter "+ type +" " + (componentNumber + 1) + " name: ");
             subComponentName = scanner.nextLine();
 
             if (components.isEmpty()) {

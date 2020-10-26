@@ -15,6 +15,11 @@ public class MainComponent extends CourseworkComponent {
     private List<SubComponent> subComponents;
 
     /**
+     *
+     */
+    public final static String COMPONENT_NAME = "main component";
+
+    /**
      * Default constructor. Required for Jackson serialization.
      */
     public MainComponent() {
