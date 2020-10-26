@@ -1,9 +1,8 @@
 package com.softeng306.managers;
 
-import com.softeng306.Enum.Department;
+import com.softeng306.enums.Department;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.io.FILEMgr;
-import com.softeng306.validation.DepartmentValidator;
 
 import java.util.List;
 import java.util.stream.Collectors;
