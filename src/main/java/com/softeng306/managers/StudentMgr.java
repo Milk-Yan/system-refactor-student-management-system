@@ -1,6 +1,7 @@
 package com.softeng306.managers;
 
 
+import com.softeng306.enums.Gender;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.MainComponentMark;
@@ -77,7 +78,7 @@ public class StudentMgr {
         Student currentStudent = new Student(studentID, studentName);
 
         currentStudent.setStudentSchool(StudentMgrIO.getSchoolName());  //Set school
-        currentStudent.setGender(StudentMgrIO.getStudentGender());      //gender
+        currentStudent.setGender(Gender.valueOf(StudentMgrIO.getStudentGender()));      //gender
         currentStudent.setStudentYear(StudentMgrIO.getStudentYear());   //student year
 
         FILEMgr.writeStudentsIntoFile(currentStudent);

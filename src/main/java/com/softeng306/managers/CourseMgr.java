@@ -1,5 +1,8 @@
 package com.softeng306.managers;
 
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.Department;
+import com.softeng306.enums.GroupType;
 import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
@@ -66,10 +69,10 @@ public class CourseMgr {
         int AU = courseMgrIO.readAU();
         builder.setAU(AU);
 
-        String courseDepartment = courseMgrIO.readCourseDepartment();
+        Department courseDepartment = Department.valueOf(courseMgrIO.readCourseDepartment());
         builder.setCourseDepartment(courseDepartment);
 
-        String courseType = courseMgrIO.readCourseType();
+        CourseType courseType = CourseType.valueOf(courseMgrIO.readCourseType());
         builder.setCourseType(courseType);
 
         // Lecture groups
@@ -252,7 +255,7 @@ public class CourseMgr {
     public List<String> getCourseIdsInDepartment(String department) {
         List<Course> validCourses = new ArrayList<>();
         courses.forEach(course -> {
-            if (department.equals(course.getCourseDepartment())) {
+            if (department.equals(course.getCourseDepartment().toString())) {
                 validCourses.add(course);
             }
         });

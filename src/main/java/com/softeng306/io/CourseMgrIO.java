@@ -427,7 +427,7 @@ public class CourseMgrIO {
      * @param courseDepartment the course department that the professor should be in
      * @return Professor the professor the user has specified
      */
-    public Professor readProfessor(String courseDepartment) {
+    public Professor readProfessor(Department courseDepartment) {
         List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
         String profID;
         Professor profInCharge;

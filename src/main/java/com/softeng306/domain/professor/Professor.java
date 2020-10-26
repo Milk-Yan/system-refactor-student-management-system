@@ -1,5 +1,7 @@
 package com.softeng306.domain.professor;
 
+import com.softeng306.enums.Department;
+
 /**
  * Represents a professor at school
  */
@@ -19,7 +21,7 @@ public class Professor {
     /**
      * this professor's department
      */
-    private String profDepartment;
+    private Department profDepartment;
 
     /**
      * Default constructor. Required for Jackson serialization.
@@ -59,7 +61,7 @@ public class Professor {
      * Gets this professor's department
      * @return the department of this professor
      */
-    public String getProfDepartment(){
+    public Department getProfDepartment(){
         return profDepartment;
     }
 
@@ -67,7 +69,7 @@ public class Professor {
      * Sets the department of the professor
      * @param profDepartment this professor's department
      */
-    public void setProfDepartment(String profDepartment) {
+    public void setProfDepartment(Department profDepartment) {
         this.profDepartment = profDepartment;
     }
 
