@@ -128,7 +128,7 @@ public class CourseMgr {
         MainMenuIO.printMethodCall("checkAvailableSlots");
 
         while (true) {
-            Course currentCourse = CourseValidator.checkCourseExists();
+            Course currentCourse = readCourseFromUser();
             if (currentCourse != null) {
                 courseMgrIO.printCourseInfo(currentCourse);
                 break;
@@ -149,7 +149,7 @@ public class CourseMgr {
 
         MainMenuIO.printMethodCall("enterCourseWorkComponentWeightage");
         if (currentCourse == null) {
-            currentCourse = CourseValidator.checkCourseExists();
+            currentCourse = readCourseFromUser();
         }
 
         List<MainComponent> mainComponents = new ArrayList<>(0);
@@ -271,7 +271,7 @@ public class CourseMgr {
     public void printCourseStatistics() {
         MainMenuIO.printMethodCall("printCourseStatistics");
 
-        Course currentCourse = CourseValidator.checkCourseExists();
+        Course currentCourse = readCourseFromUser();
         String courseID = currentCourse.getCourseID();
 
         List<Mark> courseMarks = new ArrayList<>(0);
@@ -309,7 +309,27 @@ public class CourseMgr {
         courseMgrIO.printOverallPerformance(courseMarks);
     }
 
-    /* Return the list of all courses in the system.
+    /**
+     * Prompts the user to input an existing course.
+     *
+     * @return the inputted course.
+     */
+    public Course readCourseFromUser() {
+        return courseMgrIO.readCourseFromUser();
+    }
+
+    /**
+     * Prompts the user to input an existing department.
+     *
+     * @return the inputted department.
+     */
+    public String readDepartmentFromUser() {
+        return courseMgrIO.readDepartmentFromUser();
+    }
+
+    /**
+     * Return the list of all courses in the system.
+
      * @return An list of all courses.
      */
     public List<Course> getCourses() {

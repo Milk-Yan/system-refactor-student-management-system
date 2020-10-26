@@ -89,8 +89,8 @@ public class MarkMgr {
     public void setCourseWorkMark(boolean isExam) {
         MarkMgrIO.printFunctionCall("enterCourseWorkMark");
 
-        String studentID = StudentValidator.checkStudentExists().getStudentID();
-        String courseID = CourseValidator.checkCourseExists().getCourseID();
+        String studentID = StudentMgr.getInstance().readStudentFromUser().getStudentID();
+        String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
 
         for (Mark mark : marks) {
             if (mark.getCourse().getCourseID().equals(courseID) && mark.getStudent().getStudentID().equals(studentID)) {
