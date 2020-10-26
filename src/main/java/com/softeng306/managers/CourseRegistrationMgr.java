@@ -1,6 +1,6 @@
 package com.softeng306.managers;
 
-import com.softeng306.Enum.GroupType;
+import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;

@@ -1,8 +1,8 @@
 package com.softeng306.io;
 
-import com.softeng306.Enum.CourseType;
-import com.softeng306.Enum.Department;
-import com.softeng306.Enum.GroupType;
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.Department;
+import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;

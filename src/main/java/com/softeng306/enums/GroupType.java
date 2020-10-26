@@ -1,4 +1,4 @@
-package com.softeng306.Enum;
+package com.softeng306.enums;
 
 public enum GroupType {
     LAB_GROUP("lab"), LECTURE_GROUP("lecture"), TUTORIAL_GROUP("tutorial");
