@@ -158,7 +158,9 @@ public class StudentMgr {
 
     }
 
-    /* Return the list of all students in the system.
+    /**
+     * Return the list of all students in the system.
+     *
      * @return An list of all students.
      */
     public List<Student> getStudents() {
@@ -195,7 +197,7 @@ public class StudentMgr {
             int rand = (int) (Math.random() * ((76 - 65) + 1)) + 65;
             String lastPlace = Character.toString((char) rand);
             idNumber += 1;
-            generateStudentID = "U" + String.valueOf(idNumber) + lastPlace;
+            generateStudentID = "U" + idNumber + lastPlace;
             studentIDUsed = false;
             for (Student student : this.students) {
                 if (generateStudentID.equals(student.getStudentID())) {
