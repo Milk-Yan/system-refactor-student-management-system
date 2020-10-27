@@ -4,13 +4,6 @@ public enum GroupType {
     LAB_GROUP("lab"), LECTURE_GROUP("lecture"), TUTORIAL_GROUP("tutorial");
 
     private String nameLowerCase;
-    private String nameWithCapital;
-
-    static {
-        LAB_GROUP.nameWithCapital = "Lab";
-        LECTURE_GROUP.nameWithCapital = "Lecture";
-        TUTORIAL_GROUP.nameWithCapital = "Tutorial";
-    }
 
     GroupType(String nameLowerCase) { this.nameLowerCase = nameLowerCase; }
 
@@ -26,6 +19,6 @@ public enum GroupType {
      * Returns the name of the enum with a capital letter at the start.
      */
     public String getNameWithCapital() {
-        return nameWithCapital;
+        return nameLowerCase.substring(0, 1).toUpperCase() + nameLowerCase.substring(1);
     }
 }
