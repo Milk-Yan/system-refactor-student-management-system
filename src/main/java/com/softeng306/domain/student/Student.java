@@ -22,16 +22,8 @@ public class Student {
     private String studentSchool;
     private Gender gender;
 
-
-    /**
-     * The GPA of this student.
-     */
     @JsonProperty("GPA")
     private double GPA = 0;
-
-    /**
-     * The study year of this student.
-     */
     private int studentYear;
 
 

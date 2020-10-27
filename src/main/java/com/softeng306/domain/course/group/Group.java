@@ -16,9 +16,6 @@ public class Group {
     private int availableVacancies;
     private GroupType groupType;
 
-    /**
-     * The total seates of this group
-     */
     private int totalSeats;
 
     /**

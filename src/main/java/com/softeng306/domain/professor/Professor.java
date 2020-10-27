@@ -11,9 +11,6 @@ public class Professor {
     private String profID;
     private String profName;
 
-    /**
-     * this professor's department
-     */
     private Department profDepartment;
 
     /**

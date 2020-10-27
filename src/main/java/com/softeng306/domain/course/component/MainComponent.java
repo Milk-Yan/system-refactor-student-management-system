@@ -13,9 +13,6 @@ public class MainComponent extends CourseworkComponent {
 
     private List<SubComponent> subComponents;
 
-    /**
-     *
-     */
     @JsonIgnore
     public final static String COMPONENT_NAME = "main component";
 
