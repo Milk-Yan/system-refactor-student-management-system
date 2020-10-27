@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 public abstract class AbstractProcess {
-    protected static final int PROCESS_SLEEP_MILLI = 1000;
+    protected static final int PROCESS_SLEEP_MILLI = 500;
     protected static final int WAITFOR_SEC = 5;
 
     /**
