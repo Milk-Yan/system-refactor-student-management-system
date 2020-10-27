@@ -27,7 +27,7 @@ public class CourseRegistrationManagerIO {
      * @param groupType the group of registration that we want to print
      */
     public static void printByGroup(List<CourseRegistration> courseRegistrations, GroupType groupType){
-        if(courseRegistrations.size() == 0){
+        if(courseRegistrations.isEmpty()){
             return;
         }
 

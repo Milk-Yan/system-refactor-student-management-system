@@ -12,14 +12,8 @@ import java.util.List;
 
 
 public class Course {
-    /**
-     * The ID of this course.
-     */
-    private String courseID;
 
-    /**
-     * The name of this course.
-     */
+    private String courseID;
     private String courseName;
 
     /** The AU of this course.
@@ -28,66 +22,21 @@ public class Course {
     @JsonProperty("AU")
     private int AU;
 
-    /**
-     * The professor in charge of this course.
-     */
     private Professor profInCharge;
-
-    /**
-     * The department this course belongs to.
-     */
     private Department courseDepartment;
-
-    /**
-     * The type of this course.
-     */
     private CourseType courseType;
 
-    /**
-     * The current vacancy of this course.
-     */
     private int vacancies;
-
-    /**
-     * The total seats of this course.
-     */
     private int totalSeats;
 
-    /**
-     * The weekly lecture hour of this course.
-     */
     private int lecWeeklyHour;
-
-    /**
-     * The lecture groups of this course.
-     */
-    private List<Group> lectureGroups;
-
-
-    /**
-     * The weekly tutorial hour of this course.
-     */
     private int tutWeeklyHour = 0;
-
-
-    /**
-     * The tutorial groups of this course.
-     */
-    private List<Group> tutorialGroups = new ArrayList<>(0);
-
-    /**
-     * The weekly lab hour of this course.
-     */
     private int labWeeklyHour = 0;
 
-    /**
-     * The lab groups of this course.
-     */
+    private List<Group> lectureGroups;
+    private List<Group> tutorialGroups = new ArrayList<>(0);
     private List<Group> labGroups = new ArrayList<>(0);
 
-    /**
-     * The assessment components of this course.
-     */
     private List<MainComponent> mainComponents = new ArrayList<>(0);
 
     /**
