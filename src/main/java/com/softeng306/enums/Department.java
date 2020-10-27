@@ -6,11 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public enum Department {
-    ECSE("ECSE"), CS("CS"), CHEM_ENG("ChemENG");
-
-    private String menuStringFormat;
-
-    Department(String menuStringFormat) { this.menuStringFormat = menuStringFormat; }
+    ECSE, CS, CHEM_ENG;
 
     /**
      * Displays a list of all the departments.
@@ -35,15 +31,6 @@ public enum Department {
         }
 
         return false;
-    }
-
-
-    /**
-     * Returns the string value of the enum type with all lower cases.
-     */
-    @Override
-    public String toString() {
-        return menuStringFormat;
     }
 
 }
