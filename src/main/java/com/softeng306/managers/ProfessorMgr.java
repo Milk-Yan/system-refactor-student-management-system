@@ -44,7 +44,7 @@ public class ProfessorMgr {
      * @return A list of all the IDs of the professors.
      */
     public List<String> getAllProfIDInDepartment(Department department) {
-        return professors.stream().filter(p -> String.valueOf(department).equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
+        return professors.stream().filter(p -> department.equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
     }
 
     /**
