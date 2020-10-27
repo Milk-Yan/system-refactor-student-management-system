@@ -36,7 +36,7 @@ Enter student's school (uppercase):
 Enter -h to print all the schools.
 1: ECSE
 2: CS
-3: ChemENG
+3: CHEM_ENG
 Enter student gender (uppercase): 
 Enter -h to print all the genders.
 1: FEMALE
@@ -46,28 +46,28 @@ Enter student's school year (1-4) :
 Student named: Gerald is added, with ID: U1829394D
 Student List: 
 | Student ID | Student Name | Student School | Gender | Year | GPA |
- U1734756J | Eric | SCSE | MALE | 1 | not available
- U1822832L | Chloe | SPMS | FEMALE | 3 | not available
- U1723456K | Ashley | SBS | MALE | 4 | not available
- U1234567J | Daniel | SCSE | MALE | 2 | not available
- U1822835D | Charlie | NIE | MALE | 3 | not available
- U1822836B | Gauss | ADM | MALE | 3 | not available
- U1822837K | Clara | HSS | FEMALE | 1 | not available
- U1822838J | Kevin | SCSE | MALE | 2 | not available
- U1822839K | Shannon | NBS | FEMALE | 1 | not available
- U1822840D | Shaun | WKWSCI | MALE | 3 | not available
- U1822841A | Steven | EEE | MALE | 4 | not available
- U1822842F | Stefan | NBS | MALE | 1 | not available
- U1822843I | Sebas | SCSE | MALE | 1 | not available
- U1822821E | Freddy | EEE | MALE | 1 | not available
- U1712312B | Leigh | EEE | MALE | 2 | not available
- U1812312D | Hakeem | SCSE | MALE | 1 | not available
- U1829392I | Kourtney | MAE | FEMALE | 1 | not available
- U1822023E | Elaina | MAE | FEMALE | 1 | not available
- U1829393K | Chloe | CBE | MALE | 1 | not available
- U1722744J | Chloe | SCSE | FEMALE | 2 | not available
- U1800001L | Eric | SCSE | MALE | 2 | not available
- U1234567L | Eric | SCSE | MALE | 2 | not available
+ U1734756J | Eric | ECSE | MALE | 1 | not available
+ U1822832L | Chloe | CHEM_ENG | FEMALE | 3 | not available
+ U1723456K | Ashley | CHEM_ENG | MALE | 4 | not available
+ U1234567J | Daniel | ECSE | MALE | 2 | not available
+ U1822835D | Charlie | CHEM_ENG | MALE | 3 | not available
+ U1822836B | Gauss | CHEM_ENG | MALE | 3 | not available
+ U1822837K | Clara | CHEM_ENG | FEMALE | 1 | not available
+ U1822838J | Kevin | ECSE | MALE | 2 | not available
+ U1822839K | Shannon | CHEM_ENG | FEMALE | 1 | not available
+ U1822840D | Shaun | CHEM_ENG | MALE | 3 | not available
+ U1822841A | Steven | ECSE | MALE | 4 | not available
+ U1822842F | Stefan | CHEM_ENG | MALE | 1 | not available
+ U1822843I | Sebas | ECSE | MALE | 1 | not available
+ U1822821E | Freddy | ECSE | MALE | 1 | not available
+ U1712312B | Leigh | ECSE | MALE | 2 | not available
+ U1812312D | Hakeem | ECSE | MALE | 1 | not available
+ U1829392I | Kourtney | CHEM_ENG | FEMALE | 1 | not available
+ U1822023E | Elaina | CHEM_ENG | FEMALE | 1 | not available
+ U1829393K | Chloe | CHEM_ENG | MALE | 1 | not available
+ U1722744J | Chloe | ECSE | FEMALE | 2 | not available
+ U1800001L | Eric | ECSE | MALE | 2 | not available
+ U1234567L | Eric | ECSE | MALE | 2 | not available
  U1829394D | Gerald | ECSE | MALE | 1 | not available
 ************ I can help you with these functions: *************
  0. Print Options
