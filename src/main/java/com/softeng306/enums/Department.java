@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public enum Department {
-    ECSE("ECSE"), CS("CS"), ChemENG("ChemENG");
+    ECSE("ECSE"), CS("CS"), CHEM_ENG("ChemENG");
 
     private String menuStringFormat;
 
