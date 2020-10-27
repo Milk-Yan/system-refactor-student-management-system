@@ -10,74 +10,96 @@ import java.util.Scanner;
 
 public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
-
+    private static CourseMgr courseMgr;
+    private static MarkMgr markMgr;
+    private static StudentMgr studentMgr;
+    private static CourseRegistrationMgr courseRegistrationMgr;
 
     /**
      * Startup the main menu for the application
      */
     public static void startMainMenu() {
-        int choice;
-        CourseMgr courseMgr = CourseMgr.getInstance();
-        MarkMgr markMgr = MarkMgr.getInstance();
-        StudentMgr studentMgr = StudentMgr.getInstance();
-        CourseRegistrationMgr courseRegistrationMgr = CourseRegistrationMgr.getInstance();
-        do {
+        int choice = 0;
+        int lowestChoiceInt = 0;
+        int highestChoiceInt = 11;
+
+        courseMgr = CourseMgr.getInstance();
+        markMgr = MarkMgr.getInstance();
+        studentMgr = StudentMgr.getInstance();
+        courseRegistrationMgr = CourseRegistrationMgr.getInstance();
+
+        while (choice != 11) {
             printOptions();
-            do {
+            choice = getIntInputFromUser(lowestChoiceInt, highestChoiceInt);
+            doActionFromUserChoice(choice);
+        }
+    }
+
+    /**
+     * Prompts the user to enter an integer between the specified limits
+     *
+     * @param lowerLimit The lowest valid number for a user to enter
+     * @param upperLimit The highest valid number for a user to enter
+     * @return
+     */
+    private static int getIntInputFromUser(int lowerLimit, int upperLimit) {
+        int choice;
+
+        while (true) {
+            System.out.println("Enter your choice, let me help you:");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Sorry. " + scanner.nextLine() + " is not an integer.");
                 System.out.println("Enter your choice, let me help you:");
-                while (!scanner.hasNextInt()) {
-                    System.out.println("Sorry. " + scanner.nextLine() + " is not an integer.");
-                    System.out.println("Enter your choice, let me help you:");
-                }
-                choice = scanner.nextInt();
-                scanner.nextLine();
-                if (choice < 0 || choice > 11) {
-                    System.out.println("Please enter 0 ~ 11 for your choice:");
-                    continue;
-                }
-                break;
-            } while (true);
-
-            // Choose command based on user input choice
-            switch (choice) {
-                case 0:
-                    break;
-                case 1:
-                    studentMgr.addStudent();
-                    break;
-                case 2:
-                    courseMgr.addCourse();
-                    break;
-                case 3:
-                    courseRegistrationMgr.registerCourse();
-                    break;
-                case 4:
-                    courseMgr.checkAvailableSlots();
-                    break;
-                case 5:
-                    courseRegistrationMgr.printStudents();
-                    break;
-                case 6:
-                    courseMgr.enterCourseWorkComponentWeightage(null);
-                    break;
-                case 7:
-                    markMgr.setCourseWorkMark(false);
-                    break;
-                case 8:
-                    markMgr.setCourseWorkMark(true);
-                    break;
-                case 9:
-                    courseMgr.printCourseStatistics();
-                    break;
-                case 10:
-                    studentMgr.printStudentTranscript();
-                    break;
-                case 11:
-                    exitApplication();
-                    break;
             }
+            choice = scanner.nextInt();
+            scanner.nextLine();
+            if (choice < lowerLimit || choice > upperLimit) {
+                System.out.println("Please enter " + lowerLimit + " ~ " + upperLimit + " for your choice:");
+            } else {
+                return choice;
+            }
+        }
+    }
 
-        } while (choice != 11);
+    private static void doActionFromUserChoice(int choice) {
+        // Choose command based on user input choice
+        switch (choice) {
+            case 0:
+                break;
+            case 1:
+                studentMgr.addStudent();
+                break;
+            case 2:
+                courseMgr.addCourse();
+                break;
+            case 3:
+                courseRegistrationMgr.registerCourse();
+                break;
+            case 4:
+                courseMgr.checkAvailableSlots();
+                break;
+            case 5:
+                courseRegistrationMgr.printStudents();
+                break;
+            case 6:
+                courseMgr.enterCourseWorkComponentWeightage(null);
+                break;
+            case 7:
+                markMgr.setCourseWorkMark(false);
+                break;
+            case 8:
+                markMgr.setCourseWorkMark(true);
+                break;
+            case 9:
+                courseMgr.printCourseStatistics();
+                break;
+            case 10:
+                studentMgr.printStudentTranscript();
+                break;
+            case 11:
+                exitApplication();
+                break;
+        }
     }
 
     /**

@@ -1,5 +1,7 @@
 package com.softeng306.domain.course;
 
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.Department;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.group.Group;
@@ -21,8 +23,8 @@ public class Course {
     private int AU;
 
     private Professor profInCharge;
-    private String courseDepartment;
-    private String courseType;
+    private Department courseDepartment;
+    private CourseType courseType;
 
     private int vacancies;
     private int totalSeats;
@@ -90,7 +92,7 @@ public class Course {
      * Gets the course's department.
      * @return the department of this course.
      */
-    public String getCourseDepartment(){
+    public Department getCourseDepartment(){
         return courseDepartment;
     }
 
@@ -98,7 +100,7 @@ public class Course {
      * Gets the course's type.
      * @return the type of this course.
      */
-    public String getCourseType(){
+    public CourseType getCourseType(){
         return courseType;
     }
 
@@ -256,11 +258,11 @@ public class Course {
      * Sets the department for this course.
      * @param department Department for this course.
      */
-    public void setCourseDepartment(String department) {
+    public void setCourseDepartment(Department department) {
         this.courseDepartment = department;
     }
 
-    public void setType(String type) {
+    public void setType(CourseType type) {
         this.courseType = type;
     }
 

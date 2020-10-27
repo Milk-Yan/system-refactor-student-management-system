@@ -1,5 +1,8 @@
 package com.softeng306.domain.course;
 
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.Department;
+import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
 
@@ -21,10 +24,8 @@ public interface ICourseBuilder {
     void setLabGroups(List<Group> labGroups);
 
     void setAU(int AU);
-
-    void setCourseDepartment(String department);
-
-    void setCourseType(String Type);
+    void setCourseDepartment(Department department);
+    void setCourseType(CourseType Type);
 
     void setLecWeeklyHour(int lecWeeklyHour);
 

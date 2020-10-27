@@ -1,5 +1,7 @@
 package com.softeng306.domain.course;
 
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.Department;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
 
@@ -54,12 +56,12 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setCourseDepartment(String department) {
+    public void setCourseDepartment(Department department) {
         course.setCourseDepartment(department);
     }
 
     @Override
-    public void setCourseType(String type) {
+    public void setCourseType(CourseType type) {
         course.setType(type);
     }
 

@@ -1,5 +1,7 @@
 package com.softeng306.domain.course.component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,12 @@ import java.util.List;
 public class MainComponent extends CourseworkComponent {
 
     private List<SubComponent> subComponents;
+
+    /**
+     *
+     */
+    @JsonIgnore
+    public final static String COMPONENT_NAME = "main component";
 
     /**
      * Default constructor. Required for Jackson serialization.
