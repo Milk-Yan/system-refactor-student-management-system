@@ -16,36 +16,14 @@ import java.util.List;
  * A student can enroll many courses.
  */
 public class Student {
-    /**
-     * The ID of this student.
-     */
+
     private String studentID;
-
-    /**
-     * The name of this student.
-     */
     private String studentName;
-
-    /**
-     * The school this student belongs to.
-     */
     private String studentSchool;
-
-    /**
-     * The gender of this student.
-     */
     private Gender gender;
 
-
-    /**
-     * The GPA of this student.
-     */
     @JsonProperty("GPA")
     private double GPA = 0;
-
-    /**
-     * The study year of this student.
-     */
     private int studentYear;
 
 

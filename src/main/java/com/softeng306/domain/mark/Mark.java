@@ -16,23 +16,12 @@ import java.util.List;
  */
 
 public class Mark {
-    /**
-     * The student of this student mark record.
-     */
+
     private Student student;
-    /**
-     * The course of this student mark record.
-     */
     private Course course;
 
-    /**
-     * The course work marks of this student mark record.
-     */
     private List<MainComponentMark> courseWorkMarks;
 
-    /**
-     * The total mark of this student mark record.
-     */
     private double totalMark;
 
     /**

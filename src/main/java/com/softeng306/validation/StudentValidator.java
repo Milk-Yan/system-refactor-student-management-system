@@ -48,7 +48,7 @@ public class StudentValidator {
      */
     public static Student checkStudentExists(String studentID) {
         List<Student> anyStudent = StudentMgr.getInstance().getStudents().stream().filter(s -> studentID.equals(s.getStudentID())).collect(Collectors.toList());
-        if (anyStudent.size() == 0) {
+        if (anyStudent.isEmpty()) {
             return null;
         }
         return anyStudent.get(0);

@@ -7,20 +7,10 @@ import com.softeng306.enums.Department;
  */
 
 public class Professor {
-    /**
-     * this professor's ID
-     */
 
     private String profID;
-
-    /**
-     * this professor's Name
-     */
     private String profName;
 
-    /**
-     * this professor's department
-     */
     private Department profDepartment;
 
     /**
