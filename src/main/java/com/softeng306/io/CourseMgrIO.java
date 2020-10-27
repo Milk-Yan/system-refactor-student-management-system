@@ -15,7 +15,6 @@ import com.softeng306.domain.professor.Professor;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.ProfessorMgr;
 import com.softeng306.validation.CourseValidator;
-import com.softeng306.validation.DepartmentValidator;
 import com.softeng306.validation.GroupValidator;
 import com.softeng306.validation.ProfessorValidator;
 

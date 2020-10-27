@@ -255,7 +255,7 @@ public class CourseMgr {
     public List<String> getCourseIdsInDepartment(Department department) {
         List<Course> validCourses = new ArrayList<>();
         courses.forEach(course -> {
-            if (department.equals(course.getCourseDepartment().toString())) {
+            if (department.toString().equals(course.getCourseDepartment().toString())) {
                 validCourses.add(course);
             }
         });
