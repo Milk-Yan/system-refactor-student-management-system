@@ -3,7 +3,6 @@ package com.softeng306.managers;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
-import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
@@ -69,34 +68,35 @@ public class CourseMgr {
         int AU = courseMgrIO.readAU();
         builder.setAU(AU);
 
-        Department courseDepartment = Department.valueOf(courseMgrIO.readCourseDepartment());
+        Department courseDepartment = courseMgrIO.readCourseDepartment();
         builder.setCourseDepartment(courseDepartment);
 
-        CourseType courseType = CourseType.valueOf(courseMgrIO.readCourseType());
+        CourseType courseType = courseMgrIO.readCourseType();
+
         builder.setCourseType(courseType);
 
         // Lecture groups
-        int noOfLectureGroups = courseMgrIO.readNoOfGroup(GroupType.LectureGroup, totalSeats, totalSeats);
-        int lecWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LectureGroup, AU);
+        int noOfLectureGroups = courseMgrIO.readNoOfGroup(GroupType.LECTURE_GROUP, totalSeats, totalSeats);
+        int lecWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LECTURE_GROUP, AU);
         List<Group> lectureGroups = courseMgrIO.readLectureGroups(totalSeats, noOfLectureGroups);
         builder.setLecWeeklyHour(lecWeeklyHour);
         builder.setLectureGroups(lectureGroups);
 
         // Tutorial groups
-        int noOfTutorialGroups = courseMgrIO.readNoOfGroup(GroupType.TutorialGroup, noOfLectureGroups, totalSeats);
+        int noOfTutorialGroups = courseMgrIO.readNoOfGroup(GroupType.TUTORIAL_GROUP, noOfLectureGroups, totalSeats);
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
-            tutWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.TutorialGroup, AU);
+            tutWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.TUTORIAL_GROUP, AU);
         }
         List<Group> tutorialGroups = courseMgrIO.readTutorialGroups(noOfTutorialGroups, totalSeats);
         builder.setTutWeeklyHour(tutWeeklyHour);
         builder.setTutorialGroups(tutorialGroups);
 
         // Lab groups
-        int noOfLabGroups = courseMgrIO.readNoOfGroup(GroupType.LabGroup, noOfLectureGroups, totalSeats);
+        int noOfLabGroups = courseMgrIO.readNoOfGroup(GroupType.LAB_GROUP, noOfLectureGroups, totalSeats);
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
-            labWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LabGroup, AU);
+            labWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LAB_GROUP, AU);
         }
         List<Group> labGroups = courseMgrIO.readLabGroups(noOfLabGroups, totalSeats);
         builder.setLabWeeklyHour(labWeeklyHour);
@@ -252,10 +252,10 @@ public class CourseMgr {
         courseMgrIO.printAllCourseIds(courses);
     }
 
-    public List<String> getCourseIdsInDepartment(String department) {
+    public List<String> getCourseIdsInDepartment(Department department) {
         List<Course> validCourses = new ArrayList<>();
         courses.forEach(course -> {
-            if (department.equals(course.getCourseDepartment().toString())) {
+            if (department.toString().equals(course.getCourseDepartment().toString())) {
                 validCourses.add(course);
             }
         });

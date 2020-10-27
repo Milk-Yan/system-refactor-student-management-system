@@ -3,6 +3,7 @@ package com.softeng306.io;
 import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
+import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
 
 import java.util.List;
@@ -33,19 +34,19 @@ public class CourseRegistrationManagerIO {
 
         String groupName = "";
         for (int i = 0; i < courseRegistrations.size(); i++) {
-            if(groupType.equals(GroupType.TutorialGroup)){
-                if (!groupName.equals(courseRegistrations.get(i).getTutorialGroup())) {
-                    groupName = courseRegistrations.get(i).getTutorialGroup();
+            if(groupType.equals(GroupType.TUTORIAL_GROUP)){
+                if (!groupName.equals(courseRegistrations.get(i).getTutorialGroup().getGroupName())) {
+                    groupName = courseRegistrations.get(i).getTutorialGroup().getGroupName();
                     System.out.println("Tutorial group : " + groupName);
                 }
-            } else if(groupType.equals(GroupType.LabGroup)){
-                if (!groupName.equals(courseRegistrations.get(i).getLabGroup())) {
-                    groupName = courseRegistrations.get(i).getLabGroup();
+            } else if(groupType.equals(GroupType.LAB_GROUP)){
+                if (!groupName.equals(courseRegistrations.get(i).getLabGroup().getGroupName())) {
+                    groupName = courseRegistrations.get(i).getLabGroup().getGroupName();
                     System.out.println("Lab group : " + groupName);
                 }
-            } else if(groupType.equals(GroupType.LectureGroup)){
-                if (!groupName.equals(courseRegistrations.get(i).getLectureGroup())) {  // if new lecture group print out group name
-                    groupName = courseRegistrations.get(i).getLectureGroup();
+            } else if(groupType.equals(GroupType.LECTURE_GROUP)){
+                if (!groupName.equals(courseRegistrations.get(i).getLectureGroup().getGroupName())) {  // if new lecture group print out group name
+                    groupName = courseRegistrations.get(i).getLectureGroup().getGroupName();
                     System.out.println("Lecture group : " + groupName);
                 }
             }
@@ -60,7 +61,7 @@ public class CourseRegistrationManagerIO {
      * When there is no group of the given type, this method will be called
      */
     public static void printNoGroup(GroupType type){
-        System.out.format("This course does not contain any %s group.%n", type.toTypeString().toLowerCase());
+        System.out.format("This course does not contain any %s group.%n", type);
     }
 
     /**
@@ -92,15 +93,15 @@ public class CourseRegistrationManagerIO {
      * @param tutorialGroup tutorial group that the student is apart of
      * @param labGroup lab group that the student is apart of
      */
-    public static void printSuccessfulRegistration(Course course, Student student, String lectureGroup, String tutorialGroup, String labGroup){
+    public static void printSuccessfulRegistration(Course course, Student student, Group lectureGroup, Group tutorialGroup, Group labGroup){
         System.out.println("Course registration successful!");
         System.out.print("Student: " + student.getStudentName());
-        System.out.print("\tLecture Group: " + lectureGroup);
+        System.out.print("\tLecture Group: " + lectureGroup.getGroupName());
         if (course.getTutorialGroups().size() != 0) {
-            System.out.print("\tTutorial Group: " + tutorialGroup);
+            System.out.print("\tTutorial Group: " + tutorialGroup.getGroupName());
         }
         if (course.getLabGroups().size() != 0) {
-            System.out.print("\tLab Group: " + labGroup);
+            System.out.print("\tLab Group: " + labGroup.getGroupName());
         }
         System.out.println();
     }

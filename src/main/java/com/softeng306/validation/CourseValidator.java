@@ -32,7 +32,7 @@ public class CourseValidator {
      * @return boolean indicates whether the inputted course type is valid.
      */
     public static boolean checkCourseTypeValidation(String courseType) {
-        if (CourseType.getAllCourseType().contains(courseType)) {
+        if (CourseType.contains(courseType)) {
             return true;
         }
         System.out.println("The course type is invalid. Please re-enter.");

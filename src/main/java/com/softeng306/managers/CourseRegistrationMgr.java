@@ -47,9 +47,6 @@ public class CourseRegistrationMgr {
      */
     public void registerCourse() {
         MainMenuIO.printMethodCall("registerCourse");
-        String selectedLectureGroupName = null;
-        String selectedTutorialGroupName = null;
-        String selectedLabGroupName = null;
 
         Student currentStudent = StudentMgr.getInstance().readStudentFromUser();
         String studentID = currentStudent.getStudentID();
@@ -81,27 +78,27 @@ public class CourseRegistrationMgr {
 
         GroupMgr groupMgr = GroupMgr.getInstance();
 
-        selectedLectureGroupName = groupMgr.printGroupWithVacancyInfo("lecture", lecGroups);
+        Group selectedLectureGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LECTURE_GROUP, lecGroups);
 
         List<Group> tutGroups = new ArrayList<>(0);
         tutGroups.addAll(currentCourse.getTutorialGroups());
 
-        selectedTutorialGroupName = groupMgr.printGroupWithVacancyInfo("tutorial", tutGroups);
+        Group selectedTutorialGroup = groupMgr.printGroupWithVacancyInfo(GroupType.TUTORIAL_GROUP, tutGroups);
 
         List<Group> labGroups = new ArrayList<>(0);
         labGroups.addAll(currentCourse.getLabGroups());
 
-        selectedLabGroupName = groupMgr.printGroupWithVacancyInfo("lab", labGroups);
+        Group selectedLabGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LAB_GROUP, labGroups);
 
         currentCourse.enrolledIn();
-        CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
+        CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
         FILEMgr.writeCourseRegistrationIntoFile(courseRegistration);
 
         courseRegistrations.add(courseRegistration);
 
         MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initializeMark(currentStudent, currentCourse));
 
-        CourseRegistrationManagerIO.printSuccessfulRegistration(currentCourse, currentStudent, selectedLectureGroupName, selectedTutorialGroupName, selectedLabGroupName);
+        CourseRegistrationManagerIO.printSuccessfulRegistration(currentCourse, currentStudent, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
     }
 
     /**
@@ -135,27 +132,28 @@ public class CourseRegistrationMgr {
             if (stuArray.isEmpty()) {
                CourseRegistrationManagerIO.printNoEnrolmentsError();
             }
+
             if(opt == 1){
                 sortByLectureGroup(stuArray);
-                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LectureGroup);
+                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LECTURE_GROUP);
 
             } else if (opt == 2){
                 if (!stuArray.isEmpty() && stuArray.get(0).getCourse().getTutorialGroups().isEmpty()) {
-                    CourseRegistrationManagerIO.printNoGroup(GroupType.TutorialGroup);
+                    CourseRegistrationManagerIO.printNoGroup(GroupType.TUTORIAL_GROUP);
                     CourseRegistrationManagerIO.printEndOfSection();
                     return;
                 }
                 sortByTutorialGroup(stuArray);
-                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.TutorialGroup);
+                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.TUTORIAL_GROUP);
 
             } else if (opt == 3){
                 if (!stuArray.isEmpty() && stuArray.get(0).getCourse().getLabGroups().isEmpty()) {
-                    CourseRegistrationManagerIO.printNoGroup(GroupType.LabGroup);
+                    CourseRegistrationManagerIO.printNoGroup(GroupType.LAB_GROUP);
                     CourseRegistrationManagerIO.printEndOfSection();
                     return;
                 }
                 sortByLabGroup(stuArray);
-                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LabGroup);
+                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LAB_GROUP);
 
             } else {
                 CourseRegistrationManagerIO.printInvalidInputError();
@@ -174,7 +172,7 @@ public class CourseRegistrationMgr {
 
     /**
      * Sort the list of course registrations of a course according to their ascending
-     * normal alphabetical order of the lecture groups, ignoring cases.
+     * normal alphabetical order of names of the lecture groups, ignoring cases.
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByLectureGroup(List<CourseRegistration> courseRegistrations) {
@@ -185,8 +183,8 @@ public class CourseRegistrationMgr {
                 return 0;
             }
 
-            String group1 = o1.getLectureGroup().toUpperCase();
-            String group2 = o2.getLectureGroup().toUpperCase();
+            String group1 = o1.getLectureGroup().getGroupName().toUpperCase();
+            String group2 = o2.getLectureGroup().getGroupName().toUpperCase();
 
             //ascending order
             return group1.compareTo(group2);
@@ -196,7 +194,7 @@ public class CourseRegistrationMgr {
 
     /**
      * Sort the list of course registrations of a course according to their ascending
-     * normal alphabetical order of the tutorial groups, ignoring cases.
+     * normal alphabetical order of the names of the tutorial groups, ignoring cases.
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByTutorialGroup(List<CourseRegistration> courseRegistrations) {
@@ -207,8 +205,8 @@ public class CourseRegistrationMgr {
                 return 0;
             }
 
-            String group1 = s1.getTutorialGroup().toUpperCase();
-            String group2 = s2.getTutorialGroup().toUpperCase();
+            String group1 = s1.getTutorialGroup().getGroupName().toUpperCase();
+            String group2 = s2.getTutorialGroup().getGroupName().toUpperCase();
 
             //ascending order
             return group1.compareTo(group2);
@@ -218,7 +216,7 @@ public class CourseRegistrationMgr {
 
     /**
      * Sort the list of course registrations of a course according to their ascending
-     * normal alphabetical order of the lab groups, ignoring cases.
+     * normal alphabetical order of the names of the lab groups, ignoring cases.
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByLabGroup(List<CourseRegistration> courseRegistrations) {
@@ -229,8 +227,8 @@ public class CourseRegistrationMgr {
                 return 0;
             }
 
-            String group1 = o1.getLabGroup().toUpperCase();
-            String group2 = o2.getLabGroup().toUpperCase();
+            String group1 = o1.getLabGroup().getGroupName().toUpperCase();
+            String group2 = o2.getLabGroup().getGroupName().toUpperCase();
 
             //ascending order
             return group1.compareTo(group2);

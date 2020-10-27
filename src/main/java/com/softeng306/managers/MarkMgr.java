@@ -30,14 +30,11 @@ public class MarkMgr {
 
     private static MarkMgr singleInstance = null;
 
-    private MarkCalculator markCalculator;
-
     /**
      * Override default constructor to implement singleton pattern
      */
     private MarkMgr(List<Mark> marks) {
         this.marks = marks;
-        markCalculator = new MarkCalculator();
     }
 
 

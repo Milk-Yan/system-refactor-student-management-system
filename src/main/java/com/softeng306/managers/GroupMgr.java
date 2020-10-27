@@ -1,5 +1,6 @@
 package com.softeng306.managers;
 
+import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.group.Group;
 
 import java.util.HashMap;
@@ -37,11 +38,10 @@ public class GroupMgr {
      * @param groups    A list of a certain type of groups in a course.
      * @return the name of the group chosen by the user.
      */
-    public String printGroupWithVacancyInfo(String groupType, List<Group> groups) {
+    public Group printGroupWithVacancyInfo(GroupType groupType, List<Group> groups) {
         int index;
         HashMap<String, Integer> groupAssign = new HashMap<>(0);
         int selectedGroupNum;
-        String selectedGroupName = null;
 
         if (groups.size() != 0) {
             System.out.println("Here is a list of all the " + groupType + " groups with available slots:");
@@ -61,26 +61,16 @@ public class GroupMgr {
                 if (selectedGroupNum < 1 || selectedGroupNum > index) {
                     System.out.println("Invalid choice. Please re-enter.");
                 } else {
-                    break;
+                    // valid selection
+                    Group selectedGroup = groups.get(selectedGroupNum-1);
+                    selectedGroup.enrolledIn();
+                    return selectedGroup;
                 }
             } while (true);
 
-            for (HashMap.Entry<String, Integer> entry : groupAssign.entrySet()) {
-                String groupName = entry.getKey();
-                int num = entry.getValue();
-                if (num == selectedGroupNum) {
-                    selectedGroupName = groupName;
-                    break;
-                }
-            }
-
-            for (Group group : groups) {
-                if (group.getGroupName().equals(selectedGroupName)) {
-                    group.enrolledIn();
-                    break;
-                }
-            }
         }
-        return selectedGroupName;
+
+        // no groups exist
+        return null;
     }
 }

@@ -21,16 +21,15 @@ public enum CourseType {
 
 
     /**
-     * Gets all the course types as a list.
-     *
-     * @return a list of all the course types.
+     * Finds whether the string exists as a course type.
      */
-    public static List<String> getAllCourseType() {
-        Set<CourseType> courseTypeEnumSet = EnumSet.allOf(CourseType.class);
-        List<String> courseTypeStringSet = new ArrayList<>(0);
-        for (CourseType courseType : courseTypeEnumSet) {
-            courseTypeStringSet.add(courseType.toString());
+    public static boolean contains(String possibleCourse) {
+        for (CourseType courseType: CourseType.values()) {
+            if (courseType.toString().equals(possibleCourse)) {
+                return true;
+            }
         }
-        return courseTypeStringSet;
+
+        return false;
     }
 }

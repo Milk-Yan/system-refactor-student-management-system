@@ -3,6 +3,7 @@ package com.softeng306.domain.student;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
+import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
 import com.softeng306.main.Main;
 import com.softeng306.managers.StudentMgr;
@@ -19,7 +20,7 @@ public class Student {
 
     private String studentID;
     private String studentName;
-    private String studentSchool;
+    private Department studentSchool;
     private Gender gender;
 
     @JsonProperty("GPA")
@@ -68,7 +69,7 @@ public class Student {
      *
      * @return this student's school.
      */
-    public String getStudentSchool() {
+    public Department getStudentSchool() {
         return studentSchool;
     }
 
@@ -112,7 +113,7 @@ public class Student {
      *
      * @param studentSchool this student's school.
      */
-    public void setStudentSchool(String studentSchool) {
+    public void setStudentSchool(Department studentSchool) {
         this.studentSchool = studentSchool;
     }
 

@@ -13,8 +13,8 @@ public class ProfessorMgrIO {
     /**
      * Displays all the professors in the inputted department.
      *
-     * @param professors The list of professor names.
-     * @return A list of all the names of professors in the inputted department or else null.
+     * @param professors The list of professor IDs.
+     * @return A list of all the IDs of professors in the inputted department or else null.
      */
     public static void printAllProfIDsInDepartment(List<String> professors) {
         if (professors == null || professors.isEmpty()) {

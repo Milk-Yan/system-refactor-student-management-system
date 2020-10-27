@@ -1,17 +1,24 @@
 package com.softeng306.enums;
 
 public enum GroupType {
-    LabGroup, LectureGroup, TutorialGroup;
+    LAB_GROUP("lab"), LECTURE_GROUP("lecture"), TUTORIAL_GROUP("tutorial");
 
-    private String typeString;
+    private String nameLowerCase;
 
-    static {
-        LabGroup.typeString = "Lab";
-        LectureGroup.typeString = "Lecture";
-        TutorialGroup.typeString = "Tutorial";
+    GroupType(String nameLowerCase) { this.nameLowerCase = nameLowerCase; }
+
+    /**
+     * Returns the string value of the enum type with all lower cases.
+     */
+    @Override
+    public String toString() {
+        return nameLowerCase;
     }
 
-    public String toTypeString() {
-        return typeString;
+    /**
+     * Returns the name of the enum with a capital letter at the start.
+     */
+    public String getNameWithCapital() {
+        return nameLowerCase.substring(0, 1).toUpperCase() + nameLowerCase.substring(1);
     }
 }

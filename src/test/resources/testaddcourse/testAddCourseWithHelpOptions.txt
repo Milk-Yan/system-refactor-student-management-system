@@ -27,7 +27,7 @@ Enter course's department (uppercase):
 Enter -h to print all the departments.
 1: ECSE
 2: CS
-3: ChemENG
+3: CHEM_ENG
 Enter course type (uppercase): 
 Enter -h to print all the course types.
 1: CORE
