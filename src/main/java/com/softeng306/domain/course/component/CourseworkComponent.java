@@ -4,7 +4,7 @@ public abstract class CourseworkComponent {
 
     private String componentName;
 
-    private double componentWeight;
+    private int componentWeight;
 
     /**
      * Default constructor. Required for Jackson serialization.
@@ -38,7 +38,7 @@ public abstract class CourseworkComponent {
      *
      * @return the weight of this component
      */
-    public double getComponentWeight() {
+    public int getComponentWeight() {
         return this.componentWeight;
     }
 }

@@ -1,6 +1,5 @@
 package com.softeng306.managers;
 
-
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
@@ -27,11 +26,13 @@ public class MarkMgr {
     private static MarkMgr singleInstance = null;
 
     /**
-     * Override default constructor to implement singleton pattern
+     * Override default constructor to implement singleteon pattern
      */
     private MarkMgr(List<Mark> marks) {
         this.marks = marks;
     }
+
+    private MarkMgrIO markMgrIO = MarkMgrIO.getInstance();
 
 
     /**
@@ -78,15 +79,12 @@ public class MarkMgr {
      *
      * @param isExam whether this coursework component refers to "Exam"
      */
-    public void setCourseworkMark(boolean isExam) {
-        MarkMgrIO.printFunctionCall("enterCourseWorkMark");
+    public void setCourseworkMark(boolean isExam, String studentID, String courseID) {
 
-        String studentID = StudentMgr.getInstance().readStudentFromUser().getStudentID();
-        String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
 
         List<String> componentNameList = new ArrayList<>();
         List<String> availableChoices = new ArrayList<>();
-        List<Double> weights = new ArrayList<>();
+        List<Integer> weights = new ArrayList<>();
         List<Boolean> isMainComponent = new ArrayList<>();
 
 
@@ -94,10 +92,11 @@ public class MarkMgr {
             if (mark.getCourse().getCourseID().equals(courseID) && mark.getStudent().getStudentID().equals(studentID)) {
                 //put the set mark function here
                 if (!isExam) {
-                    for (MainComponentMark mainComponentMark : mark.getMainComponentMarks()) {
+                    for (MainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
                         MainComponent mainComponent = mainComponentMark.getMainComponent();
 
-                        if (!mainComponentMark.hasSubComponentMarks()) {
+                        if (!mainComponent.getComponentName().equals("Exam")
+                                && !mainComponentMark.hasSubComponentMarks()) {
 
                             extractMainComponentDetails(mainComponent, componentNameList,
                                     availableChoices, weights, isMainComponent);
@@ -107,21 +106,16 @@ public class MarkMgr {
                                 availableChoices, weights, isMainComponent);
                     }
 
-                    MarkMgrIO.printCourseComponentChoices(availableChoices, weights);
+                    markMgrIO.printCourseComponentChoices(availableChoices, weights);
 
-                    int choice = MarkMgrIO.readCourseComponentChoice(availableChoices.size());
+                    int choice = markMgrIO.readCourseComponentChoice(availableChoices.size());
                     if (choice == (availableChoices.size() + 1)) {
                         return;
                     }
 
-                    double assessmentMark = MarkMgrIO.readCourseComponentMark();
+                    double assessmentMark = markMgrIO.readCourseComponentMark();
                     String componentName = componentNameList.get(choice - 1);
-                    if (isMainComponent.get(choice - 1)) {
-                        // This is a stand alone main assessment
-                        mark.setMainComponentMark(componentName, assessmentMark);
-                    } else {
-                        mark.setSubComponentMark(componentName, assessmentMark);
-                    }
+                    setComponentMark(mark, isMainComponent.get(choice - 1), componentName, assessmentMark);
 
                 } else {
                     // The user want to enter exam mark.
@@ -132,17 +126,28 @@ public class MarkMgr {
             }
         }
 
-        MarkMgrIO.printStudentNotRegisteredToCourse(courseID);
+        markMgrIO.printStudentNotRegisteredToCourse(courseID);
+    }
+
+
+    private void setComponentMark(Mark mark, boolean isMainComponent, String componentName,
+                                  double assessmentMark) {
+        if (isMainComponent) {
+            // This is a stand alone main assessment
+            mark.setMainComponentMark(componentName, assessmentMark);
+        } else {
+            mark.setSubComponentMark(componentName, assessmentMark);
+        }
     }
 
     private void setExamMark(Mark mark) {
-        double examMark = MarkMgrIO.readExamMark();
+        double examMark = markMgrIO.readExamMark();
         mark.setMainComponentMark("Exam", examMark);
     }
 
 
     private void extractMainComponentDetails(MainComponent mainComponent, List<String> componentNameList,
-                                             List<String> availableChoices, List<Double> weights,
+                                             List<String> availableChoices, List<Integer> weights,
                                              List<Boolean> isMainComponent) {
         String mainComponentName = mainComponent.getComponentName();
         availableChoices.add(mainComponentName);
@@ -152,16 +157,15 @@ public class MarkMgr {
     }
 
     private void extractSubComponentDetails(MainComponent mainComponent, List<String> componentNameList,
-                                            List<String> availableChoices, List<Double> weights,
+                                            List<String> availableChoices, List<Integer> weights,
                                             List<Boolean> isMainComponent) {
 
         for (SubComponent subComponent : mainComponent.getSubComponents()) {
             componentNameList.add(subComponent.getComponentName());
             availableChoices.add(mainComponent.getComponentName() + "-" + subComponent.getComponentName());
-            weights.add(mainComponent.getComponentWeight() * subComponent.getComponentWeight() / 100d);
+            weights.add(mainComponent.getComponentWeight() * subComponent.getComponentWeight() / 100);
             isMainComponent.add(false);
         }
-
     }
 
     /**
