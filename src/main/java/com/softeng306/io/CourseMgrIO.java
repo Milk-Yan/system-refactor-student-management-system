@@ -269,7 +269,7 @@ public class CourseMgrIO {
      * @param groups the groups to print
      * @param type   the type of the groups
      */
-    private void printVacanciesForGroups(List<Group> groups, GroupType type) {
+    private void printVacanciesForGroupsFFF(List<Group> groups, GroupType type) {
         for (Group group : groups) {
             if (type == GroupType.TUTORIAL_GROUP) {
                 System.out.format("%s group %s (Available/Total):  %d/%d%n",
@@ -282,14 +282,14 @@ public class CourseMgrIO {
         }
     }
 
-        private void printVacanciesForGroupsQQQQ(String[][] groupInformation, GroupType type) {
+    public void printVacanciesForGroups(String[][] groupInformation, GroupType type) {
         for (String[] group: groupInformation) {
             if (type == GroupType.TUTORIAL_GROUP) {
                 System.out.format("%s group %s (Available/Total):  %d/%d%n",
                         type.getNameWithCapital(), group[0], group[1], group[2]);
             } else {
                 System.out.format("%s group %s (Available/Total): %d/%d%n",
-                        type.getNameWithCapital(), group[0].getGroupName(), group[1].getAvailableVacancies(), group[2].getTotalSeats());
+                        type.getNameWithCapital(), group[0], group[1], group[2]));
             }
 
         }

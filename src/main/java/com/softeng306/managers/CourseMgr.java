@@ -79,11 +79,19 @@ public class CourseMgr {
         while (true) {
             Course currentCourse = readCourseFromUser();
             if (currentCourse != null) {
-                courseMgrIO.printCourseInfo(currentCourse);
+                courseMgrIO.printCourseInfo(this.generateCourseInformation(currentCourse));
+
                 if (currentCourse.getTutorialGroups() != null) {
                     System.out.println();
                     courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP);
                 }
+
+                if (currentCourse.getTutorialGroups() != null) {
+                    System.out.println();
+                    courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP);
+                }
+
+
 
                 break;
             } else {
