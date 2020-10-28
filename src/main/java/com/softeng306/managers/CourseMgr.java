@@ -1,23 +1,25 @@
 package com.softeng306.managers;
 
-import com.softeng306.enums.CourseType;
-import com.softeng306.enums.Department;
-import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.CourseBuilder;
+import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.domain.course.CourseBuilder;
-import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.fileprocessing.CourseFileProcessor;
-import com.softeng306.fileprocessing.FileProcessor;
 import com.softeng306.fileprocessing.IFileProcessor;
+
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.Department;
+import com.softeng306.enums.GroupType;
+
 import com.softeng306.io.CourseMgrIO;
 import com.softeng306.io.MainMenuIO;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CourseMgr {
@@ -160,7 +162,7 @@ public class CourseMgr {
             currentCourse = readCourseFromUser();
         }
 
-        List<MainComponent> mainComponents = new ArrayList<>(0);
+        List<MainComponent> mainComponents = new ArrayList<>();
         // Check if mainComponent is empty
         if (currentCourse.getMainComponents().isEmpty()) {
             // empty course
@@ -172,7 +174,7 @@ public class CourseMgr {
                 hasFinalExamChoice = courseMgrIO.readHasFinalExamChoice();
                 if (hasFinalExamChoice == 1) {
                     examWeight = courseMgrIO.readExamWeight();
-                    MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>(0));
+                    MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>());
                     mainComponents.add(exam);
                 } else if (hasFinalExamChoice == 2) {
                     courseMgrIO.printEnterContinuousAssessments();
@@ -184,7 +186,7 @@ public class CourseMgr {
             while (true) {
                 int totalWeightage = 100 - examWeight;
                 for (int i = 0; i < numberOfMain; i++) {
-                    List<SubComponent> subComponents = new ArrayList<>(0);
+                    List<SubComponent> subComponents = new ArrayList<>();
 
                     String mainComponentName = courseMgrIO.readMainComponentName(totalWeightage, i, mainComponents);
 
@@ -282,7 +284,7 @@ public class CourseMgr {
         Course currentCourse = readCourseFromUser();
         String courseID = currentCourse.getCourseID();
 
-        List<Mark> courseMarks = new ArrayList<>(0);
+        List<Mark> courseMarks = new ArrayList<>();
         for (Mark mark : MarkMgr.getInstance().getMarks()) {
             if (mark.getCourse().getCourseID().equals(courseID)) {
                 courseMarks.add(mark);
@@ -337,7 +339,7 @@ public class CourseMgr {
 
     /**
      * Return the list of all courses in the system.
-
+     *
      * @return An list of all courses.
      */
     public List<Course> getCourses() {

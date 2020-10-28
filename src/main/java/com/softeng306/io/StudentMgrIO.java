@@ -1,10 +1,10 @@
 package com.softeng306.io;
 
+import com.softeng306.domain.student.Student;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.StudentValidator;
-import com.softeng306.domain.student.Student;
 
 import java.util.Scanner;
 

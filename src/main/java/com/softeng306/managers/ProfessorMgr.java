@@ -1,10 +1,11 @@
 package com.softeng306.managers;
 
-import com.softeng306.enums.Department;
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.fileprocessing.FileProcessor;
+
 import com.softeng306.fileprocessing.IFileProcessor;
 import com.softeng306.fileprocessing.ProfessorFileProcessor;
+
+import com.softeng306.enums.Department;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,6 +46,7 @@ public class ProfessorMgr {
 
     /**
      * Returns the IDs of all professors in the department.
+     *
      * @param department The department the professors are in.
      * @return A list of all the IDs of the professors.
      */
@@ -54,6 +56,7 @@ public class ProfessorMgr {
 
     /**
      * Return the list of all professors in the system.
+     *
      * @return An list of all professors.
      */
     public List<Professor> getProfessors() {

@@ -8,12 +8,14 @@ import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.SubComponentMark;
 import com.softeng306.domain.student.Student;
-import com.softeng306.fileprocessing.FileProcessor;
+
 import com.softeng306.fileprocessing.IFileProcessor;
 import com.softeng306.fileprocessing.MarkFileProcessor;
+
 import com.softeng306.io.MarkMgrIO;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Manages all the mark related operations.
@@ -36,7 +38,6 @@ public class MarkMgr {
         markFileProcessor = new MarkFileProcessor();
         marks = markFileProcessor.loadFile();
     }
-
 
 
     /**
@@ -68,7 +69,7 @@ public class MarkMgr {
         for (MainComponent mainComponent : mainComponents) {
             MainComponentMark mainComponentMark = new MainComponentMark(mainComponent, 0d);
 
-            for (SubComponent subComponent: mainComponent.getSubComponents()) {
+            for (SubComponent subComponent : mainComponent.getSubComponents()) {
                 mainComponentMark.addSubComponentMark(new SubComponentMark(subComponent, 0d));
             }
             courseWorkMarks.add(mainComponentMark);
@@ -97,7 +98,7 @@ public class MarkMgr {
                     ArrayList<Double> weights = new ArrayList<>();
                     ArrayList<Boolean> isMainAss = new ArrayList<>();
 
-                    for (MainComponentMark mainComponentMark: mark.getCourseWorkMarks()) {
+                    for (MainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
                         MainComponent mainComponent = mainComponentMark.getMainComponent();
                         if (!mainComponent.getComponentName().equals("Exam")
                                 && !mainComponentMark.hasSubComponents()) {
@@ -106,7 +107,7 @@ public class MarkMgr {
                             isMainAss.add(true);
                         }
 
-                        for (SubComponentMark subComponentMark: mainComponentMark.getSubComponentMarks()) {
+                        for (SubComponentMark subComponentMark : mainComponentMark.getSubComponentMarks()) {
                             SubComponent subComponent = subComponentMark.getSubComponent();
                             availableChoices.add(mainComponent.getComponentName() + "-" + subComponent.getComponentName());
                             weights.add((double) mainComponent.getComponentWeight() * (double) subComponent.getComponentWeight() / 100d);
@@ -131,7 +132,7 @@ public class MarkMgr {
 
                 } else {
                     // The user want to enter exam mark.
-                    double examMark =  MarkMgrIO.readExamMark();
+                    double examMark = MarkMgrIO.readExamMark();
                     mark.setMainCourseWorkMarks("Exam", examMark);
                 }
 
@@ -145,6 +146,7 @@ public class MarkMgr {
 
     /**
      * Return the list of all marks in the system.
+     *
      * @return An list of all marks.
      */
     public List<Mark> getMarks() {

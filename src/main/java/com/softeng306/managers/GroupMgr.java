@@ -1,10 +1,11 @@
 package com.softeng306.managers;
 
-import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.enums.GroupType;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class GroupMgr {
@@ -40,7 +41,7 @@ public class GroupMgr {
      */
     public Group printGroupWithVacancyInfo(GroupType groupType, List<Group> groups) {
         int index;
-        HashMap<String, Integer> groupAssign = new HashMap<>(0);
+        Map<String, Integer> groupAssign = new HashMap<>(0);
         int selectedGroupNum;
 
         if (groups.size() != 0) {
@@ -62,7 +63,7 @@ public class GroupMgr {
                     System.out.println("Invalid choice. Please re-enter.");
                 } else {
                     // valid selection
-                    Group selectedGroup = groups.get(selectedGroupNum-1);
+                    Group selectedGroup = groups.get(selectedGroupNum - 1);
                     selectedGroup.enrolledIn();
                     return selectedGroup;
                 }

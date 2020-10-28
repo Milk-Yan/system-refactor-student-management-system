@@ -1,18 +1,13 @@
 package com.softeng306.domain.mark;
 
-import com.softeng306.domain.course.component.CourseworkComponent;
-import com.softeng306.domain.course.component.MainComponent;
-import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.student.Student;
 import com.softeng306.domain.course.Course;
+import com.softeng306.domain.student.Student;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
  * Represents a student mark record associated with one student and a course.
  * Both students and courses can have multiple student mark record, but cannot be duplicate.
-
  */
 
 public class Mark {
@@ -33,11 +28,12 @@ public class Mark {
 
     /**
      * Creates a new student mark record with the student of this student mark record, the course of this student mark record.
-     *  the course work marks of this student mark record, the total mark of this student mark record.
-     * @param student The student of this student mark record.
-     * @param course The course of this student mark record.
+     * the course work marks of this student mark record, the total mark of this student mark record.
+     *
+     * @param student         The student of this student mark record.
+     * @param course          The course of this student mark record.
      * @param courseWorkMarks The course work marks of this student mark record.
-     * @param totalMark The total mark of this student mark record.
+     * @param totalMark       The total mark of this student mark record.
      */
     public Mark(Student student, Course course, List<MainComponentMark> courseWorkMarks, double totalMark) {
         this.student = student;
@@ -48,6 +44,7 @@ public class Mark {
 
     /**
      * Gets the student of this student mark record.
+     *
      * @return the student of this student mark record.
      */
     public Student getStudent() {
@@ -56,6 +53,7 @@ public class Mark {
 
     /**
      * Gets the course of this student mark record.
+     *
      * @return the course of this student mark record.
      */
     public Course getCourse() {
@@ -64,7 +62,8 @@ public class Mark {
 
     /**
      * Gets the course work marks of this student mark record.
-     * @return a hashmap contains the course work marks of this student mark record.
+     *
+     * @return a list contains the course work marks of this student mark record.
      */
     public List<MainComponentMark> getCourseWorkMarks() {
         return courseWorkMarks;
@@ -72,6 +71,7 @@ public class Mark {
 
     /**
      * Gets the total mark of this student mark record.
+     *
      * @return the total mark of this student mark record.
      */
     public double getTotalMark() {
@@ -80,11 +80,12 @@ public class Mark {
 
     /**
      * Sets the main course work marks of this student mark record.
+     *
      * @param courseWorkName The name of this main course work.
-     * @param result The mark obtained in this main course work.
+     * @param result         The mark obtained in this main course work.
      */
     public void setMainCourseWorkMarks(String courseWorkName, double result) {
-        for (MainComponentMark mainComponentMark: courseWorkMarks) {
+        for (MainComponentMark mainComponentMark : courseWorkMarks) {
             if (mainComponentMark.getMainComponent().getComponentName().equals(courseWorkName)) {
                 if (mainComponentMark.hasSubComponents()) {
                     System.out.println("This main assessment is not stand alone");
@@ -108,11 +109,12 @@ public class Mark {
 
     /**
      * Sets the sub course work marks of this student mark record.
+     *
      * @param courseWorkName The name of this sub course work.
-     * @param result The mark obtained in this sub course work.
+     * @param result         The mark obtained in this sub course work.
      */
     public void setSubCourseWorkMarks(String courseWorkName, double result) {
-        for (MainComponentMark mainComponentMark: courseWorkMarks) {
+        for (MainComponentMark mainComponentMark : courseWorkMarks) {
             SubComponentMark subComponentMark = mainComponentMark.getSubComponentMark(courseWorkName);
             if (subComponentMark != null) {
                 // update subcomponent value

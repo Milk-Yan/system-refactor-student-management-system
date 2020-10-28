@@ -1,10 +1,5 @@
 package com.softeng306.enums;
 
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
-
 public enum Department {
     ECSE, CS, CHEM_ENG;
 
@@ -24,7 +19,7 @@ public enum Department {
      * Finds whether the string exists as a department type.
      */
     public static boolean contains(String possibleDepartment) {
-        for (Department department: Department.values()) {
+        for (Department department : Department.values()) {
             if (department.toString().equals(possibleDepartment)) {
                 return true;
             }

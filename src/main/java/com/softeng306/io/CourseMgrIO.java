@@ -790,19 +790,19 @@ public class CourseMgrIO {
     /**
      * This method reads in the name for a particular subComponent
      */
-    public String getComponentName(int totalWeightAssignable, List<? extends CourseworkComponent> components, int componentNumber, String type){
+    public String getComponentName(int totalWeightAssignable, List<? extends CourseworkComponent> components, int componentNumber, String type) {
 
         String subComponentName;
         boolean componentExist;
 
         do {
             componentExist = false;
-            if(type.equals(SubComponent.COMPONENT_NAME)){
+            if (type.equals(SubComponent.COMPONENT_NAME)) {
                 System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
             } else {
                 System.out.println("Total weightage left to assign: " + totalWeightAssignable);
             }
-            System.out.println("Enter "+ type +" " + (componentNumber + 1) + " name: ");
+            System.out.println("Enter " + type + " " + (componentNumber + 1) + " name: ");
             subComponentName = scanner.nextLine();
 
             if (components.isEmpty()) {
