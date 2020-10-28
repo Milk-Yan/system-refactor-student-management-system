@@ -1,22 +1,22 @@
 package com.softeng306.managers;
 
-import com.softeng306.enums.CourseType;
-import com.softeng306.enums.Department;
-import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.CourseBuilder;
+import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.domain.course.CourseBuilder;
-import com.softeng306.domain.course.ICourseBuilder;
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.Department;
+import com.softeng306.enums.GroupType;
 import com.softeng306.io.CourseMgrIO;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
-import com.softeng306.validation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CourseMgr {
@@ -332,7 +332,7 @@ public class CourseMgr {
 
     /**
      * Return the list of all courses in the system.
-
+     *
      * @return An list of all courses.
      */
     public List<Course> getCourses() {

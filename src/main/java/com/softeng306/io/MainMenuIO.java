@@ -1,6 +1,5 @@
 package com.softeng306.io;
 
-import com.softeng306.main.Main;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.CourseRegistrationMgr;
 import com.softeng306.managers.MarkMgr;

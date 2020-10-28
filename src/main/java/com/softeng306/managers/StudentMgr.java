@@ -1,8 +1,6 @@
 package com.softeng306.managers;
 
 
-import com.softeng306.enums.Department;
-import com.softeng306.enums.Gender;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.MainComponentMark;
@@ -10,6 +8,8 @@ import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.mark.SubComponentMark;
 import com.softeng306.domain.student.Student;
+import com.softeng306.enums.Department;
+import com.softeng306.enums.Gender;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.StudentMgrIO;
 import com.softeng306.validation.StudentValidator;

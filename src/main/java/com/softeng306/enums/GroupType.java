@@ -5,7 +5,9 @@ public enum GroupType {
 
     private String nameLowerCase;
 
-    GroupType(String nameLowerCase) { this.nameLowerCase = nameLowerCase; }
+    GroupType(String nameLowerCase) {
+        this.nameLowerCase = nameLowerCase;
+    }
 
     /**
      * Returns the string value of the enum type with all lower cases.

@@ -1,7 +1,7 @@
 package com.softeng306.managers;
 
-import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.enums.GroupType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -63,7 +63,7 @@ public class GroupMgr {
                     System.out.println("Invalid choice. Please re-enter.");
                 } else {
                     // valid selection
-                    Group selectedGroup = groups.get(selectedGroupNum-1);
+                    Group selectedGroup = groups.get(selectedGroupNum - 1);
                     selectedGroup.enrolledIn();
                     return selectedGroup;
                 }

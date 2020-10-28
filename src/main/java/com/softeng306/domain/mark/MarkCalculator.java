@@ -26,7 +26,7 @@ public class MarkCalculator {
                     break;
                 }
 
-                for (SubComponentMark subComponentMark: mainComponentMark.getSubComponentMarks()) {
+                for (SubComponentMark subComponentMark : mainComponentMark.getSubComponentMarks()) {
                     SubComponent subComponent = subComponentMark.getSubComponent();
                     if (subComponent.getComponentName().equals((thisComponentName))) {
                         averageMark += subComponentMark.getMark();
@@ -35,11 +35,12 @@ public class MarkCalculator {
                 }
             }
         }
-        return averageMark/thisCourseMark.size();
+        return averageMark / thisCourseMark.size();
     }
 
     /**
      * Computes the exam marks for a particular course.
+     *
      * @param thisCourseMark The marks for the course.
      * @return The exam marks for the course.
      */
@@ -49,7 +50,7 @@ public class MarkCalculator {
         for (Mark mark : thisCourseMark) {
             List<MainComponentMark> courseMarks = mark.getCourseWorkMarks();
 
-            for (MainComponentMark mainComponentMark: courseMarks) {
+            for (MainComponentMark mainComponentMark : courseMarks) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();
                 double value = mainComponentMark.getMark();
                 if (mainComponent.getComponentName().equals("Exam")) {
@@ -63,6 +64,7 @@ public class MarkCalculator {
 
     /**
      * Computes the overall marks for a particular course.
+     *
      * @param thisCourseMark The marks for the course.
      * @return The exam marks for the course.
      */
@@ -81,7 +83,7 @@ public class MarkCalculator {
      */
     public double gpaCalculator(Mark mark) {
         double gradePercentage = mark.getTotalMark();
-        
+
         if (gradePercentage > 85) {
             // A+, A
             return 5d;

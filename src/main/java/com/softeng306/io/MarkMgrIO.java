@@ -1,14 +1,5 @@
 package com.softeng306.io;
 
-import com.softeng306.domain.course.Course;
-import com.softeng306.domain.course.component.CourseworkComponent;
-import com.softeng306.domain.course.component.MainComponent;
-import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.student.Student;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
