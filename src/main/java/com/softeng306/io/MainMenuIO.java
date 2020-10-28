@@ -11,7 +11,7 @@ public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
     private static CourseMgr courseMgr;
     private static MarkMgr markMgr;
-    private static StudentMgr studentMgr;
+    private static StudentMgrIO studentMgrIO = new StudentMgrIO();
     private static CourseRegistrationMgr courseRegistrationMgr;
 
     /**
@@ -24,7 +24,6 @@ public class MainMenuIO {
 
         courseMgr = CourseMgr.getInstance();
         markMgr = MarkMgr.getInstance();
-        studentMgr = StudentMgr.getInstance();
         courseRegistrationMgr = CourseRegistrationMgr.getInstance();
 
         while (choice != 11) {
@@ -66,7 +65,7 @@ public class MainMenuIO {
             case 0:
                 break;
             case 1:
-                studentMgr.addStudent();
+                studentMgrIO.addStudent();
                 break;
             case 2:
                 courseMgr.addCourse();
@@ -93,7 +92,7 @@ public class MainMenuIO {
                 courseMgr.printCourseStatistics();
                 break;
             case 10:
-                studentMgr.printStudentTranscript();
+                studentMgrIO.printStudentTranscript();
                 break;
             case 11:
                 exitApplication();

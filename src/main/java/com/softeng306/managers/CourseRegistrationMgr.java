@@ -8,6 +8,7 @@ import com.softeng306.enums.GroupType;
 import com.softeng306.io.CourseRegistrationManagerIO;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
+import com.softeng306.io.StudentMgrIO;
 import com.softeng306.validation.CourseRegistrationValidator;
 
 import java.util.ArrayList;
@@ -50,57 +51,57 @@ public class CourseRegistrationMgr {
     public void registerCourse() {
         MainMenuIO.printMethodCall("registerCourse");
 
-        Student currentStudent = StudentMgr.getInstance().readStudentFromUser();
-        String studentID = currentStudent.getStudentID();
+        String studentID = new StudentMgrIO().readStudentIdFromUser();
+        Student student = StudentMgr.getInstance().getStudentFromId(studentID);
 
         CourseMgr.getInstance().readDepartmentFromUser();
 
-        Course currentCourse = CourseMgr.getInstance().readCourseFromUser();
-        String courseID = currentCourse.getCourseID();
+        Course course = CourseMgr.getInstance().readCourseFromUser();
+        String courseID = course.getCourseID();
 
 
         if (CourseRegistrationValidator.checkCourseRegistrationExists(studentID, courseID) != null) {
             return;
         }
 
-        if (currentCourse.getMainComponents().isEmpty()) {
-            CourseRegistrationManagerIO.printNoAssessmentMessage(currentCourse);
+        if (course.getMainComponents().isEmpty()) {
+            CourseRegistrationManagerIO.printNoAssessmentMessage(course);
             return;
         }
 
-        if (currentCourse.getVacancies() == 0) {
+        if (course.getVacancies() == 0) {
             CourseRegistrationManagerIO.printNoVacancies();
             return;
         }
 
-        CourseRegistrationManagerIO.printPendingRegistrationMethod(currentCourse, currentStudent);
+        CourseRegistrationManagerIO.printPendingRegistrationMethod(course, student);
 
         List<Group> lecGroups = new ArrayList<>(0);
-        lecGroups.addAll(currentCourse.getLectureGroups());
+        lecGroups.addAll(course.getLectureGroups());
 
         GroupMgr groupMgr = GroupMgr.getInstance();
 
         Group selectedLectureGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LECTURE_GROUP, lecGroups);
 
         List<Group> tutGroups = new ArrayList<>(0);
-        tutGroups.addAll(currentCourse.getTutorialGroups());
+        tutGroups.addAll(course.getTutorialGroups());
 
         Group selectedTutorialGroup = groupMgr.printGroupWithVacancyInfo(GroupType.TUTORIAL_GROUP, tutGroups);
 
         List<Group> labGroups = new ArrayList<>(0);
-        labGroups.addAll(currentCourse.getLabGroups());
+        labGroups.addAll(course.getLabGroups());
 
         Group selectedLabGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LAB_GROUP, labGroups);
 
-        currentCourse.enrolledIn();
-        CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
+        course.enrolledIn();
+        CourseRegistration courseRegistration = new CourseRegistration(student, course, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
         FILEMgr.writeCourseRegistrationIntoFile(courseRegistration);
 
         courseRegistrations.add(courseRegistration);
 
-        MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initializeMark(currentStudent, currentCourse));
+        MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initializeMark(student, course));
 
-        CourseRegistrationManagerIO.printSuccessfulRegistration(currentCourse, currentStudent, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
+        CourseRegistrationManagerIO.printSuccessfulRegistration(course, student, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
     }
 
     /**
@@ -240,5 +241,27 @@ public class CourseRegistrationMgr {
             return group1.compareTo(group2);
         });
     }
+
+    public List<String> getCourseIdsForStudentId(String studentId) {
+        List<String> courseIds = new ArrayList<>();
+        for (CourseRegistration courseRegistration : courseRegistrations) {
+            if (courseRegistration.getStudent().getStudentID().equals(studentId)) {
+                courseIds.add(courseRegistration.getCourse().getCourseID());
+            }
+        }
+
+        return courseIds;
+    }
+
+    public int getStudentTotalAU(Student student) {
+        int total = 0;
+        for (CourseRegistration courseRegistration : courseRegistrations) {
+            if (courseRegistration.getStudent().equals(student)) {
+                total += courseRegistration.getCourse().getAU();
+            }
+        }
+        return total;
+    }
+
 
 }

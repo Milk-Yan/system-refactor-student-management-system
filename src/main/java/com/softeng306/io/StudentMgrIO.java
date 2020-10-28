@@ -1,21 +1,152 @@
 package com.softeng306.io;
 
+import com.softeng306.domain.course.component.MainComponent;
+import com.softeng306.domain.course.component.SubComponent;
+import com.softeng306.domain.mark.MainComponentMark;
+import com.softeng306.domain.mark.Mark;
+import com.softeng306.domain.mark.MarkCalculator;
+import com.softeng306.domain.mark.SubComponentMark;
 import com.softeng306.domain.student.Student;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
+import com.softeng306.managers.CourseMgr;
+import com.softeng306.managers.CourseRegistrationMgr;
+import com.softeng306.managers.MarkMgr;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.StudentValidator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentMgrIO {
 
-    private static Scanner reader = new Scanner(System.in);
+    private Scanner reader = new Scanner(System.in);
+
+    private StudentMgr studentMgr = StudentMgr.getInstance();
+
+    /**
+     * Adds a student and put the student into file
+     */
+    public void addStudent() {
+        String studentID = null;
+        printMenu();
+
+        if (doesSystemGenerateId()) {
+            studentID = studentMgr.generateStudentID();
+        } else {
+            studentID = getStudentID();
+        }
+
+        String studentName = getStudentName();
+        String schoolName = getSchoolName();
+        String studentGender = getStudentGender();
+        int studentYear = getStudentYear();
+
+        studentMgr.addStudent(studentID, studentName, schoolName, studentGender, studentYear);
+
+        printStudentData(studentName, studentID);
+    }
+
+
+    /**
+     * Prints transcript (Results of course taken) for a particular student
+     */
+    public void printStudentTranscript() {
+        String studentId = readStudentIdFromUser();
+
+        int thisStudentAU = MarkMgr.getInstance().getAUForStudent(studentId);
+
+        if (!studentMgr.studentHasCourses(studentId)) {
+            System.out.println("------ No transcript ready for this student yet ------");
+            return;
+        }
+        System.out.println("----------------- Official Transcript ------------------");
+        System.out.print("Student Name: " + studentMgr.getStudentName(studentId));
+        System.out.println("\tStudent ID: " + studentId);
+        System.out.println("AU for this semester: " + thisStudentAU);
+        System.out.println();
+
+        List<String> stringList = MarkMgr.getInstance().getMarkStringForStudent(studentId, thisStudentAU);
+        stringList.forEach(System.out::println);
+
+        System.out.println("------------------ End of Transcript -------------------");
+
+    }
+//
+//    /**
+//     * Prints transcript (Results of course taken) for a particular student
+//     */
+//    public void printStudentTranscript() {
+//        String studentId = readStudentIdFromUser();
+//        if (!studentMgr.studentHasCourses(studentId)) {
+//            System.out.println("------ No transcript ready for this student yet ------");
+//            return;
+//        }
+//
+//        System.out.println("----------------- Official Transcript ------------------");
+//        System.out.print("Student Name: " + studentMgr.getStudentName(studentId));
+//        System.out.println("\tStudent ID: " + studentId);
+//        System.out.println("AU for this semester: " + studentMgr.getStudentAcademicUnits(studentId));
+//        System.out.println();
+//
+//        List<String> courseIds = CourseRegistrationMgr.getInstance().getCourseIdsForStudentId(studentId);
+//        CourseMgr courseMgr = CourseMgr.getInstance();
+//        for (String courseId : courseIds) {
+//            System.out.print("Course ID: " + courseId);
+//            System.out.println("\tCourse Name: " + courseMgr.getCourseName(courseId));
+//
+//            if (CourseMgr.getInstance().doesCourseHaveExam(courseId)) {
+//                System.out.println("Main Assessment: " + "Exam" + " ----- (" + courseMgr.getExamWeight(courseId) + "%)");
+//
+//                System.out.println("Main Assessment Total: " + courseMgr.getExamMark(courseId, studentId));
+//                System.out.println();
+//
+//                System.out.println("Course Total: " + courseMgr.getOverallMark(courseId, studentId));
+//                System.out.println();
+//            }
+//
+//            List<String> mainComponentNames = courseMgr.getMainComponentNames(courseId);
+//
+//            for (String mainComponentName : mainComponentNames) {
+//                System.out.printf("Main Assessment: %s ----- (%s%%)%n", mainComponentName, courseMgr.getMainComponentWeight(courseId, mainComponentName));
+//                List<String> subComponentNames = courseMgr.getSubComponentNames(courseId, mainComponentName);
+//                for (String subComponentName : subComponentNames) {
+//                    System.out.printf("Sub Assessment: %s -- (%s%% * %s%%) --- ", subComponentName, courseMgr.getSubComponentWeight(courseId, mainComponentName, subComponentName), courseMgr.getMainComponentWeight(courseId, mainComponentName));
+//
+//                    double subComponentMark = courseMgr.getSubComponentMarkForStudent(courseId, mainComponentName, subComponentName, studentId);
+//                    System.out.println("Mark: " + subComponentMark);
+//                }
+//
+//                double mainComponentMark = courseMgr.getMainComponentMarkForStudent(courseId, mainComponentName, studentId);
+//                System.out.println("Main Assessment Total: " + mainComponentMark);
+//                System.out.println();
+//            }
+//
+//            System.out.println("Course Total: " + courseMgr.getOverallMark(courseId, studentId));
+//            System.out.println();
+//        }
+//
+//        double studentGPA = studentMgr.getStudentGPA(studentId);
+//        System.out.println("GPA for this semester: " + studentGPA);
+//        if (studentGPA >= 4.50) {
+//            System.out.println("On track of First Class Honor!");
+//        } else if (studentGPA >= 4.0) {
+//            System.out.println("On track of Second Upper Class Honor!");
+//        } else if (studentGPA >= 3.5) {
+//            System.out.println("On track of Second Lower Class Honor!");
+//        } else if (studentGPA >= 3) {
+//            System.out.println("On track of Third Class Honor!");
+//        } else {
+//            System.out.println("Advice: Study hard");
+//        }
+//        System.out.println("------------------ End of Transcript -------------------");
+//    }
 
     /**
      * Displays the menu for adding a student on the console.
      */
-    public static void printMenu() {
+    public void printMenu() {
         MainMenuIO.printMethodCall("addStudent");
         System.out.println("Choose the way you want to add a student:");
         System.out.println("1. Manually input the student ID.");
@@ -27,7 +158,7 @@ public class StudentMgrIO {
      *
      * @return true if the system is to auto-generate the students ID, false for the user to manually enter the students ID
      */
-    public static boolean systemGenerateID() {
+    public boolean doesSystemGenerateId() {
         int choice;
         do {
             System.out.println("Please input your choice:");
@@ -54,7 +185,7 @@ public class StudentMgrIO {
      *
      * @return student ID
      */
-    public static String getStudentID() {
+    public String getStudentID() {
         while (true) {
             System.out.println("The student ID should follow:");
             System.out.println("Length is exactly 9");
@@ -80,7 +211,7 @@ public class StudentMgrIO {
      *
      * @return students name
      */
-    public static String getStudentName() {
+    public String getStudentName() {
         String studentName;
         while (true) {
             System.out.println("Enter student Name: ");
@@ -96,7 +227,7 @@ public class StudentMgrIO {
      *
      * @return students school
      */
-    public static String getSchoolName() {
+    public String getSchoolName() {
         String studentSchool;
         while (true) {
             System.out.println("Enter student's school (uppercase): ");
@@ -120,7 +251,7 @@ public class StudentMgrIO {
      *
      * @return students gender
      */
-    public static String getStudentGender() {
+    public String getStudentGender() {
         String studentGender;
         while (true) {
             System.out.println("Enter student gender (uppercase): ");
@@ -144,7 +275,7 @@ public class StudentMgrIO {
      *
      * @return students year level
      */
-    public static int getStudentYear() {
+    public int getStudentYear() {
         int studentYear;
         do {
             System.out.println("Enter student's school year (1-4) : ");
@@ -167,7 +298,7 @@ public class StudentMgrIO {
     /**
      * Prints a students data to console, given their student ID.
      */
-    public static void printStudentData(String name, String ID) {
+    public void printStudentData(String name, String ID) {
         System.out.println("Student named: " + name + " is added, with ID: " + ID);
         System.out.println("Student List: ");
         System.out.println("| Student ID | Student Name | Student School | Gender | Year | GPA |");
@@ -178,5 +309,33 @@ public class StudentMgrIO {
             }
             System.out.println(" " + student.getStudentID() + " | " + student.getStudentName() + " | " + student.getStudentSchool() + " | " + student.getGender() + " | " + student.getStudentYear() + " | " + GPA);
         }
+    }
+
+
+    /**
+     * Prompts the user to input an existing student.
+     *
+     * @return the inputted student.
+     */
+    public String readStudentIdFromUser() {
+        String studentID;
+        Student currentStudent = null;
+        while (true) {
+            System.out.println("Enter Student ID (-h to print all the student ID):");
+            studentID = reader.nextLine();
+            while ("-h".equals(studentID)) {
+                StudentMgr.getInstance().printAllStudentIds();
+                studentID = reader.nextLine();
+            }
+            List<String> existingStudentIds = studentMgr.getExistingStudentIds();
+
+            if (!existingStudentIds.contains(studentID)) {
+                System.out.println("Invalid Student ID. Please re-enter.");
+            } else {
+                break;
+            }
+
+        }
+        return studentID;
     }
 }
