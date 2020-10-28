@@ -1,7 +1,6 @@
 package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.mark.Mark;
 
 import java.io.File;

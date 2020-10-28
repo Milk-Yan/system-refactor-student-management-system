@@ -1,6 +1,5 @@
 package com.softeng306.managers;
 
-
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;

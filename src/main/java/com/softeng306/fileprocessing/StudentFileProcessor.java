@@ -1,8 +1,6 @@
 package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.softeng306.domain.course.Course;
-import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.student.Student;
 import com.softeng306.managers.StudentMgr;
 
