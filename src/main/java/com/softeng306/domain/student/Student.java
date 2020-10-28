@@ -1,15 +1,8 @@
 package com.softeng306.domain.student;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.softeng306.domain.course.Course;
-import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
-import com.softeng306.main.Main;
-import com.softeng306.managers.StudentMgr;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents a student enrolled in a school.
@@ -78,7 +71,7 @@ public class Student {
      *
      * @return this student's gender.
      */
-    public Gender getGender(){
+    public Gender getGender() {
         return gender;
     }
 
@@ -105,7 +98,8 @@ public class Student {
      *
      * @param studentID this student's ID.
      */
-    public void setStudentID(String studentID) { this.studentID = studentID;
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
     }
 
     /**
@@ -122,7 +116,7 @@ public class Student {
      *
      * @param gender this student's gender.
      */
-    public void setGender(Gender gender){
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

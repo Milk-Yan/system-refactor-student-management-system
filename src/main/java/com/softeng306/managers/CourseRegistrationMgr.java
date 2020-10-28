@@ -1,16 +1,18 @@
 package com.softeng306.managers;
 
-import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
+import com.softeng306.enums.GroupType;
 import com.softeng306.io.CourseRegistrationManagerIO;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
-import com.softeng306.validation.*;
+import com.softeng306.validation.CourseRegistrationValidator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class CourseRegistrationMgr {
     private static Scanner scanner = new Scanner(System.in);

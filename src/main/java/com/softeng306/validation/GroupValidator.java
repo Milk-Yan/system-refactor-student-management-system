@@ -11,7 +11,7 @@ public class GroupValidator {
      */
     public static boolean checkValidGroupNameInput(String groupName) {
         boolean valid = RegexValidator.checkStringRegexFormat(groupName, GROUP_NAME_REGEX);
-        if(!valid){
+        if (!valid) {
             System.out.println("Wrong format of group name.");
         }
         return valid;

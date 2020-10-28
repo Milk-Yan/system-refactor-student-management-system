@@ -15,7 +15,7 @@ public class CourseRegistration {
      * Default constructor. Required for Jackson serialization.
      */
     public CourseRegistration() {
-        
+
     }
 
     public CourseRegistration(Student student, Course course, Group lectureGroup, Group tutorialGroup, Group labGroup) {
