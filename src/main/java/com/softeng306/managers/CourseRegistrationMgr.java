@@ -114,10 +114,10 @@ public class CourseRegistrationMgr {
         // return List of Object(student,course,lecture,tut,lab)
         List<CourseRegistration> allCourseRegistrations = FILEMgr.loadCourseRegistration();
 
-        List<CourseRegistration> stuArray = new ArrayList<>(0);
+        List<CourseRegistration> courseRegistrationList = new ArrayList<>(0);
         for (CourseRegistration courseRegistration : allCourseRegistrations) {
             if (courseRegistration.getCourse().getCourseID().equals(currentCourse.getCourseID())) {
-                stuArray.add(courseRegistration);
+                courseRegistrationList.add(courseRegistration);
             }
         }
 
@@ -129,31 +129,31 @@ public class CourseRegistrationMgr {
             // TODO: replace these common ui elements with a library
             System.out.println("------------------------------------------------------");
 
-            if (stuArray.isEmpty()) {
-               CourseRegistrationManagerIO.printNoEnrolmentsError();
+            if (courseRegistrationList.isEmpty()) {
+                CourseRegistrationManagerIO.printNoEnrolmentsError();
             }
 
-            if(opt == 1){
-                sortByLectureGroup(stuArray);
-                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LECTURE_GROUP);
+            if (opt == 1) {
+                sortByLectureGroup(courseRegistrationList);
+                CourseRegistrationManagerIO.printByGroup(courseRegistrationList, GroupType.LECTURE_GROUP);
 
-            } else if (opt == 2){
-                if (!stuArray.isEmpty() && stuArray.get(0).getCourse().getTutorialGroups().isEmpty()) {
+            } else if (opt == 2) {
+                if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getTutorialGroups().isEmpty()) {
                     CourseRegistrationManagerIO.printNoGroup(GroupType.TUTORIAL_GROUP);
                     CourseRegistrationManagerIO.printEndOfSection();
                     return;
                 }
-                sortByTutorialGroup(stuArray);
-                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.TUTORIAL_GROUP);
+                sortByTutorialGroup(courseRegistrationList);
+                CourseRegistrationManagerIO.printByGroup(courseRegistrationList, GroupType.TUTORIAL_GROUP);
 
-            } else if (opt == 3){
-                if (!stuArray.isEmpty() && stuArray.get(0).getCourse().getLabGroups().isEmpty()) {
+            } else if (opt == 3) {
+                if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getLabGroups().isEmpty()) {
                     CourseRegistrationManagerIO.printNoGroup(GroupType.LAB_GROUP);
                     CourseRegistrationManagerIO.printEndOfSection();
                     return;
                 }
-                sortByLabGroup(stuArray);
-                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LAB_GROUP);
+                sortByLabGroup(courseRegistrationList);
+                CourseRegistrationManagerIO.printByGroup(courseRegistrationList, GroupType.LAB_GROUP);
 
             } else {
                 CourseRegistrationManagerIO.printInvalidInputError();
@@ -164,6 +164,7 @@ public class CourseRegistrationMgr {
 
     /**
      * Return the list of all course registrations in the system.
+     *
      * @return An list of all course registrations.
      */
     public List<CourseRegistration> getCourseRegistrations() {
@@ -173,6 +174,7 @@ public class CourseRegistrationMgr {
     /**
      * Sort the list of course registrations of a course according to their ascending
      * normal alphabetical order of names of the lecture groups, ignoring cases.
+     *
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByLectureGroup(List<CourseRegistration> courseRegistrations) {
@@ -195,6 +197,7 @@ public class CourseRegistrationMgr {
     /**
      * Sort the list of course registrations of a course according to their ascending
      * normal alphabetical order of the names of the tutorial groups, ignoring cases.
+     *
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByTutorialGroup(List<CourseRegistration> courseRegistrations) {
@@ -217,6 +220,7 @@ public class CourseRegistrationMgr {
     /**
      * Sort the list of course registrations of a course according to their ascending
      * normal alphabetical order of the names of the lab groups, ignoring cases.
+     *
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByLabGroup(List<CourseRegistration> courseRegistrations) {
