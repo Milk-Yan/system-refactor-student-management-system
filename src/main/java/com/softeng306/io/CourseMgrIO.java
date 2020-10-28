@@ -616,34 +616,28 @@ public class CourseMgrIO {
     /**
      * Print statistics for subcomponents
      *
-     * @param subComponents the subcomponents to print out
-     * @param courseMarks   needed to calculate the average mark
      */
-    public void printSubcomponents(List<SubComponent> subComponents, List<Mark> courseMarks) {
-        for (SubComponent subComponent : subComponents) {
-            printSubComponentInfo(subComponent);
-            System.out.println("\t Average: " + markCalculator.computeComponentMark(courseMarks, subComponent.getComponentName()));
+    public void printSubcomponents(HashMap<String, Integer> subComponentInformation, HashMap<String, Double> courseMarks) {
+        int i = 0;
+        for (String subComponentName : subComponentInformation.keySet()) {
+            printSubComponentInfo(subComponentName, subComponentInformation.get(subComponentName));
+            System.out.println("\t Average: " + courseMarks.get(subComponentName));
         }
         System.out.println();
     }
 
     /**
      * Print the info for a sub component
-     *
-     * @param subComponent the sub component to print the info for
      */
-    public void printSubComponentInfo(SubComponent subComponent) {
-        System.out.print("Sub Component: " + subComponent.getComponentName());
-        System.out.print("\tWeight: " + subComponent.getComponentWeight() + "% (in main component)");
+    public void printSubComponentInfo(String subComponentName, int subComponentWeight) {
+        System.out.print("Sub Component: " + subComponentName);
+        System.out.print("\tWeight: " + subComponentWeight + "% (in main component)");
     }
 
     /**
      * Print statistics for an exam to the user
      *
-     * @param exam        the exam to print statistics on
-     * @param courseMarks needed to calculate average
      */
-    asdhvjsbfkn.
     public void printExamStatistics(int examWeight, Double examMark) {
         System.out.print("Final Exam");
         System.out.print("\tWeight: " + examWeight + "%");

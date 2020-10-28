@@ -237,7 +237,9 @@ public class CourseMgr {
                 courseMgrIO.printMainComponent(mainComponent, courseMarks);
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
-                    courseMgrIO.printSubcomponents(subComponents, courseMarks);
+                    HashMap<String, Integer> subComponentInformation = this.generateSubComponentInformation(subComponents);
+                    HashMap<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents,courseMarks);
+                    courseMgrIO.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
             }
         }
@@ -292,5 +294,23 @@ public class CourseMgr {
         }
         return groupInfo;
     }
+
+    public HashMap<String, Integer> generateSubComponentInformation(List<SubComponent> subComponents){
+        HashMap<String, Integer> map = new HashMap<>();
+        for(SubComponent subComponent : subComponents){
+            map.put(subComponent.getComponentName(), subComponent.getComponentWeight());
+        }
+        return map;
+    }
+
+    public HashMap<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, List<Mark> marks){
+        HashMap<String, Double> map = new HashMap<>();
+        for(SubComponent subComponent : subComponents){
+            double mark = markCalculator.computeComponentMark(marks, subComponent.getComponentName());
+            map.put(subComponent.getComponentName(), mark);
+        }
+        return map;
+    }
+
 
 }
