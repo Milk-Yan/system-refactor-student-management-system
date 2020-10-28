@@ -45,7 +45,7 @@ public class ProfessorValidator {
      * @param profID The inputted professor ID.
      * @return the existing professor or else null.
      */
-    public static Professor checkProfExists(String profID) {
+    public static Professor getProfessorFromID(String profID) {
         List<Professor> anyProf = ProfessorMgr.getInstance().getProfessors().stream().filter(p -> profID.equals(p.getProfID())).collect(Collectors.toList());
         if (anyProf.isEmpty()) {
             return null;
@@ -53,4 +53,13 @@ public class ProfessorValidator {
         return anyProf.get(0);
 
     }
+
+    public static boolean checkProfessorExists(String profID){
+        List<Professor> anyProf = ProfessorMgr.getInstance().getProfessors().stream().filter(p -> profID.equals(p.getProfID())).collect(Collectors.toList());
+        if (anyProf.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
 }

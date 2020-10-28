@@ -1,20 +1,14 @@
 package com.softeng306.managers;
 
-import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
-import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.professor.Professor;
-import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.io.CourseMgrIO;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
-import com.softeng306.validation.*;
 
 import java.util.*;
 
@@ -52,75 +46,25 @@ public class CourseMgr {
     /**
      * Creates a new course and stores it in the file.
      */
-    public void addCourse() {
-        ICourseBuilder builder = new CourseBuilder();
+    public void addCourse(ICourseBuilder completeBuilder) {
 
-        // Read in parameters to create new Course
-        String courseID = courseMgrIO.readCourseId();
-        builder.setCourseID(courseID);
-
-        String courseName = courseMgrIO.readCourseName();
-        builder.setCourseName(courseName);
-
-        int totalSeats = courseMgrIO.readTotalSeats();
-        builder.setTotalSeats(totalSeats);
-
-        int AU = courseMgrIO.readAU();
-        builder.setAU(AU);
-
-        Department courseDepartment = courseMgrIO.readCourseDepartment();
-        builder.setCourseDepartment(courseDepartment);
-
-        CourseType courseType = courseMgrIO.readCourseType();
-
-        builder.setCourseType(courseType);
-
-        // Lecture groups
-        int noOfLectureGroups = courseMgrIO.readNoOfGroup(GroupType.LECTURE_GROUP, totalSeats, totalSeats);
-        int lecWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LECTURE_GROUP, AU);
-        List<Group> lectureGroups = courseMgrIO.readLectureGroups(totalSeats, noOfLectureGroups);
-        builder.setLecWeeklyHour(lecWeeklyHour);
-        builder.setLectureGroups(lectureGroups);
-
-        // Tutorial groups
-        int noOfTutorialGroups = courseMgrIO.readNoOfGroup(GroupType.TUTORIAL_GROUP, noOfLectureGroups, totalSeats);
-        int tutWeeklyHour = 0;
-        if (noOfTutorialGroups != 0) {
-            tutWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.TUTORIAL_GROUP, AU);
-        }
-        List<Group> tutorialGroups = courseMgrIO.readTutorialGroups(noOfTutorialGroups, totalSeats);
-        builder.setTutWeeklyHour(tutWeeklyHour);
-        builder.setTutorialGroups(tutorialGroups);
-
-        // Lab groups
-        int noOfLabGroups = courseMgrIO.readNoOfGroup(GroupType.LAB_GROUP, noOfLectureGroups, totalSeats);
-        int labWeeklyHour = 0;
-        if (noOfLabGroups != 0) {
-            labWeeklyHour = courseMgrIO.readWeeklyHour(GroupType.LAB_GROUP, AU);
-        }
-        List<Group> labGroups = courseMgrIO.readLabGroups(noOfLabGroups, totalSeats);
-        builder.setLabWeeklyHour(labWeeklyHour);
-        builder.setLabGroups(labGroups);
-
-        Professor profInCharge = courseMgrIO.readProfessor(courseDepartment);
-        builder.setProfInCharge(profInCharge);
-
-        Course course = builder.build();
+        Course course = completeBuilder.build();
+        int addCourseComponentChoice;
 
         // Update Course in files
         FILEMgr.writeCourseIntoFile(course);
         courses.add(course);
 
-        int addCourseComponentChoice = courseMgrIO.readCreateCourseComponentChoice();
+        addCourseComponentChoice = courseMgrIO.readCreateCourseComponentChoice();
 
         // Don't add course components option selected
         if (addCourseComponentChoice == 2) {
-            courseMgrIO.printComponentsNotInitialized(courseID);
+            courseMgrIO.printComponentsNotInitialized(course.getCourseID());
         } else {
             enterCourseWorkComponentWeightage(course);
-            courseMgrIO.printCourseAdded(courseID);
+            courseMgrIO.printCourseAdded(course.getCourseID());
         }
-        printCourses();
+        courseMgrIO.printCourses(courses);
     }
 
     /**
@@ -238,12 +182,6 @@ public class CourseMgr {
         // Update course into course.csv
     }
 
-    /**
-     * Prints the list of courses
-     */
-    public void printCourses() {
-        courseMgrIO.printCourses(courses);
-    }
 
     /**
      * Displays a list of IDs of all the courses.
@@ -327,7 +265,7 @@ public class CourseMgr {
      * @return the inputted department.
      */
     public String readDepartmentFromUser() {
-        return courseMgrIO.readDepartmentFromUser();
+        return courseMgrIO.readDepartmentWithMoreThanOneCourseFromUser();
     }
 
     /**

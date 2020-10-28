@@ -1,5 +1,7 @@
 package com.softeng306.io;
 
+import com.softeng306.domain.course.CourseBuilder;
+import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.CourseworkComponent;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
@@ -19,6 +21,7 @@ import com.softeng306.validation.GroupValidator;
 import com.softeng306.validation.ProfessorValidator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -111,52 +114,6 @@ public class CourseMgrIO {
         return AU;
     }
 
-    /**
-     * Read in a course department for a course from the user
-     *
-     * @return String courseDepartment for a course
-     */
-    public Department readCourseDepartment() {
-        String courseDepartment;
-        while (true) {
-            System.out.println("Enter course's department (uppercase): ");
-            System.out.println("Enter -h to print all the departments.");
-            courseDepartment = scanner.nextLine();
-            while ("-h".equals(courseDepartment)) {
-                Department.printAllDepartment();
-                courseDepartment = scanner.nextLine();
-            }
-            if (Department.contains(courseDepartment)) {
-                break;
-            } else {
-                System.out.println("The department is invalid. Please re-enter.");
-            }
-        }
-
-        return Department.valueOf(courseDepartment);
-    }
-
-    /**
-     * Read in a course type from the user
-     *
-     * @return String courseType for a course
-     */
-    public CourseType readCourseType() {
-        String courseType;
-        while (true) {
-            System.out.println("Enter course type (uppercase): ");
-            System.out.println("Enter -h to print all the course types.");
-            courseType = scanner.nextLine();
-            while (courseType.equals("-h")) {
-                CourseType.printAllCourseType();
-                courseType = scanner.nextLine();
-            }
-            if (CourseValidator.checkCourseTypeValidation(courseType)) {
-                break;
-            }
-        }
-        return CourseType.valueOf(courseType);
-    }
 
     /**
      * Read in the number of groups for a particular stream (lecture, lab, tutorial)
@@ -238,226 +195,6 @@ public class CourseMgrIO {
         return weeklyHour;
     }
 
-    /**
-     * Reads in and constructs lecture groups for a course from the user
-     *
-     * @param totalSeats        the total number of seats for the course
-     * @param noOfLectureGroups the number of lecture groups for a course
-     * @return the lecture groups the user has specified
-     */
-    public List<Group> readLectureGroups(int totalSeats, int noOfLectureGroups) {
-        String lectureGroupName;
-        int lectureGroupCapacity;
-        int seatsLeft = totalSeats;
-        boolean groupNameExists;
-
-        List<Group> lectureGroups = new ArrayList<>();
-
-        for (int i = 0; i < noOfLectureGroups; i++) {
-            System.out.println("Give a name to the lecture group");
-            do {
-                groupNameExists = false;
-                System.out.println("Enter a group Name: ");
-                lectureGroupName = scanner.nextLine();
-                if (!GroupValidator.checkValidGroupNameInput(lectureGroupName)) {
-                    groupNameExists = true;
-                    continue;
-                }
-                if (lectureGroups.isEmpty()) {
-                    break;
-                }
-                for (Group lectureGroup : lectureGroups) {
-                    if (lectureGroup.getGroupName().equals(lectureGroupName)) {
-                        groupNameExists = true;
-                        System.out.println("This lecture group already exist for this course.");
-                        break;
-                    }
-                }
-            } while (groupNameExists);
-
-
-            while (true) {
-                System.out.println("Enter this lecture group's capacity: ");
-                while (true) {
-                    if (scanner.hasNextInt()) {
-                        lectureGroupCapacity = scanner.nextInt();
-                        scanner.nextLine();
-                        if (lectureGroupCapacity > 0) {
-                            break;
-                        }
-                        System.out.println("Capacity must be positive. Please re-enter.");
-                    } else {
-                        System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
-                    }
-                }
-                seatsLeft -= lectureGroupCapacity;
-                if ((seatsLeft > 0 && i != (noOfLectureGroups - 1)) || (seatsLeft == 0 && i == noOfLectureGroups - 1)) {
-                    Group lectureGroup = new Group(lectureGroupName, lectureGroupCapacity, lectureGroupCapacity, GroupType.LECTURE_GROUP);
-
-                    lectureGroups.add(lectureGroup);
-                    break;
-                } else {
-                    System.out.println("Sorry, the total capacity you allocated for all the lecture groups exceeds or does not add up to the total seats for this course.");
-                    System.out.println("Please re-enter the capacity for the last lecture group " + lectureGroupName + " you have entered.");
-                    seatsLeft += lectureGroupCapacity;
-                }
-            }
-        }
-
-        return lectureGroups;
-    }
-
-    /**
-     * Reads in and constructs tutorial groups for a course from the user
-     *
-     * @param totalSeats         the total number of seats for the course
-     * @param noOfTutorialGroups the number of tutorial groups for a course
-     * @return the tutorial groups the user has specified
-     */
-    public List<Group> readTutorialGroups(int noOfTutorialGroups, int totalSeats) {
-        List<Group> tutorialGroups = new ArrayList<>();
-        String tutorialGroupName;
-        int tutorialGroupCapacity;
-        boolean groupNameExists;
-        int totalTutorialSeats = 0;
-
-        for (int i = 0; i < noOfTutorialGroups; i++) {
-            System.out.println("Give a name to the tutorial group");
-            do {
-                groupNameExists = false;
-                System.out.println("Enter a group Name: ");
-                tutorialGroupName = scanner.nextLine();
-                if (!GroupValidator.checkValidGroupNameInput(tutorialGroupName)) {
-                    groupNameExists = true;
-                    continue;
-                }
-                if (tutorialGroups.isEmpty()) {
-                    break;
-                }
-                for (Group tutorialGroup : tutorialGroups) {
-                    if (tutorialGroup.getGroupName().equals(tutorialGroupName)) {
-                        groupNameExists = true;
-                        System.out.println("This tutorial group already exist for this course.");
-                        break;
-                    }
-                }
-            } while (groupNameExists);
-
-            while (true) {
-                System.out.println("Enter this tutorial group's capacity: ");
-                if (scanner.hasNextInt()) {
-                    tutorialGroupCapacity = scanner.nextInt();
-                    scanner.nextLine();
-                    totalTutorialSeats += tutorialGroupCapacity;
-                    if ((i != noOfTutorialGroups - 1) || (totalTutorialSeats >= totalSeats)) {
-                        Group tutorialGroup = new Group(tutorialGroupName, tutorialGroupCapacity, tutorialGroupCapacity, GroupType.TUTORIAL_GROUP);
-                        tutorialGroups.add(tutorialGroup);
-                        break;
-                    } else {
-                        System.out.println("Sorry, the total capacity you allocated for all the tutorial groups is not enough for this course.");
-                        System.out.println("Please re-enter the capacity for the last tutorial group " + tutorialGroupName + " you have entered.");
-                        totalTutorialSeats -= tutorialGroupCapacity;
-                    }
-                } else {
-                    System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
-                }
-            }
-        }
-
-        return tutorialGroups;
-    }
-
-    /**
-     * Reads in and constructs lab groups for a course from the user
-     *
-     * @param totalSeats    the total number of seats for the course
-     * @param noOfLabGroups the number of lab groups for a course
-     * @return the lab groups the user has specified
-     */
-    public List<Group> readLabGroups(int noOfLabGroups, int totalSeats) {
-        List<Group> labGroups = new ArrayList<>();
-        int totalLabSeats = 0;
-        String labGroupName;
-        boolean groupNameExists;
-        for (int i = 0; i < noOfLabGroups; i++) {
-            System.out.println("Give a name to this lab group");
-            do {
-                groupNameExists = false;
-                System.out.println("Enter a group Name: ");
-                labGroupName = scanner.nextLine();
-                if (!GroupValidator.checkValidGroupNameInput(labGroupName)) {
-                    groupNameExists = true;
-                    continue;
-                }
-                if (labGroups.isEmpty()) {
-                    break;
-                }
-                for (Group labGroup : labGroups) {
-                    if (labGroup.getGroupName().equals(labGroupName)) {
-                        groupNameExists = true;
-                        System.out.println("This lab group already exist for this course.");
-                        break;
-                    }
-                }
-            } while (groupNameExists);
-
-            while (true) {
-                System.out.println("Enter this lab group's capacity: ");
-                int labGroupCapacity = scanner.nextInt();
-                scanner.nextLine();
-                totalLabSeats += labGroupCapacity;
-                if ((i != noOfLabGroups - 1) || (totalLabSeats >= totalSeats)) {
-                    Group labGroup = new Group(labGroupName, labGroupCapacity, labGroupCapacity, GroupType.LAB_GROUP);
-                    labGroups.add(labGroup);
-                    break;
-                } else {
-                    System.out.println("Sorry, the total capacity you allocated for all the lab groups is not enough for this course.");
-                    System.out.println("Please re-enter the capacity for the last lab group " + labGroupName + " you have entered.");
-                    totalLabSeats -= labGroupCapacity;
-                }
-            }
-        }
-
-        return labGroups;
-    }
-
-
-    /**
-     * Read in a professor from the user for a particular course department
-     *
-     * @param courseDepartment the course department that the professor should be in
-     * @return Professor the professor the user has specified
-     */
-    public Professor readProfessor(Department courseDepartment) {
-        List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
-        String profID;
-        Professor profInCharge;
-
-
-        while (true) {
-            System.out.println("Enter the ID for the professor in charge please:");
-            System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
-            profID = scanner.nextLine();
-            while ("-h".equals(profID)) {
-                ProfessorMgrIO.printAllProfIDsInDepartment(professorsInDepartment);
-                profID = scanner.nextLine();
-            }
-
-            profInCharge = ProfessorValidator.checkProfExists(profID);
-            if (profInCharge != null) {
-                if (professorsInDepartment.contains(profID)) {
-                    break;
-                } else {
-                    System.out.println("This prof is not in " + courseDepartment + ".");
-                    System.out.println("Thus he/she cannot teach this course.");
-                }
-            } else {
-                System.out.println("Invalid input. Please re-enter.");
-            }
-        }
-
-        return profInCharge;
-    }
 
     /**
      * Reads in the user's choice for creating components now
@@ -987,7 +724,7 @@ public class CourseMgrIO {
      *
      * @return the inputted department.
      */
-    public String readDepartmentFromUser() {
+    public String readDepartmentWithMoreThanOneCourseFromUser() {
         String courseDepartment;
         while (true) {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
@@ -1009,6 +746,335 @@ public class CourseMgrIO {
             }
         }
         return courseDepartment;
+    }
+
+
+    /**
+     * Read in a course department for a course from the user
+     *
+     * @return String courseDepartment for a course
+     */
+    public String readAnyCourseDepartment() {
+        String courseDepartment;
+        while (true) {
+            System.out.println("Enter course's department (uppercase): ");
+            System.out.println("Enter -h to print all the departments.");
+            courseDepartment = scanner.nextLine();
+            while ("-h".equals(courseDepartment)) {
+                Department.printAllDepartment();
+                courseDepartment = scanner.nextLine();
+            }
+            if (Department.contains(courseDepartment)) {
+                break;
+            } else {
+                System.out.println("The department is invalid. Please re-enter.");
+            }
+        }
+
+        return courseDepartment;
+    }
+
+    /**
+     * Read in a course type from the user
+     *
+     * @return String courseType for a course
+     */
+    public String readCourseType() {
+        String courseType;
+        while (true) {
+            System.out.println("Enter course type (uppercase): ");
+            System.out.println("Enter -h to print all the course types.");
+            courseType = scanner.nextLine();
+            while (courseType.equals("-h")) {
+                CourseType.printAllCourseType();
+                courseType = scanner.nextLine();
+            }
+            if (CourseValidator.checkCourseTypeValidation(courseType)) {
+                break;
+            }
+        }
+        return courseType;
+    }
+
+    /**
+     * Reads in and constructs lecture groups for a course from the user
+     *
+     * @param totalSeats        the total number of seats for the course
+     * @param noOfLectureGroups the number of lecture groups for a course
+     * @return the lecture groups the user has specified
+     */
+    public HashMap<String, Double> readLectureGroups(int totalSeats, int noOfLectureGroups) {
+        String lectureGroupName;
+        int lectureGroupCapacity;
+        int seatsLeft = totalSeats;
+        boolean groupNameExists;
+
+        HashMap<String, Double> lectureGroups = new HashMap<>();
+
+        for (int i = 0; i < noOfLectureGroups; i++) {
+            System.out.println("Give a name to the lecture group");
+            do {
+                groupNameExists = false;
+                System.out.println("Enter a group Name: ");
+                lectureGroupName = scanner.nextLine();
+                if (!GroupValidator.checkValidGroupNameInput(lectureGroupName)) {
+                    groupNameExists = true;
+                    continue;
+                }
+                if (lectureGroups.isEmpty()) {
+                    break;
+                }
+                if(lectureGroups.containsKey(lectureGroupName)){
+                    groupNameExists = true;
+                    System.out.println("This lecture group already exist for this course.");
+                }
+
+            } while (groupNameExists);
+
+
+            while (true) {
+                System.out.println("Enter this lecture group's capacity: ");
+                while (true) {
+                    if (scanner.hasNextInt()) {
+                        lectureGroupCapacity = scanner.nextInt();
+                        scanner.nextLine();
+                        if (lectureGroupCapacity > 0) {
+                            break;
+                        }
+                        System.out.println("Capacity must be positive. Please re-enter.");
+                    } else {
+                        System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+                    }
+                }
+                seatsLeft -= lectureGroupCapacity;
+                if ((seatsLeft > 0 && i != (noOfLectureGroups - 1)) || (seatsLeft == 0 && i == noOfLectureGroups - 1)) {
+                    lectureGroups.put(lectureGroupName, (double)lectureGroupCapacity);
+                    break;  //break from the while loop
+                } else {
+                    System.out.println("Sorry, the total capacity you allocated for all the lecture groups exceeds or does not add up to the total seats for this course.");
+                    System.out.println("Please re-enter the capacity for the last lecture group " + lectureGroupName + " you have entered.");
+                    seatsLeft += lectureGroupCapacity;
+                }
+            }
+        }
+
+        return lectureGroups;
+    }
+
+
+    /**
+     * Reads in and constructs tutorial groups for a course from the user
+     *
+     * @param totalSeats         the total number of seats for the course
+     * @param noOfTutorialGroups the number of tutorial groups for a course
+     * @return the tutorial groups the user has specified
+     */
+    public HashMap<String, Double> readTutorialGroups(int noOfTutorialGroups, int totalSeats) {
+        HashMap<String, Double> tutorialGroups = new HashMap<>();
+        String tutorialGroupName;
+        int tutorialGroupCapacity;
+        boolean groupNameExists;
+        int totalTutorialSeats = 0;
+
+        for (int i = 0; i < noOfTutorialGroups; i++) {
+            System.out.println("Give a name to the tutorial group");
+            do {
+                groupNameExists = false;
+                System.out.println("Enter a group Name: ");
+                tutorialGroupName = scanner.nextLine();
+                if (!GroupValidator.checkValidGroupNameInput(tutorialGroupName)) {
+                    groupNameExists = true;
+                    continue;
+                }
+                if (tutorialGroups.isEmpty()) {
+                    break;
+                }
+                if(tutorialGroups.containsKey(tutorialGroupName)){
+                    groupNameExists = true;
+                    System.out.println("This tutorial group already exist for this course.");
+                }
+            } while (groupNameExists);
+
+            while (true) {
+                System.out.println("Enter this tutorial group's capacity: ");
+                if (scanner.hasNextInt()) {
+                    tutorialGroupCapacity = scanner.nextInt();
+                    scanner.nextLine();
+                    totalTutorialSeats += tutorialGroupCapacity;
+                    if ((i != noOfTutorialGroups - 1) || (totalTutorialSeats >= totalSeats)) {
+                        tutorialGroups.put(tutorialGroupName, (double)tutorialGroupCapacity);
+                        break;
+                    } else {
+                        System.out.println("Sorry, the total capacity you allocated for all the tutorial groups is not enough for this course.");
+                        System.out.println("Please re-enter the capacity for the last tutorial group " + tutorialGroupName + " you have entered.");
+                        totalTutorialSeats -= tutorialGroupCapacity;
+                    }
+                } else {
+                    System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+                }
+            }
+        }
+
+        return tutorialGroups;
+    }
+
+    /**
+     * Reads in and constructs lab groups for a course from the user
+     *
+     * @param totalSeats    the total number of seats for the course
+     * @param noOfLabGroups the number of lab groups for a course
+     * @return the lab groups the user has specified
+     */
+    public HashMap<String, Double> readLabGroups(int noOfLabGroups, int totalSeats) {
+        HashMap<String, Double> labGroups = new HashMap<>();
+        int totalLabSeats = 0;
+        String labGroupName;
+        boolean groupNameExists;
+        for (int i = 0; i < noOfLabGroups; i++) {
+            System.out.println("Give a name to this lab group");
+            do {
+                groupNameExists = false;
+                System.out.println("Enter a group Name: ");
+                labGroupName = scanner.nextLine();
+                if (!GroupValidator.checkValidGroupNameInput(labGroupName)) {
+                    groupNameExists = true;
+                    continue;
+                }
+                if (labGroups.isEmpty()) {
+                    break;
+                }
+                if(labGroups.containsKey(labGroupName)){
+                    groupNameExists = true;
+                    System.out.println("This lab group already exist for this course.");
+                }
+            } while (groupNameExists);
+
+            while (true) {
+                System.out.println("Enter this lab group's capacity: ");
+                int labGroupCapacity = scanner.nextInt();
+                scanner.nextLine();
+                totalLabSeats += labGroupCapacity;
+                if ((i != noOfLabGroups - 1) || (totalLabSeats >= totalSeats)) {
+                    labGroups.put(labGroupName, (double)labGroupCapacity);
+                    break;
+                } else {
+                    System.out.println("Sorry, the total capacity you allocated for all the lab groups is not enough for this course.");
+                    System.out.println("Please re-enter the capacity for the last lab group " + labGroupName + " you have entered.");
+                    totalLabSeats -= labGroupCapacity;
+                }
+            }
+        }
+
+        return labGroups;
+    }
+
+    /**
+     * Read in a professor from the user for a particular course department
+     *
+     * @param courseDepartment the course department that the professor should be in
+     * @return Professor the professor the user has specified
+     */
+    public String readProfessor(String courseDepartment) {
+        List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(Department.valueOf(courseDepartment));
+        String profID;
+
+        while (true) {
+            System.out.println("Enter the ID for the professor in charge please:");
+            System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
+            profID = scanner.nextLine();
+            while ("-h".equals(profID)) {
+                ProfessorMgrIO.printAllProfIDsInDepartment(professorsInDepartment);
+                profID = scanner.nextLine();
+            }
+
+
+            if (ProfessorValidator.checkProfessorExists(profID)) {
+                if (professorsInDepartment.contains(profID)) {
+                    break;
+                } else {
+                    System.out.println("This prof is not in " + courseDepartment + ".");
+                    System.out.println("Thus he/she cannot teach this course.");
+                }
+            } else {
+                System.out.println("Invalid input. Please re-enter.");
+            }
+        }
+
+        return profID;
+
+    }
+
+
+
+
+    public void addCourse(){
+
+        ICourseBuilder builder = new CourseBuilder();
+
+        String courseID = this.readCourseId();
+        String courseName = this.readCourseName();
+
+        int totalSeats = this.readTotalSeats();
+        int AU = this.readAU();
+
+        String courseDepartment = this.readAnyCourseDepartment();
+
+        String courseType = this.readCourseType();
+
+        int noOfLectureGroups = this.readNoOfGroup(GroupType.LECTURE_GROUP, totalSeats, totalSeats);
+        int lecWeeklyHour = this.readWeeklyHour(GroupType.LECTURE_GROUP, AU);
+
+        //Name, total seats
+        HashMap<String, Double> lectureGroups = this.readLectureGroups(totalSeats, noOfLectureGroups);
+
+
+        int noOfTutorialGroups = this.readNoOfGroup(GroupType.TUTORIAL_GROUP, noOfLectureGroups, totalSeats);
+        int tutWeeklyHour = 0;
+        if (noOfTutorialGroups != 0) {
+            tutWeeklyHour = this.readWeeklyHour(GroupType.TUTORIAL_GROUP, AU);
+        }
+        HashMap<String, Double> tutorialGroups = this.readTutorialGroups(noOfTutorialGroups, totalSeats);
+
+        int noOfLabGroups = this.readNoOfGroup(GroupType.LAB_GROUP, noOfLectureGroups, totalSeats);
+        int labWeeklyHour = 0;
+        if (noOfLabGroups != 0) {
+            labWeeklyHour = this.readWeeklyHour(GroupType.LAB_GROUP, AU);
+        }
+        HashMap<String, Double> labGroups = this.readLabGroups(noOfLabGroups, totalSeats);
+
+        String profID = this.readProfessor(courseDepartment);
+
+        //Setting the objects in the builder
+        builder.setCourseID(courseID);
+
+        builder.setCourseName(courseName);
+
+        builder.setTotalSeats(totalSeats);
+
+        builder.setAU(AU);
+
+        builder.setCourseDepartment(courseDepartment);
+
+        builder.setCourseType(courseType);
+
+        // Lecture groups
+        builder.setLecWeeklyHour(lecWeeklyHour);
+        builder.setLectureGroups(lectureGroups);
+
+        // Tutorial groups
+        builder.setTutWeeklyHour(tutWeeklyHour);
+        builder.setTutorialGroups(tutorialGroups);
+
+        // Lab groups
+        builder.setLabWeeklyHour(labWeeklyHour);
+        builder.setLabGroups(labGroups);
+
+
+        //Professor
+        builder.setProfInCharge(profID);
+        CourseMgr.getInstance().addCourse(builder);
+
+
     }
 
 }

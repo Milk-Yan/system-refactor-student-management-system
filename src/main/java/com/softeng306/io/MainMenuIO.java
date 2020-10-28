@@ -70,6 +70,8 @@ public class MainMenuIO {
                 studentMgr.addStudent();
                 break;
             case 2:
+
+                //MINE
                 courseMgr.addCourse();
                 break;
             case 3:
