@@ -97,7 +97,7 @@ public class StudentMgr {
         double studentGPA = 0d;
         int thisStudentAU = 0;
 
-        List<Mark> thisStudentMark = new ArrayList<>(0);
+        List<Mark> thisStudentMark = new ArrayList<>();
         for (Mark mark : MarkMgr.getInstance().getMarks()) {
             if (mark.getStudent().getStudentID().equals(studentID)) {
                 thisStudentMark.add(mark);

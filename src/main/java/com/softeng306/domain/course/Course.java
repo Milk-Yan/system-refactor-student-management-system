@@ -34,10 +34,10 @@ public class Course {
     private int labWeeklyHour = 0;
 
     private List<Group> lectureGroups;
-    private List<Group> tutorialGroups = new ArrayList<>(0);
-    private List<Group> labGroups = new ArrayList<>(0);
+    private List<Group> tutorialGroups = new ArrayList<>();
+    private List<Group> labGroups = new ArrayList<>();
 
-    private List<MainComponent> mainComponents = new ArrayList<>(0);
+    private List<MainComponent> mainComponents = new ArrayList<>();
 
     /**
      * Default constructor. Required for Jackson serialization.
