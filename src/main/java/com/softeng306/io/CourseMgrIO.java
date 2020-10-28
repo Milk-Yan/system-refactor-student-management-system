@@ -643,10 +643,11 @@ public class CourseMgrIO {
      * @param exam        the exam to print statistics on
      * @param courseMarks needed to calculate average
      */
-    public void printExamStatistics(MainComponent exam, List<Mark> courseMarks) {
+    asdhvjsbfkn.
+    public void printExamStatistics(int examWeight, Double examMark) {
         System.out.print("Final Exam");
-        System.out.print("\tWeight: " + exam.getComponentWeight() + "%");
-        System.out.println("\t Average: " + markCalculator.computeExamMark(courseMarks));
+        System.out.print("\tWeight: " + examWeight + "%");
+        System.out.println("\t Average: " + examMark);
     }
 
     /**
@@ -659,12 +660,12 @@ public class CourseMgrIO {
     /**
      * Print overall performance based on course marks
      *
-     * @param courseMarks the coursemarks to calculate statistics for
+     * @param overallMark for the course
      */
-    public void printOverallPerformance(List<Mark> courseMarks) {
+    public void printOverallPerformance(double overallMark) {
         System.out.println();
         System.out.print("Overall Performance: ");
-        System.out.printf("%4.2f \n", markCalculator.computerOverallMark(courseMarks));
+        System.out.printf("%4.2f \n", overallMark);
 
         System.out.println();
         System.out.println("***********************************************");

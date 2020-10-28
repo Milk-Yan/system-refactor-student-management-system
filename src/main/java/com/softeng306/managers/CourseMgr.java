@@ -1,6 +1,7 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.enums.Department;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
@@ -24,6 +25,8 @@ public class CourseMgr {
     private static CourseMgr singleInstance = null;
 
     private CourseMgrIO courseMgrIO = new CourseMgrIO();
+
+    private MarkCalculator markCalculator = new MarkCalculator();
 
     /**
      * Override default constructor to implement singleton pattern
@@ -240,12 +243,13 @@ public class CourseMgr {
         }
 
         if (exam != null) {
-            courseMgrIO.printExamStatistics(exam, courseMarks);
+            courseMgrIO.printExamStatistics(exam.getComponentWeight(), markCalculator.computeExamMark(courseMarks));
         } else {
             courseMgrIO.printNoExamMessage();
         }
-        courseMgrIO.printOverallPerformance(courseMarks);
+        courseMgrIO.printOverallPerformance(markCalculator.computerOverallMark(courseMarks));
     }
+
 
     /**
      * Prompts the user to input an existing course.
