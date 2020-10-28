@@ -75,19 +75,19 @@ public class CourseRegistrationMgr {
 
         CourseRegistrationManagerIO.printPendingRegistrationMethod(currentCourse, currentStudent);
 
-        List<Group> lecGroups = new ArrayList<>(0);
+        List<Group> lecGroups = new ArrayList<>();
         lecGroups.addAll(currentCourse.getLectureGroups());
 
         GroupMgr groupMgr = GroupMgr.getInstance();
 
         Group selectedLectureGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LECTURE_GROUP, lecGroups);
 
-        List<Group> tutGroups = new ArrayList<>(0);
+        List<Group> tutGroups = new ArrayList<>();
         tutGroups.addAll(currentCourse.getTutorialGroups());
 
         Group selectedTutorialGroup = groupMgr.printGroupWithVacancyInfo(GroupType.TUTORIAL_GROUP, tutGroups);
 
-        List<Group> labGroups = new ArrayList<>(0);
+        List<Group> labGroups = new ArrayList<>();
         labGroups.addAll(currentCourse.getLabGroups());
 
         Group selectedLabGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LAB_GROUP, labGroups);
@@ -116,7 +116,7 @@ public class CourseRegistrationMgr {
         // return List of Object(student,course,lecture,tut,lab)
         List<CourseRegistration> allCourseRegistrations = FILEMgr.loadCourseRegistration();
 
-        List<CourseRegistration> courseRegistrationList = new ArrayList<>(0);
+        List<CourseRegistration> courseRegistrationList = new ArrayList<>();
         for (CourseRegistration courseRegistration : allCourseRegistrations) {
             if (courseRegistration.getCourse().getCourseID().equals(currentCourse.getCourseID())) {
                 courseRegistrationList.add(courseRegistration);
