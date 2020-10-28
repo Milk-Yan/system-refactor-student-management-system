@@ -1,9 +1,7 @@
 package com.softeng306.io;
 
 import com.softeng306.managers.CourseMgr;
-import com.softeng306.managers.CourseRegistrationMgr;
 import com.softeng306.managers.MarkMgr;
-import com.softeng306.managers.StudentMgr;
 
 import java.util.Scanner;
 
@@ -11,7 +9,7 @@ public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
     private static CourseMgr courseMgr;
     private static MarkMgr markMgr;
-    private static CourseRegistrationMgrIO courseRegistrationMgrIO;
+    private static CourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
     private static StudentMgrIO studentMgrIO = new StudentMgrIO();
 
     /**
@@ -24,7 +22,6 @@ public class MainMenuIO {
 
         courseMgr = CourseMgr.getInstance();
         markMgr = MarkMgr.getInstance();
-        courseRegistrationMgrIO = new CourseRegistrationMgrIO();
 
         while (choice != 11) {
             printOptions();
