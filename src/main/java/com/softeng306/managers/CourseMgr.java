@@ -234,7 +234,7 @@ public class CourseMgr {
 //                Leave the exam report to the last
                 exam = mainComponent;
             } else {
-                courseMgrIO.printMainComponent(mainComponent, courseMarks);
+                courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     HashMap<String, Integer> subComponentInformation = this.generateSubComponentInformation(subComponents);

@@ -602,15 +602,12 @@ public class CourseMgrIO {
     /**
      * Print a main component to the user
      *
-     * @param mainComponent the main component to print
-     * @param courseMarks   needed to calculate the average mark
      */
-    public void printMainComponent(MainComponent mainComponent, List<Mark> courseMarks) {
-        System.out.print("Main Component: " + mainComponent.getComponentName());
-        System.out.print("\tWeight: " + mainComponent.getComponentWeight() + "%");
+    public void printMainComponent(String mainComponentName, int mainComponentWeight, double averageCourseMark) {
+        System.out.print("Main Component: " + mainComponentName);
+        System.out.print("\tWeight: " + mainComponentWeight + "%");
 
-        MarkCalculator markCalculator = new MarkCalculator();
-        System.out.println("\t Average: " + markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
+        System.out.println("\t Average: " + averageCourseMark);
     }
 
     /**
