@@ -7,13 +7,13 @@ import java.io.*;
 import java.nio.file.Paths;
 import java.util.List;
 
-public abstract class FileProcessor implements IFileProcessor {
+public abstract class FileProcessor<T> implements IFileProcessor<T> {
 
     /**
      * {@inheritDoc} Writes into a JSON file.
      */
     @Override
-    public void writeToFile(String filePath, List<?> collectionToWrite) throws IOException {
+    public void writeToFile(String filePath, List<T> collectionToWrite) throws IOException {
         // The serialization feature allows the json to be formatted such that it is easier for
         // a human to decipher.
         ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
@@ -34,6 +34,8 @@ public abstract class FileProcessor implements IFileProcessor {
     }
 
     @Override
-    public abstract List<?> loadFile();
+    public abstract List<T> loadFile();
 
+    @Override
+    public abstract void writeNewEntryToFile(T entry);
 }

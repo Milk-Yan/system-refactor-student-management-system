@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Handles the processing of loading and writing to files.
  */
-public interface IFileProcessor {
+public interface IFileProcessor<T> {
 
     /**
      * Write information from a list into a file.
@@ -14,7 +14,7 @@ public interface IFileProcessor {
      * @param collectionToWrite the information to write
      * @throws IOException      if the write could not occur
      */
-    void writeToFile(String filePath, List<?> collectionToWrite) throws IOException;
+    void writeToFile(String filePath, List<T> collectionToWrite) throws IOException;
 
     /**
      * Clears the contents of a file.
@@ -27,4 +27,10 @@ public interface IFileProcessor {
      * @return  the list that is loaded
      */
     List<?> loadFile();
+
+    /**
+     * Writes a new object to a file.
+     * @param entry The new object to write.
+     */
+    void writeNewEntryToFile(T entry);
 }

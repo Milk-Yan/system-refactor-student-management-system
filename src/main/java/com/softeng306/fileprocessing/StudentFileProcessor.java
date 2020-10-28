@@ -12,26 +12,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StudentFileProcessor extends FileProcessor {
+public class StudentFileProcessor extends FileProcessor<Student> {
 
     private static final String STUDENT_FILE_PATH = "data/studentFile.json";
-
-    /**
-     * Write a new student information into the file.
-     *
-     * @param student a student to be added into the file
-     */
-    public void writeStudentsIntoFile(Student student) {
-        try {
-            List<Student> students = loadStudents();
-            students.add(student);
-
-            writeToFile(STUDENT_FILE_PATH, students);
-        } catch (IOException e) {
-            System.out.println("Error in adding a student to the file.");
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Set the recent student ID, let the newly added student have the ID onwards.
@@ -48,7 +31,7 @@ public class StudentFileProcessor extends FileProcessor {
     }
 
     /**
-     * {@inheritDoc} Loads a list of all the students from {@value STUDENT_FILE_PATH}.
+     * Loads a list of all the students from {@value STUDENT_FILE_PATH}.
      * @return A list of all the students that is loaded from the file.
      */
     @Override
@@ -66,5 +49,22 @@ public class StudentFileProcessor extends FileProcessor {
         }
 
         return allStudents;
+    }
+
+    /**
+     * Writes a new student into {@value STUDENT_FILE_PATH}.
+     * @param student the new professor to write to the file
+     */
+    @Override
+    public void writeNewEntryToFile(Student student) {
+        try {
+            List<Student> students = loadStudents();
+            students.add(student);
+
+            writeToFile(STUDENT_FILE_PATH, students);
+        } catch (IOException e) {
+            System.out.println("Error in adding a student to the file.");
+            e.printStackTrace();
+        }
     }
 }

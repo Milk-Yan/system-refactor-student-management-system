@@ -1,6 +1,7 @@
 package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
 
 import java.io.File;
@@ -10,12 +11,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProfessorFileProcessor extends FileProcessor {
+public class ProfessorFileProcessor extends FileProcessor<Professor> {
 
     private static final String PROFESSOR_FILE_PATH = "data/professorFile.json";
 
     /**
-     * {@inheritDoc} Loads a list of all the professors from {@value PROFESSOR_FILE_PATH}.
+     * Loads a list of all the professors from {@value PROFESSOR_FILE_PATH}.
      * @return A list of all the professors that is loaded from the file.
      */
     @Override
@@ -32,5 +33,22 @@ public class ProfessorFileProcessor extends FileProcessor {
         }
 
         return allProfessors;
+    }
+
+    /**
+     * Writes a new professor into {@value PROFESSOR_FILE_PATH}.
+     * @param professor the new professor to write to the file
+     */
+    @Override
+    public void writeNewEntryToFile(Professor professor) {
+        try {
+            List<Professor> professors = loadFile();
+            professors.add(professor);
+
+            writeToFile(PROFESSOR_FILE_PATH, professors);
+        } catch (IOException e) {
+            System.out.println("Error in adding a professor to the file.");
+            e.printStackTrace();
+        }
     }
 }

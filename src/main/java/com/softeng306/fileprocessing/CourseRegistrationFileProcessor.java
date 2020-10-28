@@ -10,29 +10,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CourseRegistrationFileProcessor extends FileProcessor {
+public class CourseRegistrationFileProcessor extends FileProcessor<CourseRegistration> {
 
     private static final String COURSE_REGISTRATION_FILE_PATH = "data/courseRegistrationFile.json";
 
     /**
-     * Writes a new course registration record into the file.
-     *
-     * @param courseRegistration courseRegistration to be added into file
-     */
-    public void writeCourseRegistrationIntoFile(CourseRegistration courseRegistration) {
-        try {
-            List<CourseRegistration> courseRegistrations = loadCourseRegistration();
-            courseRegistrations.add(courseRegistration);
-
-            writeToFile(COURSE_REGISTRATION_FILE_PATH, courseRegistrations);
-        } catch (IOException e) {
-            System.out.println("Error in adding a course registration to the file.");
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * {@inheritDoc} Loads a list of all the course registrations from {@value COURSE_REGISTRATION_FILE_PATH}.
+     * Loads a list of all the course registrations from {@value COURSE_REGISTRATION_FILE_PATH}.
      * @return A list of all the course registrations that is loaded from the file.
      */
     @Override
@@ -49,5 +32,22 @@ public class CourseRegistrationFileProcessor extends FileProcessor {
         }
 
         return allCourseRegistrations;
+    }
+
+    /**
+     * Writes a new course registration into {@value COURSE_REGISTRATION_FILE_PATH}.
+     * @param courseRegistration the new course registration to write to the file
+     */
+    @Override
+    public void writeNewEntryToFile(CourseRegistration courseRegistration) {
+        try {
+            List<CourseRegistration> courseRegistrations = loadCourseRegistration();
+            courseRegistrations.add(courseRegistration);
+
+            writeToFile(COURSE_REGISTRATION_FILE_PATH, courseRegistrations);
+        } catch (IOException e) {
+            System.out.println("Error in adding a course registration to the file.");
+            e.printStackTrace();
+        }
     }
 }

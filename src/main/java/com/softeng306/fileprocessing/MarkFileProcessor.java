@@ -10,26 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MarkFileProcessor extends FileProcessor {
+public class MarkFileProcessor extends FileProcessor<Mark> {
 
     private static final String MARK_FILE_PATH = "data/markFile.json";
-
-    /**
-     * Writes a new student mark record into the file.
-     *
-     * @param mark mark to be updated into the file
-     */
-    public void updateStudentMarks(Mark mark) {
-        try {
-            List<Mark> marks = loadStudentMarks();
-            marks.add(mark);
-
-            writeToFile(MARK_FILE_PATH, marks);
-        } catch (IOException e) {
-            System.out.println("Error in adding a mark to the file.");
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Backs up all the changes of student mark records made into the file.
@@ -47,7 +30,7 @@ public class MarkFileProcessor extends FileProcessor {
     }
 
     /**
-     * {@inheritDoc} Loads a list of all the marks from {@value MARK_FILE_PATH}.
+     * Loads a list of all the marks from {@value MARK_FILE_PATH}.
      * @return A list of all the marks that is loaded from the file.
      */
     @Override
@@ -64,5 +47,22 @@ public class MarkFileProcessor extends FileProcessor {
         }
 
         return allStudentMarks;
+    }
+
+    /**
+     * Writes a new mark into {@value MARK_FILE_PATH}.
+     * @param mark the new mark to write to the file
+     */
+    @Override
+    public void writeNewEntryToFile(Mark mark) {
+        try {
+            List<Mark> marks = loadStudentMarks();
+            marks.add(mark);
+
+            writeToFile(MARK_FILE_PATH, marks);
+        } catch (IOException e) {
+            System.out.println("Error in adding a mark to the file.");
+            e.printStackTrace();
+        }
     }
 }

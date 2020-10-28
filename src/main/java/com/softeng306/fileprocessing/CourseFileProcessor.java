@@ -10,26 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CourseFileProcessor extends FileProcessor {
+public class CourseFileProcessor extends FileProcessor<Course> {
 
     private static final String COURSE_FILE_PATH = "data/courseFile.json";
-
-    /**
-     * Write a new course information into the file.
-     *
-     * @param course a course to be added into file
-     */
-    public void writeCourseIntoFile(Course course) {
-        try {
-            List<Course> courses = loadCourses();
-            courses.add(course);
-
-            writeToFile(COURSE_FILE_PATH, courses);
-        } catch (IOException e) {
-            System.out.println("Error in adding a course to the file.");
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Backs up all the changes of courses made into the file.
@@ -48,7 +31,7 @@ public class CourseFileProcessor extends FileProcessor {
     }
 
     /**
-     * {@inheritDoc} Loads a list of all the courses from {@value COURSE_FILE_PATH}.
+     * Loads a list of all the courses from {@value COURSE_FILE_PATH}.
      * @return A list of all the courses that is loaded from the file.
      */
     @Override
@@ -65,5 +48,22 @@ public class CourseFileProcessor extends FileProcessor {
         }
 
         return allCourses;
+    }
+
+    /**
+     * Writes a new course into {@value COURSE_FILE_PATH}.
+     * @param course the new course to write to the file
+     */
+    @Override
+    public void writeNewEntryToFile(Course course) {
+        try {
+            List<Course> courses = loadCourses();
+            courses.add(course);
+
+            writeToFile(COURSE_FILE_PATH, courses);
+        } catch (IOException e) {
+            System.out.println("Error in adding a course to the file.");
+            e.printStackTrace();
+        }
     }
 }
