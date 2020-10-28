@@ -14,6 +14,7 @@ import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class CourseMgr {
@@ -260,7 +261,7 @@ public class CourseMgr {
      */
     public Course readCourseFromUser() {
         String validCourseID = courseMgrIO.readValidCourseIdFromUser();
-        return
+        return getCourseFromId(validCourseID);
     }
 
     /**
@@ -329,6 +330,21 @@ public class CourseMgr {
             courseIDs.add(course.getCourseID());
         }
         return courseIDs;
+    }
+
+
+    /**
+     * Checks whether this course ID is used by other courses.
+     *
+     * @param courseID The inputted course ID.
+     * @return the existing course or else null.
+     */
+    public static Course getCourseFromId(String courseID) {
+        List<Course> anyCourse = CourseMgr.getInstance().getCourses().stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
+        if (anyCourse.isEmpty()) {
+            return null;
+        }
+        return anyCourse.get(0);
     }
 
 

@@ -667,7 +667,6 @@ public class CourseMgrIO {
      *
      * @return the inputted course.
      */
-    uyguhdjlk;dsjlkvdisnlkvbidsjnlk
     public String readValidCourseIdFromUser() {
         String courseID;
         while (true) {
