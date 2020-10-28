@@ -135,6 +135,7 @@ public class MarkMgr {
                     mark.setMainCourseWorkMarks("Exam", examMark);
                 }
 
+                markFileProcessor.updateFileContents(marks);
                 return;
             }
         }
