@@ -730,9 +730,9 @@ public class CourseMgrIO {
      */
     public void printComponentsForCourse(Course course) {
         System.out.println(course.getCourseID() + " " + course.getCourseName() + " components: ");
-        for (MainComponent each_comp : course.getMainComponents()) {
-            System.out.println("    " + each_comp.getComponentName() + " : " + each_comp.getComponentWeight() + "%");
-            for (SubComponent each_sub : each_comp.getSubComponents()) {
+        for (MainComponent eachComp : course.getMainComponents()) {
+            System.out.println("    " + eachComp.getComponentName() + " : " + eachComp.getComponentWeight() + "%");
+            for (SubComponent each_sub : eachComp.getSubComponents()) {
                 System.out.println("        " + each_sub.getComponentName() + " : " + each_sub.getComponentWeight() + "%");
             }
         }
