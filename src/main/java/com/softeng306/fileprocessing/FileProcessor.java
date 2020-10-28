@@ -32,13 +32,4 @@ public abstract class FileProcessor<T> implements IFileProcessor<T> {
             // that doesn't exist.
         }
     }
-
-    @Override
-    public abstract List<T> loadFile();
-
-    @Override
-    public abstract void writeNewEntryToFile(T entry);
-
-    @Override
-    public abstract void updateFileContents(List<T> updatedList);
 }
