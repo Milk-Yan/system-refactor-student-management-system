@@ -253,10 +253,10 @@ public class CourseMgrIO {
     public void printVacanciesForGroups(String[][] groupInformation, GroupType type) {
         for (String[] group: groupInformation) {
             if (type == GroupType.TUTORIAL_GROUP) {
-                System.out.format("%s group %s (Available/Total):  %d/%d%n",
+                System.out.format("%s group %s (Available/Total):  %s/%s%n",
                         type.getNameWithCapital(), group[0], group[1], group[2]);
             } else {
-                System.out.format("%s group %s (Available/Total): %d/%d%n",
+                System.out.format("%s group %s (Available/Total): %s/%s%n",
                         type.getNameWithCapital(), group[0], group[1], group[2]);
             }
 
@@ -447,9 +447,7 @@ public class CourseMgrIO {
     /**
      * Prints the components for a course
      *
-     * @param course the course to print the components for
      */
-    redtcryvgbhjnkmws4edrtyun
     public void printComponentsForCourse(String courseId, String courseName, HashMap<HashMap<String, String>, HashMap<String,String>> allGroupInformation) {
         System.out.println(courseId + " " + courseName + " components: ");
         for(HashMap<String, String> mainComponentInfo : allGroupInformation.keySet()){
@@ -457,17 +455,10 @@ public class CourseMgrIO {
             System.out.println("    " + entry.getKey() + " : " + entry.getValue() + "%");
 
             HashMap<String, String> allSubComponentInfo = allGroupInformation.get(mainComponentInfo);
-            for(HashMap<String, String> subComponentInfo : allSubComponentInfo){
-                
+            for(String subComponentInfo : allSubComponentInfo.keySet()){
+                System.out.println("        " + subComponentInfo + " : " + allSubComponentInfo.get(subComponentInfo) + "%");
             }
 
-        }
-
-        for (MainComponent each_comp : course.getMainComponents()) {
-            System.out.println("    " + each_comp.getComponentName() + " : " + each_comp.getComponentWeight() + "%");
-            for (SubComponent each_sub : each_comp.getSubComponents()) {
-                System.out.println("        " + each_sub.getComponentName() + " : " + each_sub.getComponentWeight() + "%");
-            }
         }
     }
 
@@ -626,11 +617,10 @@ public class CourseMgrIO {
      * Print statistics for subcomponents
      *
      */
-    public void printSubcomponents(HashMap<String, Integer> subComponentInformation, HashMap<String, Double> courseMarks) {
-        int i = 0;
-        for (String subComponentName : subComponentInformation.keySet()) {
-            printSubComponentInfo(subComponentName, subComponentInformation.get(subComponentName));
-            System.out.println("\t Average: " + courseMarks.get(subComponentName));
+    public void printSubcomponents(String[][] subComponentInformation, Map<String, Double> courseMarks) {
+        for(int i = 0; i<subComponentInformation.length; i++){
+            printSubComponentInfo(subComponentInformation[i][0], subComponentInformation[i][1]);
+            System.out.println("\t Average: " + courseMarks.get(subComponentInformation[i][0]));
         }
         System.out.println();
     }
@@ -638,7 +628,7 @@ public class CourseMgrIO {
     /**
      * Print the info for a sub component
      */
-    public void printSubComponentInfo(String subComponentName, int subComponentWeight) {
+    public void printSubComponentInfo(String subComponentName, String subComponentWeight) {
         System.out.print("Sub Component: " + subComponentName);
         System.out.print("\tWeight: " + subComponentWeight + "% (in main component)");
     }
@@ -689,7 +679,7 @@ public class CourseMgrIO {
                 CourseMgr.getInstance().printAllCourseIds();
                 courseID = scanner.nextLine();
             }
-            if (CourseValidator.checkCourseIDExists(courseID)) {
+            if (!CourseValidator.checkCourseIDExists(courseID)) {
                 System.out.println("Invalid Course ID. Please re-enter.");
             } else {
                 break;

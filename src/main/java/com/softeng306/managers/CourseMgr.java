@@ -84,7 +84,7 @@ public class CourseMgr {
             Course currentCourse = readCourseFromUser();
             if (currentCourse != null) {
                 courseMgrIO.printCourseInfoString(this.generateCourseInformation(currentCourse));
-                courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LAB_GROUP);
+                courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LECTURE_GROUP);
 
                 if (currentCourse.getTutorialGroups() != null) {
                     System.out.println();
@@ -95,6 +95,7 @@ public class CourseMgr {
                     System.out.println();
                     courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP);
                 }
+                System.out.println();
                 break;
             } else {
                 courseMgrIO.printCourseNotExist();
@@ -178,7 +179,7 @@ public class CourseMgr {
             courseMgrIO.printCourseworkWeightageEnteredError();
         }
 
-        courseMgrIO.printComponentsForCourse(generateComponentInformationForAllCourses(currentCourse));
+        courseMgrIO.printComponentsForCourse(currentCourse.getCourseID(), currentCourse.getCourseName(), generateComponentInformationForACourses(currentCourse));
 
         // Update course into course.csv
     }
@@ -238,7 +239,7 @@ public class CourseMgr {
                 courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
-                    HashMap<String, Integer> subComponentInformation = this.generateSubComponentInformation(subComponents);
+                    String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
                     HashMap<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents,courseMarks);
                     courseMgrIO.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
@@ -297,10 +298,14 @@ public class CourseMgr {
         return groupInfo;
     }
 
-    public HashMap<String, Integer> generateSubComponentInformation(List<SubComponent> subComponents){
-        HashMap<String, Integer> map = new HashMap<>();
+    public String[][] generateSubComponentInformation(List<SubComponent> subComponents){
+        //HashMap<String, Integer> map = new HashMap<>();
+        String[][] map = new String[subComponents.size()][2];
+        int i = 0;
         for(SubComponent subComponent : subComponents){
-            map.put(subComponent.getComponentName(), subComponent.getComponentWeight());
+            map[i][0] = subComponent.getComponentName();
+            map[i][1] = String.valueOf(subComponent.getComponentWeight());
+            i++;
         }
         return map;
     }
@@ -359,7 +364,7 @@ public class CourseMgr {
 
     }
 
-    public HashMap<HashMap<String, String>, HashMap<String,String>> generateComponentInformationForAllCourses(Course course){
+    public HashMap<HashMap<String, String>, HashMap<String,String>> generateComponentInformationForACourses(Course course){
         HashMap<HashMap<String, String>, HashMap<String, String>> map = new HashMap<>();
         for (MainComponent eachComp : course.getMainComponents()) {
             HashMap<String, String> mainComponentInfo = new HashMap<>();
