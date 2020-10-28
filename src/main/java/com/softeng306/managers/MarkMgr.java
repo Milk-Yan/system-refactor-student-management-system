@@ -55,7 +55,7 @@ public class MarkMgr {
      * @param course  the course this mark record about.
      * @return the new added mark.
      */
-    public Mark initializeMark(Student student, Course course) {
+    public Mark initialiseMark(Student student, Course course) {
         List<MainComponentMark> courseWorkMarks = new ArrayList<>();
         double totalMark = 0d;
         List<MainComponent> mainComponents = course.getMainComponents();
@@ -78,7 +78,7 @@ public class MarkMgr {
      *
      * @param isExam whether this coursework component refers to "Exam"
      */
-    public void setCourseWorkMark(boolean isExam) {
+    public void setCourseworkMark(boolean isExam) {
         MarkMgrIO.printFunctionCall("enterCourseWorkMark");
 
         String studentID = StudentMgr.getInstance().readStudentFromUser().getStudentID();

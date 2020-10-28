@@ -84,10 +84,10 @@ public class MainMenuIO {
                 courseMgr.enterCourseWorkComponentWeightage(null);
                 break;
             case 7:
-                markMgr.setCourseWorkMark(false);
+                markMgr.setCourseworkMark(false);
                 break;
             case 8:
-                markMgr.setCourseWorkMark(true);
+                markMgr.setCourseworkMark(true);
                 break;
             case 9:
                 courseMgr.printCourseStatistics();

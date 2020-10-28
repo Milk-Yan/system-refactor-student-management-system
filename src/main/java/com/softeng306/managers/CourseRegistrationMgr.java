@@ -98,7 +98,7 @@ public class CourseRegistrationMgr {
 
         courseRegistrations.add(courseRegistration);
 
-        MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initializeMark(currentStudent, currentCourse));
+        MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initialiseMark(currentStudent, currentCourse));
 
         CourseRegistrationManagerIO.printSuccessfulRegistration(currentCourse, currentStudent, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
     }

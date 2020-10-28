@@ -113,7 +113,7 @@ public class Mark {
      * @param courseWorkName The name of this sub course work.
      * @param result         The mark obtained in this sub course work.
      */
-    public void setSubCourseWorkMarks(String courseWorkName, double result) {
+    public void setSubComponentMark(String courseWorkName, double result) {
         for (MainComponentMark mainComponentMark : mainComponentMarks) {
             SubComponentMark subComponentMark = mainComponentMark.getSubComponentMark(courseWorkName);
             if (subComponentMark != null) {
