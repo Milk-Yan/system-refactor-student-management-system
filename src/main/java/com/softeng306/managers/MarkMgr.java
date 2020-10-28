@@ -119,7 +119,7 @@ public class MarkMgr {
                     double assessmentMark = MarkMgrIO.readCourseComponentMark();
                     if (isMainAss.get(choice - 1)) {
                         // This is a stand alone main assessment
-                        mark.setMainCourseWorkMarks(availableChoices.get(choice - 1), assessmentMark);
+                        mark.setMainComponentMark(availableChoices.get(choice - 1), assessmentMark);
                     } else {
                         mark.setSubCourseWorkMarks(availableChoices.get(choice - 1).split("-")[1], assessmentMark);
                     }
@@ -127,7 +127,7 @@ public class MarkMgr {
                 } else {
                     // The user want to enter exam mark.
                     double examMark = MarkMgrIO.readExamMark();
-                    mark.setMainCourseWorkMarks("Exam", examMark);
+                    mark.setMainComponentMark("Exam", examMark);
                 }
 
                 return;
@@ -136,7 +136,11 @@ public class MarkMgr {
 
         MarkMgrIO.printStudentNotRegisteredToCourse(courseID);
     }
-    
+
+    private void setExamMark() {
+
+    }
+
     /**
      * Return the list of all marks in the system.
      *

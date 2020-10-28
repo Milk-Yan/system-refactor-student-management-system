@@ -84,7 +84,7 @@ public class Mark {
      * @param courseWorkName The name of this main course work.
      * @param result         The mark obtained in this main course work.
      */
-    public void setMainCourseWorkMarks(String courseWorkName, double result) {
+    public void setMainComponentMark(String courseWorkName, double result) {
         for (MainComponentMark mainComponentMark : mainComponentMarks) {
             if (mainComponentMark.getMainComponent().getComponentName().equals(courseWorkName)) {
                 if (mainComponentMark.hasSubComponents()) {
