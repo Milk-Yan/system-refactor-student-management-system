@@ -11,8 +11,8 @@ public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
     private static CourseMgr courseMgr;
     private static MarkMgr markMgr;
+    private static CourseRegistrationMgrIO courseRegistrationMgrIO;
     private static StudentMgrIO studentMgrIO = new StudentMgrIO();
-    private static CourseRegistrationMgr courseRegistrationMgr;
 
     /**
      * Startup the main menu for the application
@@ -24,7 +24,7 @@ public class MainMenuIO {
 
         courseMgr = CourseMgr.getInstance();
         markMgr = MarkMgr.getInstance();
-        courseRegistrationMgr = CourseRegistrationMgr.getInstance();
+        courseRegistrationMgrIO = new CourseRegistrationMgrIO();
 
         while (choice != 11) {
             printOptions();
@@ -71,13 +71,13 @@ public class MainMenuIO {
                 courseMgr.addCourse();
                 break;
             case 3:
-                courseRegistrationMgr.registerCourse();
+                courseRegistrationMgrIO.registerCourse();
                 break;
             case 4:
                 courseMgr.checkAvailableSlots();
                 break;
             case 5:
-                courseRegistrationMgr.printStudents();
+                courseRegistrationMgrIO.printStudents();
                 break;
             case 6:
                 courseMgr.enterCourseWorkComponentWeightage(null);

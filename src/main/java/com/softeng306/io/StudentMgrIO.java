@@ -242,6 +242,31 @@ public class StudentMgrIO {
         }
     }
 
+    /**
+     * Prompts the user to input an ID for an existing student
+     */
+    public static String readExistingStudentIDFromUser() {
+        String studentID;
+
+        while (true) {
+            System.out.println("Enter Student ID (-h to print all the student ID):");
+            studentID = reader.nextLine();
+
+            while ("-h".equals(studentID)) {
+                StudentMgr.getInstance().printAllStudentIds();
+                studentID = reader.nextLine();
+            }
+
+            if (StudentValidator.checkStudentExists(studentID) == null) {
+                System.out.println("Invalid Student ID. Please re-enter.");
+            } else {
+                break;
+            }
+
+        }
+        return studentID;
+    }
+
 
     /**
      * Prompts the user to input an existing student.

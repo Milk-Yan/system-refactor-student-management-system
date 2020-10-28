@@ -957,13 +957,21 @@ public class CourseMgrIO {
     }
 
     /**
-     * Prompts the user to input an existing course.
+     * Gets a course from a user-inputted ID
      *
      * @return the inputted course.
      */
     public Course readCourseFromUser() {
+        return CourseValidator.getCourseFromId(readExistingCourseIDFromUser());
+    }
+
+    /**
+     * Prompts the user to enter the ID for an existing course
+     *
+     * @return
+     */
+    public String readExistingCourseIDFromUser() {
         String courseID;
-        Course currentCourse;
         while (true) {
             System.out.println("Enter course ID (-h to print all the course ID):");
             courseID = scanner.nextLine();
@@ -972,14 +980,13 @@ public class CourseMgrIO {
                 courseID = scanner.nextLine();
             }
 
-            currentCourse = CourseValidator.getCourseFromId(courseID);
-            if (currentCourse == null) {
+            if (CourseValidator.getCourseFromId(courseID) == null) {
                 System.out.println("Invalid Course ID. Please re-enter.");
             } else {
                 break;
             }
         }
-        return currentCourse;
+        return courseID;
     }
 
     /**
