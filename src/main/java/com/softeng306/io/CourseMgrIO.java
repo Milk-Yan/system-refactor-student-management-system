@@ -239,13 +239,13 @@ public class CourseMgrIO {
     /**
      * Print course information to the console for a user
      *
-     * @param course the course to print the info for
      */
-    public void printCourseInfo(String courseInfoString) {
+    public void printCourseInfo(String courseInfoString, String[][] lectureGroup, String[][] tutorialGroup, String[][] labGroup) {
 
 
         System.out.println(course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats());
         System.out.println("--------------------------------------------");
+
         printVacanciesForGroups(course.getLectureGroups(), GroupType.LECTURE_GROUP);
 
 
@@ -261,7 +261,13 @@ public class CourseMgrIO {
         System.out.println("--------------------------------------------");
     }
 
-    public void printVacanciesFor
+    public void printVacanciesForLectureGroup(String[][]){
+
+    }
+
+    public void printVacanciesForTutorialGroup(){
+
+    }
 
     /**
      * Helper method to print out the vacancies for groups
