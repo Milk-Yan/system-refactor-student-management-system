@@ -6,7 +6,7 @@ import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.CourseRegistrationManagerIO;
-import com.softeng306.io.FILEMgr;
+import com.softeng306.fileprocessing.FILEMgr;
 import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.*;
 

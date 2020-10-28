@@ -10,7 +10,7 @@ import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.mark.SubComponentMark;
 import com.softeng306.domain.student.Student;
-import com.softeng306.io.FILEMgr;
+import com.softeng306.fileprocessing.FILEMgr;
 import com.softeng306.io.StudentMgrIO;
 import com.softeng306.validation.StudentValidator;
 

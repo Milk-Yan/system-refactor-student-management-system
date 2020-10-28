@@ -1,4 +1,4 @@
-package com.softeng306.io;
+package com.softeng306.fileprocessing;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,50 +17,16 @@ import java.util.*;
 
 public class FILEMgr {
 
-    private static final String studentFileName = "data/studentFile.json";
-    private static final String courseFileName = "data/courseFile.json";
-    private static final String professorFileName = "data/professorFile.json";
-    private static final String courseRegistrationFileName = "data/courseRegistrationFile.json";
-    private static final String markFileName = "data/markFile.json";
 
-    /**
-     * Write a new student information into the file.
-     *
-     * @param student a student to be added into the file
-     */
-    public static void writeStudentsIntoFile(Student student) {
-        try {
-            List<Student> students = loadStudents();
-            students.add(student);
-
-            writeToFile(studentFileName, students);
-        } catch (IOException e) {
-            System.out.println("Error in adding a student to the file.");
-            e.printStackTrace();
-        }
-    }
+    private static final String COURSE_FILE_PATH = "data/courseFile.json";
+    private static final String PROFESSOR_FILE_PATH = "data/professorFile.json";
+    private static final String COURSE_REGISTRATION_FILE_PATH = "data/courseRegistrationFile.json";
+    private static final String MARK_FILE_PATH = "data/markFile.json";
 
 
-    /**
-     * Load all the students' information from file into the system.
-     *
-     * @return a list of all the students.
-     */
-    public static List<Student> loadStudents() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        File studentFile = Paths.get(studentFileName).toFile();
-        ArrayList<Student> allStudents = new ArrayList<>();
 
-        try {
-            allStudents = new ArrayList<>(Arrays.asList(objectMapper.readValue(studentFile, Student[].class)));
-            updateStudentIDs(allStudents);
-        } catch (IOException e) {
-            System.out.println("Error occurs when loading students.");
-            e.printStackTrace();
-        }
 
-        return allStudents;
-    }
+
 
     /**
      * Set the recent student ID, let the newly added student have the ID onwards.
@@ -86,7 +52,7 @@ public class FILEMgr {
             List<Course> courses = loadCourses();
             courses.add(course);
 
-            writeToFile(courseFileName, courses);
+            writeToFile(COURSE_FILE_PATH, courses);
         } catch (IOException e) {
             System.out.println("Error in adding a course to the file.");
             e.printStackTrace();
@@ -100,7 +66,7 @@ public class FILEMgr {
      */
     public static List<Course> loadCourses() {
         ObjectMapper objectMapper = new ObjectMapper();
-        File courseFile = Paths.get(courseFileName).toFile();
+        File courseFile = Paths.get(COURSE_FILE_PATH).toFile();
         ArrayList<Course> allCourses = new ArrayList<>();
 
         try {
@@ -122,7 +88,7 @@ public class FILEMgr {
     public static void backUpCourse(List<Course> courses) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.writeValue(Paths.get(courseFileName).toFile(), courses);
+            objectMapper.writeValue(Paths.get(COURSE_FILE_PATH).toFile(), courses);
         } catch (IOException e) {
             System.out.println("Error in backing up courses.");
             e.printStackTrace();
@@ -136,7 +102,7 @@ public class FILEMgr {
      */
     public static List<Professor> loadProfessors() {
         ObjectMapper objectMapper = new ObjectMapper();
-        File professorFile = Paths.get(professorFileName).toFile();
+        File professorFile = Paths.get(PROFESSOR_FILE_PATH).toFile();
         ArrayList<Professor> allProfessors = new ArrayList<>();
 
         try {
@@ -159,7 +125,7 @@ public class FILEMgr {
             List<CourseRegistration> courseRegistrations = loadCourseRegistration();
             courseRegistrations.add(courseRegistration);
 
-            writeToFile(courseRegistrationFileName, courseRegistrations);
+            writeToFile(COURSE_REGISTRATION_FILE_PATH, courseRegistrations);
         } catch (IOException e) {
             System.out.println("Error in adding a course registration to the file.");
             e.printStackTrace();
@@ -173,7 +139,7 @@ public class FILEMgr {
      */
     public static List<CourseRegistration> loadCourseRegistration() {
         ObjectMapper objectMapper = new ObjectMapper();
-        File courseRegistrationFile = Paths.get(courseRegistrationFileName).toFile();
+        File courseRegistrationFile = Paths.get(COURSE_REGISTRATION_FILE_PATH).toFile();
         ArrayList<CourseRegistration> allCourseRegistrations = new ArrayList<>();
 
         try {
@@ -197,7 +163,7 @@ public class FILEMgr {
             List<Mark> marks = loadStudentMarks();
             marks.add(mark);
 
-            writeToFile(markFileName, marks);
+            writeToFile(MARK_FILE_PATH, marks);
         } catch (IOException e) {
             System.out.println("Error in adding a mark to the file.");
             e.printStackTrace();
@@ -211,7 +177,7 @@ public class FILEMgr {
      */
     public static List<Mark> loadStudentMarks() {
         ObjectMapper objectMapper = new ObjectMapper();
-        File markFile = Paths.get(markFileName).toFile();
+        File markFile = Paths.get(MARK_FILE_PATH).toFile();
         ArrayList<Mark> allStudentMarks = new ArrayList<>();
 
         try {
@@ -232,7 +198,7 @@ public class FILEMgr {
     public static void backUpMarks(List<Mark> marks) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.writeValue(Paths.get(markFileName).toFile(), marks);
+            objectMapper.writeValue(Paths.get(MARK_FILE_PATH).toFile(), marks);
         } catch (IOException e) {
             System.out.println("Error in adding a mark to the file.");
             e.printStackTrace();

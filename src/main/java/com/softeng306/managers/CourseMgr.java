@@ -12,9 +12,8 @@ import com.softeng306.domain.professor.Professor;
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.io.CourseMgrIO;
-import com.softeng306.io.FILEMgr;
+import com.softeng306.fileprocessing.FILEMgr;
 import com.softeng306.io.MainMenuIO;
-import com.softeng306.validation.*;
 
 import java.util.*;
 
