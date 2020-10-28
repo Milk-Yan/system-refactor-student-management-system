@@ -1,16 +1,18 @@
 package com.softeng306.managers;
 
-import com.softeng306.enums.GroupType;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
+import com.softeng306.enums.GroupType;
 import com.softeng306.io.CourseRegistrationManagerIO;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
-import com.softeng306.validation.*;
+import com.softeng306.validation.CourseRegistrationValidator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class CourseRegistrationMgr {
     private static Scanner scanner = new Scanner(System.in);
@@ -130,14 +132,14 @@ public class CourseRegistrationMgr {
             System.out.println("------------------------------------------------------");
 
             if (stuArray.isEmpty()) {
-               CourseRegistrationManagerIO.printNoEnrolmentsError();
+                CourseRegistrationManagerIO.printNoEnrolmentsError();
             }
 
-            if(opt == 1){
+            if (opt == 1) {
                 sortByLectureGroup(stuArray);
                 CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LECTURE_GROUP);
 
-            } else if (opt == 2){
+            } else if (opt == 2) {
                 if (!stuArray.isEmpty() && stuArray.get(0).getCourse().getTutorialGroups().isEmpty()) {
                     CourseRegistrationManagerIO.printNoGroup(GroupType.TUTORIAL_GROUP);
                     CourseRegistrationManagerIO.printEndOfSection();
@@ -146,7 +148,7 @@ public class CourseRegistrationMgr {
                 sortByTutorialGroup(stuArray);
                 CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.TUTORIAL_GROUP);
 
-            } else if (opt == 3){
+            } else if (opt == 3) {
                 if (!stuArray.isEmpty() && stuArray.get(0).getCourse().getLabGroups().isEmpty()) {
                     CourseRegistrationManagerIO.printNoGroup(GroupType.LAB_GROUP);
                     CourseRegistrationManagerIO.printEndOfSection();
@@ -164,6 +166,7 @@ public class CourseRegistrationMgr {
 
     /**
      * Return the list of all course registrations in the system.
+     *
      * @return An list of all course registrations.
      */
     public List<CourseRegistration> getCourseRegistrations() {
@@ -173,6 +176,7 @@ public class CourseRegistrationMgr {
     /**
      * Sort the list of course registrations of a course according to their ascending
      * normal alphabetical order of names of the lecture groups, ignoring cases.
+     *
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByLectureGroup(List<CourseRegistration> courseRegistrations) {
@@ -195,6 +199,7 @@ public class CourseRegistrationMgr {
     /**
      * Sort the list of course registrations of a course according to their ascending
      * normal alphabetical order of the names of the tutorial groups, ignoring cases.
+     *
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByTutorialGroup(List<CourseRegistration> courseRegistrations) {
@@ -217,6 +222,7 @@ public class CourseRegistrationMgr {
     /**
      * Sort the list of course registrations of a course according to their ascending
      * normal alphabetical order of the names of the lab groups, ignoring cases.
+     *
      * @param courseRegistrations All the course registrations of the course.
      */
     private void sortByLabGroup(List<CourseRegistration> courseRegistrations) {
