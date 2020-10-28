@@ -19,7 +19,7 @@ public class CourseRegistrationFileProcessor extends FileProcessor {
      *
      * @param courseRegistration courseRegistration to be added into file
      */
-    public static void writeCourseRegistrationIntoFile(CourseRegistration courseRegistration) {
+    public void writeCourseRegistrationIntoFile(CourseRegistration courseRegistration) {
         try {
             List<CourseRegistration> courseRegistrations = loadCourseRegistration();
             courseRegistrations.add(courseRegistration);
@@ -32,11 +32,11 @@ public class CourseRegistrationFileProcessor extends FileProcessor {
     }
 
     /**
-     * Load all the course registration records from file into the system.
-     *
-     * @return a list of all the course registration records.
+     * {@inheritDoc} Loads a list of all the course registrations from {@value COURSE_REGISTRATION_FILE_PATH}.
+     * @return A list of all the course registrations that is loaded from the file.
      */
-    public static List<CourseRegistration> loadCourseRegistration() {
+    @Override
+    public List<CourseRegistration> loadFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         File courseRegistrationFile = Paths.get(COURSE_REGISTRATION_FILE_PATH).toFile();
         ArrayList<CourseRegistration> allCourseRegistrations = new ArrayList<>();

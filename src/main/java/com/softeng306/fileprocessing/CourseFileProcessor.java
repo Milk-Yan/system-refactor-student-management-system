@@ -32,26 +32,6 @@ public class CourseFileProcessor extends FileProcessor {
     }
 
     /**
-     * Load all the courses' information from file into the system.
-     *
-     * @return a list of all the courses.
-     */
-    public List<Course> loadCourses() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        File courseFile = Paths.get(COURSE_FILE_PATH).toFile();
-        ArrayList<Course> allCourses = new ArrayList<>();
-
-        try {
-            allCourses = new ArrayList<>(Arrays.asList(objectMapper.readValue(courseFile, Course[].class)));
-        } catch (IOException e) {
-            System.out.println("Error happens when loading courses.");
-            e.printStackTrace();
-        }
-
-        return allCourses;
-    }
-
-    /**
      * Backs up all the changes of courses made into the file.
      * NOTE THAT BACKUPS MAY NOT WORK, NOT TESTED. WE shouldn't need them in the future.
      *
@@ -65,5 +45,25 @@ public class CourseFileProcessor extends FileProcessor {
             System.out.println("Error in backing up courses.");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * {@inheritDoc} Loads a list of all the courses from {@value COURSE_FILE_PATH}.
+     * @return A list of all the courses that is loaded from the file.
+     */
+    @Override
+    public List<Course> loadFile() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File courseFile = Paths.get(COURSE_FILE_PATH).toFile();
+        ArrayList<Course> allCourses = new ArrayList<>();
+
+        try {
+            allCourses = new ArrayList<>(Arrays.asList(objectMapper.readValue(courseFile, Course[].class)));
+        } catch (IOException e) {
+            System.out.println("Error happens when loading courses.");
+            e.printStackTrace();
+        }
+
+        return allCourses;
     }
 }

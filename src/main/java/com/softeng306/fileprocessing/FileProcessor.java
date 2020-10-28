@@ -10,33 +10,30 @@ import java.util.List;
 public abstract class FileProcessor implements IFileProcessor {
 
     /**
-     * Write information into a file
-     *
-     * @param filename          the file to write into
-     * @param collectionToWrite the information to write
-     * @throws IOException
+     * {@inheritDoc} Writes into a JSON file.
      */
     @Override
-    public void writeToFile(String filename, List<?> collectionToWrite) throws IOException {
+    public void writeToFile(String filePath, List<?> collectionToWrite) throws IOException {
+        // The serialization feature allows the json to be formatted such that it is easier for
+        // a human to decipher.
         ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-        File file = Paths.get(filename).toFile();
+        File file = Paths.get(filePath).toFile();
         FileWriter fileWriter = new FileWriter(file, true);
 
-        clearFileContents(filename);
+        clearFileContents(filePath);
         objectMapper.writeValue(fileWriter, collectionToWrite);
     }
 
-    /**
-     * Clears the file contents
-     * @param filename file to clear
-     */
     @Override
-    public void clearFileContents(String filename) {
-        try {
-            new PrintWriter(filename);
+    public void clearFileContents(String filePath) {
+        try (PrintWriter ignored = new PrintWriter(filePath)) {
         } catch (FileNotFoundException e) {
-            // don't do anything
+            // don't do anything because it is ok if we don't clear a file
+            // that doesn't exist.
         }
     }
+
+    @Override
+    public abstract List<?> loadFile();
 
 }

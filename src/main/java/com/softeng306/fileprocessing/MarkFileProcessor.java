@@ -19,7 +19,7 @@ public class MarkFileProcessor extends FileProcessor {
      *
      * @param mark mark to be updated into the file
      */
-    public static void updateStudentMarks(Mark mark) {
+    public void updateStudentMarks(Mark mark) {
         try {
             List<Mark> marks = loadStudentMarks();
             marks.add(mark);
@@ -32,11 +32,26 @@ public class MarkFileProcessor extends FileProcessor {
     }
 
     /**
-     * Load all the student mark records from file into the system.
+     * Backs up all the changes of student mark records made into the file.
      *
-     * @return a list of all the student mark records.
+     * @param marks marks to be backed up into file
      */
-    public static List<Mark> loadStudentMarks() {
+    public void backUpMarks(List<Mark> marks) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writeValue(Paths.get(MARK_FILE_PATH).toFile(), marks);
+        } catch (IOException e) {
+            System.out.println("Error in adding a mark to the file.");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * {@inheritDoc} Loads a list of all the marks from {@value MARK_FILE_PATH}.
+     * @return A list of all the marks that is loaded from the file.
+     */
+    @Override
+    public List<Mark> loadFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         File markFile = Paths.get(MARK_FILE_PATH).toFile();
         ArrayList<Mark> allStudentMarks = new ArrayList<>();
@@ -49,20 +64,5 @@ public class MarkFileProcessor extends FileProcessor {
         }
 
         return allStudentMarks;
-    }
-
-    /**
-     * Backs up all the changes of student mark records made into the file.
-     *
-     * @param marks marks to be backed up into file
-     */
-    public static void backUpMarks(List<Mark> marks) {
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.writeValue(Paths.get(MARK_FILE_PATH).toFile(), marks);
-        } catch (IOException e) {
-            System.out.println("Error in adding a mark to the file.");
-            e.printStackTrace();
-        }
     }
 }

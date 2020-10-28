@@ -15,11 +15,11 @@ public class ProfessorFileProcessor extends FileProcessor {
     private static final String PROFESSOR_FILE_PATH = "data/professorFile.json";
 
     /**
-     * Load all the professors' information from file into the system.
-     *
-     * @return a list of all the professors.
+     * {@inheritDoc} Loads a list of all the professors from {@value PROFESSOR_FILE_PATH}.
+     * @return A list of all the professors that is loaded from the file.
      */
-    public static List<Professor> loadProfessors() {
+    @Override
+    public List<Professor> loadFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         File professorFile = Paths.get(PROFESSOR_FILE_PATH).toFile();
         ArrayList<Professor> allProfessors = new ArrayList<>();
