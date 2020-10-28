@@ -5,6 +5,7 @@ import com.softeng306.enums.GroupType;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class GroupMgr {
@@ -40,7 +41,7 @@ public class GroupMgr {
      */
     public Group printGroupWithVacancyInfo(GroupType groupType, List<Group> groups) {
         int index;
-        HashMap<String, Integer> groupAssign = new HashMap<>(0);
+        Map<String, Integer> groupAssign = new HashMap<>(0);
         int selectedGroupNum;
 
         if (groups.size() != 0) {
