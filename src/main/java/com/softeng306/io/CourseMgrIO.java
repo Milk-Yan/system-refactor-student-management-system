@@ -20,10 +20,7 @@ import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.GroupValidator;
 import com.softeng306.validation.ProfessorValidator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CourseMgrIO {
     private Scanner scanner = new Scanner(System.in);
@@ -480,40 +477,39 @@ public class CourseMgrIO {
      *
      * @param totalWeightage  the total weightage for a course
      * @param mainComponentNo the main component number
-     * @param mainComponents  the main components
      * @return the main component name
      */
-    public String readMainComponentName(int totalWeightage, int mainComponentNo, List<MainComponent> mainComponents) {
-        return getComponentName(totalWeightage, mainComponents, mainComponentNo, MainComponent.COMPONENT_NAME);
+    public String readMainComponentName(int totalWeightage, int mainComponentNo, HashSet<String> mainComponentNames) {
+        return readComponentName(totalWeightage, mainComponentNames, mainComponentNo, MainComponent.COMPONENT_NAME);
     }
 
     /**
      * Read in the sub components specified by a user for a course
      *
-     * @param noOfSub the number of subcomponents
      * @return List of sub components user has specified
      */
-    public List<SubComponent> readSubComponents(int noOfSub) {
-        List<SubComponent> subComponents = new ArrayList<>();
+    public HashMap<String, Double> readSubComponents(int numberOfSubComponents) {
+        HashMap<String, Double> subComponents = new HashMap<>();
+        HashSet<String> subComponentNames = new HashSet<>();
         boolean invalidDistributionOfWeights = true;
-        int subComponentWeight;
+        double subComponentWeight;
         String subComponentName;
 
         while (invalidDistributionOfWeights) {
 
-            int subComponenttotalWeight = 100;
-            for (int j = 0; j < noOfSub; j++) {
-                subComponentName = getComponentName(subComponenttotalWeight, subComponents, j, SubComponent.COMPONENT_NAME);
-                subComponentWeight = readSubWeight(j, subComponenttotalWeight);
-                //Create Subcomponent
-                SubComponent subComponent = new SubComponent(subComponentName, subComponentWeight);
-                subComponents.add(subComponent);
-                subComponenttotalWeight -= subComponentWeight;
+            int subComponentTotalWeight = 100;
+            for (int j = 0; j < numberOfSubComponents; j++) {
+                subComponentName = readComponentName(subComponentTotalWeight, subComponentNames, j, SubComponent.COMPONENT_NAME);
+                subComponentWeight = readSubWeight(j, subComponentTotalWeight);
+                subComponentNames.add(subComponentName);
+                subComponents.put(subComponentName, subComponentWeight);
+                subComponentTotalWeight -= subComponentWeight;
             }
 
-            if (subComponenttotalWeight != 0 && noOfSub != 0) {
+            if (subComponentTotalWeight != 0 && numberOfSubComponents != 0) {
                 printSubComponentWeightageError();
                 subComponents.clear();
+                subComponentNames.clear();
                 invalidDistributionOfWeights = true;
             } else {
                 invalidDistributionOfWeights = false;
@@ -521,45 +517,40 @@ public class CourseMgrIO {
             //exit if weight is fully allocated
         }
         return subComponents;
+
     }
 
 
-    /**
-     * This method reads in the name for a particular subComponent
-     */
-    public String getComponentName(int totalWeightAssignable, List<? extends CourseworkComponent> components, int componentNumber, String type){
+    public String readComponentName(int totalWeightAssignable, Set<String> componentNames, int componentNumber, String componentType) {
 
-        String subComponentName;
+        String componentName;
         boolean componentExist;
 
         do {
             componentExist = false;
-            if(type.equals(SubComponent.COMPONENT_NAME)){
-                System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
-            } else {
+            if(componentType.equals(MainComponent.COMPONENT_NAME)){
                 System.out.println("Total weightage left to assign: " + totalWeightAssignable);
+            } else {
+                System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
             }
-            System.out.println("Enter "+ type +" " + (componentNumber + 1) + " name: ");
-            subComponentName = scanner.nextLine();
+            System.out.println("Enter " + componentType +" "+ (componentNumber + 1) + " name: ");
+            componentName = scanner.nextLine();
 
-            if (components.isEmpty()) {
+            if (componentNames.isEmpty()) {
                 break;
             }
-            if (subComponentName.equals("Exam")) {
+            if (componentName.equals("Exam")) {
                 System.out.println("Exam is a reserved assessment.");
                 componentExist = true;
                 continue;
             }
-            for (CourseworkComponent component : components) {
-                if (component.getComponentName().equals(subComponentName)) {
-                    componentExist = true;
-                    System.out.println("This sub component already exist. Please enter.");
-                    break;
-                }
+            if (componentNames.contains(componentName)) {
+                componentExist = true;
+                System.out.println("This component already exist. Please enter another name.");
             }
         } while (componentExist);
 
-        return subComponentName;
+        return componentName;
 
     }
 
@@ -1073,8 +1064,19 @@ public class CourseMgrIO {
         //Professor
         builder.setProfInCharge(profID);
         CourseMgr.getInstance().addCourse(builder);
-
-
     }
+
+    public void checkAvailableSlots(){
+        CourseMgr.getInstance().checkAvailableSlots();
+    }
+
+    public void enterCourseWorkComponentWeightage(){
+        CourseMgr.getInstance().enterCourseWorkComponentWeightage(null);
+    }
+
+    public void printCourseStatistics(){
+        CourseMgr.getInstance().printCourseStatistics();
+    }
+
 
 }

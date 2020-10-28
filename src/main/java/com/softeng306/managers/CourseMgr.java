@@ -98,7 +98,7 @@ public class CourseMgr {
         if (currentCourse == null) {
             currentCourse = readCourseFromUser();
         }
-
+        HashSet<String> mainComponentNames = new HashSet<>();
         List<MainComponent> mainComponents = new ArrayList<>(0);
         // Check if mainComponent is empty
         if (currentCourse.getMainComponents().isEmpty()) {
@@ -123,53 +123,37 @@ public class CourseMgr {
             while (true) {
                 int totalWeightage = 100 - examWeight;
                 for (int i = 0; i < numberOfMain; i++) {
-                    List<SubComponent> subComponents = new ArrayList<>(0);
-
-                    String mainComponentName = courseMgrIO.readMainComponentName(totalWeightage, i, mainComponents);
+                    HashMap<String, Double> subComponentsMap = new HashMap<>();
+                    String mainComponentName = courseMgrIO.readMainComponentName(totalWeightage, i, mainComponentNames);
+                    mainComponentNames.add(mainComponentName);
 
                     int weight = courseMgrIO.readMainComponentWeightage(i, totalWeightage);
                     totalWeightage -= weight;
 
                     int noOfSub = courseMgrIO.readNoOfSubComponents(i);
 
-                    boolean flagSub = true;
-                    while (flagSub) {
+                    subComponentsMap = courseMgrIO.readSubComponents(noOfSub);
 
-                        int sub_totWeight = 100;
-                        for (int j = 0; j < noOfSub; j++) {
-
-                            String subComponentName = courseMgrIO.getComponentName(sub_totWeight, subComponents, j, SubComponent.COMPONENT_NAME);
-
-                            int subWeight = courseMgrIO.readSubWeight(j, sub_totWeight);
-
-                            //Create Subcomponent
-                            SubComponent sub = new SubComponent(subComponentName, subWeight);
-                            subComponents.add(sub);
-                            sub_totWeight -= subWeight;
-                        }
-                        if (sub_totWeight != 0 && noOfSub != 0) {
-                            courseMgrIO.printSubComponentWeightageError();
-                            subComponents.clear();
-                            flagSub = true;
-                        } else {
-                            flagSub = false;
-                        }
-                        //exit if weight is fully allocated
+                    List<SubComponent> subComponentsList = new ArrayList<SubComponent>();
+                    for (String key : subComponentsMap.keySet()){
+                        SubComponent subComponent = new SubComponent(key, subComponentsMap.get(key).intValue());
+                        subComponentsList.add(subComponent);
                     }
-                    //Create main component
-                    MainComponent main = new MainComponent(mainComponentName, weight, subComponents);
+
+                    MainComponent main = new MainComponent(mainComponentName, weight, subComponentsList);
                     mainComponents.add(main);
                 }
+
 
                 if (totalWeightage != 0) {
                     // weightage assign is not tallied
                     courseMgrIO.printWeightageError();
                     mainComponents.clear();
+                    mainComponentNames.clear();
                 } else {
                     break;
                 }
             }
-
             //set maincomponent to course
             currentCourse.setMainComponents(mainComponents);
 

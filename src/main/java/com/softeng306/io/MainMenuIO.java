@@ -1,6 +1,5 @@
 package com.softeng306.io;
 
-import com.softeng306.main.Main;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.CourseRegistrationMgr;
 import com.softeng306.managers.MarkMgr;
@@ -10,7 +9,7 @@ import java.util.Scanner;
 
 public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
-    private static CourseMgr courseMgr;
+    private static CourseMgrIO courseMgrIO;
     private static MarkMgr markMgr;
     private static StudentMgr studentMgr;
     private static CourseRegistrationMgr courseRegistrationMgr;
@@ -23,7 +22,7 @@ public class MainMenuIO {
         int lowestChoiceInt = 0;
         int highestChoiceInt = 11;
 
-        courseMgr = CourseMgr.getInstance();
+        courseMgrIO = new CourseMgrIO();
         markMgr = MarkMgr.getInstance();
         studentMgr = StudentMgr.getInstance();
         courseRegistrationMgr = CourseRegistrationMgr.getInstance();
@@ -70,21 +69,19 @@ public class MainMenuIO {
                 studentMgr.addStudent();
                 break;
             case 2:
-
-                //MINE
-                courseMgr.addCourse();
+                courseMgrIO.addCourse();
                 break;
             case 3:
                 courseRegistrationMgr.registerCourse();
                 break;
             case 4:
-                courseMgr.checkAvailableSlots();
+                courseMgrIO.checkAvailableSlots();
                 break;
             case 5:
                 courseRegistrationMgr.printStudents();
                 break;
             case 6:
-                courseMgr.enterCourseWorkComponentWeightage(null);
+                courseMgrIO.enterCourseWorkComponentWeightage();
                 break;
             case 7:
                 markMgr.setCourseWorkMark(false);
@@ -93,7 +90,7 @@ public class MainMenuIO {
                 markMgr.setCourseWorkMark(true);
                 break;
             case 9:
-                courseMgr.printCourseStatistics();
+                courseMgrIO.printCourseStatistics();
                 break;
             case 10:
                 studentMgr.printStudentTranscript();
