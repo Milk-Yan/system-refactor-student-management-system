@@ -222,7 +222,7 @@ public class CourseMgr {
             }
         }
 
-        courseMgrIO.printCourseStatisticsHeader(currentCourse);
+        courseMgrIO.printCourseStatisticsHeader(generateCourseInformationFromCourse(currentCourse));
 
         MainComponent exam = null;
 
@@ -311,6 +311,17 @@ public class CourseMgr {
         }
         return map;
     }
+
+    public List<String> generateCourseInformationFromCourse(Course course){
+        List<String> courseInformation = new ArrayList<String>();
+        courseInformation.add(course.getCourseID());
+        courseInformation.add(course.getCourseName());
+        courseInformation.add(String.valueOf(course.getAU()));
+        courseInformation.add(String.valueOf(course.getTotalSeats()));
+        courseInformation.add(String.valueOf(course.getVacancies()));
+        return courseInformation;
+    }
+
 
 
 }

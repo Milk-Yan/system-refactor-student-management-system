@@ -585,17 +585,17 @@ public class CourseMgrIO {
     /**
      * Print course statistics header for a particular course
      *
-     * @param course the course to print statistics for
      */
-    public void printCourseStatisticsHeader(Course course) {
+
+    public void printCourseStatisticsHeader(List<String> courseInfo) {
         System.out.println("*************** Course Statistic ***************");
-        System.out.println("Course ID: " + course.getCourseID() + "\tCourse Name: " + course.getCourseName());
-        System.out.println("Course AU: " + course.getAU());
+        System.out.println("Course ID: " + courseInfo.get(0) + "\tCourse Name: " + courseInfo.get(1));
+        System.out.println("Course AU: " + courseInfo.get(2));
         System.out.println();
-        System.out.print("Total Slots: " + course.getTotalSeats());
-        int enrolledNumber = (course.getTotalSeats() - course.getVacancies());
+        System.out.print("Total Slots: " + courseInfo.get(3));
+        int enrolledNumber = (Integer.parseInt(courseInfo.get(3)) - Integer.parseInt(courseInfo.get(4)));
         System.out.println("\tEnrolled Student: " + enrolledNumber);
-        System.out.printf("Enrollment Rate: %4.2f %%\n", ((double) enrolledNumber / (double) course.getTotalSeats() * 100d));
+        System.out.printf("Enrollment Rate: %4.2f %%\n", ((double) enrolledNumber / (double) Double.parseDouble(courseInfo.get(3)) * 100d));
         System.out.println();
     }
 
