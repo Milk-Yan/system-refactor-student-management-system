@@ -64,7 +64,7 @@ public class Mark {
 
     /**
      * Gets the course work marks of this student mark record.
-     * @return a hashmap contains the course work marks of this student mark record.
+     * @return a list contains the course work marks of this student mark record.
      */
     public List<MainComponentMark> getCourseWorkMarks() {
         return courseWorkMarks;
