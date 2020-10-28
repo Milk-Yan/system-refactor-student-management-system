@@ -95,7 +95,7 @@ public class MarkMgr {
                     for (MainComponentMark mainComponentMark : mark.getMainComponentMarks()) {
                         MainComponent mainComponent = mainComponentMark.getMainComponent();
                         if (!mainComponent.getComponentName().equals("Exam")
-                                && !mainComponentMark.hasSubComponents()) {
+                                && !mainComponentMark.hasSubComponentMarks()) {
                             availableChoices.add(mainComponent.getComponentName());
                             weights.add((double) mainComponent.getComponentWeight());
                             isMainAss.add(true);

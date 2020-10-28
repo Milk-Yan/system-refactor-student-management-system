@@ -87,7 +87,7 @@ public class Mark {
     public void setMainComponentMark(String courseWorkName, double result) {
         for (MainComponentMark mainComponentMark : mainComponentMarks) {
             if (mainComponentMark.getMainComponent().getComponentName().equals(courseWorkName)) {
-                if (mainComponentMark.hasSubComponents()) {
+                if (mainComponentMark.hasSubComponentMarks()) {
                     System.out.println("This main assessment is not stand alone");
                     return;
                 }
