@@ -41,7 +41,7 @@ public class CourseRegistrationFileProcessor extends FileProcessor<CourseRegistr
     @Override
     public void writeNewEntryToFile(CourseRegistration courseRegistration) {
         try {
-            List<CourseRegistration> courseRegistrations = loadCourseRegistration();
+            List<CourseRegistration> courseRegistrations = loadFile();
             courseRegistrations.add(courseRegistration);
 
             writeToFile(COURSE_REGISTRATION_FILE_PATH, courseRegistrations);

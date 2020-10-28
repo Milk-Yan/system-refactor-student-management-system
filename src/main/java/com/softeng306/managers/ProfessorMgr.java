@@ -2,7 +2,9 @@ package com.softeng306.managers;
 
 import com.softeng306.enums.Department;
 import com.softeng306.domain.professor.Professor;
-import com.softeng306.fileprocessing.FILEMgr;
+import com.softeng306.fileprocessing.FileProcessor;
+import com.softeng306.fileprocessing.IFileProcessor;
+import com.softeng306.fileprocessing.ProfessorFileProcessor;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,11 +20,14 @@ public class ProfessorMgr {
 
     private static ProfessorMgr singleInstance = null;
 
+    private final IFileProcessor<Professor> professorFileProcessor;
+
     /**
      * Override default constructor to implement singleton pattern
      */
-    private ProfessorMgr(List<Professor> professors) {
-        this.professors = professors;
+    private ProfessorMgr() {
+        professorFileProcessor = new ProfessorFileProcessor();
+        professors = professorFileProcessor.loadFile();
     }
 
     /**
@@ -32,7 +37,7 @@ public class ProfessorMgr {
      */
     public static ProfessorMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new ProfessorMgr(FILEMgr.loadProfessors());
+            singleInstance = new ProfessorMgr();
         }
 
         return singleInstance;

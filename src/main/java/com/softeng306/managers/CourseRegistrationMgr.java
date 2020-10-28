@@ -5,8 +5,10 @@ import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
+import com.softeng306.fileprocessing.CourseRegistrationFileProcessor;
+import com.softeng306.fileprocessing.FileProcessor;
+import com.softeng306.fileprocessing.IFileProcessor;
 import com.softeng306.io.CourseRegistrationManagerIO;
-import com.softeng306.fileprocessing.FILEMgr;
 import com.softeng306.io.MainMenuIO;
 import com.softeng306.validation.*;
 
@@ -21,11 +23,14 @@ public class CourseRegistrationMgr {
 
     private static CourseRegistrationMgr singleInstance = null;
 
+    private final IFileProcessor<CourseRegistration> courseRegistrationFileProcessor;
+
     /**
      * Override default constructor to implement singleton pattern
      */
-    private CourseRegistrationMgr(List<CourseRegistration> courseRegistrations) {
-        this.courseRegistrations = courseRegistrations;
+    private CourseRegistrationMgr() {
+        courseRegistrationFileProcessor = new CourseRegistrationFileProcessor();
+        courseRegistrations = courseRegistrationFileProcessor.loadFile();
     }
 
     /**
@@ -35,7 +40,7 @@ public class CourseRegistrationMgr {
      */
     public static CourseRegistrationMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new CourseRegistrationMgr(FILEMgr.loadCourseRegistration());
+            singleInstance = new CourseRegistrationMgr();
         }
 
         return singleInstance;
@@ -92,7 +97,7 @@ public class CourseRegistrationMgr {
 
         currentCourse.enrolledIn();
         CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
-        FILEMgr.writeCourseRegistrationIntoFile(courseRegistration);
+        courseRegistrationFileProcessor.writeNewEntryToFile(courseRegistration);
 
         courseRegistrations.add(courseRegistration);
 
@@ -112,7 +117,7 @@ public class CourseRegistrationMgr {
 
         // READ courseRegistrationFILE
         // return List of Object(student,course,lecture,tut,lab)
-        List<CourseRegistration> allCourseRegistrations = FILEMgr.loadCourseRegistration();
+        List<CourseRegistration> allCourseRegistrations = courseRegistrationFileProcessor.loadFile();
 
         List<CourseRegistration> stuArray = new ArrayList<>(0);
         for (CourseRegistration courseRegistration : allCourseRegistrations) {

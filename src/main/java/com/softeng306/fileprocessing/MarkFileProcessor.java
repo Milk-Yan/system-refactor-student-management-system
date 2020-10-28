@@ -42,7 +42,7 @@ public class MarkFileProcessor extends FileProcessor<Mark> {
     @Override
     public void writeNewEntryToFile(Mark mark) {
         try {
-            List<Mark> marks = loadStudentMarks();
+            List<Mark> marks = loadFile();
             marks.add(mark);
 
             writeToFile(MARK_FILE_PATH, marks);

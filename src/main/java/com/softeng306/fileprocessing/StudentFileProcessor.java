@@ -59,7 +59,7 @@ public class StudentFileProcessor extends FileProcessor<Student> {
     @Override
     public void writeNewEntryToFile(Student student) {
         try {
-            List<Student> students = loadStudents();
+            List<Student> students = loadFile();
             students.add(student);
 
             writeToFile(STUDENT_FILE_PATH, students);
