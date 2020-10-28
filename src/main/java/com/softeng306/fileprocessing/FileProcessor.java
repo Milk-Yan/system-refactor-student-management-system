@@ -13,7 +13,7 @@ public abstract class FileProcessor<T> implements IFileProcessor<T> {
      * {@inheritDoc} Writes into a JSON file.
      */
     @Override
-    public void writeToFile(String filePath, List<T> collectionToWrite) throws IOException {
+    public void writeToFile(String filePath, List<T> listToWrite) throws IOException {
         // The serialization feature allows the json to be formatted such that it is easier for
         // a human to decipher.
         ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
@@ -21,7 +21,7 @@ public abstract class FileProcessor<T> implements IFileProcessor<T> {
         FileWriter fileWriter = new FileWriter(file, true);
 
         clearFileContents(filePath);
-        objectMapper.writeValue(fileWriter, collectionToWrite);
+        objectMapper.writeValue(fileWriter, listToWrite);
     }
 
     @Override
@@ -38,4 +38,7 @@ public abstract class FileProcessor<T> implements IFileProcessor<T> {
 
     @Override
     public abstract void writeNewEntryToFile(T entry);
+
+    @Override
+    public abstract void updateFileContents(List<T> updatedList);
 }

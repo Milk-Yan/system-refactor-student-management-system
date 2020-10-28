@@ -50,4 +50,20 @@ public class CourseRegistrationFileProcessor extends FileProcessor<CourseRegistr
             e.printStackTrace();
         }
     }
+
+    /**
+     * Writes the updated course registrations to {@value COURSE_REGISTRATION_FILE_PATH}.
+     * @param updatedCourseRegistrations the list of all course registrations,
+     *                                   with updated course registrations
+     */
+    @Override
+    public void updateFileContents(List<CourseRegistration> updatedCourseRegistrations) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writeValue(Paths.get(COURSE_REGISTRATION_FILE_PATH).toFile(), updatedCourseRegistrations);
+        } catch (IOException e) {
+            System.out.println("Error in backing up course registrations.");
+            e.printStackTrace();
+        }
+    }
 }

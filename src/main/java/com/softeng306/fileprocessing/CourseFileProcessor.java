@@ -15,22 +15,6 @@ public class CourseFileProcessor extends FileProcessor<Course> {
     private static final String COURSE_FILE_PATH = "data/courseFile.json";
 
     /**
-     * Backs up all the changes of courses made into the file.
-     * NOTE THAT BACKUPS MAY NOT WORK, NOT TESTED. WE shouldn't need them in the future.
-     *
-     * @param courses courses to be backed up
-     */
-    public void backUpCourse(List<Course> courses) {
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.writeValue(Paths.get(COURSE_FILE_PATH).toFile(), courses);
-        } catch (IOException e) {
-            System.out.println("Error in backing up courses.");
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Loads a list of all the courses from {@value COURSE_FILE_PATH}.
      * @return A list of all the courses that is loaded from the file.
      */
@@ -63,6 +47,21 @@ public class CourseFileProcessor extends FileProcessor<Course> {
             writeToFile(COURSE_FILE_PATH, courses);
         } catch (IOException e) {
             System.out.println("Error in adding a course to the file.");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Writes the updated courses to {@value COURSE_FILE_PATH}.
+     * @param updatedCourses the list of all courses, with updated courses
+     */
+    @Override
+    public void updateFileContents(List<Course> updatedCourses) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writeValue(Paths.get(COURSE_FILE_PATH).toFile(), updatedCourses);
+        } catch (IOException e) {
+            System.out.println("Error in backing up courses.");
             e.printStackTrace();
         }
     }

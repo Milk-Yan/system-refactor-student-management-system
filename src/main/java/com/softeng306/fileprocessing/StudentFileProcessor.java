@@ -1,6 +1,7 @@
 package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.softeng306.domain.course.Course;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.student.Student;
 import com.softeng306.managers.StudentMgr;
@@ -64,6 +65,21 @@ public class StudentFileProcessor extends FileProcessor<Student> {
             writeToFile(STUDENT_FILE_PATH, students);
         } catch (IOException e) {
             System.out.println("Error in adding a student to the file.");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Writes the updated students to {@value STUDENT_FILE_PATH}.
+     * @param updatedStudents the list of all students, with updated students
+     */
+    @Override
+    public void updateFileContents(List<Student> updatedStudents) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writeValue(Paths.get(STUDENT_FILE_PATH).toFile(), updatedStudents);
+        } catch (IOException e) {
+            System.out.println("Error in backing up students.");
             e.printStackTrace();
         }
     }

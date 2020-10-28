@@ -1,6 +1,7 @@
 package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
 
@@ -36,19 +37,18 @@ public class ProfessorFileProcessor extends FileProcessor<Professor> {
     }
 
     /**
-     * Writes a new professor into {@value PROFESSOR_FILE_PATH}.
-     * @param professor the new professor to write to the file
+     * Dummy method without functionality since we don't need it.
      */
     @Override
     public void writeNewEntryToFile(Professor professor) {
-        try {
-            List<Professor> professors = loadFile();
-            professors.add(professor);
+        // dummy method
+    }
 
-            writeToFile(PROFESSOR_FILE_PATH, professors);
-        } catch (IOException e) {
-            System.out.println("Error in adding a professor to the file.");
-            e.printStackTrace();
-        }
+    /**
+     * Dummy method without functionality since we don't need it.
+     */
+    @Override
+    public void updateFileContents(List<Professor> updatedProfessors) {
+        // dummy method
     }
 }
