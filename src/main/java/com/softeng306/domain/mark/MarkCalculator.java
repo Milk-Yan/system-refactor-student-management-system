@@ -17,7 +17,7 @@ public class MarkCalculator {
     public double computeComponentMark(List<Mark> thisCourseMark, String thisComponentName) {
         double averageMark = 0;
         for (Mark mark : thisCourseMark) {
-            List<MainComponentMark> thisComponentMarks = mark.getMainComponentMarks();
+            List<MainComponentMark> thisComponentMarks = mark.getCourseWorkMarks();
 
             for (MainComponentMark mainComponentMark : thisComponentMarks) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();
@@ -48,7 +48,7 @@ public class MarkCalculator {
         double averageMark = 0;
 
         for (Mark mark : thisCourseMark) {
-            List<MainComponentMark> courseMarks = mark.getMainComponentMarks();
+            List<MainComponentMark> courseMarks = mark.getCourseWorkMarks();
 
             for (MainComponentMark mainComponentMark : courseMarks) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();

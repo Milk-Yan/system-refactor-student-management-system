@@ -120,7 +120,7 @@ public class StudentMgr {
             System.out.print("Course ID: " + mark.getCourse().getCourseID());
             System.out.println("\tCourse Name: " + mark.getCourse().getCourseName());
 
-            for (MainComponentMark mainComponentMark : mark.getMainComponentMarks()) {
+            for (MainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();
                 Double result = mainComponentMark.getMark();
 
