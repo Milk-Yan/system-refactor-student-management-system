@@ -187,7 +187,7 @@ public class CourseMgr {
      * Displays a list of IDs of all the courses.
      */
     public void printAllCourseIds() {
-        courseMgrIO.printAllCourseIds(courses);
+        courseMgrIO.printAllCourseIds(generateListOfAllCourseIDs());
     }
 
     public List<String> getCourseIdsInDepartment(Department department) {
@@ -259,7 +259,8 @@ public class CourseMgr {
      * @return the inputted course.
      */
     public Course readCourseFromUser() {
-        return courseMgrIO.readCourseFromUser();
+        String validCourseID = courseMgrIO.readValidCourseIdFromUser();
+        return
     }
 
     /**
@@ -320,6 +321,14 @@ public class CourseMgr {
         courseInformation.add(String.valueOf(course.getTotalSeats()));
         courseInformation.add(String.valueOf(course.getVacancies()));
         return courseInformation;
+    }
+
+    public List<String> generateListOfAllCourseIDs(){
+        List<String> courseIDs = new ArrayList<>();
+        for(Course course : courses){
+            courseIDs.add(course.getCourseID());
+        }
+        return courseIDs;
     }
 
 

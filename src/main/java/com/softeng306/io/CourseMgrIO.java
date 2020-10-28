@@ -568,9 +568,8 @@ public class CourseMgrIO {
      *
      * @param courses the courses to print ids for
      */
-    public void printAllCourseIds(List<Course> courses) {
-        for (Course course : courses) {
-            String courseID = course.getCourseID();
+    public void printAllCourseIds(List<String> courses) {
+        for (String courseID : courses) {
             System.out.println(courseID);
         }
     }
@@ -668,25 +667,23 @@ public class CourseMgrIO {
      *
      * @return the inputted course.
      */
-    public Course readCourseFromUser() {
+    uyguhdjlk;dsjlkvdisnlkvbidsjnlk
+    public String readValidCourseIdFromUser() {
         String courseID;
-        Course currentCourse;
         while (true) {
             System.out.println("Enter course ID (-h to print all the course ID):");
             courseID = scanner.nextLine();
             while ("-h".equals(courseID)) {
-                printAllCourseIds(CourseMgr.getInstance().getCourses());
+                CourseMgr.getInstance().printAllCourseIds();
                 courseID = scanner.nextLine();
             }
-
-            currentCourse = CourseValidator.getCourseFromId(courseID);
-            if (currentCourse == null) {
+            if (CourseValidator.checkCourseIDExists(courseID)) {
                 System.out.println("Invalid Course ID. Please re-enter.");
             } else {
                 break;
             }
         }
-        return currentCourse;
+        return courseID;
     }
 
     /**
