@@ -120,8 +120,8 @@ public class CourseMgr {
         // Check if mainComponent is empty
         if (currentCourse.getMainComponents().isEmpty()) {
             // empty course
-            courseMgrIO.printEmptyCourseComponents(currentCourse);
 
+            courseMgrIO.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
             int hasFinalExamChoice = 0;
             int examWeight = 0;
             while (hasFinalExamChoice < 1 || hasFinalExamChoice > 2) {

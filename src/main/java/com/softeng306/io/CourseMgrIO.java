@@ -545,9 +545,10 @@ public class CourseMgrIO {
     /**
      * Print an info message that the course specified is empty
      */
-    public void printEmptyCourseComponents(Course course) {
-        System.out.println("Currently course " + course.getCourseID() + " " + course.getCourseName() + " does not have any assessment component.");
+    public void printEmptyCourseComponents(String courseID, String courseName) {
+        System.out.println("Currently course " + courseID + " " + courseName + " does not have any assessment component.");
     }
+
 
     /**
      * Print courses
