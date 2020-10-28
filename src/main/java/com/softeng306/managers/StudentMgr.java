@@ -204,7 +204,6 @@ public class StudentMgr {
     }
 
     public boolean studentHasCourses(String studentId) {
-        Student student = getStudentFromId(studentId);
         List<String> studentCourses = CourseRegistrationMgr.getInstance().getCourseIdsForStudentId(studentId);
         return !studentCourses.isEmpty();
     }
@@ -223,14 +222,4 @@ public class StudentMgr {
         return student.getStudentName();
     }
 
-
-    public int getStudentAcademicUnits(String studentId) {
-        Student student = getStudentFromId(studentId);
-        return CourseRegistrationMgr.getInstance().getStudentTotalAU(student);
-    }
-
-    public double getStudentGPA(String studentId) {
-        Student student = getStudentFromId(studentId);
-        return student.getGPA();
-    }
 }
