@@ -15,7 +15,7 @@ public class Mark {
     private Student student;
     private Course course;
 
-    private List<MainComponentMark> courseWorkMarks;
+    private List<MainComponentMark> mainComponentMarks;
 
     private double totalMark;
 
@@ -32,13 +32,13 @@ public class Mark {
      *
      * @param student         The student of this student mark record.
      * @param course          The course of this student mark record.
-     * @param courseWorkMarks The course work marks of this student mark record.
+     * @param mainComponentMarks The course work marks of this student mark record.
      * @param totalMark       The total mark of this student mark record.
      */
-    public Mark(Student student, Course course, List<MainComponentMark> courseWorkMarks, double totalMark) {
+    public Mark(Student student, Course course, List<MainComponentMark> mainComponentMarks, double totalMark) {
         this.student = student;
         this.course = course;
-        this.courseWorkMarks = courseWorkMarks;
+        this.mainComponentMarks = mainComponentMarks;
         this.totalMark = totalMark;
     }
 
@@ -65,8 +65,8 @@ public class Mark {
      *
      * @return a list contains the course work marks of this student mark record.
      */
-    public List<MainComponentMark> getCourseWorkMarks() {
-        return courseWorkMarks;
+    public List<MainComponentMark> getMainComponentMarks() {
+        return mainComponentMarks;
     }
 
     /**
@@ -85,7 +85,7 @@ public class Mark {
      * @param result         The mark obtained in this main course work.
      */
     public void setMainCourseWorkMarks(String courseWorkName, double result) {
-        for (MainComponentMark mainComponentMark : courseWorkMarks) {
+        for (MainComponentMark mainComponentMark : mainComponentMarks) {
             if (mainComponentMark.getMainComponent().getComponentName().equals(courseWorkName)) {
                 if (mainComponentMark.hasSubComponents()) {
                     System.out.println("This main assessment is not stand alone");
@@ -114,7 +114,7 @@ public class Mark {
      * @param result         The mark obtained in this sub course work.
      */
     public void setSubCourseWorkMarks(String courseWorkName, double result) {
-        for (MainComponentMark mainComponentMark : courseWorkMarks) {
+        for (MainComponentMark mainComponentMark : mainComponentMarks) {
             SubComponentMark subComponentMark = mainComponentMark.getSubComponentMark(courseWorkName);
             if (subComponentMark != null) {
                 // update subcomponent value

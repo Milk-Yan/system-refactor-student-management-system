@@ -92,7 +92,7 @@ public class MarkMgr {
                     ArrayList<Double> weights = new ArrayList<>();
                     ArrayList<Boolean> isMainAss = new ArrayList<>();
 
-                    for (MainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
+                    for (MainComponentMark mainComponentMark : mark.getMainComponentMarks()) {
                         MainComponent mainComponent = mainComponentMark.getMainComponent();
                         if (!mainComponent.getComponentName().equals("Exam")
                                 && !mainComponentMark.hasSubComponents()) {
@@ -136,7 +136,7 @@ public class MarkMgr {
 
         MarkMgrIO.printStudentNotRegisteredToCourse(courseID);
     }
-
+    
     /**
      * Return the list of all marks in the system.
      *
