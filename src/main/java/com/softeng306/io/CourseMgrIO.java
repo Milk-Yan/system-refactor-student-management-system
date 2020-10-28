@@ -124,7 +124,7 @@ public class CourseMgrIO {
         int noOfGroups;
 
         while (true) {
-            if (type == GroupType.TUTORIAL_GROUP) {
+            if (type.equals(GroupType.TUTORIAL_GROUP)) {
                 System.out.println("Enter the number of " + type + " groups:");
             } else {
                 System.out.println("Enter the number of " + type + " groups: ");
@@ -241,21 +241,27 @@ public class CourseMgrIO {
      *
      * @param course the course to print the info for
      */
-    public void printCourseInfo(Course course) {
+    public void printCourseInfo(String courseInfoString) {
+
+
         System.out.println(course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats());
         System.out.println("--------------------------------------------");
         printVacanciesForGroups(course.getLectureGroups(), GroupType.LECTURE_GROUP);
 
-        if (course.getTutorialGroups() != null) {
-            System.out.println();
-            printVacanciesForGroups(course.getTutorialGroups(), GroupType.TUTORIAL_GROUP);
-        }
+
         if (course.getLabGroups() != null) {
             System.out.println();
             printVacanciesForGroups(course.getLabGroups(), GroupType.LAB_GROUP);
         }
         System.out.println();
     }
+
+    public void printCourseInfoString(String courseInfoString){
+        System.out.println(courseInfoString);
+        System.out.println("--------------------------------------------");
+    }
+
+    public void printVacanciesFor
 
     /**
      * Helper method to print out the vacancies for groups
@@ -271,6 +277,19 @@ public class CourseMgrIO {
             } else {
                 System.out.format("%s group %s (Available/Total): %d/%d%n",
                         type.getNameWithCapital(), group.getGroupName(), group.getAvailableVacancies(), group.getTotalSeats());
+            }
+
+        }
+    }
+
+        private void printVacanciesForGroupsQQQQ(String[][] groupInformation, GroupType type) {
+        for (String[] group: groupInformation) {
+            if (type == GroupType.TUTORIAL_GROUP) {
+                System.out.format("%s group %s (Available/Total):  %d/%d%n",
+                        type.getNameWithCapital(), group[0], group[1], group[2]);
+            } else {
+                System.out.format("%s group %s (Available/Total): %d/%d%n",
+                        type.getNameWithCapital(), group[0].getGroupName(), group[1].getAvailableVacancies(), group[2].getTotalSeats());
             }
 
         }

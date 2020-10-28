@@ -1,11 +1,13 @@
 package com.softeng306.managers;
 
+import com.softeng306.domain.course.group.Group;
 import com.softeng306.enums.Department;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.course.ICourseBuilder;
+import com.softeng306.enums.GroupType;
 import com.softeng306.io.CourseMgrIO;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
@@ -78,6 +80,11 @@ public class CourseMgr {
             Course currentCourse = readCourseFromUser();
             if (currentCourse != null) {
                 courseMgrIO.printCourseInfo(currentCourse);
+                if (currentCourse.getTutorialGroups() != null) {
+                    System.out.println();
+                    courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP);
+                }
+
                 break;
             } else {
                 courseMgrIO.printCourseNotExist();
@@ -259,6 +266,20 @@ public class CourseMgr {
      */
     public List<Course> getCourses() {
         return courses;
+    }
+
+    public String generateCourseInformation(Course course){
+        String infoString = course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats();
+        return infoString;
+    }
+
+    public String[][] generateGroupInformation(List<Group> groups){
+        String[][] groupInfo = new String[groups.size()][3];
+        for(int i = 0; i<groups.size(); i++){
+            groupInfo[i][0] = groups.get(i).getGroupName();
+            groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
+            groupInfo[i][2] = String.valueOf(groups.get(i).getTotalSeats());
+        }
     }
 
 }
