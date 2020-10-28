@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
     private static CourseMgr courseMgr;
-    private static MarkMgr markMgr;
+    private static MarkMgrIO markMgrIO;
     private static StudentMgr studentMgr;
     private static CourseRegistrationMgr courseRegistrationMgr;
 
@@ -23,7 +23,7 @@ public class MainMenuIO {
         int highestChoiceInt = 11;
 
         courseMgr = CourseMgr.getInstance();
-        markMgr = MarkMgr.getInstance();
+        markMgrIO = MarkMgrIO.getInstance();
         studentMgr = StudentMgr.getInstance();
         courseRegistrationMgr = CourseRegistrationMgr.getInstance();
 
@@ -84,10 +84,10 @@ public class MainMenuIO {
                 courseMgr.enterCourseWorkComponentWeightage(null);
                 break;
             case 7:
-                markMgr.setCourseworkMark(false);
+                markMgrIO.initiateEnteringCourseworkMark(false);
                 break;
             case 8:
-                markMgr.setCourseworkMark(true);
+                markMgrIO.initiateEnteringCourseworkMark(true);
                 break;
             case 9:
                 courseMgr.printCourseStatistics();

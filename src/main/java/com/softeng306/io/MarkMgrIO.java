@@ -84,4 +84,13 @@ public class MarkMgrIO {
 
         return examMark;
     }
+
+    public void initiateEnteringCourseworkMark(boolean isExam) {
+        printFunctionCall("enterCourseWorkMark");
+
+        String studentID = StudentMgr.getInstance().readStudentFromUser().getStudentID();
+        String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
+        MarkMgr.getInstance().setCourseworkMark(isExam, studentID, courseID);
+    }
+
 }
