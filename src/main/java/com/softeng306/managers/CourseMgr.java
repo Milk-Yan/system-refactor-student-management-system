@@ -70,7 +70,7 @@ public class CourseMgr {
             enterCourseWorkComponentWeightage(course);
             courseMgrIO.printCourseAdded(course.getCourseID());
         }
-        courseMgrIO.printCourses(courses);
+        courseMgrIO.printCourses(generateGeneralInformationForAllCourses());
     }
 
     /**
@@ -339,12 +339,24 @@ public class CourseMgr {
      * @param courseID The inputted course ID.
      * @return the existing course or else null.
      */
-    public static Course getCourseFromId(String courseID) {
+    public Course getCourseFromId(String courseID) {
         List<Course> anyCourse = CourseMgr.getInstance().getCourses().stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
         if (anyCourse.isEmpty()) {
             return null;
         }
         return anyCourse.get(0);
+    }
+
+    public HashMap<String, List<String>> generateGeneralInformationForAllCourses(){
+        HashMap<String, List<String>> generalCourseInfoMap = new HashMap<>();
+        for(Course course : courses) {
+            List<String> generalCourseInfo = new ArrayList<>();
+            generalCourseInfo.add(course.getCourseName());
+            generalCourseInfo.add(course.getProfInCharge().getProfName());
+            generalCourseInfoMap.put(course.getCourseID(),generalCourseInfo);
+        }
+        return generalCourseInfoMap;
+
     }
 
 

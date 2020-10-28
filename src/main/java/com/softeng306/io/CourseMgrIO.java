@@ -552,13 +552,13 @@ public class CourseMgrIO {
     /**
      * Print courses
      *
-     * @param courses the courses to print
      */
-    public void printCourses(List<Course> courses) {
+    public void printCourses(HashMap<String, List<String>> courseGeneralInfo) {
         System.out.println("Course List: ");
         System.out.println("| Course ID | Course Name | Professor in Charge |");
-        for (Course course : courses) {
-            System.out.println("| " + course.getCourseID() + " | " + course.getCourseName() + " | " + course.getProfInCharge().getProfName() + " |");
+        for (String courseID : courseGeneralInfo.keySet()) {
+            List<String> info = courseGeneralInfo.get(courseID);
+            System.out.println("| " + courseID + " | " + info.get(0)  + " | " + info.get(1) + " |");
         }
         System.out.println();
     }
