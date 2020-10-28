@@ -558,9 +558,11 @@ public class CourseMgrIO {
      *
      */
     public void printCourses(HashMap<String, List<String>> courseGeneralInfo) {
+        List<String> courseIDs = new ArrayList<>(courseGeneralInfo.keySet());
+        Collections.sort(courseIDs);
         System.out.println("Course List: ");
         System.out.println("| Course ID | Course Name | Professor in Charge |");
-        for (String courseID : courseGeneralInfo.keySet()) {
+        for (String courseID : courseIDs) {
             List<String> info = courseGeneralInfo.get(courseID);
             System.out.println("| " + courseID + " | " + info.get(0)  + " | " + info.get(1) + " |");
         }
