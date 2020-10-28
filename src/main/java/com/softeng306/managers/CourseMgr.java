@@ -79,20 +79,18 @@ public class CourseMgr {
         while (true) {
             Course currentCourse = readCourseFromUser();
             if (currentCourse != null) {
-                courseMgrIO.printCourseInfo(this.generateCourseInformation(currentCourse));
+                courseMgrIO.printCourseInfoString(this.generateCourseInformation(currentCourse));
+                courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LAB_GROUP);
 
                 if (currentCourse.getTutorialGroups() != null) {
                     System.out.println();
                     courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP);
                 }
 
-                if (currentCourse.getTutorialGroups() != null) {
+                if (currentCourse.getLabGroups() != null) {
                     System.out.println();
-                    courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP);
+                    courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP);
                 }
-
-
-
                 break;
             } else {
                 courseMgrIO.printCourseNotExist();
@@ -288,6 +286,7 @@ public class CourseMgr {
             groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
             groupInfo[i][2] = String.valueOf(groups.get(i).getTotalSeats());
         }
+        return groupInfo;
     }
 
 }
