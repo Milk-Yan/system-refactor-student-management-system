@@ -116,10 +116,10 @@ public class CourseRegistrationMgr {
         // return List of Object(student,course,lecture,tut,lab)
         List<CourseRegistration> allCourseRegistrations = FILEMgr.loadCourseRegistration();
 
-        List<CourseRegistration> stuArray = new ArrayList<>(0);
+        List<CourseRegistration> courseRegistrationList = new ArrayList<>(0);
         for (CourseRegistration courseRegistration : allCourseRegistrations) {
             if (courseRegistration.getCourse().getCourseID().equals(currentCourse.getCourseID())) {
-                stuArray.add(courseRegistration);
+                courseRegistrationList.add(courseRegistration);
             }
         }
 
@@ -131,31 +131,31 @@ public class CourseRegistrationMgr {
             // TODO: replace these common ui elements with a library
             System.out.println("------------------------------------------------------");
 
-            if (stuArray.isEmpty()) {
+            if (courseRegistrationList.isEmpty()) {
                 CourseRegistrationManagerIO.printNoEnrolmentsError();
             }
 
             if (opt == 1) {
-                sortByLectureGroup(stuArray);
-                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LECTURE_GROUP);
+                sortByLectureGroup(courseRegistrationList);
+                CourseRegistrationManagerIO.printByGroup(courseRegistrationList, GroupType.LECTURE_GROUP);
 
             } else if (opt == 2) {
-                if (!stuArray.isEmpty() && stuArray.get(0).getCourse().getTutorialGroups().isEmpty()) {
+                if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getTutorialGroups().isEmpty()) {
                     CourseRegistrationManagerIO.printNoGroup(GroupType.TUTORIAL_GROUP);
                     CourseRegistrationManagerIO.printEndOfSection();
                     return;
                 }
-                sortByTutorialGroup(stuArray);
-                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.TUTORIAL_GROUP);
+                sortByTutorialGroup(courseRegistrationList);
+                CourseRegistrationManagerIO.printByGroup(courseRegistrationList, GroupType.TUTORIAL_GROUP);
 
             } else if (opt == 3) {
-                if (!stuArray.isEmpty() && stuArray.get(0).getCourse().getLabGroups().isEmpty()) {
+                if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getLabGroups().isEmpty()) {
                     CourseRegistrationManagerIO.printNoGroup(GroupType.LAB_GROUP);
                     CourseRegistrationManagerIO.printEndOfSection();
                     return;
                 }
-                sortByLabGroup(stuArray);
-                CourseRegistrationManagerIO.printByGroup(stuArray, GroupType.LAB_GROUP);
+                sortByLabGroup(courseRegistrationList);
+                CourseRegistrationManagerIO.printByGroup(courseRegistrationList, GroupType.LAB_GROUP);
 
             } else {
                 CourseRegistrationManagerIO.printInvalidInputError();
