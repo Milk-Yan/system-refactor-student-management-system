@@ -1,7 +1,5 @@
 package com.softeng306.io;
 
-import com.softeng306.managers.ProfessorMgr;
-
 import java.util.List;
 
 /**

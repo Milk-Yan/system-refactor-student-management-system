@@ -1,10 +1,5 @@
 package com.softeng306.enums;
 
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
-
 public enum CourseType {
     CORE, MPE, GREPEBM, GREPELA, GREPESTS, UE;
 
@@ -24,7 +19,7 @@ public enum CourseType {
      * Finds whether the string exists as a course type.
      */
     public static boolean contains(String possibleCourse) {
-        for (CourseType courseType: CourseType.values()) {
+        for (CourseType courseType : CourseType.values()) {
             if (courseType.toString().equals(possibleCourse)) {
                 return true;
             }
