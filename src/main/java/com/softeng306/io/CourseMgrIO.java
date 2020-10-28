@@ -23,9 +23,9 @@ import com.softeng306.validation.ProfessorValidator;
 import java.util.*;
 
 public class CourseMgrIO {
+
     private Scanner scanner = new Scanner(System.in);
 
-    private MarkCalculator markCalculator = new MarkCalculator();
     /**
      * Read in a courseId from the user
      *
@@ -449,8 +449,20 @@ public class CourseMgrIO {
      *
      * @param course the course to print the components for
      */
-    public void printComponentsForCourse(Course course) {
-        System.out.println(course.getCourseID() + " " + course.getCourseName() + " components: ");
+    redtcryvgbhjnkmws4edrtyun
+    public void printComponentsForCourse(String courseId, String courseName, HashMap<HashMap<String, String>, HashMap<String,String>> allGroupInformation) {
+        System.out.println(courseId + " " + courseName + " components: ");
+        for(HashMap<String, String> mainComponentInfo : allGroupInformation.keySet()){
+            Map.Entry<String,String> entry = mainComponentInfo.entrySet().iterator().next();
+            System.out.println("    " + entry.getKey() + " : " + entry.getValue() + "%");
+
+            HashMap<String, String> allSubComponentInfo = allGroupInformation.get(mainComponentInfo);
+            for(HashMap<String, String> subComponentInfo : allSubComponentInfo){
+                
+            }
+
+        }
+
         for (MainComponent each_comp : course.getMainComponents()) {
             System.out.println("    " + each_comp.getComponentName() + " : " + each_comp.getComponentWeight() + "%");
             for (SubComponent each_sub : each_comp.getSubComponents()) {
@@ -954,7 +966,6 @@ public class CourseMgrIO {
                 profID = scanner.nextLine();
             }
 
-
             if (ProfessorValidator.checkProfessorExists(profID)) {
                 if (professorsInDepartment.contains(profID)) {
                     break;
@@ -970,8 +981,6 @@ public class CourseMgrIO {
         return profID;
 
     }
-
-
 
 
     public void addCourse(){

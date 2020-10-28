@@ -178,7 +178,7 @@ public class CourseMgr {
             courseMgrIO.printCourseworkWeightageEnteredError();
         }
 
-        courseMgrIO.printComponentsForCourse(currentCourse);
+        courseMgrIO.printComponentsForCourse(generateComponentInformationForAllCourses(currentCourse));
 
         // Update course into course.csv
     }
@@ -357,6 +357,22 @@ public class CourseMgr {
         }
         return generalCourseInfoMap;
 
+    }
+
+    public HashMap<HashMap<String, String>, HashMap<String,String>> generateComponentInformationForAllCourses(Course course){
+        HashMap<HashMap<String, String>, HashMap<String, String>> map = new HashMap<>();
+        for (MainComponent eachComp : course.getMainComponents()) {
+            HashMap<String, String> mainComponentInfo = new HashMap<>();
+            mainComponentInfo.put(eachComp.getComponentName(), String.valueOf(eachComp.getComponentWeight()));
+
+            HashMap<String,String> subComponentsInfo = new HashMap<>();
+            for (SubComponent eachSub : eachComp.getSubComponents()) {
+                subComponentsInfo.put(eachSub.getComponentName(), String.valueOf(eachSub.getComponentWeight()));
+            }
+
+            map.put(mainComponentInfo, subComponentsInfo);
+        }
+        return map;
     }
 
 
