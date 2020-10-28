@@ -222,4 +222,17 @@ public class StudentMgr {
         return student.getStudentName();
     }
 
+    public List<String> generateStudentInformationStrings() {
+        List<String> studentInformationStrings = new ArrayList<>();
+        for (Student student : StudentMgr.getInstance().getStudents()) {
+            String GPA = "not available";
+            if (Double.compare(student.getGPA(), 0.0) != 0) {
+                GPA = String.valueOf(student.getGPA());
+            }
+            studentInformationStrings.add(" " + student.getStudentID() + " | " + student.getStudentName() + " | " + student.getStudentSchool() + " | " + student.getGender() + " | " + student.getStudentYear() + " | " + GPA);
+        }
+        return studentInformationStrings;
+    }
+
+
 }

@@ -13,6 +13,7 @@ import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.professor.Professor;
 
 import com.softeng306.managers.CourseMgr;
+import com.softeng306.managers.DepartmentMgr;
 import com.softeng306.managers.ProfessorMgr;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.GroupValidator;
@@ -123,10 +124,10 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the departments.");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                Department.printAllDepartment();
+                new DepartmentMgr().printAllDepartment();
                 courseDepartment = scanner.nextLine();
             }
-            if (Department.contains(courseDepartment)) {
+            if (new DepartmentMgr().contains(courseDepartment)) {
                 break;
             } else {
                 System.out.println("The department is invalid. Please re-enter.");
@@ -1000,10 +1001,10 @@ public class CourseMgrIO {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                Department.printAllDepartment();
+                new DepartmentMgr().printAllDepartment();
                 courseDepartment = scanner.nextLine();
             }
-            if (Department.contains(courseDepartment)) {
+            if (new DepartmentMgr().contains(courseDepartment)) {
                 List<String> validCourseString;
                 validCourseString = CourseMgr.getInstance().getCourseIdsInDepartment(Department.valueOf(courseDepartment));
                 if (validCourseString.size() == 0) {

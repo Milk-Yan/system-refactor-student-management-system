@@ -1,21 +1,11 @@
 package com.softeng306.io;
 
-import com.softeng306.domain.course.component.MainComponent;
-import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.mark.MainComponentMark;
-import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.mark.MarkCalculator;
-import com.softeng306.domain.mark.SubComponentMark;
-import com.softeng306.domain.student.Student;
-import com.softeng306.enums.Department;
-import com.softeng306.enums.Gender;
-import com.softeng306.managers.CourseMgr;
-import com.softeng306.managers.CourseRegistrationMgr;
+import com.softeng306.managers.DepartmentMgr;
+import com.softeng306.managers.GenderMgr;
 import com.softeng306.managers.MarkMgr;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.StudentValidator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -165,11 +155,11 @@ public class StudentMgrIO {
             System.out.println("Enter -h to print all the schools.");
             studentSchool = reader.nextLine();
             while ("-h".equals(studentSchool)) {
-                Department.printAllDepartment();
+                new DepartmentMgr().printAllDepartment();
                 studentSchool = reader.nextLine();
             }
 
-            if (Department.contains(studentSchool)) {
+            if (new DepartmentMgr().contains(studentSchool)) {
                 return studentSchool;
             } else {
                 System.out.println("The department is invalid. Please re-enter.");
@@ -189,11 +179,11 @@ public class StudentMgrIO {
             System.out.println("Enter -h to print all the genders.");
             studentGender = reader.nextLine();
             while ("-h".equals(studentGender)) {
-                Gender.printAllGender();
+                new GenderMgr().printAllGender();
                 studentGender = reader.nextLine();
             }
 
-            if (Gender.contains(studentGender)) {
+            if (new GenderMgr().contains(studentGender)) {
                 return studentGender;
             } else {
                 System.out.println("The gender is invalid. Please re-enter.");
@@ -233,13 +223,8 @@ public class StudentMgrIO {
         System.out.println("Student named: " + name + " is added, with ID: " + ID);
         System.out.println("Student List: ");
         System.out.println("| Student ID | Student Name | Student School | Gender | Year | GPA |");
-        for (Student student : StudentMgr.getInstance().getStudents()) {
-            String GPA = "not available";
-            if (Double.compare(student.getGPA(), 0.0) != 0) {
-                GPA = String.valueOf(student.getGPA());
-            }
-            System.out.println(" " + student.getStudentID() + " | " + student.getStudentName() + " | " + student.getStudentSchool() + " | " + student.getGender() + " | " + student.getStudentYear() + " | " + GPA);
-        }
+        List<String> studentInformationStrings = studentMgr.generateStudentInformationStrings();
+        studentInformationStrings.forEach(System.out::println);
     }
 
     /**
@@ -275,7 +260,6 @@ public class StudentMgrIO {
      */
     public String readStudentIdFromUser() {
         String studentID;
-        Student currentStudent = null;
         while (true) {
             System.out.println("Enter Student ID (-h to print all the student ID):");
             studentID = reader.nextLine();
