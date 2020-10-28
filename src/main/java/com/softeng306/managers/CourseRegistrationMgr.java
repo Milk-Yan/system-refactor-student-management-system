@@ -47,7 +47,8 @@ public class CourseRegistrationMgr {
     /**
      * Registers a course for a student
      */
-    public List<String> registerCourse(CourseRegistrationMgrIO io, String studentID, String courseID) {
+    public List<String> registerCourse(String studentID, String courseID) {
+        CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         Student currentStudent = StudentValidator.getStudentFromId(studentID);
         Course currentCourse = CourseValidator.getCourseFromId(courseID);
 
@@ -56,7 +57,7 @@ public class CourseRegistrationMgr {
         }
 
         if (currentCourse.getMainComponents().isEmpty()) {
-            io.printNoAssessmentMessage(currentCourse);
+            io.printNoAssessmentMessage(currentCourse.getProfInCharge().getProfName());
             return null;
         }
 
@@ -65,7 +66,7 @@ public class CourseRegistrationMgr {
             return null;
         }
 
-        io.printPendingRegistrationMethod(currentCourse, currentStudent);
+        io.printPendingRegistrationMethod(currentStudent.getStudentName(), currentStudent.getStudentID(), currentCourse.getCourseID(), currentCourse.getCourseName());
 
         List<Group> lecGroups = new ArrayList<>();
         lecGroups.addAll(currentCourse.getLectureGroups());
@@ -135,25 +136,27 @@ public class CourseRegistrationMgr {
 
         if (opt == 1) {
             sortByLectureGroup(courseRegistrationList);
-            io.printByGroup(courseRegistrationList, GroupType.LECTURE_GROUP);
-
+            List<String> groupString = getGroupString(courseRegistrationList, GroupType.LECTURE_GROUP);
+            io.printGroupString(groupString);
         } else if (opt == 2) {
             if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getTutorialGroups().isEmpty()) {
-                io.printNoGroup(GroupType.TUTORIAL_GROUP);
+                io.printNoGroup(GroupType.TUTORIAL_GROUP.toString());
                 io.printEndOfSection();
                 return;
             }
             sortByTutorialGroup(courseRegistrationList);
-            io.printByGroup(courseRegistrationList, GroupType.TUTORIAL_GROUP);
+            List<String> groupString = getGroupString(courseRegistrationList, GroupType.TUTORIAL_GROUP);
+            io.printGroupString(groupString);
 
         } else if (opt == 3) {
             if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getLabGroups().isEmpty()) {
-                io.printNoGroup(GroupType.LAB_GROUP);
+                io.printNoGroup(GroupType.LAB_GROUP.toString());
                 io.printEndOfSection();
                 return;
             }
             sortByLabGroup(courseRegistrationList);
-            io.printByGroup(courseRegistrationList, GroupType.LAB_GROUP);
+            List<String> groupString = getGroupString(courseRegistrationList, GroupType.LAB_GROUP);
+            io.printGroupString(groupString);
 
         } else {
             io.printInvalidInputError();
@@ -258,6 +261,44 @@ public class CourseRegistrationMgr {
             }
         }
         return total;
+    }
+
+    public List<String> getUniqueGroupNames(List<CourseRegistration> courseRegistrations, GroupType groupType) {
+        List<String> uniqueGroupNames = new ArrayList<>();
+        for (CourseRegistration courseRegistration : courseRegistrations) {
+            if (!uniqueGroupNames.contains(courseRegistration.getGroupByType(groupType).getGroupName())) {
+                uniqueGroupNames.add(courseRegistration.getTutorialGroup().getGroupName());
+            }
+        }
+        return uniqueGroupNames;
+    }
+
+
+    /**
+     * This method prints the students of a given group
+     *
+     * @param courseRegistrations the list registrations for a course
+     * @param groupType           the group of registration that we want to print
+     */
+    public List<String> getGroupString(List<CourseRegistration> courseRegistrations, GroupType groupType) {
+        List<String> groupStringInfo = new ArrayList<>();
+        if (courseRegistrations.isEmpty()) {
+            return groupStringInfo;
+        }
+
+        String groupName = "";
+        for (CourseRegistration courseRegistration : courseRegistrations) {
+            String courseRegGroupName = courseRegistration.getGroupByType(groupType).getGroupName();
+            if (!groupName.equals(courseRegGroupName)) {
+                groupName = courseRegGroupName;
+                groupStringInfo.add(groupType.getNameWithCapital() + " group : " + groupName);
+            }
+
+            groupStringInfo.add("Student Name: " + courseRegistration.getStudent().getStudentName() + " Student ID: " + courseRegistration.getStudent().getStudentID());
+        }
+        groupStringInfo.add("");
+
+        return groupStringInfo;
     }
 
 

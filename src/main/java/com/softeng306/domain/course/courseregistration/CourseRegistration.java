@@ -3,6 +3,7 @@ package com.softeng306.domain.course.courseregistration;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
+import com.softeng306.enums.GroupType;
 
 public class CourseRegistration {
     private Student student;
@@ -44,5 +45,16 @@ public class CourseRegistration {
 
     public Group getLabGroup() {
         return labGroup;
+    }
+
+    public Group getGroupByType(GroupType type) {
+        if (type == GroupType.LECTURE_GROUP) {
+            return lectureGroup;
+        } else if (type == GroupType.TUTORIAL_GROUP) {
+            return tutorialGroup;
+        } else if (type == GroupType.LAB_GROUP) {
+            return labGroup;
+        }
+        return null;
     }
 }

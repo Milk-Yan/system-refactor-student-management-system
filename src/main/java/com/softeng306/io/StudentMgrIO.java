@@ -245,7 +245,7 @@ public class StudentMgrIO {
     /**
      * Prompts the user to input an ID for an existing student
      */
-    public static String readExistingStudentIDFromUser() {
+    public String readExistingStudentIDFromUser() {
         String studentID;
 
         while (true) {
