@@ -62,7 +62,7 @@ public class MainMenuIO {
                 courseMgrIO.addCourse();
                 break;
             case 3:
-                courseRegistrationMgrIO.registerCourse();
+                courseRegistrationMgrIO.registerStudentForCourse();
                 break;
             case 4:
                 courseMgrIO.checkAvailableSlots();

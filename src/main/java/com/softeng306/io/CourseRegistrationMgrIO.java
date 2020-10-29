@@ -1,6 +1,7 @@
 package com.softeng306.io;
 
 import com.softeng306.domain.exceptions.CourseNotFoundException;
+import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
 import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.managers.CourseMgr;
@@ -27,15 +28,15 @@ public class CourseRegistrationMgrIO {
     /**
      * When there is no group of the given type, this method will be called
      */
-    public void printNoGroup(String type) {
+    public void printContainsNoGroupMessage(String type) {
         System.out.format("This course does not contain any %s group.%n", type);
     }
 
     /**
-     * When there is no enrolments for a course, this method will print an error
+     * When there are no registrations for a course, this method will print an error
      * to the user
      */
-    public void printNoEnrolmentsError() {
+    public void printNoRegistrationsForCourseMessage() {
         System.out.println("No one has registered this course yet.");
     }
 
@@ -44,9 +45,9 @@ public class CourseRegistrationMgrIO {
     }
 
     /**
-     * If the input is invalid, this method will let the user know
+     * If the user input is invalid, this method will let the user know
      */
-    public void printInvalidInputError() {
+    public void printInvalidUserInputMessage() {
         System.out.println("Invalid input. Please re-enter.");
     }
 
@@ -95,7 +96,7 @@ public class CourseRegistrationMgrIO {
      * @param courseId    is a course id that we are registering a student for.
      * @param courseName  is a course name that we are registering a student for.
      */
-    public void printPendingRegistrationMethod(String studentName, String studentId, String courseId, String courseName) {
+    public void printRegistrationRequestDetails(String studentName, String studentId, String courseId, String courseName) {
         System.out.println("Student " + studentName + " with ID: " + studentId +
                 " wants to register " + courseId + " " + courseName);
     }
@@ -103,7 +104,7 @@ public class CourseRegistrationMgrIO {
     /**
      * Gets a student and course from the user to create a new registration for
      */
-    public void registerCourse() {
+    public void registerStudentForCourse() {
         MainMenuIO.printMethodCall("registerCourse");
 
         CourseMgrIO courseIO = new CourseMgrIO();
@@ -139,7 +140,7 @@ public class CourseRegistrationMgrIO {
 
             try {
                 courseRegistrationMgr.printStudents(courseID, opt);
-            } catch (Exception e) {
+            } catch (CourseNotFoundException |  GroupTypeNotFoundException e) {
                 e.printStackTrace();
             }
         } while (opt < 1 || opt > 3);

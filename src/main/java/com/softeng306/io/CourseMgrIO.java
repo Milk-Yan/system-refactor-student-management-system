@@ -3,12 +3,6 @@ package com.softeng306.io;
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.exceptions.ProfessorNotFoundException;
-import com.softeng306.enums.CourseType;
-import com.softeng306.enums.Department;
-import com.softeng306.enums.GroupType;
-import com.softeng306.domain.course.component.MainComponent;
-import com.softeng306.domain.course.component.SubComponent;
-
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.GroupTypeMgr;
 import com.softeng306.managers.ProfessorMgr;
@@ -224,11 +218,11 @@ public class CourseMgrIO {
     }
 
     /**
-     * Prints an information message that the components have not been initialized
+     * Prints an information message that the components have not been initialised
      *
-     * @param courseID the course that the components have not been initialized for
+     * @param courseID the course that the components have not been initialised for
      */
-    public void printComponentsNotInitialized(String courseID) {
+    public void printComponentsNotInitialisedMessage(String courseID) {
         System.out.println("Course " + courseID + " is added, but assessment components are not initialized.");
     }
 
