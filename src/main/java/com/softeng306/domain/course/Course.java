@@ -16,11 +16,8 @@ public class Course {
     private String courseID;
     private String courseName;
 
-    /**
-     * The AU of this course.
-     */
     @JsonProperty("AU")
-    private int AU;
+    private int academicUnits;
 
     private Professor profInCharge;
     private Department courseDepartment;
@@ -64,12 +61,10 @@ public class Course {
     }
 
     /**
-     * Gets the course's AU.
-     *
-     * @return the AU of this course.
+     * @return the number of academic units for this course.
      */
-    public int getAU() {
-        return AU;
+    public int getAcademicUnits() {
+        return academicUnits;
     }
 
     /**
@@ -248,10 +243,10 @@ public class Course {
     /**
      * Sets the academic unit for the course.
      *
-     * @param AU Academic unit for course.
+     * @param academicUnits Academic unit for course.
      */
-    public void setAU(int AU) {
-        this.AU = AU;
+    public void setAcademicUnits(int academicUnits) {
+        this.academicUnits = academicUnits;
     }
 
     /**
