@@ -17,8 +17,8 @@ import com.softeng306.validation.ProfessorValidator;
 import java.util.*;
 
 public class CourseMgrIO {
-
     private Scanner scanner = new Scanner(System.in);
+    private CourseMgr courseMgr = CourseMgr.getInstance();
 
     /**
      * Read in a courseId from the user
@@ -231,9 +231,8 @@ public class CourseMgrIO {
 
     /**
      * Print course information to the console for a user
-     *
      */
-    public void printCourseInfoString(String courseInfoString){
+    public void printCourseInfoString(String courseInfoString) {
         System.out.println(courseInfoString);
         System.out.println("--------------------------------------------");
     }
@@ -245,9 +244,9 @@ public class CourseMgrIO {
      */
     public void printVacanciesForGroups(String[][] groupInformation, String groupType) {
         groupType = groupType.substring(0, 1).toUpperCase() + groupType.substring(1);
-        for (String[] group: groupInformation) {
-                System.out.format("%s group %s (Available/Total): %s/%s%n",
-                        groupType, group[0], group[1], group[2]);
+        for (String[] group : groupInformation) {
+            System.out.format("%s group %s (Available/Total): %s/%s%n",
+                    groupType, group[0], group[1], group[2]);
         }
     }
 
@@ -434,16 +433,15 @@ public class CourseMgrIO {
 
     /**
      * Prints the components for a course
-     *
      */
-    public void printComponentsForCourse(String courseId, String courseName, HashMap<HashMap<String, String>, HashMap<String,String>> allGroupInformation) {
+    public void printComponentsForCourse(String courseId, String courseName, HashMap<HashMap<String, String>, HashMap<String, String>> allGroupInformation) {
         System.out.println(courseId + " " + courseName + " components: ");
-        for(HashMap<String, String> mainComponentInfo : allGroupInformation.keySet()){
-            Map.Entry<String,String> entry = mainComponentInfo.entrySet().iterator().next();
+        for (HashMap<String, String> mainComponentInfo : allGroupInformation.keySet()) {
+            Map.Entry<String, String> entry = mainComponentInfo.entrySet().iterator().next();
             System.out.println("    " + entry.getKey() + " : " + entry.getValue() + "%");
 
             HashMap<String, String> allSubComponentInfo = allGroupInformation.get(mainComponentInfo);
-            for(String subComponentInfo : allSubComponentInfo.keySet()){
+            for (String subComponentInfo : allSubComponentInfo.keySet()) {
                 System.out.println("        " + subComponentInfo + " : " + allSubComponentInfo.get(subComponentInfo) + "%");
             }
 
@@ -506,12 +504,12 @@ public class CourseMgrIO {
 
         do {
             componentExist = false;
-            if(componentType.equals(MainComponent.COMPONENT_NAME)){
+            if (componentType.equals(MainComponent.COMPONENT_NAME)) {
                 System.out.println("Total weightage left to assign: " + totalWeightAssignable);
             } else {
                 System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
             }
-            System.out.println("Enter " + componentType +" "+ (componentNumber + 1) + " name: ");
+            System.out.println("Enter " + componentType + " " + (componentNumber + 1) + " name: ");
             componentName = scanner.nextLine();
 
             if (componentNames.isEmpty()) {
@@ -543,7 +541,6 @@ public class CourseMgrIO {
 
     /**
      * Print courses
-     *
      */
     public void printCourses(HashMap<String, List<String>> courseGeneralInfo) {
         List<String> courseIDs = new ArrayList<>(courseGeneralInfo.keySet());
@@ -552,7 +549,7 @@ public class CourseMgrIO {
         System.out.println("| Course ID | Course Name | Professor in Charge |");
         for (String courseID : courseIDs) {
             List<String> info = courseGeneralInfo.get(courseID);
-            System.out.println("| " + courseID + " | " + info.get(0)  + " | " + info.get(1) + " |");
+            System.out.println("| " + courseID + " | " + info.get(0) + " | " + info.get(1) + " |");
         }
         System.out.println();
     }
@@ -577,7 +574,6 @@ public class CourseMgrIO {
 
     /**
      * Print course statistics header for a particular course
-     *
      */
 
     public void printCourseStatisticsHeader(List<String> courseInfo) {
@@ -594,7 +590,6 @@ public class CourseMgrIO {
 
     /**
      * Print a main component to the user
-     *
      */
     public void printMainComponent(String mainComponentName, int mainComponentWeight, double averageCourseMark) {
         System.out.print("Main Component: " + mainComponentName);
@@ -605,10 +600,9 @@ public class CourseMgrIO {
 
     /**
      * Print statistics for subcomponents
-     *
      */
     public void printSubcomponents(String[][] subComponentInformation, Map<String, Double> courseMarks) {
-        for(int i = 0; i<subComponentInformation.length; i++){
+        for (int i = 0; i < subComponentInformation.length; i++) {
             printSubComponentInfo(subComponentInformation[i][0], subComponentInformation[i][1]);
             System.out.println("\t Average: " + courseMarks.get(subComponentInformation[i][0]));
         }
@@ -625,7 +619,6 @@ public class CourseMgrIO {
 
     /**
      * Print statistics for an exam to the user
-     *
      */
     public void printExamStatistics(int examWeight, Double examMark) {
         System.out.print("Final Exam");
@@ -666,7 +659,7 @@ public class CourseMgrIO {
             System.out.println("Enter course ID (-h to print all the course ID):");
             courseID = scanner.nextLine();
             while ("-h".equals(courseID)) {
-                CourseMgr.getInstance().printAllCourseIds();
+                courseMgr.printAllCourseIds();
                 courseID = scanner.nextLine();
             }
             if (!CourseValidator.checkCourseIDExists(courseID)) {
@@ -689,12 +682,12 @@ public class CourseMgrIO {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                this.printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
+                this.printAllDepartments(courseMgr.getAllDepartmentsNameList());
                 courseDepartment = scanner.nextLine();
             }
-            if (CourseMgr.getInstance().checkContainsDepartment(courseDepartment)) {
+            if (courseMgr.checkContainsDepartment(courseDepartment)) {
                 List<String> validCourseString;
-                validCourseString = CourseMgr.getInstance().getCourseIdsInDepartment(courseDepartment);
+                validCourseString = courseMgr.getCourseIdsInDepartment(courseDepartment);
                 if (validCourseString.size() == 0) {
                     System.out.println("Invalid choice of department.");
                 } else {
@@ -707,14 +700,13 @@ public class CourseMgrIO {
         return courseDepartment;
     }
 
-    public void printAllDepartments(List<String> departments){
+    public void printAllDepartments(List<String> departments) {
         int index = 1;
-        for(String department : departments){
+        for (String department : departments) {
             System.out.println(index + ": " + department);
             index++;
         }
     }
-
 
 
     /**
@@ -729,10 +721,10 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the departments.");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                this.printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
+                this.printAllDepartments(courseMgr.getAllDepartmentsNameList());
                 courseDepartment = scanner.nextLine();
             }
-            if (CourseMgr.getInstance().checkContainsDepartment(courseDepartment)) {
+            if (courseMgr.checkContainsDepartment(courseDepartment)) {
                 break;
             } else {
                 System.out.println("The department is invalid. Please re-enter.");
@@ -792,7 +784,7 @@ public class CourseMgrIO {
                 if (lectureGroups.isEmpty()) {
                     break;
                 }
-                if(lectureGroups.containsKey(lectureGroupName)){
+                if (lectureGroups.containsKey(lectureGroupName)) {
                     groupNameExists = true;
                     System.out.println("This lecture group already exist for this course.");
                 }
@@ -816,7 +808,7 @@ public class CourseMgrIO {
                 }
                 seatsLeft -= lectureGroupCapacity;
                 if ((seatsLeft > 0 && i != (noOfLectureGroups - 1)) || (seatsLeft == 0 && i == noOfLectureGroups - 1)) {
-                    lectureGroups.put(lectureGroupName, (double)lectureGroupCapacity);
+                    lectureGroups.put(lectureGroupName, (double) lectureGroupCapacity);
                     break;  //break from the while loop
                 } else {
                     System.out.println("Sorry, the total capacity you allocated for all the lecture groups exceeds or does not add up to the total seats for this course.");
@@ -857,7 +849,7 @@ public class CourseMgrIO {
                 if (tutorialGroups.isEmpty()) {
                     break;
                 }
-                if(tutorialGroups.containsKey(tutorialGroupName)){
+                if (tutorialGroups.containsKey(tutorialGroupName)) {
                     groupNameExists = true;
                     System.out.println("This tutorial group already exist for this course.");
                 }
@@ -870,7 +862,7 @@ public class CourseMgrIO {
                     scanner.nextLine();
                     totalTutorialSeats += tutorialGroupCapacity;
                     if ((i != noOfTutorialGroups - 1) || (totalTutorialSeats >= totalSeats)) {
-                        tutorialGroups.put(tutorialGroupName, (double)tutorialGroupCapacity);
+                        tutorialGroups.put(tutorialGroupName, (double) tutorialGroupCapacity);
                         break;
                     } else {
                         System.out.println("Sorry, the total capacity you allocated for all the tutorial groups is not enough for this course.");
@@ -911,7 +903,7 @@ public class CourseMgrIO {
                 if (labGroups.isEmpty()) {
                     break;
                 }
-                if(labGroups.containsKey(labGroupName)){
+                if (labGroups.containsKey(labGroupName)) {
                     groupNameExists = true;
                     System.out.println("This lab group already exist for this course.");
                 }
@@ -923,7 +915,7 @@ public class CourseMgrIO {
                 scanner.nextLine();
                 totalLabSeats += labGroupCapacity;
                 if ((i != noOfLabGroups - 1) || (totalLabSeats >= totalSeats)) {
-                    labGroups.put(labGroupName, (double)labGroupCapacity);
+                    labGroups.put(labGroupName, (double) labGroupCapacity);
                     break;
                 } else {
                     System.out.println("Sorry, the total capacity you allocated for all the lab groups is not enough for this course.");
@@ -974,7 +966,7 @@ public class CourseMgrIO {
     }
 
 
-    public void addCourse(){
+    public void addCourse() {
 
         ICourseBuilder builder = new CourseBuilder();
 
@@ -988,23 +980,23 @@ public class CourseMgrIO {
 
         String courseType = this.readCourseType();
 
-        int noOfLectureGroups = CourseMgr.getInstance().getNumberOfLectureGroups(totalSeats, totalSeats);
-        int lecWeeklyHour = CourseMgr.getInstance().getReadWeeklyLectureHour(AU);
+        int noOfLectureGroups = courseMgr.getNumberOfLectureGroups(totalSeats, totalSeats);
+        int lecWeeklyHour = courseMgr.getReadWeeklyLectureHour(AU);
 
         //Name, total seats
         HashMap<String, Double> lectureGroups = this.readLectureGroups(totalSeats, noOfLectureGroups);
 
-        int noOfTutorialGroups = CourseMgr.getInstance().getNumberOfTutorialGroups(noOfLectureGroups, totalSeats);
+        int noOfTutorialGroups = courseMgr.getNumberOfTutorialGroups(noOfLectureGroups, totalSeats);
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
-            tutWeeklyHour = CourseMgr.getInstance().getReadWeeklyTutorialHour(AU);
+            tutWeeklyHour = courseMgr.getReadWeeklyTutorialHour(AU);
         }
         HashMap<String, Double> tutorialGroups = this.readTutorialGroups(noOfTutorialGroups, totalSeats);
 
-        int noOfLabGroups = CourseMgr.getInstance().getNumberOfLabGroups(noOfLectureGroups, totalSeats);
+        int noOfLabGroups = courseMgr.getNumberOfLabGroups(noOfLectureGroups, totalSeats);
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
-            labWeeklyHour = CourseMgr.getInstance().getReadWeeklyLabHour(AU);
+            labWeeklyHour = courseMgr.getReadWeeklyLabHour(AU);
         }
         HashMap<String, Double> labGroups = this.readLabGroups(noOfLabGroups, totalSeats);
 
@@ -1038,20 +1030,19 @@ public class CourseMgrIO {
 
         //Professor
         builder.setProfInCharge(profID);
-        CourseMgr.getInstance().addCourse(builder);
+        courseMgr.addCourse(builder);
     }
 
-    public void checkAvailableSlots(){
-        CourseMgr.getInstance().checkAvailableSlots();
+    public void checkAvailableSlots() {
+        courseMgr.checkAvailableSlots();
     }
 
-    public void enterCourseWorkComponentWeightage(){
-        CourseMgr.getInstance().enterCourseWorkComponentWeightage(null);
+    public void enterCourseWorkComponentWeightage() {
+        courseMgr.enterCourseWorkComponentWeightage(null);
     }
 
-    public void printCourseStatistics(){
-        CourseMgr.getInstance().printCourseStatistics();
+    public void printCourseStatistics() {
+        courseMgr.printCourseStatistics();
     }
-
 
 }

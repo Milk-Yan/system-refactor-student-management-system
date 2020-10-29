@@ -34,8 +34,6 @@ public class CourseMgr {
 
     private static CourseMgr singleInstance = null;
 
-    private CourseMgrIO courseMgrIO = new CourseMgrIO();
-
     private final IFileProcessor<Course> courseFileProcessor;
     private MarkCalculator markCalculator = new MarkCalculator();
 
@@ -64,6 +62,7 @@ public class CourseMgr {
      * Creates a new course and stores it in the file.
      */
     public void addCourse(ICourseBuilder completeBuilder) {
+        CourseMgrIO io = new CourseMgrIO();
 
         Course course = completeBuilder.build();
         int addCourseComponentChoice;
@@ -73,44 +72,46 @@ public class CourseMgr {
 
         courses.add(course);
 
-        addCourseComponentChoice = courseMgrIO.readCreateCourseComponentChoice();
+        addCourseComponentChoice = io.readCreateCourseComponentChoice();
 
         // Don't add course components option selected
         if (addCourseComponentChoice == 2) {
-            courseMgrIO.printComponentsNotInitialized(course.getCourseID());
+            io.printComponentsNotInitialized(course.getCourseID());
         } else {
             enterCourseWorkComponentWeightage(course);
-            courseMgrIO.printCourseAdded(course.getCourseID());
+            io.printCourseAdded(course.getCourseID());
         }
-        courseMgrIO.printCourses(generateGeneralInformationForAllCourses());
+        io.printCourses(generateGeneralInformationForAllCourses());
     }
 
     /**
      * Checks whether a course (with all of its groups) have available slots and displays the result.
      */
     public void checkAvailableSlots() {
+        CourseMgrIO io = new CourseMgrIO();
+
         //printout the result directly
         MainMenuIO.printMethodCall("checkAvailableSlots");
 
         while (true) {
             Course currentCourse = readCourseFromUser();
             if (currentCourse != null) {
-                courseMgrIO.printCourseInfoString(this.generateCourseInformation(currentCourse));
-                courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LECTURE_GROUP.toString());
+                io.printCourseInfoString(this.generateCourseInformation(currentCourse));
+                io.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LECTURE_GROUP.toString());
 
                 if (currentCourse.getTutorialGroups() != null) {
                     System.out.println();
-                    courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP.toString());
+                    io.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP.toString());
                 }
 
                 if (currentCourse.getLabGroups() != null) {
                     System.out.println();
-                    courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP.toString());
+                    io.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP.toString());
                 }
                 System.out.println();
                 break;
             } else {
-                courseMgrIO.printCourseNotExist();
+                io.printCourseNotExist();
             }
         }
     }
@@ -121,6 +122,8 @@ public class CourseMgr {
      * @param currentCourse The course which course work component is to be set.
      */
     public void enterCourseWorkComponentWeightage(Course currentCourse) {
+        CourseMgrIO io = new CourseMgrIO();
+
         // Assume when course is created, no components are added yet
         // Assume once components are created and set, cannot be changed.
 
@@ -135,35 +138,35 @@ public class CourseMgr {
         if (currentCourse.getMainComponents().isEmpty()) {
             // empty course
 
-            courseMgrIO.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
+            io.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
             int hasFinalExamChoice = 0;
             int examWeight = 0;
             while (hasFinalExamChoice < 1 || hasFinalExamChoice > 2) {
-                hasFinalExamChoice = courseMgrIO.readHasFinalExamChoice();
+                hasFinalExamChoice = io.readHasFinalExamChoice();
                 if (hasFinalExamChoice == 1) {
-                    examWeight = courseMgrIO.readExamWeight();
+                    examWeight = io.readExamWeight();
                     MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>());
                     mainComponents.add(exam);
                 } else if (hasFinalExamChoice == 2) {
-                    courseMgrIO.printEnterContinuousAssessments();
+                    io.printEnterContinuousAssessments();
                 }
             }
 
-            int numberOfMain = courseMgrIO.readNoOfMainComponents();
+            int numberOfMain = io.readNoOfMainComponents();
 
             while (true) {
                 int totalWeightage = 100 - examWeight;
                 for (int i = 0; i < numberOfMain; i++) {
                     HashMap<String, Double> subComponentsMap = new HashMap<>();
-                    String mainComponentName = courseMgrIO.readMainComponentName(totalWeightage, i, mainComponentNames);
+                    String mainComponentName = io.readMainComponentName(totalWeightage, i, mainComponentNames);
                     mainComponentNames.add(mainComponentName);
 
-                    int weight = courseMgrIO.readMainComponentWeightage(i, totalWeightage);
+                    int weight = io.readMainComponentWeightage(i, totalWeightage);
                     totalWeightage -= weight;
 
-                    int noOfSub = courseMgrIO.readNoOfSubComponents(i);
+                    int noOfSub = io.readNoOfSubComponents(i);
 
-                    subComponentsMap = courseMgrIO.readSubComponents(noOfSub);
+                    subComponentsMap = io.readSubComponents(noOfSub);
 
                     List<SubComponent> subComponentsList = new ArrayList<SubComponent>();
                     for (String key : subComponentsMap.keySet()){
@@ -178,7 +181,7 @@ public class CourseMgr {
 
                 if (totalWeightage != 0) {
                     // weightage assign is not tallied
-                    courseMgrIO.printWeightageError();
+                    io.printWeightageError();
                     mainComponents.clear();
                     mainComponentNames.clear();
                 } else {
@@ -189,10 +192,10 @@ public class CourseMgr {
             currentCourse.setMainComponents(mainComponents);
 
         } else {
-            courseMgrIO.printCourseworkWeightageEnteredError();
+            io.printCourseworkWeightageEnteredError();
         }
 
-        courseMgrIO.printComponentsForCourse(currentCourse.getCourseID(), currentCourse.getCourseName(), generateComponentInformationForACourses(currentCourse));
+        io.printComponentsForCourse(currentCourse.getCourseID(), currentCourse.getCourseName(), generateComponentInformationForACourses(currentCourse));
 
         // Update course into course.csv
     }
@@ -202,7 +205,7 @@ public class CourseMgr {
      * Displays a list of IDs of all the courses.
      */
     public void printAllCourseIds() {
-        courseMgrIO.printAllCourseIds(generateListOfAllCourseIDs());
+        new CourseMgrIO().printAllCourseIds(generateListOfAllCourseIDs());
     }
 
     public List<String> getCourseIdsInDepartment(String departmentName) {
@@ -226,6 +229,8 @@ public class CourseMgr {
      * Prints the course statics including enrollment rate, average result for every assessment component and the average overall performance of this course.
      */
     public void printCourseStatistics() {
+        CourseMgrIO io = new CourseMgrIO();
+
         MainMenuIO.printMethodCall("printCourseStatistics");
 
         Course currentCourse = readCourseFromUser();
@@ -238,7 +243,7 @@ public class CourseMgr {
             }
         }
 
-        courseMgrIO.printCourseStatisticsHeader(generateCourseInformationFromCourse(currentCourse));
+        io.printCourseStatisticsHeader(generateCourseInformationFromCourse(currentCourse));
 
         MainComponent exam = null;
 
@@ -250,22 +255,22 @@ public class CourseMgr {
 //                Leave the exam report to the last
                 exam = mainComponent;
             } else {
-                courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
+                io.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
                     HashMap<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents,courseMarks);
-                    courseMgrIO.printSubcomponents(subComponentInformation, subComponentMarks);
+                    io.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
             }
         }
 
         if (exam != null) {
-            courseMgrIO.printExamStatistics(exam.getComponentWeight(), markCalculator.computeExamMark(courseMarks));
+            io.printExamStatistics(exam.getComponentWeight(), markCalculator.computeExamMark(courseMarks));
         } else {
-            courseMgrIO.printNoExamMessage();
+            io.printNoExamMessage();
         }
-        courseMgrIO.printOverallPerformance(markCalculator.computerOverallMark(courseMarks));
+        io.printOverallPerformance(markCalculator.computerOverallMark(courseMarks));
     }
 
 
@@ -275,7 +280,7 @@ public class CourseMgr {
      * @return the inputted course.
      */
     public Course readCourseFromUser() {
-        String validCourseID = courseMgrIO.readValidCourseIdFromUser();
+        String validCourseID = new CourseMgrIO().readValidCourseIdFromUser();
         return getCourseFromId(validCourseID);
     }
 
@@ -285,7 +290,7 @@ public class CourseMgr {
      * @return the inputted department.
      */
     public String readDepartmentFromUser() {
-        return courseMgrIO.readDepartmentWithMoreThanOneCourseFromUser();
+        return new CourseMgrIO().readDepartmentWithMoreThanOneCourseFromUser();
     }
 
     /**
@@ -404,27 +409,27 @@ public class CourseMgr {
     }
 
     public int getNumberOfLectureGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.LECTURE_GROUP, compareTo, totalSeats);
+        return new CourseMgrIO().readNoOfGroup(GroupType.LECTURE_GROUP, compareTo, totalSeats);
     }
 
     public int getReadWeeklyLectureHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.LECTURE_GROUP, AU);
+        return new CourseMgrIO().readWeeklyHour(GroupType.LECTURE_GROUP, AU);
     }
 
     public int getNumberOfLabGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.LAB_GROUP, compareTo, totalSeats);
+        return new CourseMgrIO().readNoOfGroup(GroupType.LAB_GROUP, compareTo, totalSeats);
     }
 
     public int getReadWeeklyLabHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.LAB_GROUP, AU);
+        return new CourseMgrIO().readWeeklyHour(GroupType.LAB_GROUP, AU);
     }
 
     public int getNumberOfTutorialGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.TUTORIAL_GROUP, compareTo, totalSeats);
+        return new CourseMgrIO().readNoOfGroup(GroupType.TUTORIAL_GROUP, compareTo, totalSeats);
     }
 
     public int getReadWeeklyTutorialHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.TUTORIAL_GROUP, AU);
+        return new CourseMgrIO().readWeeklyHour(GroupType.TUTORIAL_GROUP, AU);
     }
 
 
