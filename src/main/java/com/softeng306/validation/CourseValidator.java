@@ -46,19 +46,4 @@ public class CourseValidator {
         }
         return true;
     }
-
-    /**
-     * Checks whether this course ID is used by other courses.
-     *
-     * @param courseID The inputted course ID.
-     * @return the existing course or else null.
-     */
-    public static Course getCourseFromId(String courseID) {
-        List<Course> anyCourse = CourseMgr.getInstance().getCourses().stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
-        if (anyCourse.isEmpty()) {
-            return null;
-        }
-        return anyCourse.get(0);
-    }
-
 }

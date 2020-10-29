@@ -59,7 +59,7 @@ public class CourseRegistrationMgr {
     public List<String> registerCourse(String studentID, String courseID) {
         CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         Student currentStudent = StudentValidator.getStudentFromId(studentID);
-        Course currentCourse = CourseValidator.getCourseFromId(courseID);
+        Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
 
         if (CourseRegistrationValidator.checkCourseRegistrationExists(studentID, courseID) != null) {
             return null;
@@ -128,7 +128,7 @@ public class CourseRegistrationMgr {
     public void printStudents(String courseID, int opt) {
 
         CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
-        Course currentCourse = CourseValidator.getCourseFromId(courseID);
+        Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
 
         // READ courseRegistrationFILE
         // return List of Object(student,course,lecture,tut,lab)

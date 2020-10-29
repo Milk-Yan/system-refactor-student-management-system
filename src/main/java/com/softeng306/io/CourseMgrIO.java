@@ -33,7 +33,7 @@ public class CourseMgrIO {
             courseID = scanner.nextLine();
             if (CourseValidator.checkValidCourseIDInput(courseID)) {
                 // Check course ID does not already exist for a course
-                if (CourseValidator.getCourseFromId(courseID) == null) {
+                if (CourseMgr.getInstance().getCourseFromId(courseID) == null) {
                     break;
                 }
                 System.out.println("Sorry. The course ID is used. This course already exists.");
