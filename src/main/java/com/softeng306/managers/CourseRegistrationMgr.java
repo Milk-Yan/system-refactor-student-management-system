@@ -317,8 +317,7 @@ public class CourseRegistrationMgr {
      * @return the existing course registration record or else null.
      */
     public boolean courseRegistrationExists(String studentID, String courseID) {
-        Optional<CourseRegistration> courseRegistration = courseRegistrations
-                .stream()
+        Optional<CourseRegistration> courseRegistration = courseRegistrations.stream()
                 .filter(cr -> studentID.equals(cr.getStudent().getStudentID()))
                 .filter(cr -> courseID.equals(cr.getCourse().getCourseID()))
                 .findFirst();

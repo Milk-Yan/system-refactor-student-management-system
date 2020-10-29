@@ -453,8 +453,7 @@ public class CourseMgr {
     }
 
     public boolean checkCourseExists(String courseID) {
-        Optional<Course> course = courses
-                .stream()
+        Optional<Course> course = courses.stream()
                 .filter(c -> courseID.equals(c.getCourseID()))
                 .findFirst();
 

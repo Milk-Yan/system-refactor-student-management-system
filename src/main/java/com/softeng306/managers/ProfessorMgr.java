@@ -91,8 +91,7 @@ public class ProfessorMgr {
      * @return If the professor exists.
      */
     public boolean checkProfessorExists(String profID){
-        Optional<Professor> professor = professors
-                .stream()
+        Optional<Professor> professor = professors.stream()
                 .filter(p -> profID.equals(p.getProfID()))
                 .findFirst();
 

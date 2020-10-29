@@ -8,7 +8,7 @@ public class RegexValidator {
     private static final String GROUP_NAME_REGEX = "^[a-zA-Z0-9]+$";
     private static final String STUDENT_ID_REGEX = "^U[0-9]{7}[A-Z]$";
     private static final String STUDENT_NAME_REGEX = "^[ a-zA-Z]+$";
-    
+
     /**
      * Checks whether the inputted string is in the correct format.
      *
