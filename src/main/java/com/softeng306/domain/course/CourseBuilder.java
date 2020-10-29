@@ -1,11 +1,15 @@
 package com.softeng306.domain.course;
 
-import com.softeng306.enums.CourseType;
-import com.softeng306.enums.Department;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.Department;
+import com.softeng306.enums.GroupType;
+import com.softeng306.managers.ProfessorMgr;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class CourseBuilder implements ICourseBuilder {
     private Course course;
@@ -25,7 +29,10 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setProfInCharge(Professor profInCharge) {
+    public void setProfInCharge(String profID) {
+        ProfessorMgr profMgr = ProfessorMgr.getInstance();
+        //Guaranteed at this point that the ID is valid
+        Professor profInCharge = profMgr.getProfessorFromID(profID);
         course.setProfInCharge(profInCharge);
     }
 
@@ -36,18 +43,33 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setLectureGroups(List<Group> lectureGroups) {
-        course.setLectureGroups(lectureGroups);
+    public void setLectureGroups(Map<String, Double> lectureGroups) {
+        List<Group> groupsOfLectures = new ArrayList<>();
+        for(String name : lectureGroups.keySet()){
+            Group group = new Group(name, lectureGroups.get(name).intValue(), lectureGroups.get(name).intValue(), GroupType.LECTURE_GROUP);
+            groupsOfLectures.add(group);
+        }
+        course.setLectureGroups(groupsOfLectures);
     }
 
     @Override
-    public void setTutorialGroups(List<Group> tutorialGroups) {
-        course.setTutorialGroups(tutorialGroups);
+    public void setTutorialGroups(Map<String, Double> tutorialGroups) {
+        List<Group> groupsOfLectures = new ArrayList<>();
+        for(String name : tutorialGroups.keySet()){
+            Group group = new Group(name, tutorialGroups.get(name).intValue(), tutorialGroups.get(name).intValue(), GroupType.LECTURE_GROUP);
+            groupsOfLectures.add(group);
+        }
+        course.setLectureGroups(groupsOfLectures);
     }
 
     @Override
-    public void setLabGroups(List<Group> labGroups) {
-        course.setLabGroups(labGroups);
+    public void setLabGroups(Map<String, Double> labGroups) {
+        List<Group> groupsOfLectures = new ArrayList<>();
+        for(String name : labGroups.keySet()){
+            Group group = new Group(name, labGroups.get(name).intValue(), labGroups.get(name).intValue(), GroupType.LECTURE_GROUP);
+            groupsOfLectures.add(group);
+        }
+        course.setLectureGroups(groupsOfLectures);
     }
 
     @Override
@@ -56,13 +78,13 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setCourseDepartment(Department department) {
-        course.setCourseDepartment(department);
+    public void setCourseDepartment(String department) {
+        course.setCourseDepartment(Department.valueOf(department));
     }
 
     @Override
-    public void setCourseType(CourseType type) {
-        course.setType(type);
+    public void setCourseType(String type) {
+        course.setType(CourseType.valueOf(type));
     }
 
     @Override

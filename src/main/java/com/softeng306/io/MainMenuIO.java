@@ -1,18 +1,18 @@
 package com.softeng306.io;
 
 import com.softeng306.managers.CourseMgr;
-import com.softeng306.managers.CourseRegistrationMgr;
 import com.softeng306.managers.MarkMgr;
-import com.softeng306.managers.StudentMgr;
 
 import java.util.Scanner;
 
 public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
-    private static CourseMgr courseMgr;
-    private static MarkMgr markMgr;
-    private static StudentMgr studentMgr;
-    private static CourseRegistrationMgr courseRegistrationMgr;
+
+    private static CourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
+    private static StudentMgrIO studentMgrIO = new StudentMgrIO();
+    private static MarkMgrIO markMgrIO = MarkMgrIO.getInstance();
+    private static CourseMgrIO courseMgrIO = new CourseMgrIO();
+
 
     /**
      * Startup the main menu for the application
@@ -21,12 +21,6 @@ public class MainMenuIO {
         int choice = 0;
         int lowestChoiceInt = 0;
         int highestChoiceInt = 11;
-
-        courseMgr = CourseMgr.getInstance();
-        markMgr = MarkMgr.getInstance();
-        studentMgr = StudentMgr.getInstance();
-        courseRegistrationMgr = CourseRegistrationMgr.getInstance();
-
         while (choice != 11) {
             printOptions();
             choice = getIntInputFromUser(lowestChoiceInt, highestChoiceInt);
@@ -66,34 +60,34 @@ public class MainMenuIO {
             case 0:
                 break;
             case 1:
-                studentMgr.addStudent();
+                studentMgrIO.addStudent();
                 break;
             case 2:
-                courseMgr.addCourse();
+                courseMgrIO.addCourse();
                 break;
             case 3:
-                courseRegistrationMgr.registerCourse();
+                courseRegistrationMgrIO.registerCourse();
                 break;
             case 4:
-                courseMgr.checkAvailableSlots();
+                courseMgrIO.checkAvailableSlots();
                 break;
             case 5:
-                courseRegistrationMgr.printStudents();
+                courseRegistrationMgrIO.printStudents();
                 break;
             case 6:
-                courseMgr.enterCourseWorkComponentWeightage(null);
+                courseMgrIO.enterCourseWorkComponentWeightage();
                 break;
             case 7:
-                markMgr.setCourseWorkMark(false);
+                markMgrIO.initiateEnteringCourseworkMark(false);
                 break;
             case 8:
-                markMgr.setCourseWorkMark(true);
+                markMgrIO.initiateEnteringCourseworkMark(true);
                 break;
             case 9:
-                courseMgr.printCourseStatistics();
+                courseMgrIO.printCourseStatistics();
                 break;
             case 10:
-                studentMgr.printStudentTranscript();
+                studentMgrIO.printStudentTranscript();
                 break;
             case 11:
                 exitApplication();

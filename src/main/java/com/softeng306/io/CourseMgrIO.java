@@ -1,16 +1,12 @@
 package com.softeng306.io;
 
-import com.softeng306.domain.course.component.CourseworkComponent;
+import com.softeng306.domain.course.CourseBuilder;
+import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
-import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.course.group.Group;
-import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.mark.MarkCalculator;
-import com.softeng306.domain.professor.Professor;
 
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.ProfessorMgr;
@@ -18,14 +14,11 @@ import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.GroupValidator;
 import com.softeng306.validation.ProfessorValidator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CourseMgrIO {
-    private Scanner scanner = new Scanner(System.in);
 
-    private MarkCalculator markCalculator = new MarkCalculator();
+    private Scanner scanner = new Scanner(System.in);
 
     /**
      * Read in a courseId from the user
@@ -111,52 +104,6 @@ public class CourseMgrIO {
         return AU;
     }
 
-    /**
-     * Read in a course department for a course from the user
-     *
-     * @return String courseDepartment for a course
-     */
-    public Department readCourseDepartment() {
-        String courseDepartment;
-        while (true) {
-            System.out.println("Enter course's department (uppercase): ");
-            System.out.println("Enter -h to print all the departments.");
-            courseDepartment = scanner.nextLine();
-            while ("-h".equals(courseDepartment)) {
-                Department.printAllDepartment();
-                courseDepartment = scanner.nextLine();
-            }
-            if (Department.contains(courseDepartment)) {
-                break;
-            } else {
-                System.out.println("The department is invalid. Please re-enter.");
-            }
-        }
-
-        return Department.valueOf(courseDepartment);
-    }
-
-    /**
-     * Read in a course type from the user
-     *
-     * @return String courseType for a course
-     */
-    public CourseType readCourseType() {
-        String courseType;
-        while (true) {
-            System.out.println("Enter course type (uppercase): ");
-            System.out.println("Enter -h to print all the course types.");
-            courseType = scanner.nextLine();
-            while (courseType.equals("-h")) {
-                CourseType.printAllCourseType();
-                courseType = scanner.nextLine();
-            }
-            if (CourseValidator.checkCourseTypeValidation(courseType)) {
-                break;
-            }
-        }
-        return CourseType.valueOf(courseType);
-    }
 
     /**
      * Read in the number of groups for a particular stream (lecture, lab, tutorial)
@@ -170,7 +117,7 @@ public class CourseMgrIO {
         int noOfGroups;
 
         while (true) {
-            if (type == GroupType.TUTORIAL_GROUP) {
+            if (type.equals(GroupType.TUTORIAL_GROUP)) {
                 System.out.println("Enter the number of " + type + " groups:");
             } else {
                 System.out.println("Enter the number of " + type + " groups: ");
@@ -238,226 +185,6 @@ public class CourseMgrIO {
         return weeklyHour;
     }
 
-    /**
-     * Reads in and constructs lecture groups for a course from the user
-     *
-     * @param totalSeats        the total number of seats for the course
-     * @param noOfLectureGroups the number of lecture groups for a course
-     * @return the lecture groups the user has specified
-     */
-    public List<Group> readLectureGroups(int totalSeats, int noOfLectureGroups) {
-        String lectureGroupName;
-        int lectureGroupCapacity;
-        int seatsLeft = totalSeats;
-        boolean groupNameExists;
-
-        List<Group> lectureGroups = new ArrayList<>();
-
-        for (int i = 0; i < noOfLectureGroups; i++) {
-            System.out.println("Give a name to the lecture group");
-            do {
-                groupNameExists = false;
-                System.out.println("Enter a group Name: ");
-                lectureGroupName = scanner.nextLine();
-                if (!GroupValidator.checkValidGroupNameInput(lectureGroupName)) {
-                    groupNameExists = true;
-                    continue;
-                }
-                if (lectureGroups.isEmpty()) {
-                    break;
-                }
-                for (Group lectureGroup : lectureGroups) {
-                    if (lectureGroup.getGroupName().equals(lectureGroupName)) {
-                        groupNameExists = true;
-                        System.out.println("This lecture group already exist for this course.");
-                        break;
-                    }
-                }
-            } while (groupNameExists);
-
-
-            while (true) {
-                System.out.println("Enter this lecture group's capacity: ");
-                while (true) {
-                    if (scanner.hasNextInt()) {
-                        lectureGroupCapacity = scanner.nextInt();
-                        scanner.nextLine();
-                        if (lectureGroupCapacity > 0) {
-                            break;
-                        }
-                        System.out.println("Capacity must be positive. Please re-enter.");
-                    } else {
-                        System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
-                    }
-                }
-                seatsLeft -= lectureGroupCapacity;
-                if ((seatsLeft > 0 && i != (noOfLectureGroups - 1)) || (seatsLeft == 0 && i == noOfLectureGroups - 1)) {
-                    Group lectureGroup = new Group(lectureGroupName, lectureGroupCapacity, lectureGroupCapacity, GroupType.LECTURE_GROUP);
-
-                    lectureGroups.add(lectureGroup);
-                    break;
-                } else {
-                    System.out.println("Sorry, the total capacity you allocated for all the lecture groups exceeds or does not add up to the total seats for this course.");
-                    System.out.println("Please re-enter the capacity for the last lecture group " + lectureGroupName + " you have entered.");
-                    seatsLeft += lectureGroupCapacity;
-                }
-            }
-        }
-
-        return lectureGroups;
-    }
-
-    /**
-     * Reads in and constructs tutorial groups for a course from the user
-     *
-     * @param totalSeats         the total number of seats for the course
-     * @param noOfTutorialGroups the number of tutorial groups for a course
-     * @return the tutorial groups the user has specified
-     */
-    public List<Group> readTutorialGroups(int noOfTutorialGroups, int totalSeats) {
-        List<Group> tutorialGroups = new ArrayList<>();
-        String tutorialGroupName;
-        int tutorialGroupCapacity;
-        boolean groupNameExists;
-        int totalTutorialSeats = 0;
-
-        for (int i = 0; i < noOfTutorialGroups; i++) {
-            System.out.println("Give a name to the tutorial group");
-            do {
-                groupNameExists = false;
-                System.out.println("Enter a group Name: ");
-                tutorialGroupName = scanner.nextLine();
-                if (!GroupValidator.checkValidGroupNameInput(tutorialGroupName)) {
-                    groupNameExists = true;
-                    continue;
-                }
-                if (tutorialGroups.isEmpty()) {
-                    break;
-                }
-                for (Group tutorialGroup : tutorialGroups) {
-                    if (tutorialGroup.getGroupName().equals(tutorialGroupName)) {
-                        groupNameExists = true;
-                        System.out.println("This tutorial group already exist for this course.");
-                        break;
-                    }
-                }
-            } while (groupNameExists);
-
-            while (true) {
-                System.out.println("Enter this tutorial group's capacity: ");
-                if (scanner.hasNextInt()) {
-                    tutorialGroupCapacity = scanner.nextInt();
-                    scanner.nextLine();
-                    totalTutorialSeats += tutorialGroupCapacity;
-                    if ((i != noOfTutorialGroups - 1) || (totalTutorialSeats >= totalSeats)) {
-                        Group tutorialGroup = new Group(tutorialGroupName, tutorialGroupCapacity, tutorialGroupCapacity, GroupType.TUTORIAL_GROUP);
-                        tutorialGroups.add(tutorialGroup);
-                        break;
-                    } else {
-                        System.out.println("Sorry, the total capacity you allocated for all the tutorial groups is not enough for this course.");
-                        System.out.println("Please re-enter the capacity for the last tutorial group " + tutorialGroupName + " you have entered.");
-                        totalTutorialSeats -= tutorialGroupCapacity;
-                    }
-                } else {
-                    System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
-                }
-            }
-        }
-
-        return tutorialGroups;
-    }
-
-    /**
-     * Reads in and constructs lab groups for a course from the user
-     *
-     * @param totalSeats    the total number of seats for the course
-     * @param noOfLabGroups the number of lab groups for a course
-     * @return the lab groups the user has specified
-     */
-    public List<Group> readLabGroups(int noOfLabGroups, int totalSeats) {
-        List<Group> labGroups = new ArrayList<>();
-        int totalLabSeats = 0;
-        String labGroupName;
-        boolean groupNameExists;
-        for (int i = 0; i < noOfLabGroups; i++) {
-            System.out.println("Give a name to this lab group");
-            do {
-                groupNameExists = false;
-                System.out.println("Enter a group Name: ");
-                labGroupName = scanner.nextLine();
-                if (!GroupValidator.checkValidGroupNameInput(labGroupName)) {
-                    groupNameExists = true;
-                    continue;
-                }
-                if (labGroups.isEmpty()) {
-                    break;
-                }
-                for (Group labGroup : labGroups) {
-                    if (labGroup.getGroupName().equals(labGroupName)) {
-                        groupNameExists = true;
-                        System.out.println("This lab group already exist for this course.");
-                        break;
-                    }
-                }
-            } while (groupNameExists);
-
-            while (true) {
-                System.out.println("Enter this lab group's capacity: ");
-                int labGroupCapacity = scanner.nextInt();
-                scanner.nextLine();
-                totalLabSeats += labGroupCapacity;
-                if ((i != noOfLabGroups - 1) || (totalLabSeats >= totalSeats)) {
-                    Group labGroup = new Group(labGroupName, labGroupCapacity, labGroupCapacity, GroupType.LAB_GROUP);
-                    labGroups.add(labGroup);
-                    break;
-                } else {
-                    System.out.println("Sorry, the total capacity you allocated for all the lab groups is not enough for this course.");
-                    System.out.println("Please re-enter the capacity for the last lab group " + labGroupName + " you have entered.");
-                    totalLabSeats -= labGroupCapacity;
-                }
-            }
-        }
-
-        return labGroups;
-    }
-
-
-    /**
-     * Read in a professor from the user for a particular course department
-     *
-     * @param courseDepartment the course department that the professor should be in
-     * @return Professor the professor the user has specified
-     */
-    public Professor readProfessor(Department courseDepartment) {
-        List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
-        String profID;
-        Professor profInCharge;
-
-
-        while (true) {
-            System.out.println("Enter the ID for the professor in charge please:");
-            System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
-            profID = scanner.nextLine();
-            while ("-h".equals(profID)) {
-                ProfessorMgrIO.printAllProfIDsInDepartment(professorsInDepartment);
-                profID = scanner.nextLine();
-            }
-
-            profInCharge = ProfessorValidator.checkProfExists(profID);
-            if (profInCharge != null) {
-                if (professorsInDepartment.contains(profID)) {
-                    break;
-                } else {
-                    System.out.println("This prof is not in " + courseDepartment + ".");
-                    System.out.println("Thus he/she cannot teach this course.");
-                }
-            } else {
-                System.out.println("Invalid input. Please re-enter.");
-            }
-        }
-
-        return profInCharge;
-    }
 
     /**
      * Reads in the user's choice for creating components now
@@ -505,40 +232,22 @@ public class CourseMgrIO {
     /**
      * Print course information to the console for a user
      *
-     * @param course the course to print the info for
      */
-    public void printCourseInfo(Course course) {
-        System.out.println(course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats());
+    public void printCourseInfoString(String courseInfoString){
+        System.out.println(courseInfoString);
         System.out.println("--------------------------------------------");
-        printVacanciesForGroups(course.getLectureGroups(), GroupType.LECTURE_GROUP);
-
-        if (course.getTutorialGroups() != null) {
-            System.out.println();
-            printVacanciesForGroups(course.getTutorialGroups(), GroupType.TUTORIAL_GROUP);
-        }
-        if (course.getLabGroups() != null) {
-            System.out.println();
-            printVacanciesForGroups(course.getLabGroups(), GroupType.LAB_GROUP);
-        }
-        System.out.println();
     }
 
     /**
      * Helper method to print out the vacancies for groups
      *
-     * @param groups the groups to print
-     * @param type   the type of the groups
+     * @param groupInformation the groups to print
      */
-    private void printVacanciesForGroups(List<Group> groups, GroupType type) {
-        for (Group group : groups) {
-            if (type == GroupType.TUTORIAL_GROUP) {
-                System.out.format("%s group %s (Available/Total):  %d/%d%n",
-                        type.getNameWithCapital(), group.getGroupName(), group.getAvailableVacancies(), group.getTotalSeats());
-            } else {
-                System.out.format("%s group %s (Available/Total): %d/%d%n",
-                        type.getNameWithCapital(), group.getGroupName(), group.getAvailableVacancies(), group.getTotalSeats());
-            }
-
+    public void printVacanciesForGroups(String[][] groupInformation, String groupType) {
+        groupType = groupType.substring(0, 1).toUpperCase() + groupType.substring(1);
+        for (String[] group: groupInformation) {
+                System.out.format("%s group %s (Available/Total): %s/%s%n",
+                        groupType, group[0], group[1], group[2]);
         }
     }
 
@@ -726,15 +435,18 @@ public class CourseMgrIO {
     /**
      * Prints the components for a course
      *
-     * @param course the course to print the components for
      */
-    public void printComponentsForCourse(Course course) {
-        System.out.println(course.getCourseID() + " " + course.getCourseName() + " components: ");
-        for (MainComponent each_comp : course.getMainComponents()) {
-            System.out.println("    " + each_comp.getComponentName() + " : " + each_comp.getComponentWeight() + "%");
-            for (SubComponent each_sub : each_comp.getSubComponents()) {
-                System.out.println("        " + each_sub.getComponentName() + " : " + each_sub.getComponentWeight() + "%");
+    public void printComponentsForCourse(String courseId, String courseName, HashMap<HashMap<String, String>, HashMap<String,String>> allGroupInformation) {
+        System.out.println(courseId + " " + courseName + " components: ");
+        for(HashMap<String, String> mainComponentInfo : allGroupInformation.keySet()){
+            Map.Entry<String,String> entry = mainComponentInfo.entrySet().iterator().next();
+            System.out.println("    " + entry.getKey() + " : " + entry.getValue() + "%");
+
+            HashMap<String, String> allSubComponentInfo = allGroupInformation.get(mainComponentInfo);
+            for(String subComponentInfo : allSubComponentInfo.keySet()){
+                System.out.println("        " + subComponentInfo + " : " + allSubComponentInfo.get(subComponentInfo) + "%");
             }
+
         }
     }
 
@@ -743,40 +455,39 @@ public class CourseMgrIO {
      *
      * @param totalWeightage  the total weightage for a course
      * @param mainComponentNo the main component number
-     * @param mainComponents  the main components
      * @return the main component name
      */
-    public String readMainComponentName(int totalWeightage, int mainComponentNo, List<MainComponent> mainComponents) {
-        return getComponentName(totalWeightage, mainComponents, mainComponentNo, MainComponent.COMPONENT_NAME);
+    public String readMainComponentName(int totalWeightage, int mainComponentNo, HashSet<String> mainComponentNames) {
+        return readComponentName(totalWeightage, mainComponentNames, mainComponentNo, MainComponent.COMPONENT_NAME);
     }
 
     /**
      * Read in the sub components specified by a user for a course
      *
-     * @param noOfSub the number of subcomponents
      * @return List of sub components user has specified
      */
-    public List<SubComponent> readSubComponents(int noOfSub) {
-        List<SubComponent> subComponents = new ArrayList<>();
+    public HashMap<String, Double> readSubComponents(int numberOfSubComponents) {
+        HashMap<String, Double> subComponents = new HashMap<>();
+        HashSet<String> subComponentNames = new HashSet<>();
         boolean invalidDistributionOfWeights = true;
-        int subComponentWeight;
+        double subComponentWeight;
         String subComponentName;
 
         while (invalidDistributionOfWeights) {
 
-            int subComponenttotalWeight = 100;
-            for (int j = 0; j < noOfSub; j++) {
-                subComponentName = getComponentName(subComponenttotalWeight, subComponents, j, SubComponent.COMPONENT_NAME);
-                subComponentWeight = readSubWeight(j, subComponenttotalWeight);
-                //Create Subcomponent
-                SubComponent subComponent = new SubComponent(subComponentName, subComponentWeight);
-                subComponents.add(subComponent);
-                subComponenttotalWeight -= subComponentWeight;
+            int subComponentTotalWeight = 100;
+            for (int j = 0; j < numberOfSubComponents; j++) {
+                subComponentName = readComponentName(subComponentTotalWeight, subComponentNames, j, SubComponent.COMPONENT_NAME);
+                subComponentWeight = readSubWeight(j, subComponentTotalWeight);
+                subComponentNames.add(subComponentName);
+                subComponents.put(subComponentName, subComponentWeight);
+                subComponentTotalWeight -= subComponentWeight;
             }
 
-            if (subComponenttotalWeight != 0 && noOfSub != 0) {
+            if (subComponentTotalWeight != 0 && numberOfSubComponents != 0) {
                 printSubComponentWeightageError();
                 subComponents.clear();
+                subComponentNames.clear();
                 invalidDistributionOfWeights = true;
             } else {
                 invalidDistributionOfWeights = false;
@@ -784,45 +495,40 @@ public class CourseMgrIO {
             //exit if weight is fully allocated
         }
         return subComponents;
+
     }
 
 
-    /**
-     * This method reads in the name for a particular subComponent
-     */
-    public String getComponentName(int totalWeightAssignable, List<? extends CourseworkComponent> components, int componentNumber, String type) {
+    public String readComponentName(int totalWeightAssignable, Set<String> componentNames, int componentNumber, String componentType) {
 
-        String subComponentName;
+        String componentName;
         boolean componentExist;
 
         do {
             componentExist = false;
-            if (type.equals(SubComponent.COMPONENT_NAME)) {
-                System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
-            } else {
+            if(componentType.equals(MainComponent.COMPONENT_NAME)){
                 System.out.println("Total weightage left to assign: " + totalWeightAssignable);
+            } else {
+                System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
             }
-            System.out.println("Enter " + type + " " + (componentNumber + 1) + " name: ");
-            subComponentName = scanner.nextLine();
+            System.out.println("Enter " + componentType +" "+ (componentNumber + 1) + " name: ");
+            componentName = scanner.nextLine();
 
-            if (components.isEmpty()) {
+            if (componentNames.isEmpty()) {
                 break;
             }
-            if (subComponentName.equals("Exam")) {
+            if (componentName.equals("Exam")) {
                 System.out.println("Exam is a reserved assessment.");
                 componentExist = true;
                 continue;
             }
-            for (CourseworkComponent component : components) {
-                if (component.getComponentName().equals(subComponentName)) {
-                    componentExist = true;
-                    System.out.println("This sub component already exist. Please enter.");
-                    break;
-                }
+            if (componentNames.contains(componentName)) {
+                componentExist = true;
+                System.out.println("This component already exist. Please enter another name.");
             }
         } while (componentExist);
 
-        return subComponentName;
+        return componentName;
 
     }
 
@@ -830,20 +536,23 @@ public class CourseMgrIO {
     /**
      * Print an info message that the course specified is empty
      */
-    public void printEmptyCourseComponents(Course course) {
-        System.out.println("Currently course " + course.getCourseID() + " " + course.getCourseName() + " does not have any assessment component.");
+    public void printEmptyCourseComponents(String courseID, String courseName) {
+        System.out.println("Currently course " + courseID + " " + courseName + " does not have any assessment component.");
     }
+
 
     /**
      * Print courses
      *
-     * @param courses the courses to print
      */
-    public void printCourses(List<Course> courses) {
+    public void printCourses(HashMap<String, List<String>> courseGeneralInfo) {
+        List<String> courseIDs = new ArrayList<>(courseGeneralInfo.keySet());
+        Collections.sort(courseIDs);
         System.out.println("Course List: ");
         System.out.println("| Course ID | Course Name | Professor in Charge |");
-        for (Course course : courses) {
-            System.out.println("| " + course.getCourseID() + " | " + course.getCourseName() + " | " + course.getProfInCharge().getProfName() + " |");
+        for (String courseID : courseIDs) {
+            List<String> info = courseGeneralInfo.get(courseID);
+            System.out.println("| " + courseID + " | " + info.get(0)  + " | " + info.get(1) + " |");
         }
         System.out.println();
     }
@@ -853,9 +562,8 @@ public class CourseMgrIO {
      *
      * @param courses the courses to print ids for
      */
-    public void printAllCourseIds(List<Course> courses) {
-        for (Course course : courses) {
-            String courseID = course.getCourseID();
+    public void printAllCourseIds(List<String> courses) {
+        for (String courseID : courses) {
             System.out.println(courseID);
         }
     }
@@ -870,68 +578,59 @@ public class CourseMgrIO {
     /**
      * Print course statistics header for a particular course
      *
-     * @param course the course to print statistics for
      */
-    public void printCourseStatisticsHeader(Course course) {
+
+    public void printCourseStatisticsHeader(List<String> courseInfo) {
         System.out.println("*************** Course Statistic ***************");
-        System.out.println("Course ID: " + course.getCourseID() + "\tCourse Name: " + course.getCourseName());
-        System.out.println("Course AU: " + course.getAU());
+        System.out.println("Course ID: " + courseInfo.get(0) + "\tCourse Name: " + courseInfo.get(1));
+        System.out.println("Course AU: " + courseInfo.get(2));
         System.out.println();
-        System.out.print("Total Slots: " + course.getTotalSeats());
-        int enrolledNumber = (course.getTotalSeats() - course.getVacancies());
+        System.out.print("Total Slots: " + courseInfo.get(3));
+        int enrolledNumber = (Integer.parseInt(courseInfo.get(3)) - Integer.parseInt(courseInfo.get(4)));
         System.out.println("\tEnrolled Student: " + enrolledNumber);
-        System.out.printf("Enrollment Rate: %4.2f %%\n", ((double) enrolledNumber / (double) course.getTotalSeats() * 100d));
+        System.out.printf("Enrollment Rate: %4.2f %%\n", ((double) enrolledNumber / (double) Double.parseDouble(courseInfo.get(3)) * 100d));
         System.out.println();
     }
 
     /**
      * Print a main component to the user
      *
-     * @param mainComponent the main component to print
-     * @param courseMarks   needed to calculate the average mark
      */
-    public void printMainComponent(MainComponent mainComponent, List<Mark> courseMarks) {
-        System.out.print("Main Component: " + mainComponent.getComponentName());
-        System.out.print("\tWeight: " + mainComponent.getComponentWeight() + "%");
+    public void printMainComponent(String mainComponentName, int mainComponentWeight, double averageCourseMark) {
+        System.out.print("Main Component: " + mainComponentName);
+        System.out.print("\tWeight: " + mainComponentWeight + "%");
 
-        MarkCalculator markCalculator = new MarkCalculator();
-        System.out.println("\t Average: " + markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
+        System.out.println("\t Average: " + averageCourseMark);
     }
 
     /**
      * Print statistics for subcomponents
      *
-     * @param subComponents the subcomponents to print out
-     * @param courseMarks   needed to calculate the average mark
      */
-    public void printSubcomponents(List<SubComponent> subComponents, List<Mark> courseMarks) {
-        for (SubComponent subComponent : subComponents) {
-            printSubComponentInfo(subComponent);
-            System.out.println("\t Average: " + markCalculator.computeComponentMark(courseMarks, subComponent.getComponentName()));
+    public void printSubcomponents(String[][] subComponentInformation, Map<String, Double> courseMarks) {
+        for(int i = 0; i<subComponentInformation.length; i++){
+            printSubComponentInfo(subComponentInformation[i][0], subComponentInformation[i][1]);
+            System.out.println("\t Average: " + courseMarks.get(subComponentInformation[i][0]));
         }
         System.out.println();
     }
 
     /**
      * Print the info for a sub component
-     *
-     * @param subComponent the sub component to print the info for
      */
-    public void printSubComponentInfo(SubComponent subComponent) {
-        System.out.print("Sub Component: " + subComponent.getComponentName());
-        System.out.print("\tWeight: " + subComponent.getComponentWeight() + "% (in main component)");
+    public void printSubComponentInfo(String subComponentName, String subComponentWeight) {
+        System.out.print("Sub Component: " + subComponentName);
+        System.out.print("\tWeight: " + subComponentWeight + "% (in main component)");
     }
 
     /**
      * Print statistics for an exam to the user
      *
-     * @param exam        the exam to print statistics on
-     * @param courseMarks needed to calculate average
      */
-    public void printExamStatistics(MainComponent exam, List<Mark> courseMarks) {
+    public void printExamStatistics(int examWeight, Double examMark) {
         System.out.print("Final Exam");
-        System.out.print("\tWeight: " + exam.getComponentWeight() + "%");
-        System.out.println("\t Average: " + markCalculator.computeExamMark(courseMarks));
+        System.out.print("\tWeight: " + examWeight + "%");
+        System.out.println("\t Average: " + examMark);
     }
 
     /**
@@ -944,12 +643,12 @@ public class CourseMgrIO {
     /**
      * Print overall performance based on course marks
      *
-     * @param courseMarks the coursemarks to calculate statistics for
+     * @param overallMark for the course
      */
-    public void printOverallPerformance(List<Mark> courseMarks) {
+    public void printOverallPerformance(double overallMark) {
         System.out.println();
         System.out.print("Overall Performance: ");
-        System.out.printf("%4.2f \n", markCalculator.computerOverallMark(courseMarks));
+        System.out.printf("%4.2f \n", overallMark);
 
         System.out.println();
         System.out.println("***********************************************");
@@ -957,29 +656,26 @@ public class CourseMgrIO {
     }
 
     /**
-     * Prompts the user to input an existing course.
+     * Gets a course from a user-inputted ID
      *
      * @return the inputted course.
      */
-    public Course readCourseFromUser() {
+    public String readValidCourseIdFromUser() {
         String courseID;
-        Course currentCourse;
         while (true) {
             System.out.println("Enter course ID (-h to print all the course ID):");
             courseID = scanner.nextLine();
             while ("-h".equals(courseID)) {
-                printAllCourseIds(CourseMgr.getInstance().getCourses());
+                CourseMgr.getInstance().printAllCourseIds();
                 courseID = scanner.nextLine();
             }
-
-            currentCourse = CourseValidator.getCourseFromId(courseID);
-            if (currentCourse == null) {
+            if (!CourseValidator.checkCourseIDExists(courseID)) {
                 System.out.println("Invalid Course ID. Please re-enter.");
             } else {
                 break;
             }
         }
-        return currentCourse;
+        return courseID;
     }
 
     /**
@@ -987,18 +683,18 @@ public class CourseMgrIO {
      *
      * @return the inputted department.
      */
-    public String readDepartmentFromUser() {
+    public String readDepartmentWithMoreThanOneCourseFromUser() {
         String courseDepartment;
         while (true) {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                Department.printAllDepartment();
+                this.printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
                 courseDepartment = scanner.nextLine();
             }
-            if (Department.contains(courseDepartment)) {
+            if (CourseMgr.getInstance().checkContainsDepartment(courseDepartment)) {
                 List<String> validCourseString;
-                validCourseString = CourseMgr.getInstance().getCourseIdsInDepartment(Department.valueOf(courseDepartment));
+                validCourseString = CourseMgr.getInstance().getCourseIdsInDepartment(courseDepartment);
                 if (validCourseString.size() == 0) {
                     System.out.println("Invalid choice of department.");
                 } else {
@@ -1010,5 +706,350 @@ public class CourseMgrIO {
         }
         return courseDepartment;
     }
+
+    public void printAllDepartments(List<String> departments){
+        int index = 1;
+        for(String department : departments){
+            System.out.println(index + ": " + department);
+            index++;
+        }
+    }
+
+
+
+    /**
+     * Read in a course department for a course from the user
+     *
+     * @return String courseDepartment for a course
+     */
+    public String readAnyCourseDepartment() {
+        String courseDepartment;
+        while (true) {
+            System.out.println("Enter course's department (uppercase): ");
+            System.out.println("Enter -h to print all the departments.");
+            courseDepartment = scanner.nextLine();
+            while ("-h".equals(courseDepartment)) {
+                this.printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
+                courseDepartment = scanner.nextLine();
+            }
+            if (CourseMgr.getInstance().checkContainsDepartment(courseDepartment)) {
+                break;
+            } else {
+                System.out.println("The department is invalid. Please re-enter.");
+            }
+        }
+
+        return courseDepartment;
+    }
+
+    /**
+     * Read in a course type from the user
+     *
+     * @return String courseType for a course
+     */
+    public String readCourseType() {
+        String courseType;
+        while (true) {
+            System.out.println("Enter course type (uppercase): ");
+            System.out.println("Enter -h to print all the course types.");
+            courseType = scanner.nextLine();
+            while (courseType.equals("-h")) {
+                CourseType.printAllCourseType();
+                courseType = scanner.nextLine();
+            }
+            if (CourseValidator.checkCourseTypeValidation(courseType)) {
+                break;
+            }
+        }
+        return courseType;
+    }
+
+    /**
+     * Reads in and constructs lecture groups for a course from the user
+     *
+     * @param totalSeats        the total number of seats for the course
+     * @param noOfLectureGroups the number of lecture groups for a course
+     * @return the lecture groups the user has specified
+     */
+    public HashMap<String, Double> readLectureGroups(int totalSeats, int noOfLectureGroups) {
+        String lectureGroupName;
+        int lectureGroupCapacity;
+        int seatsLeft = totalSeats;
+        boolean groupNameExists;
+
+        HashMap<String, Double> lectureGroups = new HashMap<>();
+
+        for (int i = 0; i < noOfLectureGroups; i++) {
+            System.out.println("Give a name to the lecture group");
+            do {
+                groupNameExists = false;
+                System.out.println("Enter a group Name: ");
+                lectureGroupName = scanner.nextLine();
+                if (!GroupValidator.checkValidGroupNameInput(lectureGroupName)) {
+                    groupNameExists = true;
+                    continue;
+                }
+                if (lectureGroups.isEmpty()) {
+                    break;
+                }
+                if(lectureGroups.containsKey(lectureGroupName)){
+                    groupNameExists = true;
+                    System.out.println("This lecture group already exist for this course.");
+                }
+
+            } while (groupNameExists);
+
+
+            while (true) {
+                System.out.println("Enter this lecture group's capacity: ");
+                while (true) {
+                    if (scanner.hasNextInt()) {
+                        lectureGroupCapacity = scanner.nextInt();
+                        scanner.nextLine();
+                        if (lectureGroupCapacity > 0) {
+                            break;
+                        }
+                        System.out.println("Capacity must be positive. Please re-enter.");
+                    } else {
+                        System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+                    }
+                }
+                seatsLeft -= lectureGroupCapacity;
+                if ((seatsLeft > 0 && i != (noOfLectureGroups - 1)) || (seatsLeft == 0 && i == noOfLectureGroups - 1)) {
+                    lectureGroups.put(lectureGroupName, (double)lectureGroupCapacity);
+                    break;  //break from the while loop
+                } else {
+                    System.out.println("Sorry, the total capacity you allocated for all the lecture groups exceeds or does not add up to the total seats for this course.");
+                    System.out.println("Please re-enter the capacity for the last lecture group " + lectureGroupName + " you have entered.");
+                    seatsLeft += lectureGroupCapacity;
+                }
+            }
+        }
+
+        return lectureGroups;
+    }
+
+
+    /**
+     * Reads in and constructs tutorial groups for a course from the user
+     *
+     * @param totalSeats         the total number of seats for the course
+     * @param noOfTutorialGroups the number of tutorial groups for a course
+     * @return the tutorial groups the user has specified
+     */
+    public HashMap<String, Double> readTutorialGroups(int noOfTutorialGroups, int totalSeats) {
+        HashMap<String, Double> tutorialGroups = new HashMap<>();
+        String tutorialGroupName;
+        int tutorialGroupCapacity;
+        boolean groupNameExists;
+        int totalTutorialSeats = 0;
+
+        for (int i = 0; i < noOfTutorialGroups; i++) {
+            System.out.println("Give a name to the tutorial group");
+            do {
+                groupNameExists = false;
+                System.out.println("Enter a group Name: ");
+                tutorialGroupName = scanner.nextLine();
+                if (!GroupValidator.checkValidGroupNameInput(tutorialGroupName)) {
+                    groupNameExists = true;
+                    continue;
+                }
+                if (tutorialGroups.isEmpty()) {
+                    break;
+                }
+                if(tutorialGroups.containsKey(tutorialGroupName)){
+                    groupNameExists = true;
+                    System.out.println("This tutorial group already exist for this course.");
+                }
+            } while (groupNameExists);
+
+            while (true) {
+                System.out.println("Enter this tutorial group's capacity: ");
+                if (scanner.hasNextInt()) {
+                    tutorialGroupCapacity = scanner.nextInt();
+                    scanner.nextLine();
+                    totalTutorialSeats += tutorialGroupCapacity;
+                    if ((i != noOfTutorialGroups - 1) || (totalTutorialSeats >= totalSeats)) {
+                        tutorialGroups.put(tutorialGroupName, (double)tutorialGroupCapacity);
+                        break;
+                    } else {
+                        System.out.println("Sorry, the total capacity you allocated for all the tutorial groups is not enough for this course.");
+                        System.out.println("Please re-enter the capacity for the last tutorial group " + tutorialGroupName + " you have entered.");
+                        totalTutorialSeats -= tutorialGroupCapacity;
+                    }
+                } else {
+                    System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+                }
+            }
+        }
+
+        return tutorialGroups;
+    }
+
+    /**
+     * Reads in and constructs lab groups for a course from the user
+     *
+     * @param totalSeats    the total number of seats for the course
+     * @param noOfLabGroups the number of lab groups for a course
+     * @return the lab groups the user has specified
+     */
+    public HashMap<String, Double> readLabGroups(int noOfLabGroups, int totalSeats) {
+        HashMap<String, Double> labGroups = new HashMap<>();
+        int totalLabSeats = 0;
+        String labGroupName;
+        boolean groupNameExists;
+        for (int i = 0; i < noOfLabGroups; i++) {
+            System.out.println("Give a name to this lab group");
+            do {
+                groupNameExists = false;
+                System.out.println("Enter a group Name: ");
+                labGroupName = scanner.nextLine();
+                if (!GroupValidator.checkValidGroupNameInput(labGroupName)) {
+                    groupNameExists = true;
+                    continue;
+                }
+                if (labGroups.isEmpty()) {
+                    break;
+                }
+                if(labGroups.containsKey(labGroupName)){
+                    groupNameExists = true;
+                    System.out.println("This lab group already exist for this course.");
+                }
+            } while (groupNameExists);
+
+            while (true) {
+                System.out.println("Enter this lab group's capacity: ");
+                int labGroupCapacity = scanner.nextInt();
+                scanner.nextLine();
+                totalLabSeats += labGroupCapacity;
+                if ((i != noOfLabGroups - 1) || (totalLabSeats >= totalSeats)) {
+                    labGroups.put(labGroupName, (double)labGroupCapacity);
+                    break;
+                } else {
+                    System.out.println("Sorry, the total capacity you allocated for all the lab groups is not enough for this course.");
+                    System.out.println("Please re-enter the capacity for the last lab group " + labGroupName + " you have entered.");
+                    totalLabSeats -= labGroupCapacity;
+                }
+            }
+        }
+
+        return labGroups;
+    }
+
+    /**
+     * Read in a professor from the user for a particular course department
+     *
+     * @param courseDepartment the course department that the professor should be in
+     * @return Professor the professor the user has specified
+     */
+    public String readProfessor(String courseDepartment) {
+        List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(Department.valueOf(courseDepartment));
+        String profID;
+
+        while (true) {
+            System.out.println("Enter the ID for the professor in charge please:");
+            System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
+            profID = scanner.nextLine();
+            while ("-h".equals(profID)) {
+                ProfessorMgrIO.printAllProfIDsInDepartment(professorsInDepartment);
+                profID = scanner.nextLine();
+            }
+
+            if (ProfessorValidator.checkProfessorExists(profID)) {
+                if (professorsInDepartment.contains(profID)) {
+                    break;
+                } else {
+                    System.out.println("This prof is not in " + courseDepartment + ".");
+                    System.out.println("Thus he/she cannot teach this course.");
+                }
+            } else {
+                System.out.println("Invalid input. Please re-enter.");
+            }
+        }
+
+        return profID;
+
+    }
+
+
+    public void addCourse(){
+
+        ICourseBuilder builder = new CourseBuilder();
+
+        String courseID = this.readCourseId();
+        String courseName = this.readCourseName();
+
+        int totalSeats = this.readTotalSeats();
+        int AU = this.readAU();
+
+        String courseDepartment = this.readAnyCourseDepartment();
+
+        String courseType = this.readCourseType();
+
+        int noOfLectureGroups = CourseMgr.getInstance().getNumberOfLectureGroups(totalSeats, totalSeats);
+        int lecWeeklyHour = CourseMgr.getInstance().getReadWeeklyLectureHour(AU);
+
+        //Name, total seats
+        HashMap<String, Double> lectureGroups = this.readLectureGroups(totalSeats, noOfLectureGroups);
+
+        int noOfTutorialGroups = CourseMgr.getInstance().getNumberOfTutorialGroups(noOfLectureGroups, totalSeats);
+        int tutWeeklyHour = 0;
+        if (noOfTutorialGroups != 0) {
+            tutWeeklyHour = CourseMgr.getInstance().getReadWeeklyTutorialHour(AU);
+        }
+        HashMap<String, Double> tutorialGroups = this.readTutorialGroups(noOfTutorialGroups, totalSeats);
+
+        int noOfLabGroups = CourseMgr.getInstance().getNumberOfLabGroups(noOfLectureGroups, totalSeats);
+        int labWeeklyHour = 0;
+        if (noOfLabGroups != 0) {
+            labWeeklyHour = CourseMgr.getInstance().getReadWeeklyLabHour(AU);
+        }
+        HashMap<String, Double> labGroups = this.readLabGroups(noOfLabGroups, totalSeats);
+
+        String profID = this.readProfessor(courseDepartment);
+
+        //Setting the objects in the builder
+        builder.setCourseID(courseID);
+
+        builder.setCourseName(courseName);
+
+        builder.setTotalSeats(totalSeats);
+
+        builder.setAU(AU);
+
+        builder.setCourseDepartment(courseDepartment);
+
+        builder.setCourseType(courseType);
+
+        // Lecture groups
+        builder.setLecWeeklyHour(lecWeeklyHour);
+        builder.setLectureGroups(lectureGroups);
+
+        // Tutorial groups
+        builder.setTutWeeklyHour(tutWeeklyHour);
+        builder.setTutorialGroups(tutorialGroups);
+
+        // Lab groups
+        builder.setLabWeeklyHour(labWeeklyHour);
+        builder.setLabGroups(labGroups);
+
+
+        //Professor
+        builder.setProfInCharge(profID);
+        CourseMgr.getInstance().addCourse(builder);
+    }
+
+    public void checkAvailableSlots(){
+        CourseMgr.getInstance().checkAvailableSlots();
+    }
+
+    public void enterCourseWorkComponentWeightage(){
+        CourseMgr.getInstance().enterCourseWorkComponentWeightage(null);
+    }
+
+    public void printCourseStatistics(){
+        CourseMgr.getInstance().printCourseStatistics();
+    }
+
 
 }

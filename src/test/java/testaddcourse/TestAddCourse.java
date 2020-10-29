@@ -44,7 +44,7 @@ public class TestAddCourse extends AbstractTestProcess {
         inputList.add("2"); // Set course components later
         inputList.add("11"); // Exit program
 
-        compareOutputsBetweenRefactoredAndOriginal(inputList, Thread.currentThread().getStackTrace()[1].getMethodName());
+        compareLinesBetweenRefactoredAndOriginal(inputList, Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     /**
@@ -73,7 +73,7 @@ public class TestAddCourse extends AbstractTestProcess {
         inputList.add("2"); // Set course components later
         inputList.add("11"); // Exit program
 
-        compareOutputsBetweenRefactoredAndOriginal(inputList, Thread.currentThread().getStackTrace()[1].getMethodName());
+        compareLinesBetweenRefactoredAndOriginal(inputList, Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     /**
@@ -145,7 +145,7 @@ public class TestAddCourse extends AbstractTestProcess {
         inputList.add("2"); // Set course components later
         inputList.add("11"); // Exit program
 
-        compareOutputsBetweenRefactoredAndOriginal(inputList, Thread.currentThread().getStackTrace()[1].getMethodName());
+        compareLinesBetweenRefactoredAndOriginal(inputList, Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
     /**
@@ -182,7 +182,7 @@ public class TestAddCourse extends AbstractTestProcess {
         inputList.add("30"); // Enter sub component weightage
         inputList.add("11"); // Exit program
 
-        compareOutputsBetweenRefactoredAndOriginal(inputList, Thread.currentThread().getStackTrace()[1].getMethodName());
+        compareLinesBetweenRefactoredAndOriginal(inputList, Thread.currentThread().getStackTrace()[1].getMethodName());
     }
 
 }

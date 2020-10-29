@@ -1,5 +1,8 @@
 package com.softeng306.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Department {
     ECSE, CS, CHEM_ENG;
 
@@ -15,11 +18,19 @@ public enum Department {
 
     }
 
+    public static List<String> getListOfDepartments(){
+        List<String> listDepartmentStrings = new ArrayList<>();
+        for(Department department : Department.values()){
+            listDepartmentStrings.add(department.toString());
+        }
+        return listDepartmentStrings;
+    }
+
     /**
      * Finds whether the string exists as a department type.
      */
     public static boolean contains(String possibleDepartment) {
-        for (Department department : Department.values()) {
+        for (Department department: Department.values()) {
             if (department.toString().equals(possibleDepartment)) {
                 return true;
             }
