@@ -2,7 +2,7 @@ package com.softeng306.io;
 
 import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.enums.Department;
-import com.softeng306.managers.GenderMgr;
+import com.softeng306.enums.Gender;
 import com.softeng306.managers.MarkMgr;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.StudentValidator;
@@ -187,11 +187,11 @@ public class StudentMgrIO {
             System.out.println("Enter -h to print all the genders.");
             studentGender = reader.nextLine();
             while ("-h".equals(studentGender)) {
-                new GenderMgr().printAllGender();
+                printAllStringsInListByIndex(Gender.getListOfAllGenderNames());
                 studentGender = reader.nextLine();
             }
 
-            if (new GenderMgr().contains(studentGender)) {
+            if (Gender.contains(studentGender)) {
                 return studentGender;
             } else {
                 System.out.println("The gender is invalid. Please re-enter.");

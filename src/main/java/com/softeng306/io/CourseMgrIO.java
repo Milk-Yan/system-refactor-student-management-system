@@ -679,7 +679,7 @@ public class CourseMgrIO {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                printAllDepartments(Department.getListOfAllDepartmentNames());
+                printAllStringsInListByIndex(Department.getListOfAllDepartmentNames());
                 courseDepartment = scanner.nextLine();
             }
             if (Department.contains(courseDepartment)) {
@@ -697,15 +697,6 @@ public class CourseMgrIO {
         return courseDepartment;
     }
 
-    public void printAllDepartments(List<String> departments) {
-        int index = 1;
-        for (String department : departments) {
-            System.out.println(index + ": " + department);
-            index++;
-        }
-    }
-
-
     /**
      * Read in a course department for a course from the user
      *
@@ -718,7 +709,7 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the departments.");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                printAllDepartments(Department.getListOfAllDepartmentNames());
+                printAllStringsInListByIndex(Department.getListOfAllDepartmentNames());
                 courseDepartment = scanner.nextLine();
             }
             if (Department.contains(courseDepartment)) {
@@ -1061,4 +1052,15 @@ public class CourseMgrIO {
         System.out.println();
     }
 
+    /**
+     * Prints all the strings in the input list by its index
+     * (starting from 1), and a :
+     * e.g. 1: inputString
+     */
+    private void printAllStringsInListByIndex(List<String> list) {
+        for (int index = 1; index <= list.size(); index++) {
+            String name = list.get(index-1);
+            System.out.println(index + ": " + name);
+        }
+    }
 }
