@@ -45,36 +45,21 @@ public class CourseBuilder implements ICourseBuilder {
 
     @Override
     public void setLectureGroups(Map<String, Double> lectureGroups) {
-        List<Group> newLectureGroups = new ArrayList<>();
-
-        for(String name : lectureGroups.keySet()){
-            Group group = new Group(name, lectureGroups.get(name).intValue(), lectureGroups.get(name).intValue(), GroupType.LECTURE_GROUP);
-            newLectureGroups.add(group);
-        }
+        List<Group> newLectureGroups = convertMapToGroups(lectureGroups, GroupType.LECTURE_GROUP);
 
         course.setLectureGroups(newLectureGroups);
     }
 
     @Override
     public void setTutorialGroups(Map<String, Double> tutorialGroups) {
-        List<Group> newTutorialGroups = new ArrayList<>();
-
-        for(String name : tutorialGroups.keySet()){
-            Group group = new Group(name, tutorialGroups.get(name).intValue(), tutorialGroups.get(name).intValue(), GroupType.TUTORIAL_GROUP);
-            newTutorialGroups.add(group);
-        }
+        List<Group> newTutorialGroups = convertMapToGroups(tutorialGroups, GroupType.TUTORIAL_GROUP);
 
         course.setTutorialGroups(newTutorialGroups);
     }
 
     @Override
     public void setLabGroups(Map<String, Double> labGroups) {
-        List<Group> newLabGroups = new ArrayList<>();
-
-        for(String name : labGroups.keySet()){
-            Group group = new Group(name, labGroups.get(name).intValue(), labGroups.get(name).intValue(), GroupType.LAB_GROUP);
-            newLabGroups.add(group);
-        }
+        List<Group> newLabGroups = convertMapToGroups(labGroups, GroupType.LAB_GROUP);
 
         course.setLabGroups(newLabGroups);
     }
