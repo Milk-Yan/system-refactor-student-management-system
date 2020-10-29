@@ -58,6 +58,7 @@ public class CourseRegistrationMgr {
         Course currentCourse = CourseValidator.getCourseFromId(courseID);
 
         if (CourseRegistrationValidator.courseRegistrationExists(studentID, courseID)) {
+            io.printAlreadyRegisteredError();
             throw new InvalidCourseRegistrationException();
         }
 

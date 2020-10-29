@@ -37,6 +37,10 @@ public class CourseRegistrationMgrIO {
         System.out.println("No one has registered this course yet.");
     }
 
+    public void printAlreadyRegisteredError() {
+        System.out.println("Sorry. This student already registers this course.");
+    }
+
     /**
      * If the input is invalid, this method will let the user know
      */
@@ -109,8 +113,8 @@ public class CourseRegistrationMgrIO {
         try {
             List<String> newRegistrationInfo = courseRegistrationMgr.registerCourse(studentID, courseID);
             printSuccessfulRegistration(newRegistrationInfo);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
+
         }
     }
 
