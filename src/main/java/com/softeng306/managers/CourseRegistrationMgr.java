@@ -22,10 +22,8 @@ import com.softeng306.validation.StudentValidator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CourseRegistrationMgr {
-    private static Scanner scanner = new Scanner(System.in);
     /**
      * A list of all the course registration records in this school.
      */
@@ -130,7 +128,8 @@ public class CourseRegistrationMgr {
     /**
      * Prints the students in a course according to their lecture group, tutorial group or lab group.
      */
-    public void printStudents(CourseRegistrationMgrIO io, String courseID, int opt) throws CourseNotFoundException, GroupTypeNotFoundException {
+    public void printStudents(String courseID, int opt) throws CourseNotFoundException, GroupTypeNotFoundException {
+        CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         Course currentCourse = CourseValidator.getCourseFromId(courseID);
 
         // READ courseRegistrationFILE
@@ -314,6 +313,5 @@ public class CourseRegistrationMgr {
 
         return groupStringInfo;
     }
-
 
 }

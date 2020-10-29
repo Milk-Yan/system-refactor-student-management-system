@@ -138,11 +138,10 @@ public class CourseRegistrationMgrIO {
             System.out.println("------------------------------------------------------");
 
             try {
-                courseRegistrationMgr.printStudents(this, courseID, opt);
+                courseRegistrationMgr.printStudents(courseID, opt);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         } while (opt < 1 || opt > 3);
     }
 
