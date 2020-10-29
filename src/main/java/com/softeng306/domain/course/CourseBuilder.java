@@ -79,6 +79,17 @@ public class CourseBuilder implements ICourseBuilder {
         course.setLabGroups(newLabGroups);
     }
 
+    private List<Group> convertMapToGroups(Map<String, Double> groups, GroupType type) {
+        List<Group> newGroups = new ArrayList<>();
+
+        for(String groupName : groups.keySet()){
+            Group group = new Group(groupName, groups.get(groupName).intValue(), groups.get(groupName).intValue(), type);
+            newGroups.add(group);
+        }
+
+        return newGroups;
+    }
+
     @Override
     public void setAU(int AU) {
         course.setAU(AU);
