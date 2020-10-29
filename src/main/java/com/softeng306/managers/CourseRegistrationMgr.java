@@ -8,24 +8,18 @@ import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
 import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.domain.student.Student;
-
+import com.softeng306.enums.GroupType;
 import com.softeng306.fileprocessing.CourseRegistrationFileProcessor;
 import com.softeng306.fileprocessing.IFileProcessor;
-
-import com.softeng306.enums.GroupType;
-
 import com.softeng306.io.CourseRegistrationMgrIO;
-
 import com.softeng306.validation.CourseRegistrationValidator;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.StudentValidator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CourseRegistrationMgr {
-    private static Scanner scanner = new Scanner(System.in);
     /**
      * A list of all the course registration records in this school.
      */
@@ -316,6 +310,5 @@ public class CourseRegistrationMgr {
 
         return groupStringInfo;
     }
-
 
 }

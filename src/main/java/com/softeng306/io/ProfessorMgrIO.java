@@ -14,7 +14,7 @@ public class ProfessorMgrIO {
      * @param professors The list of professor IDs.
      * @return A list of all the IDs of professors in the inputted department or else null.
      */
-    public static void printAllProfIDsInDepartment(List<String> professors) {
+    public void printAllProfIDsInDepartment(List<String> professors) {
         if (professors == null || professors.isEmpty()) {
             System.out.println("None.");
         } else {

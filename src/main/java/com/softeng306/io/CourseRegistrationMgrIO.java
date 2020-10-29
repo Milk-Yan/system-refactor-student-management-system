@@ -143,7 +143,6 @@ public class CourseRegistrationMgrIO {
             } catch (CourseNotFoundException |  GroupTypeNotFoundException e) {
                 e.printStackTrace();
             }
-
         } while (opt < 1 || opt > 3);
     }
 

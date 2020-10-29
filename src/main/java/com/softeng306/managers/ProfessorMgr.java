@@ -70,7 +70,6 @@ public class ProfessorMgr {
         return professors;
     }
 
-
     public static Professor getProfessorFromID(String professorID) throws ProfessorNotFoundException {
         Optional<Professor> professor = ProfessorMgr
                 .getInstance()
@@ -82,8 +81,8 @@ public class ProfessorMgr {
         if (!professor.isPresent()) {
             throw new ProfessorNotFoundException(professorID);
         }
+
         return professor.get();
     }
-
 
 }

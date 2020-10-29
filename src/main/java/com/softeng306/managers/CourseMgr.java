@@ -36,8 +36,6 @@ public class CourseMgr {
 
     private static CourseMgr singleInstance = null;
 
-    private CourseMgrIO courseMgrIO = new CourseMgrIO();
-
     private final IFileProcessor<Course> courseFileProcessor;
     private MarkCalculator markCalculator = new MarkCalculator();
 
@@ -66,6 +64,7 @@ public class CourseMgr {
      * Creates a new course and stores it in the file.
      */
     public void addCourse(ICourseBuilder completeBuilder) {
+        CourseMgrIO io = new CourseMgrIO();
 
         Course course = completeBuilder.build();
         int addCourseComponentChoice;
@@ -75,22 +74,24 @@ public class CourseMgr {
 
         courses.add(course);
 
-        addCourseComponentChoice = courseMgrIO.readCreateCourseComponentChoice();
+        addCourseComponentChoice = io.readCreateCourseComponentChoice();
 
         // Don't add course components option selected
         if (addCourseComponentChoice == 2) {
             courseMgrIO.printComponentsNotInitialisedMessage(course.getCourseID());
         } else {
             enterCourseWorkComponentWeightage(course);
-            courseMgrIO.printCourseAdded(course.getCourseID());
+            io.printCourseAdded(course.getCourseID());
         }
-        courseMgrIO.printCourses(generateGeneralInformationForAllCourses());
+        io.printCourses(generateGeneralInformationForAllCourses());
     }
 
     /**
      * Checks whether a course (with all of its groups) have available slots and displays the result.
      */
     public void checkAvailableSlots() {
+        CourseMgrIO io = new CourseMgrIO();
+
         //printout the result directly
         MainMenuIO.printMethodCall("checkAvailableSlots");
 
@@ -104,22 +105,23 @@ public class CourseMgr {
             }
 
             if (currentCourse != null) {
-                courseMgrIO.printCourseInfoString(generateCourseInformation(currentCourse));
-                courseMgrIO.printVacanciesForGroups(generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LECTURE_GROUP.toString());
+                io.printCourseInfoString(generateCourseInformation(currentCourse));
+                io.printVacanciesForGroups(generateGroupInformation(currentCourse.getLectureGroups()), GroupType.LECTURE_GROUP.toString());
 
                 if (currentCourse.getTutorialGroups() != null) {
-                    courseMgrIO.printEmptySpace();
-                    courseMgrIO.printVacanciesForGroups(generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP.toString());
+                    io.printEmptySpace();
+                    io.printVacanciesForGroups(generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP.toString());
                 }
 
                 if (currentCourse.getLabGroups() != null) {
-                    courseMgrIO.printEmptySpace();
-                    courseMgrIO.printVacanciesForGroups(generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP.toString());
+                    io.printEmptySpace();
+                    io.printVacanciesForGroups(generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP.toString());
+
                 }
-                courseMgrIO.printEmptySpace();
+                io.printEmptySpace();
                 break;
             } else {
-                courseMgrIO.printCourseNotExist();
+                io.printCourseNotExist();
             }
         }
     }
@@ -130,6 +132,8 @@ public class CourseMgr {
      * @param currentCourse The course which course work component is to be set.
      */
     public void enterCourseWorkComponentWeightage(Course currentCourse) {
+        CourseMgrIO io = new CourseMgrIO();
+
         // Assume when course is created, no components are added yet
         // Assume once components are created and set, cannot be changed.
 
@@ -149,38 +153,39 @@ public class CourseMgr {
         if (currentCourse.getMainComponents().isEmpty()) {
             // empty course
 
-            courseMgrIO.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
+            io.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
             int hasFinalExamChoice = 0;
             int examWeight = 0;
             while (hasFinalExamChoice < 1 || hasFinalExamChoice > 2) {
-                hasFinalExamChoice = courseMgrIO.readHasFinalExamChoice();
+                hasFinalExamChoice = io.readHasFinalExamChoice();
                 if (hasFinalExamChoice == 1) {
-                    examWeight = courseMgrIO.readExamWeight();
+                    examWeight = io.readExamWeight();
                     MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>());
                     mainComponents.add(exam);
                 } else if (hasFinalExamChoice == 2) {
-                    courseMgrIO.printEnterContinuousAssessments();
+                    io.printEnterContinuousAssessments();
                 }
             }
 
-            int numberOfMain = courseMgrIO.readNoOfMainComponents();
+            int numberOfMain = io.readNoOfMainComponents();
 
             while (true) {
                 int totalWeightage = 100 - examWeight;
                 for (int i = 0; i < numberOfMain; i++) {
                     Map<String, Double> subComponentsMap;
-                    String mainComponentName = courseMgrIO.readMainComponentName(totalWeightage, i, mainComponentNames);
+                    String mainComponentName = io.readMainComponentName(totalWeightage, i, mainComponentNames);
+
                     mainComponentNames.add(mainComponentName);
 
-                    int weight = courseMgrIO.readMainComponentWeightage(i, totalWeightage);
+                    int weight = io.readMainComponentWeightage(i, totalWeightage);
                     totalWeightage -= weight;
 
-                    int noOfSub = courseMgrIO.readNoOfSubComponents(i);
+                    int noOfSub = io.readNoOfSubComponents(i);
 
-                    subComponentsMap = courseMgrIO.readSubComponents(noOfSub);
+                    subComponentsMap = io.readSubComponents(noOfSub);
 
                     List<SubComponent> subComponentsList = new ArrayList<SubComponent>();
-                    for (String key : subComponentsMap.keySet()){
+                    for (String key : subComponentsMap.keySet()) {
                         SubComponent subComponent = new SubComponent(key, subComponentsMap.get(key).intValue());
                         subComponentsList.add(subComponent);
                     }
@@ -192,7 +197,7 @@ public class CourseMgr {
 
                 if (totalWeightage != 0) {
                     // weightage assign is not tallied
-                    courseMgrIO.printWeightageError();
+                    io.printWeightageError();
                     mainComponents.clear();
                     mainComponentNames.clear();
                 } else {
@@ -203,10 +208,10 @@ public class CourseMgr {
             currentCourse.setMainComponents(mainComponents);
 
         } else {
-            courseMgrIO.printCourseworkWeightageEnteredError();
+            io.printCourseworkWeightageEnteredError();
         }
 
-        courseMgrIO.printComponentsForCourse(currentCourse.getCourseID(), currentCourse.getCourseName(), generateComponentInformationForACourses(currentCourse));
+        io.printComponentsForCourse(currentCourse.getCourseID(), currentCourse.getCourseName(), generateComponentInformationForACourses(currentCourse));
 
         // Update course into course.csv
     }
@@ -216,7 +221,7 @@ public class CourseMgr {
      * Displays a list of IDs of all the courses.
      */
     public void printAllCourseIds() {
-        courseMgrIO.printAllCourseIds(generateListOfAllCourseIDs());
+        new CourseMgrIO().printAllCourseIds(generateListOfAllCourseIDs());
     }
 
     public List<String> getCourseIdsInDepartment(String departmentName) {
@@ -240,6 +245,8 @@ public class CourseMgr {
      * Prints the course statics including enrollment rate, average result for every assessment component and the average overall performance of this course.
      */
     public void printCourseStatistics() {
+        CourseMgrIO io = new CourseMgrIO();
+
         MainMenuIO.printMethodCall("printCourseStatistics");
 
         Course currentCourse;
@@ -259,7 +266,7 @@ public class CourseMgr {
             }
         }
 
-        courseMgrIO.printCourseStatisticsHeader(generateCourseInformationFromCourse(currentCourse));
+        io.printCourseStatisticsHeader(generateCourseInformationFromCourse(currentCourse));
 
         MainComponent exam = null;
 
@@ -271,22 +278,22 @@ public class CourseMgr {
 //                Leave the exam report to the last
                 exam = mainComponent;
             } else {
-                courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
+                io.printMainComponent(mainComponent.getComponentName(), mainComponent.getComponentWeight(), markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = generateSubComponentInformation(subComponents);
-                    Map<String, Double> subComponentMarks = generateComponentMarkInformation(subComponents,courseMarks);
-                    courseMgrIO.printSubcomponents(subComponentInformation, subComponentMarks);
+                    Map<String, Double> subComponentMarks = generateComponentMarkInformation(subComponents, courseMarks);
+                    io.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
             }
         }
 
         if (exam != null) {
-            courseMgrIO.printExamStatistics(exam.getComponentWeight(), markCalculator.computeExamMark(courseMarks));
+            io.printExamStatistics(exam.getComponentWeight(), markCalculator.computeExamMark(courseMarks));
         } else {
-            courseMgrIO.printNoExamMessage();
+            io.printNoExamMessage();
         }
-        courseMgrIO.printOverallPerformance(markCalculator.computerOverallMark(courseMarks));
+        io.printOverallPerformance(markCalculator.computerOverallMark(courseMarks));
     }
 
 
@@ -296,7 +303,7 @@ public class CourseMgr {
      * @return the inputted course.
      */
     public Course readCourseFromUser() throws CourseNotFoundException {
-        String validCourseID = courseMgrIO.readValidCourseIdFromUser();
+        String validCourseID = new CourseMgrIO().readValidCourseIdFromUser();
         return getCourseFromId(validCourseID);
     }
 
@@ -306,7 +313,7 @@ public class CourseMgr {
      * @return the inputted department.
      */
     public String readDepartmentFromUser() {
-        return courseMgrIO.readDepartmentWithMoreThanOneCourseFromUser();
+        return new CourseMgrIO().readDepartmentWithMoreThanOneCourseFromUser();
     }
 
     /**
@@ -319,14 +326,14 @@ public class CourseMgr {
     }
 
 
-    public String generateCourseInformation(Course course){
+    public String generateCourseInformation(Course course) {
         String infoString = course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats();
         return infoString;
     }
 
-    public String[][] generateGroupInformation(List<Group> groups){
+    public String[][] generateGroupInformation(List<Group> groups) {
         String[][] groupInfo = new String[groups.size()][3];
-        for(int i = 0; i<groups.size(); i++){
+        for (int i = 0; i < groups.size(); i++) {
             groupInfo[i][0] = groups.get(i).getGroupName();
             groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
             groupInfo[i][2] = String.valueOf(groups.get(i).getTotalSeats());
@@ -334,10 +341,10 @@ public class CourseMgr {
         return groupInfo;
     }
 
-    public String[][] generateSubComponentInformation(List<SubComponent> subComponents){
+    public String[][] generateSubComponentInformation(List<SubComponent> subComponents) {
         String[][] map = new String[subComponents.size()][2];
         int i = 0;
-        for(SubComponent subComponent : subComponents){
+        for (SubComponent subComponent : subComponents) {
             map[i][0] = subComponent.getComponentName();
             map[i][1] = String.valueOf(subComponent.getComponentWeight());
             i++;
@@ -345,16 +352,16 @@ public class CourseMgr {
         return map;
     }
 
-    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, List<Mark> marks){
+    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, List<Mark> marks) {
         Map<String, Double> map = new HashMap<>();
-        for(SubComponent subComponent : subComponents){
+        for (SubComponent subComponent : subComponents) {
             double mark = markCalculator.computeComponentMark(marks, subComponent.getComponentName());
             map.put(subComponent.getComponentName(), mark);
         }
         return map;
     }
 
-    public List<String> generateCourseInformationFromCourse(Course course){
+    public List<String> generateCourseInformationFromCourse(Course course) {
         List<String> courseInformation = new ArrayList<String>();
         courseInformation.add(course.getCourseID());
         courseInformation.add(course.getCourseName());
@@ -364,9 +371,9 @@ public class CourseMgr {
         return courseInformation;
     }
 
-    public List<String> generateListOfAllCourseIDs(){
+    public List<String> generateListOfAllCourseIDs() {
         List<String> courseIDs = new ArrayList<>();
-        for(Course course : courses){
+        for (Course course : courses) {
             courseIDs.add(course.getCourseID());
         }
         return courseIDs;
@@ -393,25 +400,25 @@ public class CourseMgr {
         return course.get();
     }
 
-    public Map<String, List<String>> generateGeneralInformationForAllCourses(){
+    public Map<String, List<String>> generateGeneralInformationForAllCourses() {
         Map<String, List<String>> generalCourseInfoMap = new HashMap<>();
-        for(Course course : courses) {
+        for (Course course : courses) {
             List<String> generalCourseInfo = new ArrayList<>();
             generalCourseInfo.add(course.getCourseName());
             generalCourseInfo.add(course.getProfInCharge().getProfName());
-            generalCourseInfoMap.put(course.getCourseID(),generalCourseInfo);
+            generalCourseInfoMap.put(course.getCourseID(), generalCourseInfo);
         }
         return generalCourseInfoMap;
 
     }
 
-    public Map<Map<String, String>, Map<String,String>> generateComponentInformationForACourses(Course course){
+    public Map<Map<String, String>, Map<String, String>> generateComponentInformationForACourses(Course course) {
         Map<Map<String, String>, Map<String, String>> map = new HashMap<>();
         for (MainComponent eachComp : course.getMainComponents()) {
             Map<String, String> mainComponentInfo = new HashMap<>();
             mainComponentInfo.put(eachComp.getComponentName(), String.valueOf(eachComp.getComponentWeight()));
 
-            Map<String,String> subComponentsInfo = new HashMap<>();
+            Map<String, String> subComponentsInfo = new HashMap<>();
             for (SubComponent eachSub : eachComp.getSubComponents()) {
                 subComponentsInfo.put(eachSub.getComponentName(), String.valueOf(eachSub.getComponentWeight()));
             }
@@ -421,58 +428,55 @@ public class CourseMgr {
         return map;
     }
 
-    public boolean checkContainsDepartment(String courseDepartment){
+    public boolean checkContainsDepartment(String courseDepartment) {
         DepartmentMgr departmentMgr = new DepartmentMgr();
         return departmentMgr.contains(courseDepartment);
     }
 
-    public List<String> getAllDepartmentsNameList(){
+    public List<String> getAllDepartmentsNameList() {
         DepartmentMgr departmentMgr = new DepartmentMgr();
         return departmentMgr.getListOfDepartments();
     }
 
-    public int getNumberOfLectureGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.LECTURE_GROUP.toString(), compareTo, totalSeats);
+    public int getNumberOfLectureGroups(int compareTo, int totalSeats) {
+        return new CourseMgrIO().readNoOfGroup(GroupType.LECTURE_GROUP.toString(), compareTo, totalSeats);
     }
 
-    public int getReadWeeklyLectureHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.LECTURE_GROUP.toString(), AU);
+    public int getReadWeeklyLectureHour(int AU) {
+        return new CourseMgrIO().readWeeklyHour(GroupType.LECTURE_GROUP.toString(), AU);
     }
 
-    public int getNumberOfLabGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.LAB_GROUP.toString(), compareTo, totalSeats);
+    public int getNumberOfLabGroups(int compareTo, int totalSeats) {
+        return new CourseMgrIO().readNoOfGroup(GroupType.LAB_GROUP.toString(), compareTo, totalSeats);
     }
 
-    public int getReadWeeklyLabHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.LAB_GROUP.toString(), AU);
+    public int getReadWeeklyLabHour(int AU) {
+        return new CourseMgrIO().readWeeklyHour(GroupType.LAB_GROUP.toString(), AU);
     }
 
-    public int getNumberOfTutorialGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.TUTORIAL_GROUP.toString(), compareTo, totalSeats);
+    public int getNumberOfTutorialGroups(int compareTo, int totalSeats) {
+        return new CourseMgrIO().readNoOfGroup(GroupType.TUTORIAL_GROUP.toString(), compareTo, totalSeats);
     }
 
-    public int getReadWeeklyTutorialHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.TUTORIAL_GROUP.toString(), AU);
+    public int getReadWeeklyTutorialHour(int AU) {
+        return new CourseMgrIO().readWeeklyHour(GroupType.TUTORIAL_GROUP.toString(), AU);
     }
-
 
     public String getCourseName(String courseId) throws CourseNotFoundException {
         Course course = getCourseFromId(courseId);
         return course.getCourseName();
     }
 
-    public List<String> getListCourseTypes(){
+    public List<String> getListCourseTypes() {
         return CourseType.getAllCourseTypes();
     }
 
-    public String getMainComponentString(){
+    public String getMainComponentString() {
         return MainComponent.COMPONENT_NAME;
     }
 
-    public String getSubComponentString(){
+    public String getSubComponentString() {
         return SubComponent.COMPONENT_NAME;
     }
-
-
 
 }
