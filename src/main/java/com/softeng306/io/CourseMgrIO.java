@@ -754,7 +754,7 @@ public class CourseMgrIO {
      * Reads in and constructs lecture groups for a course from the user
      *
      * @param totalSeats        the total number of seats that can be allocated to the lecture groups
-     * @param noOfLectureGroups the total number of lecure groups to make
+     * @param noOfLectureGroups the total number of lecture groups to make
      * @return the lecture groups the user has specified
      */
     public Map<String, Double> readLectureGroups(int totalSeats, int noOfLectureGroups) {
@@ -802,7 +802,7 @@ public class CourseMgrIO {
      * @param numGroups          the total groups to create
      * @param maxSeats           the total number of seats that can be allocated to the groups
      * @param groupDisplayString the type of group being created (used for output only)
-     * @return the tutorial groups the user has specified
+     * @return the new groups the user has created
      */
     public Map<String, Double> readGroup(int numGroups, int maxSeats, String groupDisplayString) {
         Map<String, Double> groups = new HashMap<>();
