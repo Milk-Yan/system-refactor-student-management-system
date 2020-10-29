@@ -90,7 +90,14 @@ public class CourseMgr {
         MainMenuIO.printMethodCall("checkAvailableSlots");
 
         while (true) {
-            Course currentCourse = readCourseFromUser();
+            Course currentCourse;
+            try {
+                currentCourse = readCourseFromUser();
+            } catch (CourseNotFoundException e) {
+                e.printStackTrace();
+                return;
+            }
+
             if (currentCourse != null) {
                 courseMgrIO.printCourseInfoString(this.generateCourseInformation(currentCourse));
                 courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LECTURE_GROUP.toString());
@@ -123,7 +130,12 @@ public class CourseMgr {
 
         MainMenuIO.printMethodCall("enterCourseWorkComponentWeightage");
         if (currentCourse == null) {
-            currentCourse = readCourseFromUser();
+            try {
+                currentCourse = readCourseFromUser();
+            } catch (CourseNotFoundException e) {
+                e.printStackTrace();
+                return;
+            }
         }
 
         HashSet<String> mainComponentNames = new HashSet<>();
@@ -225,8 +237,15 @@ public class CourseMgr {
     public void printCourseStatistics() {
         MainMenuIO.printMethodCall("printCourseStatistics");
 
-        Course currentCourse = readCourseFromUser();
-        String courseID = currentCourse.getCourseID();
+        Course currentCourse;
+        String courseID;
+        try {
+            currentCourse = readCourseFromUser();
+            courseID = currentCourse.getCourseID();
+        } catch (CourseNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
 
         List<Mark> courseMarks = new ArrayList<>();
         for (Mark mark : MarkMgr.getInstance().getMarks()) {
@@ -431,7 +450,7 @@ public class CourseMgr {
     }
 
 
-    public String getCourseName(String courseId) {
+    public String getCourseName(String courseId) throws CourseNotFoundException {
         Course course = getCourseFromId(courseId);
         return course.getCourseName();
     }
