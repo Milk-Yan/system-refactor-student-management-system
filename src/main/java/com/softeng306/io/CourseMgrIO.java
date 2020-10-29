@@ -669,7 +669,7 @@ public class CourseMgrIO {
                 CourseMgr.getInstance().printAllCourseIds();
                 courseID = scanner.nextLine();
             }
-            if (!CourseValidator.checkCourseIDExists(courseID)) {
+            if (!CourseValidator.checkCourseExists(courseID)) {
                 System.out.println("Invalid Course ID. Please re-enter.");
             } else {
                 break;

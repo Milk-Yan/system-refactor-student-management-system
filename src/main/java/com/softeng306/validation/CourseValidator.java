@@ -41,12 +41,15 @@ public class CourseValidator {
         return false;
     }
 
-    public static boolean checkCourseIDExists(String courseID) {
-        List<Course> anyCourse = CourseMgr.getInstance().getCourses().stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
-        if (anyCourse.isEmpty()) {
-            return false;
-        }
-        return true;
+    public static boolean checkCourseExists(String courseID) {
+        Optional<Course> course = CourseMgr
+                .getInstance()
+                .getCourses()
+                .stream()
+                .filter(c -> courseID.equals(c.getCourseID()))
+                .findFirst();
+
+        return course.isPresent();
     }
 
     /**
