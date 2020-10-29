@@ -84,10 +84,10 @@ public class Mark {
      * @param courseWorkName The name of this main course work.
      * @param result         The mark obtained in this main course work.
      */
-    public void setMainCourseWorkMarks(String courseWorkName, double result) {
+    public void setMainComponentMark(String courseWorkName, double result) {
         for (MainComponentMark mainComponentMark : courseWorkMarks) {
             if (mainComponentMark.getMainComponent().getComponentName().equals(courseWorkName)) {
-                if (mainComponentMark.hasSubComponents()) {
+                if (mainComponentMark.hasSubComponentMarks()) {
                     System.out.println("This main assessment is not stand alone");
                     return;
                 }
@@ -113,7 +113,7 @@ public class Mark {
      * @param courseWorkName The name of this sub course work.
      * @param result         The mark obtained in this sub course work.
      */
-    public void setSubCourseWorkMarks(String courseWorkName, double result) {
+    public void setSubComponentMark(String courseWorkName, double result) {
         for (MainComponentMark mainComponentMark : courseWorkMarks) {
             SubComponentMark subComponentMark = mainComponentMark.getSubComponentMark(courseWorkName);
             if (subComponentMark != null) {

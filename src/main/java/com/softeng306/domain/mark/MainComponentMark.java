@@ -34,7 +34,7 @@ public class MainComponentMark {
         this.subComponentMarks = subComponentMarks;
     }
 
-    public boolean hasSubComponents() {
+    public boolean hasSubComponentMarks() {
         if (subComponentMarks == null || subComponentMarks.isEmpty()) {
             return false;
         }

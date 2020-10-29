@@ -51,7 +51,11 @@ public class ProfessorMgr {
      * @return A list of all the IDs of the professors.
      */
     public List<String> getAllProfIDInDepartment(Department department) {
-        return professors.stream().filter(p -> department.equals(p.getProfDepartment())).map(p -> p.getProfID()).collect(Collectors.toList());
+        return professors
+                .stream()
+                .filter(p -> department.equals(p.getProfDepartment()))
+                .map(p -> p.getProfID())
+                .collect(Collectors.toList());
     }
 
     /**
@@ -62,5 +66,15 @@ public class ProfessorMgr {
     public List<Professor> getProfessors() {
         return professors;
     }
+
+
+    public static Professor getProfessorFromID(String profID) {
+        List<Professor> anyProf = ProfessorMgr.getInstance().getProfessors().stream().filter(p -> profID.equals(p.getProfID())).collect(Collectors.toList());
+        if (anyProf.isEmpty()) {
+            return null;
+        }
+        return anyProf.get(0);
+    }
+
 
 }
