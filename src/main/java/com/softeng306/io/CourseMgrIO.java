@@ -250,7 +250,8 @@ public class CourseMgrIO {
      * @param groupInformation the groups to print
      * @param type   the type of the groups
      */
-    public void printVacanciesForGroups(String[][] groupInformation, GroupType type) {
+    public void printVacanciesForGroups(String[][] groupInformation, String groupType) {
+        GroupType type = GroupType.valueOf(groupType);
         for (String[] group: groupInformation) {
             if (type == GroupType.TUTORIAL_GROUP) {
                 System.out.format("%s group %s (Available/Total):  %s/%s%n",
