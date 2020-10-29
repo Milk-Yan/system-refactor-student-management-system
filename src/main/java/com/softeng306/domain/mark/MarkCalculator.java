@@ -2,10 +2,49 @@ package com.softeng306.domain.mark;
 
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
+import com.softeng306.managers.MarkMgr;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MarkCalculator {
+
+    public double computeAverageMarkForCourseComponent(String courseID, String componentName){
+        List<Mark> marksForCourse = new ArrayList<>();
+        for (Mark mark : MarkMgr.getInstance().getMarks()) {
+            if (mark.getCourse().getCourseID().equals(courseID)) {
+                marksForCourse.add(mark);
+            }
+        }
+
+        return computeAverageComponentMark(marksForCourse, componentName);
+    }
+
+    public double computeOverallMarkForCourse(String courseID){
+        List<Mark> marksForCourse = new ArrayList<>();
+        for (Mark mark : MarkMgr.getInstance().getMarks()) {
+            if (mark.getCourse().getCourseID().equals(courseID)) {
+                marksForCourse.add(mark);
+            }
+        }
+
+        return computeOverallMark(marksForCourse);
+    }
+
+
+
+    public double computeComponentMarkForStudent(String studentId, String courseID, String componentName) {
+        List<Mark> studentMarksForCourse = new ArrayList<>();
+        for (Mark mark : MarkMgr.getInstance().getMarks()) {
+            if (mark.getCourse().getCourseID().equals(courseID)
+                    && mark.getStudent().getStudentID().equals(studentId)) {
+                studentMarksForCourse.add(mark);
+            }
+        }
+
+        return computeAverageComponentMark(studentMarksForCourse, componentName);
+    }
 
     /**
      * Computes the sum of marks for a particular component of a particular course
@@ -14,7 +53,7 @@ public class MarkCalculator {
      * @param thisComponentName the component name interested.
      * @return the sum of component marks
      */
-    public double computeComponentMark(List<Mark> thisCourseMark, String thisComponentName) {
+    private double computeAverageComponentMark(List<Mark> thisCourseMark, String thisComponentName) {
         double averageMark = 0;
         for (Mark mark : thisCourseMark) {
             List<MainComponentMark> thisComponentMarks = mark.getCourseWorkMarks();
@@ -44,7 +83,7 @@ public class MarkCalculator {
      * @param thisCourseMark The marks for the course.
      * @return The exam marks for the course.
      */
-    public double computeExamMark(List<Mark> thisCourseMark) {
+    private double computeExamMark(List<Mark> thisCourseMark) {
         double averageMark = 0;
 
         for (Mark mark : thisCourseMark) {
@@ -68,7 +107,7 @@ public class MarkCalculator {
      * @param thisCourseMark The marks for the course.
      * @return The exam marks for the course.
      */
-    public double computerOverallMark(List<Mark> thisCourseMark) {
+    public double computeOverallMark(List<Mark> thisCourseMark) {
         double averageMark = 0;
         for (Mark mark : thisCourseMark) {
             averageMark += mark.getTotalMark();

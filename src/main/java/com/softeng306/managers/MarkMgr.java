@@ -183,6 +183,7 @@ public class MarkMgr {
         return marks;
     }
 
+
     public int getAUForStudent(String studentId) {
         int totalAU = 0;
         for (Mark mark : getMarksForStudent(studentId)) {
@@ -245,5 +246,6 @@ public class MarkMgr {
         }
         return markString;
     }
+
 
 }

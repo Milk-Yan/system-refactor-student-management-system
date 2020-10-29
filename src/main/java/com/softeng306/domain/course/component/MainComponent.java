@@ -2,6 +2,7 @@ package com.softeng306.domain.course.component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,4 +44,14 @@ public class MainComponent extends CourseworkComponent {
     public List<SubComponent> getSubComponents() {
         return this.subComponents;
     }
+
+    public List<String> getSubComponentNames(){
+        List<String> subComponentNames = new ArrayList<String>();
+        for(SubComponent s : subComponents){
+            subComponentNames.add(s.getComponentName());
+        }
+
+        return subComponentNames;
+    }
+
 }

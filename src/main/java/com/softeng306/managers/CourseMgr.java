@@ -11,7 +11,6 @@ import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.mark.Mark;
 
 import com.softeng306.fileprocessing.CourseFileProcessor;
 import com.softeng306.fileprocessing.IFileProcessor;
@@ -259,13 +258,6 @@ public class CourseMgr {
             return;
         }
 
-        List<Mark> courseMarks = new ArrayList<>();
-        for (Mark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getCourse().getCourseID().equals(courseID)) {
-                courseMarks.add(mark);
-            }
-        }
-
         io.printCourseStatisticsHeader(generateCourseInformationFromCourse(currentCourse));
 
         MainComponent exam = null;
@@ -278,22 +270,24 @@ public class CourseMgr {
 //                Leave the exam report to the last
                 exam = mainComponent;
             } else {
-                io.printMainComponent(mainComponent.getComponentName(), mainComponent.getComponentWeight(), markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
+                io.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
-                    String[][] subComponentInformation = generateSubComponentInformation(subComponents);
-                    Map<String, Double> subComponentMarks = generateComponentMarkInformation(subComponents, courseMarks);
+                    String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
+                    Map<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents, courseID);
                     io.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
             }
         }
 
         if (exam != null) {
-            io.printExamStatistics(exam.getComponentWeight(), markCalculator.computeExamMark(courseMarks));
+            io.printExamStatistics(exam.getComponentWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, "Exam"));
+
         } else {
             io.printNoExamMessage();
         }
-        io.printOverallPerformance(markCalculator.computerOverallMark(courseMarks));
+
+        io.printOverallPerformance(markCalculator.computeOverallMarkForCourse(courseID));
     }
 
 
@@ -352,10 +346,11 @@ public class CourseMgr {
         return map;
     }
 
-    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, List<Mark> marks) {
+
+    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID){
         Map<String, Double> map = new HashMap<>();
-        for (SubComponent subComponent : subComponents) {
-            double mark = markCalculator.computeComponentMark(marks, subComponent.getComponentName());
+        for(SubComponent subComponent : subComponents){
+            double mark = markCalculator.computeAverageMarkForCourseComponent(courseID, subComponent.getComponentName());
             map.put(subComponent.getComponentName(), mark);
         }
         return map;
