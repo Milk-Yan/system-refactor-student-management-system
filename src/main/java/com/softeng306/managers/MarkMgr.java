@@ -221,21 +221,19 @@ public class MarkMgr {
                     markString.add("Sub Assessment: " + subComponent.getComponentName() + " -- (" + subComponent.getComponentWeight() + "% * " + mainAssessmentWeight + "%) --- Mark: " + subComponentMark.getMark());
                 }
 
-                markString.add("Main Assessment Total: " + result);
-                markString.add("");
+                markString.add("Main Assessment Total: " + result + "\n");
             }
 
-            markString.add("Course Total: " + mark.getTotalMark());
-            markString.add("");
+            markString.add("Course Total: " + mark.getTotalMark() + "\n");
             studentGPA += new MarkCalculator().gpaCalculator(mark) * mark.getCourse().getAU();
         }
         studentGPA /= totalAU;
         markString.add("GPA for this semester: " + studentGPA);
-        markString.add(getGPAString(studentGPA));
+        markString.add(getGPAMessage(studentGPA));
         return markString;
     }
 
-    public String getGPAString(double studentGPA) {
+    public String getGPAMessage(double studentGPA) {
         if (studentGPA >= 4.50) {
             return "On track of First Class Honor!";
         } else if (studentGPA >= 4.0) {
