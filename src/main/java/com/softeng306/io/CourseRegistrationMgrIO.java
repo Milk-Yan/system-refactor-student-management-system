@@ -103,7 +103,7 @@ public class CourseRegistrationMgrIO {
 
         String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
         CourseMgr.getInstance().readDepartmentFromUser();
-        String courseID = courseIO.readExistingCourseIDFromUser();
+        String courseID = courseIO.readValidCourseIdFromUser();
 
         List<String> newRegistrationInfo = courseRegistrationMgr.registerCourse(studentID, courseID);
 
@@ -119,7 +119,7 @@ public class CourseRegistrationMgrIO {
         MainMenuIO.printMethodCall("printStudent");
         CourseMgrIO courseIO = new CourseMgrIO();
 
-        String courseID = courseIO.readExistingCourseIDFromUser();
+        String courseID = courseIO.readValidCourseIdFromUser();
         printOptions();
 
         int opt;
