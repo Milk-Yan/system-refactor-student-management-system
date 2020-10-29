@@ -96,17 +96,17 @@ public class CourseMgr {
         while (true) {
             Course currentCourse = readCourseFromUser();
             if (currentCourse != null) {
-                courseMgrIO.printCourseInfoString(this.generateCourseInformation(currentCourse));
-                courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LECTURE_GROUP.toString());
+                courseMgrIO.printCourseInfoString(generateCourseInformation(currentCourse));
+                courseMgrIO.printVacanciesForGroups(generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LECTURE_GROUP.toString());
 
                 if (currentCourse.getTutorialGroups() != null) {
                     courseMgrIO.printEmptySpace();
-                    courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP.toString());
+                    courseMgrIO.printVacanciesForGroups(generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP.toString());
                 }
 
                 if (currentCourse.getLabGroups() != null) {
                     courseMgrIO.printEmptySpace();
-                    courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP.toString());
+                    courseMgrIO.printVacanciesForGroups(generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP.toString());
                 }
                 courseMgrIO.printEmptySpace();
                 break;
@@ -254,8 +254,8 @@ public class CourseMgr {
                 courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
-                    String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
-                    HashMap<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents,courseMarks);
+                    String[][] subComponentInformation = generateSubComponentInformation(subComponents);
+                    HashMap<String, Double> subComponentMarks = generateComponentMarkInformation(subComponents,courseMarks);
                     courseMgrIO.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
             }
