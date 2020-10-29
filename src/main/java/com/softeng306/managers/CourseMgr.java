@@ -2,6 +2,7 @@ package com.softeng306.managers;
 
 
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
@@ -94,7 +95,14 @@ public class CourseMgr {
         MainMenuIO.printMethodCall("checkAvailableSlots");
 
         while (true) {
-            Course currentCourse = readCourseFromUser();
+            Course currentCourse;
+            try {
+                currentCourse = readCourseFromUser();
+            } catch (CourseNotFoundException e) {
+                e.printStackTrace();
+                return;
+            }
+
             if (currentCourse != null) {
                 courseMgrIO.printCourseInfoString(generateCourseInformation(currentCourse));
                 courseMgrIO.printVacanciesForGroups(generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LECTURE_GROUP.toString());
@@ -127,7 +135,12 @@ public class CourseMgr {
 
         MainMenuIO.printMethodCall("enterCourseWorkComponentWeightage");
         if (currentCourse == null) {
-            currentCourse = readCourseFromUser();
+            try {
+                currentCourse = readCourseFromUser();
+            } catch (CourseNotFoundException e) {
+                e.printStackTrace();
+                return;
+            }
         }
 
         Set<String> mainComponentNames = new HashSet<>();
@@ -229,8 +242,15 @@ public class CourseMgr {
     public void printCourseStatistics() {
         MainMenuIO.printMethodCall("printCourseStatistics");
 
-        Course currentCourse = readCourseFromUser();
-        String courseID = currentCourse.getCourseID();
+        Course currentCourse;
+        String courseID;
+        try {
+            currentCourse = readCourseFromUser();
+            courseID = currentCourse.getCourseID();
+        } catch (CourseNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
 
         List<Mark> courseMarks = new ArrayList<>();
         for (Mark mark : MarkMgr.getInstance().getMarks()) {
@@ -275,7 +295,7 @@ public class CourseMgr {
      *
      * @return the inputted course.
      */
-    public Course readCourseFromUser() {
+    public Course readCourseFromUser() throws CourseNotFoundException {
         String validCourseID = courseMgrIO.readValidCourseIdFromUser();
         return getCourseFromId(validCourseID);
     }
@@ -359,12 +379,18 @@ public class CourseMgr {
      * @param courseID The inputted course ID.
      * @return the existing course or else null.
      */
-    public Course getCourseFromId(String courseID) {
-        List<Course> anyCourse = CourseMgr.getInstance().getCourses().stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
-        if (anyCourse.isEmpty()) {
-            return null;
+    public Course getCourseFromId(String courseID) throws CourseNotFoundException {
+        Optional<Course> course = CourseMgr
+                .getInstance()
+                .getCourses()
+                .stream()
+                .filter(c -> courseID.equals(c.getCourseID()))
+                .findAny();
+
+        if (!course.isPresent()) {
+            throw new CourseNotFoundException(courseID);
         }
-        return anyCourse.get(0);
+        return course.get();
     }
 
     public Map<String, List<String>> generateGeneralInformationForAllCourses(){
@@ -430,7 +456,7 @@ public class CourseMgr {
     }
 
 
-    public String getCourseName(String courseId) {
+    public String getCourseName(String courseId) throws CourseNotFoundException {
         Course course = getCourseFromId(courseId);
         return course.getCourseName();
     }

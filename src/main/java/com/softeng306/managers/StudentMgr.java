@@ -2,6 +2,7 @@ package com.softeng306.managers;
 
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
+import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
@@ -202,16 +203,20 @@ public class StudentMgr {
         return !studentCourses.isEmpty();
     }
 
-    public Student getStudentFromId(String studentId) {
-        Optional<Student> optionalStudent = students.stream().filter(s -> studentId.equals(s.getStudentID())).findFirst();
-        if (optionalStudent.isPresent()) {
-            return optionalStudent.get();
-        } else {
-            return null;
+    public Student getStudentFromId(String studentId) throws StudentNotFoundException {
+        Optional<Student> student = students
+                .stream()
+                .filter(s -> studentId.equals(s.getStudentID()))
+                .findFirst();
+
+        if (!student.isPresent()) {
+            throw new StudentNotFoundException(studentId);
         }
+
+        return student.get();
     }
 
-    public String getStudentName(String studentId) {
+    public String getStudentName(String studentId) throws StudentNotFoundException {
         Student student = getStudentFromId(studentId);
         return student.getStudentName();
     }

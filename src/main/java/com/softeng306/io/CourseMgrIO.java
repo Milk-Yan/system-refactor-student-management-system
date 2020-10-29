@@ -2,6 +2,13 @@ package com.softeng306.io;
 
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
+import com.softeng306.domain.exceptions.ProfessorNotFoundException;
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.Department;
+import com.softeng306.enums.GroupType;
+import com.softeng306.domain.course.component.MainComponent;
+import com.softeng306.domain.course.component.SubComponent;
+
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.GroupTypeMgr;
 import com.softeng306.managers.ProfessorMgr;
@@ -27,11 +34,13 @@ public class CourseMgrIO {
             System.out.println("Give this course an ID: ");
             courseID = scanner.nextLine();
             if (CourseValidator.checkValidCourseIDInput(courseID)) {
+
                 // Check course ID does not already exist for a course
-                if (CourseValidator.getCourseFromId(courseID) == null) {
+                if(CourseValidator.checkCourseExists(courseID)) {
+                    System.out.println("Sorry. The course ID is used. This course already exists.");
+                } else {
                     break;
                 }
-                System.out.println("Sorry. The course ID is used. This course already exists.");
             }
         }
 
@@ -664,7 +673,7 @@ public class CourseMgrIO {
                 CourseMgr.getInstance().printAllCourseIds();
                 courseID = scanner.nextLine();
             }
-            if (!CourseValidator.checkCourseIDExists(courseID)) {
+            if (!CourseValidator.checkCourseExists(courseID)) {
                 System.out.println("Invalid Course ID. Please re-enter.");
             } else {
                 break;
@@ -1030,8 +1039,12 @@ public class CourseMgrIO {
 
 
         //Professor
-        builder.setProfInCharge(profID);
-        CourseMgr.getInstance().addCourse(builder);
+        try {
+            builder.setProfInCharge(profID);
+            CourseMgr.getInstance().addCourse(builder);
+        } catch (ProfessorNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void checkAvailableSlots(){

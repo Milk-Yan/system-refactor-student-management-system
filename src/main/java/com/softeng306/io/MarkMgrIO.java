@@ -1,5 +1,6 @@
 package com.softeng306.io;
 
+import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.MarkMgr;
 
@@ -107,8 +108,12 @@ MarkMgrIO {
     public void initiateEnteringCourseworkMark(boolean isExam) {
         printFunctionCall("enterCourseWorkMark");
 
-        String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
-        String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
-        MarkMgr.getInstance().setCourseworkMark(isExam, studentID, courseID);
+        try {
+            String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
+            String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
+            MarkMgr.getInstance().setCourseworkMark(isExam, studentID, courseID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
