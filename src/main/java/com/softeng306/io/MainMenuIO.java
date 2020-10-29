@@ -1,8 +1,5 @@
 package com.softeng306.io;
 
-import com.softeng306.managers.CourseMgr;
-import com.softeng306.managers.MarkMgr;
-
 import java.util.Scanner;
 
 public class MainMenuIO {
@@ -66,7 +63,7 @@ public class MainMenuIO {
                 courseMgrIO.addCourse();
                 break;
             case 3:
-                courseRegistrationMgrIO.registerCourse();
+                courseRegistrationMgrIO.registerStudentForCourse();
                 break;
             case 4:
                 courseMgrIO.checkAvailableSlots();

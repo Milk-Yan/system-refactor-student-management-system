@@ -96,7 +96,7 @@ public class CourseRegistrationMgrIO {
     /**
      * Gets a student and course from the user to create a new registration for
      */
-    public void registerCourse() {
+    public void registerStudentForCourse() {
         MainMenuIO.printMethodCall("registerCourse");
 
         CourseMgrIO courseIO = new CourseMgrIO();
