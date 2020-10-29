@@ -8,8 +8,8 @@ import com.softeng306.enums.GroupType;
 import com.softeng306.managers.ProfessorMgr;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CourseBuilder implements ICourseBuilder {
     private Course course;
@@ -43,7 +43,7 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setLectureGroups(HashMap<String, Double> lectureGroups) {
+    public void setLectureGroups(Map<String, Double> lectureGroups) {
         List<Group> groupsOfLectures = new ArrayList<>();
         for(String name : lectureGroups.keySet()){
             Group g = new Group(name, lectureGroups.get(name).intValue(), lectureGroups.get(name).intValue(), GroupType.LECTURE_GROUP);
@@ -53,7 +53,7 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setTutorialGroups(HashMap<String, Double> tutorialGroups) {
+    public void setTutorialGroups(Map<String, Double> tutorialGroups) {
         List<Group> groupsOfLectures = new ArrayList<>();
         for(String name : tutorialGroups.keySet()){
             Group g = new Group(name, tutorialGroups.get(name).intValue(), tutorialGroups.get(name).intValue(), GroupType.LECTURE_GROUP);
@@ -63,7 +63,7 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setLabGroups(HashMap<String, Double> labGroups) {
+    public void setLabGroups(Map<String, Double> labGroups) {
         List<Group> groupsOfLectures = new ArrayList<>();
         for(String name : labGroups.keySet()){
             Group g = new Group(name, labGroups.get(name).intValue(), labGroups.get(name).intValue(), GroupType.LECTURE_GROUP);

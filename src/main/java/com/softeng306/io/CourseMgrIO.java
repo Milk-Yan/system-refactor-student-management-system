@@ -2,7 +2,6 @@ package com.softeng306.io;
 
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
-
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.GroupTypeMgr;
 import com.softeng306.managers.ProfessorMgr;
@@ -119,7 +118,7 @@ public class CourseMgrIO {
                 noOfGroups = scanner.nextInt();
                 scanner.nextLine();
                 boolean checkLimit;
-                if (type == groupTypeMgr.getLectureGroupTypeString()) {
+                if (type.equals(groupTypeMgr.getLectureGroupTypeString())) {
                     checkLimit = noOfGroups > 0 && noOfGroups <= totalSeats;
                 } else {
                     checkLimit = noOfGroups >= 0 && compareTo <= totalSeats;
@@ -145,11 +144,11 @@ public class CourseMgrIO {
      */
     private void printInvalidNoGroup(String type) {
         GroupTypeMgr groupTypeMgr = new GroupTypeMgr();
-        if (type == groupTypeMgr.getLabGroupTypeString()) {
+        if (type.equals(groupTypeMgr.getLabGroupTypeString())) {
             System.out.println("Number of lab group must be non-negative.");
-        } else if (type == groupTypeMgr.getLectureGroupTypeString()) {
+        } else if (type.equals(groupTypeMgr.getLectureGroupTypeString())) {
             System.out.println("Number of lecture group must be positive but less than total seats in this course.");
-        } else if (type == groupTypeMgr.getTutorialGroupTypeString()) {
+        } else if (type.equals(groupTypeMgr.getTutorialGroupTypeString())) {
             System.out.println("Number of tutorial group must be non-negative.");
         }
     }
@@ -453,7 +452,7 @@ public class CourseMgrIO {
      * @param mainComponentNo the main component number
      * @return the main component name
      */
-    public String readMainComponentName(int totalWeightage, int mainComponentNo, HashSet<String> mainComponentNames) {
+    public String readMainComponentName(int totalWeightage, int mainComponentNo, Set<String> mainComponentNames) {
         return readComponentName(totalWeightage, mainComponentNames, mainComponentNo, CourseMgr.getInstance().getMainComponentString());
     }
 
@@ -1058,5 +1057,7 @@ public class CourseMgrIO {
         }
     }
 
-
+    public static void printEmptySpace(){
+        System.out.println();
+    }
 }

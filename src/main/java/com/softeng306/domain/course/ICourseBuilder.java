@@ -1,6 +1,6 @@
 package com.softeng306.domain.course;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public interface ICourseBuilder {
     void setCourseID(String id);
@@ -11,11 +11,11 @@ public interface ICourseBuilder {
 
     void setTotalSeats(int totalSeats);
 
-    void setLectureGroups(HashMap<String, Double> lectureGroups);
+    void setLectureGroups(Map<String, Double> lectureGroups);
 
-    void setTutorialGroups(HashMap<String, Double> tutorialGroups);
+    void setTutorialGroups(Map<String, Double> tutorialGroups);
 
-    void setLabGroups(HashMap<String, Double> labGroups);
+    void setLabGroups(Map<String, Double> labGroups);
 
     void setAU(int AU);
 

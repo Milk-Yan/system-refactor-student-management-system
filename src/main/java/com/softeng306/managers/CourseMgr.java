@@ -95,15 +95,15 @@ public class CourseMgr {
                 courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LECTURE_GROUP.toString());
 
                 if (currentCourse.getTutorialGroups() != null) {
-                    System.out.println();
+                    courseMgrIO.printEmptySpace();
                     courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP.toString());
                 }
 
                 if (currentCourse.getLabGroups() != null) {
-                    System.out.println();
+                    courseMgrIO.printEmptySpace();
                     courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP.toString());
                 }
-                System.out.println();
+                courseMgrIO.printEmptySpace();
                 break;
             } else {
                 courseMgrIO.printCourseNotExist();
@@ -125,7 +125,7 @@ public class CourseMgr {
             currentCourse = readCourseFromUser();
         }
 
-        HashSet<String> mainComponentNames = new HashSet<>();
+        Set<String> mainComponentNames = new HashSet<>();
         List<MainComponent> mainComponents = new ArrayList<>(0);
         // Check if mainComponent is empty
         if (currentCourse.getMainComponents().isEmpty()) {
