@@ -3,8 +3,8 @@ package com.softeng306.io;
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.exceptions.ProfessorNotFoundException;
+import com.softeng306.enums.GroupType;
 import com.softeng306.managers.CourseMgr;
-import com.softeng306.managers.GroupTypeMgr;
 import com.softeng306.managers.ProfessorMgr;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.GroupValidator;
@@ -113,7 +113,7 @@ public class CourseMgrIO {
      */
     public int readNoOfGroup(String type, int compareTo, int totalSeats) {
         int noOfGroups;
-        GroupTypeMgr groupTypeMgr = new GroupTypeMgr();
+
         while (true) {
             System.out.println("Enter the number of " + type + " groups: ");
 
@@ -121,7 +121,7 @@ public class CourseMgrIO {
                 noOfGroups = scanner.nextInt();
                 scanner.nextLine();
                 boolean checkLimit;
-                if (type.equals(groupTypeMgr.getLectureGroupTypeString())) {
+                if (type.equals(GroupType.LECTURE_GROUP.toString())) {
                     checkLimit = noOfGroups > 0 && noOfGroups <= totalSeats;
                 } else {
                     checkLimit = noOfGroups >= 0 && compareTo <= totalSeats;
@@ -145,12 +145,11 @@ public class CourseMgrIO {
      * @param type the type of the group to output the message for
      */
     private void printInvalidNoGroup(String type) {
-        GroupTypeMgr groupTypeMgr = new GroupTypeMgr();
-        if (type.equals(groupTypeMgr.getLabGroupTypeString())) {
+        if (type.equals(GroupType.LAB_GROUP.toString())) {
             System.out.println("Number of lab group must be non-negative.");
-        } else if (type.equals(groupTypeMgr.getLectureGroupTypeString())) {
+        } else if (type.equals(GroupType.LECTURE_GROUP.toString())) {
             System.out.println("Number of lecture group must be positive but less than total seats in this course.");
-        } else if (type.equals(groupTypeMgr.getTutorialGroupTypeString())) {
+        } else if (type.equals(GroupType.TUTORIAL_GROUP.toString())) {
             System.out.println("Number of tutorial group must be non-negative.");
         }
     }
