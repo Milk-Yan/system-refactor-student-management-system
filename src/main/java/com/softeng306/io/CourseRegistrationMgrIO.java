@@ -1,5 +1,6 @@
 package com.softeng306.io;
 
+import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.CourseRegistrationMgr;
 
@@ -105,10 +106,11 @@ public class CourseRegistrationMgrIO {
         CourseMgr.getInstance().readDepartmentFromUser();
         String courseID = courseIO.readValidCourseIdFromUser();
 
-        List<String> newRegistrationInfo = courseRegistrationMgr.registerCourse(studentID, courseID);
-
-        if (newRegistrationInfo != null) {
+        try {
+            List<String> newRegistrationInfo = courseRegistrationMgr.registerCourse(studentID, courseID);
             printSuccessfulRegistration(newRegistrationInfo);
+        } catch (InvalidCourseRegistrationException e) {
+            e.printStackTrace();
         }
     }
 

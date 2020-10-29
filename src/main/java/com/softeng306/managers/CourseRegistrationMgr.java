@@ -3,6 +3,7 @@ package com.softeng306.managers;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
 import com.softeng306.domain.student.Student;
 import com.softeng306.enums.GroupType;
 import com.softeng306.io.CourseRegistrationMgrIO;
@@ -48,23 +49,23 @@ public class CourseRegistrationMgr {
     /**
      * Registers a course for a student
      */
-    public List<String> registerCourse(String studentID, String courseID) {
+    public List<String> registerCourse(String studentID, String courseID) throws InvalidCourseRegistrationException {
         CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         Student currentStudent = StudentValidator.getStudentFromId(studentID);
         Course currentCourse = CourseValidator.getCourseFromId(courseID);
 
         if (CourseRegistrationValidator.courseRegistrationExists(studentID, courseID)) {
-            return null;
+            throw new InvalidCourseRegistrationException();
         }
 
         if (currentCourse.getMainComponents().isEmpty()) {
             io.printNoAssessmentMessage(currentCourse.getProfInCharge().getProfName());
-            return null;
+            throw new InvalidCourseRegistrationException();
         }
 
         if (currentCourse.getVacancies() == 0) {
             io.printNoVacancies();
-            return null;
+            throw new InvalidCourseRegistrationException();
         }
 
         io.printPendingRegistrationMethod(currentStudent.getStudentName(), currentStudent.getStudentID(), currentCourse.getCourseID(), currentCourse.getCourseName());
