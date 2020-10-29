@@ -1,8 +1,6 @@
 package com.softeng306.validation;
 
-import com.softeng306.domain.course.Course;
 import com.softeng306.domain.student.Student;
-import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.StudentMgr;
 
 import java.util.List;
