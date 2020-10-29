@@ -221,11 +221,11 @@ public class CourseMgrIO {
     }
 
     /**
-     * Prints an information message that the components have not been initialized
+     * Prints an information message that the components have not been initialised
      *
-     * @param courseID the course that the components have not been initialized for
+     * @param courseID the course that the components have not been initialised for
      */
-    public void printComponentsNotInitialized(String courseID) {
+    public void printComponentsNotInitialisedMessage(String courseID) {
         System.out.println("Course " + courseID + " is added, but assessment components are not initialized.");
     }
 

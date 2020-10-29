@@ -77,7 +77,7 @@ public class CourseMgr {
 
         // Don't add course components option selected
         if (addCourseComponentChoice == 2) {
-            courseMgrIO.printComponentsNotInitialized(course.getCourseID());
+            courseMgrIO.printComponentsNotInitialisedMessage(course.getCourseID());
         } else {
             enterCourseWorkComponentWeightage(course);
             courseMgrIO.printCourseAdded(course.getCourseID());
