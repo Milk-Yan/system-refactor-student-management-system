@@ -53,7 +53,7 @@ public class CourseRegistrationMgr {
         Student currentStudent = StudentValidator.getStudentFromId(studentID);
         Course currentCourse = CourseValidator.getCourseFromId(courseID);
 
-        if (CourseRegistrationValidator.checkCourseRegistrationExists(studentID, courseID) != null) {
+        if (CourseRegistrationValidator.courseRegistrationExists(studentID, courseID)) {
             return null;
         }
 
