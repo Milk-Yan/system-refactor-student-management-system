@@ -3,13 +3,14 @@ package com.softeng306.io;
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.exceptions.ProfessorNotFoundException;
+import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.ProfessorMgr;
-import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.GroupValidator;
 import com.softeng306.validation.ProfessorValidator;
+import com.softeng306.validation.RegexValidator;
 
 import java.util.*;
 
@@ -28,10 +29,10 @@ public class CourseMgrIO {
         while (true) {
             System.out.println("Give this course an ID: ");
             courseID = scanner.nextLine();
-            if (CourseValidator.checkValidCourseIDInput(courseID)) {
+            if (RegexValidator.checkValidCourseIDInput(courseID)) {
 
                 // Check course ID does not already exist for a course
-                if (CourseValidator.checkCourseExists(courseID)) {
+                if (courseMgr.checkCourseExists(courseID)) {
                     System.out.println("Sorry. The course ID is used. This course already exists.");
                 } else {
                     break;
@@ -659,7 +660,7 @@ public class CourseMgrIO {
                 courseMgr.printAllCourseIds();
                 courseID = scanner.nextLine();
             }
-            if (!CourseValidator.checkCourseExists(courseID)) {
+            if (!courseMgr.checkCourseExists(courseID)) {
                 System.out.println("Invalid Course ID. Please re-enter.");
             } else {
                 break;
@@ -737,7 +738,8 @@ public class CourseMgrIO {
                 printAllCourseType(CourseMgr.getInstance().getListCourseTypes());
                 courseType = scanner.nextLine();
             }
-            if (CourseValidator.checkCourseTypeValidation(courseType)) {
+            if (CourseType.contains(courseType)) {
+                System.out.println("The course type is invalid. Please re-enter.");
                 break;
             }
         }
