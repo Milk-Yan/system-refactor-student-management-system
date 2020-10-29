@@ -32,7 +32,7 @@ public class DepartmentMgr {
         return false;
     }
 
-    public static List<String> getListOfDepartments(){
+    public List<String> getListOfDepartments(){
         List<String> listDepartmentStrings = new ArrayList<>();
         for(Department department : Department.values()){
             listDepartmentStrings.add(department.toString());

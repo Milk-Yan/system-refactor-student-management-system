@@ -397,7 +397,8 @@ public class CourseMgr {
     }
 
     public List<String> getAllDepartmentsNameList(){
-        return DepartmentMgr.getListOfDepartments();
+        DepartmentMgr departmentMgr = new DepartmentMgr();
+        return departmentMgr.getListOfDepartments();
     }
 
     public int getNumberOfLectureGroups(int compareTo, int totalSeats){

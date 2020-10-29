@@ -1049,7 +1049,7 @@ public class CourseMgrIO {
     /**
      * Displays a list of all the course types.
      */
-    public static void printAllCourseType(List<String> courseTypes) {
+    public void printAllCourseType(List<String> courseTypes) {
         int index = 1;
         for (String courseType : courseTypes) {
             System.out.println(index + ": " + courseType);
