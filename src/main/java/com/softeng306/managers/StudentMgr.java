@@ -151,4 +151,18 @@ public class StudentMgr {
         return studentInformationStrings;
     }
 
+    /**
+     * Checks whether this student ID is used by other students.
+     *
+     * @param studentID This student's ID.
+     * @return the existing student or else null.
+     */
+    public boolean studentExists(String studentID) {
+        Optional<Student> student = students.stream()
+                .filter(s -> studentID.equals(s.getStudentID()))
+                .findFirst();
+
+        return student.isPresent();
+    }
+
 }

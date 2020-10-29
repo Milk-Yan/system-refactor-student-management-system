@@ -12,12 +12,10 @@ import com.softeng306.enums.GroupType;
 import com.softeng306.fileprocessing.CourseRegistrationFileProcessor;
 import com.softeng306.fileprocessing.IFileProcessor;
 import com.softeng306.io.CourseRegistrationMgrIO;
-import com.softeng306.validation.CourseRegistrationValidator;
-import com.softeng306.validation.CourseValidator;
-import com.softeng306.validation.StudentValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CourseRegistrationMgr {
     /**
@@ -59,7 +57,7 @@ public class CourseRegistrationMgr {
         Student currentStudent = StudentMgr.getInstance().getStudentFromId(studentID);
         Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
 
-        if (CourseRegistrationValidator.courseRegistrationExists(studentID, courseID)) {
+        if (courseRegistrationExists(studentID, courseID)) {
             io.printAlreadyRegisteredError();
             throw new InvalidCourseRegistrationException();
         }
@@ -300,6 +298,22 @@ public class CourseRegistrationMgr {
         groupStringInfo.add("");
 
         return groupStringInfo;
+    }
+
+    /**
+     * Checks whether this course registration record exists.
+     *
+     * @param studentID The inputted student ID.
+     * @param courseID  The inputted course ID.
+     * @return the existing course registration record or else null.
+     */
+    public boolean courseRegistrationExists(String studentID, String courseID) {
+        Optional<CourseRegistration> courseRegistration = courseRegistrations.stream()
+                .filter(cr -> studentID.equals(cr.getStudent().getStudentID()))
+                .filter(cr -> courseID.equals(cr.getCourse().getCourseID()))
+                .findFirst();
+
+        return courseRegistration.isPresent();
     }
 
 }

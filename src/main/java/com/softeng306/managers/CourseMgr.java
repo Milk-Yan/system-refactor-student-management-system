@@ -452,4 +452,11 @@ public class CourseMgr {
         return SubComponent.COMPONENT_NAME;
     }
 
+    public boolean checkCourseExists(String courseID) {
+        Optional<Course> course = courses.stream()
+                .filter(c -> courseID.equals(c.getCourseID()))
+                .findFirst();
+
+        return course.isPresent();
+    }
 }
