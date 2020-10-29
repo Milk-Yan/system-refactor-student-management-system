@@ -38,7 +38,7 @@ Enter -h to print all the course types.
 6: UE
 Enter the number of lecture groups: 
 Enter the weekly lecture hour for this course: 
-Give a name to the lecture group
+Give a name to this lecture group
 Enter a group Name: 
 Enter this lecture group's capacity: 
 Enter the number of tutorial groups: 
