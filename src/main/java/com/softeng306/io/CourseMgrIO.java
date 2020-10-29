@@ -697,7 +697,7 @@ public class CourseMgrIO {
         }
         return courseDepartment;
     }
-
+    
     public void printAllDepartments(List<String> departments) {
         int index = 1;
         for (String department : departments) {
@@ -844,7 +844,6 @@ public class CourseMgrIO {
         String lectureGroupName;
         int lectureGroupCapacity;
         int seatsLeft = totalSeats;
-        boolean groupNameExists;
 
         Map<String, Double> lectureGroups = new HashMap<>();
 
