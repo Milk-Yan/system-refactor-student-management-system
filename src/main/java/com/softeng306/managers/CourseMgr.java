@@ -5,7 +5,6 @@ import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.enums.CourseType;
-import com.softeng306.enums.Department;
 
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.ICourseBuilder;
@@ -105,16 +104,16 @@ public class CourseMgr {
 
             if (currentCourse != null) {
                 io.printCourseInfoString(generateCourseInformation(currentCourse));
-                io.printVacanciesForGroups(generateGroupInformation(currentCourse.getLectureGroups()), GroupType.LECTURE_GROUP.toString());
+                io.printVacanciesForGroups(currentCourse.generateLectureGroupInformation(), GroupType.LECTURE_GROUP.toString());
 
                 if (currentCourse.getTutorialGroups() != null) {
                     io.printEmptySpace();
-                    io.printVacanciesForGroups(generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP.toString());
+                    io.printVacanciesForGroups(currentCourse.generateTutorialGroupInformation(), GroupType.TUTORIAL_GROUP.toString());
                 }
 
                 if (currentCourse.getLabGroups() != null) {
                     io.printEmptySpace();
-                    io.printVacanciesForGroups(generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP.toString());
+                    io.printVacanciesForGroups(currentCourse.generateLabGroupInformation(), GroupType.LAB_GROUP.toString());
 
                 }
                 io.printEmptySpace();
@@ -224,10 +223,9 @@ public class CourseMgr {
     }
 
     public List<String> getCourseIdsInDepartment(String departmentName) {
-        Department department = Department.valueOf(departmentName);
         List<Course> validCourses = new ArrayList<>();
         courses.forEach(course -> {
-            if (department.toString().equals(course.getCourseDepartment().toString())) {
+            if (departmentName.equals(course.getCourseDepartment().toString())) {
                 validCourses.add(course);
             }
         });
@@ -325,16 +323,6 @@ public class CourseMgr {
         return infoString;
     }
 
-    public String[][] generateGroupInformation(List<Group> groups) {
-        String[][] groupInfo = new String[groups.size()][3];
-        for (int i = 0; i < groups.size(); i++) {
-            groupInfo[i][0] = groups.get(i).getGroupName();
-            groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
-            groupInfo[i][2] = String.valueOf(groups.get(i).getTotalSeats());
-        }
-        return groupInfo;
-    }
-
     public String[][] generateSubComponentInformation(List<SubComponent> subComponents) {
         String[][] map = new String[subComponents.size()][2];
         int i = 0;
@@ -423,16 +411,6 @@ public class CourseMgr {
         return map;
     }
 
-    public boolean checkContainsDepartment(String courseDepartment) {
-        DepartmentMgr departmentMgr = new DepartmentMgr();
-        return departmentMgr.contains(courseDepartment);
-    }
-
-    public List<String> getAllDepartmentsNameList() {
-        DepartmentMgr departmentMgr = new DepartmentMgr();
-        return departmentMgr.getListOfDepartments();
-    }
-
     public int getNumberOfLectureGroups(int compareTo, int totalSeats) {
         return new CourseMgrIO().readNoOfGroup(GroupType.LECTURE_GROUP.toString(), compareTo, totalSeats);
     }
@@ -463,7 +441,7 @@ public class CourseMgr {
     }
 
     public List<String> getListCourseTypes() {
-        return CourseType.getAllCourseTypes();
+        return CourseType.getListOfAllCourseTypeNames();
     }
 
     public String getMainComponentString() {

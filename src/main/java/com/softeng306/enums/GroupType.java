@@ -23,4 +23,5 @@ public enum GroupType {
     public String getNameWithCapital() {
         return nameLowerCase.substring(0, 1).toUpperCase() + nameLowerCase.substring(1);
     }
+
 }

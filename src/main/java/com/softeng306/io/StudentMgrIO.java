@@ -1,8 +1,8 @@
 package com.softeng306.io;
 
 import com.softeng306.domain.exceptions.StudentNotFoundException;
-import com.softeng306.managers.DepartmentMgr;
-import com.softeng306.managers.GenderMgr;
+import com.softeng306.enums.Department;
+import com.softeng306.enums.Gender;
 import com.softeng306.managers.MarkMgr;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.StudentValidator;
@@ -162,11 +162,12 @@ public class StudentMgrIO {
             System.out.println("Enter -h to print all the schools.");
             studentSchool = reader.nextLine();
             while ("-h".equals(studentSchool)) {
-                new DepartmentMgr().printAllDepartment();
+                List<String> allDepartmentNames = Department.getListOfAllDepartmentNames();
+                printAllStringsInListByIndex(allDepartmentNames);
                 studentSchool = reader.nextLine();
             }
 
-            if (new DepartmentMgr().contains(studentSchool)) {
+            if (Department.contains(studentSchool)) {
                 return studentSchool;
             } else {
                 System.out.println("The department is invalid. Please re-enter.");
@@ -186,11 +187,11 @@ public class StudentMgrIO {
             System.out.println("Enter -h to print all the genders.");
             studentGender = reader.nextLine();
             while ("-h".equals(studentGender)) {
-                new GenderMgr().printAllGender();
+                printAllStringsInListByIndex(Gender.getListOfAllGenderNames());
                 studentGender = reader.nextLine();
             }
 
-            if (new GenderMgr().contains(studentGender)) {
+            if (Gender.contains(studentGender)) {
                 return studentGender;
             } else {
                 System.out.println("The gender is invalid. Please re-enter.");
@@ -284,5 +285,17 @@ public class StudentMgrIO {
 
         }
         return studentID;
+    }
+
+    /**
+     * Prints all the strings in the input list by its index
+     * (starting from 1), and a :
+     * e.g. 1: inputString
+     */
+    private void printAllStringsInListByIndex(List<String> list) {
+        for (int index = 1; index <= list.size(); index++) {
+            String name = list.get(index-1);
+            System.out.println(index + ": " + name);
+        }
     }
 }

@@ -3,9 +3,9 @@ package com.softeng306.io;
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.exceptions.ProfessorNotFoundException;
+import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
 import com.softeng306.managers.CourseMgr;
-import com.softeng306.managers.GroupTypeMgr;
 import com.softeng306.managers.ProfessorMgr;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.GroupValidator;
@@ -113,7 +113,7 @@ public class CourseMgrIO {
      */
     public int readNoOfGroup(String type, int compareTo, int totalSeats) {
         int noOfGroups;
-        GroupTypeMgr groupTypeMgr = new GroupTypeMgr();
+
         while (true) {
             System.out.println("Enter the number of " + type + " groups: ");
 
@@ -121,7 +121,7 @@ public class CourseMgrIO {
                 noOfGroups = scanner.nextInt();
                 scanner.nextLine();
                 boolean checkLimit;
-                if (type.equals(groupTypeMgr.getLectureGroupTypeString())) {
+                if (type.equals(GroupType.LECTURE_GROUP.toString())) {
                     checkLimit = noOfGroups > 0 && noOfGroups <= totalSeats;
                 } else {
                     checkLimit = noOfGroups >= 0 && compareTo <= totalSeats;
@@ -145,12 +145,11 @@ public class CourseMgrIO {
      * @param type the type of the group to output the message for
      */
     private void printInvalidNoGroup(String type) {
-        GroupTypeMgr groupTypeMgr = new GroupTypeMgr();
-        if (type.equals(groupTypeMgr.getLabGroupTypeString())) {
+        if (type.equals(GroupType.LAB_GROUP.toString())) {
             System.out.println("Number of lab group must be non-negative.");
-        } else if (type.equals(groupTypeMgr.getLectureGroupTypeString())) {
+        } else if (type.equals(GroupType.LECTURE_GROUP.toString())) {
             System.out.println("Number of lecture group must be positive but less than total seats in this course.");
-        } else if (type.equals(groupTypeMgr.getTutorialGroupTypeString())) {
+        } else if (type.equals(GroupType.TUTORIAL_GROUP.toString())) {
             System.out.println("Number of tutorial group must be non-negative.");
         }
     }
@@ -676,10 +675,10 @@ public class CourseMgrIO {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                printAllDepartments(courseMgr.getAllDepartmentsNameList());
+                printAllStringsInListByIndex(Department.getListOfAllDepartmentNames());
                 courseDepartment = scanner.nextLine();
             }
-            if (courseMgr.checkContainsDepartment(courseDepartment)) {
+            if (Department.contains(courseDepartment)) {
                 List<String> validCourseString;
                 validCourseString = courseMgr.getCourseIdsInDepartment(courseDepartment);
                 if (validCourseString.size() == 0) {
@@ -694,15 +693,6 @@ public class CourseMgrIO {
         return courseDepartment;
     }
 
-    public void printAllDepartments(List<String> departments) {
-        int index = 1;
-        for (String department : departments) {
-            System.out.println(index + ": " + department);
-            index++;
-        }
-    }
-
-
     /**
      * Read in a course department for a course from the user
      *
@@ -715,10 +705,10 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the departments.");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                printAllDepartments(courseMgr.getAllDepartmentsNameList());
+                printAllStringsInListByIndex(Department.getListOfAllDepartmentNames());
                 courseDepartment = scanner.nextLine();
             }
-            if (courseMgr.checkContainsDepartment(courseDepartment)) {
+            if (Department.contains(courseDepartment)) {
                 break;
             } else {
                 System.out.println("The department is invalid. Please re-enter.");
@@ -999,9 +989,20 @@ public class CourseMgrIO {
             index++;
         }
     }
-
+    
     public void printEmptySpace() {
         System.out.println();
     }
 
+    /**
+     * Prints all the strings in the input list by its index
+     * (starting from 1), and a :
+     * e.g. 1: inputString
+     */
+    private void printAllStringsInListByIndex(List<String> list) {
+        for (int index = 1; index <= list.size(); index++) {
+            String name = list.get(index-1);
+            System.out.println(index + ": " + name);
+        }
+    }
 }
