@@ -5,9 +5,10 @@ import java.util.regex.Pattern;
 public class RegexValidator {
 
     private static final String COURSE_ID_REGEX = "^[A-Z]{2}[0-9]{3,4}$";
-
     private static final String GROUP_NAME_REGEX = "^[a-zA-Z0-9]+$";
-
+    private static final String STUDENT_ID_REGEX = "^U[0-9]{7}[A-Z]$";
+    private static final String STUDENT_NAME_REGEX = "^[ a-zA-Z]+$";
+    
     /**
      * Checks whether the inputted string is in the correct format.
      *
@@ -43,6 +44,34 @@ public class RegexValidator {
         boolean valid = RegexValidator.checkStringRegexFormat(groupName, GROUP_NAME_REGEX);
         if (!valid) {
             System.out.println("Wrong format of group name.");
+        }
+        return valid;
+    }
+
+    /**
+     * Checks whether the inputted student ID is in the correct format.
+     *
+     * @param studentID The inputted student ID.
+     * @return boolean indicates whether the inputted student ID is valid.
+     */
+    public static boolean checkValidStudentIDInput(String studentID) {
+        boolean valid = RegexValidator.checkStringRegexFormat(studentID, STUDENT_ID_REGEX);
+        if (!valid) {
+            System.out.println("Wrong format of student ID.");
+        }
+        return valid;
+    }
+
+    /**
+     * Checks whether the inputted student name is in the correct format.
+     *
+     * @param studentName The inputted student name.
+     * @return boolean indicates whether the student person name is valid.
+     */
+    public static boolean checkValidStudentNameInput(String studentName) {
+        boolean valid = RegexValidator.checkStringRegexFormat(studentName, STUDENT_NAME_REGEX);
+        if (!valid) {
+            System.out.println("Wrong format of name.");
         }
         return valid;
     }

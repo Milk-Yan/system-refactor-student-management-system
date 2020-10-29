@@ -5,7 +5,7 @@ import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
 import com.softeng306.managers.MarkMgr;
 import com.softeng306.managers.StudentMgr;
-import com.softeng306.validation.StudentValidator;
+import com.softeng306.validation.RegexValidator;
 
 import java.util.List;
 import java.util.Scanner;
@@ -124,8 +124,8 @@ public class StudentMgrIO {
             System.out.println("Give this student an ID: ");
             String studentID = reader.nextLine();
             // Check the studentId is valid and is also not used by a current student
-            if (StudentValidator.checkValidStudentIDInput(studentID)) {
-                if (!StudentValidator.studentExists(studentID)) {
+            if (RegexValidator.checkValidStudentIDInput(studentID)) {
+                if (!studentMgr.studentExists(studentID)) {
                     return studentID;
                 } else {
                     System.out.println("Sorry. The student ID is used. This student already exists.");
@@ -144,7 +144,7 @@ public class StudentMgrIO {
         while (true) {
             System.out.println("Enter student Name: ");
             studentName = reader.nextLine();
-            if (StudentValidator.checkValidStudentNameInput(studentName)) {
+            if (RegexValidator.checkValidStudentNameInput(studentName)) {
                 return studentName;
             }
         }
@@ -250,7 +250,7 @@ public class StudentMgrIO {
                 studentID = reader.nextLine();
             }
 
-            if (!StudentValidator.studentExists(studentID)) {
+            if (!studentMgr.studentExists(studentID)) {
                 System.out.println("Invalid Student ID. Please re-enter.");
             } else {
                 break;
