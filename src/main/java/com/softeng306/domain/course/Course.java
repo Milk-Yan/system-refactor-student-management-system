@@ -312,5 +312,24 @@ public class Course {
         this.courseType = type;
     }
 
+    public String[][] generateLabGroupInformation() {
+        return generateGroupInformation(labGroups);
+    }
 
+    public String[][] generateTutorialGroupInformation() {
+        return generateGroupInformation(tutorialGroups);
+    }
+    public String[][] generateLectureGroupInformation() {
+        return generateGroupInformation(lectureGroups);
+    }
+
+    private String[][] generateGroupInformation(List<Group> groups) {
+        String[][] groupInfo = new String[groups.size()][3];
+        for (int i = 0; i < groups.size(); i++) {
+            groupInfo[i][0] = groups.get(i).getGroupName();
+            groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
+            groupInfo[i][2] = String.valueOf(groups.get(i).getTotalSeats());
+        }
+        return groupInfo;
+    }
 }

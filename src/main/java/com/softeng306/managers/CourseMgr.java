@@ -105,16 +105,16 @@ public class CourseMgr {
 
             if (currentCourse != null) {
                 io.printCourseInfoString(generateCourseInformation(currentCourse));
-                io.printVacanciesForGroups(generateGroupInformation(currentCourse.getLectureGroups()), GroupType.LECTURE_GROUP.toString());
+                io.printVacanciesForGroups(currentCourse.generateLectureGroupInformation(), GroupType.LECTURE_GROUP.toString());
 
                 if (currentCourse.getTutorialGroups() != null) {
                     io.printEmptySpace();
-                    io.printVacanciesForGroups(generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP.toString());
+                    io.printVacanciesForGroups(currentCourse.generateTutorialGroupInformation(), GroupType.TUTORIAL_GROUP.toString());
                 }
 
                 if (currentCourse.getLabGroups() != null) {
                     io.printEmptySpace();
-                    io.printVacanciesForGroups(generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP.toString());
+                    io.printVacanciesForGroups(currentCourse.generateLabGroupInformation(), GroupType.LAB_GROUP.toString());
 
                 }
                 io.printEmptySpace();
@@ -323,16 +323,6 @@ public class CourseMgr {
     public String generateCourseInformation(Course course) {
         String infoString = course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats();
         return infoString;
-    }
-
-    public String[][] generateGroupInformation(List<Group> groups) {
-        String[][] groupInfo = new String[groups.size()][3];
-        for (int i = 0; i < groups.size(); i++) {
-            groupInfo[i][0] = groups.get(i).getGroupName();
-            groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
-            groupInfo[i][2] = String.valueOf(groups.get(i).getTotalSeats());
-        }
-        return groupInfo;
     }
 
     public String[][] generateSubComponentInformation(List<SubComponent> subComponents) {
