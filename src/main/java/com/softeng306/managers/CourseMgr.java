@@ -64,7 +64,7 @@ public class CourseMgr {
      * Creates a new course and stores it in the file.
      */
     public void addCourse(ICourseBuilder completeBuilder) {
-        CourseMgrIO io = new CourseMgrIO();
+        CourseMgrIO courseMgrIO = new CourseMgrIO();
 
         Course course = completeBuilder.build();
         int addCourseComponentChoice;
@@ -74,16 +74,16 @@ public class CourseMgr {
 
         courses.add(course);
 
-        addCourseComponentChoice = io.readCreateCourseComponentChoice();
+        addCourseComponentChoice = courseMgrIO.readCreateCourseComponentChoice();
 
         // Don't add course components option selected
         if (addCourseComponentChoice == 2) {
             courseMgrIO.printComponentsNotInitialisedMessage(course.getCourseID());
         } else {
             enterCourseWorkComponentWeightage(course);
-            io.printCourseAdded(course.getCourseID());
+            courseMgrIO.printCourseAdded(course.getCourseID());
         }
-        io.printCourses(generateGeneralInformationForAllCourses());
+        courseMgrIO.printCourses(generateGeneralInformationForAllCourses());
     }
 
     /**
