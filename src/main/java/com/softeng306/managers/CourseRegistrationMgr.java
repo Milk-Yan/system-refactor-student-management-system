@@ -75,7 +75,7 @@ public class CourseRegistrationMgr {
             return null;
         }
 
-        io.printPendingRegistrationMethod(currentStudent.getStudentName(), currentStudent.getStudentID(), currentCourse.getCourseID(), currentCourse.getCourseName());
+        io.printRegistrationRequestDetails(currentStudent.getStudentName(), currentStudent.getStudentID(), currentCourse.getCourseID(), currentCourse.getCourseName());
 
         List<Group> lecGroups = new ArrayList<>();
         lecGroups.addAll(currentCourse.getLectureGroups());

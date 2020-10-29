@@ -88,7 +88,7 @@ public class CourseRegistrationMgrIO {
      * @param courseId    is a course id that we are registering a student for.
      * @param courseName  is a course name that we are registering a student for.
      */
-    public void printPendingRegistrationMethod(String studentName, String studentId, String courseId, String courseName) {
+    public void printRegistrationRequestDetails(String studentName, String studentId, String courseId, String courseName) {
         System.out.println("Student " + studentName + " with ID: " + studentId +
                 " wants to register " + courseId + " " + courseName);
     }
