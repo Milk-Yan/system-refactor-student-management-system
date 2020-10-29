@@ -1,8 +1,5 @@
 package com.softeng306.io;
 
-import com.softeng306.managers.CourseMgr;
-import com.softeng306.managers.MarkMgr;
-
 import java.util.Scanner;
 
 public class MainMenuIO {
@@ -10,9 +7,8 @@ public class MainMenuIO {
 
     private static CourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
     private static StudentMgrIO studentMgrIO = new StudentMgrIO();
-    private static MarkMgrIO markMgrIO = MarkMgrIO.getInstance();
+    private static MarkMgrIO markMgrIO = new MarkMgrIO();
     private static CourseMgrIO courseMgrIO = new CourseMgrIO();
-
 
     /**
      * Startup the main menu for the application

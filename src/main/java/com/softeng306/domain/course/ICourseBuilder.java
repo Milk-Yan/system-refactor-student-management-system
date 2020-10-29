@@ -1,5 +1,7 @@
 package com.softeng306.domain.course;
 
+import com.softeng306.domain.exceptions.ProfessorNotFoundException;
+
 import java.util.Map;
 
 public interface ICourseBuilder {
@@ -7,7 +9,7 @@ public interface ICourseBuilder {
 
     void setCourseName(String name);
 
-    void setProfInCharge(String profInCharge);
+    void setProfInCharge(String profInCharge) throws ProfessorNotFoundException;
 
     void setTotalSeats(int totalSeats);
 

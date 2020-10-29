@@ -1,6 +1,7 @@
 package com.softeng306.domain.mark;
 
 import com.softeng306.domain.course.Course;
+import com.softeng306.domain.exceptions.SubComponentNotFoundException;
 import com.softeng306.domain.student.Student;
 
 import java.util.List;
@@ -113,7 +114,7 @@ public class Mark {
      * @param courseWorkName The name of this sub course work.
      * @param result         The mark obtained in this sub course work.
      */
-    public void setSubComponentMark(String courseWorkName, double result) {
+    public void setSubComponentMark(String courseWorkName, double result) throws SubComponentNotFoundException {
         for (MainComponentMark mainComponentMark : courseWorkMarks) {
             SubComponentMark subComponentMark = mainComponentMark.getSubComponentMark(courseWorkName);
             if (subComponentMark != null) {

@@ -1,5 +1,6 @@
 package com.softeng306.io;
 
+import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.MarkMgr;
 
@@ -8,21 +9,7 @@ import java.util.Scanner;
 
 public class MarkMgrIO {
     private Scanner scanner = new Scanner(System.in);
-    private static MarkMgrIO singleInstance = null;
-
-    /**
-     * Return the MarkMgr singleton, if not initialised already, create an instance.
-     *
-     * @return MarkMgr the singleton instance
-     */
-    public static MarkMgrIO getInstance() {
-        if (singleInstance == null) {
-            singleInstance = new MarkMgrIO();
-        }
-
-        return singleInstance;
-    }
-
+    private MarkMgr markMgr = MarkMgr.getInstance();
 
     /**
      * Prints to console that a function has been called.
@@ -45,7 +32,7 @@ public class MarkMgrIO {
         System.out.println("Here are the choices you can have: ");
 
         for (int i = 0; i < availableChoices.size(); i++) {
-            System.out.println((i + 1) + ". " + availableChoices.get(i) + " Weight in Total: " + (double)weights.get(i) + "%");
+            System.out.println((i + 1) + ". " + availableChoices.get(i) + " Weight in Total: " + (double) weights.get(i) + "%");
         }
         System.out.println((availableChoices.size() + 1) + ". Quit");
     }
@@ -106,8 +93,13 @@ public class MarkMgrIO {
     public void initiateEnteringCourseworkMark(boolean isExam) {
         printFunctionCall("enterCourseWorkMark");
 
-        String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
-        String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
-        MarkMgr.getInstance().setCourseworkMark(isExam, studentID, courseID);
+        try {
+            String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
+            String courseID = new CourseMgrIO().readValidCourseIdFromUser();
+
+            markMgr.setCourseworkMark(isExam, studentID, courseID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

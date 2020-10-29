@@ -3,6 +3,10 @@ package com.softeng306.managers;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.exceptions.CourseNotFoundException;
+import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
+import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
+import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.domain.student.Student;
 
 import com.softeng306.fileprocessing.CourseRegistrationFileProcessor;
@@ -18,10 +22,8 @@ import com.softeng306.validation.StudentValidator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CourseRegistrationMgr {
-    private static Scanner scanner = new Scanner(System.in);
     /**
      * A list of all the course registration records in this school.
      */
@@ -56,23 +58,24 @@ public class CourseRegistrationMgr {
     /**
      * Registers a course for a student
      */
-    public List<String> registerCourse(String studentID, String courseID) {
+    public List<String> registerCourse(String studentID, String courseID) throws InvalidCourseRegistrationException, StudentNotFoundException, CourseNotFoundException {
         CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         Student currentStudent = StudentValidator.getStudentFromId(studentID);
         Course currentCourse = CourseValidator.getCourseFromId(courseID);
 
-        if (CourseRegistrationValidator.checkCourseRegistrationExists(studentID, courseID) != null) {
-            return null;
+        if (CourseRegistrationValidator.courseRegistrationExists(studentID, courseID)) {
+            io.printAlreadyRegisteredError();
+            throw new InvalidCourseRegistrationException();
         }
 
         if (currentCourse.getMainComponents().isEmpty()) {
             io.printNoAssessmentMessage(currentCourse.getProfInCharge().getProfName());
-            return null;
+            throw new InvalidCourseRegistrationException();
         }
 
         if (currentCourse.getVacancies() == 0) {
             io.printNoVacancies();
-            return null;
+            throw new InvalidCourseRegistrationException();
         }
 
         io.printPendingRegistrationMethod(currentStudent.getStudentName(), currentStudent.getStudentID(), currentCourse.getCourseID(), currentCourse.getCourseName());
@@ -125,7 +128,8 @@ public class CourseRegistrationMgr {
     /**
      * Prints the students in a course according to their lecture group, tutorial group or lab group.
      */
-    public void printStudents(CourseRegistrationMgrIO io, String courseID, int opt) {
+    public void printStudents(String courseID, int opt) throws CourseNotFoundException, GroupTypeNotFoundException {
+        CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         Course currentCourse = CourseValidator.getCourseFromId(courseID);
 
         // READ courseRegistrationFILE
@@ -272,7 +276,7 @@ public class CourseRegistrationMgr {
         return total;
     }
 
-    public List<String> getUniqueGroupNames(List<CourseRegistration> courseRegistrations, GroupType groupType) {
+    public List<String> getUniqueGroupNames(List<CourseRegistration> courseRegistrations, GroupType groupType) throws GroupTypeNotFoundException {
         List<String> uniqueGroupNames = new ArrayList<>();
         for (CourseRegistration courseRegistration : courseRegistrations) {
             if (!uniqueGroupNames.contains(courseRegistration.getGroupByType(groupType).getGroupName())) {
@@ -289,7 +293,7 @@ public class CourseRegistrationMgr {
      * @param courseRegistrations the list registrations for a course
      * @param groupType           the group of registration that we want to print
      */
-    public List<String> getGroupString(List<CourseRegistration> courseRegistrations, GroupType groupType) {
+    public List<String> getGroupString(List<CourseRegistration> courseRegistrations, GroupType groupType) throws GroupTypeNotFoundException {
         List<String> groupStringInfo = new ArrayList<>();
         if (courseRegistrations.isEmpty()) {
             return groupStringInfo;
@@ -309,6 +313,5 @@ public class CourseRegistrationMgr {
 
         return groupStringInfo;
     }
-
 
 }

@@ -3,6 +3,7 @@ package com.softeng306.managers;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
+import com.softeng306.domain.exceptions.SubComponentNotFoundException;
 import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
@@ -38,9 +39,6 @@ public class MarkMgr {
         markFileProcessor = new MarkFileProcessor();
         marks = markFileProcessor.loadFile();
     }
-
-    private MarkMgrIO markMgrIO = MarkMgrIO.getInstance();
-
 
     /**
      * Return the MarkMgr singleton, if not initialised already, create an instance.
@@ -86,8 +84,8 @@ public class MarkMgr {
      *
      * @param isExam whether this coursework component refers to "Exam"
      */
-    public void setCourseworkMark(boolean isExam, String studentID, String courseID) {
-
+    public void setCourseworkMark(boolean isExam, String studentID, String courseID) throws SubComponentNotFoundException {
+        MarkMgrIO io = new MarkMgrIO();
 
         List<String> componentNameList = new ArrayList<>();
         List<String> availableChoices = new ArrayList<>();
@@ -113,14 +111,14 @@ public class MarkMgr {
                                 availableChoices, weights, isMainComponent);
                     }
 
-                    markMgrIO.printCourseComponentChoices(availableChoices, weights);
+                    io.printCourseComponentChoices(availableChoices, weights);
 
-                    int choice = markMgrIO.readCourseComponentChoice(availableChoices.size());
+                    int choice = io.readCourseComponentChoice(availableChoices.size());
                     if (choice == (availableChoices.size() + 1)) {
                         return;
                     }
 
-                    double assessmentMark = markMgrIO.readCourseComponentMark();
+                    double assessmentMark = io.readCourseComponentMark();
                     String componentName = componentNameList.get(choice - 1);
                     setComponentMark(mark, isMainComponent.get(choice - 1), componentName, assessmentMark);
 
@@ -134,12 +132,12 @@ public class MarkMgr {
             }
         }
 
-        markMgrIO.printStudentNotRegisteredToCourse(courseID);
+        io.printStudentNotRegisteredToCourse(courseID);
     }
 
 
     private void setComponentMark(Mark mark, boolean isMainComponent, String componentName,
-                                  double assessmentMark) {
+                                  double assessmentMark) throws SubComponentNotFoundException {
         if (isMainComponent) {
             // This is a stand alone main assessment
             mark.setMainComponentMark(componentName, assessmentMark);
@@ -149,7 +147,7 @@ public class MarkMgr {
     }
 
     private void setExamMark(Mark mark) {
-        double examMark = markMgrIO.readExamMark();
+        double examMark = new MarkMgrIO().readExamMark();
         mark.setMainComponentMark("Exam", examMark);
     }
 
@@ -248,4 +246,6 @@ public class MarkMgr {
         }
         return markString;
     }
+
+
 }

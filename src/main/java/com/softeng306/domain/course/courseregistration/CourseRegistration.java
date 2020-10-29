@@ -2,6 +2,7 @@ package com.softeng306.domain.course.courseregistration;
 
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.student.Student;
 import com.softeng306.enums.GroupType;
 
@@ -47,7 +48,7 @@ public class CourseRegistration {
         return labGroup;
     }
 
-    public Group getGroupByType(GroupType type) {
+    public Group getGroupByType(GroupType type) throws GroupTypeNotFoundException {
         if (type == GroupType.LECTURE_GROUP) {
             return lectureGroup;
         } else if (type == GroupType.TUTORIAL_GROUP) {
@@ -55,6 +56,7 @@ public class CourseRegistration {
         } else if (type == GroupType.LAB_GROUP) {
             return labGroup;
         }
-        return null;
+
+        throw new GroupTypeNotFoundException(type.toString());
     }
 }
