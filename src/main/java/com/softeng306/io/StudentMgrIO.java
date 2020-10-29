@@ -251,7 +251,7 @@ public class StudentMgrIO {
                 studentID = reader.nextLine();
             }
 
-            if (StudentValidator.studentExists(studentID)) {
+            if (!StudentValidator.studentExists(studentID)) {
                 System.out.println("Invalid Student ID. Please re-enter.");
             } else {
                 break;
