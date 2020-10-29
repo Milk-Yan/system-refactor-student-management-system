@@ -2,13 +2,9 @@ package com.softeng306.io;
 
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
-import com.softeng306.enums.CourseType;
-import com.softeng306.enums.Department;
-import com.softeng306.enums.GroupType;
-import com.softeng306.domain.course.component.MainComponent;
-import com.softeng306.domain.course.component.SubComponent;
 
 import com.softeng306.managers.CourseMgr;
+import com.softeng306.managers.GroupTypeMgr;
 import com.softeng306.managers.ProfessorMgr;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.GroupValidator;
@@ -113,20 +109,17 @@ public class CourseMgrIO {
      * @param totalSeats the total number of seats available
      * @return the number of groups the user has inputted
      */
-    public int readNoOfGroup(GroupType type, int compareTo, int totalSeats) {
+    public int readNoOfGroup(String type, int compareTo, int totalSeats) {
         int noOfGroups;
-
+        GroupTypeMgr groupTypeMgr = new GroupTypeMgr();
         while (true) {
-            if (type.equals(GroupType.TUTORIAL_GROUP)) {
-                System.out.println("Enter the number of " + type + " groups:");
-            } else {
-                System.out.println("Enter the number of " + type + " groups: ");
-            }
+            System.out.println("Enter the number of " + type + " groups: ");
+
             if (scanner.hasNextInt()) {
                 noOfGroups = scanner.nextInt();
                 scanner.nextLine();
                 boolean checkLimit;
-                if (type == GroupType.LECTURE_GROUP) {
+                if (type == groupTypeMgr.getLectureGroupTypeString()) {
                     checkLimit = noOfGroups > 0 && noOfGroups <= totalSeats;
                 } else {
                     checkLimit = noOfGroups >= 0 && compareTo <= totalSeats;
@@ -143,17 +136,20 @@ public class CourseMgrIO {
         return noOfGroups;
     }
 
+
+
     /**
      * Print out a message to console saying that the number of groups is invalid
      *
      * @param type the type of the group to output the message for
      */
-    private void printInvalidNoGroup(GroupType type) {
-        if (type == GroupType.LAB_GROUP) {
+    private void printInvalidNoGroup(String type) {
+        GroupTypeMgr groupTypeMgr = new GroupTypeMgr();
+        if (type == groupTypeMgr.getLabGroupTypeString()) {
             System.out.println("Number of lab group must be non-negative.");
-        } else if (type == GroupType.LECTURE_GROUP) {
+        } else if (type == groupTypeMgr.getLectureGroupTypeString()) {
             System.out.println("Number of lecture group must be positive but less than total seats in this course.");
-        } else if (type == GroupType.TUTORIAL_GROUP) {
+        } else if (type == groupTypeMgr.getTutorialGroupTypeString()) {
             System.out.println("Number of tutorial group must be non-negative.");
         }
     }
@@ -165,7 +161,7 @@ public class CourseMgrIO {
      * @param AU   the number of academic units for the course
      * @return int the number of weekly hours for that group
      */
-    public int readWeeklyHour(GroupType type, int AU) {
+    public int readWeeklyHour(String type, int AU) {
         int weeklyHour;
         while (true) {
             System.out.format("Enter the weekly %s hour for this course: %n", type);
@@ -458,7 +454,7 @@ public class CourseMgrIO {
      * @return the main component name
      */
     public String readMainComponentName(int totalWeightage, int mainComponentNo, HashSet<String> mainComponentNames) {
-        return readComponentName(totalWeightage, mainComponentNames, mainComponentNo, MainComponent.COMPONENT_NAME);
+        return readComponentName(totalWeightage, mainComponentNames, mainComponentNo, CourseMgr.getInstance().getMainComponentString());
     }
 
     /**
@@ -477,7 +473,7 @@ public class CourseMgrIO {
 
             int subComponentTotalWeight = 100;
             for (int j = 0; j < numberOfSubComponents; j++) {
-                subComponentName = readComponentName(subComponentTotalWeight, subComponentNames, j, SubComponent.COMPONENT_NAME);
+                subComponentName = readComponentName(subComponentTotalWeight, subComponentNames, j, CourseMgr.getInstance().getSubComponentString());
                 subComponentWeight = readSubWeight(j, subComponentTotalWeight);
                 subComponentNames.add(subComponentName);
                 subComponents.put(subComponentName, subComponentWeight);
@@ -506,7 +502,7 @@ public class CourseMgrIO {
 
         do {
             componentExist = false;
-            if(componentType.equals(MainComponent.COMPONENT_NAME)){
+            if(componentType.equals(CourseMgr.getInstance().getMainComponentString())){
                 System.out.println("Total weightage left to assign: " + totalWeightAssignable);
             } else {
                 System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
@@ -754,7 +750,7 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the course types.");
             courseType = scanner.nextLine();
             while (courseType.equals("-h")) {
-                CourseType.printAllCourseType();
+                this.printAllCourseType(CourseMgr.getInstance().getListCourseTypes());
                 courseType = scanner.nextLine();
             }
             if (CourseValidator.checkCourseTypeValidation(courseType)) {
@@ -943,7 +939,7 @@ public class CourseMgrIO {
      * @return Professor the professor the user has specified
      */
     public String readProfessor(String courseDepartment) {
-        List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(Department.valueOf(courseDepartment));
+        List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
         String profID;
 
         while (true) {
@@ -1049,6 +1045,17 @@ public class CourseMgrIO {
 
     public void printCourseStatistics(){
         CourseMgr.getInstance().printCourseStatistics();
+    }
+
+    /**
+     * Displays a list of all the course types.
+     */
+    public static void printAllCourseType(List<String> courseTypes) {
+        int index = 1;
+        for (String courseType : courseTypes) {
+            System.out.println(index + ": " + courseType);
+            index++;
+        }
     }
 
 

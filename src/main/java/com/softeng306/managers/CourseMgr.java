@@ -3,6 +3,7 @@ package com.softeng306.managers;
 
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.MarkCalculator;
+import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 
 import com.softeng306.domain.course.Course;
@@ -10,7 +11,6 @@ import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.student.Student;
 import com.softeng306.enums.GroupType;
 import com.softeng306.io.CourseMgrIO;
 import com.softeng306.io.FILEMgr;
@@ -392,35 +392,36 @@ public class CourseMgr {
     }
 
     public boolean checkContainsDepartment(String courseDepartment){
-        return Department.contains(courseDepartment);
+        DepartmentMgr departmentMgr = new DepartmentMgr();
+        return departmentMgr.contains(courseDepartment);
     }
 
     public List<String> getAllDepartmentsNameList(){
-        return Department.getListOfDepartments();
+        return DepartmentMgr.getListOfDepartments();
     }
 
     public int getNumberOfLectureGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.LECTURE_GROUP, compareTo, totalSeats);
+        return courseMgrIO.readNoOfGroup(GroupType.LECTURE_GROUP.toString(), compareTo, totalSeats);
     }
 
     public int getReadWeeklyLectureHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.LECTURE_GROUP, AU);
+        return courseMgrIO.readWeeklyHour(GroupType.LECTURE_GROUP.toString(), AU);
     }
 
     public int getNumberOfLabGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.LAB_GROUP, compareTo, totalSeats);
+        return courseMgrIO.readNoOfGroup(GroupType.LAB_GROUP.toString(), compareTo, totalSeats);
     }
 
     public int getReadWeeklyLabHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.LAB_GROUP, AU);
+        return courseMgrIO.readWeeklyHour(GroupType.LAB_GROUP.toString(), AU);
     }
 
     public int getNumberOfTutorialGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.TUTORIAL_GROUP, compareTo, totalSeats);
+        return courseMgrIO.readNoOfGroup(GroupType.TUTORIAL_GROUP.toString(), compareTo, totalSeats);
     }
 
     public int getReadWeeklyTutorialHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.TUTORIAL_GROUP, AU);
+        return courseMgrIO.readWeeklyHour(GroupType.TUTORIAL_GROUP.toString(), AU);
     }
 
 
@@ -428,5 +429,19 @@ public class CourseMgr {
         Course course = getCourseFromId(courseId);
         return course.getCourseName();
     }
+
+    public List<String> getListCourseTypes(){
+        return CourseType.getAllCourseTypes();
+    }
+
+    public String getMainComponentString(){
+        return MainComponent.COMPONENT_NAME;
+    }
+
+    public String getSubComponentString(){
+        return SubComponent.COMPONENT_NAME;
+    }
+
+
 
 }

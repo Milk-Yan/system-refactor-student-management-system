@@ -41,7 +41,7 @@ Enter the weekly lecture hour for this course:
 Give a name to the lecture group
 Enter a group Name: 
 Enter this lecture group's capacity: 
-Enter the number of tutorial groups:
+Enter the number of tutorial groups: 
 Enter the number of lab groups: 
 Enter the ID for the professor in charge please:
 Enter -h to print all the professors in CS.
