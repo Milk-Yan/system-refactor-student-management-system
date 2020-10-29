@@ -3,6 +3,10 @@ package com.softeng306.managers;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.exceptions.CourseNotFoundException;
+import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
+import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
+import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.domain.student.Student;
 
 import com.softeng306.fileprocessing.CourseRegistrationFileProcessor;
@@ -56,23 +60,24 @@ public class CourseRegistrationMgr {
     /**
      * Registers a course for a student
      */
-    public List<String> registerCourse(String studentID, String courseID) {
+    public List<String> registerCourse(String studentID, String courseID) throws InvalidCourseRegistrationException, StudentNotFoundException, CourseNotFoundException {
         CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         Student currentStudent = StudentMgr.getInstance().getStudentFromId(studentID);
         Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
 
-        if (CourseRegistrationValidator.checkCourseRegistrationExists(studentID, courseID) != null) {
-            return null;
+        if (CourseRegistrationValidator.courseRegistrationExists(studentID, courseID)) {
+            io.printAlreadyRegisteredError();
+            throw new InvalidCourseRegistrationException();
         }
 
         if (currentCourse.getMainComponents().isEmpty()) {
             io.printNoAssessmentMessage(currentCourse.getProfInCharge().getProfName());
-            return null;
+            throw new InvalidCourseRegistrationException();
         }
 
         if (currentCourse.getVacancies() == 0) {
             io.printNoVacancies();
-            return null;
+            throw new InvalidCourseRegistrationException();
         }
 
         io.printRegistrationRequestDetails(currentStudent.getStudentName(), currentStudent.getStudentID(), currentCourse.getCourseID(), currentCourse.getCourseName());
@@ -274,7 +279,7 @@ public class CourseRegistrationMgr {
         return total;
     }
 
-    public List<String> getUniqueGroupNames(List<CourseRegistration> courseRegistrations, GroupType groupType) {
+    public List<String> getUniqueGroupNames(List<CourseRegistration> courseRegistrations, GroupType groupType) throws GroupTypeNotFoundException {
         List<String> uniqueGroupNames = new ArrayList<>();
         for (CourseRegistration courseRegistration : courseRegistrations) {
             if (!uniqueGroupNames.contains(courseRegistration.getGroupByType(groupType).getGroupName())) {
@@ -291,7 +296,7 @@ public class CourseRegistrationMgr {
      * @param courseRegistrations the list registrations for a course
      * @param groupType           the group of registration that we want to print
      */
-    public List<String> getGroupString(List<CourseRegistration> courseRegistrations, GroupType groupType) {
+    public List<String> getGroupString(List<CourseRegistration> courseRegistrations, GroupType groupType) throws GroupTypeNotFoundException {
         List<String> groupStringInfo = new ArrayList<>();
         if (courseRegistrations.isEmpty()) {
             return groupStringInfo;

@@ -2,6 +2,9 @@ package com.softeng306.managers;
 
 import com.softeng306.enums.Department;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DepartmentMgr {
 
     /**
@@ -28,4 +31,13 @@ public class DepartmentMgr {
 
         return false;
     }
+
+    public List<String> getListOfDepartments(){
+        List<String> listDepartmentStrings = new ArrayList<>();
+        for(Department department : Department.values()){
+            listDepartmentStrings.add(department.toString());
+        }
+        return listDepartmentStrings;
+    }
+
 }
