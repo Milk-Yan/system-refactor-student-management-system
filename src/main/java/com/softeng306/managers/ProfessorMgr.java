@@ -64,16 +64,16 @@ public class ProfessorMgr {
     }
 
 
-    public static Professor getProfessorFromID(String profID) throws ProfessorNotFoundException {
+    public static Professor getProfessorFromID(String professorID) throws ProfessorNotFoundException {
         Optional<Professor> professor = ProfessorMgr
                 .getInstance()
                 .getProfessors()
                 .stream()
-                .filter(p -> profID.equals(p.getProfID()))
+                .filter(p -> professorID.equals(p.getProfID()))
                 .findFirst();
 
         if (!professor.isPresent()) {
-            throw new ProfessorNotFoundException(profID);
+            throw new ProfessorNotFoundException(professorID);
         }
         return professor.get();
     }
