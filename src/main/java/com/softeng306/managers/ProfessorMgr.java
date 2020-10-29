@@ -47,10 +47,11 @@ public class ProfessorMgr {
     /**
      * Returns the IDs of all professors in the department.
      *
-     * @param department The department the professors are in.
+     * @param departmentName The department the professors are in.
      * @return A list of all the IDs of the professors.
      */
-    public List<String> getAllProfIDInDepartment(Department department) {
+    public List<String> getAllProfIDInDepartment(String departmentName) {
+        Department department = Department.valueOf(departmentName);
         return professors
                 .stream()
                 .filter(p -> department.equals(p.getProfDepartment()))
