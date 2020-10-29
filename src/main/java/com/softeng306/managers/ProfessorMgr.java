@@ -85,4 +85,18 @@ public class ProfessorMgr {
         return professor.get();
     }
 
+    /**
+     * Finds if a professor with the profID is in the system.
+     * @param profID The professor ID we are searching for.
+     * @return If the professor exists.
+     */
+    public boolean checkProfessorExists(String profID){
+        Optional<Professor> professor = professors
+                .stream()
+                .filter(p -> profID.equals(p.getProfID()))
+                .findFirst();
+
+        return professor.isPresent();
+    }
+
 }

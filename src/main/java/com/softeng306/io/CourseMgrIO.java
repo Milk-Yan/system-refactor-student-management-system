@@ -8,7 +8,6 @@ import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.ProfessorMgr;
-import com.softeng306.validation.ProfessorValidator;
 import com.softeng306.validation.RegexValidator;
 
 import java.util.*;
@@ -938,7 +937,7 @@ public class CourseMgrIO {
                 profID = scanner.nextLine();
             }
 
-            if (ProfessorValidator.checkProfessorExists(profID)) {
+            if (ProfessorMgr.getInstance().checkProfessorExists(profID)) {
                 if (professorsInDepartment.contains(profID)) {
                     break;
                 } else {
