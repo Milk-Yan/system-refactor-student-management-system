@@ -67,7 +67,7 @@ Weekly lecture hour out of bound. Please re-enter.
 Enter the weekly lecture hour for this course: 
 Your input one is not an integer.
 Enter the weekly lecture hour for this course: 
-Give a name to the lecture group
+Give a name to this lecture group
 Enter a group Name: 
 Wrong format of group name.
 Enter a group Name: 
@@ -94,7 +94,7 @@ Weekly tutorial hour out of bound. Please re-enter.
 Enter the weekly tutorial hour for this course: 
 Your input one is not an integer.
 Enter the weekly tutorial hour for this course: 
-Give a name to the tutorial group
+Give a name to this tutorial group
 Enter a group Name: 
 Wrong format of group name.
 Enter a group Name: 
