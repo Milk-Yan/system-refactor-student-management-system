@@ -225,25 +225,28 @@ public class MarkMgr {
                 markString.add("");
             }
 
-            System.out.println("Course Total: " + mark.getTotalMark());
+            markString.add("Course Total: " + mark.getTotalMark());
+            markString.add("");
             studentGPA += new MarkCalculator().gpaCalculator(mark) * mark.getCourse().getAU();
-            System.out.println();
-
         }
         studentGPA /= totalAU;
         markString.add("GPA for this semester: " + studentGPA);
-        if (studentGPA >= 4.50) {
-            markString.add("On track of First Class Honor!");
-        } else if (studentGPA >= 4.0) {
-            markString.add("On track of Second Upper Class Honor!");
-        } else if (studentGPA >= 3.5) {
-            markString.add("On track of Second Lower Class Honor!");
-        } else if (studentGPA >= 3) {
-            markString.add("On track of Third Class Honor!");
-        } else {
-            markString.add("Advice: Study hard");
-        }
+        markString.add(getGPAString(studentGPA));
         return markString;
+    }
+
+    public String getGPAString(double studentGPA) {
+        if (studentGPA >= 4.50) {
+            return "On track of First Class Honor!";
+        } else if (studentGPA >= 4.0) {
+            return "On track of Second Upper Class Honor!";
+        } else if (studentGPA >= 3.5) {
+            return "On track of Second Lower Class Honor!";
+        } else if (studentGPA >= 3) {
+            return "On track of Third Class Honor!";
+        } else {
+            return "Advice: Study hard";
+        }
     }
 
 }
