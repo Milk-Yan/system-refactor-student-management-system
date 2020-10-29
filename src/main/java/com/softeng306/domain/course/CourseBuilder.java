@@ -60,7 +60,7 @@ public class CourseBuilder implements ICourseBuilder {
             Group group = new Group(name, tutorialGroups.get(name).intValue(), tutorialGroups.get(name).intValue(), GroupType.TUTORIAL_GROUP);
             groupsOfLectures.add(group);
         }
-        course.setLectureGroups(groupsOfLectures);
+        course.setTutorialGroups(groupsOfLectures);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class CourseBuilder implements ICourseBuilder {
             Group group = new Group(name, labGroups.get(name).intValue(), labGroups.get(name).intValue(), GroupType.LAB_GROUP);
             groupsOfLectures.add(group);
         }
-        course.setLectureGroups(groupsOfLectures);
+        course.setLabGroups(groupsOfLectures);
     }
 
     @Override
