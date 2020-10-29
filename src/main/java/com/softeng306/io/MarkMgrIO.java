@@ -97,7 +97,7 @@ public class MarkMgrIO {
         try {
             String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
             String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
-            MarkMgr.getInstance().setCourseworkMark(isExam, studentID, courseID);
+            markMgr.setCourseworkMark(isExam, studentID, courseID);
         } catch (CourseNotFoundException | SubComponentNotFoundException e) {
             e.printStackTrace();
         }
