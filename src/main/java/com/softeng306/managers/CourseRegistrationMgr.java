@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CourseRegistrationMgr {
-    private static Scanner scanner = new Scanner(System.in);
     /**
      * A list of all the course registration records in this school.
      */
@@ -311,6 +310,5 @@ public class CourseRegistrationMgr {
 
         return groupStringInfo;
     }
-
 
 }
