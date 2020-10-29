@@ -130,7 +130,7 @@ public class CourseRegistrationMgr {
     /**
      * Prints the students in a course according to their lecture group, tutorial group or lab group.
      */
-    public void printStudents(String courseID, int opt) {
+    public void printStudents(String courseID, int opt) throws CourseNotFoundException, GroupTypeNotFoundException {
 
         CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);

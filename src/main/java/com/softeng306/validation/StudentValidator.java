@@ -56,26 +56,4 @@ public class StudentValidator {
 
         return student.isPresent();
     }
-
-    /**
-     * Checks whether this student ID is used by other students.
-     *
-     * @param studentID The inputted course ID.
-     * @return the existing course or else null.
-     */
-    public static Student getStudentFromId(String studentID) throws StudentNotFoundException {
-        Optional<Student> student = StudentMgr
-                .getInstance()
-                .getStudents()
-                .stream()
-                .filter(s -> studentID.equals(s.getStudentID()))
-                .findFirst();
-
-        if(!student.isPresent()) {
-            throw new StudentNotFoundException(studentID);
-        }
-
-        return student.get();
-    }
-
 }

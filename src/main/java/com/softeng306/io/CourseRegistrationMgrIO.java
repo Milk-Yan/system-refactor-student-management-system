@@ -1,6 +1,7 @@
 package com.softeng306.io;
 
 import com.softeng306.domain.exceptions.CourseNotFoundException;
+import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
 import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.managers.CourseMgr;
@@ -139,7 +140,7 @@ public class CourseRegistrationMgrIO {
 
             try {
                 courseRegistrationMgr.printStudents(courseID, opt);
-            } catch (Exception e) {
+            } catch (CourseNotFoundException |  GroupTypeNotFoundException e) {
                 e.printStackTrace();
             }
 

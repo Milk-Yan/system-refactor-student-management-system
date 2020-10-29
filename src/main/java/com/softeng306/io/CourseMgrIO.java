@@ -4,6 +4,7 @@ import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
+import com.softeng306.domain.exceptions.ProfessorNotFoundException;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 import com.softeng306.managers.CourseMgr;

@@ -1,6 +1,7 @@
 package com.softeng306.io;
 
 import com.softeng306.domain.exceptions.CourseNotFoundException;
+import com.softeng306.domain.exceptions.SubComponentNotFoundException;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.MarkMgr;
 
@@ -112,7 +113,7 @@ MarkMgrIO {
             String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
             String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
             MarkMgr.getInstance().setCourseworkMark(isExam, studentID, courseID);
-        } catch (Exception e) {
+        } catch (CourseNotFoundException | SubComponentNotFoundException e) {
             e.printStackTrace();
         }
     }

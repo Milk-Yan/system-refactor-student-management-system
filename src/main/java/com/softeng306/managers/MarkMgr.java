@@ -249,7 +249,4 @@ public class MarkMgr {
         return markString;
     }
 
-
-
-
 }
