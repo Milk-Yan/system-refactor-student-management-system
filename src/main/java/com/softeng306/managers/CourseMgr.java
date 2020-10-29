@@ -159,10 +159,10 @@ public class CourseMgr {
     }
 
     /**
-     * Creates main components for a given course through user input
+     * Creates components for a given course through user input
      *
-     * @param io A CourseMgrIO to use for output
-     * @param currentCourse The course to create main components for
+     * @param io            A CourseMgrIO to use for output
+     * @param currentCourse The course to create components for
      * @return
      */
     private List<MainComponent> createMainComponentsForCourse(CourseMgrIO io, Course currentCourse) {
@@ -171,18 +171,7 @@ public class CourseMgr {
         // empty course
 
         io.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
-        int hasFinalExamChoice = 0;
-        int examWeight = 0;
-        while (hasFinalExamChoice < 1 || hasFinalExamChoice > 2) {
-            hasFinalExamChoice = io.readHasFinalExamChoice();
-            if (hasFinalExamChoice == 1) {
-                examWeight = io.readExamWeight();
-                MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>());
-                mainComponents.add(exam);
-            } else if (hasFinalExamChoice == 2) {
-                io.printEnterContinuousAssessments();
-            }
-        }
+        int examWeight = addExamComponent(io, mainComponents);
 
         int numberOfMain = io.readNoOfMainComponents();
 
@@ -221,6 +210,24 @@ public class CourseMgr {
         }
 
         return mainComponents;
+    }
+
+    private int addExamComponent(CourseMgrIO io, List<MainComponent> mainComponents) {
+        int hasFinalExamChoice = 0;
+        int examWeight = 0;
+
+        while (hasFinalExamChoice < 1 || hasFinalExamChoice > 2) {
+            hasFinalExamChoice = io.readHasFinalExamChoice();
+            if (hasFinalExamChoice == 1) {
+                examWeight = io.readExamWeight();
+                MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>());
+                mainComponents.add(exam);
+            } else if (hasFinalExamChoice == 2) {
+                io.printEnterContinuousAssessments();
+            }
+        }
+
+        return examWeight;
     }
 
     /**
@@ -276,7 +283,7 @@ public class CourseMgr {
 //                Leave the exam report to the last
                 exam = mainComponent;
             } else {
-                io.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getComponentName()));
+                io.printMainComponent(mainComponent.getComponentName(), mainComponent.getComponentWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
@@ -343,9 +350,9 @@ public class CourseMgr {
     }
 
 
-    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID){
+    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID) {
         Map<String, Double> map = new HashMap<>();
-        for(SubComponent subComponent : subComponents){
+        for (SubComponent subComponent : subComponents) {
             double mark = markCalculator.computeAverageMarkForCourseComponent(courseID, subComponent.getComponentName());
             map.put(subComponent.getComponentName(), mark);
         }
