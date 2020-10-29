@@ -1,30 +1,16 @@
 package com.softeng306.io;
 
 import com.softeng306.domain.exceptions.CourseNotFoundException;
+import com.softeng306.domain.exceptions.SubComponentNotFoundException;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.MarkMgr;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class
-MarkMgrIO {
+public class MarkMgrIO {
     private Scanner scanner = new Scanner(System.in);
-    private static MarkMgrIO singleInstance = null;
-
-    /**
-     * Return the MarkMgr singleton, if not initialised already, create an instance.
-     *
-     * @return MarkMgr the singleton instance
-     */
-    public static MarkMgrIO getInstance() {
-        if (singleInstance == null) {
-            singleInstance = new MarkMgrIO();
-        }
-
-        return singleInstance;
-    }
-
+    private MarkMgr markMgr = MarkMgr.getInstance();
 
     /**
      * Prints to console that a function has been called.
@@ -47,13 +33,13 @@ MarkMgrIO {
         System.out.println("Here are the choices you can have: ");
 
         for (int i = 0; i < availableChoices.size(); i++) {
-            System.out.println((i + 1) + ". " + availableChoices.get(i) + " Weight in Total: " + (double)weights.get(i) + "%");
+            System.out.println((i + 1) + ". " + availableChoices.get(i) + " Weight in Total: " + (double) weights.get(i) + "%");
         }
         System.out.println((availableChoices.size() + 1) + ". Quit");
     }
 
     /**
-     * Reads from console the name of a course components.
+     * Reads the name of a course component from the user.
      */
     public int readCourseComponentChoice(int numChoices) {
         int choice;
@@ -72,7 +58,7 @@ MarkMgrIO {
     }
 
     /**
-     * Reads from console the mark of a course component.
+     * Reads the mark of a course component from the user
      */
     public double readCourseComponentMark() {
         double assessmentMark;
@@ -89,7 +75,7 @@ MarkMgrIO {
     }
 
     /**
-     * Reads from console the mark of an exam.
+     * Reads the mark for an exam from the user.
      */
     public double readExamMark() {
         double examMark;
@@ -111,8 +97,8 @@ MarkMgrIO {
         try {
             String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
             String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
-            MarkMgr.getInstance().setCourseworkMark(isExam, studentID, courseID);
-        } catch (Exception e) {
+            markMgr.setCourseworkMark(isExam, studentID, courseID);
+        } catch (CourseNotFoundException | SubComponentNotFoundException e) {
             e.printStackTrace();
         }
     }

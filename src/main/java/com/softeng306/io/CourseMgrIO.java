@@ -14,6 +14,7 @@ import java.util.*;
 
 public class CourseMgrIO {
     private Scanner scanner = new Scanner(System.in);
+    private CourseMgr courseMgr = CourseMgr.getInstance();
 
     /**
      * Read in a courseId from the user
@@ -217,11 +218,11 @@ public class CourseMgrIO {
     }
 
     /**
-     * Prints an information message that the components have not been initialized
+     * Prints an information message that the components have not been initialised
      *
-     * @param courseID the course that the components have not been initialized for
+     * @param courseID the course that the components have not been initialised for
      */
-    public void printComponentsNotInitialized(String courseID) {
+    public void printComponentsNotInitialisedMessage(String courseID) {
         System.out.println("Course " + courseID + " is added, but assessment components are not initialized.");
     }
 
@@ -498,7 +499,8 @@ public class CourseMgrIO {
 
         do {
             componentExist = false;
-            if (componentType.equals(CourseMgr.getInstance().getMainComponentString())) {
+
+            if (componentType.equals(courseMgr.getMainComponentString())) {
                 System.out.println("Total weightage left to assign: " + totalWeightAssignable);
             } else {
                 System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
@@ -651,7 +653,7 @@ public class CourseMgrIO {
             System.out.println("Enter course ID (-h to print all the course ID):");
             courseID = scanner.nextLine();
             while ("-h".equals(courseID)) {
-                CourseMgr.getInstance().printAllCourseIds();
+                courseMgr.printAllCourseIds();
                 courseID = scanner.nextLine();
             }
             if (!CourseValidator.checkCourseExists(courseID)) {
@@ -674,12 +676,12 @@ public class CourseMgrIO {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
+                printAllDepartments(courseMgr.getAllDepartmentsNameList());
                 courseDepartment = scanner.nextLine();
             }
-            if (CourseMgr.getInstance().checkContainsDepartment(courseDepartment)) {
+            if (courseMgr.checkContainsDepartment(courseDepartment)) {
                 List<String> validCourseString;
-                validCourseString = CourseMgr.getInstance().getCourseIdsInDepartment(courseDepartment);
+                validCourseString = courseMgr.getCourseIdsInDepartment(courseDepartment);
                 if (validCourseString.size() == 0) {
                     System.out.println("Invalid choice of department.");
                 } else {
@@ -713,10 +715,10 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the departments.");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
+                printAllDepartments(courseMgr.getAllDepartmentsNameList());
                 courseDepartment = scanner.nextLine();
             }
-            if (CourseMgr.getInstance().checkContainsDepartment(courseDepartment)) {
+            if (courseMgr.checkContainsDepartment(courseDepartment)) {
                 break;
             } else {
                 System.out.println("The department is invalid. Please re-enter.");
@@ -876,6 +878,8 @@ public class CourseMgrIO {
      * @return Professor the professor the user has specified
      */
     public String readProfessor(String courseDepartment) {
+        ProfessorMgrIO professorIO = new ProfessorMgrIO();
+
         List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
         String profID;
 
@@ -884,7 +888,7 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
             profID = scanner.nextLine();
             while ("-h".equals(profID)) {
-                ProfessorMgrIO.printAllProfIDsInDepartment(professorsInDepartment);
+                professorIO.printAllProfIDsInDepartment(professorsInDepartment);
                 profID = scanner.nextLine();
             }
             if (ProfessorValidator.checkProfessorExists(profID)) {
@@ -916,23 +920,23 @@ public class CourseMgrIO {
 
         String courseType = readCourseType();
 
-        int noOfLectureGroups = CourseMgr.getInstance().getNumberOfLectureGroups(totalSeats, totalSeats);
-        int lecWeeklyHour = CourseMgr.getInstance().getReadWeeklyLectureHour(AU);
+        int noOfLectureGroups = courseMgr.getNumberOfLectureGroups(totalSeats, totalSeats);
+        int lecWeeklyHour = courseMgr.getReadWeeklyLectureHour(AU);
 
         //Name, total seats
         Map<String, Double> lectureGroups = readLectureGroups(totalSeats, noOfLectureGroups);
 
-        int noOfTutorialGroups = CourseMgr.getInstance().getNumberOfTutorialGroups(noOfLectureGroups, totalSeats);
+        int noOfTutorialGroups = courseMgr.getNumberOfTutorialGroups(noOfLectureGroups, totalSeats);
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
-            tutWeeklyHour = CourseMgr.getInstance().getReadWeeklyTutorialHour(AU);
+            tutWeeklyHour = courseMgr.getReadWeeklyTutorialHour(AU);
         }
         Map<String, Double> tutorialGroups = readGroup(noOfTutorialGroups, totalSeats, GroupType.TUTORIAL_GROUP.toString());
 
-        int noOfLabGroups = CourseMgr.getInstance().getNumberOfLabGroups(noOfLectureGroups, totalSeats);
+        int noOfLabGroups = courseMgr.getNumberOfLabGroups(noOfLectureGroups, totalSeats);
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
-            labWeeklyHour = CourseMgr.getInstance().getReadWeeklyLabHour(AU);
+            labWeeklyHour = courseMgr.getReadWeeklyLabHour(AU);
         }
         Map<String, Double> labGroups = readGroup(noOfLabGroups, totalSeats, GroupType.LAB_GROUP.toString());
 
@@ -967,22 +971,22 @@ public class CourseMgrIO {
         //Professor
         try {
             builder.setProfInCharge(profID);
-            CourseMgr.getInstance().addCourse(builder);
+            courseMgr.addCourse(builder);
         } catch (ProfessorNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     public void checkAvailableSlots() {
-        CourseMgr.getInstance().checkAvailableSlots();
+        courseMgr.checkAvailableSlots();
     }
 
     public void enterCourseWorkComponentWeightage() {
-        CourseMgr.getInstance().enterCourseWorkComponentWeightage(null);
+        courseMgr.enterCourseWorkComponentWeightage(null);
     }
 
     public void printCourseStatistics() {
-        CourseMgr.getInstance().printCourseStatistics();
+        courseMgr.printCourseStatistics();
     }
 
     /**

@@ -51,25 +51,4 @@ public class CourseValidator {
 
         return course.isPresent();
     }
-
-    /**
-     * Checks whether this course ID is used by other courses.
-     *
-     * @param courseID The inputted course ID.
-     * @return the existing course or else null.
-     */
-    public static Course getCourseFromId(String courseID) throws CourseNotFoundException {
-        Optional<Course> course = CourseMgr
-                .getInstance()
-                .getCourses()
-                .stream()
-                .filter(c -> courseID.equals(c.getCourseID()))
-                .findAny();
-
-        if (!course.isPresent()) {
-            throw new CourseNotFoundException(courseID);
-        }
-        return course.get();
-    }
-
 }

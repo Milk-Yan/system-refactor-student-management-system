@@ -8,24 +8,18 @@ import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
 import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.domain.student.Student;
-
+import com.softeng306.enums.GroupType;
 import com.softeng306.fileprocessing.CourseRegistrationFileProcessor;
 import com.softeng306.fileprocessing.IFileProcessor;
-
-import com.softeng306.enums.GroupType;
-
 import com.softeng306.io.CourseRegistrationMgrIO;
-
 import com.softeng306.validation.CourseRegistrationValidator;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.StudentValidator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CourseRegistrationMgr {
-    private static Scanner scanner = new Scanner(System.in);
     /**
      * A list of all the course registration records in this school.
      */
@@ -62,8 +56,8 @@ public class CourseRegistrationMgr {
      */
     public List<String> registerCourse(String studentID, String courseID) throws InvalidCourseRegistrationException, StudentNotFoundException, CourseNotFoundException {
         CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
-        Student currentStudent = StudentValidator.getStudentFromId(studentID);
-        Course currentCourse = CourseValidator.getCourseFromId(courseID);
+        Student currentStudent = StudentMgr.getInstance().getStudentFromId(studentID);
+        Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
 
         if (CourseRegistrationValidator.courseRegistrationExists(studentID, courseID)) {
             io.printAlreadyRegisteredError();
@@ -80,7 +74,7 @@ public class CourseRegistrationMgr {
             throw new InvalidCourseRegistrationException();
         }
 
-        io.printPendingRegistrationMethod(currentStudent.getStudentName(), currentStudent.getStudentID(), currentCourse.getCourseID(), currentCourse.getCourseName());
+        io.printRegistrationRequestDetails(currentStudent.getStudentName(), currentStudent.getStudentID(), currentCourse.getCourseID(), currentCourse.getCourseName());
 
         List<Group> lecGroups = new ArrayList<>();
         lecGroups.addAll(currentCourse.getLectureGroups());
@@ -130,8 +124,10 @@ public class CourseRegistrationMgr {
     /**
      * Prints the students in a course according to their lecture group, tutorial group or lab group.
      */
-    public void printStudents(CourseRegistrationMgrIO io, String courseID, int opt) throws CourseNotFoundException, GroupTypeNotFoundException {
-        Course currentCourse = CourseValidator.getCourseFromId(courseID);
+    public void printStudents(String courseID, int opt) throws CourseNotFoundException, GroupTypeNotFoundException {
+
+        CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
+        Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
 
         // READ courseRegistrationFILE
         // return List of Object(student,course,lecture,tut,lab)
@@ -145,7 +141,7 @@ public class CourseRegistrationMgr {
         }
 
         if (courseRegistrationList.isEmpty()) {
-            io.printNoEnrolmentsError();
+            io.printNoRegistrationsForCourseMessage();
         }
 
         if (opt == 1) {
@@ -154,7 +150,7 @@ public class CourseRegistrationMgr {
             io.printGroupString(groupString);
         } else if (opt == 2) {
             if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getTutorialGroups().isEmpty()) {
-                io.printNoGroup(GroupType.TUTORIAL_GROUP.toString());
+                io.printContainsNoGroupMessage(GroupType.TUTORIAL_GROUP.toString());
                 io.printEndOfSection();
                 return;
             }
@@ -164,7 +160,7 @@ public class CourseRegistrationMgr {
 
         } else if (opt == 3) {
             if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getLabGroups().isEmpty()) {
-                io.printNoGroup(GroupType.LAB_GROUP.toString());
+                io.printContainsNoGroupMessage(GroupType.LAB_GROUP.toString());
                 io.printEndOfSection();
                 return;
             }
@@ -173,7 +169,7 @@ public class CourseRegistrationMgr {
             io.printGroupString(groupString);
 
         } else {
-            io.printInvalidInputError();
+            io.printInvalidUserInputMessage();
         }
 
         io.printEndOfSection();
@@ -314,6 +310,5 @@ public class CourseRegistrationMgr {
 
         return groupStringInfo;
     }
-
 
 }

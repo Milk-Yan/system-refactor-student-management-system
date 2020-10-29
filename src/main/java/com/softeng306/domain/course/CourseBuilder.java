@@ -45,32 +45,34 @@ public class CourseBuilder implements ICourseBuilder {
 
     @Override
     public void setLectureGroups(Map<String, Double> lectureGroups) {
-        List<Group> groupsOfLectures = new ArrayList<>();
-        for(String name : lectureGroups.keySet()){
-            Group group = new Group(name, lectureGroups.get(name).intValue(), lectureGroups.get(name).intValue(), GroupType.LECTURE_GROUP);
-            groupsOfLectures.add(group);
-        }
-        course.setLectureGroups(groupsOfLectures);
+        List<Group> newLectureGroups = convertMapToGroups(lectureGroups, GroupType.LECTURE_GROUP);
+
+        course.setLectureGroups(newLectureGroups);
     }
 
     @Override
     public void setTutorialGroups(Map<String, Double> tutorialGroups) {
-        List<Group> groupsOfLectures = new ArrayList<>();
-        for(String name : tutorialGroups.keySet()){
-            Group group = new Group(name, tutorialGroups.get(name).intValue(), tutorialGroups.get(name).intValue(), GroupType.LECTURE_GROUP);
-            groupsOfLectures.add(group);
-        }
-        course.setLectureGroups(groupsOfLectures);
+        List<Group> newTutorialGroups = convertMapToGroups(tutorialGroups, GroupType.TUTORIAL_GROUP);
+
+        course.setTutorialGroups(newTutorialGroups);
     }
 
     @Override
     public void setLabGroups(Map<String, Double> labGroups) {
-        List<Group> groupsOfLectures = new ArrayList<>();
-        for(String name : labGroups.keySet()){
-            Group group = new Group(name, labGroups.get(name).intValue(), labGroups.get(name).intValue(), GroupType.LECTURE_GROUP);
-            groupsOfLectures.add(group);
+        List<Group> newLabGroups = convertMapToGroups(labGroups, GroupType.LAB_GROUP);
+
+        course.setLabGroups(newLabGroups);
+    }
+
+    private List<Group> convertMapToGroups(Map<String, Double> groups, GroupType type) {
+        List<Group> newGroups = new ArrayList<>();
+
+        for(String groupName : groups.keySet()){
+            Group group = new Group(groupName, groups.get(groupName).intValue(), groups.get(groupName).intValue(), type);
+            newGroups.add(group);
         }
-        course.setLectureGroups(groupsOfLectures);
+
+        return newGroups;
     }
 
     @Override
