@@ -411,16 +411,6 @@ public class CourseMgr {
         return map;
     }
 
-    public boolean checkContainsDepartment(String courseDepartment) {
-        DepartmentMgr departmentMgr = new DepartmentMgr();
-        return departmentMgr.contains(courseDepartment);
-    }
-
-    public List<String> getAllDepartmentsNameList() {
-        DepartmentMgr departmentMgr = new DepartmentMgr();
-        return departmentMgr.getListOfDepartments();
-    }
-
     public int getNumberOfLectureGroups(int compareTo, int totalSeats) {
         return new CourseMgrIO().readNoOfGroup(GroupType.LECTURE_GROUP.toString(), compareTo, totalSeats);
     }
@@ -451,7 +441,7 @@ public class CourseMgr {
     }
 
     public List<String> getListCourseTypes() {
-        return CourseType.getAllCourseTypes();
+        return CourseType.getListOfAllCourseTypeNames();
     }
 
     public String getMainComponentString() {
