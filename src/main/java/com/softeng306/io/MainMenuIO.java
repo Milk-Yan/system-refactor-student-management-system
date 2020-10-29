@@ -1,18 +1,15 @@
 package com.softeng306.io;
 
 import com.softeng306.managers.CourseMgr;
-import com.softeng306.managers.CourseRegistrationMgr;
 import com.softeng306.managers.MarkMgr;
-import com.softeng306.managers.StudentMgr;
 
 import java.util.Scanner;
 
 public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
-    private static CourseMgr courseMgr;
+    private static CourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
+    private static StudentMgrIO studentMgrIO = new StudentMgrIO();
     private static MarkMgrIO markMgrIO;
-    private static StudentMgr studentMgr;
-    private static CourseRegistrationMgr courseRegistrationMgr;
 
     /**
      * Startup the main menu for the application
@@ -23,9 +20,7 @@ public class MainMenuIO {
         int highestChoiceInt = 11;
 
         courseMgr = CourseMgr.getInstance();
-        markMgrIO = MarkMgrIO.getInstance();
-        studentMgr = StudentMgr.getInstance();
-        courseRegistrationMgr = CourseRegistrationMgr.getInstance();
+        markMgr = MarkMgr.getInstance();
 
         while (choice != 11) {
             printOptions();
@@ -66,19 +61,19 @@ public class MainMenuIO {
             case 0:
                 break;
             case 1:
-                studentMgr.addStudent();
+                studentMgrIO.addStudent();
                 break;
             case 2:
                 courseMgr.addCourse();
                 break;
             case 3:
-                courseRegistrationMgr.registerCourse();
+                courseRegistrationMgrIO.registerCourse();
                 break;
             case 4:
                 courseMgr.checkAvailableSlots();
                 break;
             case 5:
-                courseRegistrationMgr.printStudents();
+                courseRegistrationMgrIO.printStudents();
                 break;
             case 6:
                 courseMgr.enterCourseWorkComponentWeightage(null);
@@ -93,7 +88,7 @@ public class MainMenuIO {
                 courseMgr.printCourseStatistics();
                 break;
             case 10:
-                studentMgr.printStudentTranscript();
+                studentMgrIO.printStudentTranscript();
                 break;
             case 11:
                 exitApplication();

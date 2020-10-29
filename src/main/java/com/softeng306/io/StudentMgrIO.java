@@ -1,21 +1,73 @@
 package com.softeng306.io;
 
-import com.softeng306.domain.student.Student;
-import com.softeng306.enums.Department;
-import com.softeng306.enums.Gender;
+import com.softeng306.managers.DepartmentMgr;
+import com.softeng306.managers.GenderMgr;
+import com.softeng306.managers.MarkMgr;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.StudentValidator;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentMgrIO {
 
-    private static Scanner reader = new Scanner(System.in);
+    private Scanner reader = new Scanner(System.in);
+
+    private StudentMgr studentMgr = StudentMgr.getInstance();
+
+    /**
+     * Adds a student and put the student into file
+     */
+    public void addStudent() {
+        String studentID = null;
+        printMenu();
+
+        if (doesSystemGenerateId()) {
+            studentID = studentMgr.generateStudentID();
+        } else {
+            studentID = getStudentID();
+        }
+
+        String studentName = getStudentName();
+        String schoolName = getSchoolName();
+        String studentGender = getStudentGender();
+        int studentYear = getStudentYear();
+
+        studentMgr.addStudent(studentID, studentName, schoolName, studentGender, studentYear);
+
+        printStudentData(studentName, studentID);
+    }
+
+
+    /**
+     * Prints transcript (Results of course taken) for a particular student
+     */
+    public void printStudentTranscript() {
+        String studentId = readStudentIdFromUser();
+
+        int thisStudentAU = MarkMgr.getInstance().getAUForStudent(studentId);
+
+        if (!studentMgr.studentHasCourses(studentId)) {
+            System.out.println("------ No transcript ready for this student yet ------");
+            return;
+        }
+        System.out.println("----------------- Official Transcript ------------------");
+        System.out.print("Student Name: " + studentMgr.getStudentName(studentId));
+        System.out.println("\tStudent ID: " + studentId);
+        System.out.println("AU for this semester: " + thisStudentAU);
+        System.out.println();
+
+        List<String> stringList = MarkMgr.getInstance().getMarkStringForStudent(studentId, thisStudentAU);
+        stringList.forEach(System.out::println);
+
+        System.out.println("------------------ End of Transcript -------------------");
+
+    }
 
     /**
      * Displays the menu for adding a student on the console.
      */
-    public static void printMenu() {
+    public void printMenu() {
         MainMenuIO.printMethodCall("addStudent");
         System.out.println("Choose the way you want to add a student:");
         System.out.println("1. Manually input the student ID.");
@@ -27,7 +79,7 @@ public class StudentMgrIO {
      *
      * @return true if the system is to auto-generate the students ID, false for the user to manually enter the students ID
      */
-    public static boolean systemGenerateID() {
+    public boolean doesSystemGenerateId() {
         int choice;
         do {
             System.out.println("Please input your choice:");
@@ -54,7 +106,7 @@ public class StudentMgrIO {
      *
      * @return student ID
      */
-    public static String getStudentID() {
+    public String getStudentID() {
         while (true) {
             System.out.println("The student ID should follow:");
             System.out.println("Length is exactly 9");
@@ -80,7 +132,7 @@ public class StudentMgrIO {
      *
      * @return students name
      */
-    public static String getStudentName() {
+    public String getStudentName() {
         String studentName;
         while (true) {
             System.out.println("Enter student Name: ");
@@ -96,18 +148,18 @@ public class StudentMgrIO {
      *
      * @return students school
      */
-    public static String getSchoolName() {
+    public String getSchoolName() {
         String studentSchool;
         while (true) {
             System.out.println("Enter student's school (uppercase): ");
             System.out.println("Enter -h to print all the schools.");
             studentSchool = reader.nextLine();
             while ("-h".equals(studentSchool)) {
-                Department.printAllDepartment();
+                new DepartmentMgr().printAllDepartment();
                 studentSchool = reader.nextLine();
             }
 
-            if (Department.contains(studentSchool)) {
+            if (new DepartmentMgr().contains(studentSchool)) {
                 return studentSchool;
             } else {
                 System.out.println("The department is invalid. Please re-enter.");
@@ -120,18 +172,18 @@ public class StudentMgrIO {
      *
      * @return students gender
      */
-    public static String getStudentGender() {
+    public String getStudentGender() {
         String studentGender;
         while (true) {
             System.out.println("Enter student gender (uppercase): ");
             System.out.println("Enter -h to print all the genders.");
             studentGender = reader.nextLine();
             while ("-h".equals(studentGender)) {
-                Gender.printAllGender();
+                new GenderMgr().printAllGender();
                 studentGender = reader.nextLine();
             }
 
-            if (Gender.contains(studentGender)) {
+            if (new GenderMgr().contains(studentGender)) {
                 return studentGender;
             } else {
                 System.out.println("The gender is invalid. Please re-enter.");
@@ -144,7 +196,7 @@ public class StudentMgrIO {
      *
      * @return students year level
      */
-    public static int getStudentYear() {
+    public int getStudentYear() {
         int studentYear;
         do {
             System.out.println("Enter student's school year (1-4) : ");
@@ -167,16 +219,63 @@ public class StudentMgrIO {
     /**
      * Prints a students data to console, given their student ID.
      */
-    public static void printStudentData(String name, String ID) {
+    public void printStudentData(String name, String ID) {
         System.out.println("Student named: " + name + " is added, with ID: " + ID);
         System.out.println("Student List: ");
         System.out.println("| Student ID | Student Name | Student School | Gender | Year | GPA |");
-        for (Student student : StudentMgr.getInstance().getStudents()) {
-            String GPA = "not available";
-            if (Double.compare(student.getGPA(), 0.0) != 0) {
-                GPA = String.valueOf(student.getGPA());
+        List<String> studentInformationStrings = studentMgr.generateStudentInformationStrings();
+        studentInformationStrings.forEach(System.out::println);
+    }
+
+    /**
+     * Prompts the user to input an ID for an existing student
+     */
+    public String readExistingStudentIDFromUser() {
+        String studentID;
+
+        while (true) {
+            System.out.println("Enter Student ID (-h to print all the student ID):");
+            studentID = reader.nextLine();
+
+            while ("-h".equals(studentID)) {
+                StudentMgr.getInstance().printAllStudentIds();
+                studentID = reader.nextLine();
             }
-            System.out.println(" " + student.getStudentID() + " | " + student.getStudentName() + " | " + student.getStudentSchool() + " | " + student.getGender() + " | " + student.getStudentYear() + " | " + GPA);
+
+            if (StudentValidator.checkStudentExists(studentID) == null) {
+                System.out.println("Invalid Student ID. Please re-enter.");
+            } else {
+                break;
+            }
+
         }
+        return studentID;
+    }
+
+
+    /**
+     * Prompts the user to input an existing student.
+     *
+     * @return the inputted student.
+     */
+    public String readStudentIdFromUser() {
+        String studentID;
+        while (true) {
+            System.out.println("Enter Student ID (-h to print all the student ID):");
+            studentID = reader.nextLine();
+            while ("-h".equals(studentID)) {
+                StudentMgr.getInstance().printAllStudentIds();
+                studentID = reader.nextLine();
+            }
+            List<String> existingStudentIds = studentMgr.getExistingStudentIds();
+
+            if (!existingStudentIds.contains(studentID)) {
+                System.out.println("Invalid Student ID. Please re-enter.");
+            } else {
+                break;
+            }
+
+        }
+        return studentID;
     }
 }

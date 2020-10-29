@@ -8,6 +8,7 @@ import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.student.Student;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
@@ -17,6 +18,7 @@ import com.softeng306.io.MainMenuIO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class CourseMgr {
@@ -337,6 +339,122 @@ public class CourseMgr {
      */
     public List<Course> getCourses() {
         return courses;
+    }
+
+    public Course getCourseFromId(String courseId) {
+        Optional<Course> optionalCourse = courses.stream().filter(c -> courseId.equals(c.getCourseID())).findFirst();
+        if (optionalCourse.isPresent()) {
+            return optionalCourse.get();
+        } else {
+            return null;
+        }
+    }
+
+    public String getCourseName(String courseId) {
+        Course course = getCourseFromId(courseId);
+        return course.getCourseName();
+    }
+
+    public boolean doesCourseHaveExam(String courseId) {
+        Course course = getCourseFromId(courseId);
+        for (MainComponent mainComponent : course.getMainComponents()) {
+            if (mainComponent.getComponentName().equals("Exam")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public MainComponent getExamFromCourse(String courseId) {
+        Course course = getCourseFromId(courseId);
+        for (MainComponent mainComponent : course.getMainComponents()) {
+            if (mainComponent.getComponentName().equals("Exam")) {
+                return mainComponent;
+            }
+        }
+        return null;
+    }
+
+
+    public int getExamWeight(String courseId) {
+        MainComponent exam = getExamFromCourse(courseId);
+        return exam.getComponentWeight();
+    }
+
+    public double getExamMark(String courseId, String studentId) {
+        Student student = StudentMgr.getInstance().getStudentFromId(studentId);
+        Course course = getCourseFromId(courseId);
+//        return course.getExamMarkForStudent(student);
+        return 0;
+    }
+
+    public double getOverallMark(String courseId, String studentId) {
+        Student student = StudentMgr.getInstance().getStudentFromId(studentId);
+        Course course = getCourseFromId(courseId);
+//        return course.getAssessmentPortfolio().getOverallMark(student);
+        return 0;
+    }
+
+    public MainComponent getMainComponentFromName(String courseId, String mainComponentName) {
+        Course course = getCourseFromId(courseId);
+        List<MainComponent> mainComponents = course.getMainComponents();
+        Optional<MainComponent> optionalMainComponent = mainComponents.stream().filter(m -> mainComponentName.equals(m.getComponentName())).findFirst();
+        if (optionalMainComponent.isPresent()) {
+            return optionalMainComponent.get();
+        } else {
+            return null;
+        }
+    }
+
+    public List<String> getMainComponentNames(String courseId) {
+        Course course = getCourseFromId(courseId);
+        List<String> mainComponentNames = new ArrayList<>();
+        for (MainComponent mainComponent : course.getMainComponents()) {
+            mainComponentNames.add(mainComponent.getComponentName());
+        }
+        return mainComponentNames;
+    }
+
+    public double getMainComponentWeight(String courseId, String mainComponentName) {
+        MainComponent mainComponent = getMainComponentFromName(courseId, mainComponentName);
+        return mainComponent.getComponentWeight();
+    }
+
+    public SubComponent getSubComponentFromName(String courseId, String mainComponentName, String subComponentName) {
+        MainComponent mainComponent = getMainComponentFromName(courseId, mainComponentName);
+        List<SubComponent> subComponents = mainComponent.getSubComponents();
+        Optional<SubComponent> optionalSubComponent = subComponents.stream().filter(s -> subComponentName.equals(s.getComponentName())).findFirst();
+        if (optionalSubComponent.isPresent()) {
+            return optionalSubComponent.get();
+        } else {
+            return null;
+        }
+    }
+
+
+    public List<String> getSubComponentNames(String courseId, String mainComponentName) {
+        MainComponent mainComponent = getMainComponentFromName(courseId, mainComponentName);
+        List<String> subComponentNames = new ArrayList<>();
+        for (SubComponent subComponent : mainComponent.getSubComponents()) {
+            subComponentNames.add(subComponent.getComponentName());
+        }
+        return subComponentNames;
+    }
+
+    public int getSubComponentWeight(String courseId, String mainComponentName, String subComponentName) {
+        SubComponent subComponent = getSubComponentFromName(courseId, mainComponentName, subComponentName);
+        return subComponent.getComponentWeight();
+    }
+
+    public double getSubComponentMarkForStudent(String courseId, String mainComponentName, String subComponentName, String studentId) {
+        Student student = StudentMgr.getInstance().getStudentFromId(studentId);
+        return MarkMgr.getInstance().getSubComponentMark(student, mainComponentName, subComponentName);
+    }
+
+    public double getMainComponentMarkForStudent(String courseId, String mainComponentName, String studentId) {
+        MainComponent mainComponent = getMainComponentFromName(courseId, mainComponentName);
+        Student student = StudentMgr.getInstance().getStudentFromId(studentId);
+        return MarkMgr.getInstance().getMainComponentMark(student, mainComponentName);
     }
 
 }

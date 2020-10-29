@@ -16,6 +16,7 @@ import com.softeng306.validation.StudentValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -60,39 +61,22 @@ public class StudentMgr {
         return singleInstance;
     }
 
+    public void addStudent(String id, String name, String school, String gender, int year) {
+        Student currentStudent = new Student(id, name);
 
-    /**
-     * Adds a student and put the student into file
-     */
-    public void addStudent() {
-        String studentID = null;
-        StudentMgrIO.printMenu();
-
-        boolean systemGeneratedID = StudentMgrIO.systemGenerateID();
-        if (!systemGeneratedID) {
-            studentID = StudentMgrIO.getStudentID();
-        } else {
-            studentID = generateStudentID();
-        }
-
-        String studentName = StudentMgrIO.getStudentName();
-        Student currentStudent = new Student(studentID, studentName);
-
-        currentStudent.setStudentSchool(Department.valueOf(StudentMgrIO.getSchoolName()));  //Set school
-        currentStudent.setGender(Gender.valueOf(StudentMgrIO.getStudentGender()));      //gender
-        currentStudent.setStudentYear(StudentMgrIO.getStudentYear());   //student year
+        currentStudent.setStudentSchool(Department.valueOf(school));  //Set school
+        currentStudent.setGender(Gender.valueOf(gender));      //gender
+        currentStudent.setStudentYear(year);   //student year
 
         FILEMgr.writeStudentsIntoFile(currentStudent);
         students.add(currentStudent);
-
-        StudentMgrIO.printStudentData(currentStudent.getStudentName(), currentStudent.getStudentID());
     }
 
     /**
      * Prints transcript (Results of course taken) for a particular student
      */
     public void printStudentTranscript() {
-        String studentID = readStudentFromUser().getStudentID();
+        String studentID = new StudentMgrIO().readStudentIdFromUser();
 
         double studentGPA = 0d;
         int thisStudentAU = 0;
@@ -192,7 +176,7 @@ public class StudentMgr {
      *
      * @return the generated student ID.
      */
-    private String generateStudentID() {
+    public String generateStudentID() {
         String generateStudentID;
         boolean studentIDUsed;
         do {
@@ -214,30 +198,42 @@ public class StudentMgr {
         return generateStudentID;
     }
 
-    /**
-     * Prompts the user to input an existing student.
-     *
-     * @return the inputted student.
-     */
-    public Student readStudentFromUser() {
-        String studentID;
-        Student currentStudent = null;
-        while (true) {
-            System.out.println("Enter Student ID (-h to print all the student ID):");
-            studentID = scanner.nextLine();
-            while ("-h".equals(studentID)) {
-                StudentMgr.getInstance().printAllStudentIds();
-                studentID = scanner.nextLine();
-            }
-
-            currentStudent = StudentValidator.checkStudentExists(studentID);
-            if (currentStudent == null) {
-                System.out.println("Invalid Student ID. Please re-enter.");
-            } else {
-                break;
-            }
-
-        }
-        return currentStudent;
+    public List<String> getExistingStudentIds() {
+        List<String> existingStudentIds = new ArrayList<>();
+        students.forEach(student -> existingStudentIds.add(student.getStudentID()));
+        return existingStudentIds;
     }
+
+    public boolean studentHasCourses(String studentId) {
+        List<String> studentCourses = CourseRegistrationMgr.getInstance().getCourseIdsForStudentId(studentId);
+        return !studentCourses.isEmpty();
+    }
+
+    public Student getStudentFromId(String studentId) {
+        Optional<Student> optionalStudent = students.stream().filter(s -> studentId.equals(s.getStudentID())).findFirst();
+        if (optionalStudent.isPresent()) {
+            return optionalStudent.get();
+        } else {
+            return null;
+        }
+    }
+
+    public String getStudentName(String studentId) {
+        Student student = getStudentFromId(studentId);
+        return student.getStudentName();
+    }
+
+    public List<String> generateStudentInformationStrings() {
+        List<String> studentInformationStrings = new ArrayList<>();
+        for (Student student : StudentMgr.getInstance().getStudents()) {
+            String GPA = "not available";
+            if (Double.compare(student.getGPA(), 0.0) != 0) {
+                GPA = String.valueOf(student.getGPA());
+            }
+            studentInformationStrings.add(" " + student.getStudentID() + " | " + student.getStudentName() + " | " + student.getStudentSchool() + " | " + student.getGender() + " | " + student.getStudentYear() + " | " + GPA);
+        }
+        return studentInformationStrings;
+    }
+
+
 }
