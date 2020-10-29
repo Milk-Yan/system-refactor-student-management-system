@@ -51,7 +51,7 @@ public class MarkMgrIO {
     }
 
     /**
-     * Reads from console the name of a course components.
+     * Reads the name of a course component from the user.
      */
     public int readCourseComponentChoice(int numChoices) {
         int choice;
@@ -70,7 +70,7 @@ public class MarkMgrIO {
     }
 
     /**
-     * Reads from console the mark of a course component.
+     * Reads the mark of a course component from the user
      */
     public double readCourseComponentMark() {
         double assessmentMark;
@@ -87,7 +87,7 @@ public class MarkMgrIO {
     }
 
     /**
-     * Reads from console the mark of an exam.
+     * Reads the mark for an exam from the user.
      */
     public double readExamMark() {
         double examMark;
