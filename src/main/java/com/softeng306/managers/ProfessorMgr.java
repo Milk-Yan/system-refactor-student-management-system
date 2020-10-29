@@ -1,10 +1,12 @@
 package com.softeng306.managers;
 
+import com.softeng306.domain.exceptions.ProfessorNotFoundException;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.enums.Department;
 import com.softeng306.io.FILEMgr;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -62,12 +64,18 @@ public class ProfessorMgr {
     }
 
 
-    public static Professor getProfessorFromID(String profID) {
-        List<Professor> anyProf = ProfessorMgr.getInstance().getProfessors().stream().filter(p -> profID.equals(p.getProfID())).collect(Collectors.toList());
-        if (anyProf.isEmpty()) {
-            return null;
+    public static Professor getProfessorFromID(String profID) throws ProfessorNotFoundException {
+        Optional<Professor> professor = ProfessorMgr
+                .getInstance()
+                .getProfessors()
+                .stream()
+                .filter(p -> profID.equals(p.getProfID()))
+                .findFirst();
+
+        if (!professor.isPresent()) {
+            throw new ProfessorNotFoundException(profID);
         }
-        return anyProf.get(0);
+        return professor.get();
     }
 
 
