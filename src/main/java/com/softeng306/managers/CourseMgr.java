@@ -274,7 +274,7 @@ public class CourseMgr {
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
-                    HashMap<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents, courseID);
+                    Map<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents, courseID);
                     io.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
             }
@@ -347,8 +347,8 @@ public class CourseMgr {
     }
 
 
-    public HashMap<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID){
-        HashMap<String, Double> map = new HashMap<>();
+    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID){
+        Map<String, Double> map = new HashMap<>();
         for(SubComponent subComponent : subComponents){
             double mark = markCalculator.computeAverageMarkForCourseComponent(courseID, subComponent.getComponentName());
             map.put(subComponent.getComponentName(), mark);
