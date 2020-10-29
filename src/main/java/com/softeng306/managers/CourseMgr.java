@@ -176,28 +176,7 @@ public class CourseMgr {
         int numberOfMain = io.readNoOfMainComponents();
 
         while (true) {
-            int totalWeightage = 100 - examWeight;
-            for (int i = 0; i < numberOfMain; i++) {
-                Map<String, Double> subComponentsMap;
-                String mainComponentName = io.readMainComponentName(totalWeightage, i, mainComponentNames);
-
-                mainComponentNames.add(mainComponentName);
-
-                int weight = io.readMainComponentWeightage(i, totalWeightage);
-                totalWeightage -= weight;
-
-                int noOfSub = io.readNoOfSubComponents(i);
-                subComponentsMap = io.readSubComponents(noOfSub);
-
-                List<SubComponent> subComponentsList = new ArrayList<SubComponent>();
-                for (String key : subComponentsMap.keySet()) {
-                    SubComponent subComponent = new SubComponent(key, subComponentsMap.get(key).intValue());
-                    subComponentsList.add(subComponent);
-                }
-
-                MainComponent main = new MainComponent(mainComponentName, weight, subComponentsList);
-                mainComponents.add(main);
-            }
+            int totalWeightage = addMainComponents(examWeight, numberOfMain, io, mainComponents, mainComponentNames);
 
             if (totalWeightage != 0) {
                 // weightage assign is not tallied
@@ -210,6 +189,33 @@ public class CourseMgr {
         }
 
         return mainComponents;
+    }
+
+    private int addMainComponents(int examWeight, int numberOfMain, CourseMgrIO io, List<MainComponent> mainComponents, Set<String> mainComponentNames) {
+        int totalWeightage = 100 - examWeight;
+        for (int i = 0; i < numberOfMain; i++) {
+            Map<String, Double> subComponentsMap;
+            String mainComponentName = io.readMainComponentName(totalWeightage, i, mainComponentNames);
+
+            mainComponentNames.add(mainComponentName);
+
+            int weight = io.readMainComponentWeightage(i, totalWeightage);
+            totalWeightage -= weight;
+
+            int noOfSub = io.readNoOfSubComponents(i);
+            subComponentsMap = io.readSubComponents(noOfSub);
+
+            List<SubComponent> subComponentsList = new ArrayList<SubComponent>();
+            for (String key : subComponentsMap.keySet()) {
+                SubComponent subComponent = new SubComponent(key, subComponentsMap.get(key).intValue());
+                subComponentsList.add(subComponent);
+            }
+
+            MainComponent main = new MainComponent(mainComponentName, weight, subComponentsList);
+            mainComponents.add(main);
+        }
+
+        return totalWeightage;
     }
 
     private int addExamComponent(CourseMgrIO io, List<MainComponent> mainComponents) {
