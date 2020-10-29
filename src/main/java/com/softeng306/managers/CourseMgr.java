@@ -242,7 +242,7 @@ public class CourseMgr {
 //                Leave the exam report to the last
                 exam = mainComponent;
             } else {
-                courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeAverageComponentMarkForCourse(courseID, mainComponent.getComponentName()));
+                courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
@@ -253,11 +253,11 @@ public class CourseMgr {
         }
 
         if (exam != null) {
-            courseMgrIO.printExamStatistics(exam.getComponentWeight(), MarkMgr.getInstance().computeExamMark());
+            courseMgrIO.printExamStatistics(exam.getComponentWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, "Exam"));
         } else {
             courseMgrIO.printNoExamMessage();
         }
-        courseMgrIO.printOverallPerformance(markCalculator.computeOverallComponentMarkForCourse(courseID));
+        courseMgrIO.printOverallPerformance(markCalculator.computeOverallMarkForCourse(courseID));
     }
 
 
@@ -317,11 +317,10 @@ public class CourseMgr {
         return map;
     }
 
-    rtdryftugyihujoikl6drftugyihuoijko6rdftugyih
     public HashMap<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID){
         HashMap<String, Double> map = new HashMap<>();
         for(SubComponent subComponent : subComponents){
-            double mark = markCalculator.computeAverageComponentMarkForCourse(courseID, subComponent.getComponentName());
+            double mark = markCalculator.computeAverageMarkForCourseComponent(courseID, subComponent.getComponentName());
             map.put(subComponent.getComponentName(), mark);
         }
         return map;

@@ -10,10 +10,7 @@ import java.util.List;
 
 public class MarkCalculator {
 
-
-
-
-    public double computeAverageComponentMarkForCourse(String courseID, String componentName){
+    public double computeAverageMarkForCourseComponent(String courseID, String componentName){
         List<Mark> marksForCourse = new ArrayList<>();
         for (Mark mark : MarkMgr.getInstance().getMarks()) {
             if (mark.getCourse().getCourseID().equals(courseID)) {
@@ -24,8 +21,7 @@ public class MarkCalculator {
         return computeAverageComponentMark(marksForCourse, componentName);
     }
 
-
-    public double computeOverallComponentMarkForCourse(String courseID){
+    public double computeOverallMarkForCourse(String courseID){
         List<Mark> marksForCourse = new ArrayList<>();
         for (Mark mark : MarkMgr.getInstance().getMarks()) {
             if (mark.getCourse().getCourseID().equals(courseID)) {
@@ -35,6 +31,7 @@ public class MarkCalculator {
 
         return computeOverallMark(marksForCourse);
     }
+
 
 
     public double computeComponentMarkForStudent(String studentId, String courseID, String componentName) {
@@ -47,16 +44,6 @@ public class MarkCalculator {
         }
 
         return computeAverageComponentMark(studentMarksForCourse, componentName);
-    }
-
-
-    public HashMap<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, List<Mark> marks){
-        HashMap<String, Double> map = new HashMap<>();
-        for(SubComponent subComponent : subComponents){
-            double mark = markCalculator.computeComponentMark(marks, subComponent.getComponentName());
-            map.put(subComponent.getComponentName(), mark);
-        }
-        return map;
     }
 
     /**
@@ -96,7 +83,7 @@ public class MarkCalculator {
      * @param thisCourseMark The marks for the course.
      * @return The exam marks for the course.
      */
-    public double computeExamMark(List<Mark> thisCourseMark) {
+    private double computeExamMark(List<Mark> thisCourseMark) {
         double averageMark = 0;
 
         for (Mark mark : thisCourseMark) {
