@@ -1,6 +1,8 @@
 package com.softeng306.io;
 
+import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
+import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.CourseRegistrationMgr;
 
@@ -113,7 +115,7 @@ public class CourseRegistrationMgrIO {
         try {
             List<String> newRegistrationInfo = courseRegistrationMgr.registerCourse(studentID, courseID);
             printSuccessfulRegistration(newRegistrationInfo);
-        } catch (Exception ignored) {
+        } catch (CourseNotFoundException | StudentNotFoundException | InvalidCourseRegistrationException ignored) {
 
         }
     }
