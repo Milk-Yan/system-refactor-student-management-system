@@ -222,7 +222,7 @@ public class StudentMgr {
         return student.get();
     }
 
-    public String getStudentName(String studentId) {
+    public String getStudentName(String studentId) throws StudentNotFoundException {
         Student student = getStudentFromId(studentId);
         return student.getStudentName();
     }

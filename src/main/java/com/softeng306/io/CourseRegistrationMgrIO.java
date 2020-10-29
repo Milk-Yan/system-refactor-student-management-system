@@ -109,7 +109,7 @@ public class CourseRegistrationMgrIO {
         try {
             List<String> newRegistrationInfo = courseRegistrationMgr.registerCourse(studentID, courseID);
             printSuccessfulRegistration(newRegistrationInfo);
-        } catch (InvalidCourseRegistrationException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

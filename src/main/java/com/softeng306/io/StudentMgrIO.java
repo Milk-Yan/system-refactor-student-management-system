@@ -1,5 +1,6 @@
 package com.softeng306.io;
 
+import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.managers.DepartmentMgr;
 import com.softeng306.managers.GenderMgr;
 import com.softeng306.managers.MarkMgr;
@@ -45,14 +46,22 @@ public class StudentMgrIO {
     public void printStudentTranscript() {
         String studentId = readStudentIdFromUser();
 
-        int thisStudentAU = MarkMgr.getInstance().getAUForStudent(studentId);
+        int thisStudentAU;
+        String studentName;
+        try {
+            thisStudentAU = MarkMgr.getInstance().getAUForStudent(studentId);
+            studentName = studentMgr.getStudentName(studentId);
+        } catch (StudentNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
 
         if (!studentMgr.studentHasCourses(studentId)) {
             System.out.println("------ No transcript ready for this student yet ------");
             return;
         }
         System.out.println("----------------- Official Transcript ------------------");
-        System.out.print("Student Name: " + studentMgr.getStudentName(studentId));
+        System.out.print("Student Name: " + studentName);
         System.out.println("\tStudent ID: " + studentId);
         System.out.println("AU for this semester: " + thisStudentAU);
         System.out.println();

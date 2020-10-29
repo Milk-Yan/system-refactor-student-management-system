@@ -271,7 +271,7 @@ public class CourseMgr {
      *
      * @return the inputted course.
      */
-    public Course readCourseFromUser() {
+    public Course readCourseFromUser() throws CourseNotFoundException {
         String validCourseID = courseMgrIO.readValidCourseIdFromUser();
         return getCourseFromId(validCourseID);
     }
