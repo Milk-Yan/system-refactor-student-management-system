@@ -22,7 +22,7 @@ public class StudentMgrIO {
         String studentID;
         printMenu();
 
-        if (doesSystemGenerateId()) {
+        if (isIdGeneratedBySystem()) {
             studentID = studentMgr.generateStudentID();
         } else {
             studentID = getStudentID();
@@ -79,7 +79,7 @@ public class StudentMgrIO {
      *
      * @return true if the system is to auto-generate the students ID, false for the user to manually enter the students ID
      */
-    public boolean doesSystemGenerateId() {
+    public boolean isIdGeneratedBySystem() {
         int choice;
         do {
             System.out.println("Please input your choice:");

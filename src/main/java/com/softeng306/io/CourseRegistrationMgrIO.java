@@ -129,7 +129,7 @@ public class CourseRegistrationMgrIO {
 
             System.out.println("------------------------------------------------------");
 
-            courseRegistrationMgr.printStudents(this, courseID, opt);
+            courseRegistrationMgr.printStudents(courseID, opt);
         } while (opt < 1 || opt > 3);
     }
 
