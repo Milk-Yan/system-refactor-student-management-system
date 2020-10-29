@@ -76,21 +76,14 @@ public class CourseRegistrationMgr {
 
         io.printRegistrationRequestDetails(currentStudent.getStudentName(), currentStudent.getStudentID(), currentCourse.getCourseID(), currentCourse.getCourseName());
 
-        List<Group> lecGroups = new ArrayList<>();
-        lecGroups.addAll(currentCourse.getLectureGroups());
-
+        List<Group> lecGroups = currentCourse.getLectureGroups();
         GroupMgr groupMgr = GroupMgr.getInstance();
-
         Group selectedLectureGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LECTURE_GROUP, lecGroups);
 
-        List<Group> tutGroups = new ArrayList<>();
-        tutGroups.addAll(currentCourse.getTutorialGroups());
-
+        List<Group> tutGroups = currentCourse.getTutorialGroups();
         Group selectedTutorialGroup = groupMgr.printGroupWithVacancyInfo(GroupType.TUTORIAL_GROUP, tutGroups);
 
-        List<Group> labGroups = new ArrayList<>();
-        labGroups.addAll(currentCourse.getLabGroups());
-
+        List<Group> labGroups = currentCourse.getLabGroups();
         Group selectedLabGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LAB_GROUP, labGroups);
 
         currentCourse.enrolledIn();
@@ -125,7 +118,6 @@ public class CourseRegistrationMgr {
      * Prints the students in a course according to their lecture group, tutorial group or lab group.
      */
     public void printStudents(String courseID, int opt) throws CourseNotFoundException, GroupTypeNotFoundException {
-
         CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
 
@@ -203,7 +195,6 @@ public class CourseRegistrationMgr {
 
             //ascending order
             return group1.compareTo(group2);
-
         });
     }
 
