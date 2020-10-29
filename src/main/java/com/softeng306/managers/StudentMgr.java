@@ -27,8 +27,6 @@ import java.util.Scanner;
  * Contains addStudent, generateStudentId
  */
 public class StudentMgr {
-    private Scanner scanner = new Scanner(System.in);
-
     /**
      * A list of all the students in this school.
      */

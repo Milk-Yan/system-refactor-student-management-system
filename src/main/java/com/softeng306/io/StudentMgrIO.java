@@ -10,9 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StudentMgrIO {
-
     private Scanner reader = new Scanner(System.in);
-
     private StudentMgr studentMgr = StudentMgr.getInstance();
 
     /**
