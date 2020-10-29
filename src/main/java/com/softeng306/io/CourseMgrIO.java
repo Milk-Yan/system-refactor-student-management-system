@@ -1057,7 +1057,7 @@ public class CourseMgrIO {
         }
     }
 
-    public static void printEmptySpace(){
+    public void printEmptySpace(){
         System.out.println();
     }
 }
