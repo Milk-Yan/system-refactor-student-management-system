@@ -5,7 +5,6 @@ import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.enums.CourseType;
-import com.softeng306.enums.Department;
 
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.ICourseBuilder;
@@ -224,10 +223,9 @@ public class CourseMgr {
     }
 
     public List<String> getCourseIdsInDepartment(String departmentName) {
-        Department department = Department.valueOf(departmentName);
         List<Course> validCourses = new ArrayList<>();
         courses.forEach(course -> {
-            if (department.toString().equals(course.getCourseDepartment().toString())) {
+            if (departmentName.equals(course.getCourseDepartment().toString())) {
                 validCourses.add(course);
             }
         });
