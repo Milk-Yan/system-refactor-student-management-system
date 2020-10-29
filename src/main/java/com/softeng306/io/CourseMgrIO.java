@@ -2,17 +2,11 @@ package com.softeng306.io;
 
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
-import com.softeng306.domain.course.component.CourseworkComponent;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
-import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.course.group.Group;
-import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.mark.MarkCalculator;
-import com.softeng306.domain.professor.Professor;
 
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.ProfessorMgr;
@@ -248,19 +242,12 @@ public class CourseMgrIO {
      * Helper method to print out the vacancies for groups
      *
      * @param groupInformation the groups to print
-     * @param type   the type of the groups
      */
     public void printVacanciesForGroups(String[][] groupInformation, String groupType) {
-        GroupType type = GroupType.valueOf(groupType);
+        groupType = groupType.substring(0, 1).toUpperCase() + groupType.substring(1);
         for (String[] group: groupInformation) {
-            if (type == GroupType.TUTORIAL_GROUP) {
-                System.out.format("%s group %s (Available/Total):  %s/%s%n",
-                        type.getNameWithCapital(), group[0], group[1], group[2]);
-            } else {
                 System.out.format("%s group %s (Available/Total): %s/%s%n",
-                        type.getNameWithCapital(), group[0], group[1], group[2]);
-            }
-
+                        groupType, group[0], group[1], group[2]);
         }
     }
 
@@ -702,12 +689,12 @@ public class CourseMgrIO {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                Department.printAllDepartment();
+                this.printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
                 courseDepartment = scanner.nextLine();
             }
-            if (Department.contains(courseDepartment)) {
+            if (CourseMgr.getInstance().checkContainsDepartment(courseDepartment)) {
                 List<String> validCourseString;
-                validCourseString = CourseMgr.getInstance().getCourseIdsInDepartment(Department.valueOf(courseDepartment));
+                validCourseString = CourseMgr.getInstance().getCourseIdsInDepartment(courseDepartment);
                 if (validCourseString.size() == 0) {
                     System.out.println("Invalid choice of department.");
                 } else {
@@ -719,6 +706,15 @@ public class CourseMgrIO {
         }
         return courseDepartment;
     }
+
+    public void printAllDepartments(List<String> departments){
+        int index = 0;
+        for(String department : departments){
+            System.out.println(index + ": " + department);
+            index++;
+        }
+    }
+
 
 
     /**
@@ -733,10 +729,10 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the departments.");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                Department.printAllDepartment();
+                this.printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
                 courseDepartment = scanner.nextLine();
             }
-            if (Department.contains(courseDepartment)) {
+            if (CourseMgr.getInstance().checkContainsDepartment(courseDepartment)) {
                 break;
             } else {
                 System.out.println("The department is invalid. Please re-enter.");
@@ -976,7 +972,7 @@ public class CourseMgrIO {
     }
 
 
-    public void addCourse(){
+    public void addCourse(String lectureGroup, String labGroup, String tutorialGroup){
 
         ICourseBuilder builder = new CourseBuilder();
 
@@ -990,24 +986,23 @@ public class CourseMgrIO {
 
         String courseType = this.readCourseType();
 
-        int noOfLectureGroups = this.readNoOfGroup(GroupType.LECTURE_GROUP, totalSeats, totalSeats);
-        int lecWeeklyHour = this.readWeeklyHour(GroupType.LECTURE_GROUP, AU);
+        int noOfLectureGroups = CourseMgr.getInstance().getNumberOfLectureGroups(totalSeats, totalSeats);
+        int lecWeeklyHour = CourseMgr.getInstance().getReadWeeklyLectureHour(AU);
 
         //Name, total seats
         HashMap<String, Double> lectureGroups = this.readLectureGroups(totalSeats, noOfLectureGroups);
 
-
-        int noOfTutorialGroups = this.readNoOfGroup(GroupType.TUTORIAL_GROUP, noOfLectureGroups, totalSeats);
+        int noOfTutorialGroups = CourseMgr.getInstance().getNumberOfTutorialGroups(noOfLectureGroups, totalSeats);
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
-            tutWeeklyHour = this.readWeeklyHour(GroupType.TUTORIAL_GROUP, AU);
+            tutWeeklyHour = CourseMgr.getInstance().getReadWeeklyTutorialHour(AU);
         }
         HashMap<String, Double> tutorialGroups = this.readTutorialGroups(noOfTutorialGroups, totalSeats);
 
-        int noOfLabGroups = this.readNoOfGroup(GroupType.LAB_GROUP, noOfLectureGroups, totalSeats);
+        int noOfLabGroups = CourseMgr.getInstance().getNumberOfLabGroups(noOfLectureGroups, totalSeats);
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
-            labWeeklyHour = this.readWeeklyHour(GroupType.LAB_GROUP, AU);
+            labWeeklyHour = CourseMgr.getInstance().getReadWeeklyLabHour(AU);
         }
         HashMap<String, Double> labGroups = this.readLabGroups(noOfLabGroups, totalSeats);
 

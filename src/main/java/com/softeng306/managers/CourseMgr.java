@@ -192,7 +192,8 @@ public class CourseMgr {
         courseMgrIO.printAllCourseIds(generateListOfAllCourseIDs());
     }
 
-    public List<String> getCourseIdsInDepartment(Department department) {
+    public List<String> getCourseIdsInDepartment(String departmentName) {
+        Department department = Department.valueOf(departmentName);
         List<Course> validCourses = new ArrayList<>();
         courses.forEach(course -> {
             if (department.toString().equals(course.getCourseDepartment().toString())) {
@@ -380,6 +381,37 @@ public class CourseMgr {
         return map;
     }
 
+    public boolean checkContainsDepartment(String courseDepartment){
+        return Department.contains(courseDepartment);
+    }
+
+    public List<String> getAllDepartmentsNameList(){
+        return Department.getListOfDepartments();
+    }
+
+    public int getNumberOfLectureGroups(int compareTo, int totalSeats){
+        return courseMgrIO.readNoOfGroup(GroupType.LECTURE_GROUP, compareTo, totalSeats);
+    }
+
+    public int getReadWeeklyLectureHour(int AU){
+        return courseMgrIO.readWeeklyHour(GroupType.LECTURE_GROUP, AU);
+    }
+
+    public int getNumberOfLabGroups(int compareTo, int totalSeats){
+        return courseMgrIO.readNoOfGroup(GroupType.LAB_GROUP, compareTo, totalSeats);
+    }
+
+    public int getReadWeeklyLabHour(int AU){
+        return courseMgrIO.readWeeklyHour(GroupType.LAB_GROUP, AU);
+    }
+
+    public int getNumberOfTutorialGroups(int compareTo, int totalSeats){
+        return courseMgrIO.readNoOfGroup(GroupType.TUTORIAL_GROUP, compareTo, totalSeats);
+    }
+
+    public int getReadWeeklyTutorialHour(int AU){
+        return courseMgrIO.readWeeklyHour(GroupType.TUTORIAL_GROUP, AU);
+    }
 
 
 }

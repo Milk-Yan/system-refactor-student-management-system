@@ -20,6 +20,14 @@ public enum Department {
 
     }
 
+    public static List<String> getListOfDepartments(){
+        List<String> listDepartmentStrings = new ArrayList<>();
+        for(Department department : Department.values()){
+            listDepartmentStrings.add(department.toString());
+        }
+        return listDepartmentStrings;
+    }
+
     /**
      * Finds whether the string exists as a department type.
      */
