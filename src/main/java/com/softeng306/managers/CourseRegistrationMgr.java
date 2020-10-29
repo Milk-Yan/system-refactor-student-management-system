@@ -168,7 +168,7 @@ public class CourseRegistrationMgr {
             io.printGroupString(groupString);
 
         } else {
-            io.printInvalidInputError();
+            io.printInvalidUserInputMessage();
         }
 
         io.printEndOfSection();

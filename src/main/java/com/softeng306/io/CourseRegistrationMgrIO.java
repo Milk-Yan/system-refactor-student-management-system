@@ -37,9 +37,9 @@ public class CourseRegistrationMgrIO {
     }
 
     /**
-     * If the input is invalid, this method will let the user know
+     * If the user input is invalid, this method will let the user know
      */
-    public void printInvalidInputError() {
+    public void printInvalidUserInputMessage() {
         System.out.println("Invalid input. Please re-enter.");
     }
 
