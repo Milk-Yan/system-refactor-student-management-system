@@ -231,12 +231,6 @@ public class CourseMgr {
         Course currentCourse = readCourseFromUser();
         String courseID = currentCourse.getCourseID();
 
-        List<Mark> courseMarks = new ArrayList<>();
-        for (Mark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getCourse().getCourseID().equals(courseID)) {
-                courseMarks.add(mark);
-            }
-        }
         courseMgrIO.printCourseStatisticsHeader(generateCourseInformationFromCourse(currentCourse));
 
         MainComponent exam = null;
@@ -251,7 +245,7 @@ public class CourseMgr {
             } else {
 
                 KfdsghjakXLdfsjagKHLvkjshdAKdvckusHXkvdugashiLOIkduaSGILUHOUgyifdg
-                courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
+                courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeAverageComponentMarkForCourse(courseID, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
@@ -269,7 +263,7 @@ public class CourseMgr {
             courseMgrIO.printNoExamMessage();
         }
         KfdsghjakXLdfsjagKHLvkjshdAKdvckusHXkvdugashiLOIkduaSGILUHOUgyifdg
-        courseMgrIO.printOverallPerformance(markCalculator.computerOverallMark(courseMarks));
+        courseMgrIO.printOverallPerformance(markCalculator.computeOverallComponentMarkForCourse(courseID));
     }
 
 
