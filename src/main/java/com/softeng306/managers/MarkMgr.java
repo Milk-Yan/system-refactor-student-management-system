@@ -8,7 +8,10 @@ import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.mark.SubComponentMark;
 import com.softeng306.domain.student.Student;
-import com.softeng306.io.FILEMgr;
+
+import com.softeng306.fileprocessing.IFileProcessor;
+import com.softeng306.fileprocessing.MarkFileProcessor;
+
 import com.softeng306.io.MarkMgrIO;
 
 import java.util.ArrayList;
@@ -26,11 +29,14 @@ public class MarkMgr {
 
     private static MarkMgr singleInstance = null;
 
+    private final IFileProcessor<Mark> markFileProcessor;
+
     /**
      * Override default constructor to implement singleteon pattern
      */
-    private MarkMgr(List<Mark> marks) {
-        this.marks = marks;
+    private MarkMgr() {
+        markFileProcessor = new MarkFileProcessor();
+        marks = markFileProcessor.loadFile();
     }
 
     private MarkMgrIO markMgrIO = MarkMgrIO.getInstance();
@@ -43,7 +49,7 @@ public class MarkMgr {
      */
     public static MarkMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new MarkMgr(FILEMgr.loadStudentMarks());
+            singleInstance = new MarkMgr();
         }
 
         return singleInstance;
@@ -71,7 +77,7 @@ public class MarkMgr {
             courseWorkMarks.add(mainComponentMark);
         }
         Mark mark = new Mark(student, course, courseWorkMarks, totalMark);
-        FILEMgr.updateStudentMarks(mark);
+        markFileProcessor.writeNewEntryToFile(mark);
         return mark;
     }
 
@@ -123,6 +129,7 @@ public class MarkMgr {
                     setExamMark(mark);
                 }
 
+                markFileProcessor.updateFileContents(marks);
                 return;
             }
         }
