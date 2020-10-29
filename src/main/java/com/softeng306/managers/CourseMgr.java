@@ -9,7 +9,6 @@ import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.mark.Mark;
 
 import com.softeng306.fileprocessing.CourseFileProcessor;
 import com.softeng306.fileprocessing.IFileProcessor;
@@ -243,15 +242,11 @@ public class CourseMgr {
 //                Leave the exam report to the last
                 exam = mainComponent;
             } else {
-
-                KfdsghjakXLdfsjagKHLvkjshdAKdvckusHXkvdugashiLOIkduaSGILUHOUgyifdg
                 courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeAverageComponentMarkForCourse(courseID, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
-
-                    tydfuygiuhoij
-                    HashMap<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents,courseMarks);
+                    HashMap<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents, courseID);
                     courseMgrIO.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
             }
@@ -262,7 +257,6 @@ public class CourseMgr {
         } else {
             courseMgrIO.printNoExamMessage();
         }
-        KfdsghjakXLdfsjagKHLvkjshdAKdvckusHXkvdugashiLOIkduaSGILUHOUgyifdg
         courseMgrIO.printOverallPerformance(markCalculator.computeOverallComponentMarkForCourse(courseID));
     }
 
@@ -323,10 +317,11 @@ public class CourseMgr {
         return map;
     }
 
-    public HashMap<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, List<Mark> marks){
+    rtdryftugyihujoikl6drftugyihuoijko6rdftugyih
+    public HashMap<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID){
         HashMap<String, Double> map = new HashMap<>();
         for(SubComponent subComponent : subComponents){
-            double mark = markCalculator.computeComponentMark(marks, subComponent.getComponentName());
+            double mark = markCalculator.computeAverageComponentMarkForCourse(courseID, subComponent.getComponentName());
             map.put(subComponent.getComponentName(), mark);
         }
         return map;

@@ -5,6 +5,7 @@ import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.managers.MarkMgr;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MarkCalculator {
@@ -46,6 +47,16 @@ public class MarkCalculator {
         }
 
         return computeAverageComponentMark(studentMarksForCourse, componentName);
+    }
+
+
+    public HashMap<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, List<Mark> marks){
+        HashMap<String, Double> map = new HashMap<>();
+        for(SubComponent subComponent : subComponents){
+            double mark = markCalculator.computeComponentMark(marks, subComponent.getComponentName());
+            map.put(subComponent.getComponentName(), mark);
+        }
+        return map;
     }
 
     /**
