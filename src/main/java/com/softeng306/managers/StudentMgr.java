@@ -125,11 +125,12 @@ public class StudentMgr {
                 Double result = mainComponentMark.getMark();
 
                 System.out.println("Main Assessment: " + mainComponent.getComponentName() + " ----- (" + mainComponent.getComponentWeight() + "%)");
-                double mainAssessmentWeight = mainComponent.getComponentWeight();
 
                 for (SubComponentMark subComponentMark : mainComponentMark.getSubComponentMarks()) {
                     SubComponent subComponent = subComponentMark.getSubComponent();
-                    System.out.print("Sub Assessment: " + subComponent.getComponentName() + " -- (" + subComponent.getComponentWeight() + "% * " + mainAssessmentWeight + "%) --- ");
+                    System.out.print("Sub Assessment: " + subComponent.getComponentName() + " -- (" + subComponent.getComponentWeight() + "% * " +
+                            mainComponent.getComponentWeight() + "%) --- ");
+
                     String subAssessmentName = subComponent.getComponentName();
                     System.out.println("Mark: " + String.valueOf(subComponentMark.getMark()));
                 }
