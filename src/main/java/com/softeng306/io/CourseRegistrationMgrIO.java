@@ -29,10 +29,10 @@ public class CourseRegistrationMgrIO {
     }
 
     /**
-     * When there is no enrolments for a course, this method will print an error
+     * When there are no registrations for a course, this method will print an error
      * to the user
      */
-    public void printNoEnrolmentsError() {
+    public void printNoRegistrationsForCourseMessage() {
         System.out.println("No one has registered this course yet.");
     }
 

@@ -140,7 +140,7 @@ public class CourseRegistrationMgr {
         }
 
         if (courseRegistrationList.isEmpty()) {
-            io.printNoEnrolmentsError();
+            io.printNoRegistrationsForCourseMessage();
         }
 
         if (opt == 1) {
