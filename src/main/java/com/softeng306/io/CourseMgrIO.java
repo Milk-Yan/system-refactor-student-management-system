@@ -8,7 +8,6 @@ import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.ProfessorMgr;
-import com.softeng306.validation.GroupValidator;
 import com.softeng306.validation.ProfessorValidator;
 import com.softeng306.validation.RegexValidator;
 
@@ -767,7 +766,7 @@ public class CourseMgrIO {
                 groupNameExists = false;
                 System.out.println("Enter a group Name: ");
                 lectureGroupName = scanner.nextLine();
-                if (!GroupValidator.checkValidGroupNameInput(lectureGroupName)) {
+                if (!RegexValidator.checkValidGroupNameInput(lectureGroupName)) {
                     groupNameExists = true;
                     continue;
                 }
@@ -832,7 +831,7 @@ public class CourseMgrIO {
                 groupNameExists = false;
                 System.out.println("Enter a group Name: ");
                 tutorialGroupName = scanner.nextLine();
-                if (!GroupValidator.checkValidGroupNameInput(tutorialGroupName)) {
+                if (!RegexValidator.checkValidGroupNameInput(tutorialGroupName)) {
                     groupNameExists = true;
                     continue;
                 }
@@ -886,7 +885,7 @@ public class CourseMgrIO {
                 groupNameExists = false;
                 System.out.println("Enter a group Name: ");
                 labGroupName = scanner.nextLine();
-                if (!GroupValidator.checkValidGroupNameInput(labGroupName)) {
+                if (!RegexValidator.checkValidGroupNameInput(labGroupName)) {
                     groupNameExists = true;
                     continue;
                 }

@@ -6,6 +6,8 @@ public class RegexValidator {
 
     private static final String COURSE_ID_REGEX = "^[A-Z]{2}[0-9]{3,4}$";
 
+    private static final String GROUP_NAME_REGEX = "^[a-zA-Z0-9]+$";
+
     /**
      * Checks whether the inputted string is in the correct format.
      *
@@ -27,6 +29,20 @@ public class RegexValidator {
         boolean valid = RegexValidator.checkStringRegexFormat(courseID, COURSE_ID_REGEX);
         if (!valid) {
             System.out.println("Wrong format of course ID.");
+        }
+        return valid;
+    }
+
+    /**
+     * Checks whether the inputted group name is in the correct format.
+     *
+     * @param groupName The inputted group name.
+     * @return boolean indicates whether the inputted group name is valid.
+     */
+    public static boolean checkValidGroupNameInput(String groupName) {
+        boolean valid = RegexValidator.checkStringRegexFormat(groupName, GROUP_NAME_REGEX);
+        if (!valid) {
+            System.out.println("Wrong format of group name.");
         }
         return valid;
     }
