@@ -1,6 +1,7 @@
 package com.softeng306.domain.mark;
 
 import com.softeng306.domain.course.component.MainComponent;
+import com.softeng306.domain.exceptions.SubComponentNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,14 +43,14 @@ public class MainComponentMark {
         return true;
     }
 
-    public SubComponentMark getSubComponentMark(String courseWorkName) {
+    public SubComponentMark getSubComponentMark(String courseWorkName) throws SubComponentNotFoundException {
         for (SubComponentMark subComponentMark : subComponentMarks) {
             if (subComponentMark.getSubComponent().getComponentName().equals(courseWorkName)) {
                 return subComponentMark;
             }
         }
 
-        return null;
+        throw new SubComponentNotFoundException(courseWorkName);
     }
 
     public void addSubComponentMark(SubComponentMark subComponentMark) {
