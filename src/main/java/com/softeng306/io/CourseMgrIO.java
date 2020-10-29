@@ -735,8 +735,9 @@ public class CourseMgrIO {
                 courseType = scanner.nextLine();
             }
             if (CourseType.contains(courseType)) {
-                System.out.println("The course type is invalid. Please re-enter.");
                 break;
+            } else {
+                System.out.println("The course type is invalid. Please re-enter.");
             }
         }
         return courseType;
