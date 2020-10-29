@@ -12,7 +12,6 @@ import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.StudentMgrIO;
-import com.softeng306.validation.StudentValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -233,6 +232,11 @@ public class StudentMgr {
             studentInformationStrings.add(" " + student.getStudentID() + " | " + student.getStudentName() + " | " + student.getStudentSchool() + " | " + student.getGender() + " | " + student.getStudentYear() + " | " + GPA);
         }
         return studentInformationStrings;
+    }
+
+    public int getStudentAUByID(String studentId) {
+        Student student = getStudentFromId(studentId);
+        return student.
     }
 
 

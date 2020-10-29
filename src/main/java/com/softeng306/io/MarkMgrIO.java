@@ -2,7 +2,6 @@ package com.softeng306.io;
 
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.MarkMgr;
-import com.softeng306.managers.StudentMgr;
 
 import java.util.List;
 import java.util.Scanner;
@@ -107,9 +106,8 @@ public class MarkMgrIO {
     public void initiateEnteringCourseworkMark(boolean isExam) {
         printFunctionCall("enterCourseWorkMark");
 
-        String studentID = StudentMgr.getInstance().readStudentFromUser().getStudentID();
+        String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
         String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
         MarkMgr.getInstance().setCourseworkMark(isExam, studentID, courseID);
     }
-
 }

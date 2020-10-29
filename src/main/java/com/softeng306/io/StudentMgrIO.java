@@ -19,7 +19,7 @@ public class StudentMgrIO {
      * Adds a student and put the student into file
      */
     public void addStudent() {
-        String studentID = null;
+        String studentID;
         printMenu();
 
         if (doesSystemGenerateId()) {
@@ -45,7 +45,7 @@ public class StudentMgrIO {
     public void printStudentTranscript() {
         String studentId = readStudentIdFromUser();
 
-        int thisStudentAU = MarkMgr.getInstance().getAUForStudent(studentId);
+        int thisStudentAU = getAUForStudent(studentId);
 
         if (!studentMgr.studentHasCourses(studentId)) {
             System.out.println("------ No transcript ready for this student yet ------");

@@ -431,30 +431,4 @@ public class CourseMgr {
         }
     }
 
-
-    public List<String> getSubComponentNames(String courseId, String mainComponentName) {
-        MainComponent mainComponent = getMainComponentFromName(courseId, mainComponentName);
-        List<String> subComponentNames = new ArrayList<>();
-        for (SubComponent subComponent : mainComponent.getSubComponents()) {
-            subComponentNames.add(subComponent.getComponentName());
-        }
-        return subComponentNames;
-    }
-
-    public int getSubComponentWeight(String courseId, String mainComponentName, String subComponentName) {
-        SubComponent subComponent = getSubComponentFromName(courseId, mainComponentName, subComponentName);
-        return subComponent.getComponentWeight();
-    }
-
-    public double getSubComponentMarkForStudent(String courseId, String mainComponentName, String subComponentName, String studentId) {
-        Student student = StudentMgr.getInstance().getStudentFromId(studentId);
-        return MarkMgr.getInstance().getSubComponentMark(student, mainComponentName, subComponentName);
-    }
-
-    public double getMainComponentMarkForStudent(String courseId, String mainComponentName, String studentId) {
-        MainComponent mainComponent = getMainComponentFromName(courseId, mainComponentName);
-        Student student = StudentMgr.getInstance().getStudentFromId(studentId);
-        return MarkMgr.getInstance().getMainComponentMark(student, mainComponentName);
-    }
-
 }

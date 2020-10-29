@@ -5,7 +5,8 @@ import com.softeng306.domain.course.courseregistration.CourseRegistration;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.student.Student;
 import com.softeng306.enums.GroupType;
-import com.softeng306.io.*;
+import com.softeng306.io.CourseRegistrationMgrIO;
+import com.softeng306.io.FILEMgr;
 import com.softeng306.validation.CourseRegistrationValidator;
 import com.softeng306.validation.CourseValidator;
 import com.softeng306.validation.StudentValidator;
@@ -89,7 +90,7 @@ public class CourseRegistrationMgr {
         CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
         FILEMgr.writeCourseRegistrationIntoFile(courseRegistration);
 
-        MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initializeMark(currentStudent, currentCourse));
+        MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initialiseMark(currentStudent, currentCourse));
 
         courseRegistrations.add(courseRegistration);
 

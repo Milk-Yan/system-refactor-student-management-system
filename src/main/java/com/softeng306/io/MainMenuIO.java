@@ -9,7 +9,8 @@ public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
     private static CourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
     private static StudentMgrIO studentMgrIO = new StudentMgrIO();
-    private static MarkMgrIO markMgrIO;
+    private static MarkMgrIO markMgrIO = MarkMgrIO.getInstance();
+    private static CourseMgr courseMgr = CourseMgr.getInstance();
 
     /**
      * Startup the main menu for the application
@@ -18,9 +19,6 @@ public class MainMenuIO {
         int choice = 0;
         int lowestChoiceInt = 0;
         int highestChoiceInt = 11;
-
-        courseMgr = CourseMgr.getInstance();
-        markMgr = MarkMgr.getInstance();
 
         while (choice != 11) {
             printOptions();
