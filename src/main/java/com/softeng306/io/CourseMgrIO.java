@@ -943,6 +943,8 @@ public class CourseMgrIO {
      * @return Professor the professor the user has specified
      */
     public String readProfessor(String courseDepartment) {
+        ProfessorMgrIO professorIO = new ProfessorMgrIO();
+
         List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(Department.valueOf(courseDepartment));
         String profID;
 
@@ -951,7 +953,7 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
             profID = scanner.nextLine();
             while ("-h".equals(profID)) {
-                ProfessorMgrIO.printAllProfIDsInDepartment(professorsInDepartment);
+                professorIO.printAllProfIDsInDepartment(professorsInDepartment);
                 profID = scanner.nextLine();
             }
 

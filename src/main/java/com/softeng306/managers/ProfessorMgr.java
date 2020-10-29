@@ -68,13 +68,12 @@ public class ProfessorMgr {
     }
 
 
-    public static Professor getProfessorFromID(String profID) {
-        List<Professor> anyProf = ProfessorMgr.getInstance().getProfessors().stream().filter(p -> profID.equals(p.getProfID())).collect(Collectors.toList());
+    public Professor getProfessorFromID(String profID) {
+        List<Professor> anyProf = professors.stream().filter(p -> profID.equals(p.getProfID())).collect(Collectors.toList());
         if (anyProf.isEmpty()) {
             return null;
         }
         return anyProf.get(0);
     }
-
 
 }
