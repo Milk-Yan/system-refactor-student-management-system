@@ -15,8 +15,6 @@ public class Course {
 
     private String courseID;
     private String courseName;
-
-    @JsonProperty("AU")
     private int academicUnits;
 
     private Professor profInCharge;
