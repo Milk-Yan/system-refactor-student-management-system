@@ -234,10 +234,4 @@ public class StudentMgr {
         return studentInformationStrings;
     }
 
-    public int getStudentAUByID(String studentId) {
-        Student student = getStudentFromId(studentId);
-        return student.
-    }
-
-
 }

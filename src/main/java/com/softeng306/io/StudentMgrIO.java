@@ -45,7 +45,7 @@ public class StudentMgrIO {
     public void printStudentTranscript() {
         String studentId = readStudentIdFromUser();
 
-        int thisStudentAU = getAUForStudent(studentId);
+        int thisStudentAU = MarkMgr.getInstance().getAUForStudent(studentId);
 
         if (!studentMgr.studentHasCourses(studentId)) {
             System.out.println("------ No transcript ready for this student yet ------");

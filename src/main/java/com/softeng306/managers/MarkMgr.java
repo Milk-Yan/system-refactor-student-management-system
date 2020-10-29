@@ -5,6 +5,7 @@ import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
+import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.mark.SubComponentMark;
 import com.softeng306.domain.student.Student;
 import com.softeng306.io.FILEMgr;
@@ -176,5 +177,71 @@ public class MarkMgr {
     public List<Mark> getMarks() {
         return marks;
     }
+
+    public int getAUForStudent(String studentId) {
+        int totalAU = 0;
+        for (Mark mark : getMarksForStudent(studentId)) {
+            totalAU += mark.getCourse().getAU();
+        }
+        return totalAU;
+    }
+
+    public List<Mark> getMarksForStudent(String studentId) {
+        List<Mark> studentMarks = new ArrayList<>();
+        for (Mark mark : MarkMgr.getInstance().getMarks()) {
+            if (mark.getStudent().getStudentID().equals(studentId)) {
+                studentMarks.add(mark);
+            }
+        }
+        return studentMarks;
+    }
+
+    public List<String> getMarkStringForStudent(String studentId, int totalAU) {
+        List<String> markString = new ArrayList<>();
+        List<Mark> marksForStudent = getMarksForStudent(studentId);
+        double studentGPA = 0d;
+
+        for (Mark mark : marksForStudent) {
+            markString.add("Course ID: " + mark.getCourse().getCourseID() + "\tCourse Name: " + mark.getCourse().getCourseName());
+
+            for (MainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
+                MainComponent mainComponent = mainComponentMark.getMainComponent();
+                Double result = mainComponentMark.getMark();
+
+                markString.add("Main Assessment: " + mainComponent.getComponentName() + " ----- (" + mainComponent.getComponentWeight() + "%)");
+                int mainAssessmentWeight = mainComponent.getComponentWeight();
+
+                for (SubComponentMark subComponentMark : mainComponentMark.getSubComponentMarks()) {
+                    SubComponent subComponent = subComponentMark.getSubComponent();
+                    markString.add("Sub Assessment: " + subComponent.getComponentName() + " -- (" + subComponent.getComponentWeight() + "% * " + mainAssessmentWeight + "%) --- Mark: " + subComponentMark.getMark());
+                }
+
+                markString.add("Main Assessment Total: " + result);
+                markString.add("");
+            }
+
+            System.out.println("Course Total: " + mark.getTotalMark());
+            studentGPA += new MarkCalculator().gpaCalculator(mark) * mark.getCourse().getAU();
+            System.out.println();
+
+        }
+        studentGPA /= totalAU;
+        markString.add("GPA for this semester: " + studentGPA);
+        if (studentGPA >= 4.50) {
+            markString.add("On track of First Class Honor!");
+        } else if (studentGPA >= 4.0) {
+            markString.add("On track of Second Upper Class Honor!");
+        } else if (studentGPA >= 3.5) {
+            markString.add("On track of Second Lower Class Honor!");
+        } else if (studentGPA >= 3) {
+            markString.add("On track of Third Class Honor!");
+        } else {
+            markString.add("Advice: Study hard");
+        }
+        return markString;
+    }
+
+
+
 
 }
