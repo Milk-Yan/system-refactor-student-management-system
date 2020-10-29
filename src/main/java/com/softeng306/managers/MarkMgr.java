@@ -39,9 +39,6 @@ public class MarkMgr {
         marks = markFileProcessor.loadFile();
     }
 
-    private MarkMgrIO markMgrIO = MarkMgrIO.getInstance();
-
-
     /**
      * Return the MarkMgr singleton, if not initialised already, create an instance.
      *
@@ -87,7 +84,7 @@ public class MarkMgr {
      * @param isExam whether this coursework component refers to "Exam"
      */
     public void setCourseworkMark(boolean isExam, String studentID, String courseID) {
-
+        MarkMgrIO io = new MarkMgrIO();
 
         List<String> componentNameList = new ArrayList<>();
         List<String> availableChoices = new ArrayList<>();
@@ -113,14 +110,14 @@ public class MarkMgr {
                                 availableChoices, weights, isMainComponent);
                     }
 
-                    markMgrIO.printCourseComponentChoices(availableChoices, weights);
+                    io.printCourseComponentChoices(availableChoices, weights);
 
-                    int choice = markMgrIO.readCourseComponentChoice(availableChoices.size());
+                    int choice = io.readCourseComponentChoice(availableChoices.size());
                     if (choice == (availableChoices.size() + 1)) {
                         return;
                     }
 
-                    double assessmentMark = markMgrIO.readCourseComponentMark();
+                    double assessmentMark = io.readCourseComponentMark();
                     String componentName = componentNameList.get(choice - 1);
                     setComponentMark(mark, isMainComponent.get(choice - 1), componentName, assessmentMark);
 
@@ -134,7 +131,7 @@ public class MarkMgr {
             }
         }
 
-        markMgrIO.printStudentNotRegisteredToCourse(courseID);
+        io.printStudentNotRegisteredToCourse(courseID);
     }
 
 
@@ -149,7 +146,7 @@ public class MarkMgr {
     }
 
     private void setExamMark(Mark mark) {
-        double examMark = markMgrIO.readExamMark();
+        double examMark = new MarkMgrIO().readExamMark();
         mark.setMainComponentMark("Exam", examMark);
     }
 
@@ -247,8 +244,5 @@ public class MarkMgr {
         }
         return markString;
     }
-
-
-
 
 }

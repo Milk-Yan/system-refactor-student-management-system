@@ -10,7 +10,7 @@ public class MainMenuIO {
 
     private static CourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
     private static StudentMgrIO studentMgrIO = new StudentMgrIO();
-    private static MarkMgrIO markMgrIO = MarkMgrIO.getInstance();
+    private static MarkMgrIO markMgrIO = new MarkMgrIO();
     private static CourseMgrIO courseMgrIO = new CourseMgrIO();
 
 
