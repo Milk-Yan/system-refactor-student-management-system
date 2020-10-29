@@ -1,42 +1,51 @@
 package com.softeng306.io;
 
-import com.softeng306.domain.course.Course;
-import com.softeng306.domain.course.component.CourseworkComponent;
-import com.softeng306.domain.course.component.MainComponent;
-import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.student.Student;
+import com.softeng306.managers.CourseMgr;
+import com.softeng306.managers.MarkMgr;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class MarkMgrIO {
-    private static Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+    private static MarkMgrIO singleInstance = null;
+
+    /**
+     * Return the MarkMgr singleton, if not initialised already, create an instance.
+     *
+     * @return MarkMgr the singleton instance
+     */
+    public static MarkMgrIO getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new MarkMgrIO();
+        }
+
+        return singleInstance;
+    }
+
 
     /**
      * Prints to console that a function has been called.
      */
-    public static void printFunctionCall(String functionName) {
+    public void printFunctionCall(String functionName) {
         System.out.println(functionName + " is called");
     }
 
     /**
      * Prints to console that a student is not registered for a course.
      */
-    public static void printStudentNotRegisteredToCourse(String courseID) {
+    public void printStudentNotRegisteredToCourse(String courseID) {
         System.out.println("This student haven't registered " + courseID);
     }
 
     /**
      * Prints to console a list of available course component choices.
      */
-    public static void printCourseComponentChoices(List<String> availableChoices, List<Double> weights) {
+    public void printCourseComponentChoices(List<String> availableChoices, List<Integer> weights) {
         System.out.println("Here are the choices you can have: ");
 
         for (int i = 0; i < availableChoices.size(); i++) {
-            System.out.println((i + 1) + ". " + availableChoices.get(i) + " Weight in Total: " + weights.get(i) + "%");
+            System.out.println((i + 1) + ". " + availableChoices.get(i) + " Weight in Total: " + (double)weights.get(i) + "%");
         }
         System.out.println((availableChoices.size() + 1) + ". Quit");
     }
@@ -44,7 +53,7 @@ public class MarkMgrIO {
     /**
      * Reads from console the name of a course components.
      */
-    public static int readCourseComponentChoice(int numChoices) {
+    public int readCourseComponentChoice(int numChoices) {
         int choice;
         System.out.println("Enter your choice");
         choice = scanner.nextInt();
@@ -63,7 +72,7 @@ public class MarkMgrIO {
     /**
      * Reads from console the mark of a course component.
      */
-    public static double readCourseComponentMark() {
+    public double readCourseComponentMark() {
         double assessmentMark;
         System.out.println("Enter the mark for this assessment:");
         assessmentMark = scanner.nextDouble();
@@ -80,7 +89,7 @@ public class MarkMgrIO {
     /**
      * Reads from console the mark of an exam.
      */
-    public static double readExamMark() {
+    public double readExamMark() {
         double examMark;
         System.out.println("Enter exam mark:");
         examMark = scanner.nextDouble();
@@ -92,5 +101,13 @@ public class MarkMgrIO {
         }
 
         return examMark;
+    }
+
+    public void initiateEnteringCourseworkMark(boolean isExam) {
+        printFunctionCall("enterCourseWorkMark");
+
+        String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
+        String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
+        MarkMgr.getInstance().setCourseworkMark(isExam, studentID, courseID);
     }
 }

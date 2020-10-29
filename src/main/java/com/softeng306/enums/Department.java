@@ -1,9 +1,7 @@
 package com.softeng306.enums;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
-import java.util.Set;
 
 public enum Department {
     ECSE, CS, CHEM_ENG;

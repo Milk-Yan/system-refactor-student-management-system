@@ -5,7 +5,8 @@ import com.softeng306.domain.course.component.MainComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Stores the mark of a student for one main component
+/**
+ * Stores the mark of a student for one main component
  * and stores the subcomponent marks that make it up.
  */
 public class MainComponentMark {
@@ -33,7 +34,7 @@ public class MainComponentMark {
         this.subComponentMarks = subComponentMarks;
     }
 
-    public boolean hasSubComponents() {
+    public boolean hasSubComponentMarks() {
         if (subComponentMarks == null || subComponentMarks.isEmpty()) {
             return false;
         }
@@ -42,7 +43,7 @@ public class MainComponentMark {
     }
 
     public SubComponentMark getSubComponentMark(String courseWorkName) {
-        for (SubComponentMark subComponentMark: subComponentMarks) {
+        for (SubComponentMark subComponentMark : subComponentMarks) {
             if (subComponentMark.getSubComponent().getComponentName().equals(courseWorkName)) {
                 return subComponentMark;
             }
@@ -51,7 +52,7 @@ public class MainComponentMark {
         return null;
     }
 
-    public void addSubComponentMark (SubComponentMark subComponentMark) {
+    public void addSubComponentMark(SubComponentMark subComponentMark) {
         subComponentMarks.add(subComponentMark);
     }
 

@@ -1,6 +1,8 @@
 package com.softeng306.validation;
 
+import com.softeng306.domain.course.Course;
 import com.softeng306.domain.student.Student;
+import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.StudentMgr;
 
 import java.util.List;
@@ -47,6 +49,20 @@ public class StudentValidator {
      * @return the existing student or else null.
      */
     public static Student checkStudentExists(String studentID) {
+        List<Student> anyStudent = StudentMgr.getInstance().getStudents().stream().filter(s -> studentID.equals(s.getStudentID())).collect(Collectors.toList());
+        if (anyStudent.isEmpty()) {
+            return null;
+        }
+        return anyStudent.get(0);
+    }
+
+    /**
+     * Checks whether this student ID is used by other students.
+     *
+     * @param studentID The inputted course ID.
+     * @return the existing course or else null.
+     */
+    public static Student getStudentFromId(String studentID) {
         List<Student> anyStudent = StudentMgr.getInstance().getStudents().stream().filter(s -> studentID.equals(s.getStudentID())).collect(Collectors.toList());
         if (anyStudent.isEmpty()) {
             return null;

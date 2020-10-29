@@ -656,7 +656,7 @@ public class CourseMgrIO {
     }
 
     /**
-     * Prompts the user to input an existing course.
+     * Gets a course from a user-inputted ID
      *
      * @return the inputted course.
      */

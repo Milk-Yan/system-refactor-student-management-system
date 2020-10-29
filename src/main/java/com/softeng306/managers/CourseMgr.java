@@ -1,20 +1,28 @@
 package com.softeng306.managers;
 
+
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.enums.Department;
+
 import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.course.ICourseBuilder;
+import com.softeng306.domain.student.Student;
 import com.softeng306.enums.GroupType;
 import com.softeng306.io.CourseMgrIO;
 import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
 
+
 import java.util.*;
 import java.util.stream.Collectors;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 public class CourseMgr {
@@ -116,6 +124,7 @@ public class CourseMgr {
         if (currentCourse == null) {
             currentCourse = readCourseFromUser();
         }
+
         HashSet<String> mainComponentNames = new HashSet<>();
         List<MainComponent> mainComponents = new ArrayList<>(0);
         // Check if mainComponent is empty
@@ -129,7 +138,7 @@ public class CourseMgr {
                 hasFinalExamChoice = courseMgrIO.readHasFinalExamChoice();
                 if (hasFinalExamChoice == 1) {
                     examWeight = courseMgrIO.readExamWeight();
-                    MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>(0));
+                    MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>());
                     mainComponents.add(exam);
                 } else if (hasFinalExamChoice == 2) {
                     courseMgrIO.printEnterContinuousAssessments();
@@ -218,7 +227,7 @@ public class CourseMgr {
         Course currentCourse = readCourseFromUser();
         String courseID = currentCourse.getCourseID();
 
-        List<Mark> courseMarks = new ArrayList<>(0);
+        List<Mark> courseMarks = new ArrayList<>();
         for (Mark mark : MarkMgr.getInstance().getMarks()) {
             if (mark.getCourse().getCourseID().equals(courseID)) {
                 courseMarks.add(mark);
@@ -277,12 +286,13 @@ public class CourseMgr {
 
     /**
      * Return the list of all courses in the system.
-
+     *
      * @return An list of all courses.
      */
     public List<Course> getCourses() {
         return courses;
     }
+
 
     public String generateCourseInformation(Course course){
         String infoString = course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats();
@@ -413,5 +423,10 @@ public class CourseMgr {
         return courseMgrIO.readWeeklyHour(GroupType.TUTORIAL_GROUP, AU);
     }
 
+
+    public String getCourseName(String courseId) {
+        Course course = getCourseFromId(courseId);
+        return course.getCourseName();
+    }
 
 }
