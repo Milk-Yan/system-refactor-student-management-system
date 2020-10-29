@@ -147,7 +147,7 @@ public class CourseMgr {
 
         // Make sure course has no components
         if (currentCourse.getMainComponents().isEmpty()) {
-            List<MainComponent> mainComponents = createMainComponentsForCourse(io, currentCourse);
+            List<MainComponent> mainComponents = addMainComponentsToCourse(io, currentCourse);
             currentCourse.setMainComponents(mainComponents);
         } else {
             io.printCourseworkWeightageEnteredError();
@@ -165,7 +165,7 @@ public class CourseMgr {
      * @param currentCourse The course to create components for
      * @return
      */
-    private List<MainComponent> createMainComponentsForCourse(CourseMgrIO io, Course currentCourse) {
+    private List<MainComponent> addMainComponentsToCourse(CourseMgrIO io, Course currentCourse) {
         Set<String> mainComponentNames = new HashSet<>();
         List<MainComponent> mainComponents = new ArrayList<>(0);
         // empty course
@@ -173,10 +173,10 @@ public class CourseMgr {
         io.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
         int examWeight = addExamComponent(io, mainComponents);
 
-        int numberOfMain = io.readNoOfMainComponents();
+        int numberOfMainComponents = io.readNoOfMainComponents();
 
         while (true) {
-            int totalWeightage = addMainComponents(examWeight, numberOfMain, io, mainComponents, mainComponentNames);
+            int totalWeightage = addMainComponents(io, examWeight, numberOfMainComponents, mainComponents, mainComponentNames);
 
             if (totalWeightage != 0) {
                 // weightage assign is not tallied
@@ -191,9 +191,9 @@ public class CourseMgr {
         return mainComponents;
     }
 
-    private int addMainComponents(int examWeight, int numberOfMain, CourseMgrIO io, List<MainComponent> mainComponents, Set<String> mainComponentNames) {
+    private int addMainComponents(CourseMgrIO io, int examWeight, int numberOfMainComponents, List<MainComponent> mainComponents, Set<String> mainComponentNames) {
         int totalWeightage = 100 - examWeight;
-        for (int i = 0; i < numberOfMain; i++) {
+        for (int i = 0; i < numberOfMainComponents; i++) {
             Map<String, Double> subComponentsMap;
             String mainComponentName = io.readMainComponentName(totalWeightage, i, mainComponentNames);
 
