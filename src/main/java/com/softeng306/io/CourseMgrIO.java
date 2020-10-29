@@ -3,6 +3,7 @@ package com.softeng306.io;
 import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.exceptions.ProfessorNotFoundException;
+import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.ProfessorMgr;
@@ -678,10 +679,10 @@ public class CourseMgrIO {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                printAllDepartments(courseMgr.getAllDepartmentsNameList());
+                printAllDepartments(Department.getListOfAllDepartmentNames());
                 courseDepartment = scanner.nextLine();
             }
-            if (courseMgr.checkContainsDepartment(courseDepartment)) {
+            if (Department.contains(courseDepartment)) {
                 List<String> validCourseString;
                 validCourseString = courseMgr.getCourseIdsInDepartment(courseDepartment);
                 if (validCourseString.size() == 0) {
@@ -717,10 +718,10 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the departments.");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                printAllDepartments(courseMgr.getAllDepartmentsNameList());
+                printAllDepartments(Department.getListOfAllDepartmentNames());
                 courseDepartment = scanner.nextLine();
             }
-            if (courseMgr.checkContainsDepartment(courseDepartment)) {
+            if (Department.contains(courseDepartment)) {
                 break;
             } else {
                 System.out.println("The department is invalid. Please re-enter.");
