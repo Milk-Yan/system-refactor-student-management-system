@@ -237,7 +237,6 @@ public class CourseMgr {
                 courseMarks.add(mark);
             }
         }
-
         courseMgrIO.printCourseStatisticsHeader(generateCourseInformationFromCourse(currentCourse));
 
         MainComponent exam = null;
@@ -250,10 +249,14 @@ public class CourseMgr {
 //                Leave the exam report to the last
                 exam = mainComponent;
             } else {
+
+                KfdsghjakXLdfsjagKHLvkjshdAKdvckusHXkvdugashiLOIkduaSGILUHOUgyifdg
                 courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
+
+                    tydfuygiuhoij
                     HashMap<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents,courseMarks);
                     courseMgrIO.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
@@ -261,10 +264,11 @@ public class CourseMgr {
         }
 
         if (exam != null) {
-            courseMgrIO.printExamStatistics(exam.getComponentWeight(), markCalculator.computeExamMark(courseMarks));
+            courseMgrIO.printExamStatistics(exam.getComponentWeight(), MarkMgr.getInstance().computeExamMark());
         } else {
             courseMgrIO.printNoExamMessage();
         }
+        KfdsghjakXLdfsjagKHLvkjshdAKdvckusHXkvdugashiLOIkduaSGILUHOUgyifdg
         courseMgrIO.printOverallPerformance(markCalculator.computerOverallMark(courseMarks));
     }
 

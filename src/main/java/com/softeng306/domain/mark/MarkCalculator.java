@@ -2,10 +2,24 @@ package com.softeng306.domain.mark;
 
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
+import com.softeng306.managers.MarkMgr;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MarkCalculator {
+
+    public double computeComponentMarkForStudent(String studentId, String courseID, String componentName) {
+        List<Mark> studentMarksForCourse = new ArrayList<>();
+        for (Mark mark : MarkMgr.getInstance().getMarks()) {
+            if (mark.getCourse().getCourseID().equals(courseID)
+                    && mark.getStudent().getStudentID().equals(studentId)) {
+                studentMarksForCourse.add(mark);
+            }
+        }
+
+        return computeComponentMark(studentMarksForCourse, componentName);
+    }
 
     /**
      * Computes the sum of marks for a particular component of a particular course
