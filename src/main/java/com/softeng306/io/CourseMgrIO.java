@@ -4,6 +4,7 @@ import com.softeng306.domain.course.CourseBuilder;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.exceptions.ProfessorNotFoundException;
 
+import com.softeng306.enums.GroupType;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.GroupTypeMgr;
 import com.softeng306.managers.ProfessorMgr;
@@ -848,7 +849,7 @@ public class CourseMgrIO {
         Map<String, Double> lectureGroups = new HashMap<>();
 
         for (int i = 0; i < noOfLectureGroups; i++) {
-            lectureGroupName = readValidGroupNameFromUser(lectureGroups, "lecture");
+            lectureGroupName = readValidGroupNameFromUser(lectureGroups, GroupType.LECTURE_GROUP.toString());
 
             while (true) {
                 System.out.println("Enter this lecture group's capacity: ");
@@ -942,14 +943,14 @@ public class CourseMgrIO {
         if (noOfTutorialGroups != 0) {
             tutWeeklyHour = CourseMgr.getInstance().getReadWeeklyTutorialHour(AU);
         }
-        Map<String, Double> tutorialGroups = readGroup(noOfTutorialGroups, totalSeats, "tutorial");
+        Map<String, Double> tutorialGroups = readGroup(noOfTutorialGroups, totalSeats, GroupType.TUTORIAL_GROUP.toString());
 
         int noOfLabGroups = CourseMgr.getInstance().getNumberOfLabGroups(noOfLectureGroups, totalSeats);
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
             labWeeklyHour = CourseMgr.getInstance().getReadWeeklyLabHour(AU);
         }
-        Map<String, Double> labGroups = readGroup(noOfLabGroups, totalSeats, "lab");
+        Map<String, Double> labGroups = readGroup(noOfLabGroups, totalSeats, GroupType.LAB_GROUP.toString());
 
         String profID = readProfessor(courseDepartment);
 
