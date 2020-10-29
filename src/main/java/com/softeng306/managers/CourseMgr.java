@@ -400,7 +400,7 @@ public class CourseMgr {
     }
 
     public List<String> getAllDepartmentsNameList(){
-        return Department.getListOfDepartments();
+        return Department.getDepartmentListAsStrings();
     }
 
     public int getNumberOfLectureGroups(int compareTo, int totalSeats){

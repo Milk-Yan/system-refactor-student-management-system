@@ -18,7 +18,7 @@ public enum Department {
 
     }
 
-    public static List<String> getListOfDepartments(){
+    public static List<String> getDepartmentListAsStrings(){
         List<String> listDepartmentStrings = new ArrayList<>();
         for(Department department : Department.values()){
             listDepartmentStrings.add(department.toString());
