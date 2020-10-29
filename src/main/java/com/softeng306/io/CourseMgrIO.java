@@ -431,13 +431,13 @@ public class CourseMgrIO {
      * Prints the components for a course
      *
      */
-    public void printComponentsForCourse(String courseId, String courseName, HashMap<HashMap<String, String>, HashMap<String,String>> allGroupInformation) {
+    public void printComponentsForCourse(String courseId, String courseName, Map<Map<String, String>, Map<String,String>> allGroupInformation) {
         System.out.println(courseId + " " + courseName + " components: ");
-        for(HashMap<String, String> mainComponentInfo : allGroupInformation.keySet()){
+        for(Map<String, String> mainComponentInfo : allGroupInformation.keySet()){
             Map.Entry<String,String> entry = mainComponentInfo.entrySet().iterator().next();
             System.out.println("    " + entry.getKey() + " : " + entry.getValue() + "%");
 
-            HashMap<String, String> allSubComponentInfo = allGroupInformation.get(mainComponentInfo);
+            Map<String, String> allSubComponentInfo = allGroupInformation.get(mainComponentInfo);
             for(String subComponentInfo : allSubComponentInfo.keySet()){
                 System.out.println("        " + subComponentInfo + " : " + allSubComponentInfo.get(subComponentInfo) + "%");
             }
@@ -461,9 +461,9 @@ public class CourseMgrIO {
      *
      * @return List of sub components user has specified
      */
-    public HashMap<String, Double> readSubComponents(int numberOfSubComponents) {
-        HashMap<String, Double> subComponents = new HashMap<>();
-        HashSet<String> subComponentNames = new HashSet<>();
+    public Map<String, Double> readSubComponents(int numberOfSubComponents) {
+        Map<String, Double> subComponents = new HashMap<>();
+        Set<String> subComponentNames = new HashSet<>();
         boolean invalidDistributionOfWeights = true;
         double subComponentWeight;
         String subComponentName;
@@ -540,7 +540,7 @@ public class CourseMgrIO {
      * Print courses
      *
      */
-    public void printCourses(HashMap<String, List<String>> courseGeneralInfo) {
+    public void printCourses(Map<String, List<String>> courseGeneralInfo) {
         List<String> courseIDs = new ArrayList<>(courseGeneralInfo.keySet());
         Collections.sort(courseIDs);
         System.out.println("Course List: ");
@@ -766,13 +766,13 @@ public class CourseMgrIO {
      * @param noOfLectureGroups the number of lecture groups for a course
      * @return the lecture groups the user has specified
      */
-    public HashMap<String, Double> readLectureGroups(int totalSeats, int noOfLectureGroups) {
+    public Map<String, Double> readLectureGroups(int totalSeats, int noOfLectureGroups) {
         String lectureGroupName;
         int lectureGroupCapacity;
         int seatsLeft = totalSeats;
         boolean groupNameExists;
 
-        HashMap<String, Double> lectureGroups = new HashMap<>();
+        Map<String, Double> lectureGroups = new HashMap<>();
 
         for (int i = 0; i < noOfLectureGroups; i++) {
             System.out.println("Give a name to the lecture group");
@@ -832,8 +832,8 @@ public class CourseMgrIO {
      * @param noOfTutorialGroups the number of tutorial groups for a course
      * @return the tutorial groups the user has specified
      */
-    public HashMap<String, Double> readTutorialGroups(int noOfTutorialGroups, int totalSeats) {
-        HashMap<String, Double> tutorialGroups = new HashMap<>();
+    public Map<String, Double> readTutorialGroups(int noOfTutorialGroups, int totalSeats) {
+        Map<String, Double> tutorialGroups = new HashMap<>();
         String tutorialGroupName;
         int tutorialGroupCapacity;
         boolean groupNameExists;
@@ -888,8 +888,8 @@ public class CourseMgrIO {
      * @param noOfLabGroups the number of lab groups for a course
      * @return the lab groups the user has specified
      */
-    public HashMap<String, Double> readLabGroups(int noOfLabGroups, int totalSeats) {
-        HashMap<String, Double> labGroups = new HashMap<>();
+    public Map<String, Double> readLabGroups(int noOfLabGroups, int totalSeats) {
+        Map<String, Double> labGroups = new HashMap<>();
         int totalLabSeats = 0;
         String labGroupName;
         boolean groupNameExists;
@@ -985,21 +985,21 @@ public class CourseMgrIO {
         int lecWeeklyHour = CourseMgr.getInstance().getReadWeeklyLectureHour(AU);
 
         //Name, total seats
-        HashMap<String, Double> lectureGroups = readLectureGroups(totalSeats, noOfLectureGroups);
+        Map<String, Double> lectureGroups = readLectureGroups(totalSeats, noOfLectureGroups);
 
         int noOfTutorialGroups = CourseMgr.getInstance().getNumberOfTutorialGroups(noOfLectureGroups, totalSeats);
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
             tutWeeklyHour = CourseMgr.getInstance().getReadWeeklyTutorialHour(AU);
         }
-        HashMap<String, Double> tutorialGroups = readTutorialGroups(noOfTutorialGroups, totalSeats);
+        Map<String, Double> tutorialGroups = readTutorialGroups(noOfTutorialGroups, totalSeats);
 
         int noOfLabGroups = CourseMgr.getInstance().getNumberOfLabGroups(noOfLectureGroups, totalSeats);
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
             labWeeklyHour = CourseMgr.getInstance().getReadWeeklyLabHour(AU);
         }
-        HashMap<String, Double> labGroups = readLabGroups(noOfLabGroups, totalSeats);
+        Map<String, Double> labGroups = readLabGroups(noOfLabGroups, totalSeats);
 
         String profID = readProfessor(courseDepartment);
 

@@ -155,7 +155,7 @@ public class CourseMgr {
             while (true) {
                 int totalWeightage = 100 - examWeight;
                 for (int i = 0; i < numberOfMain; i++) {
-                    HashMap<String, Double> subComponentsMap = new HashMap<>();
+                    Map<String, Double> subComponentsMap;
                     String mainComponentName = courseMgrIO.readMainComponentName(totalWeightage, i, mainComponentNames);
                     mainComponentNames.add(mainComponentName);
 
@@ -255,7 +255,7 @@ public class CourseMgr {
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = generateSubComponentInformation(subComponents);
-                    HashMap<String, Double> subComponentMarks = generateComponentMarkInformation(subComponents,courseMarks);
+                    Map<String, Double> subComponentMarks = generateComponentMarkInformation(subComponents,courseMarks);
                     courseMgrIO.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
             }
@@ -315,7 +315,6 @@ public class CourseMgr {
     }
 
     public String[][] generateSubComponentInformation(List<SubComponent> subComponents){
-        //HashMap<String, Integer> map = new HashMap<>();
         String[][] map = new String[subComponents.size()][2];
         int i = 0;
         for(SubComponent subComponent : subComponents){
@@ -326,8 +325,8 @@ public class CourseMgr {
         return map;
     }
 
-    public HashMap<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, List<Mark> marks){
-        HashMap<String, Double> map = new HashMap<>();
+    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, List<Mark> marks){
+        Map<String, Double> map = new HashMap<>();
         for(SubComponent subComponent : subComponents){
             double mark = markCalculator.computeComponentMark(marks, subComponent.getComponentName());
             map.put(subComponent.getComponentName(), mark);
@@ -368,8 +367,8 @@ public class CourseMgr {
         return anyCourse.get(0);
     }
 
-    public HashMap<String, List<String>> generateGeneralInformationForAllCourses(){
-        HashMap<String, List<String>> generalCourseInfoMap = new HashMap<>();
+    public Map<String, List<String>> generateGeneralInformationForAllCourses(){
+        Map<String, List<String>> generalCourseInfoMap = new HashMap<>();
         for(Course course : courses) {
             List<String> generalCourseInfo = new ArrayList<>();
             generalCourseInfo.add(course.getCourseName());
@@ -380,13 +379,13 @@ public class CourseMgr {
 
     }
 
-    public HashMap<HashMap<String, String>, HashMap<String,String>> generateComponentInformationForACourses(Course course){
-        HashMap<HashMap<String, String>, HashMap<String, String>> map = new HashMap<>();
+    public Map<Map<String, String>, Map<String,String>> generateComponentInformationForACourses(Course course){
+        Map<Map<String, String>, Map<String, String>> map = new HashMap<>();
         for (MainComponent eachComp : course.getMainComponents()) {
-            HashMap<String, String> mainComponentInfo = new HashMap<>();
+            Map<String, String> mainComponentInfo = new HashMap<>();
             mainComponentInfo.put(eachComp.getComponentName(), String.valueOf(eachComp.getComponentWeight()));
 
-            HashMap<String,String> subComponentsInfo = new HashMap<>();
+            Map<String,String> subComponentsInfo = new HashMap<>();
             for (SubComponent eachSub : eachComp.getSubComponents()) {
                 subComponentsInfo.put(eachSub.getComponentName(), String.valueOf(eachSub.getComponentWeight()));
             }
