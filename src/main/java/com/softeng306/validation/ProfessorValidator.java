@@ -10,21 +10,6 @@ import java.util.stream.Collectors;
 
 public class ProfessorValidator {
 
-    /**
-     * Checks whether this professor ID is used by other professors.
-     *
-     * @param profID The inputted professor ID.
-     * @return the existing professor or else null.
-     */
-    public static Professor getProfessorFromID(String profID) {
-        List<Professor> anyProf = ProfessorMgr.getInstance().getProfessors().stream().filter(p -> profID.equals(p.getProfID())).collect(Collectors.toList());
-        if (anyProf.isEmpty()) {
-            return null;
-        }
-        return anyProf.get(0);
-
-    }
-
     public static boolean checkProfessorExists(String profID){
         Optional<Professor> professor = ProfessorMgr
                 .getInstance()
