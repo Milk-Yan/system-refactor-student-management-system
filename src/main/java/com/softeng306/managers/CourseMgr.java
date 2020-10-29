@@ -453,7 +453,7 @@ public class CourseMgr {
     }
 
     public List<String> getListCourseTypes() {
-        return CourseType.getAllCourseTypes();
+        return CourseType.getListOfAllCourseTypeNames();
     }
 
     public String getMainComponentString() {
