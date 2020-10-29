@@ -684,7 +684,7 @@ public class CourseMgrIO {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                this.printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
+                printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
                 courseDepartment = scanner.nextLine();
             }
             if (CourseMgr.getInstance().checkContainsDepartment(courseDepartment)) {
@@ -724,7 +724,7 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the departments.");
             courseDepartment = scanner.nextLine();
             while ("-h".equals(courseDepartment)) {
-                this.printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
+                printAllDepartments(CourseMgr.getInstance().getAllDepartmentsNameList());
                 courseDepartment = scanner.nextLine();
             }
             if (CourseMgr.getInstance().checkContainsDepartment(courseDepartment)) {
@@ -749,7 +749,7 @@ public class CourseMgrIO {
             System.out.println("Enter -h to print all the course types.");
             courseType = scanner.nextLine();
             while (courseType.equals("-h")) {
-                this.printAllCourseType(CourseMgr.getInstance().getListCourseTypes());
+                printAllCourseType(CourseMgr.getInstance().getListCourseTypes());
                 courseType = scanner.nextLine();
             }
             if (CourseValidator.checkCourseTypeValidation(courseType)) {
@@ -971,37 +971,37 @@ public class CourseMgrIO {
 
         ICourseBuilder builder = new CourseBuilder();
 
-        String courseID = this.readCourseId();
-        String courseName = this.readCourseName();
+        String courseID = readCourseId();
+        String courseName = readCourseName();
 
-        int totalSeats = this.readTotalSeats();
-        int AU = this.readAU();
+        int totalSeats = readTotalSeats();
+        int AU = readAU();
 
-        String courseDepartment = this.readAnyCourseDepartment();
+        String courseDepartment = readAnyCourseDepartment();
 
-        String courseType = this.readCourseType();
+        String courseType = readCourseType();
 
         int noOfLectureGroups = CourseMgr.getInstance().getNumberOfLectureGroups(totalSeats, totalSeats);
         int lecWeeklyHour = CourseMgr.getInstance().getReadWeeklyLectureHour(AU);
 
         //Name, total seats
-        HashMap<String, Double> lectureGroups = this.readLectureGroups(totalSeats, noOfLectureGroups);
+        HashMap<String, Double> lectureGroups = readLectureGroups(totalSeats, noOfLectureGroups);
 
         int noOfTutorialGroups = CourseMgr.getInstance().getNumberOfTutorialGroups(noOfLectureGroups, totalSeats);
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
             tutWeeklyHour = CourseMgr.getInstance().getReadWeeklyTutorialHour(AU);
         }
-        HashMap<String, Double> tutorialGroups = this.readTutorialGroups(noOfTutorialGroups, totalSeats);
+        HashMap<String, Double> tutorialGroups = readTutorialGroups(noOfTutorialGroups, totalSeats);
 
         int noOfLabGroups = CourseMgr.getInstance().getNumberOfLabGroups(noOfLectureGroups, totalSeats);
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
             labWeeklyHour = CourseMgr.getInstance().getReadWeeklyLabHour(AU);
         }
-        HashMap<String, Double> labGroups = this.readLabGroups(noOfLabGroups, totalSeats);
+        HashMap<String, Double> labGroups = readLabGroups(noOfLabGroups, totalSeats);
 
-        String profID = this.readProfessor(courseDepartment);
+        String profID = readProfessor(courseDepartment);
 
         //Setting the objects in the builder
         builder.setCourseID(courseID);
