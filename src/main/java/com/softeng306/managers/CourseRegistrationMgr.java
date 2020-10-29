@@ -149,7 +149,7 @@ public class CourseRegistrationMgr {
             io.printGroupString(groupString);
         } else if (opt == 2) {
             if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getTutorialGroups().isEmpty()) {
-                io.printNoGroup(GroupType.TUTORIAL_GROUP.toString());
+                io.printContainsNoGroupMessage(GroupType.TUTORIAL_GROUP.toString());
                 io.printEndOfSection();
                 return;
             }
@@ -159,7 +159,7 @@ public class CourseRegistrationMgr {
 
         } else if (opt == 3) {
             if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getLabGroups().isEmpty()) {
-                io.printNoGroup(GroupType.LAB_GROUP.toString());
+                io.printContainsNoGroupMessage(GroupType.LAB_GROUP.toString());
                 io.printEndOfSection();
                 return;
             }

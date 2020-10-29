@@ -24,7 +24,7 @@ public class CourseRegistrationMgrIO {
     /**
      * When there is no group of the given type, this method will be called
      */
-    public void printNoGroup(String type) {
+    public void printContainsNoGroupMessage(String type) {
         System.out.format("This course does not contain any %s group.%n", type);
     }
 
