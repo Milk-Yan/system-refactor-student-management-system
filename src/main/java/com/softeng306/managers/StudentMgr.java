@@ -168,7 +168,7 @@ public class StudentMgr {
      *
      * @return the generated student ID.
      */
-    private String generateStudentID() {
+    public String generateStudentID() {
         int smallestAvailableIDNumber = findLargestStudentID();
 
         // randomly generate the last character from A-Z.
