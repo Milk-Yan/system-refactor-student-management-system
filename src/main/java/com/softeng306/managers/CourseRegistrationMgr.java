@@ -58,7 +58,7 @@ public class CourseRegistrationMgr {
      */
     public List<String> registerCourse(String studentID, String courseID) {
         CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
-        Student currentStudent = StudentValidator.getStudentFromId(studentID);
+        Student currentStudent = StudentMgr.getInstance().getStudentFromId(studentID);
         Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
 
         if (CourseRegistrationValidator.checkCourseRegistrationExists(studentID, courseID) != null) {

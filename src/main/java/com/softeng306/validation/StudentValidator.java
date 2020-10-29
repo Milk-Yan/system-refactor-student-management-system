@@ -53,19 +53,4 @@ public class StudentValidator {
         }
         return anyStudent.get(0);
     }
-
-    /**
-     * Checks whether this student ID is used by other students.
-     *
-     * @param studentID The inputted course ID.
-     * @return the existing course or else null.
-     */
-    public static Student getStudentFromId(String studentID) {
-        List<Student> anyStudent = StudentMgr.getInstance().getStudents().stream().filter(s -> studentID.equals(s.getStudentID())).collect(Collectors.toList());
-        if (anyStudent.isEmpty()) {
-            return null;
-        }
-        return anyStudent.get(0);
-    }
-
 }
