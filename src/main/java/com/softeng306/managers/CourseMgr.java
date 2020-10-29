@@ -147,6 +147,7 @@ public class CourseMgr {
 
         // Make sure course has no components
         if (currentCourse.getMainComponents().isEmpty()) {
+            // Course is empty, can create and add new components
             List<MainComponent> mainComponents = addMainComponentsToCourse(io, currentCourse);
             currentCourse.setMainComponents(mainComponents);
         } else {
@@ -166,9 +167,7 @@ public class CourseMgr {
      * @return
      */
     private List<MainComponent> addMainComponentsToCourse(CourseMgrIO io, Course currentCourse) {
-        Set<String> mainComponentNames = new HashSet<>();
         List<MainComponent> mainComponents = new ArrayList<>(0);
-        // empty course
 
         io.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
         int examWeight = addExamComponent(io, mainComponents);
@@ -176,13 +175,12 @@ public class CourseMgr {
         int numberOfMainComponents = io.readNoOfMainComponents();
 
         while (true) {
-            int totalWeightage = addMainComponents(io, examWeight, numberOfMainComponents, mainComponents, mainComponentNames);
+            int totalWeightage = addMainComponents(io, examWeight, numberOfMainComponents, mainComponents);
 
             if (totalWeightage != 0) {
                 // weightage assign is not tallied
                 io.printWeightageError();
                 mainComponents.clear();
-                mainComponentNames.clear();
             } else {
                 break;
             }
@@ -191,8 +189,19 @@ public class CourseMgr {
         return mainComponents;
     }
 
-    private int addMainComponents(CourseMgrIO io, int examWeight, int numberOfMainComponents, List<MainComponent> mainComponents, Set<String> mainComponentNames) {
+    /**
+     * Creates new main components from user input
+     *
+     * @param io                     CourseMgrIO to use for user I/O
+     * @param examWeight             Weight of associated course exam
+     * @param numberOfMainComponents Number of main components to create
+     * @param mainComponents         List to add main components to
+     * @return
+     */
+    private int addMainComponents(CourseMgrIO io, int examWeight, int numberOfMainComponents, List<MainComponent> mainComponents) {
+        Set<String> mainComponentNames = new HashSet<>();
         int totalWeightage = 100 - examWeight;
+
         for (int i = 0; i < numberOfMainComponents; i++) {
             Map<String, Double> subComponentsMap;
             String mainComponentName = io.readMainComponentName(totalWeightage, i, mainComponentNames);
