@@ -80,10 +80,9 @@ public class CourseMgrIO {
 
     /**
      * Read in the number of academic units for a course
-     *
-     * @return int AU representing number of Academic Units
+     * @return number of Academic Units for the course.
      */
-    public int readAU() {
+    public int readAcademicUnitsForCourse() {
         int AU;
         while (true) {
             System.out.println("Enter number of academic unit(s): ");
@@ -908,7 +907,7 @@ public class CourseMgrIO {
         String courseName = readCourseName();
 
         int totalSeats = readTotalSeats();
-        int AU = readAU();
+        int AU = readAcademicUnitsForCourse();
 
         String courseDepartment = readAnyCourseDepartment();
 
