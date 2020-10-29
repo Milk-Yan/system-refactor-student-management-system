@@ -195,7 +195,7 @@ public class CourseMgr {
      * @param io                     CourseMgrIO to use for user I/O
      * @param examWeight             Weight of associated course exam
      * @param numberOfMainComponents Number of main components to create
-     * @param mainComponents         List to add main components to
+     * @param mainComponents         List of components to add main components to
      * @return
      */
     private int addMainComponents(CourseMgrIO io, int examWeight, int numberOfMainComponents, List<MainComponent> mainComponents) {
@@ -227,6 +227,13 @@ public class CourseMgr {
         return totalWeightage;
     }
 
+    /**
+     * Creates an exam main component for a course
+     *
+     * @param io             CourseMgrIO to use for user I/O
+     * @param mainComponents List of components to add exam to
+     * @return
+     */
     private int addExamComponent(CourseMgrIO io, List<MainComponent> mainComponents) {
         int hasFinalExamChoice = 0;
         int examWeight = 0;
