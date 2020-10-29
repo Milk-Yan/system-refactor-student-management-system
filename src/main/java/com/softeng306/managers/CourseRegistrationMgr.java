@@ -18,7 +18,6 @@ import com.softeng306.validation.StudentValidator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CourseRegistrationMgr {
     /**
