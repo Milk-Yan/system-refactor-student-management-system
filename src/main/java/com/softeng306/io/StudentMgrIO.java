@@ -118,7 +118,7 @@ public class StudentMgrIO {
             String studentID = reader.nextLine();
             // Check the studentId is valid and is also not used by a current student
             if (StudentValidator.checkValidStudentIDInput(studentID)) {
-                if (StudentValidator.checkStudentExists(studentID) == null) {
+                if (StudentValidator.studentExists(studentID)) {
                     return studentID;
                 } else {
                     System.out.println("Sorry. The student ID is used. This student already exists.");
@@ -242,7 +242,7 @@ public class StudentMgrIO {
                 studentID = reader.nextLine();
             }
 
-            if (StudentValidator.checkStudentExists(studentID) == null) {
+            if (StudentValidator.studentExists(studentID)) {
                 System.out.println("Invalid Student ID. Please re-enter.");
             } else {
                 break;

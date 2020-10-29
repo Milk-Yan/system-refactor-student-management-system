@@ -1,14 +1,10 @@
 package com.softeng306.validation;
 
-import com.softeng306.domain.course.Course;
 import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.domain.student.Student;
-import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.StudentMgr;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class StudentValidator {
 
@@ -50,12 +46,15 @@ public class StudentValidator {
      * @param studentID This student's ID.
      * @return the existing student or else null.
      */
-    public static Student checkStudentExists(String studentID) {
-        List<Student> anyStudent = StudentMgr.getInstance().getStudents().stream().filter(s -> studentID.equals(s.getStudentID())).collect(Collectors.toList());
-        if (anyStudent.isEmpty()) {
-            return null;
-        }
-        return anyStudent.get(0);
+    public static boolean studentExists(String studentID) {
+        Optional<Student> student = StudentMgr
+                .getInstance()
+                .getStudents()
+                .stream()
+                .filter(s -> studentID.equals(s.getStudentID()))
+                .findFirst();
+
+        return student.isPresent();
     }
 
     /**
