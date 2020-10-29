@@ -2,6 +2,7 @@ package com.softeng306.managers;
 
 
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.enums.Department;
 
@@ -355,12 +356,18 @@ public class CourseMgr {
      * @param courseID The inputted course ID.
      * @return the existing course or else null.
      */
-    public Course getCourseFromId(String courseID) {
-        List<Course> anyCourse = CourseMgr.getInstance().getCourses().stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
-        if (anyCourse.isEmpty()) {
-            return null;
+    public Course getCourseFromId(String courseID) throws CourseNotFoundException {
+        Optional<Course> course = CourseMgr
+                .getInstance()
+                .getCourses()
+                .stream()
+                .filter(c -> courseID.equals(c.getCourseID()))
+                .findAny();
+
+        if (!course.isPresent()) {
+            throw new CourseNotFoundException(courseID);
         }
-        return anyCourse.get(0);
+        return course.get();
     }
 
     public HashMap<String, List<String>> generateGeneralInformationForAllCourses(){
