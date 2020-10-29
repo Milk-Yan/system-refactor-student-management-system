@@ -1,10 +1,12 @@
 package com.softeng306.validation;
 
 import com.softeng306.domain.course.Course;
+import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.enums.CourseType;
 import com.softeng306.managers.CourseMgr;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CourseValidator {
@@ -39,12 +41,15 @@ public class CourseValidator {
         return false;
     }
 
-    public static boolean checkCourseIDExists(String courseID) {
-        List<Course> anyCourse = CourseMgr.getInstance().getCourses().stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
-        if (anyCourse.isEmpty()) {
-            return false;
-        }
-        return true;
+    public static boolean checkCourseExists(String courseID) {
+        Optional<Course> course = CourseMgr
+                .getInstance()
+                .getCourses()
+                .stream()
+                .filter(c -> courseID.equals(c.getCourseID()))
+                .findFirst();
+
+        return course.isPresent();
     }
 
     /**
@@ -53,12 +58,18 @@ public class CourseValidator {
      * @param courseID The inputted course ID.
      * @return the existing course or else null.
      */
-    public static Course getCourseFromId(String courseID) {
-        List<Course> anyCourse = CourseMgr.getInstance().getCourses().stream().filter(c -> courseID.equals(c.getCourseID())).collect(Collectors.toList());
-        if (anyCourse.isEmpty()) {
-            return null;
+    public static Course getCourseFromId(String courseID) throws CourseNotFoundException {
+        Optional<Course> course = CourseMgr
+                .getInstance()
+                .getCourses()
+                .stream()
+                .filter(c -> courseID.equals(c.getCourseID()))
+                .findAny();
+
+        if (!course.isPresent()) {
+            throw new CourseNotFoundException(courseID);
         }
-        return anyCourse.get(0);
+        return course.get();
     }
 
 }

@@ -1,5 +1,6 @@
 package com.softeng306.managers;
 
+import com.softeng306.domain.exceptions.ProfessorNotFoundException;
 import com.softeng306.domain.professor.Professor;
 
 import com.softeng306.fileprocessing.IFileProcessor;
@@ -8,6 +9,7 @@ import com.softeng306.fileprocessing.ProfessorFileProcessor;
 import com.softeng306.enums.Department;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -47,10 +49,11 @@ public class ProfessorMgr {
     /**
      * Returns the IDs of all professors in the department.
      *
-     * @param department The department the professors are in.
+     * @param departmentName The department the professors are in.
      * @return A list of all the IDs of the professors.
      */
-    public List<String> getAllProfIDInDepartment(Department department) {
+    public List<String> getAllProfIDInDepartment(String departmentName) {
+        Department department = Department.valueOf(departmentName);
         return professors
                 .stream()
                 .filter(p -> department.equals(p.getProfDepartment()))
@@ -67,13 +70,19 @@ public class ProfessorMgr {
         return professors;
     }
 
+    public static Professor getProfessorFromID(String professorID) throws ProfessorNotFoundException {
+        Optional<Professor> professor = ProfessorMgr
+                .getInstance()
+                .getProfessors()
+                .stream()
+                .filter(p -> professorID.equals(p.getProfID()))
+                .findFirst();
 
-    public Professor getProfessorFromID(String profID) {
-        List<Professor> anyProf = professors.stream().filter(p -> profID.equals(p.getProfID())).collect(Collectors.toList());
-        if (anyProf.isEmpty()) {
-            return null;
+        if (!professor.isPresent()) {
+            throw new ProfessorNotFoundException(professorID);
         }
-        return anyProf.get(0);
+
+        return professor.get();
     }
 
 }

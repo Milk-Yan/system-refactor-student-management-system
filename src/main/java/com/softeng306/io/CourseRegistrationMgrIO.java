@@ -1,5 +1,8 @@
 package com.softeng306.io;
 
+import com.softeng306.domain.exceptions.CourseNotFoundException;
+import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
+import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.CourseRegistrationMgr;
 
@@ -34,6 +37,10 @@ public class CourseRegistrationMgrIO {
      */
     public void printNoEnrolmentsError() {
         System.out.println("No one has registered this course yet.");
+    }
+
+    public void printAlreadyRegisteredError() {
+        System.out.println("Sorry. This student already registers this course.");
     }
 
     /**
@@ -105,10 +112,11 @@ public class CourseRegistrationMgrIO {
         CourseMgr.getInstance().readDepartmentFromUser();
         String courseID = courseIO.readValidCourseIdFromUser();
 
-        List<String> newRegistrationInfo = courseRegistrationMgr.registerCourse(studentID, courseID);
-
-        if (newRegistrationInfo != null) {
+        try {
+            List<String> newRegistrationInfo = courseRegistrationMgr.registerCourse(studentID, courseID);
             printSuccessfulRegistration(newRegistrationInfo);
+        } catch (CourseNotFoundException | StudentNotFoundException | InvalidCourseRegistrationException ignored) {
+
         }
     }
 
@@ -129,7 +137,11 @@ public class CourseRegistrationMgrIO {
 
             System.out.println("------------------------------------------------------");
 
-            courseRegistrationMgr.printStudents(courseID, opt);
+            try {
+                courseRegistrationMgr.printStudents(courseID, opt);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } while (opt < 1 || opt > 3);
     }
 

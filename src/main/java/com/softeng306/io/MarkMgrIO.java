@@ -1,5 +1,6 @@
 package com.softeng306.io;
 
+import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.MarkMgr;
 
@@ -31,7 +32,7 @@ public class MarkMgrIO {
         System.out.println("Here are the choices you can have: ");
 
         for (int i = 0; i < availableChoices.size(); i++) {
-            System.out.println((i + 1) + ". " + availableChoices.get(i) + " Weight in Total: " + (double)weights.get(i) + "%");
+            System.out.println((i + 1) + ". " + availableChoices.get(i) + " Weight in Total: " + (double) weights.get(i) + "%");
         }
         System.out.println((availableChoices.size() + 1) + ". Quit");
     }
@@ -92,9 +93,13 @@ public class MarkMgrIO {
     public void initiateEnteringCourseworkMark(boolean isExam) {
         printFunctionCall("enterCourseWorkMark");
 
-        String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
-        String courseID = new CourseMgrIO().readValidCourseIdFromUser();
+        try {
+            String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
+            String courseID = new CourseMgrIO().readValidCourseIdFromUser();
 
-        markMgr.setCourseworkMark(isExam, studentID, courseID);
+            markMgr.setCourseworkMark(isExam, studentID, courseID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

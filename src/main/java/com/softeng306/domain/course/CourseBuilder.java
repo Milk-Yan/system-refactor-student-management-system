@@ -1,6 +1,7 @@
 package com.softeng306.domain.course;
 
 import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.exceptions.ProfessorNotFoundException;
 import com.softeng306.domain.professor.Professor;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
@@ -29,7 +30,7 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setProfInCharge(String profID) {
+    public void setProfInCharge(String profID) throws ProfessorNotFoundException {
         ProfessorMgr profMgr = ProfessorMgr.getInstance();
         //Guaranteed at this point that the ID is valid
         Professor profInCharge = profMgr.getProfessorFromID(profID);
