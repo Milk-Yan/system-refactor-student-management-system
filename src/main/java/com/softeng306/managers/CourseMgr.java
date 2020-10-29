@@ -145,66 +145,11 @@ public class CourseMgr {
             }
         }
 
-        Set<String> mainComponentNames = new HashSet<>();
-        List<MainComponent> mainComponents = new ArrayList<>(0);
-        // Check if mainComponent is empty
+        // Make sure course has no components
         if (currentCourse.getMainComponents().isEmpty()) {
-            // empty course
-
-            io.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
-            int hasFinalExamChoice = 0;
-            int examWeight = 0;
-            while (hasFinalExamChoice < 1 || hasFinalExamChoice > 2) {
-                hasFinalExamChoice = io.readHasFinalExamChoice();
-                if (hasFinalExamChoice == 1) {
-                    examWeight = io.readExamWeight();
-                    MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>());
-                    mainComponents.add(exam);
-                } else if (hasFinalExamChoice == 2) {
-                    io.printEnterContinuousAssessments();
-                }
-            }
-
-            int numberOfMain = io.readNoOfMainComponents();
-
-            while (true) {
-                int totalWeightage = 100 - examWeight;
-                for (int i = 0; i < numberOfMain; i++) {
-                    Map<String, Double> subComponentsMap;
-                    String mainComponentName = io.readMainComponentName(totalWeightage, i, mainComponentNames);
-
-                    mainComponentNames.add(mainComponentName);
-
-                    int weight = io.readMainComponentWeightage(i, totalWeightage);
-                    totalWeightage -= weight;
-
-                    int noOfSub = io.readNoOfSubComponents(i);
-
-                    subComponentsMap = io.readSubComponents(noOfSub);
-
-                    List<SubComponent> subComponentsList = new ArrayList<SubComponent>();
-                    for (String key : subComponentsMap.keySet()) {
-                        SubComponent subComponent = new SubComponent(key, subComponentsMap.get(key).intValue());
-                        subComponentsList.add(subComponent);
-                    }
-
-                    MainComponent main = new MainComponent(mainComponentName, weight, subComponentsList);
-                    mainComponents.add(main);
-                }
-
-
-                if (totalWeightage != 0) {
-                    // weightage assign is not tallied
-                    io.printWeightageError();
-                    mainComponents.clear();
-                    mainComponentNames.clear();
-                } else {
-                    break;
-                }
-            }
-            //set maincomponent to course
+            // Course is empty, can create and add new components
+            List<MainComponent> mainComponents = addMainComponentsToCourse(io, currentCourse);
             currentCourse.setMainComponents(mainComponents);
-
         } else {
             io.printCourseworkWeightageEnteredError();
         }
@@ -214,6 +159,98 @@ public class CourseMgr {
         // Update course into course.csv
     }
 
+    /**
+     * Creates components for a given course through user input
+     *
+     * @param io            A CourseMgrIO to use for output
+     * @param currentCourse The course to create components for
+     * @return
+     */
+    private List<MainComponent> addMainComponentsToCourse(CourseMgrIO io, Course currentCourse) {
+        List<MainComponent> mainComponents = new ArrayList<>(0);
+
+        io.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
+        int examWeight = addExamComponent(io, mainComponents);
+
+        int numberOfMainComponents = io.readNoOfMainComponents();
+
+        while (true) {
+            int totalWeightage = addMainComponents(io, examWeight, numberOfMainComponents, mainComponents);
+
+            if (totalWeightage != 0) {
+                // weightage assign is not tallied
+                io.printWeightageError();
+                mainComponents.clear();
+            } else {
+                break;
+            }
+        }
+
+        return mainComponents;
+    }
+
+    /**
+     * Creates new main components from user input
+     *
+     * @param io                     CourseMgrIO to use for user I/O
+     * @param examWeight             Weight of associated course exam
+     * @param numberOfMainComponents Number of main components to create
+     * @param mainComponents         List of components to add main components to
+     * @return
+     */
+    private int addMainComponents(CourseMgrIO io, int examWeight, int numberOfMainComponents, List<MainComponent> mainComponents) {
+        Set<String> mainComponentNames = new HashSet<>();
+        int totalWeightage = 100 - examWeight;
+
+        for (int i = 0; i < numberOfMainComponents; i++) {
+            Map<String, Double> subComponentsMap;
+            String mainComponentName = io.readMainComponentName(totalWeightage, i, mainComponentNames);
+
+            mainComponentNames.add(mainComponentName);
+
+            int weight = io.readMainComponentWeightage(i, totalWeightage);
+            totalWeightage -= weight;
+
+            int noOfSub = io.readNoOfSubComponents(i);
+            subComponentsMap = io.readSubComponents(noOfSub);
+
+            List<SubComponent> subComponentsList = new ArrayList<SubComponent>();
+            for (String key : subComponentsMap.keySet()) {
+                SubComponent subComponent = new SubComponent(key, subComponentsMap.get(key).intValue());
+                subComponentsList.add(subComponent);
+            }
+
+            MainComponent main = new MainComponent(mainComponentName, weight, subComponentsList);
+            mainComponents.add(main);
+        }
+
+        return totalWeightage;
+    }
+
+    /**
+     * Creates an exam main component for a course
+     *
+     * @param io             CourseMgrIO to use for user I/O
+     * @param mainComponents List of components to add exam to
+     * @return
+     */
+    private int addExamComponent(CourseMgrIO io, List<MainComponent> mainComponents) {
+        int hasFinalExamChoice = 0;
+        int examWeight = 0;
+
+        while (hasFinalExamChoice < 1 || hasFinalExamChoice > 2) {
+            hasFinalExamChoice = io.readHasFinalExamChoice();
+            if (hasFinalExamChoice == 1) {
+                examWeight = io.readExamWeight();
+                MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>());
+                mainComponents.add(exam);
+            } else if (hasFinalExamChoice == 2) {
+                io.printEnterContinuousAssessments();
+            }
+        }
+
+        return examWeight;
+    }
 
     /**
      * Displays a list of IDs of all the courses.
@@ -268,7 +305,7 @@ public class CourseMgr {
 //                Leave the exam report to the last
                 exam = mainComponent;
             } else {
-                io.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getComponentName()));
+                io.printMainComponent(mainComponent.getComponentName(), mainComponent.getComponentWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
@@ -335,9 +372,9 @@ public class CourseMgr {
     }
 
 
-    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID){
+    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID) {
         Map<String, Double> map = new HashMap<>();
-        for(SubComponent subComponent : subComponents){
+        for (SubComponent subComponent : subComponents) {
             double mark = markCalculator.computeAverageMarkForCourseComponent(courseID, subComponent.getComponentName());
             map.put(subComponent.getComponentName(), mark);
         }
