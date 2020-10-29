@@ -2,8 +2,11 @@ package com.softeng306.managers;
 
 import com.softeng306.domain.exceptions.ProfessorNotFoundException;
 import com.softeng306.domain.professor.Professor;
+
+import com.softeng306.fileprocessing.IFileProcessor;
+import com.softeng306.fileprocessing.ProfessorFileProcessor;
+
 import com.softeng306.enums.Department;
-import com.softeng306.io.FILEMgr;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,11 +23,14 @@ public class ProfessorMgr {
 
     private static ProfessorMgr singleInstance = null;
 
+    private final IFileProcessor<Professor> professorFileProcessor;
+
     /**
      * Override default constructor to implement singleton pattern
      */
-    private ProfessorMgr(List<Professor> professors) {
-        this.professors = professors;
+    private ProfessorMgr() {
+        professorFileProcessor = new ProfessorFileProcessor();
+        professors = professorFileProcessor.loadFile();
     }
 
     /**
@@ -34,7 +40,7 @@ public class ProfessorMgr {
      */
     public static ProfessorMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new ProfessorMgr(FILEMgr.loadProfessors());
+            singleInstance = new ProfessorMgr();
         }
 
         return singleInstance;
@@ -43,10 +49,11 @@ public class ProfessorMgr {
     /**
      * Returns the IDs of all professors in the department.
      *
-     * @param department The department the professors are in.
+     * @param departmentName The department the professors are in.
      * @return A list of all the IDs of the professors.
      */
-    public List<String> getAllProfIDInDepartment(Department department) {
+    public List<String> getAllProfIDInDepartment(String departmentName) {
+        Department department = Department.valueOf(departmentName);
         return professors
                 .stream()
                 .filter(p -> department.equals(p.getProfDepartment()))

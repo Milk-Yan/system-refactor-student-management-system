@@ -7,7 +7,8 @@ import com.softeng306.managers.MarkMgr;
 import java.util.List;
 import java.util.Scanner;
 
-public class MarkMgrIO {
+public class
+MarkMgrIO {
     private Scanner scanner = new Scanner(System.in);
     private static MarkMgrIO singleInstance = null;
 

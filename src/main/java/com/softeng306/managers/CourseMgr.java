@@ -4,6 +4,7 @@ package com.softeng306.managers;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.domain.mark.MarkCalculator;
+import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 
 import com.softeng306.domain.course.Course;
@@ -11,10 +12,13 @@ import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.student.Student;
+
+import com.softeng306.fileprocessing.CourseFileProcessor;
+import com.softeng306.fileprocessing.IFileProcessor;
+
 import com.softeng306.enums.GroupType;
+
 import com.softeng306.io.CourseMgrIO;
-import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
 
 
@@ -23,8 +27,6 @@ import java.util.stream.Collectors;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 
 public class CourseMgr {
     /**
@@ -36,13 +38,15 @@ public class CourseMgr {
 
     private CourseMgrIO courseMgrIO = new CourseMgrIO();
 
+    private final IFileProcessor<Course> courseFileProcessor;
     private MarkCalculator markCalculator = new MarkCalculator();
 
     /**
      * Override default constructor to implement singleton pattern
      */
-    private CourseMgr(List<Course> courses) {
-        this.courses = courses;
+    private CourseMgr() {
+        courseFileProcessor = new CourseFileProcessor();
+        courses = courseFileProcessor.loadFile();
     }
 
     /**
@@ -52,7 +56,7 @@ public class CourseMgr {
      */
     public static CourseMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new CourseMgr(FILEMgr.loadCourses());
+            singleInstance = new CourseMgr();
         }
 
         return singleInstance;
@@ -67,7 +71,8 @@ public class CourseMgr {
         int addCourseComponentChoice;
 
         // Update Course in files
-        FILEMgr.writeCourseIntoFile(course);
+        courseFileProcessor.writeNewEntryToFile(course);
+
         courses.add(course);
 
         addCourseComponentChoice = courseMgrIO.readCreateCourseComponentChoice();
@@ -99,19 +104,19 @@ public class CourseMgr {
             }
 
             if (currentCourse != null) {
-                courseMgrIO.printCourseInfoString(this.generateCourseInformation(currentCourse));
-                courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LECTURE_GROUP.toString());
+                courseMgrIO.printCourseInfoString(generateCourseInformation(currentCourse));
+                courseMgrIO.printVacanciesForGroups(generateGroupInformation(currentCourse.getLectureGroups()),GroupType.LECTURE_GROUP.toString());
 
                 if (currentCourse.getTutorialGroups() != null) {
-                    System.out.println();
-                    courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP.toString());
+                    courseMgrIO.printEmptySpace();
+                    courseMgrIO.printVacanciesForGroups(generateGroupInformation(currentCourse.getTutorialGroups()), GroupType.TUTORIAL_GROUP.toString());
                 }
 
                 if (currentCourse.getLabGroups() != null) {
-                    System.out.println();
-                    courseMgrIO.printVacanciesForGroups(this.generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP.toString());
+                    courseMgrIO.printEmptySpace();
+                    courseMgrIO.printVacanciesForGroups(generateGroupInformation(currentCourse.getLabGroups()), GroupType.LAB_GROUP.toString());
                 }
-                System.out.println();
+                courseMgrIO.printEmptySpace();
                 break;
             } else {
                 courseMgrIO.printCourseNotExist();
@@ -138,7 +143,7 @@ public class CourseMgr {
             }
         }
 
-        HashSet<String> mainComponentNames = new HashSet<>();
+        Set<String> mainComponentNames = new HashSet<>();
         List<MainComponent> mainComponents = new ArrayList<>(0);
         // Check if mainComponent is empty
         if (currentCourse.getMainComponents().isEmpty()) {
@@ -163,7 +168,7 @@ public class CourseMgr {
             while (true) {
                 int totalWeightage = 100 - examWeight;
                 for (int i = 0; i < numberOfMain; i++) {
-                    HashMap<String, Double> subComponentsMap = new HashMap<>();
+                    Map<String, Double> subComponentsMap;
                     String mainComponentName = courseMgrIO.readMainComponentName(totalWeightage, i, mainComponentNames);
                     mainComponentNames.add(mainComponentName);
 
@@ -269,8 +274,8 @@ public class CourseMgr {
                 courseMgrIO.printMainComponent(mainComponent.getComponentName(),mainComponent.getComponentWeight(), markCalculator.computeComponentMark(courseMarks, mainComponent.getComponentName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
-                    String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
-                    HashMap<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents,courseMarks);
+                    String[][] subComponentInformation = generateSubComponentInformation(subComponents);
+                    Map<String, Double> subComponentMarks = generateComponentMarkInformation(subComponents,courseMarks);
                     courseMgrIO.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
             }
@@ -330,7 +335,6 @@ public class CourseMgr {
     }
 
     public String[][] generateSubComponentInformation(List<SubComponent> subComponents){
-        //HashMap<String, Integer> map = new HashMap<>();
         String[][] map = new String[subComponents.size()][2];
         int i = 0;
         for(SubComponent subComponent : subComponents){
@@ -341,8 +345,8 @@ public class CourseMgr {
         return map;
     }
 
-    public HashMap<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, List<Mark> marks){
-        HashMap<String, Double> map = new HashMap<>();
+    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, List<Mark> marks){
+        Map<String, Double> map = new HashMap<>();
         for(SubComponent subComponent : subComponents){
             double mark = markCalculator.computeComponentMark(marks, subComponent.getComponentName());
             map.put(subComponent.getComponentName(), mark);
@@ -389,8 +393,8 @@ public class CourseMgr {
         return course.get();
     }
 
-    public HashMap<String, List<String>> generateGeneralInformationForAllCourses(){
-        HashMap<String, List<String>> generalCourseInfoMap = new HashMap<>();
+    public Map<String, List<String>> generateGeneralInformationForAllCourses(){
+        Map<String, List<String>> generalCourseInfoMap = new HashMap<>();
         for(Course course : courses) {
             List<String> generalCourseInfo = new ArrayList<>();
             generalCourseInfo.add(course.getCourseName());
@@ -401,13 +405,13 @@ public class CourseMgr {
 
     }
 
-    public HashMap<HashMap<String, String>, HashMap<String,String>> generateComponentInformationForACourses(Course course){
-        HashMap<HashMap<String, String>, HashMap<String, String>> map = new HashMap<>();
+    public Map<Map<String, String>, Map<String,String>> generateComponentInformationForACourses(Course course){
+        Map<Map<String, String>, Map<String, String>> map = new HashMap<>();
         for (MainComponent eachComp : course.getMainComponents()) {
-            HashMap<String, String> mainComponentInfo = new HashMap<>();
+            Map<String, String> mainComponentInfo = new HashMap<>();
             mainComponentInfo.put(eachComp.getComponentName(), String.valueOf(eachComp.getComponentWeight()));
 
-            HashMap<String,String> subComponentsInfo = new HashMap<>();
+            Map<String,String> subComponentsInfo = new HashMap<>();
             for (SubComponent eachSub : eachComp.getSubComponents()) {
                 subComponentsInfo.put(eachSub.getComponentName(), String.valueOf(eachSub.getComponentWeight()));
             }
@@ -418,35 +422,37 @@ public class CourseMgr {
     }
 
     public boolean checkContainsDepartment(String courseDepartment){
-        return Department.contains(courseDepartment);
+        DepartmentMgr departmentMgr = new DepartmentMgr();
+        return departmentMgr.contains(courseDepartment);
     }
 
     public List<String> getAllDepartmentsNameList(){
-        return Department.getListOfDepartments();
+        DepartmentMgr departmentMgr = new DepartmentMgr();
+        return departmentMgr.getListOfDepartments();
     }
 
     public int getNumberOfLectureGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.LECTURE_GROUP, compareTo, totalSeats);
+        return courseMgrIO.readNoOfGroup(GroupType.LECTURE_GROUP.toString(), compareTo, totalSeats);
     }
 
     public int getReadWeeklyLectureHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.LECTURE_GROUP, AU);
+        return courseMgrIO.readWeeklyHour(GroupType.LECTURE_GROUP.toString(), AU);
     }
 
     public int getNumberOfLabGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.LAB_GROUP, compareTo, totalSeats);
+        return courseMgrIO.readNoOfGroup(GroupType.LAB_GROUP.toString(), compareTo, totalSeats);
     }
 
     public int getReadWeeklyLabHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.LAB_GROUP, AU);
+        return courseMgrIO.readWeeklyHour(GroupType.LAB_GROUP.toString(), AU);
     }
 
     public int getNumberOfTutorialGroups(int compareTo, int totalSeats){
-        return courseMgrIO.readNoOfGroup(GroupType.TUTORIAL_GROUP, compareTo, totalSeats);
+        return courseMgrIO.readNoOfGroup(GroupType.TUTORIAL_GROUP.toString(), compareTo, totalSeats);
     }
 
     public int getReadWeeklyTutorialHour(int AU){
-        return courseMgrIO.readWeeklyHour(GroupType.TUTORIAL_GROUP, AU);
+        return courseMgrIO.readWeeklyHour(GroupType.TUTORIAL_GROUP.toString(), AU);
     }
 
 
@@ -454,5 +460,19 @@ public class CourseMgr {
         Course course = getCourseFromId(courseId);
         return course.getCourseName();
     }
+
+    public List<String> getListCourseTypes(){
+        return CourseType.getAllCourseTypes();
+    }
+
+    public String getMainComponentString(){
+        return MainComponent.COMPONENT_NAME;
+    }
+
+    public String getSubComponentString(){
+        return SubComponent.COMPONENT_NAME;
+    }
+
+
 
 }
