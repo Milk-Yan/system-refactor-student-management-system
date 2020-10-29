@@ -11,9 +11,13 @@ import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.Mark;
+
+import com.softeng306.fileprocessing.CourseFileProcessor;
+import com.softeng306.fileprocessing.IFileProcessor;
+
 import com.softeng306.enums.GroupType;
+
 import com.softeng306.io.CourseMgrIO;
-import com.softeng306.io.FILEMgr;
 import com.softeng306.io.MainMenuIO;
 
 
@@ -22,8 +26,6 @@ import java.util.stream.Collectors;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 
 public class CourseMgr {
     /**
@@ -35,13 +37,15 @@ public class CourseMgr {
 
     private CourseMgrIO courseMgrIO = new CourseMgrIO();
 
+    private final IFileProcessor<Course> courseFileProcessor;
     private MarkCalculator markCalculator = new MarkCalculator();
 
     /**
      * Override default constructor to implement singleton pattern
      */
-    private CourseMgr(List<Course> courses) {
-        this.courses = courses;
+    private CourseMgr() {
+        courseFileProcessor = new CourseFileProcessor();
+        courses = courseFileProcessor.loadFile();
     }
 
     /**
@@ -51,7 +55,7 @@ public class CourseMgr {
      */
     public static CourseMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new CourseMgr(FILEMgr.loadCourses());
+            singleInstance = new CourseMgr();
         }
 
         return singleInstance;
@@ -66,7 +70,8 @@ public class CourseMgr {
         int addCourseComponentChoice;
 
         // Update Course in files
-        FILEMgr.writeCourseIntoFile(course);
+        courseFileProcessor.writeNewEntryToFile(course);
+
         courses.add(course);
 
         addCourseComponentChoice = courseMgrIO.readCreateCourseComponentChoice();

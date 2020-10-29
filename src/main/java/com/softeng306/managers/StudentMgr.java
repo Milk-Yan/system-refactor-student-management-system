@@ -1,6 +1,5 @@
 package com.softeng306.managers;
 
-
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.MainComponentMark;
@@ -8,13 +7,18 @@ import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.mark.SubComponentMark;
 import com.softeng306.domain.student.Student;
+
+import com.softeng306.fileprocessing.IFileProcessor;
+import com.softeng306.fileprocessing.StudentFileProcessor;
+
 import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
-import com.softeng306.io.FILEMgr;
+
 import com.softeng306.io.StudentMgrIO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -32,19 +36,17 @@ public class StudentMgr {
 
     private static StudentMgr singleInstance = null;
 
-    private static MarkCalculator markCalculator;
+    private final MarkCalculator markCalculator;
 
-    /**
-     * Uses idNumber to generate student ID.
-     */
-    private static int idNumber = 1800000;
+    private final IFileProcessor<Student> studentFileProcessor;
 
     /**
      * Override default constructor to implement singleton pattern
      */
-    private StudentMgr(List<Student> students, MarkCalculator markCalculator) {
-        this.markCalculator = markCalculator;
-        this.students = students;
+    private StudentMgr() {
+        studentFileProcessor = new StudentFileProcessor();
+        markCalculator = new MarkCalculator();
+        students = studentFileProcessor.loadFile();
     }
 
     /**
@@ -54,7 +56,7 @@ public class StudentMgr {
      */
     public static StudentMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new StudentMgr(FILEMgr.loadStudents(), new MarkCalculator());
+            singleInstance = new StudentMgr();
         }
 
         return singleInstance;
@@ -67,7 +69,7 @@ public class StudentMgr {
         currentStudent.setGender(Gender.valueOf(gender));      //gender
         currentStudent.setStudentYear(year);   //student year
 
-        FILEMgr.writeStudentsIntoFile(currentStudent);
+        studentFileProcessor.writeNewEntryToFile(currentStudent);
         students.add(currentStudent);
     }
 
@@ -162,39 +164,31 @@ public class StudentMgr {
     }
 
     /**
-     * Sets the idNumber variable of this student manager class.
-     *
-     * @param idNumber static variable idNumber of this class.
-     */
-    public static void setIdNumber(int idNumber) {
-        StudentMgr.idNumber = idNumber;
-    }
-
-    /**
      * Generates the ID of a new student.
      *
      * @return the generated student ID.
      */
     public String generateStudentID() {
-        String generateStudentID;
-        boolean studentIDUsed;
-        do {
-            int rand = (int) (Math.random() * ((76 - 65) + 1)) + 65;
-            String lastPlace = Character.toString((char) rand);
-            idNumber += 1;
-            generateStudentID = "U" + idNumber + lastPlace;
-            studentIDUsed = false;
-            for (Student student : this.students) {
-                if (generateStudentID.equals(student.getStudentID())) {
-                    studentIDUsed = true;
-                    break;
-                }
-            }
-            if (!studentIDUsed) {
-                break;
-            }
-        } while (true);
-        return generateStudentID;
+        int smallestAvailableIDNumber = findLargestStudentID();
+
+        // randomly generate the last character from A-Z.
+        int rand = new Random().nextInt();
+        char randomEndNumber = (char) ((rand * (76-65) + 1) + 65);
+
+        return "U" + (smallestAvailableIDNumber+1) + randomEndNumber;
+    }
+
+    /**
+     * Find the largest student ID by the number value in all the students.
+     * If there is no student in DB, this is default 1800000 (2018 into Uni)
+     */
+    private int findLargestStudentID() {
+        int recentStudentID = 0;
+        for (Student student : students) {
+            recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentID().substring(1, 8)));
+        }
+
+        return recentStudentID > 0 ? recentStudentID : 1800000;
     }
 
     public List<String> getExistingStudentIds() {
