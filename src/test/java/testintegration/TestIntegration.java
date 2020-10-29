@@ -99,12 +99,12 @@ public class TestIntegration extends AbstractTestProcess {
         inputList1.add("P1234561A"); // Enter prof in charge id
         inputList1.add("2"); // Set course components later
         inputList1.add("11"); // Exit program
-        compareOutputsBetweenRefactoredAndOriginal(inputList1, Thread.currentThread().getStackTrace()[1].getMethodName()+"1");
+        compareLinesBetweenRefactoredAndOriginal(inputList1, Thread.currentThread().getStackTrace()[1].getMethodName()+"1");
 
         List<String> inputList2 = new ArrayList<>();
         inputList2.add("9"); // Print course statistics
         inputList2.add("SE1111"); // Enter student ID
         inputList2.add("11"); // Exit program
-        compareOutputsBetweenRefactoredAndOriginal(inputList2, Thread.currentThread().getStackTrace()[1].getMethodName()+"2");
+        compareLinesBetweenRefactoredAndOriginal(inputList2, Thread.currentThread().getStackTrace()[1].getMethodName()+"2");
     }
 }

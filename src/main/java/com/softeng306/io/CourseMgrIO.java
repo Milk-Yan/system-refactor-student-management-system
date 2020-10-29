@@ -708,7 +708,7 @@ public class CourseMgrIO {
     }
 
     public void printAllDepartments(List<String> departments){
-        int index = 0;
+        int index = 1;
         for(String department : departments){
             System.out.println(index + ": " + department);
             index++;
@@ -972,7 +972,7 @@ public class CourseMgrIO {
     }
 
 
-    public void addCourse(String lectureGroup, String labGroup, String tutorialGroup){
+    public void addCourse(){
 
         ICourseBuilder builder = new CourseBuilder();
 
