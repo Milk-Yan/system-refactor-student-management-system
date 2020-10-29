@@ -16,20 +16,6 @@ public class StudentFileProcessor extends FileProcessor<Student> {
     private static final String STUDENT_FILE_PATH = "data/studentFile.json";
 
     /**
-     * Set the recent student ID, let the newly added student have the ID onwards.
-     * If there is no student in DB, set recentStudentID to 1800000 (2018 into Uni)
-     *
-     * @param students The students to update.
-     */
-    private void updateStudentIDs(List<Student> students) {
-        int recentStudentID = 0;
-        for (Student student : students) {
-            recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentID().substring(1, 8)));
-        }
-        StudentMgr.setIdNumber(recentStudentID > 0 ? recentStudentID : 1800000);
-    }
-
-    /**
      * Loads a list of all the students from {@value STUDENT_FILE_PATH}.
      * @return A list of all the students that is loaded from the file.
      */
@@ -41,7 +27,6 @@ public class StudentFileProcessor extends FileProcessor<Student> {
 
         try {
             allStudents = new ArrayList<>(Arrays.asList(objectMapper.readValue(studentFile, Student[].class)));
-            updateStudentIDs(allStudents);
         } catch (IOException e) {
             System.out.println("Error occurs when loading students.");
             e.printStackTrace();
