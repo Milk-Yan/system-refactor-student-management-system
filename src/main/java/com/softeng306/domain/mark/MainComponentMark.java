@@ -50,7 +50,7 @@ public class MainComponentMark {
             }
         }
 
-        throw new SubComponentNotFoundException(courseWorkName);
+        return null;
     }
 
     public void addSubComponentMark(SubComponentMark subComponentMark) {
