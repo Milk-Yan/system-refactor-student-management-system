@@ -20,6 +20,14 @@ import java.util.Optional;
 
 public class CourseRegistrationMgr implements ICourseRegistrationMgr {
 
+    /**
+     * Override default constructor to implement singleton pattern
+     */
+    private CourseRegistrationMgr() {
+        courseRegistrationFileProcessor = new CourseRegistrationFileProcessor();
+        courseRegistrations = courseRegistrationFileProcessor.loadFile();
+    }
+
     @Override
     public List<String> registerCourse(String studentID, String courseID) throws InvalidCourseRegistrationException, StudentNotFoundException, CourseNotFoundException {
         ICourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
@@ -44,7 +52,7 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
         io.printRegistrationRequestDetails(currentStudent.getStudentName(), currentStudent.getStudentID(), currentCourse.getCourseID(), currentCourse.getCourseName());
 
         List<Group> lecGroups = currentCourse.getLectureGroups();
-        GroupMgr groupMgr = GroupMgr.getInstance();
+        IGroupMgr groupMgr = GroupMgr.getInstance();
         Group selectedLectureGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LECTURE_GROUP, lecGroups);
 
         List<Group> tutGroups = currentCourse.getTutorialGroups();
@@ -195,14 +203,6 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
     private static ICourseRegistrationMgr singleInstance = null;
 
     private final IFileProcessor<CourseRegistration> courseRegistrationFileProcessor;
-
-    /**
-     * Override default constructor to implement singleton pattern
-     */
-    private CourseRegistrationMgr() {
-        courseRegistrationFileProcessor = new CourseRegistrationFileProcessor();
-        courseRegistrations = courseRegistrationFileProcessor.loadFile();
-    }
 
     /**
      * Return the ICourseRegistrationMgr singleton, if not initialised already, create an instance.

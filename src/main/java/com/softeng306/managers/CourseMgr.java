@@ -35,6 +35,14 @@ public class CourseMgr implements ICourseMgr {
     private MarkCalculator markCalculator = new MarkCalculator();
 
     /**
+     * Override default constructor to implement singleton pattern
+     */
+    private CourseMgr() {
+        courseFileProcessor = new CourseFileProcessor();
+        courses = courseFileProcessor.loadFile();
+    }
+
+    /**
      * Return the CourseMgr singleton, if not initialised already, create an instance.
      *
      * @return CourseMgr the singleton instance
@@ -315,14 +323,6 @@ public class CourseMgr implements ICourseMgr {
         }
 
         return mainComponents;
-    }
-
-    /**
-     * Override default constructor to implement singleton pattern
-     */
-    private CourseMgr() {
-        courseFileProcessor = new CourseFileProcessor();
-        courses = courseFileProcessor.loadFile();
     }
 
     /**
