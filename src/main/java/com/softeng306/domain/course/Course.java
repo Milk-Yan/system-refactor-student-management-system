@@ -1,6 +1,5 @@
 package com.softeng306.domain.course;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.professor.Professor;
@@ -13,20 +12,20 @@ import java.util.List;
 
 public class Course {
 
-    private String courseID;
-    private String courseName;
+    private String courseId;
+    private String name;
     private int academicUnits;
 
-    private Professor profInCharge;
-    private Department courseDepartment;
+    private Professor courseCoordinator;
+    private Department department;
     private CourseType courseType;
 
     private int vacancies;
-    private int totalSeats;
+    private int capacity;
 
-    private int lecWeeklyHour;
-    private int tutWeeklyHour = 0;
-    private int labWeeklyHour = 0;
+    private int lectureHoursPerWeek;
+    private int tutorialHoursPerWeek = 0;
+    private int labHoursPerWeek = 0;
 
     private List<Group> lectureGroups;
     private List<Group> tutorialGroups = new ArrayList<>();
@@ -45,8 +44,8 @@ public class Course {
      *
      * @return the ID of this course.
      */
-    public String getCourseID() {
-        return courseID;
+    public String getCourseId() {
+        return courseId;
     }
 
     /**
@@ -54,8 +53,8 @@ public class Course {
      *
      * @return the name of this course.
      */
-    public String getCourseName() {
-        return courseName;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -70,8 +69,8 @@ public class Course {
      *
      * @return the professor in charge of this course.
      */
-    public Professor getProfInCharge() {
-        return profInCharge;
+    public Professor getCourseCoordinator() {
+        return courseCoordinator;
     }
 
     /**
@@ -88,8 +87,8 @@ public class Course {
      *
      * @return the total seats of this course.
      */
-    public int getTotalSeats() {
-        return totalSeats;
+    public int getCapacity() {
+        return capacity;
     }
 
     /**
@@ -97,8 +96,8 @@ public class Course {
      *
      * @return the department of this course.
      */
-    public Department getCourseDepartment() {
-        return courseDepartment;
+    public Department getDepartment() {
+        return department;
     }
 
     /**
@@ -115,8 +114,8 @@ public class Course {
      *
      * @return the weekly lecture hour of this course.
      */
-    public int getLecWeeklyHour() {
-        return lecWeeklyHour;
+    public int getLectureHoursPerWeek() {
+        return lectureHoursPerWeek;
     }
 
     /**
@@ -124,8 +123,8 @@ public class Course {
      *
      * @return the weekly tutorial hour of this course.
      */
-    public int getTutWeeklyHour() {
-        return tutWeeklyHour;
+    public int getTutorialHoursPerWeek() {
+        return tutorialHoursPerWeek;
     }
 
     /**
@@ -133,8 +132,8 @@ public class Course {
      *
      * @return the weekly lab hour of this course.
      */
-    public int getLabWeeklyHour() {
-        return labWeeklyHour;
+    public int getLabHoursPerWeek() {
+        return labHoursPerWeek;
     }
 
     /**
@@ -185,7 +184,7 @@ public class Course {
     /**
      * Updates the available vacancies of this course after someone has registered this group.
      */
-    public void enrolledIn() {
+    public void updateVacanciesForEnrollment() {
         this.vacancies = vacancies - 1;
     }
 
@@ -219,23 +218,23 @@ public class Course {
     /**
      * Sets the weekly hour of the tutorials.
      *
-     * @param tutWeeklyHour this course's weekly tutorial hour.
+     * @param tutorialHoursPerWeek this course's weekly tutorial hour.
      */
-    public void setTutWeeklyHour(int tutWeeklyHour) {
-        this.tutWeeklyHour = tutWeeklyHour;
+    public void setTutorialHoursPerWeek(int tutorialHoursPerWeek) {
+        this.tutorialHoursPerWeek = tutorialHoursPerWeek;
     }
 
-    public void setLecWeeklyHour(int lecWeeklyHour) {
-        this.lecWeeklyHour = lecWeeklyHour;
+    public void setLectureHoursPerWeek(int lectureHoursPerWeek) {
+        this.lectureHoursPerWeek = lectureHoursPerWeek;
     }
 
     /**
      * Sets the weekly hour of the labs.
      *
-     * @param labWeeklyHour this course's weekly lab hour.
+     * @param labHoursPerWeek this course's weekly lab hour.
      */
-    public void setLabWeeklyHour(int labWeeklyHour) {
-        this.labWeeklyHour = labWeeklyHour;
+    public void setLabHoursPerWeek(int labHoursPerWeek) {
+        this.labHoursPerWeek = labHoursPerWeek;
     }
 
     /**
@@ -252,8 +251,8 @@ public class Course {
      *
      * @param id ID for course.
      */
-    public void setID(String id) {
-        this.courseID = id;
+    public void setCourseId(String id) {
+        this.courseId = id;
     }
 
     /**
@@ -262,7 +261,7 @@ public class Course {
      * @param name Name for course.
      */
     public void setName(String name) {
-        this.courseName = name;
+        this.name = name;
     }
 
     /**
@@ -270,17 +269,17 @@ public class Course {
      *
      * @param professor Professor in charge of course.
      */
-    public void setProfInCharge(Professor professor) {
-        this.profInCharge = professor;
+    public void setCourseCoordinator(Professor professor) {
+        this.courseCoordinator = professor;
     }
 
     /**
      * Sets the total seats available for this course.
      *
-     * @param totalSeats Total seats available for this course.
+     * @param courseCapacity Total seats available for this course.
      */
-    public void setTotalSeat(int totalSeats) {
-        this.totalSeats = totalSeats;
+    public void setCapacity(int courseCapacity) {
+        this.capacity = courseCapacity;
     }
 
     /**
@@ -297,8 +296,8 @@ public class Course {
      *
      * @param department Department for this course.
      */
-    public void setCourseDepartment(Department department) {
-        this.courseDepartment = department;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public void setType(CourseType type) {
@@ -312,6 +311,7 @@ public class Course {
     public String[][] generateTutorialGroupInformation() {
         return generateGroupInformation(tutorialGroups);
     }
+
     public String[][] generateLectureGroupInformation() {
         return generateGroupInformation(lectureGroups);
     }
@@ -321,7 +321,7 @@ public class Course {
         for (int i = 0; i < groups.size(); i++) {
             groupInfo[i][0] = groups.get(i).getGroupName();
             groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
-            groupInfo[i][2] = String.valueOf(groups.get(i).getTotalSeats());
+            groupInfo[i][2] = String.valueOf(groups.get(i).getCapacity());
         }
         return groupInfo;
     }

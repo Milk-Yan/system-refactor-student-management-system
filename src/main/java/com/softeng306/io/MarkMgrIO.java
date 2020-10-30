@@ -80,7 +80,7 @@ public class MarkMgrIO implements IMarkMgrIO {
 
         try {
             String studentID = new StudentMgrIO().readExistingStudentID();
-            String courseID = CourseMgr.getInstance().readExistingCourse().getCourseID();
+            String courseID = CourseMgr.getInstance().readExistingCourse().getCourseId();
             markMgr.setCourseworkMark(isExam, studentID, courseID);
         } catch (CourseNotFoundException e) {
             e.printStackTrace();

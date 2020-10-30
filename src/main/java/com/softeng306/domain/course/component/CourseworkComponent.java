@@ -2,9 +2,8 @@ package com.softeng306.domain.course.component;
 
 public abstract class CourseworkComponent {
 
-    private String componentName;
-
-    private int componentWeight;
+    private String name;
+    private int weight;
 
     /**
      * Default constructor. Required for Jackson serialization.
@@ -16,12 +15,12 @@ public abstract class CourseworkComponent {
     /**
      * Creates a course work components with component name and component weight
      *
-     * @param componentName   the name of this coursework component
-     * @param componentWeight the weight of this coursework component
+     * @param name   the name of this coursework component
+     * @param weight the weight of this coursework component
      */
-    public CourseworkComponent(String componentName, int componentWeight) {
-        this.componentName = componentName;
-        this.componentWeight = componentWeight;
+    public CourseworkComponent(String name, int weight) {
+        this.name = name;
+        this.weight = weight;
     }
 
     /**
@@ -29,8 +28,8 @@ public abstract class CourseworkComponent {
      *
      * @return the name of this component
      */
-    public String getComponentName() {
-        return this.componentName;
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -38,7 +37,7 @@ public abstract class CourseworkComponent {
      *
      * @return the weight of this component
      */
-    public int getComponentWeight() {
-        return this.componentWeight;
+    public int getWeight() {
+        return this.weight;
     }
 }

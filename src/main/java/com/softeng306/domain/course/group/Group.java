@@ -15,7 +15,7 @@ public class Group {
     private int availableVacancies;
     private GroupType groupType;
 
-    private int totalSeats;
+    private int capacity;
 
     /**
      * Default constructor. Required for Jackson serialization.
@@ -29,13 +29,13 @@ public class Group {
      *
      * @param groupName          This group's name.
      * @param availableVacancies This group's current available vacancy.
-     * @param totalSeats         This group's total seats.
+     * @param groupCapacity         This group's total seats.
      */
-    public Group(String groupName, int availableVacancies, int totalSeats, GroupType groupType) {
+    public Group(String groupName, int availableVacancies, int groupCapacity, GroupType groupType) {
         this.groupType = groupType;
         this.groupName = groupName;
         this.availableVacancies = availableVacancies;
-        this.totalSeats = totalSeats;
+        this.capacity = groupCapacity;
     }
 
     /**
@@ -61,14 +61,14 @@ public class Group {
      *
      * @return this group's total seats.
      */
-    public int getTotalSeats() {
-        return totalSeats;
+    public int getCapacity() {
+        return capacity;
     }
 
     /**
      * Updates the available vacancies of this group after someone has registered this group.
      */
-    public void enrolledIn() {
+    public void updateVacanciesForEnrollment() {
         this.availableVacancies -= 1;
     }
 

@@ -51,8 +51,8 @@ public class ProfessorMgr implements IProfessorMgr {
         Department department = Department.valueOf(departmentName);
         return professors
                 .stream()
-                .filter(p -> department.equals(p.getProfDepartment()))
-                .map(p -> p.getProfID())
+                .filter(p -> department.equals(p.getDepartment()))
+                .map(p -> p.getProfessorId())
                 .collect(Collectors.toList());
     }
 
@@ -62,7 +62,7 @@ public class ProfessorMgr implements IProfessorMgr {
                 .getInstance()
                 .getProfessors()
                 .stream()
-                .filter(p -> professorID.equals(p.getProfID()))
+                .filter(p -> professorID.equals(p.getProfessorId()))
                 .findFirst();
 
         if (!professor.isPresent()) {
@@ -75,7 +75,7 @@ public class ProfessorMgr implements IProfessorMgr {
     @Override
     public boolean checkProfessorExists(String profID){
         Optional<Professor> professor = professors.stream()
-                .filter(p -> profID.equals(p.getProfID()))
+                .filter(p -> profID.equals(p.getProfessorId()))
                 .findFirst();
 
         return professor.isPresent();

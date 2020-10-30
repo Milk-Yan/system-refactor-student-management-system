@@ -44,7 +44,7 @@ public class MainComponentMark {
 
     public SubComponentMark getSubComponentMark(String courseWorkName) {
         for (SubComponentMark subComponentMark : subComponentMarks) {
-            if (subComponentMark.getSubComponent().getComponentName().equals(courseWorkName)) {
+            if (subComponentMark.getSubComponent().getName().equals(courseWorkName)) {
                 return subComponentMark;
             }
         }

@@ -53,9 +53,9 @@ public class StudentMgr implements IStudentMgr {
     public void createNewStudent(String id, String name, String school, String gender, int year) {
         Student currentStudent = new Student(id, name);
 
-        currentStudent.setStudentSchool(Department.valueOf(school));  //Set school
+        currentStudent.setDepartment(Department.valueOf(school));  //Set school
         currentStudent.setGender(Gender.valueOf(gender));      //gender
-        currentStudent.setStudentYear(year);   //student year
+        currentStudent.setYearLevel(year);   //student year
 
         studentFileProcessor.writeNewEntryToFile(currentStudent);
         students.add(currentStudent);
@@ -64,7 +64,7 @@ public class StudentMgr implements IStudentMgr {
     @Override
     public void printAllStudentIds() {
         for (Student s : students) {
-            System.out.println(s.getStudentID());
+            System.out.println(s.getStudentId());
         }
     }
 
@@ -89,7 +89,7 @@ public class StudentMgr implements IStudentMgr {
     public Student getStudentFromId(String studentId) throws StudentNotFoundException {
         Optional<Student> student = students
                 .stream()
-                .filter(s -> studentId.equals(s.getStudentID()))
+                .filter(s -> studentId.equals(s.getStudentId()))
                 .findFirst();
 
         if (!student.isPresent()) {
@@ -102,7 +102,7 @@ public class StudentMgr implements IStudentMgr {
     @Override
     public String getStudentName(String studentId) throws StudentNotFoundException {
         Student student = getStudentFromId(studentId);
-        return student.getStudentName();
+        return student.getName();
     }
 
     @Override
@@ -110,10 +110,10 @@ public class StudentMgr implements IStudentMgr {
         List<String> studentInformationStrings = new ArrayList<>();
         for (Student student : StudentMgr.getInstance().getStudents()) {
             String GPA = "not available";
-            if (Double.compare(student.getGPA(), 0.0) != 0) {
-                GPA = String.valueOf(student.getGPA());
+            if (Double.compare(student.getGpa(), 0.0) != 0) {
+                GPA = String.valueOf(student.getGpa());
             }
-            studentInformationStrings.add(" " + student.getStudentID() + " | " + student.getStudentName() + " | " + student.getStudentSchool() + " | " + student.getGender() + " | " + student.getStudentYear() + " | " + GPA);
+            studentInformationStrings.add(" " + student.getStudentId() + " | " + student.getName() + " | " + student.getDepartment() + " | " + student.getGender() + " | " + student.getYearLevel() + " | " + GPA);
         }
         return studentInformationStrings;
     }
@@ -121,7 +121,7 @@ public class StudentMgr implements IStudentMgr {
     @Override
     public boolean studentExists(String studentID) {
         Optional<Student> student = students.stream()
-                .filter(s -> studentID.equals(s.getStudentID()))
+                .filter(s -> studentID.equals(s.getStudentId()))
                 .findFirst();
 
         return student.isPresent();
@@ -143,7 +143,7 @@ public class StudentMgr implements IStudentMgr {
     private int findLargestStudentID() {
         int recentStudentID = 0;
         for (Student student : students) {
-            recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentID().substring(1, 8)));
+            recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentId().substring(1, 8)));
         }
 
         return recentStudentID > 0 ? recentStudentID : 1800000;
