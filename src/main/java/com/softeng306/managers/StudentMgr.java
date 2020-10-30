@@ -74,7 +74,7 @@ public class StudentMgr {
      */
     public void printAllStudentIds() {
         for (Student s : students) {
-            System.out.println(s.getStudentID());
+            System.out.println(s.getStudentId());
         }
     }
 
@@ -100,7 +100,7 @@ public class StudentMgr {
     private int findLargestStudentID() {
         int recentStudentID = 0;
         for (Student student : students) {
-            recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentID().substring(1, 8)));
+            recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentId().substring(1, 8)));
         }
 
         return recentStudentID > 0 ? recentStudentID : 1800000;
@@ -108,7 +108,7 @@ public class StudentMgr {
 
     public List<String> getExistingStudentIds() {
         List<String> existingStudentIds = new ArrayList<>();
-        students.forEach(student -> existingStudentIds.add(student.getStudentID()));
+        students.forEach(student -> existingStudentIds.add(student.getStudentId()));
         return existingStudentIds;
     }
 
@@ -120,7 +120,7 @@ public class StudentMgr {
     public Student getStudentFromId(String studentId) throws StudentNotFoundException {
         Optional<Student> student = students
                 .stream()
-                .filter(s -> studentId.equals(s.getStudentID()))
+                .filter(s -> studentId.equals(s.getStudentId()))
                 .findFirst();
 
         if (!student.isPresent()) {
@@ -142,7 +142,7 @@ public class StudentMgr {
             if (Double.compare(student.getGpa(), 0.0) != 0) {
                 GPA = String.valueOf(student.getGpa());
             }
-            studentInformationStrings.add(" " + student.getStudentID() + " | " + student.getName() + " | " + student.getDepartment() + " | " + student.getGender() + " | " + student.getYearLevel() + " | " + GPA);
+            studentInformationStrings.add(" " + student.getStudentId() + " | " + student.getName() + " | " + student.getDepartment() + " | " + student.getGender() + " | " + student.getYearLevel() + " | " + GPA);
         }
         return studentInformationStrings;
     }
@@ -155,7 +155,7 @@ public class StudentMgr {
      */
     public boolean studentExists(String studentID) {
         Optional<Student> student = students.stream()
-                .filter(s -> studentID.equals(s.getStudentID()))
+                .filter(s -> studentID.equals(s.getStudentId()))
                 .findFirst();
 
         return student.isPresent();

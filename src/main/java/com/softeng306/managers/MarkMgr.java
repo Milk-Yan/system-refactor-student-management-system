@@ -93,7 +93,7 @@ public class MarkMgr {
 
 
         for (Mark mark : marks) {
-            if (mark.getCourse().getCourseId().equals(courseID) && mark.getStudent().getStudentID().equals(studentID)) {
+            if (mark.getCourse().getCourseId().equals(courseID) && mark.getStudent().getStudentId().equals(studentID)) {
                 //put the set mark function here
                 if (!isExam) {
                     for (MainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
@@ -193,7 +193,7 @@ public class MarkMgr {
     public List<Mark> getMarksForStudent(String studentId) {
         List<Mark> studentMarks = new ArrayList<>();
         for (Mark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getStudent().getStudentID().equals(studentId)) {
+            if (mark.getStudent().getStudentId().equals(studentId)) {
                 studentMarks.add(mark);
             }
         }

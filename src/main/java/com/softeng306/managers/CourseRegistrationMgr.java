@@ -72,7 +72,7 @@ public class CourseRegistrationMgr {
             throw new InvalidCourseRegistrationException();
         }
 
-        io.printRegistrationRequestDetails(currentStudent.getName(), currentStudent.getStudentID(), currentCourse.getCourseId(), currentCourse.getName());
+        io.printRegistrationRequestDetails(currentStudent.getName(), currentStudent.getStudentId(), currentCourse.getCourseId(), currentCourse.getName());
 
         List<Group> lecGroups = currentCourse.getLectureGroups();
         GroupMgr groupMgr = GroupMgr.getInstance();
@@ -235,7 +235,7 @@ public class CourseRegistrationMgr {
     public List<String> getCourseIdsForStudentId(String studentId) {
         List<String> courseIds = new ArrayList<>();
         for (CourseRegistration courseRegistration : courseRegistrations) {
-            if (courseRegistration.getStudent().getStudentID().equals(studentId)) {
+            if (courseRegistration.getStudent().getStudentId().equals(studentId)) {
                 courseIds.add(courseRegistration.getCourse().getCourseId());
             }
         }
@@ -284,7 +284,7 @@ public class CourseRegistrationMgr {
                 groupStringInfo.add(groupType.getNameWithCapital() + " group : " + groupName);
             }
 
-            groupStringInfo.add("Student Name: " + courseRegistration.getStudent().getName() + " Student ID: " + courseRegistration.getStudent().getStudentID());
+            groupStringInfo.add("Student Name: " + courseRegistration.getStudent().getName() + " Student ID: " + courseRegistration.getStudent().getStudentId());
         }
         groupStringInfo.add("");
 
@@ -300,7 +300,7 @@ public class CourseRegistrationMgr {
      */
     public boolean courseRegistrationExists(String studentID, String courseID) {
         Optional<CourseRegistration> courseRegistration = courseRegistrations.stream()
-                .filter(cr -> studentID.equals(cr.getStudent().getStudentID()))
+                .filter(cr -> studentID.equals(cr.getStudent().getStudentId()))
                 .filter(cr -> courseID.equals(cr.getCourse().getCourseId()))
                 .findFirst();
 

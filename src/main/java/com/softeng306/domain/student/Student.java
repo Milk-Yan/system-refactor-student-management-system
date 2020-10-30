@@ -1,6 +1,5 @@
 package com.softeng306.domain.student;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
 
@@ -11,13 +10,11 @@ import com.softeng306.enums.Gender;
  */
 public class Student {
 
-    private String studentID;
+    private String studentId;
     private String name;
     private Department department;
     private Gender gender;
-
-    @JsonProperty("GPA")
-    private double Gpa = 0;
+    private double gpa = 0;
     private int yearLevel;
 
 
@@ -31,11 +28,11 @@ public class Student {
     /**
      * Creates student with the student name and student's ID.
      *
-     * @param studentID   This student's name.
+     * @param studentId   This student's name.
      * @param name This student's ID.
      */
-    public Student(String studentID, String name) {
-        this.studentID = studentID;
+    public Student(String studentId, String name) {
+        this.studentId = studentId;
         this.name = name;
     }
 
@@ -44,8 +41,8 @@ public class Student {
      *
      * @return this student's ID.
      */
-    public String getStudentID() {
-        return studentID;
+    public String getStudentId() {
+        return studentId;
     }
 
     /**
@@ -81,7 +78,7 @@ public class Student {
      * @return this student's GPA.
      */
     public double getGpa() {
-        return Gpa;
+        return gpa;
     }
 
     /**
@@ -96,10 +93,10 @@ public class Student {
     /**
      * Sets the ID of this student.
      *
-     * @param studentID this student's ID.
+     * @param studentId this student's ID.
      */
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     /**
@@ -126,7 +123,7 @@ public class Student {
      * @param gpa this student's GPA.
      */
     public void setGpa(double gpa) {
-        this.Gpa = gpa;
+        this.gpa = gpa;
     }
 
     /**
