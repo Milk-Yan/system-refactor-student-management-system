@@ -14,9 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Concrete implementation of course builder.
+ * Used to build a new academic course.
+ * Provides implementations of methods to set properties of a new course.
+ * This class implements {@code ICourseBuilder}.
+ */
 public class CourseBuilder implements ICourseBuilder {
     private ICourse course;
 
+    /**
+     * Constructor, initialises the new course.
+     */
     public CourseBuilder() {
         course = new Course();
     }
