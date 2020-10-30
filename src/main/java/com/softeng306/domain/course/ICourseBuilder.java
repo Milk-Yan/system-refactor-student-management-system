@@ -19,7 +19,7 @@ public interface ICourseBuilder {
 
     void setLabGroups(Map<String, Double> labGroups);
 
-    void setAU(int AU);
+    void setAcademicUnits(int academicUnits);
 
     void setCourseDepartment(String department);
 
