@@ -245,16 +245,6 @@ public class CourseRegistrationMgr {
         return courseIds;
     }
 
-    public int getStudentTotalAU(IStudent student) {
-        int total = 0;
-        for (ICourseRegistration courseRegistration : courseRegistrations) {
-            if (courseRegistration.getStudent().equals(student)) {
-                total += courseRegistration.getCourse().getAcademicUnits();
-            }
-        }
-        return total;
-    }
-
     public List<String> getUniqueGroupNames(List<ICourseRegistration> courseRegistrations, GroupType groupType) throws GroupTypeNotFoundException {
         List<String> uniqueGroupNames = new ArrayList<>();
         for (ICourseRegistration courseRegistration : courseRegistrations) {
@@ -302,9 +292,9 @@ public class CourseRegistrationMgr {
      */
     public boolean courseRegistrationExists(String studentID, String courseID) {
         Optional<ICourseRegistration> courseRegistration = courseRegistrations.stream()
-                .filter(cr -> studentID.equals(cr.getStudent().getStudentId()))
-                .filter(cr -> courseID.equals(cr.getCourse().getCourseId()))
-                .findFirst();
+          .filter(cr -> studentID.equals(cr.getStudent().getStudentId()))
+          .filter(cr -> courseID.equals(cr.getCourse().getCourseId()))
+          .findFirst();
 
         return courseRegistration.isPresent();
     }
