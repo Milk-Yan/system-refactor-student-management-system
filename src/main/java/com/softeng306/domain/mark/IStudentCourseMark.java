@@ -6,8 +6,8 @@ import com.softeng306.domain.student.IStudent;
 
 import java.util.List;
 
-@JsonDeserialize(as = Mark.class)
-public interface IMark {
+@JsonDeserialize(as = StudentCourseMark.class)
+public interface IStudentCourseMark {
     /**
      * Gets the student of this student mark record.
      *

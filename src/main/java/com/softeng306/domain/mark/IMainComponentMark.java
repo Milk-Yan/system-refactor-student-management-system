@@ -23,5 +23,4 @@ public interface IMainComponentMark {
 
     List<ISubComponentMark> getSubComponentMarks();
 
-    void setSubComponentMarks(List<ISubComponentMark> subComponentMarks);
 }

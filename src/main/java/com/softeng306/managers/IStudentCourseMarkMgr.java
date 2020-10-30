@@ -1,12 +1,12 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.course.ICourse;
-import com.softeng306.domain.mark.IMark;
+import com.softeng306.domain.mark.IStudentCourseMark;
 import com.softeng306.domain.student.IStudent;
 
 import java.util.List;
 
-public interface IMarkMgr {
+public interface IStudentCourseMarkMgr {
     /**
      * Initializes marks for a student when he/she just registered a course.
      *
@@ -14,7 +14,7 @@ public interface IMarkMgr {
      * @param course  the course this mark record about.
      * @return the new added mark.
      */
-    IMark initialiseMark(IStudent student, ICourse course);
+    IStudentCourseMark initialiseStudentCourseMark(IStudent student, ICourse course);
 
     /**
      * Sets the coursework mark for the mark record.
@@ -28,7 +28,7 @@ public interface IMarkMgr {
      *
      * @return An list of all marks.
      */
-    List<IMark> getMarks();
+    List<IStudentCourseMark> getStudentCourseMarks();
 
     int getAcademicUnitsForStudent(String studentId);
 

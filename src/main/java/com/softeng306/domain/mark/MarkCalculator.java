@@ -2,7 +2,7 @@ package com.softeng306.domain.mark;
 
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.managers.MarkMgr;
+import com.softeng306.managers.StudentCourseMarkMgr;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +11,10 @@ public class MarkCalculator implements IMarkCalculator {
 
     @Override
     public double computeAverageMarkForCourseComponent(String courseID, String componentName) {
-        List<IMark> marksForCourse = new ArrayList<>();
-        for (IMark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getCourse().getCourseId().equals(courseID)) {
-                marksForCourse.add(mark);
+        List<IStudentCourseMark> marksForCourse = new ArrayList<>();
+        for (IStudentCourseMark studentCourseMark : StudentCourseMarkMgr.getInstance().getStudentCourseMarks()) {
+            if (studentCourseMark.getCourse().getCourseId().equals(courseID)) {
+                marksForCourse.add(studentCourseMark);
             }
         }
 
@@ -23,10 +23,10 @@ public class MarkCalculator implements IMarkCalculator {
 
     @Override
     public double computeOverallMarkForCourse(String courseID) {
-        List<IMark> marksForCourse = new ArrayList<>();
-        for (IMark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getCourse().getCourseId().equals(courseID)) {
-                marksForCourse.add(mark);
+        List<IStudentCourseMark> marksForCourse = new ArrayList<>();
+        for (IStudentCourseMark studentCourseMark : StudentCourseMarkMgr.getInstance().getStudentCourseMarks()) {
+            if (studentCourseMark.getCourse().getCourseId().equals(courseID)) {
+                marksForCourse.add(studentCourseMark);
             }
         }
 
@@ -40,10 +40,10 @@ public class MarkCalculator implements IMarkCalculator {
      * @param thisComponentName the component name interested.
      * @return the sum of component marks
      */
-    private double computeAverageComponentMark(List<IMark> thisCourseMark, String thisComponentName) {
+    private double computeAverageComponentMark(List<IStudentCourseMark> thisCourseMark, String thisComponentName) {
         double averageMark = 0;
-        for (IMark mark : thisCourseMark) {
-            List<IMainComponentMark> thisComponentMarks = mark.getCourseWorkMarks();
+        for (IStudentCourseMark studentCourseMark : thisCourseMark) {
+            List<IMainComponentMark> thisComponentMarks = studentCourseMark.getCourseWorkMarks();
 
             for (IMainComponentMark mainComponentMark : thisComponentMarks) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();
@@ -65,17 +65,17 @@ public class MarkCalculator implements IMarkCalculator {
     }
 
     @Override
-    public double computeOverallMark(List<IMark> thisCourseMark) {
+    public double computeOverallMark(List<IStudentCourseMark> thisCourseMark) {
         double averageMark = 0;
-        for (IMark mark : thisCourseMark) {
+        for (IStudentCourseMark mark : thisCourseMark) {
             averageMark += mark.getTotalMark();
         }
         return averageMark / thisCourseMark.size();
     }
 
     @Override
-    public double convertMarkToGradePoints(IMark mark) {
-        double gradePercentage = mark.getTotalMark();
+    public double convertMarkToGradePoints(IStudentCourseMark studentCourseMark) {
+        double gradePercentage = studentCourseMark.getTotalMark();
 
         if (gradePercentage > 85) {
             // A+, A

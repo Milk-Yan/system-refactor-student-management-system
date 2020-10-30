@@ -1,7 +1,7 @@
 package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.softeng306.domain.mark.IMark;
+import com.softeng306.domain.mark.IStudentCourseMark;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,22 +10,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MarkFileProcessor extends FileProcessor<IMark> {
+public class MarkFileProcessor extends FileProcessor<IStudentCourseMark> {
 
-    private static final String MARK_FILE_PATH = "data/markFile.json";
+    private static final String STUDENT_COURSE_MARK_FILE = "data/studentCourseMarkFile.json";
 
     /**
-     * Loads a list of all the marks from {@value MARK_FILE_PATH}.
+     * Loads a list of all the marks from {@value STUDENT_COURSE_MARK_FILE}.
      * @return A list of all the marks that is loaded from the file.
      */
     @Override
-    public List<IMark> loadFile() {
+    public List<IStudentCourseMark> loadFile() {
         ObjectMapper objectMapper = new ObjectMapper();
-        File markFile = Paths.get(MARK_FILE_PATH).toFile();
-        ArrayList<IMark> allStudentMarks = new ArrayList<>();
+        File studentCourseMarkFile = Paths.get(STUDENT_COURSE_MARK_FILE).toFile();
+        ArrayList<IStudentCourseMark> allStudentMarks = new ArrayList<>();
 
         try {
-            allStudentMarks = new ArrayList<>(Arrays.asList(objectMapper.readValue(markFile, IMark[].class)));
+            allStudentMarks = new ArrayList<>(Arrays.asList(objectMapper.readValue(studentCourseMarkFile, IStudentCourseMark[].class)));
         } catch (IOException e) {
             System.out.println("Error occurs when loading student marks.");
             e.printStackTrace();
@@ -35,31 +35,31 @@ public class MarkFileProcessor extends FileProcessor<IMark> {
     }
 
     /**
-     * Writes a new mark into {@value MARK_FILE_PATH}.
-     * @param mark the new mark to write to the file
+     * Writes a new studentCourseMark into {@value STUDENT_COURSE_MARK_FILE}.
+     * @param studentCourseMark the new studentCourseMark to write to the file
      */
     @Override
-    public void writeNewEntryToFile(IMark mark) {
+    public void writeNewEntryToFile(IStudentCourseMark studentCourseMark) {
         try {
-            List<IMark> marks = loadFile();
-            marks.add(mark);
+            List<IStudentCourseMark> studentCourseMarks = loadFile();
+            studentCourseMarks.add(studentCourseMark);
 
-            writeToFile(MARK_FILE_PATH, marks);
+            writeToFile(STUDENT_COURSE_MARK_FILE, studentCourseMarks);
         } catch (IOException e) {
-            System.out.println("Error in adding a mark to the file.");
+            System.out.println("Error in adding a studentCourseMark to the file.");
             e.printStackTrace();
         }
     }
 
     /**
-     * Writes the updated marks to {@value MARK_FILE_PATH}.
-     * @param updatedMarks the list of all marks, with updated marks
+     * Writes the updated marks to {@value STUDENT_COURSE_MARK_FILE}.
+     * @param updatedStudentCourseMarks the list of all marks, with updated marks
      */
     @Override
-    public void updateFileContents(List<IMark> updatedMarks) {
+    public void updateFileContents(List<IStudentCourseMark> updatedStudentCourseMarks) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.writeValue(Paths.get(MARK_FILE_PATH).toFile(), updatedMarks);
+            objectMapper.writeValue(Paths.get(STUDENT_COURSE_MARK_FILE).toFile(), updatedStudentCourseMarks);
         } catch (IOException e) {
             System.out.println("Error in backing up marks.");
             e.printStackTrace();

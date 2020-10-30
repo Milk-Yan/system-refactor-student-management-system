@@ -7,7 +7,7 @@ public class MainMenuIO {
 
     private static ICourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
     private static IStudentMgrIO studentMgrIO = new StudentMgrIO();
-    private static IMarkMgrIO markMgrIO = new MarkMgrIO();
+    private static IStudentCourseMarkMgrIO studentCourseMarkMgrIO = new StudentCourseMarkMgrIO();
     private static ICourseMgrIO courseMgrIO = new CourseMgrIO();
 
     /**
@@ -74,10 +74,10 @@ public class MainMenuIO {
                 courseMgrIO.enterCourseWorkComponentWeightage();
                 break;
             case 7:
-                markMgrIO.initiateEnteringCourseworkMark(false);
+                studentCourseMarkMgrIO.initiateEnteringCourseworkMark(false);
                 break;
             case 8:
-                markMgrIO.initiateEnteringCourseworkMark(true);
+                studentCourseMarkMgrIO.initiateEnteringCourseworkMark(true);
                 break;
             case 9:
                 courseMgrIO.printCourseStatistics();

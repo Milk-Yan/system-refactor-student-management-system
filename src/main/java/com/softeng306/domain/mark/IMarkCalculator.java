@@ -16,12 +16,12 @@ public interface IMarkCalculator {
      * @param thisCourseMark The marks for the course.
      * @return The exam marks for the course.
      */
-    double computeOverallMark(List<IMark> thisCourseMark);
+    double computeOverallMark(List<IStudentCourseMark> thisCourseMark);
 
     /**
      * Computes the gpa gained for this course from the result of this course.
      *
      * @return the grade (in A, B ... )
      */
-    double convertMarkToGradePoints(IMark mark);
+    double convertMarkToGradePoints(IStudentCourseMark studentCourseMark);
 }

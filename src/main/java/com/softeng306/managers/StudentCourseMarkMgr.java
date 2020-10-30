@@ -9,8 +9,8 @@ import com.softeng306.domain.student.IStudent;
 import com.softeng306.fileprocessing.IFileProcessor;
 import com.softeng306.fileprocessing.MarkFileProcessor;
 
-import com.softeng306.io.IMarkMgrIO;
-import com.softeng306.io.MarkMgrIO;
+import com.softeng306.io.IStudentCourseMarkMgrIO;
+import com.softeng306.io.StudentCourseMarkMgrIO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,39 +18,39 @@ import java.util.List;
 /**
  * Manages all the mark related operations.
  */
-public class MarkMgr implements IMarkMgr {
+public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
     /**
      * A list of all the student mark records in this school.
      */
-    private List<IMark> marks;
+    private List<IStudentCourseMark> studentCourseMarks;
 
-    private static IMarkMgr singleInstance = null;
+    private static IStudentCourseMarkMgr singleInstance = null;
 
-    private final IFileProcessor<IMark> markFileProcessor;
+    private final IFileProcessor<IStudentCourseMark> markFileProcessor;
 
     /**
      * Override default constructor to implement singleteon pattern
      */
-    private MarkMgr() {
+    private StudentCourseMarkMgr() {
         markFileProcessor = new MarkFileProcessor();
-        marks = markFileProcessor.loadFile();
+        studentCourseMarks = markFileProcessor.loadFile();
     }
 
     /**
-     * Return the IMarkMgr singleton, if not initialised already, create an instance.
+     * Return the IStudentCourseMarkMgr singleton, if not initialised already, create an instance.
      *
-     * @return IMarkMgr the singleton instance
+     * @return IStudentCourseMarkMgr the singleton instance
      */
-    public static IMarkMgr getInstance() {
+    public static IStudentCourseMarkMgr getInstance() {
         if (singleInstance == null) {
-            singleInstance = new MarkMgr();
+            singleInstance = new StudentCourseMarkMgr();
         }
 
         return singleInstance;
     }
 
     @Override
-    public IMark initialiseMark(IStudent student, ICourse course) {
+    public IStudentCourseMark initialiseStudentCourseMark(IStudent student, ICourse course) {
         List<IMainComponentMark> courseWorkMarks = new ArrayList<>();
         double totalMark = 0d;
         List<MainComponent> mainComponents = course.getMainComponents();
@@ -63,25 +63,24 @@ public class MarkMgr implements IMarkMgr {
             }
             courseWorkMarks.add(mainComponentMark);
         }
-        IMark mark = new Mark(student, course, courseWorkMarks, totalMark);
-        markFileProcessor.writeNewEntryToFile(mark);
-        return mark;
+        IStudentCourseMark studentCourseMark = new StudentCourseMark(student, course, courseWorkMarks, totalMark);
+        markFileProcessor.writeNewEntryToFile(studentCourseMark);
+        return studentCourseMark;
     }
 
     @Override
     public void setCourseworkMark(boolean isExam, String studentID, String courseID) {
-        IMarkMgrIO io = new MarkMgrIO();
+        IStudentCourseMarkMgrIO io = new StudentCourseMarkMgrIO();
         List<String> componentNameList = new ArrayList<>();
         List<String> availableChoices = new ArrayList<>();
         List<Integer> weights = new ArrayList<>();
         List<Boolean> isMainComponent = new ArrayList<>();
 
 
-        for (IMark mark : marks) {
-            if (mark.getCourse().getCourseId().equals(courseID) && mark.getStudent().getStudentId().equals(studentID)) {
-                //put the set mark function here
+        for (IStudentCourseMark studentCourseMark : studentCourseMarks) {
+            if (studentCourseMark.getCourse().getCourseId().equals(courseID) && studentCourseMark.getStudent().getStudentId().equals(studentID)) {
                 if (!isExam) {
-                    for (IMainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
+                    for (IMainComponentMark mainComponentMark : studentCourseMark.getCourseWorkMarks()) {
                         MainComponent mainComponent = mainComponentMark.getMainComponent();
 
                         if (!mainComponent.getName().equals("Exam")
@@ -104,14 +103,14 @@ public class MarkMgr implements IMarkMgr {
 
                     double assessmentMark = io.readCourseComponentMark();
                     String componentName = componentNameList.get(choice - 1);
-                    setComponentMark(mark, isMainComponent.get(choice - 1), componentName, assessmentMark);
+                    setComponentMark(studentCourseMark, isMainComponent.get(choice - 1), componentName, assessmentMark);
 
                 } else {
-                    // The user want to enter exam mark.
-                    setExamMark(mark);
+                    // The user want to enter exam studentCourseMark.
+                    setExamMark(studentCourseMark);
                 }
 
-                markFileProcessor.updateFileContents(marks);
+                markFileProcessor.updateFileContents(studentCourseMarks);
                 return;
             }
         }
@@ -120,15 +119,15 @@ public class MarkMgr implements IMarkMgr {
     }
 
     @Override
-    public List<IMark> getMarks() {
-        return marks;
+    public List<IStudentCourseMark> getStudentCourseMarks() {
+        return studentCourseMarks;
     }
 
     @Override
     public int getAcademicUnitsForStudent(String studentId) {
         int totalAU = 0;
-        for (IMark mark : getMarksForStudent(studentId)) {
-            totalAU += mark.getCourse().getAcademicUnits();
+        for (IStudentCourseMark studentCourseMark : getCourseMarksForStudent(studentId)) {
+            totalAU += studentCourseMark.getCourse().getAcademicUnits();
         }
         return totalAU;
     }
@@ -136,13 +135,13 @@ public class MarkMgr implements IMarkMgr {
     @Override
     public List<String> getMarkMessageForStudent(String studentId, int totalAU) {
         List<String> markString = new ArrayList<>();
-        List<IMark> marksForStudent = getMarksForStudent(studentId);
+        List<IStudentCourseMark> marksForStudent = getCourseMarksForStudent(studentId);
         double studentGPA = 0d;
 
-        for (IMark mark : marksForStudent) {
-            markString.add("Course ID: " + mark.getCourse().getCourseId() + "\tCourse Name: " + mark.getCourse().getName());
+        for (IStudentCourseMark studentCourseMark : marksForStudent) {
+            markString.add("Course ID: " + studentCourseMark.getCourse().getCourseId() + "\tCourse Name: " + studentCourseMark.getCourse().getName());
 
-            for (IMainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
+            for (IMainComponentMark mainComponentMark : studentCourseMark.getCourseWorkMarks()) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();
                 double result = mainComponentMark.getMark();
 
@@ -157,8 +156,8 @@ public class MarkMgr implements IMarkMgr {
                 markString.add("Main Assessment Total: " + result + "\n");
             }
 
-            markString.add("Course Total: " + mark.getTotalMark() + "\n");
-            studentGPA += new MarkCalculator().convertMarkToGradePoints(mark) * mark.getCourse().getAcademicUnits();
+            markString.add("Course Total: " + studentCourseMark.getTotalMark() + "\n");
+            studentGPA += new MarkCalculator().convertMarkToGradePoints(studentCourseMark) * studentCourseMark.getCourse().getAcademicUnits();
         }
         studentGPA /= totalAU;
         markString.add("GPA for this semester: " + studentGPA);
@@ -180,18 +179,18 @@ public class MarkMgr implements IMarkMgr {
         }
     }
 
-    private void setComponentMark(IMark mark, boolean isMainComponent, String componentName, double assessmentMark) {
+    private void setComponentMark(IStudentCourseMark studentCourseMark, boolean isMainComponent, String componentName, double assessmentMark) {
         if (isMainComponent) {
             // This is a stand alone main assessment
-            mark.setMainComponentMark(componentName, assessmentMark);
+            studentCourseMark.setMainComponentMark(componentName, assessmentMark);
         } else {
-            mark.setSubComponentMark(componentName, assessmentMark);
+            studentCourseMark.setSubComponentMark(componentName, assessmentMark);
         }
     }
 
-    private void setExamMark(IMark mark) {
-        double examMark = new MarkMgrIO().readExamMark();
-        mark.setMainComponentMark("Exam", examMark);
+    private void setExamMark(IStudentCourseMark studentCourseMark) {
+        double examMark = new StudentCourseMarkMgrIO().readExamMark();
+        studentCourseMark.setMainComponentMark("Exam", examMark);
     }
 
     private void extractMainComponentDetails(MainComponent mainComponent, List<String> componentNameList,
@@ -216,11 +215,11 @@ public class MarkMgr implements IMarkMgr {
         }
     }
 
-    private List<IMark> getMarksForStudent(String studentId) {
-        List<IMark> studentMarks = new ArrayList<>();
-        for (IMark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getStudent().getStudentId().equals(studentId)) {
-                studentMarks.add(mark);
+    private List<IStudentCourseMark> getCourseMarksForStudent(String studentId) {
+        List<IStudentCourseMark> studentMarks = new ArrayList<>();
+        for (IStudentCourseMark studentCourseMark : StudentCourseMarkMgr.getInstance().getStudentCourseMarks()) {
+            if (studentCourseMark.getStudent().getStudentId().equals(studentId)) {
+                studentMarks.add(studentCourseMark);
             }
         }
         return studentMarks;

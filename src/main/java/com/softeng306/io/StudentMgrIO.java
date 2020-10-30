@@ -4,7 +4,7 @@ import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
 import com.softeng306.managers.IStudentMgr;
-import com.softeng306.managers.MarkMgr;
+import com.softeng306.managers.StudentCourseMarkMgr;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.RegexValidator;
 
@@ -44,7 +44,7 @@ public class StudentMgrIO implements IStudentMgrIO {
         int studentsAcademicUnits;
         String studentName;
         try {
-            studentsAcademicUnits = MarkMgr.getInstance().getAcademicUnitsForStudent(studentId);
+            studentsAcademicUnits = StudentCourseMarkMgr.getInstance().getAcademicUnitsForStudent(studentId);
             studentName = studentMgr.getStudentName(studentId);
         } catch (StudentNotFoundException e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class StudentMgrIO implements IStudentMgrIO {
         System.out.println("AU for this semester: " + studentsAcademicUnits);
         System.out.println();
 
-        List<String> stringList = MarkMgr.getInstance().getMarkMessageForStudent(studentId, studentsAcademicUnits);
+        List<String> stringList = StudentCourseMarkMgr.getInstance().getMarkMessageForStudent(studentId, studentsAcademicUnits);
         stringList.forEach(System.out::println);
 
         System.out.println("------------------ End of Transcript -------------------");
