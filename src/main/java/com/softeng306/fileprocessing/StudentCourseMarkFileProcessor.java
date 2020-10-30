@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MarkFileProcessor extends FileProcessor<IStudentCourseMark> {
+public class StudentCourseMarkFileProcessor extends FileProcessor<IStudentCourseMark> {
 
     private static final String STUDENT_COURSE_MARK_FILE = "data/studentCourseMarkFile.json";
 
