@@ -8,8 +8,8 @@ import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
 import com.softeng306.managers.CourseMgr;
 import com.softeng306.managers.ICourseMgr;
-import com.softeng306.managers.ProfessorMgr;
 
+import com.softeng306.managers.ProfessorMgr;
 import com.softeng306.validation.RegexValidator;
 
 import java.util.*;
