@@ -1,10 +1,21 @@
 package com.softeng306.enums;
 
+/**
+ * Enumerated type to represent the types of groups a student enrols in for a course registration.
+ */
 public enum GroupType {
     LAB_GROUP("lab"), LECTURE_GROUP("lecture"), TUTORIAL_GROUP("tutorial");
 
+    /**
+     * String representation of the group type.
+     */
     private String nameLowerCase;
 
+    /**
+     * Creates a group type with a given name.
+     *
+     * @param nameLowerCase The name for the group.
+     */
     GroupType(String nameLowerCase) {
         this.nameLowerCase = nameLowerCase;
     }
