@@ -2,7 +2,6 @@ package com.softeng306.domain.course.component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

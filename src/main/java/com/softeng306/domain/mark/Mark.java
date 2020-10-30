@@ -1,6 +1,6 @@
 package com.softeng306.domain.mark;
 
-import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.ICourse;
 import com.softeng306.domain.student.IStudent;
 
 import java.util.List;
@@ -10,10 +10,10 @@ import java.util.List;
  * Both students and courses can have multiple student mark record, but cannot be duplicate.
  */
 
-public class Mark implements IMark {
+public class Mark {
 
     private IStudent student;
-    private Course course;
+    private ICourse course;
 
     private List<IMainComponentMark> courseWorkMarks;
 
@@ -35,7 +35,7 @@ public class Mark implements IMark {
      * @param courseWorkMarks The course work marks of this student mark record.
      * @param totalMark       The total mark of this student mark record.
      */
-    public Mark(IStudent student, Course course, List<IMainComponentMark> courseWorkMarks, double totalMark) {
+    public Mark(IStudent student, ICourse course, List<MainComponentMark> courseWorkMarks, double totalMark) {
         this.student = student;
         this.course = course;
         this.courseWorkMarks = courseWorkMarks;
@@ -48,7 +48,7 @@ public class Mark implements IMark {
     }
 
     @Override
-    public Course getCourse() {
+    public ICourse getCourse() {
         return course;
     }
 

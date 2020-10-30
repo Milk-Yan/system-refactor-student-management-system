@@ -3,10 +3,8 @@ package com.softeng306.managers;
 
 import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.domain.mark.IMarkCalculator;
-import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.enums.CourseType;
 
-import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
@@ -30,11 +28,11 @@ public class CourseMgr {
     /**
      * A list of all the courses in this school.
      */
-    private List<Course> courses;
+    private List<ICourse> courses;
 
     private static CourseMgr singleInstance = null;
 
-    private final IFileProcessor<Course> courseFileProcessor;
+    private final IFileProcessor<ICourse> courseFileProcessor;
     private IMarkCalculator markCalculator = new MarkCalculator();
 
     /**
@@ -64,7 +62,7 @@ public class CourseMgr {
     public void addCourse(ICourseBuilder completeBuilder) {
         ICourseMgrIO courseMgrIO = new CourseMgrIO();
 
-        Course course = completeBuilder.build();
+        ICourse course = completeBuilder.build();
         int addCourseComponentChoice;
 
         // Update Course in files
@@ -94,7 +92,7 @@ public class CourseMgr {
         MainMenuIO.printMethodCall("checkAvailableSlots");
 
         while (true) {
-            Course currentCourse;
+            ICourse currentCourse;
             try {
                 currentCourse = readExistingCourse();
             } catch (CourseNotFoundException e) {
@@ -129,7 +127,7 @@ public class CourseMgr {
      *
      * @param currentCourse The course which course work component is to be set.
      */
-    public void enterCourseWorkComponentWeightage(Course currentCourse) {
+    public void enterCourseWorkComponentWeightage(ICourse currentCourse) {
         ICourseMgrIO io = new CourseMgrIO();
 
         // Assume when course is created, no components are added yet
@@ -166,7 +164,7 @@ public class CourseMgr {
      * @param currentCourse The course to create components for
      * @return
      */
-    private List<MainComponent> addMainComponentsToCourse(ICourseMgrIO io, Course currentCourse) {
+    private List<MainComponent> addMainComponentsToCourse(ICourseMgrIO io, ICourse currentCourse) {
         List<MainComponent> mainComponents = new ArrayList<>(0);
 
         io.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
@@ -260,7 +258,7 @@ public class CourseMgr {
     }
 
     public List<String> getCourseIdsInDepartment(String departmentName) {
-        List<Course> validCourses = new ArrayList<>();
+        List<ICourse> validCourses = new ArrayList<>();
         courses.forEach(course -> {
             if (departmentName.equals(course.getCourseDepartment().toString())) {
                 validCourses.add(course);
@@ -283,7 +281,7 @@ public class CourseMgr {
 
         MainMenuIO.printMethodCall("printCourseStatistics");
 
-        Course currentCourse;
+        ICourse currentCourse;
         String courseID;
         try {
             currentCourse = readExistingCourse();
@@ -331,7 +329,7 @@ public class CourseMgr {
      *
      * @return the inputted course.
      */
-    public Course readExistingCourse() throws CourseNotFoundException {
+    public ICourse readExistingCourse() throws CourseNotFoundException {
         String validCourseID = new CourseMgrIO().readExistingCourseId();
         return getCourseFromId(validCourseID);
     }
@@ -350,12 +348,12 @@ public class CourseMgr {
      *
      * @return An list of all courses.
      */
-    public List<Course> getCourses() {
+    public List<ICourse> getCourses() {
         return courses;
     }
 
 
-    public String generateCourseInformation(Course course) {
+    public String generateCourseInformation(ICourse course) {
         String infoString = course.getCourseID() + " " + course.getCourseName() + " (Available/Total): " + course.getVacancies() + "/" + course.getTotalSeats();
         return infoString;
     }
@@ -381,7 +379,7 @@ public class CourseMgr {
         return map;
     }
 
-    public List<String> generateCourseInformationFromCourse(Course course) {
+    public List<String> generateCourseInformationFromCourse(ICourse course) {
         List<String> courseInformation = new ArrayList<String>();
         courseInformation.add(course.getCourseID());
         courseInformation.add(course.getCourseName());
@@ -393,7 +391,7 @@ public class CourseMgr {
 
     public List<String> generateListOfAllCourseIDs() {
         List<String> courseIDs = new ArrayList<>();
-        for (Course course : courses) {
+        for (ICourse course : courses) {
             courseIDs.add(course.getCourseID());
         }
         return courseIDs;
@@ -406,8 +404,8 @@ public class CourseMgr {
      * @param courseID The inputted course ID.
      * @return the existing course or else null.
      */
-    public Course getCourseFromId(String courseID) throws CourseNotFoundException {
-        Optional<Course> course = CourseMgr
+    public ICourse getCourseFromId(String courseID) throws CourseNotFoundException {
+        Optional<ICourse> course = CourseMgr
           .getInstance()
           .getCourses()
           .stream()
@@ -422,7 +420,7 @@ public class CourseMgr {
 
     public Map<String, List<String>> generateGeneralInformationForAllCourses() {
         Map<String, List<String>> generalCourseInfoMap = new HashMap<>();
-        for (Course course : courses) {
+        for (ICourse course : courses) {
             List<String> generalCourseInfo = new ArrayList<>();
             generalCourseInfo.add(course.getCourseName());
             generalCourseInfo.add(course.getProfInCharge().getProfName());
@@ -432,7 +430,7 @@ public class CourseMgr {
 
     }
 
-    public Map<Map<String, String>, Map<String, String>> generateComponentInformationForACourses(Course course) {
+    public Map<Map<String, String>, Map<String, String>> generateComponentInformationForACourses(ICourse course) {
         Map<Map<String, String>, Map<String, String>> map = new HashMap<>();
         for (MainComponent eachComp : course.getMainComponents()) {
             Map<String, String> mainComponentInfo = new HashMap<>();
@@ -485,7 +483,7 @@ public class CourseMgr {
     }
 
     public boolean checkCourseExists(String courseID) {
-        Optional<Course> course = courses.stream()
+        Optional<ICourse> course = courses.stream()
           .filter(c -> courseID.equals(c.getCourseID()))
           .findFirst();
 
