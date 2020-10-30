@@ -27,8 +27,6 @@ public class StudentMgr {
 
     private static StudentMgr singleInstance = null;
 
-    private final MarkCalculator markCalculator;
-
     private final IFileProcessor<Student> studentFileProcessor;
 
     /**
@@ -36,7 +34,6 @@ public class StudentMgr {
      */
     private StudentMgr() {
         studentFileProcessor = new StudentFileProcessor();
-        markCalculator = new MarkCalculator();
         students = studentFileProcessor.loadFile();
     }
 
@@ -92,9 +89,9 @@ public class StudentMgr {
 
         // randomly generate the last character from A-Z.
         int rand = new Random().nextInt();
-        char randomEndNumber = (char) ((rand * (76-65) + 1) + 65);
+        char randomEndNumber = (char) ((rand * (76 - 65) + 1) + 65);
 
-        return "U" + (smallestAvailableIDNumber+1) + randomEndNumber;
+        return "U" + (smallestAvailableIDNumber + 1) + randomEndNumber;
     }
 
     /**

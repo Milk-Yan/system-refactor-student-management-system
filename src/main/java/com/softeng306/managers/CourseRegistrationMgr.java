@@ -166,15 +166,6 @@ public class CourseRegistrationMgr {
     }
 
     /**
-     * Return the list of all course registrations in the system.
-     *
-     * @return An list of all course registrations.
-     */
-    public List<CourseRegistration> getCourseRegistrations() {
-        return courseRegistrations;
-    }
-
-    /**
      * Sort the list of course registrations of a course according to their ascending
      * normal alphabetical order of names of the lecture groups, ignoring cases.
      *
