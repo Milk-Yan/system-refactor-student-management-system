@@ -12,7 +12,6 @@ public class Group implements IGroup {
     private String groupName;
     private int availableVacancies;
     private GroupType groupType;
-
     private int capacity;
 
     /**

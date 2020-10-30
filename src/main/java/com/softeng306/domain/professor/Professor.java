@@ -3,7 +3,8 @@ package com.softeng306.domain.professor;
 import com.softeng306.enums.Department;
 
 /**
- * Represents a professor at school
+ * Concrete implementation of a professor.
+ * This class implements {@code IProfessor}.
  */
 public class Professor implements IProfessor {
 
