@@ -2,7 +2,7 @@ package com.softeng306.io;
 
 import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.managers.CourseMgr;
-import com.softeng306.managers.ICourseMgr;
+import com.softeng306.managers.IMarkMgr;
 import com.softeng306.managers.MarkMgr;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class MarkMgrIO implements IMarkMgrIO {
     private Scanner reader = new Scanner(System.in);
-    private MarkMgr markMgr = MarkMgr.getInstance();
+    private IMarkMgr markMgr = MarkMgr.getInstance();
 
     @Override
     public void printStudentNotRegisteredToCourse(String courseID) {

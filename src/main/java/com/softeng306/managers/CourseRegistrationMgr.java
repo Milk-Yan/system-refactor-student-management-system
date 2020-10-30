@@ -21,6 +21,15 @@ import java.util.Optional;
 public class CourseRegistrationMgr implements ICourseRegistrationMgr {
 
     /**
+     * A list of all the course registration records in this school.
+     */
+    private List<CourseRegistration> courseRegistrations;
+
+    private static ICourseRegistrationMgr singleInstance = null;
+
+    private final IFileProcessor<CourseRegistration> courseRegistrationFileProcessor;
+
+    /**
      * Override default constructor to implement singleton pattern
      */
     private CourseRegistrationMgr() {
@@ -194,15 +203,6 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
 
         return courseRegistration.isPresent();
     }
-
-    /**
-     * A list of all the course registration records in this school.
-     */
-    private List<CourseRegistration> courseRegistrations;
-
-    private static ICourseRegistrationMgr singleInstance = null;
-
-    private final IFileProcessor<CourseRegistration> courseRegistrationFileProcessor;
 
     /**
      * Return the ICourseRegistrationMgr singleton, if not initialised already, create an instance.
