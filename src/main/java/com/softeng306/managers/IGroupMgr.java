@@ -18,5 +18,5 @@ public interface IGroupMgr {
      * @return the name of the group chosen by the user.
      */
     IGroup printGroupWithVacancyInfo(GroupType groupType, List<IGroup> groups);
-    
+
 }
