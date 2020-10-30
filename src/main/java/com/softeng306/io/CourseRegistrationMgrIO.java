@@ -5,6 +5,7 @@ import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
 import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.managers.CourseMgr;
+import com.softeng306.managers.ICourseMgr;
 import com.softeng306.managers.CourseRegistrationMgr;
 
 import java.util.List;
