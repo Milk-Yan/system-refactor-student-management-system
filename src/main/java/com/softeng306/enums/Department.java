@@ -1,9 +1,11 @@
 package com.softeng306.enums;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Enumerated type to represent the different departments within the academic institute.
+ */
 public enum Department {
     ECSE, CS, CHEM_ENG;
 
@@ -16,6 +18,7 @@ public enum Department {
                 return true;
             }
         }
+        
         return false;
     }
 
@@ -24,9 +27,11 @@ public enum Department {
      */
     public static List<String> getListOfAllDepartmentNames(){
         List<String> allDepartmentNames = new ArrayList<>();
+
         for(Department department : Department.values()){
             allDepartmentNames.add(department.toString());
         }
+
         return allDepartmentNames;
     }
 }
