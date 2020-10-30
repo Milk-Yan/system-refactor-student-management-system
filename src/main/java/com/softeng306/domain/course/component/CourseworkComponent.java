@@ -1,6 +1,6 @@
 package com.softeng306.domain.course.component;
 
-public abstract class CourseworkComponent implements ICourseworkComponent {
+public abstract class CourseworkComponent {
 
     private String componentName;
 
@@ -24,12 +24,20 @@ public abstract class CourseworkComponent implements ICourseworkComponent {
         this.componentWeight = componentWeight;
     }
 
-    @Override
+    /**
+     * Gets the component name
+     *
+     * @return the name of this component
+     */
     public String getComponentName() {
         return this.componentName;
     }
 
-    @Override
+    /**
+     * Gets the weight of this component
+     *
+     * @return the weight of this component
+     */
     public int getComponentWeight() {
         return this.componentWeight;
     }
