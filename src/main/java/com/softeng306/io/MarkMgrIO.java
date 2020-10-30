@@ -10,18 +10,12 @@ import java.util.Scanner;
 public class MarkMgrIO implements IMarkMgrIO {
     private Scanner scanner = new Scanner(System.in);
     private MarkMgr markMgr = MarkMgr.getInstance();
-
-    /**
-     * Prints to console that a student is not registered for a course.
-     */
+    
     @Override
     public void printStudentNotRegisteredToCourse(String courseID) {
         System.out.println("This student haven't registered " + courseID);
     }
 
-    /**
-     * Prints to console a list of available course component choices.
-     */
     @Override
     public void printCourseComponentChoices(List<String> availableChoices, List<Integer> weights) {
         System.out.println("Here are the choices you can have: ");
@@ -32,9 +26,6 @@ public class MarkMgrIO implements IMarkMgrIO {
         System.out.println((availableChoices.size() + 1) + ". Quit");
     }
 
-    /**
-     * Reads the name of a course component from the user.
-     */
     @Override
     public int readCourseComponentChoice(int numChoices) {
         int choice;
@@ -52,9 +43,6 @@ public class MarkMgrIO implements IMarkMgrIO {
         return choice;
     }
 
-    /**
-     * Reads the mark of a course component from the user
-     */
     @Override
     public double readCourseComponentMark() {
         double assessmentMark;
@@ -70,9 +58,6 @@ public class MarkMgrIO implements IMarkMgrIO {
         return assessmentMark;
     }
 
-    /**
-     * Reads the mark for an exam from the user.
-     */
     @Override
     public double readExamMark() {
         double examMark;
