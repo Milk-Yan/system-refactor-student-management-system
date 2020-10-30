@@ -14,18 +14,11 @@ public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
     private Scanner scanner = new Scanner(System.in);
     private CourseRegistrationMgr courseRegistrationMgr = CourseRegistrationMgr.getInstance();
 
-    /**
-     * When there is no group of the given type, this method will be called
-     */
     @Override
     public void printContainsNoGroupMessage(String type) {
         System.out.format("This course does not contain any %s group.%n", type);
     }
 
-    /**
-     * When there are no registrations for a course, this method will print an error
-     * to the user
-     */
     @Override
     public void printNoRegistrationsForCourseMessage() {
         System.out.println("No one has registered this course yet.");
@@ -36,9 +29,6 @@ public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
         System.out.println("Sorry. This student already registers this course.");
     }
 
-    /**
-     * If the user input is invalid, this method will let the user know
-     */
     @Override
     public void printInvalidUserInputMessage() {
         System.out.println("Invalid input. Please re-enter.");
@@ -60,23 +50,12 @@ public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
         System.out.println("Professor " + profName + " is preparing the assessment. Please try to register other courses.");
     }
 
-    /**
-     * Before registration details are known, this will print an pending message.
-     *
-     * @param studentName is the name of the student
-     * @param studentId   is the id of the student
-     * @param courseId    is a course id that we are registering a student for.
-     * @param courseName  is a course name that we are registering a student for.
-     */
     @Override
     public void printRegistrationRequestDetails(String studentName, String studentId, String courseId, String courseName) {
         System.out.println("Student " + studentName + " with ID: " + studentId +
                 " wants to register " + courseId + " " + courseName);
     }
 
-    /**
-     * Gets a student and course from the user to create a new registration for
-     */
     @Override
     public void registerStudentForCourse() {
         MainMenuIO.printMethodCall("registerCourse");
@@ -95,9 +74,6 @@ public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
         }
     }
 
-    /**
-     * Gets a course id from the user to print student registrations for
-     */
     @Override
     public void printStudents() {
         MainMenuIO.printMethodCall("printStudent");
