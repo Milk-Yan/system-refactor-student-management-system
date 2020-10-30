@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Concrete implementation of a file processor for course registrations.
  * Used to read and write course registrations from a file.
+ * This class extends {@code FileProcessor}
  */
 public class CourseRegistrationFileProcessor extends FileProcessor<ICourseRegistration> {
     /**

@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Concrete implementation of a file processor for professors.
  * Used to read and write professor data from a file.
+ * This class extends {@code FileProcessor}
  */
 public class ProfessorFileProcessor extends FileProcessor<IProfessor> {
     /**

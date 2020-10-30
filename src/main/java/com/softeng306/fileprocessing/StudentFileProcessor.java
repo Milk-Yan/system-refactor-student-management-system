@@ -12,6 +12,8 @@ import java.util.List;
 
 /**
  * Concrete implementation of a file processor for student data.
+ * Used to read and write student data from a file.
+ * This class extends {@code FileProcessor}
  */
 public class StudentFileProcessor extends FileProcessor<IStudent> {
     /**

@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Concrete implementation a file processor for marks.
  * Used to write mark data to and from a file.
+ * This class extends {@code FileProcessor}
  */
 public class MarkFileProcessor extends FileProcessor<IStudentCourseMark> {
     /**
