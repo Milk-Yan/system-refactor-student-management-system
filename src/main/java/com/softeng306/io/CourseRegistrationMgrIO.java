@@ -53,7 +53,7 @@ public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
     @Override
     public void printRegistrationRequestDetails(String studentName, String studentId, String courseId, String courseName) {
         System.out.println("Student " + studentName + " with ID: " + studentId +
-                " wants to register " + courseId + " " + courseName);
+          " wants to register " + courseId + " " + courseName);
     }
 
     @Override
@@ -82,19 +82,19 @@ public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
         String courseID = courseIO.readExistingCourseId();
         printOptions();
 
-        int opt;
+        int userOption;
         do {
-            opt = reader.nextInt();
+            userOption = reader.nextInt();
             reader.nextLine();
 
             System.out.println("------------------------------------------------------");
 
             try {
-                courseRegistrationMgr.printStudents(courseID, opt);
+                courseRegistrationMgr.printStudents(courseID, userOption);
             } catch (CourseNotFoundException | GroupTypeNotFoundException e) {
                 e.printStackTrace();
             }
-        } while (opt < 1 || opt > 3);
+        } while (userOption < 1 || userOption > 3);
     }
 
     @Override

@@ -19,7 +19,7 @@ public class MainMenuIO {
         int highestChoiceInt = 11;
         while (choice != 11) {
             printOptions();
-            choice = readMenuOptionChosen(lowestChoiceInt, highestChoiceInt);
+            choice = readMenuOption(lowestChoiceInt, highestChoiceInt);
             executeUserChoice(choice);
         }
     }
@@ -31,7 +31,7 @@ public class MainMenuIO {
      * @param upperLimit The highest valid number for a user to enter
      * @return
      */
-    private static int readMenuOptionChosen(int lowerLimit, int upperLimit) {
+    private static int readMenuOption(int lowerLimit, int upperLimit) {
         int choice;
 
         while (true) {

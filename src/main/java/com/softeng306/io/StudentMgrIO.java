@@ -19,18 +19,18 @@ public class StudentMgrIO implements IStudentMgrIO {
         String studentID;
         printMenu();
 
-        if (isIdGeneratedBySystem()) {
+        if (readWhetherToGenerateStudentId()) {
             studentID = studentMgr.generateStudentID();
         } else {
-            studentID = getStudentID();
+            studentID = readUnusedStudentId();
         }
 
-        String studentName = getStudentName();
-        String schoolName = getSchoolName();
-        String studentGender = getStudentGender();
-        int studentYear = getStudentYear();
+        String studentName = readStudentName();
+        String schoolName = readSchoolName();
+        String studentGender = readStudentGender();
+        int studentYear = readStudentYear();
 
-        studentMgr.addStudent(studentID, studentName, schoolName, studentGender, studentYear);
+        studentMgr.createNewStudent(studentID, studentName, schoolName, studentGender, studentYear);
 
         printStudentData(studentName, studentID);
     }
@@ -38,7 +38,7 @@ public class StudentMgrIO implements IStudentMgrIO {
 
     @Override
     public void printStudentTranscript() {
-        String studentId = readExistingStudentId();
+        String studentId = readExistingStudentID();
 
         int studentsAcademicUnits;
         String studentName;
@@ -95,7 +95,7 @@ public class StudentMgrIO implements IStudentMgrIO {
      *
      * @return students name
      */
-    private String getStudentName() {
+    private String readStudentName() {
         String studentName;
         while (true) {
             System.out.println("Enter student Name: ");
@@ -111,7 +111,7 @@ public class StudentMgrIO implements IStudentMgrIO {
      *
      * @return students school
      */
-    private String getSchoolName() {
+    private String readSchoolName() {
         String studentSchool;
         while (true) {
             System.out.println("Enter student's school (uppercase): ");
@@ -136,7 +136,7 @@ public class StudentMgrIO implements IStudentMgrIO {
      *
      * @return students gender
      */
-    private String getStudentGender() {
+    private String readStudentGender() {
         String studentGender;
         while (true) {
             System.out.println("Enter student gender (uppercase): ");
@@ -160,7 +160,7 @@ public class StudentMgrIO implements IStudentMgrIO {
      *
      * @return students year level
      */
-    private int getStudentYear() {
+    private int readStudentYear() {
         int studentYear;
         do {
             System.out.println("Enter student's school year (1-4) : ");
@@ -192,33 +192,6 @@ public class StudentMgrIO implements IStudentMgrIO {
     }
 
     /**
-     * Prompts the user to input an existing student.
-     *
-     * @return the inputted student.
-     */
-    private String readExistingStudentId() {
-        String studentID;
-        while (true) {
-            System.out.println("Enter Student ID (-h to print all the student ID):");
-            studentID = reader.nextLine();
-            while ("-h".equals(studentID)) {
-                StudentMgr.getInstance().printAllStudentIds();
-                studentID = reader.nextLine();
-            }
-            List<String> existingStudentIds = studentMgr.getExistingStudentIds();
-
-            if (!existingStudentIds.contains(studentID)) {
-                System.out.println("Invalid Student ID. Please re-enter.");
-            } else {
-                break;
-            }
-
-        }
-        return studentID;
-    }
-
-
-    /**
      * Prints all the strings in the input list by its index
      * (starting from 1), and a :
      * e.g. 1: inputString
@@ -245,7 +218,7 @@ public class StudentMgrIO implements IStudentMgrIO {
      *
      * @return true if the system is to auto-generate the students ID, false for the user to manually enter the students ID
      */
-    private boolean isIdGeneratedBySystem() {
+    private boolean readWhetherToGenerateStudentId() {
         int choice;
         do {
             System.out.println("Please input your choice:");
@@ -272,7 +245,7 @@ public class StudentMgrIO implements IStudentMgrIO {
      *
      * @return student ID
      */
-    private String getStudentID() {
+    private String readUnusedStudentId() {
         while (true) {
             System.out.println("The student ID should follow:");
             System.out.println("Length is exactly 9");
