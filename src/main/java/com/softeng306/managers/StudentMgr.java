@@ -16,6 +16,7 @@ import java.util.Random;
 import java.util.Optional;
 
 /**
+ * Concrete implementation of {@code IStudentMgr}.
  * Manages the operations on students enrolled in the academic institute.
  */
 public class StudentMgr implements IStudentMgr {
