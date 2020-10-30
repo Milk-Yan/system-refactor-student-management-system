@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
 
-    private static ICourseRegistrationMgrIO ICourseRegistrationMgrIO = new CourseRegistrationMgrIO();
-    private static IStudentMgrIO IStudentMgrIO = new StudentMgrIO();
-    private static IMarkMgrIO IMarkMgrIO = new MarkMgrIO();
-    private static ICourseMgrIO ICourseMgrIO = new CourseMgrIO();
+    private static ICourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
+    private static IStudentMgrIO studentMgrIO = new StudentMgrIO();
+    private static IMarkMgrIO markMgrIO = new MarkMgrIO();
+    private static ICourseMgrIO courseMgrIO = new CourseMgrIO();
 
     /**
      * Startup the main menu for the application
@@ -56,34 +56,34 @@ public class MainMenuIO {
             case 0:
                 break;
             case 1:
-                IStudentMgrIO.addStudent();
+                studentMgrIO.addStudent();
                 break;
             case 2:
-                ICourseMgrIO.addCourse();
+                courseMgrIO.addCourse();
                 break;
             case 3:
-                ICourseRegistrationMgrIO.registerStudentForCourse();
+                courseRegistrationMgrIO.registerStudentForCourse();
                 break;
             case 4:
-                ICourseMgrIO.checkAvailableSlots();
+                courseMgrIO.checkAvailableSlots();
                 break;
             case 5:
-                ICourseRegistrationMgrIO.printStudents();
+                courseRegistrationMgrIO.printStudents();
                 break;
             case 6:
-                ICourseMgrIO.enterCourseWorkComponentWeightage();
+                courseMgrIO.enterCourseWorkComponentWeightage();
                 break;
             case 7:
-                IMarkMgrIO.initiateEnteringCourseworkMark(false);
+                markMgrIO.initiateEnteringCourseworkMark(false);
                 break;
             case 8:
-                IMarkMgrIO.initiateEnteringCourseworkMark(true);
+                markMgrIO.initiateEnteringCourseworkMark(true);
                 break;
             case 9:
-                ICourseMgrIO.printCourseStatistics();
+                courseMgrIO.printCourseStatistics();
                 break;
             case 10:
-                IStudentMgrIO.printStudentTranscript();
+                studentMgrIO.printStudentTranscript();
                 break;
             case 11:
                 exitApplication();
