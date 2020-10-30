@@ -33,19 +33,6 @@ public class MarkCalculator {
     }
 
 
-
-    public double computeComponentMarkForStudent(String studentId, String courseID, String componentName) {
-        List<Mark> studentMarksForCourse = new ArrayList<>();
-        for (Mark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getCourse().getCourseID().equals(courseID)
-                    && mark.getStudent().getStudentID().equals(studentId)) {
-                studentMarksForCourse.add(mark);
-            }
-        }
-
-        return computeAverageComponentMark(studentMarksForCourse, componentName);
-    }
-
     /**
      * Computes the sum of marks for a particular component of a particular course
      *
@@ -71,30 +58,6 @@ public class MarkCalculator {
                         averageMark += subComponentMark.getMark();
                         break;
                     }
-                }
-            }
-        }
-        return averageMark / thisCourseMark.size();
-    }
-
-    /**
-     * Computes the exam marks for a particular course.
-     *
-     * @param thisCourseMark The marks for the course.
-     * @return The exam marks for the course.
-     */
-    private double computeExamMark(List<Mark> thisCourseMark) {
-        double averageMark = 0;
-
-        for (Mark mark : thisCourseMark) {
-            List<MainComponentMark> courseMarks = mark.getCourseWorkMarks();
-
-            for (MainComponentMark mainComponentMark : courseMarks) {
-                MainComponent mainComponent = mainComponentMark.getMainComponent();
-                double value = mainComponentMark.getMark();
-                if (mainComponent.getComponentName().equals("Exam")) {
-                    averageMark += value;
-                    break;
                 }
             }
         }

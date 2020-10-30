@@ -45,13 +45,4 @@ public class MainComponent extends CourseworkComponent {
         return this.subComponents;
     }
 
-    public List<String> getSubComponentNames(){
-        List<String> subComponentNames = new ArrayList<String>();
-        for(SubComponent s : subComponents){
-            subComponentNames.add(s.getComponentName());
-        }
-
-        return subComponentNames;
-    }
-
 }

@@ -472,11 +472,6 @@ public class CourseMgr {
         return new CourseMgrIO().readWeeklyHour(GroupType.TUTORIAL_GROUP.toString(), AU);
     }
 
-    public String getCourseName(String courseId) throws CourseNotFoundException {
-        Course course = getCourseFromId(courseId);
-        return course.getCourseName();
-    }
-
     public List<String> getListCourseTypes() {
         return CourseType.getListOfAllCourseTypeNames();
     }

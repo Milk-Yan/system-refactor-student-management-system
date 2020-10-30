@@ -3,7 +3,6 @@ package com.softeng306.managers;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.exceptions.SubComponentNotFoundException;
 import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
@@ -84,7 +83,7 @@ public class MarkMgr {
      *
      * @param isExam whether this coursework component refers to "Exam"
      */
-    public void setCourseworkMark(boolean isExam, String studentID, String courseID) throws SubComponentNotFoundException {
+    public void setCourseworkMark(boolean isExam, String studentID, String courseID) {
         MarkMgrIO io = new MarkMgrIO();
 
         List<String> componentNameList = new ArrayList<>();
@@ -136,8 +135,7 @@ public class MarkMgr {
     }
 
 
-    private void setComponentMark(Mark mark, boolean isMainComponent, String componentName,
-                                  double assessmentMark) throws SubComponentNotFoundException {
+    private void setComponentMark(Mark mark, boolean isMainComponent, String componentName, double assessmentMark) {
         if (isMainComponent) {
             // This is a stand alone main assessment
             mark.setMainComponentMark(componentName, assessmentMark);

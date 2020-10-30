@@ -166,15 +166,6 @@ public class CourseRegistrationMgr {
     }
 
     /**
-     * Return the list of all course registrations in the system.
-     *
-     * @return An list of all course registrations.
-     */
-    public List<CourseRegistration> getCourseRegistrations() {
-        return courseRegistrations;
-    }
-
-    /**
      * Sort the list of course registrations of a course according to their ascending
      * normal alphabetical order of names of the lecture groups, ignoring cases.
      *
@@ -250,26 +241,6 @@ public class CourseRegistrationMgr {
         }
 
         return courseIds;
-    }
-
-    public int getStudentTotalAU(Student student) {
-        int total = 0;
-        for (CourseRegistration courseRegistration : courseRegistrations) {
-            if (courseRegistration.getStudent().equals(student)) {
-                total += courseRegistration.getCourse().getAU();
-            }
-        }
-        return total;
-    }
-
-    public List<String> getUniqueGroupNames(List<CourseRegistration> courseRegistrations, GroupType groupType) throws GroupTypeNotFoundException {
-        List<String> uniqueGroupNames = new ArrayList<>();
-        for (CourseRegistration courseRegistration : courseRegistrations) {
-            if (!uniqueGroupNames.contains(courseRegistration.getGroupByType(groupType).getGroupName())) {
-                uniqueGroupNames.add(courseRegistration.getTutorialGroup().getGroupName());
-            }
-        }
-        return uniqueGroupNames;
     }
 
 
