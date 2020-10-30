@@ -8,20 +8,14 @@ import com.softeng306.managers.MarkMgr;
 import java.util.List;
 import java.util.Scanner;
 
-public class MarkMgrIO {
+public class MarkMgrIO implements IMarkMgrIO {
     private Scanner scanner = new Scanner(System.in);
     private MarkMgr markMgr = MarkMgr.getInstance();
 
     /**
-     * Prints to console that a function has been called.
-     */
-    public void printFunctionCall(String functionName) {
-        System.out.println(functionName + " is called");
-    }
-
-    /**
      * Prints to console that a student is not registered for a course.
      */
+    @Override
     public void printStudentNotRegisteredToCourse(String courseID) {
         System.out.println("This student haven't registered " + courseID);
     }
@@ -29,6 +23,7 @@ public class MarkMgrIO {
     /**
      * Prints to console a list of available course component choices.
      */
+    @Override
     public void printCourseComponentChoices(List<String> availableChoices, List<Integer> weights) {
         System.out.println("Here are the choices you can have: ");
 
@@ -41,6 +36,7 @@ public class MarkMgrIO {
     /**
      * Reads the name of a course component from the user.
      */
+    @Override
     public int readCourseComponentChoice(int numChoices) {
         int choice;
         System.out.println("Enter your choice");
@@ -60,6 +56,7 @@ public class MarkMgrIO {
     /**
      * Reads the mark of a course component from the user
      */
+    @Override
     public double readCourseComponentMark() {
         double assessmentMark;
         System.out.println("Enter the mark for this assessment:");
@@ -77,6 +74,7 @@ public class MarkMgrIO {
     /**
      * Reads the mark for an exam from the user.
      */
+    @Override
     public double readExamMark() {
         double examMark;
         System.out.println("Enter exam mark:");
@@ -91,6 +89,7 @@ public class MarkMgrIO {
         return examMark;
     }
 
+    @Override
     public void initiateEnteringCourseworkMark(boolean isExam) {
         printFunctionCall("enterCourseWorkMark");
 
@@ -101,5 +100,12 @@ public class MarkMgrIO {
         } catch (CourseNotFoundException | SubComponentNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Prints to console that a function has been called.
+     */
+    private void printFunctionCall(String functionName) {
+        System.out.println(functionName + " is called");
     }
 }
