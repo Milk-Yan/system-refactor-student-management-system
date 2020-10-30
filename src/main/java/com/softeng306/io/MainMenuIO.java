@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
 
-    private static CourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
+    private static ICourseRegistrationMgrIO ICourseRegistrationMgrIO = new CourseRegistrationMgrIO();
     private static StudentMgrIO studentMgrIO = new StudentMgrIO();
     private static MarkMgrIO markMgrIO = new MarkMgrIO();
     private static ICourseMgrIO ICourseMgrIO = new CourseMgrIO();
@@ -62,13 +62,13 @@ public class MainMenuIO {
                 ICourseMgrIO.addCourse();
                 break;
             case 3:
-                courseRegistrationMgrIO.registerStudentForCourse();
+                ICourseRegistrationMgrIO.registerStudentForCourse();
                 break;
             case 4:
                 ICourseMgrIO.checkAvailableSlots();
                 break;
             case 5:
-                courseRegistrationMgrIO.printStudents();
+                ICourseRegistrationMgrIO.printStudents();
                 break;
             case 6:
                 ICourseMgrIO.enterCourseWorkComponentWeightage();
