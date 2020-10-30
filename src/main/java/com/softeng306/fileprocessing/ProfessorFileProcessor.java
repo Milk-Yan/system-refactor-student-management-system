@@ -56,5 +56,5 @@ public class ProfessorFileProcessor extends FileProcessor<IProfessor> {
     public void updateFileContents(List<IProfessor> updatedProfessors) {
         // dummy method
     }
-    
+
 }
