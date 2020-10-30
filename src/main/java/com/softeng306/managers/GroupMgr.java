@@ -8,23 +8,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class GroupMgr {
+public class GroupMgr implements IGroupMgr {
     private Scanner scanner = new Scanner(System.in);
 
-    private static GroupMgr singleInstance = null;
+    private static IGroupMgr singleInstance = null;
 
     /**
      * Override default constructor to implement singleton pattern
      */
-    private GroupMgr() {
-    }
+    private GroupMgr() { }
 
     /**
-     * Return the GroupMgr singleton, if not initialised already, create an instance.
+     * Return the IGroupMgr singleton, if not initialised already, create an instance.
      *
-     * @return GroupMgr the singleton instance
+     * @return IGroupMgr the singleton instance
      */
-    public static GroupMgr getInstance() {
+    public static IGroupMgr getInstance() {
         if (singleInstance == null) {
             singleInstance = new GroupMgr();
         }
@@ -32,13 +31,7 @@ public class GroupMgr {
         return singleInstance;
     }
 
-    /**
-     * Checks whether the inputted department is valid.
-     *
-     * @param groupType The type of this group.
-     * @param groups    A list of a certain type of groups in a course.
-     * @return the name of the group chosen by the user.
-     */
+    @Override
     public IGroup printGroupWithVacancyInfo(GroupType groupType, List<IGroup> groups) {
         int index;
         Map<String, Integer> groupAssign = new HashMap<>(0);

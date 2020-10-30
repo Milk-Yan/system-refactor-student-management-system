@@ -7,6 +7,7 @@ import com.softeng306.domain.professor.IProfessor;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
+import com.softeng306.managers.IProfessorMgr;
 import com.softeng306.managers.ProfessorMgr;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class CourseBuilder implements ICourseBuilder {
 
     @Override
     public void setCourseCoordinator(String profID) throws ProfessorNotFoundException {
-        ProfessorMgr profMgr = ProfessorMgr.getInstance();
+        IProfessorMgr profMgr = ProfessorMgr.getInstance();
         //Guaranteed at this point that the ID is valid
         IProfessor profInCharge = profMgr.getProfessorFromID(profID);
         course.setCourseCoordinator(profInCharge);
