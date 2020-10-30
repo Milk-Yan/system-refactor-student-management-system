@@ -19,13 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CourseRegistrationMgr {
+public class CourseRegistrationMgr implements ICourseRegistrationMgr {
+
     /**
      * A list of all the course registration records in this school.
      */
     private List<ICourseRegistration> courseRegistrations;
 
-    private static CourseRegistrationMgr singleInstance = null;
+    private static ICourseRegistrationMgr singleInstance = null;
 
     private final IFileProcessor<ICourseRegistration> courseRegistrationFileProcessor;
 
@@ -37,23 +38,7 @@ public class CourseRegistrationMgr {
         courseRegistrations = courseRegistrationFileProcessor.loadFile();
     }
 
-    /**
-     * Return the CourseRegistrationMgr singleton, if not initialised already, create an instance.
-     *
-     * @return CourseRegistrationMgr the singleton instance
-     */
-    public static CourseRegistrationMgr getInstance() {
-        if (singleInstance == null) {
-            singleInstance = new CourseRegistrationMgr();
-        }
-
-        return singleInstance;
-    }
-
-
-    /**
-     * Registers a course for a student
-     */
+    @Override
     public List<String> registerCourse(String studentID, String courseID) throws InvalidCourseRegistrationException, StudentNotFoundException, CourseNotFoundException {
         ICourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         IStudent currentStudent = StudentMgr.getInstance().getStudentFromId(studentID);
@@ -77,7 +62,7 @@ public class CourseRegistrationMgr {
         io.printRegistrationRequestDetails(currentStudent.getName(), currentStudent.getStudentId(), currentCourse.getCourseId(), currentCourse.getName());
 
         List<IGroup> lecGroups = currentCourse.getLectureGroups();
-        GroupMgr groupMgr = GroupMgr.getInstance();
+        IGroupMgr groupMgr = GroupMgr.getInstance();
         IGroup selectedLectureGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LECTURE_GROUP, lecGroups);
 
         List<IGroup> tutGroups = currentCourse.getTutorialGroups();
@@ -114,9 +99,7 @@ public class CourseRegistrationMgr {
         return registrationInfo;
     }
 
-    /**
-     * Prints the students in a course according to their lecture group, tutorial group or lab group.
-     */
+    @Override
     public void printStudents(String courseID, int opt) throws CourseNotFoundException, GroupTypeNotFoundException {
         ICourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         ICourse currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
@@ -165,6 +148,74 @@ public class CourseRegistrationMgr {
         }
 
         io.printEndOfSection();
+    }
+
+    @Override
+    public List<String> getCourseIdsForStudentId(String studentId) {
+        List<String> courseIds = new ArrayList<>();
+        for (ICourseRegistration courseRegistration : courseRegistrations) {
+            if (courseRegistration.getStudent().getStudentId().equals(studentId)) {
+                courseIds.add(courseRegistration.getCourse().getCourseId());
+            }
+        }
+
+        return courseIds;
+    }
+
+    /**
+     * This method prints the students of a given group
+     *
+     * @param courseRegistrations the list registrations for a course
+     * @param groupType           the group of registration that we want to print
+     */
+    private List<String> getGroupString(List<ICourseRegistration> courseRegistrations, GroupType groupType) throws GroupTypeNotFoundException {
+        List<String> groupStringInfo = new ArrayList<>();
+        if (courseRegistrations.isEmpty()) {
+            return groupStringInfo;
+        }
+
+        String groupName = "";
+        for (ICourseRegistration courseRegistration : courseRegistrations) {
+            String courseRegGroupName = courseRegistration.getGroupByType(groupType).getGroupName();
+            if (!groupName.equals(courseRegGroupName)) {
+                groupName = courseRegGroupName;
+                groupStringInfo.add(groupType.getNameWithCapital() + " group : " + groupName);
+            }
+
+            groupStringInfo.add("Student Name: " + courseRegistration.getStudent().getName() + " Student ID: " + courseRegistration.getStudent().getStudentId());
+        }
+        groupStringInfo.add("");
+
+        return groupStringInfo;
+    }
+
+    /**
+     * Checks whether this course registration record exists.
+     *
+     * @param studentID The inputted student ID.
+     * @param courseID  The inputted course ID.
+     * @return the existing course registration record or else null.
+     */
+    private boolean courseRegistrationExists(String studentID, String courseID) {
+        Optional<ICourseRegistration> courseRegistration = courseRegistrations.stream()
+                .filter(cr -> studentID.equals(cr.getStudent().getStudentId()))
+                .filter(cr -> courseID.equals(cr.getCourse().getCourseId()))
+                .findFirst();
+
+        return courseRegistration.isPresent();
+    }
+
+    /**
+     * Return the ICourseRegistrationMgr singleton, if not initialised already, create an instance.
+     *
+     * @return ICourseRegistrationMgr the singleton instance
+     */
+    public static ICourseRegistrationMgr getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new CourseRegistrationMgr();
+        }
+
+        return singleInstance;
     }
 
     /**
@@ -233,80 +284,4 @@ public class CourseRegistrationMgr {
             return group1.compareTo(group2);
         });
     }
-
-    public List<String> getCourseIdsForStudentId(String studentId) {
-        List<String> courseIds = new ArrayList<>();
-        for (ICourseRegistration courseRegistration : courseRegistrations) {
-            if (courseRegistration.getStudent().getStudentId().equals(studentId)) {
-                courseIds.add(courseRegistration.getCourse().getCourseId());
-            }
-        }
-
-        return courseIds;
-    }
-
-    public int getStudentTotalAU(IStudent student) {
-        int total = 0;
-        for (ICourseRegistration courseRegistration : courseRegistrations) {
-            if (courseRegistration.getStudent().equals(student)) {
-                total += courseRegistration.getCourse().getAcademicUnits();
-            }
-        }
-        return total;
-    }
-
-    public List<String> getUniqueGroupNames(List<ICourseRegistration> courseRegistrations, GroupType groupType) throws GroupTypeNotFoundException {
-        List<String> uniqueGroupNames = new ArrayList<>();
-        for (ICourseRegistration courseRegistration : courseRegistrations) {
-            if (!uniqueGroupNames.contains(courseRegistration.getGroupByType(groupType).getGroupName())) {
-                uniqueGroupNames.add(courseRegistration.getTutorialGroup().getGroupName());
-            }
-        }
-        return uniqueGroupNames;
-    }
-
-
-    /**
-     * This method prints the students of a given group
-     *
-     * @param courseRegistrations the list registrations for a course
-     * @param groupType           the group of registration that we want to print
-     */
-    public List<String> getGroupString(List<ICourseRegistration> courseRegistrations, GroupType groupType) throws GroupTypeNotFoundException {
-        List<String> groupStringInfo = new ArrayList<>();
-        if (courseRegistrations.isEmpty()) {
-            return groupStringInfo;
-        }
-
-        String groupName = "";
-        for (ICourseRegistration courseRegistration : courseRegistrations) {
-            String courseRegGroupName = courseRegistration.getGroupByType(groupType).getGroupName();
-            if (!groupName.equals(courseRegGroupName)) {
-                groupName = courseRegGroupName;
-                groupStringInfo.add(groupType.getNameWithCapital() + " group : " + groupName);
-            }
-
-            groupStringInfo.add("Student Name: " + courseRegistration.getStudent().getName() + " Student ID: " + courseRegistration.getStudent().getStudentId());
-        }
-        groupStringInfo.add("");
-
-        return groupStringInfo;
-    }
-
-    /**
-     * Checks whether this course registration record exists.
-     *
-     * @param studentID The inputted student ID.
-     * @param courseID  The inputted course ID.
-     * @return the existing course registration record or else null.
-     */
-    public boolean courseRegistrationExists(String studentID, String courseID) {
-        Optional<ICourseRegistration> courseRegistration = courseRegistrations.stream()
-                .filter(cr -> studentID.equals(cr.getStudent().getStudentId()))
-                .filter(cr -> courseID.equals(cr.getCourse().getCourseId()))
-                .findFirst();
-
-        return courseRegistration.isPresent();
-    }
-
 }

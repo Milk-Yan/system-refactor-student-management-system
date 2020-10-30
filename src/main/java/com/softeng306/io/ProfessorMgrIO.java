@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Takes care of all the Input/Output processing needed by the
- * ProfessorMgr.
+ * IProfessorMgr.
  */
 public class ProfessorMgrIO implements IProfessorMgrIO {
 

@@ -22,13 +22,12 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseMgr {
+public class CourseMgr implements ICourseMgr {
     /**
      * A list of all the courses in this school.
      */
     private List<ICourse> courses;
-
-    private static CourseMgr singleInstance = null;
+    private static CourseMgr singleInstance;
 
     private final IFileProcessor<ICourse> courseFileProcessor;
     private IMarkCalculator markCalculator = new MarkCalculator();
@@ -54,9 +53,7 @@ public class CourseMgr {
         return singleInstance;
     }
 
-    /**
-     * Creates a new course and stores it in the file.
-     */
+    @Override
     public void addCourse(ICourseBuilder completeBuilder) {
         ICourseMgrIO courseMgrIO = new CourseMgrIO();
 
@@ -80,9 +77,7 @@ public class CourseMgr {
         courseMgrIO.printCourses(generateGeneralInformationForAllCourses());
     }
 
-    /**
-     * Checks whether a course (with all of its groups) have available slots and displays the result.
-     */
+    @Override
     public void checkAvailableSlots() {
         ICourseMgrIO io = new CourseMgrIO();
 
@@ -120,11 +115,7 @@ public class CourseMgr {
         }
     }
 
-    /**
-     * Sets the course work component weightage of a course.
-     *
-     * @param currentCourse The course which course work component is to be set.
-     */
+    @Override
     public void enterCourseWorkComponentWeightage(ICourse currentCourse) {
         ICourseMgrIO io = new CourseMgrIO();
 
@@ -153,6 +144,153 @@ public class CourseMgr {
         io.printComponentsForCourse(currentCourse.getCourseId(), currentCourse.getName(), generateComponentInformationForACourses(currentCourse));
 
         // Update course into course.csv
+    }
+
+    @Override
+    public void printAllCourseIds() {
+        new CourseMgrIO().printAllCourseIds(generateListOfAllCourseIDs());
+    }
+
+    @Override
+    public List<String> getCourseIdsInDepartment(String departmentName) {
+        List<ICourse> validCourses = new ArrayList<>();
+        courses.forEach(course -> {
+            if (departmentName.equals(course.getDepartment().toString())) {
+                validCourses.add(course);
+            }
+        });
+
+        List<String> courseIdsForDepartment = new ArrayList<>();
+        validCourses.forEach(course -> {
+            String courseID = course.getCourseId();
+            courseIdsForDepartment.add(courseID);
+        });
+        return courseIdsForDepartment;
+    }
+
+    @Override
+    public void printCourseStatistics() {
+        ICourseMgrIO io = new CourseMgrIO();
+
+        MainMenuIO.printMethodCall("printCourseStatistics");
+
+        ICourse currentCourse;
+        String courseID;
+        try {
+            currentCourse = readExistingCourse();
+            courseID = currentCourse.getCourseId();
+        } catch (CourseNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        io.printCourseStatisticsHeader(generateCourseInformationFromCourse(currentCourse));
+
+        MainComponent exam = null;
+
+        // Find marks for every assessment components
+        for (MainComponent mainComponent : currentCourse.getMainComponents()) {
+            String componentName = mainComponent.getName();
+
+            if (componentName.equals("Exam")) {
+//                Leave the exam report to the last
+                exam = mainComponent;
+            } else {
+                io.printMainComponent(mainComponent.getName(), mainComponent.getWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getName()));
+                List<SubComponent> subComponents = mainComponent.getSubComponents();
+                if (!subComponents.isEmpty()) {
+                    String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
+                    Map<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents, courseID);
+                    io.printSubcomponents(subComponentInformation, subComponentMarks);
+                }
+            }
+        }
+
+        if (exam != null) {
+            io.printExamStatistics(exam.getWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, "Exam"));
+
+        } else {
+            io.printNoExamMessage();
+        }
+
+        io.printOverallPerformance(markCalculator.computeOverallMarkForCourse(courseID));
+    }
+
+    @Override
+    public ICourse readExistingCourse() throws CourseNotFoundException {
+        String validCourseID = new CourseMgrIO().readExistingCourseId();
+        return getCourseFromId(validCourseID);
+    }
+
+    @Override
+    public String readExistingDepartment() {
+        return new CourseMgrIO().readExistingDepartment();
+    }
+
+    @Override
+    public ICourse getCourseFromId(String courseID) throws CourseNotFoundException {
+        Optional<ICourse> course = courses.stream()
+                .filter(c -> courseID.equals(c.getCourseId()))
+                .findAny();
+
+        if (!course.isPresent()) {
+            throw new CourseNotFoundException(courseID);
+        }
+        return course.get();
+    }
+
+    @Override
+    public int getNumberOfLectureGroups(int compareTo, int totalSeats) {
+        return new CourseMgrIO().readNoOfGroup(GroupType.LECTURE_GROUP.toString(), compareTo, totalSeats);
+    }
+
+    @Override
+    public int getReadWeeklyLectureHour(int academicUnits) {
+        return new CourseMgrIO().readWeeklyHour(GroupType.LECTURE_GROUP.toString(), academicUnits);
+    }
+
+    @Override
+    public int getNumberOfLabGroups(int compareTo, int totalSeats) {
+        return new CourseMgrIO().readNoOfGroup(GroupType.LAB_GROUP.toString(), compareTo, totalSeats);
+    }
+
+    @Override
+    public int getReadWeeklyLabHour(int academicUnits) {
+        return new CourseMgrIO().readWeeklyHour(GroupType.LAB_GROUP.toString(), academicUnits);
+    }
+
+    @Override
+    public int getNumberOfTutorialGroups(int compareTo, int totalSeats) {
+        return new CourseMgrIO().readNoOfGroup(GroupType.TUTORIAL_GROUP.toString(), compareTo, totalSeats);
+    }
+
+    @Override
+    public int getReadWeeklyTutorialHour(int academicUnits) {
+        return new CourseMgrIO().readWeeklyHour(GroupType.TUTORIAL_GROUP.toString(), academicUnits);
+    }
+
+    @Override
+    public List<String> getListCourseTypes() {
+        return CourseType.getListOfAllCourseTypeNames();
+    }
+
+    @Override
+    public String getMainComponentString() {
+        return MainComponent.COMPONENT_NAME;
+    }
+
+    @Override
+    public String getSubComponentString() {
+        return SubComponent.COMPONENT_NAME;
+    }
+
+    @Override
+    public boolean checkCourseExists(String courseID) {
+        Optional<ICourse> course = courses.stream()
+          .filter(c -> courseID.equals(c.getCourseId()))
+          .findFirst();
+
+        return course.isPresent();
     }
 
     /**
@@ -248,115 +386,12 @@ public class CourseMgr {
         return examWeight;
     }
 
-    /**
-     * Displays a list of IDs of all the courses.
-     */
-    public void printAllCourseIds() {
-        new CourseMgrIO().printAllCourseIds(generateListOfAllCourseIDs());
-    }
-
-    public List<String> getCourseIdsInDepartment(String departmentName) {
-        List<ICourse> validCourses = new ArrayList<>();
-        courses.forEach(course -> {
-            if (departmentName.equals(course.getDepartment().toString())) {
-                validCourses.add(course);
-            }
-        });
-
-        List<String> courseIdsForDepartment = new ArrayList<>();
-        validCourses.forEach(course -> {
-            String courseID = course.getCourseId();
-            courseIdsForDepartment.add(courseID);
-        });
-        return courseIdsForDepartment;
-    }
-
-    /**
-     * Prints the course statics including enrollment rate, average result for every assessment component and the average overall performance of this course.
-     */
-    public void printCourseStatistics() {
-        ICourseMgrIO io = new CourseMgrIO();
-
-        MainMenuIO.printMethodCall("printCourseStatistics");
-
-        ICourse currentCourse;
-        String courseID;
-        try {
-            currentCourse = readExistingCourse();
-            courseID = currentCourse.getCourseId();
-        } catch (CourseNotFoundException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        io.printCourseStatisticsHeader(generateCourseInformationFromCourse(currentCourse));
-
-        MainComponent exam = null;
-
-        // Find marks for every assessment components
-        for (MainComponent mainComponent : currentCourse.getMainComponents()) {
-            String componentName = mainComponent.getName();
-
-            if (componentName.equals("Exam")) {
-//                Leave the exam report to the last
-                exam = mainComponent;
-            } else {
-                io.printMainComponent(mainComponent.getName(), mainComponent.getWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getName()));
-                List<SubComponent> subComponents = mainComponent.getSubComponents();
-                if (!subComponents.isEmpty()) {
-                    String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
-                    Map<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents, courseID);
-                    io.printSubcomponents(subComponentInformation, subComponentMarks);
-                }
-            }
-        }
-
-        if (exam != null) {
-            io.printExamStatistics(exam.getWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, "Exam"));
-
-        } else {
-            io.printNoExamMessage();
-        }
-
-        io.printOverallPerformance(markCalculator.computeOverallMarkForCourse(courseID));
-    }
-
-
-    /**
-     * Prompts the user to input an existing course.
-     *
-     * @return the inputted course.
-     */
-    public ICourse readExistingCourse() throws CourseNotFoundException {
-        String validCourseID = new CourseMgrIO().readExistingCourseId();
-        return getCourseFromId(validCourseID);
-    }
-
-    /**
-     * Prompts the user to input an existing department.
-     *
-     * @return the inputted department.
-     */
-    public String readExistingDepartment() {
-        return new CourseMgrIO().readExistingDepartment();
-    }
-
-    /**
-     * Return the list of all courses in the system.
-     *
-     * @return An list of all courses.
-     */
-    public List<ICourse> getCourses() {
-        return courses;
-    }
-
-
-    public String generateCourseInformation(ICourse course) {
+    private String generateCourseInformation(ICourse course) {
         String infoString = course.getCourseId() + " " + course.getName() + " (Available/Total): " + course.getVacancies() + "/" + course.getCapacity();
         return infoString;
     }
 
-    public String[][] generateSubComponentInformation(List<SubComponent> subComponents) {
+    private String[][] generateSubComponentInformation(List<SubComponent> subComponents) {
         String[][] map = new String[subComponents.size()][2];
         int i = 0;
         for (SubComponent subComponent : subComponents) {
@@ -367,8 +402,7 @@ public class CourseMgr {
         return map;
     }
 
-
-    public Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID) {
+    private Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID) {
         Map<String, Double> map = new HashMap<>();
         for (SubComponent subComponent : subComponents) {
             double mark = markCalculator.computeAverageMarkForCourseComponent(courseID, subComponent.getName());
@@ -387,7 +421,7 @@ public class CourseMgr {
         return courseInformation;
     }
 
-    public List<String> generateListOfAllCourseIDs() {
+    private List<String> generateListOfAllCourseIDs() {
         List<String> courseIDs = new ArrayList<>();
         for (ICourse course : courses) {
             courseIDs.add(course.getCourseId());
@@ -395,28 +429,7 @@ public class CourseMgr {
         return courseIDs;
     }
 
-
-    /**
-     * Checks whether this course ID is used by other courses.
-     *
-     * @param courseID The inputted course ID.
-     * @return the existing course or else null.
-     */
-    public ICourse getCourseFromId(String courseID) throws CourseNotFoundException {
-        Optional<ICourse> course = CourseMgr
-                .getInstance()
-                .getCourses()
-                .stream()
-                .filter(c -> courseID.equals(c.getCourseId()))
-                .findAny();
-
-        if (!course.isPresent()) {
-            throw new CourseNotFoundException(courseID);
-        }
-        return course.get();
-    }
-
-    public Map<String, List<String>> generateGeneralInformationForAllCourses() {
+    private Map<String, List<String>> generateGeneralInformationForAllCourses() {
         Map<String, List<String>> generalCourseInfoMap = new HashMap<>();
         for (ICourse course : courses) {
             List<String> generalCourseInfo = new ArrayList<>();
@@ -428,7 +441,7 @@ public class CourseMgr {
 
     }
 
-    public Map<Map<String, String>, Map<String, String>> generateComponentInformationForACourses(ICourse course) {
+    private Map<Map<String, String>, Map<String, String>> generateComponentInformationForACourses(ICourse course) {
         Map<Map<String, String>, Map<String, String>> map = new HashMap<>();
         for (MainComponent eachComp : course.getMainComponents()) {
             Map<String, String> mainComponentInfo = new HashMap<>();
@@ -442,50 +455,5 @@ public class CourseMgr {
             map.put(mainComponentInfo, subComponentsInfo);
         }
         return map;
-    }
-
-    public int getNumberOfLectureGroups(int compareTo, int totalSeats) {
-        return new CourseMgrIO().readNoOfGroup(GroupType.LECTURE_GROUP.toString(), compareTo, totalSeats);
-    }
-
-    public int getReadWeeklyLectureHour(int academicUnits) {
-        return new CourseMgrIO().readWeeklyHour(GroupType.LECTURE_GROUP.toString(), academicUnits);
-    }
-
-    public int getNumberOfLabGroups(int compareTo, int totalSeats) {
-        return new CourseMgrIO().readNoOfGroup(GroupType.LAB_GROUP.toString(), compareTo, totalSeats);
-    }
-
-    public int getReadWeeklyLabHour(int academicUnits) {
-        return new CourseMgrIO().readWeeklyHour(GroupType.LAB_GROUP.toString(), academicUnits);
-    }
-
-    public int getNumberOfTutorialGroups(int compareTo, int totalSeats) {
-        return new CourseMgrIO().readNoOfGroup(GroupType.TUTORIAL_GROUP.toString(), compareTo, totalSeats);
-    }
-
-    public int getReadWeeklyTutorialHour(int academicUnits) {
-        return new CourseMgrIO().readWeeklyHour(GroupType.TUTORIAL_GROUP.toString(), academicUnits);
-    }
-
-    public List<String> getListCourseTypes() {
-        return CourseType.getListOfAllCourseTypeNames();
-    }
-
-    public String getMainComponentString() {
-        return MainComponent.COMPONENT_NAME;
-    }
-
-    public String getSubComponentString() {
-        return SubComponent.COMPONENT_NAME;
-    }
-
-    public boolean checkCourseExists(String courseID) {
-
-        Optional<ICourse> course = courses.stream()
-                .filter(c -> courseID.equals(c.getCourseId()))
-                .findFirst();
-
-        return course.isPresent();
     }
 }

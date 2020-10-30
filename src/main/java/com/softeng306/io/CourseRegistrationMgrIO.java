@@ -5,6 +5,7 @@ import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
 import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.managers.CourseMgr;
+import com.softeng306.managers.ICourseRegistrationMgr;
 import com.softeng306.managers.CourseRegistrationMgr;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Scanner;
 
 public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
     private Scanner reader = new Scanner(System.in);
-    private CourseRegistrationMgr courseRegistrationMgr = CourseRegistrationMgr.getInstance();
+    private ICourseRegistrationMgr courseRegistrationMgr = CourseRegistrationMgr.getInstance();
 
     @Override
     public void printContainsNoGroupMessage(String type) {

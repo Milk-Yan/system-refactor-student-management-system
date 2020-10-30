@@ -16,6 +16,7 @@ public class StudentFileProcessor extends FileProcessor<IStudent> {
 
     /**
      * Loads a list of all the students from {@value STUDENT_FILE_PATH}.
+     *
      * @return A list of all the students that is loaded from the file.
      */
     @Override
@@ -36,6 +37,7 @@ public class StudentFileProcessor extends FileProcessor<IStudent> {
 
     /**
      * Writes a new student into {@value STUDENT_FILE_PATH}.
+     *
      * @param student the new professor to write to the file
      */
     @Override
@@ -53,6 +55,7 @@ public class StudentFileProcessor extends FileProcessor<IStudent> {
 
     /**
      * Writes the updated students to {@value STUDENT_FILE_PATH}.
+     *
      * @param updatedStudents the list of all students, with updated students
      */
     @Override

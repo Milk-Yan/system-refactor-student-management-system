@@ -19,7 +19,7 @@ import java.util.Optional;
  * Manages the student related operations.
  * Contains addStudent, generateStudentId
  */
-public class StudentMgr {
+public class StudentMgr implements IStudentMgr {
     /**
      * A list of all the students in this school.
      */
@@ -38,9 +38,9 @@ public class StudentMgr {
     }
 
     /**
-     * Return the StudentMgr singleton, if not initialised already, create an instance.
+     * Return the IStudentMgr singleton, if not initialised already, create an instance.
      *
-     * @return StudentMgr the singleton instance
+     * @return IStudentMgr the singleton instance
      */
     public static StudentMgr getInstance() {
         if (singleInstance == null) {
@@ -50,6 +50,7 @@ public class StudentMgr {
         return singleInstance;
     }
 
+    @Override
     public void createNewStudent(String id, String name, String school, String gender, int year) {
         IStudent currentStudent = new Student(id, name);
 
@@ -61,29 +62,14 @@ public class StudentMgr {
         students.add(currentStudent);
     }
 
-    /**
-     * Return the list of all students in the system.
-     *
-     * @return An list of all students.
-     */
-    public List<IStudent> getStudents() {
-        return students;
-    }
-
-    /**
-     * Displays a list of IDs of all the students.
-     */
+    @Override
     public void printAllStudentIds() {
         for (IStudent s : students) {
             System.out.println(s.getStudentId());
         }
     }
 
-    /**
-     * Generates the ID of a new student.
-     *
-     * @return the generated student ID.
-     */
+    @Override
     public String generateStudentID() {
         int smallestAvailableIDNumber = findLargestStudentID();
 
@@ -94,24 +80,13 @@ public class StudentMgr {
         return "U" + (smallestAvailableIDNumber + 1) + randomEndNumber;
     }
 
-    /**
-     * Find the largest student ID by the number value in all the students.
-     * If there is no student in DB, this is default 1800000 (2018 into Uni)
-     */
-    private int findLargestStudentID() {
-        int recentStudentID = 0;
-        for (IStudent student : students) {
-            recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentId().substring(1, 8)));
-        }
-
-        return recentStudentID > 0 ? recentStudentID : 1800000;
-    }
-
+    @Override
     public boolean studentHasCourses(String studentId) {
         List<String> studentCourses = CourseRegistrationMgr.getInstance().getCourseIdsForStudentId(studentId);
         return !studentCourses.isEmpty();
     }
 
+    @Override
     public IStudent getStudentFromId(String studentId) throws StudentNotFoundException {
         Optional<IStudent> student = students
                 .stream()
@@ -125,11 +100,13 @@ public class StudentMgr {
         return student.get();
     }
 
+    @Override
     public String getStudentName(String studentId) throws StudentNotFoundException {
         IStudent student = getStudentFromId(studentId);
         return student.getName();
     }
 
+    @Override
     public List<String> generateStudentInformationStrings() {
         List<String> studentInformationStrings = new ArrayList<>();
         for (IStudent student : StudentMgr.getInstance().getStudents()) {
@@ -142,18 +119,35 @@ public class StudentMgr {
         return studentInformationStrings;
     }
 
-    /**
-     * Checks whether this student ID is used by other students.
-     *
-     * @param studentID This student's ID.
-     * @return the existing student or else null.
-     */
+    @Override
     public boolean studentExists(String studentID) {
         Optional<IStudent> student = students.stream()
                 .filter(s -> studentID.equals(s.getStudentId()))
                 .findFirst();
 
         return student.isPresent();
+    }
+
+    /**
+     * Return the list of all students in the system.
+     *
+     * @return An list of all students.
+     */
+    private List<IStudent> getStudents() {
+        return students;
+    }
+
+    /**
+     * Find the largest student ID by the number value in all the students.
+     * If there is no student in DB, this is default 1800000 (2018 into Uni)
+     */
+    private int findLargestStudentID() {
+        int recentStudentID = 0;
+        for (IStudent student : students) {
+            recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentId().substring(1, 8)));
+        }
+
+        return recentStudentID > 0 ? recentStudentID : 1800000;
     }
 
 }
