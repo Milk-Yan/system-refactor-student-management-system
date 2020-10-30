@@ -27,7 +27,7 @@ public class CourseMgr implements ICourseMgr {
      * A list of all the courses in this school.
      */
     private List<ICourse> courses;
-    private static CourseMgr singleInstance;
+    private static ICourseMgr singleInstance;
 
     private final IFileProcessor<ICourse> courseFileProcessor;
     private IMarkCalculator markCalculator = new MarkCalculator();
@@ -45,7 +45,7 @@ public class CourseMgr implements ICourseMgr {
      *
      * @return CourseMgr the singleton instance
      */
-    public static CourseMgr getInstance() {
+    public static ICourseMgr getInstance() {
         if (singleInstance == null) {
             singleInstance = new CourseMgr();
         }

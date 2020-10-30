@@ -1,6 +1,6 @@
 package com.softeng306.managers;
 
-import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.ICourse;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.exceptions.CourseNotFoundException;
 
@@ -23,7 +23,7 @@ public interface ICourseMgr {
      *
      * @param currentCourse The course which course work component is to be set.
      */
-    void enterCourseWorkComponentWeightage(Course currentCourse);
+    void enterCourseWorkComponentWeightage(ICourse currentCourse);
 
     /**
      * Displays a list of IDs of all the courses.
@@ -42,7 +42,7 @@ public interface ICourseMgr {
      *
      * @return the inputted course.
      */
-    Course readExistingCourse() throws CourseNotFoundException;
+    ICourse readExistingCourse() throws CourseNotFoundException;
 
     /**
      * Prompts the user to input an existing department.
@@ -57,7 +57,7 @@ public interface ICourseMgr {
      * @param courseID The inputted course ID.
      * @return the existing course or else null.
      */
-    Course getCourseFromId(String courseID) throws CourseNotFoundException;
+    ICourse getCourseFromId(String courseID) throws CourseNotFoundException;
 
     int getNumberOfLectureGroups(int compareTo, int totalSeats);
 

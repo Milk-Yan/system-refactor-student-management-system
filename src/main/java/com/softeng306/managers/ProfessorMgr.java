@@ -21,7 +21,7 @@ public class ProfessorMgr implements IProfessorMgr {
      */
     private List<IProfessor> professors;
 
-    private static ProfessorMgr singleInstance = null;
+    private static IProfessorMgr singleInstance = null;
 
     private final IFileProcessor<IProfessor> professorFileProcessor;
 
@@ -38,7 +38,7 @@ public class ProfessorMgr implements IProfessorMgr {
      *
      * @return IProfessorMgr the singleton instance
      */
-    public static ProfessorMgr getInstance() {
+    public static IProfessorMgr getInstance() {
         if (singleInstance == null) {
             singleInstance = new ProfessorMgr();
         }
@@ -58,9 +58,7 @@ public class ProfessorMgr implements IProfessorMgr {
 
     @Override
     public IProfessor getProfessorFromID(String professorID) throws ProfessorNotFoundException {
-        Optional<IProfessor> professor = ProfessorMgr
-                .getInstance()
-                .getProfessors()
+        Optional<IProfessor> professor = professors
                 .stream()
                 .filter(p -> professorID.equals(p.getProfessorId()))
                 .findFirst();
@@ -79,15 +77,6 @@ public class ProfessorMgr implements IProfessorMgr {
                 .findFirst();
 
         return professor.isPresent();
-    }
-
-    /**
-     * Return the list of all professors in the system.
-     *
-     * @return An list of all professors.
-     */
-    private List<IProfessor> getProfessors() {
-        return professors;
     }
 
 }

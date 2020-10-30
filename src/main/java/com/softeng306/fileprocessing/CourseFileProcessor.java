@@ -2,7 +2,6 @@ package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.softeng306.domain.course.ICourse;
-import com.softeng306.domain.course.Course;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +26,7 @@ public class CourseFileProcessor extends FileProcessor<ICourse> {
         ArrayList<ICourse> allCourses = new ArrayList<>();
 
         try {
-            allCourses = new ArrayList<>(Arrays.asList(objectMapper.readValue(courseFile, Course[].class)));
+            allCourses = new ArrayList<>(Arrays.asList(objectMapper.readValue(courseFile, ICourse[].class)));
         } catch (IOException e) {
             System.out.println("Error happens when loading courses.");
             e.printStackTrace();
