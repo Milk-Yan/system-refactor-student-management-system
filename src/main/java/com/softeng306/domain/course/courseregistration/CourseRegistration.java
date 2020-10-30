@@ -4,7 +4,6 @@ import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.student.IStudent;
-import com.softeng306.domain.student.Student;
 import com.softeng306.enums.GroupType;
 
 public class CourseRegistration {

@@ -8,7 +8,6 @@ import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
 import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.domain.student.IStudent;
-import com.softeng306.domain.student.Student;
 import com.softeng306.enums.GroupType;
 import com.softeng306.fileprocessing.CourseRegistrationFileProcessor;
 import com.softeng306.fileprocessing.IFileProcessor;
