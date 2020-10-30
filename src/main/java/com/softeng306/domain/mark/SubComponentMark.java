@@ -8,7 +8,7 @@ import com.softeng306.domain.course.component.SubComponent;
 public class SubComponentMark {
 
     private SubComponent subComponent;
-    private Double mark;
+    private double mark;
 
     /**
      * Default constructor. Required for Jackson serialization.
@@ -17,7 +17,7 @@ public class SubComponentMark {
 
     }
 
-    public SubComponentMark(SubComponent subComponent, Double mark) {
+    public SubComponentMark(SubComponent subComponent, double mark) {
         this.subComponent = subComponent;
         this.mark = mark;
     }
@@ -30,11 +30,11 @@ public class SubComponentMark {
         this.subComponent = subComponent;
     }
 
-    public Double getMark() {
+    public double getMark() {
         return mark;
     }
 
-    public void setMark(Double mark) {
+    public void setMark(double mark) {
         this.mark = mark;
     }
 }
