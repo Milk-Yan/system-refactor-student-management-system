@@ -76,8 +76,8 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setAU(int AU) {
-        course.setAU(AU);
+    public void setAcademicUnits(int academicUnits) {
+        course.setAcademicUnits(academicUnits);
     }
 
     @Override

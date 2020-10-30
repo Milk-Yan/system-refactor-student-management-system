@@ -185,10 +185,10 @@ public class MarkMgr {
     }
 
 
-    public int getAUForStudent(String studentId) {
+    public int getAcademicUnitsForStudent(String studentId) {
         int totalAU = 0;
         for (Mark mark : getMarksForStudent(studentId)) {
-            totalAU += mark.getCourse().getAU();
+            totalAU += mark.getCourse().getAcademicUnits();
         }
         return totalAU;
     }
@@ -227,7 +227,7 @@ public class MarkMgr {
             }
 
             markString.add("Course Total: " + mark.getTotalMark() + "\n");
-            studentGPA += new MarkCalculator().gpaCalculator(mark) * mark.getCourse().getAU();
+            studentGPA += new MarkCalculator().gpaCalculator(mark) * mark.getCourse().getAcademicUnits();
         }
         studentGPA /= totalAU;
         markString.add("GPA for this semester: " + studentGPA);

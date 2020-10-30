@@ -257,7 +257,7 @@ public class CourseRegistrationMgr {
         int total = 0;
         for (CourseRegistration courseRegistration : courseRegistrations) {
             if (courseRegistration.getStudent().equals(student)) {
-                total += courseRegistration.getCourse().getAU();
+                total += courseRegistration.getCourse().getAcademicUnits();
             }
         }
         return total;

@@ -46,7 +46,7 @@
       "componentWeight" : 30
     } ]
   } ],
-  "AU" : 3
+  "academicUnits" : 3
 }, {
   "courseID" : "SE2004",
   "courseName" : "Human Computer Interface",
@@ -100,7 +100,7 @@
       "componentWeight" : 50
     } ]
   } ],
-  "AU" : 4
+  "academicUnits" : 4
 }, {
   "courseID" : "SE2005",
   "courseName" : "Operating System",
@@ -154,7 +154,7 @@
       "componentWeight" : 75
     } ]
   } ],
-  "AU" : 3
+  "academicUnits" : 3
 }, {
   "courseID" : "SE2007",
   "courseName" : "Database",
@@ -218,7 +218,7 @@
       "componentWeight" : 30
     } ]
   } ],
-  "AU" : 3
+  "academicUnits" : 3
 }, {
   "courseID" : "SE0001",
   "courseName" : "ENS",
@@ -261,7 +261,7 @@
     "componentWeight" : 40,
     "subComponents" : [ ]
   } ],
-  "AU" : 3
+  "academicUnits" : 3
 }, {
   "courseID" : "SE1006",
   "courseName" : "COA",
@@ -320,7 +320,7 @@
       "componentWeight" : 30
     } ]
   } ],
-  "AU" : 3
+  "academicUnits" : 3
 }, {
   "courseID" : "SE2002",
   "courseName" : "OODP",
@@ -378,7 +378,7 @@
       "componentWeight" : 50
     } ]
   } ],
-  "AU" : 3
+  "academicUnits" : 3
 }, {
   "courseID" : "SE2006",
   "courseName" : "Software Engineering",
@@ -418,7 +418,7 @@
     "totalSeats" : 100
   } ],
   "mainComponents" : [ ],
-  "AU" : 3
+  "academicUnits" : 3
 }, {
   "courseID" : "SE3005",
   "courseName" : "AI",
@@ -458,5 +458,5 @@
   "labWeeklyHour" : 0,
   "labGroups" : [ ],
   "mainComponents" : [ ],
-  "AU" : 3
+  "academicUnits" : 3
 } ]

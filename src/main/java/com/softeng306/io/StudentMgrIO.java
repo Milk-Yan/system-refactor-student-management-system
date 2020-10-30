@@ -40,10 +40,10 @@ public class StudentMgrIO implements IStudentMgrIO {
     public void printStudentTranscript() {
         String studentId = readStudentIdFromUser();
 
-        int thisStudentAU;
+        int studentsAcademicUnits;
         String studentName;
         try {
-            thisStudentAU = MarkMgr.getInstance().getAUForStudent(studentId);
+            studentsAcademicUnits = MarkMgr.getInstance().getAcademicUnitsForStudent(studentId);
             studentName = studentMgr.getStudentName(studentId);
         } catch (StudentNotFoundException e) {
             e.printStackTrace();
@@ -57,10 +57,10 @@ public class StudentMgrIO implements IStudentMgrIO {
         System.out.println("----------------- Official Transcript ------------------");
         System.out.print("Student Name: " + studentName);
         System.out.println("\tStudent ID: " + studentId);
-        System.out.println("AU for this semester: " + thisStudentAU);
+        System.out.println("AU for this semester: " + studentsAcademicUnits);
         System.out.println();
 
-        List<String> stringList = MarkMgr.getInstance().getMarkStringForStudent(studentId, thisStudentAU);
+        List<String> stringList = MarkMgr.getInstance().getMarkStringForStudent(studentId, studentsAcademicUnits);
         stringList.forEach(System.out::println);
 
         System.out.println("------------------ End of Transcript -------------------");
