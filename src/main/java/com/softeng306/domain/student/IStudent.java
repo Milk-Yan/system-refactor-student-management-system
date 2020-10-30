@@ -49,13 +49,6 @@ public interface IStudent {
     int getYearLevel();
 
     /**
-     * Sets the ID of this student.
-     *
-     * @param studentID this student's ID.
-     */
-    void setStudentId(String studentID);
-
-    /**
      * Sets the school of this student.
      *
      * @param studentSchool this student's school.
@@ -68,13 +61,6 @@ public interface IStudent {
      * @param gender this student's gender.
      */
     void setGender(Gender gender);
-
-    /**
-     * Sets the GPA of this student.
-     *
-     * @param GPA this student's GPA.
-     */
-    void setGpa(double GPA);
 
     /**
      * Sets the year of this student.

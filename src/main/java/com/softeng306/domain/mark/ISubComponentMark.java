@@ -7,8 +7,6 @@ import com.softeng306.domain.course.component.SubComponent;
 public interface ISubComponentMark {
     SubComponent getSubComponent();
 
-    void setSubComponent(SubComponent subComponent);
-
     double getMark();
 
     void setMark(double mark);

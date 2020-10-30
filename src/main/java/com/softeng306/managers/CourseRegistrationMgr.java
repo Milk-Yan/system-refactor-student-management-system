@@ -39,7 +39,8 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
     }
 
     @Override
-    public List<String> registerCourse(String studentID, String courseID) throws InvalidCourseRegistrationException, StudentNotFoundException, CourseNotFoundException {
+    public List<String> registerCourse(String studentID, String courseID)
+            throws InvalidCourseRegistrationException, StudentNotFoundException, CourseNotFoundException {
         ICourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         IStudent currentStudent = StudentMgr.getInstance().getStudentFromId(studentID);
         ICourse currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
@@ -59,7 +60,8 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
             throw new InvalidCourseRegistrationException();
         }
 
-        io.printRegistrationRequestDetails(currentStudent.getName(), currentStudent.getStudentId(), currentCourse.getCourseId(), currentCourse.getName());
+        io.printRegistrationRequestDetails(currentStudent.getName(), currentStudent.getStudentId(),
+                currentCourse.getCourseId(), currentCourse.getName());
 
         List<IGroup> lecGroups = currentCourse.getLectureGroups();
         IGroupMgr groupMgr = GroupMgr.getInstance();
@@ -72,7 +74,8 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
         IGroup selectedLabGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LAB_GROUP, labGroups);
 
         currentCourse.updateVacanciesForEnrollment();
-        ICourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
+        ICourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse,
+                selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
         courseRegistrationFileProcessor.writeNewEntryToFile(courseRegistration);
 
         StudentCourseMarkMgr.getInstance().getStudentCourseMarks().add(StudentCourseMarkMgr.getInstance().initialiseStudentCourseMark(currentStudent, currentCourse));
@@ -124,7 +127,8 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
             List<String> groupString = getGroupString(courseRegistrationList, GroupType.LECTURE_GROUP);
             io.printGroupString(groupString);
         } else if (opt == 2) {
-            if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getTutorialGroups().isEmpty()) {
+            if (!courseRegistrationList.isEmpty()
+                    && courseRegistrationList.get(0).getCourse().getTutorialGroups().isEmpty()) {
                 io.printContainsNoGroupMessage(GroupType.TUTORIAL_GROUP.toString());
                 io.printEndOfSection();
                 return;
@@ -134,7 +138,8 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
             io.printGroupString(groupString);
 
         } else if (opt == 3) {
-            if (!courseRegistrationList.isEmpty() && courseRegistrationList.get(0).getCourse().getLabGroups().isEmpty()) {
+            if (!courseRegistrationList.isEmpty()
+                    && courseRegistrationList.get(0).getCourse().getLabGroups().isEmpty()) {
                 io.printContainsNoGroupMessage(GroupType.LAB_GROUP.toString());
                 io.printEndOfSection();
                 return;
@@ -168,7 +173,8 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
      * @param courseRegistrations the list registrations for a course
      * @param groupType           the group of registration that we want to print
      */
-    private List<String> getGroupString(List<ICourseRegistration> courseRegistrations, GroupType groupType) throws GroupTypeNotFoundException {
+    private List<String> getGroupString(List<ICourseRegistration> courseRegistrations, GroupType groupType)
+            throws GroupTypeNotFoundException {
         List<String> groupStringInfo = new ArrayList<>();
         if (courseRegistrations.isEmpty()) {
             return groupStringInfo;
@@ -182,7 +188,8 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
                 groupStringInfo.add(groupType.getNameWithCapital() + " group : " + groupName);
             }
 
-            groupStringInfo.add("Student Name: " + courseRegistration.getStudent().getName() + " Student ID: " + courseRegistration.getStudent().getStudentId());
+            groupStringInfo.add("Student Name: " + courseRegistration.getStudent().getName() + " Student ID: "
+                    + courseRegistration.getStudent().getStudentId());
         }
         groupStringInfo.add("");
 
@@ -199,14 +206,14 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
     private boolean courseRegistrationExists(String studentID, String courseID) {
         Optional<ICourseRegistration> courseRegistration = courseRegistrations.stream()
                 .filter(cr -> studentID.equals(cr.getStudent().getStudentId()))
-                .filter(cr -> courseID.equals(cr.getCourse().getCourseId()))
-                .findFirst();
+                .filter(cr -> courseID.equals(cr.getCourse().getCourseId())).findFirst();
 
         return courseRegistration.isPresent();
     }
 
     /**
-     * Return the ICourseRegistrationMgr singleton, if not initialised already, create an instance.
+     * Return the ICourseRegistrationMgr singleton, if not initialised already,
+     * create an instance.
      *
      * @return ICourseRegistrationMgr the singleton instance
      */
@@ -219,8 +226,9 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
     }
 
     /**
-     * Sort the list of course registrations of a course according to their ascending
-     * normal alphabetical order of names of the lecture groups, ignoring cases.
+     * Sort the list of course registrations of a course according to their
+     * ascending normal alphabetical order of names of the lecture groups, ignoring
+     * cases.
      *
      * @param courseRegistrations All the course registrations of the course.
      */
@@ -235,14 +243,15 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
             String group1 = o1.getLectureGroup().getGroupName().toUpperCase();
             String group2 = o2.getLectureGroup().getGroupName().toUpperCase();
 
-            //ascending order
+            // ascending order
             return group1.compareTo(group2);
         });
     }
 
     /**
-     * Sort the list of course registrations of a course according to their ascending
-     * normal alphabetical order of the names of the tutorial groups, ignoring cases.
+     * Sort the list of course registrations of a course according to their
+     * ascending normal alphabetical order of the names of the tutorial groups,
+     * ignoring cases.
      *
      * @param courseRegistrations All the course registrations of the course.
      */
@@ -257,15 +266,16 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
             String group1 = s1.getTutorialGroup().getGroupName().toUpperCase();
             String group2 = s2.getTutorialGroup().getGroupName().toUpperCase();
 
-            //ascending order
+            // ascending order
             return group1.compareTo(group2);
 
         });
     }
 
     /**
-     * Sort the list of course registrations of a course according to their ascending
-     * normal alphabetical order of the names of the lab groups, ignoring cases.
+     * Sort the list of course registrations of a course according to their
+     * ascending normal alphabetical order of the names of the lab groups, ignoring
+     * cases.
      *
      * @param courseRegistrations All the course registrations of the course.
      */
@@ -280,7 +290,7 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
             String group1 = o1.getLabGroup().getGroupName().toUpperCase();
             String group2 = o2.getLabGroup().getGroupName().toUpperCase();
 
-            //ascending order
+            // ascending order
             return group1.compareTo(group2);
         });
     }

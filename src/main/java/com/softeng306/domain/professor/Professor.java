@@ -44,9 +44,4 @@ public class Professor implements IProfessor {
         return department;
     }
 
-    @Override
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
 }
