@@ -9,9 +9,9 @@ public interface ICourseBuilder {
 
     void setCourseName(String name);
 
-    void setProfInCharge(String profInCharge) throws ProfessorNotFoundException;
+    void setCourseCoordinator(String profInCharge) throws ProfessorNotFoundException;
 
-    void setTotalSeats(int totalSeats);
+    void setCourseCapacity(int totalSeats);
 
     void setLectureGroups(Map<String, Double> lectureGroups);
 

@@ -1,6 +1,5 @@
 package com.softeng306.domain.student;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
 
@@ -11,14 +10,12 @@ import com.softeng306.enums.Gender;
  */
 public class Student implements IStudent {
 
-    private String studentID;
-    private String studentName;
-    private Department studentSchool;
+    private String studentId;
+    private String name;
+    private Department department;
     private Gender gender;
-
-    @JsonProperty("GPA")
-    private double GPA = 0;
-    private int studentYear;
+    private double gpa = 0;
+    private int yearLevel;
 
 
     /**
@@ -31,27 +28,27 @@ public class Student implements IStudent {
     /**
      * Creates student with the student name and student's ID.
      *
-     * @param studentID   This student's name.
-     * @param studentName This student's ID.
+     * @param studentId   This student's name.
+     * @param name This student's ID.
      */
-    public Student(String studentID, String studentName) {
-        this.studentID = studentID;
-        this.studentName = studentName;
+    public Student(String studentId, String name) {
+        this.studentId = studentId;
+        this.name = name;
     }
 
     @Override
-    public String getStudentID() {
-        return studentID;
+    public String getStudentId() {
+        return studentId;
     }
 
     @Override
-    public String getStudentName() {
-        return studentName;
+    public String getName() {
+        return name;
     }
 
     @Override
-    public Department getStudentSchool() {
-        return studentSchool;
+    public Department getDepartment() {
+        return department;
     }
 
     @Override
@@ -60,23 +57,23 @@ public class Student implements IStudent {
     }
 
     @Override
-    public double getGPA() {
-        return GPA;
+    public double getGpa() {
+        return gpa;
     }
 
     @Override
-    public int getStudentYear() {
-        return studentYear;
+    public int getYearLevel() {
+        return yearLevel;
     }
 
     @Override
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     @Override
-    public void setStudentSchool(Department studentSchool) {
-        this.studentSchool = studentSchool;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override
@@ -84,14 +81,15 @@ public class Student implements IStudent {
         this.gender = gender;
     }
 
+
     @Override
-    public void setGPA(double GPA) {
-        this.GPA = GPA;
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
     }
 
     @Override
-    public void setStudentYear(int studentYear) {
-        this.studentYear = studentYear;
+    public void setYearLevel(int yearLevel) {
+        this.yearLevel = yearLevel;
     }
 
 }

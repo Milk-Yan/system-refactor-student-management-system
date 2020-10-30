@@ -1,461 +1,461 @@
 [ {
-  "courseID" : "SE2001",
-  "courseName" : "Algorithm",
-  "profInCharge" : {
-    "profID" : "P1234561A",
-    "profName" : "Reza Shahamiri",
-    "profDepartment" : "ECSE"
+  "courseId" : "SE2001",
+  "name" : "Algorithm",
+  "courseCoordinator" : {
+    "professorId" : "P1234561A",
+    "name" : "Reza Shahamiri",
+    "department" : "ECSE"
   },
-  "courseDepartment" : "ECSE",
+  "department" : "ECSE",
   "courseType" : "CORE",
   "vacancies" : 17,
-  "totalSeats" : 20,
-  "lecWeeklyHour" : 3,
+  "capacity" : 20,
+  "lectureHoursPerWeek" : 3,
   "lectureGroups" : [ {
     "groupName" : "Lec1",
     "availableVacancies" : 17,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 20
+    "capacity" : 20
   } ],
-  "tutWeeklyHour" : 2,
+  "tutorialHoursPerWeek" : 2,
   "tutorialGroups" : [ {
     "groupName" : "Tut1",
     "availableVacancies" : 18,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 20
+    "capacity" : 20
   }, {
     "groupName" : "Tut2",
     "availableVacancies" : 19,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 20
+    "capacity" : 20
   } ],
-  "labWeeklyHour" : 0,
+  "labHoursPerWeek" : 0,
   "labGroups" : [ ],
   "mainComponents" : [ {
-    "componentName" : "Exam",
-    "componentWeight" : 60,
+    "name" : "Exam",
+    "weight" : 60,
     "subComponents" : [ ]
   }, {
-    "componentName" : "Coursework",
-    "componentWeight" : 40,
+    "name" : "Coursework",
+    "weight" : 40,
     "subComponents" : [ {
-      "componentName" : "Assignment",
-      "componentWeight" : 70
+      "name" : "Assignment",
+      "weight" : 70
     }, {
-      "componentName" : "ClassPart",
-      "componentWeight" : 30
+      "name" : "ClassPart",
+      "weight" : 30
     } ]
   } ],
   "academicUnits" : 3
 }, {
-  "courseID" : "SE2004",
-  "courseName" : "Human Computer Interface",
-  "profInCharge" : {
-    "profID" : "P1234566L",
-    "profName" : "Oliver Sinnen",
-    "profDepartment" : "ECSE"
+  "courseId" : "SE2004",
+  "name" : "Human Computer Interface",
+  "courseCoordinator" : {
+    "professorId" : "P1234566L",
+    "name" : "Oliver Sinnen",
+    "department" : "ECSE"
   },
-  "courseDepartment" : "ECSE",
+  "department" : "ECSE",
   "courseType" : "CORE",
   "vacancies" : 0,
-  "totalSeats" : 20,
-  "lecWeeklyHour" : 2,
+  "capacity" : 20,
+  "lectureHoursPerWeek" : 2,
   "lectureGroups" : [ {
     "groupName" : "LEC1",
     "availableVacancies" : 0,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 20
+    "capacity" : 20
   } ],
-  "tutWeeklyHour" : 2,
+  "tutorialHoursPerWeek" : 2,
   "tutorialGroups" : [ {
     "groupName" : "TUT1",
     "availableVacancies" : 0,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 10
+    "capacity" : 10
   }, {
     "groupName" : "TUT2",
     "availableVacancies" : 0,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 10
+    "capacity" : 10
   } ],
-  "labWeeklyHour" : 1,
+  "labHoursPerWeek" : 1,
   "labGroups" : [ {
     "groupName" : "LAB1",
     "availableVacancies" : 0,
     "groupType" : "LAB_GROUP",
-    "totalSeats" : 20
+    "capacity" : 20
   } ],
   "mainComponents" : [ {
-    "componentName" : "Exam",
-    "componentWeight" : 60,
+    "name" : "Exam",
+    "weight" : 60,
     "subComponents" : [ ]
   }, {
-    "componentName" : "Quiz",
-    "componentWeight" : 40,
+    "name" : "Quiz",
+    "weight" : 40,
     "subComponents" : [ {
-      "componentName" : "quiz1",
-      "componentWeight" : 50
+      "name" : "quiz1",
+      "weight" : 50
     }, {
-      "componentName" : "quiz2",
-      "componentWeight" : 50
+      "name" : "quiz2",
+      "weight" : 50
     } ]
   } ],
   "academicUnits" : 4
 }, {
-  "courseID" : "SE2005",
-  "courseName" : "Operating System",
-  "profInCharge" : {
-    "profID" : "P1234561A",
-    "profName" : "Reza Shahamiri",
-    "profDepartment" : "ECSE"
+  "courseId" : "SE2005",
+  "name" : "Operating System",
+  "courseCoordinator" : {
+    "professorId" : "P1234561A",
+    "name" : "Reza Shahamiri",
+    "department" : "ECSE"
   },
-  "courseDepartment" : "ECSE",
+  "department" : "ECSE",
   "courseType" : "CORE",
   "vacancies" : 10,
-  "totalSeats" : 30,
-  "lecWeeklyHour" : 2,
+  "capacity" : 30,
+  "lectureHoursPerWeek" : 2,
   "lectureGroups" : [ {
     "groupName" : "LEC1",
     "availableVacancies" : 10,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
+    "capacity" : 30
   } ],
-  "tutWeeklyHour" : 1,
+  "tutorialHoursPerWeek" : 1,
   "tutorialGroups" : [ {
     "groupName" : "TUT1",
     "availableVacancies" : 5,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
+    "capacity" : 15
   }, {
     "groupName" : "TUT2",
     "availableVacancies" : 5,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
+    "capacity" : 15
   } ],
-  "labWeeklyHour" : 1,
+  "labHoursPerWeek" : 1,
   "labGroups" : [ {
     "groupName" : "LAB1",
     "availableVacancies" : 10,
     "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
+    "capacity" : 30
   } ],
   "mainComponents" : [ {
-    "componentName" : "Exam",
-    "componentWeight" : 60,
+    "name" : "Exam",
+    "weight" : 60,
     "subComponents" : [ ]
   }, {
-    "componentName" : "Lab Assignments",
-    "componentWeight" : 40,
+    "name" : "Lab Assignments",
+    "weight" : 40,
     "subComponents" : [ {
-      "componentName" : "Oral Assessment",
-      "componentWeight" : 25
+      "name" : "Oral Assessment",
+      "weight" : 25
     }, {
-      "componentName" : "Lab Report",
-      "componentWeight" : 75
+      "name" : "Lab Report",
+      "weight" : 75
     } ]
   } ],
   "academicUnits" : 3
 }, {
-  "courseID" : "SE2007",
-  "courseName" : "Database",
-  "profInCharge" : {
-    "profID" : "P1234567J",
-    "profName" : "Ewan Tempero",
-    "profDepartment" : "CS"
+  "courseId" : "SE2007",
+  "name" : "Database",
+  "courseCoordinator" : {
+    "professorId" : "P1234567J",
+    "name" : "Ewan Tempero",
+    "department" : "CS"
   },
-  "courseDepartment" : "ECSE",
+  "department" : "ECSE",
   "courseType" : "CORE",
   "vacancies" : 49,
-  "totalSeats" : 50,
-  "lecWeeklyHour" : 3,
+  "capacity" : 50,
+  "lectureHoursPerWeek" : 3,
   "lectureGroups" : [ {
     "groupName" : "Lec1",
     "availableVacancies" : 49,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 50
+    "capacity" : 50
   } ],
-  "tutWeeklyHour" : 2,
+  "tutorialHoursPerWeek" : 2,
   "tutorialGroups" : [ {
     "groupName" : "SS1",
     "availableVacancies" : 20,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 20
+    "capacity" : 20
   }, {
     "groupName" : "SS2",
     "availableVacancies" : 20,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 20
+    "capacity" : 20
   }, {
     "groupName" : "SS3",
     "availableVacancies" : 20,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 20
+    "capacity" : 20
   }, {
     "groupName" : "SS4",
     "availableVacancies" : 19,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 20
+    "capacity" : 20
   }, {
     "groupName" : "SS5",
     "availableVacancies" : 20,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 20
+    "capacity" : 20
   } ],
-  "labWeeklyHour" : 1,
+  "labHoursPerWeek" : 1,
   "labGroups" : [ ],
   "mainComponents" : [ {
-    "componentName" : "Exam",
-    "componentWeight" : 60,
+    "name" : "Exam",
+    "weight" : 60,
     "subComponents" : [ ]
   }, {
-    "componentName" : "Coursework",
-    "componentWeight" : 40,
+    "name" : "Coursework",
+    "weight" : 40,
     "subComponents" : [ {
-      "componentName" : "Labwork",
-      "componentWeight" : 70
+      "name" : "Labwork",
+      "weight" : 70
     }, {
-      "componentName" : "Presentation",
-      "componentWeight" : 30
+      "name" : "Presentation",
+      "weight" : 30
     } ]
   } ],
   "academicUnits" : 3
 }, {
-  "courseID" : "SE0001",
-  "courseName" : "ENS",
-  "profInCharge" : {
-    "profID" : "P1234561A",
-    "profName" : "Reza Shahamiri",
-    "profDepartment" : "ECSE"
+  "courseId" : "SE0001",
+  "name" : "ENS",
+  "courseCoordinator" : {
+    "professorId" : "P1234561A",
+    "name" : "Reza Shahamiri",
+    "department" : "ECSE"
   },
-  "courseDepartment" : "ECSE",
+  "department" : "ECSE",
   "courseType" : "CORE",
   "vacancies" : 99,
-  "totalSeats" : 100,
-  "lecWeeklyHour" : 2,
+  "capacity" : 100,
+  "lectureHoursPerWeek" : 2,
   "lectureGroups" : [ {
     "groupName" : "LEC1",
     "availableVacancies" : 98,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
+    "capacity" : 100
   }, {
     "groupName" : "LEC2",
     "availableVacancies" : 95,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
+    "capacity" : 100
   }, {
     "groupName" : "LEC3",
     "availableVacancies" : 97,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
+    "capacity" : 100
   } ],
-  "tutWeeklyHour" : 0,
+  "tutorialHoursPerWeek" : 0,
   "tutorialGroups" : [ ],
-  "labWeeklyHour" : 0,
+  "labHoursPerWeek" : 0,
   "labGroups" : [ ],
   "mainComponents" : [ {
-    "componentName" : "Exam",
-    "componentWeight" : 60,
+    "name" : "Exam",
+    "weight" : 60,
     "subComponents" : [ ]
   }, {
-    "componentName" : "CourseWork",
-    "componentWeight" : 40,
+    "name" : "CourseWork",
+    "weight" : 40,
     "subComponents" : [ ]
   } ],
   "academicUnits" : 3
 }, {
-  "courseID" : "SE1006",
-  "courseName" : "COA",
-  "profInCharge" : {
-    "profID" : "P1234567J",
-    "profName" : "Ewan Tempero",
-    "profDepartment" : "CS"
+  "courseId" : "SE1006",
+  "name" : "COA",
+  "courseCoordinator" : {
+    "professorId" : "P1234567J",
+    "name" : "Ewan Tempero",
+    "department" : "CS"
   },
-  "courseDepartment" : "ECSE",
+  "department" : "ECSE",
   "courseType" : "CORE",
   "vacancies" : 98,
-  "totalSeats" : 100,
-  "lecWeeklyHour" : 2,
+  "capacity" : 100,
+  "lectureHoursPerWeek" : 2,
   "lectureGroups" : [ {
     "groupName" : "LEC1",
     "availableVacancies" : 98,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
+    "capacity" : 100
   } ],
-  "tutWeeklyHour" : 1,
+  "tutorialHoursPerWeek" : 1,
   "tutorialGroups" : [ {
     "groupName" : "TUT1",
     "availableVacancies" : 49,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 50
+    "capacity" : 50
   }, {
     "groupName" : "TUT2",
     "availableVacancies" : 49,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 50
+    "capacity" : 50
   } ],
-  "labWeeklyHour" : 2,
+  "labHoursPerWeek" : 2,
   "labGroups" : [ {
     "groupName" : "LAB1",
     "availableVacancies" : 48,
     "groupType" : "LAB_GROUP",
-    "totalSeats" : 50
+    "capacity" : 50
   }, {
     "groupName" : "LAB2",
     "availableVacancies" : 50,
     "groupType" : "LAB_GROUP",
-    "totalSeats" : 50
+    "capacity" : 50
   } ],
   "mainComponents" : [ {
-    "componentName" : "Exam",
-    "componentWeight" : 60,
+    "name" : "Exam",
+    "weight" : 60,
     "subComponents" : [ ]
   }, {
-    "componentName" : "Course Work",
-    "componentWeight" : 40,
+    "name" : "Course Work",
+    "weight" : 40,
     "subComponents" : [ {
-      "componentName" : "Assignment",
-      "componentWeight" : 70
+      "name" : "Assignment",
+      "weight" : 70
     }, {
-      "componentName" : "Paticipation",
-      "componentWeight" : 30
+      "name" : "Paticipation",
+      "weight" : 30
     } ]
   } ],
   "academicUnits" : 3
 }, {
-  "courseID" : "SE2002",
-  "courseName" : "OODP",
-  "profInCharge" : {
-    "profID" : "P1234561A",
-    "profName" : "Reza Shahamiri",
-    "profDepartment" : "ECSE"
+  "courseId" : "SE2002",
+  "name" : "OODP",
+  "courseCoordinator" : {
+    "professorId" : "P1234561A",
+    "name" : "Reza Shahamiri",
+    "department" : "ECSE"
   },
-  "courseDepartment" : "ECSE",
+  "department" : "ECSE",
   "courseType" : "CORE",
   "vacancies" : 30,
-  "totalSeats" : 30,
-  "lecWeeklyHour" : 2,
+  "capacity" : 30,
+  "lectureHoursPerWeek" : 2,
   "lectureGroups" : [ {
     "groupName" : "LEC1",
     "availableVacancies" : 30,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
+    "capacity" : 30
   } ],
-  "tutWeeklyHour" : 1,
+  "tutorialHoursPerWeek" : 1,
   "tutorialGroups" : [ {
     "groupName" : "TUT1",
     "availableVacancies" : 15,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
+    "capacity" : 15
   }, {
     "groupName" : "TUT2",
     "availableVacancies" : 15,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
+    "capacity" : 15
   } ],
-  "labWeeklyHour" : 1,
+  "labHoursPerWeek" : 1,
   "labGroups" : [ {
     "groupName" : "LAB1",
     "availableVacancies" : 30,
     "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
+    "capacity" : 30
   } ],
   "mainComponents" : [ {
-    "componentName" : "Exam",
-    "componentWeight" : 60,
+    "name" : "Exam",
+    "weight" : 60,
     "subComponents" : [ ]
   }, {
-    "componentName" : "Assignment",
-    "componentWeight" : 30,
+    "name" : "Assignment",
+    "weight" : 30,
     "subComponents" : [ ]
   }, {
-    "componentName" : "Labs",
-    "componentWeight" : 10,
+    "name" : "Labs",
+    "weight" : 10,
     "subComponents" : [ {
-      "componentName" : "Lab1",
-      "componentWeight" : 50
+      "name" : "Lab1",
+      "weight" : 50
     }, {
-      "componentName" : "Lab2",
-      "componentWeight" : 50
+      "name" : "Lab2",
+      "weight" : 50
     } ]
   } ],
   "academicUnits" : 3
 }, {
-  "courseID" : "SE2006",
-  "courseName" : "Software Engineering",
-  "profInCharge" : {
-    "profID" : "P1234567J",
-    "profName" : "Ewan Tempero",
-    "profDepartment" : "CS"
+  "courseId" : "SE2006",
+  "name" : "Software Engineering",
+  "courseCoordinator" : {
+    "professorId" : "P1234567J",
+    "name" : "Ewan Tempero",
+    "department" : "CS"
   },
-  "courseDepartment" : "ECSE",
+  "department" : "ECSE",
   "courseType" : "CORE",
   "vacancies" : 100,
-  "totalSeats" : 100,
-  "lecWeeklyHour" : 1,
+  "capacity" : 100,
+  "lectureHoursPerWeek" : 1,
   "lectureGroups" : [ {
     "groupName" : "LEC1",
     "availableVacancies" : 100,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
+    "capacity" : 100
   } ],
-  "tutWeeklyHour" : 1,
+  "tutorialHoursPerWeek" : 1,
   "tutorialGroups" : [ {
     "groupName" : "TUT1",
     "availableVacancies" : 50,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 50
+    "capacity" : 50
   }, {
     "groupName" : "TUT2",
     "availableVacancies" : 50,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 50
+    "capacity" : 50
   } ],
-  "labWeeklyHour" : 2,
+  "labHoursPerWeek" : 2,
   "labGroups" : [ {
     "groupName" : "LAB1",
     "availableVacancies" : 100,
     "groupType" : "LAB_GROUP",
-    "totalSeats" : 100
+    "capacity" : 100
   } ],
   "mainComponents" : [ ],
   "academicUnits" : 3
 }, {
-  "courseID" : "SE3005",
-  "courseName" : "AI",
-  "profInCharge" : {
-    "profID" : "P1234566L",
-    "profName" : "Oliver Sinnen",
-    "profDepartment" : "ECSE"
+  "courseId" : "SE3005",
+  "name" : "AI",
+  "courseCoordinator" : {
+    "professorId" : "P1234566L",
+    "name" : "Oliver Sinnen",
+    "department" : "ECSE"
   },
-  "courseDepartment" : "ECSE",
+  "department" : "ECSE",
   "courseType" : "CORE",
   "vacancies" : 30,
-  "totalSeats" : 30,
-  "lecWeeklyHour" : 1,
+  "capacity" : 30,
+  "lectureHoursPerWeek" : 1,
   "lectureGroups" : [ {
     "groupName" : "LEC1",
     "availableVacancies" : 15,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 15
+    "capacity" : 15
   }, {
     "groupName" : "LEC2",
     "availableVacancies" : 15,
     "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 15
+    "capacity" : 15
   } ],
-  "tutWeeklyHour" : 1,
+  "tutorialHoursPerWeek" : 1,
   "tutorialGroups" : [ {
     "groupName" : "TUT1",
     "availableVacancies" : 15,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
+    "capacity" : 15
   }, {
     "groupName" : "TUT2",
     "availableVacancies" : 15,
     "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
+    "capacity" : 15
   } ],
-  "labWeeklyHour" : 0,
+  "labHoursPerWeek" : 0,
   "labGroups" : [ ],
   "mainComponents" : [ ],
   "academicUnits" : 3

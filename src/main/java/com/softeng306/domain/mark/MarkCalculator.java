@@ -13,7 +13,7 @@ public class MarkCalculator implements IMarkCalculator {
     public double computeAverageMarkForCourseComponent(String courseID, String componentName){
         List<IMark> marksForCourse = new ArrayList<>();
         for (IMark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getCourse().getCourseID().equals(courseID)) {
+            if (mark.getCourse().getCourseId().equals(courseID)) {
                 marksForCourse.add(mark);
             }
         }
@@ -25,7 +25,7 @@ public class MarkCalculator implements IMarkCalculator {
     public double computeOverallMarkForCourse(String courseID){
         List<IMark> marksForCourse = new ArrayList<>();
         for (IMark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getCourse().getCourseID().equals(courseID)) {
+            if (mark.getCourse().getCourseId().equals(courseID)) {
                 marksForCourse.add(mark);
             }
         }
@@ -48,14 +48,14 @@ public class MarkCalculator implements IMarkCalculator {
 
             for (IMainComponentMark mainComponentMark : thisComponentMarks) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();
-                if (mainComponent.getComponentName().equals((thisComponentName))) {
+                if (mainComponent.getName().equals((thisComponentName))) {
                     averageMark += mainComponentMark.getMark();
                     break;
                 }
 
                 for (ISubComponentMark subComponentMark : mainComponentMark.getSubComponentMarks()) {
                     SubComponent subComponent = subComponentMark.getSubComponent();
-                    if (subComponent.getComponentName().equals((thisComponentName))) {
+                    if (subComponent.getName().equals((thisComponentName))) {
                         averageMark += subComponentMark.getMark();
                         break;
                     }
@@ -75,7 +75,7 @@ public class MarkCalculator implements IMarkCalculator {
     }
 
     @Override
-    public double gpaCalculator(IMark mark) {
+    public double convertMarkToGradePoints(IMark mark) {
         double gradePercentage = mark.getTotalMark();
 
         if (gradePercentage > 85) {

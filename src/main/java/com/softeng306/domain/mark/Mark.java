@@ -65,7 +65,7 @@ public class Mark implements IMark {
     @Override
     public void setMainComponentMark(String courseWorkName, double result) {
         for (IMainComponentMark mainComponentMark : courseWorkMarks) {
-            if (mainComponentMark.getMainComponent().getComponentName().equals(courseWorkName)) {
+            if (mainComponentMark.getMainComponent().getName().equals(courseWorkName)) {
                 if (mainComponentMark.hasSubComponentMarks()) {
                     System.out.println("This main assessment is not stand alone");
                     return;
@@ -74,7 +74,7 @@ public class Mark implements IMark {
                 double previousResult = mainComponentMark.getMark();
                 mainComponentMark.setMark(result);
 
-                this.totalMark += (result - previousResult) * mainComponentMark.getMainComponent().getComponentWeight() / 100d;
+                this.totalMark += (result - previousResult) * mainComponentMark.getMainComponent().getWeight() / 100d;
                 System.out.println("The course work component is successfully set to: " + result);
                 System.out.println("The course total mark is updated to: " + this.totalMark);
                 return;
@@ -94,7 +94,7 @@ public class Mark implements IMark {
                 // update subcomponent value
                 double previousResult = subComponentMark.getMark();
                 subComponentMark.setMark(result);
-                double markIncInMain = (result - previousResult) * subComponentMark.getSubComponent().getComponentWeight() / 100d;
+                double markIncInMain = (result - previousResult) * subComponentMark.getSubComponent().getWeight() / 100d;
 
                 System.out.println("The sub course work component is successfully set to: " + result);
                 System.out.println("The main course work component increase by: " + markIncInMain);
@@ -103,7 +103,7 @@ public class Mark implements IMark {
                 mainComponentMark.setMark(mainComponentMark.getMark() + markIncInMain);
 
                 // update total mark
-                this.totalMark += markIncInMain * mainComponentMark.getMainComponent().getComponentWeight() / 100d;
+                this.totalMark += markIncInMain * mainComponentMark.getMainComponent().getWeight() / 100d;
 
                 System.out.println("The course total mark is updated to: " + this.totalMark);
             }

@@ -1,8 +1,42 @@
-[{"profID":"P1234561A","profName":"Reza Shahamiri","profDepartment":"ECSE"},
-{"profID":"P1234563B","profName":"Kelly Blincoe","profDepartment":"ECSE"},
-{"profID":"P1234564M","profName":"Nasser Giacaman","profDepartment":"ECSE"},
-{"profID":"P1234565Y","profName":"Craig Sutherland","profDepartment":"ECSE"},
-{"profID":"P1234566L","profName":"Oliver Sinnen","profDepartment":"ECSE"},
-{"profID":"P1234568K","profName":"Abhisek Ukil","profDepartment":"ECSE"},
-{"profID":"P1234569D","profName":"Nitish Patel","profDepartment":"ECSE"},
-{"profID":"P1234567J","profName":"Ewan Tempero","profDepartment":"CS"}]
+[
+   {
+      "professorId":"P1234561A",
+      "name":"Reza Shahamiri",
+      "department":"ECSE"
+   },
+   {
+      "professorId":"P1234563B",
+      "name":"Kelly Blincoe",
+      "department":"ECSE"
+   },
+   {
+      "professorId":"P1234564M",
+      "name":"Nasser Giacaman",
+      "department":"ECSE"
+   },
+   {
+      "professorId":"P1234565Y",
+      "name":"Craig Sutherland",
+      "department":"ECSE"
+   },
+   {
+      "professorId":"P1234566L",
+      "name":"Oliver Sinnen",
+      "department":"ECSE"
+   },
+   {
+      "professorId":"P1234568K",
+      "name":"Abhisek Ukil",
+      "department":"ECSE"
+   },
+   {
+      "professorId":"P1234569D",
+      "name":"Nitish Patel",
+      "department":"ECSE"
+   },
+   {
+      "professorId":"P1234567J",
+      "name":"Ewan Tempero",
+      "department":"CS"
+   }
+]

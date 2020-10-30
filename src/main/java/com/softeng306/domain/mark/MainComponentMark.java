@@ -46,7 +46,7 @@ public class MainComponentMark implements IMainComponentMark {
     @Override
     public ISubComponentMark getSubComponentMark(String courseWorkName) {
         for (ISubComponentMark subComponentMark : subComponentMarks) {
-            if (subComponentMark.getSubComponent().getComponentName().equals(courseWorkName)) {
+            if (subComponentMark.getSubComponent().getName().equals(courseWorkName)) {
                 return subComponentMark;
             }
         }

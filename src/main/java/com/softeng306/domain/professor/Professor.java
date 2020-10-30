@@ -8,10 +8,9 @@ import com.softeng306.enums.Department;
 
 public class Professor implements IProfessor {
 
-    private String profID;
-    private String profName;
-
-    private Department profDepartment;
+    private String professorId;
+    private String name;
+    private Department department;
 
     /**
      * Default constructor. Required for Jackson serialization.
@@ -23,32 +22,32 @@ public class Professor implements IProfessor {
     /**
      * Creates professor with professor ID and professor name.
      *
-     * @param profID   the ID of the professor
-     * @param profName the name of the professor
+     * @param professorId the ID of the professor
+     * @param name        the name of the professor
      */
-    public Professor(String profID, String profName) {
-        this.profID = profID;
-        this.profName = profName;
+    public Professor(String professorId, String name) {
+        this.professorId = professorId;
+        this.name = name;
     }
 
     @Override
-    public String getProfID() {
-        return profID;
+    public String getProfessorId() {
+        return professorId;
     }
 
     @Override
-    public String getProfName() {
-        return profName;
+    public String getName() {
+        return name;
     }
 
     @Override
-    public Department getProfDepartment() {
-        return profDepartment;
+    public Department getDepartment() {
+        return department;
     }
 
     @Override
-    public void setProfDepartment(Department profDepartment) {
-        this.profDepartment = profDepartment;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
 }

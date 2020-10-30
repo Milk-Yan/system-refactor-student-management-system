@@ -12,20 +12,20 @@ import java.util.List;
 
 public class Course implements ICourse {
 
-    private String courseID;
-    private String courseName;
+    private String courseId;
+    private String name;
     private int academicUnits;
 
-    private IProfessor profInCharge;
-    private Department courseDepartment;
+    private IProfessor courseCoordinator;
+    private Department department;
     private CourseType courseType;
 
     private int vacancies;
-    private int totalSeats;
+    private int capacity;
 
-    private int lecWeeklyHour;
-    private int tutWeeklyHour = 0;
-    private int labWeeklyHour = 0;
+    private int lectureHoursPerWeek;
+    private int tutorialHoursPerWeek = 0;
+    private int labHoursPerWeek = 0;
 
     private List<IGroup> lectureGroups;
     private List<IGroup> tutorialGroups = new ArrayList<>();
@@ -40,13 +40,13 @@ public class Course implements ICourse {
     }
 
     @Override
-    public String getCourseID() {
-        return courseID;
+    public String getCourseId() {
+        return courseId;
     }
 
     @Override
-    public String getCourseName() {
-        return courseName;
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -55,8 +55,8 @@ public class Course implements ICourse {
     }
 
     @Override
-    public IProfessor getProfInCharge() {
-        return profInCharge;
+    public IProfessor getCourseCoordinator() {
+        return courseCoordinator;
     }
 
     @Override
@@ -65,13 +65,13 @@ public class Course implements ICourse {
     }
 
     @Override
-    public int getTotalSeats() {
-        return totalSeats;
+    public int getCapacity() {
+        return capacity;
     }
 
     @Override
-    public Department getCourseDepartment() {
-        return courseDepartment;
+    public Department getDepartment() {
+        return department;
     }
 
     @Override
@@ -80,18 +80,18 @@ public class Course implements ICourse {
     }
 
     @Override
-    public int getLecWeeklyHour() {
-        return lecWeeklyHour;
+    public int getLectureHoursPerWeek() {
+        return lectureHoursPerWeek;
     }
 
     @Override
-    public int getTutWeeklyHour() {
-        return tutWeeklyHour;
+    public int getTutorialHoursPerWeek() {
+        return tutorialHoursPerWeek;
     }
 
     @Override
-    public int getLabWeeklyHour() {
-        return labWeeklyHour;
+    public int getLabHoursPerWeek() {
+        return labHoursPerWeek;
     }
 
     @Override
@@ -120,7 +120,7 @@ public class Course implements ICourse {
     }
 
     @Override
-    public void enrolledIn() {
+    public void updateVacanciesForEnrollment() {
         this.vacancies = vacancies - 1;
     }
 
@@ -140,18 +140,18 @@ public class Course implements ICourse {
     }
 
     @Override
-    public void setTutWeeklyHour(int tutWeeklyHour) {
-        this.tutWeeklyHour = tutWeeklyHour;
+    public void setTutorialHoursPerWeek(int tutorialHoursPerWeek) {
+        this.tutorialHoursPerWeek = tutorialHoursPerWeek;
     }
 
     @Override
-    public void setLecWeeklyHour(int lecWeeklyHour) {
-        this.lecWeeklyHour = lecWeeklyHour;
+    public void setLectureHoursPerWeek(int lectureHoursPerWeek) {
+        this.lectureHoursPerWeek = lectureHoursPerWeek;
     }
 
     @Override
-    public void setLabWeeklyHour(int labWeeklyHour) {
-        this.labWeeklyHour = labWeeklyHour;
+    public void setLabHoursPerWeek(int labHoursPerWeek) {
+        this.labHoursPerWeek = labHoursPerWeek;
     }
 
     @Override
@@ -160,23 +160,23 @@ public class Course implements ICourse {
     }
 
     @Override
-    public void setID(String id) {
-        this.courseID = id;
+    public void setCourseId(String id) {
+        this.courseId = id;
     }
 
     @Override
     public void setName(String name) {
-        this.courseName = name;
+        this.name = name;
     }
 
     @Override
-    public void setProfInCharge(IProfessor professor) {
-        this.profInCharge = professor;
+    public void setCourseCoordinator(IProfessor professor) {
+        this.courseCoordinator = professor;
     }
 
     @Override
-    public void setTotalSeat(int totalSeats) {
-        this.totalSeats = totalSeats;
+    public void setCapacity(int courseCapacity) {
+        this.capacity = courseCapacity;
     }
 
     @Override
@@ -185,8 +185,8 @@ public class Course implements ICourse {
     }
 
     @Override
-    public void setCourseDepartment(Department department) {
-        this.courseDepartment = department;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override
@@ -203,9 +203,19 @@ public class Course implements ICourse {
     public String[][] generateTutorialGroupInformation() {
         return generateGroupInformation(tutorialGroups);
     }
+
     @Override
     public String[][] generateLectureGroupInformation() {
         return generateGroupInformation(lectureGroups);
     }
 
+    private String[][] generateGroupInformation(List<IGroup> groups) {
+        String[][] groupInfo = new String[groups.size()][3];
+        for (int i = 0; i < groups.size(); i++) {
+            groupInfo[i][0] = groups.get(i).getGroupName();
+            groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
+            groupInfo[i][2] = String.valueOf(groups.get(i).getCapacity());
+        }
+        return groupInfo;
+    }
 }
