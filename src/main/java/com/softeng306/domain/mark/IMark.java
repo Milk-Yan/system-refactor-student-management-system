@@ -1,7 +1,7 @@
 package com.softeng306.domain.mark;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.ICourse;
 import com.softeng306.domain.student.IStudent;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public interface IMark {
      *
      * @return the course of this student mark record.
      */
-    Course getCourse();
+    ICourse getCourse();
 
     /**
      * Gets the course work marks of this student mark record.

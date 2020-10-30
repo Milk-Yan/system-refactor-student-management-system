@@ -3,10 +3,8 @@ package com.softeng306.managers;
 import com.softeng306.domain.course.ICourse;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.mark.MainComponentMark;
-import com.softeng306.domain.mark.Mark;
-import com.softeng306.domain.mark.MarkCalculator;
-import com.softeng306.domain.mark.SubComponentMark;
+import com.softeng306.domain.mark.*;
+import com.softeng306.domain.student.IStudent;
 import com.softeng306.domain.student.Student;
 
 import com.softeng306.fileprocessing.IFileProcessor;
@@ -61,8 +59,8 @@ public class MarkMgr {
      * @param course  the course this mark record about.
      * @return the new added mark.
      */
-    public Mark initialiseMark(IStudent student, ICourse course) {
-        List<MainComponentMark> courseWorkMarks = new ArrayList<>();
+    public IMark initialiseMark(IStudent student, ICourse course) {
+        List<IMainComponentMark> courseWorkMarks = new ArrayList<>();
         double totalMark = 0d;
         List<MainComponent> mainComponents = course.getMainComponents();
 
@@ -100,14 +98,14 @@ public class MarkMgr {
                         MainComponent mainComponent = mainComponentMark.getMainComponent();
 
                         if (!mainComponent.getComponentName().equals("Exam")
-                                && !mainComponentMark.hasSubComponentMarks()) {
+                          && !mainComponentMark.hasSubComponentMarks()) {
 
                             extractMainComponentDetails(mainComponent, componentNameList,
-                                    availableChoices, weights, isMainComponent);
+                              availableChoices, weights, isMainComponent);
                         }
 
                         extractSubComponentDetails(mainComponent, componentNameList,
-                                availableChoices, weights, isMainComponent);
+                          availableChoices, weights, isMainComponent);
                     }
 
                     io.printCourseComponentChoices(availableChoices, weights);

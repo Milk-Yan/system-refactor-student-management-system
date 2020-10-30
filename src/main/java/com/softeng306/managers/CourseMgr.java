@@ -1,8 +1,10 @@
 package com.softeng306.managers;
 
 
+import com.softeng306.domain.course.ICourse;
 import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.domain.mark.IMarkCalculator;
+import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.enums.CourseType;
 
 import com.softeng306.domain.course.ICourseBuilder;

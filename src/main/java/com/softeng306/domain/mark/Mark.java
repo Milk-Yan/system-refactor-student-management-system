@@ -10,7 +10,7 @@ import java.util.List;
  * Both students and courses can have multiple student mark record, but cannot be duplicate.
  */
 
-public class Mark {
+public class Mark implements IMark {
 
     private IStudent student;
     private ICourse course;
@@ -35,7 +35,7 @@ public class Mark {
      * @param courseWorkMarks The course work marks of this student mark record.
      * @param totalMark       The total mark of this student mark record.
      */
-    public Mark(IStudent student, ICourse course, List<MainComponentMark> courseWorkMarks, double totalMark) {
+    public Mark(IStudent student, ICourse course, List<IMainComponentMark> courseWorkMarks, double totalMark) {
         this.student = student;
         this.course = course;
         this.courseWorkMarks = courseWorkMarks;
