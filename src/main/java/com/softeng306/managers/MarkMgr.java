@@ -84,7 +84,7 @@ public class MarkMgr {
      *
      * @param isExam whether this coursework component refers to "Exam"
      */
-    public void setCourseworkMark(boolean isExam, String studentID, String courseID) throws SubComponentNotFoundException {
+    public void setCourseworkMark(boolean isExam, String studentID, String courseID) {
         IMarkMgrIO io = new MarkMgrIO();
         List<String> componentNameList = new ArrayList<>();
         List<String> availableChoices = new ArrayList<>();
