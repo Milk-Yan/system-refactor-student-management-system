@@ -3,6 +3,7 @@ package com.softeng306.io;
 import com.softeng306.domain.exceptions.StudentNotFoundException;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
+import com.softeng306.managers.IStudentMgr;
 import com.softeng306.managers.MarkMgr;
 import com.softeng306.managers.StudentMgr;
 import com.softeng306.validation.RegexValidator;
@@ -12,7 +13,7 @@ import java.util.Scanner;
 
 public class StudentMgrIO implements IStudentMgrIO {
     private Scanner reader = new Scanner(System.in);
-    private StudentMgr studentMgr = StudentMgr.getInstance();
+    private IStudentMgr studentMgr = StudentMgr.getInstance();
 
     @Override
     public void addStudent() {

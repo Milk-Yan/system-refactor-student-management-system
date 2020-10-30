@@ -21,14 +21,13 @@ import java.util.List;
 /**
  * Manages all the mark related operations.
  */
-
-public class MarkMgr {
+public class MarkMgr implements IMarkMgr {
     /**
      * A list of all the student mark records in this school.
      */
     private List<Mark> marks;
 
-    private static MarkMgr singleInstance = null;
+    private static IMarkMgr singleInstance = null;
 
     private final IFileProcessor<Mark> markFileProcessor;
 
@@ -41,11 +40,11 @@ public class MarkMgr {
     }
 
     /**
-     * Return the MarkMgr singleton, if not initialised already, create an instance.
+     * Return the IMarkMgr singleton, if not initialised already, create an instance.
      *
-     * @return MarkMgr the singleton instance
+     * @return IMarkMgr the singleton instance
      */
-    public static MarkMgr getInstance() {
+    public static IMarkMgr getInstance() {
         if (singleInstance == null) {
             singleInstance = new MarkMgr();
         }
@@ -53,14 +52,7 @@ public class MarkMgr {
         return singleInstance;
     }
 
-
-    /**
-     * Initializes marks for a student when he/she just registered a course.
-     *
-     * @param student the student this mark record belongs to.
-     * @param course  the course this mark record about.
-     * @return the new added mark.
-     */
+    @Override
     public Mark initialiseMark(Student student, Course course) {
         List<MainComponentMark> courseWorkMarks = new ArrayList<>();
         double totalMark = 0d;
@@ -79,11 +71,7 @@ public class MarkMgr {
         return mark;
     }
 
-    /**
-     * Sets the coursework mark for the mark record.
-     *
-     * @param isExam whether this coursework component refers to "Exam"
-     */
+    @Override
     public void setCourseworkMark(boolean isExam, String studentID, String courseID) {
         IMarkMgrIO io = new MarkMgrIO();
         List<String> componentNameList = new ArrayList<>();
@@ -134,54 +122,12 @@ public class MarkMgr {
         io.printStudentNotRegisteredToCourse(courseID);
     }
 
-
-    private void setComponentMark(Mark mark, boolean isMainComponent, String componentName, double assessmentMark) {
-        if (isMainComponent) {
-            // This is a stand alone main assessment
-            mark.setMainComponentMark(componentName, assessmentMark);
-        } else {
-            mark.setSubComponentMark(componentName, assessmentMark);
-        }
-    }
-
-    private void setExamMark(Mark mark) {
-        double examMark = new MarkMgrIO().readExamMark();
-        mark.setMainComponentMark("Exam", examMark);
-    }
-
-
-    private void extractMainComponentDetails(MainComponent mainComponent, List<String> componentNameList,
-                                             List<String> availableChoices, List<Integer> weights,
-                                             List<Boolean> isMainComponent) {
-        String mainComponentName = mainComponent.getName();
-        availableChoices.add(mainComponentName);
-        componentNameList.add(mainComponentName);
-        weights.add(mainComponent.getWeight());
-        isMainComponent.add(true);
-    }
-
-    private void extractSubComponentDetails(MainComponent mainComponent, List<String> componentNameList,
-                                            List<String> availableChoices, List<Integer> weights,
-                                            List<Boolean> isMainComponent) {
-
-        for (SubComponent subComponent : mainComponent.getSubComponents()) {
-            componentNameList.add(subComponent.getName());
-            availableChoices.add(mainComponent.getName() + "-" + subComponent.getName());
-            weights.add(mainComponent.getWeight() * subComponent.getWeight() / 100);
-            isMainComponent.add(false);
-        }
-    }
-
-    /**
-     * Return the list of all marks in the system.
-     *
-     * @return An list of all marks.
-     */
+    @Override
     public List<Mark> getMarks() {
         return marks;
     }
 
-
+    @Override
     public int getAcademicUnitsForStudent(String studentId) {
         int totalAU = 0;
         for (Mark mark : getMarksForStudent(studentId)) {
@@ -190,16 +136,7 @@ public class MarkMgr {
         return totalAU;
     }
 
-    public List<Mark> getMarksForStudent(String studentId) {
-        List<Mark> studentMarks = new ArrayList<>();
-        for (Mark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getStudent().getStudentId().equals(studentId)) {
-                studentMarks.add(mark);
-            }
-        }
-        return studentMarks;
-    }
-
+    @Override
     public List<String> getMarkMessageForStudent(String studentId, int totalAU) {
         List<String> markString = new ArrayList<>();
         List<Mark> marksForStudent = getMarksForStudent(studentId);
@@ -232,7 +169,7 @@ public class MarkMgr {
         return markString;
     }
 
-    public String getGPAMessage(double studentGPA) {
+    private String getGPAMessage(double studentGPA) {
         if (studentGPA >= 4.50) {
             return "On track of First Class Honor!";
         } else if (studentGPA >= 4.0) {
@@ -246,5 +183,50 @@ public class MarkMgr {
         }
     }
 
+    private void setComponentMark(Mark mark, boolean isMainComponent, String componentName, double assessmentMark) {
+        if (isMainComponent) {
+            // This is a stand alone main assessment
+            mark.setMainComponentMark(componentName, assessmentMark);
+        } else {
+            mark.setSubComponentMark(componentName, assessmentMark);
+        }
+    }
+
+    private void setExamMark(Mark mark) {
+        double examMark = new MarkMgrIO().readExamMark();
+        mark.setMainComponentMark("Exam", examMark);
+    }
+
+    private void extractMainComponentDetails(MainComponent mainComponent, List<String> componentNameList,
+                                             List<String> availableChoices, List<Integer> weights,
+                                             List<Boolean> isMainComponent) {
+        String mainComponentName = mainComponent.getName();
+        availableChoices.add(mainComponentName);
+        componentNameList.add(mainComponentName);
+        weights.add(mainComponent.getWeight());
+        isMainComponent.add(true);
+    }
+
+    private void extractSubComponentDetails(MainComponent mainComponent, List<String> componentNameList,
+                                            List<String> availableChoices, List<Integer> weights,
+                                            List<Boolean> isMainComponent) {
+
+        for (SubComponent subComponent : mainComponent.getSubComponents()) {
+            componentNameList.add(subComponent.getName());
+            availableChoices.add(mainComponent.getName() + "-" + subComponent.getName());
+            weights.add(mainComponent.getWeight() * subComponent.getWeight() / 100);
+            isMainComponent.add(false);
+        }
+    }
+
+    private List<Mark> getMarksForStudent(String studentId) {
+        List<Mark> studentMarks = new ArrayList<>();
+        for (Mark mark : MarkMgr.getInstance().getMarks()) {
+            if (mark.getStudent().getStudentId().equals(studentId)) {
+                studentMarks.add(mark);
+            }
+        }
+        return studentMarks;
+    }
 
 }

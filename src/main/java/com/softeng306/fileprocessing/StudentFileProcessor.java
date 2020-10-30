@@ -2,7 +2,6 @@ package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.softeng306.domain.student.Student;
-import com.softeng306.managers.StudentMgr;
 
 import java.io.File;
 import java.io.IOException;
