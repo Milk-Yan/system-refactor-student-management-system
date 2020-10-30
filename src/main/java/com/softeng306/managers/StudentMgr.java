@@ -50,7 +50,7 @@ public class StudentMgr {
         return singleInstance;
     }
 
-    public void addStudent(String id, String name, String school, String gender, int year) {
+    public void createNewStudent(String id, String name, String school, String gender, int year) {
         Student currentStudent = new Student(id, name);
 
         currentStudent.setStudentSchool(Department.valueOf(school));  //Set school
@@ -105,12 +105,6 @@ public class StudentMgr {
         }
 
         return recentStudentID > 0 ? recentStudentID : 1800000;
-    }
-
-    public List<String> getExistingStudentIds() {
-        List<String> existingStudentIds = new ArrayList<>();
-        students.forEach(student -> existingStudentIds.add(student.getStudentID()));
-        return existingStudentIds;
     }
 
     public boolean studentHasCourses(String studentId) {

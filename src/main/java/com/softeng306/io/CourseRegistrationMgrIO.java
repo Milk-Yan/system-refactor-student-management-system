@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner reader = new Scanner(System.in);
     private CourseRegistrationMgr courseRegistrationMgr = CourseRegistrationMgr.getInstance();
 
     @Override
@@ -53,7 +53,7 @@ public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
     @Override
     public void printRegistrationRequestDetails(String studentName, String studentId, String courseId, String courseName) {
         System.out.println("Student " + studentName + " with ID: " + studentId +
-                " wants to register " + courseId + " " + courseName);
+          " wants to register " + courseId + " " + courseName);
     }
 
     @Override
@@ -62,9 +62,9 @@ public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
 
         ICourseMgrIO courseIO = new CourseMgrIO();
 
-        String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
-        CourseMgr.getInstance().readDepartmentFromUser();
-        String courseID = courseIO.readValidCourseIdFromUser();
+        String studentID = new StudentMgrIO().readExistingStudentID();
+        CourseMgr.getInstance().readExistingDepartment();
+        String courseID = courseIO.readExistingCourseId();
 
         try {
             List<String> newRegistrationInfo = courseRegistrationMgr.registerCourse(studentID, courseID);
@@ -79,22 +79,22 @@ public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
         MainMenuIO.printMethodCall("printStudent");
         ICourseMgrIO courseIO = new CourseMgrIO();
 
-        String courseID = courseIO.readValidCourseIdFromUser();
+        String courseID = courseIO.readExistingCourseId();
         printOptions();
 
-        int opt;
+        int userOption;
         do {
-            opt = scanner.nextInt();
-            scanner.nextLine();
+            userOption = reader.nextInt();
+            reader.nextLine();
 
             System.out.println("------------------------------------------------------");
 
             try {
-                courseRegistrationMgr.printStudents(courseID, opt);
+                courseRegistrationMgr.printStudents(courseID, userOption);
             } catch (CourseNotFoundException | GroupTypeNotFoundException e) {
                 e.printStackTrace();
             }
-        } while (opt < 1 || opt > 3);
+        } while (userOption < 1 || userOption > 3);
     }
 
     @Override
