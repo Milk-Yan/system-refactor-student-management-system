@@ -13,7 +13,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Manages all the professor related operations
+ * Concrete implementation of {@code IProfessorMgr}.
+ * Manages the operations on professors within the academic institute.
  */
 public class ProfessorMgr implements IProfessorMgr {
     /**
@@ -21,8 +22,14 @@ public class ProfessorMgr implements IProfessorMgr {
      */
     private List<IProfessor> professors;
 
+    /**
+     * Singleton instance of this professor manager.
+     */
     private static IProfessorMgr singleInstance = null;
 
+    /**
+     * The file processor to use for persisting professor data.
+     */
     private final IFileProcessor<IProfessor> professorFileProcessor;
 
     /**
@@ -71,7 +78,7 @@ public class ProfessorMgr implements IProfessorMgr {
     }
 
     @Override
-    public boolean checkProfessorExists(String profID){
+    public boolean checkProfessorExists(String profID) {
         Optional<IProfessor> professor = professors.stream()
                 .filter(p -> profID.equals(p.getProfessorId()))
                 .findFirst();
