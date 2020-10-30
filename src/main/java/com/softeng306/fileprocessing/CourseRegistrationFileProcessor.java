@@ -10,14 +10,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Concrete implementation of a file processor for course registrations.
+ * Used to read and write course registrations from a file.
+ */
 public class CourseRegistrationFileProcessor extends FileProcessor<ICourseRegistration> {
-
+    /**
+     * Path to the file for course registration data.
+     */
     private static final String COURSE_REGISTRATION_FILE_PATH = "data/courseRegistrationFile.json";
 
     /**
      * Loads a list of all the course registrations from {@value COURSE_REGISTRATION_FILE_PATH}.
      *
-     * @return A list of all the course registrations that is loaded from the file.
+     * @return A list of all the course registrations loaded from the file.
      */
     @Override
     public List<ICourseRegistration> loadFile() {
@@ -38,7 +44,7 @@ public class CourseRegistrationFileProcessor extends FileProcessor<ICourseRegist
     /**
      * Writes a new course registration into {@value COURSE_REGISTRATION_FILE_PATH}.
      *
-     * @param courseRegistration the new course registration to write to the file
+     * @param courseRegistration The new course registration to write to the file.
      */
     @Override
     public void writeNewEntryToFile(ICourseRegistration courseRegistration) {
@@ -54,10 +60,9 @@ public class CourseRegistrationFileProcessor extends FileProcessor<ICourseRegist
     }
 
     /**
-     * Writes the updated course registrations to {@value COURSE_REGISTRATION_FILE_PATH}.
+     * Updates a list of course registrations in {@value COURSE_REGISTRATION_FILE_PATH}.
      *
-     * @param updatedCourseRegistrations the list of all course registrations,
-     *                                   with updated course registrations
+     * @param updatedCourseRegistrations the list of all course registrations to modify
      */
     @Override
     public void updateFileContents(List<ICourseRegistration> updatedCourseRegistrations) {
