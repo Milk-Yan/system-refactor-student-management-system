@@ -60,7 +60,7 @@ public class CourseFileProcessor extends FileProcessor<ICourse> {
     }
 
     /**
-     * Writes a list of updated courses to {@value COURSE_FILE_PATH}.
+     * Modifies a list of courses in {@value COURSE_FILE_PATH}.
      *
      * @param updatedCourses The list of all courses to modify in the file.
      */
