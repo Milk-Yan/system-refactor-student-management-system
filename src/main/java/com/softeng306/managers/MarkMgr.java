@@ -5,7 +5,6 @@ import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.*;
 import com.softeng306.domain.student.IStudent;
-import com.softeng306.domain.student.Student;
 
 import com.softeng306.fileprocessing.IFileProcessor;
 import com.softeng306.fileprocessing.MarkFileProcessor;

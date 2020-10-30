@@ -5,7 +5,6 @@ import com.softeng306.enums.Department;
 /**
  * Represents a professor at school
  */
-
 public class Professor implements IProfessor {
 
     private String professorId;

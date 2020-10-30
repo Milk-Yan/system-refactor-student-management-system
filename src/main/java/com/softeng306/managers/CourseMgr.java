@@ -1,28 +1,24 @@
 package com.softeng306.managers;
 
-
 import com.softeng306.domain.course.ICourse;
 import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.domain.mark.IMarkCalculator;
 import com.softeng306.domain.mark.MarkCalculator;
-import com.softeng306.enums.CourseType;
-
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.GroupType;
+
 import com.softeng306.fileprocessing.CourseFileProcessor;
 import com.softeng306.fileprocessing.IFileProcessor;
-
-import com.softeng306.enums.GroupType;
 
 import com.softeng306.io.ICourseMgrIO;
 import com.softeng306.io.MainMenuIO;
 import com.softeng306.io.CourseMgrIO;
 
-
 import java.util.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -408,11 +404,11 @@ public class CourseMgr {
      */
     public ICourse getCourseFromId(String courseID) throws CourseNotFoundException {
         Optional<ICourse> course = CourseMgr
-          .getInstance()
-          .getCourses()
-          .stream()
-          .filter(c -> courseID.equals(c.getCourseId()))
-          .findAny();
+                .getInstance()
+                .getCourses()
+                .stream()
+                .filter(c -> courseID.equals(c.getCourseId()))
+                .findAny();
 
         if (!course.isPresent()) {
             throw new CourseNotFoundException(courseID);

@@ -17,6 +17,7 @@ public class CourseFileProcessor extends FileProcessor<ICourse> {
 
     /**
      * Loads a list of all the courses from {@value COURSE_FILE_PATH}.
+     *
      * @return A list of all the courses that is loaded from the file.
      */
     @Override
@@ -37,6 +38,7 @@ public class CourseFileProcessor extends FileProcessor<ICourse> {
 
     /**
      * Writes a new course into {@value COURSE_FILE_PATH}.
+     *
      * @param course the new course to write to the file
      */
     @Override
@@ -54,6 +56,7 @@ public class CourseFileProcessor extends FileProcessor<ICourse> {
 
     /**
      * Writes the updated courses to {@value COURSE_FILE_PATH}.
+     *
      * @param updatedCourses the list of all courses, with updated courses
      */
     @Override
@@ -66,4 +69,5 @@ public class CourseFileProcessor extends FileProcessor<ICourse> {
             e.printStackTrace();
         }
     }
+
 }

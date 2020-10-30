@@ -10,7 +10,7 @@ import java.util.List;
 public class MarkCalculator implements IMarkCalculator {
 
     @Override
-    public double computeAverageMarkForCourseComponent(String courseID, String componentName){
+    public double computeAverageMarkForCourseComponent(String courseID, String componentName) {
         List<IMark> marksForCourse = new ArrayList<>();
         for (IMark mark : MarkMgr.getInstance().getMarks()) {
             if (mark.getCourse().getCourseId().equals(courseID)) {
@@ -22,7 +22,7 @@ public class MarkCalculator implements IMarkCalculator {
     }
 
     @Override
-    public double computeOverallMarkForCourse(String courseID){
+    public double computeOverallMarkForCourse(String courseID) {
         List<IMark> marksForCourse = new ArrayList<>();
         for (IMark mark : MarkMgr.getInstance().getMarks()) {
             if (mark.getCourse().getCourseId().equals(courseID)) {
@@ -32,7 +32,6 @@ public class MarkCalculator implements IMarkCalculator {
 
         return computeOverallMark(marksForCourse);
     }
-
 
     /**
      * Computes the sum of marks for a particular component of a particular course
@@ -110,4 +109,5 @@ public class MarkCalculator implements IMarkCalculator {
             return 0d;
         }
     }
+
 }

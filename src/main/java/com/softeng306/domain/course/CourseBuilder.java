@@ -68,7 +68,7 @@ public class CourseBuilder implements ICourseBuilder {
     private List<IGroup> convertMapToGroups(Map<String, Double> groups, GroupType type) {
         List<IGroup> newGroups = new ArrayList<>();
 
-        for(String groupName : groups.keySet()){
+        for (String groupName : groups.keySet()) {
             IGroup group = new Group(groupName, groups.get(groupName).intValue(), groups.get(groupName).intValue(), type);
             newGroups.add(group);
         }
@@ -110,4 +110,5 @@ public class CourseBuilder implements ICourseBuilder {
     public ICourse build() {
         return course;
     }
+
 }

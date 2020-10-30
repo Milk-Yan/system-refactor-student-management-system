@@ -9,7 +9,6 @@ import java.util.List;
  * Represents a student mark record associated with one student and a course.
  * Both students and courses can have multiple student mark record, but cannot be duplicate.
  */
-
 public class Mark implements IMark {
 
     private IStudent student;
@@ -85,7 +84,6 @@ public class Mark implements IMark {
 
     }
 
-
     @Override
     public void setSubComponentMark(String courseWorkName, double result) {
         for (IMainComponentMark mainComponentMark : courseWorkMarks) {
@@ -109,4 +107,5 @@ public class Mark implements IMark {
             }
         }
     }
+
 }

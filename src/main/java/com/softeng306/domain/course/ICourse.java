@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.group.IGroup;
 import com.softeng306.domain.professor.IProfessor;
-import com.softeng306.domain.professor.Professor;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 
@@ -220,6 +219,5 @@ public interface ICourse {
     String[][] generateTutorialGroupInformation();
 
     String[][] generateLectureGroupInformation();
-
 
 }

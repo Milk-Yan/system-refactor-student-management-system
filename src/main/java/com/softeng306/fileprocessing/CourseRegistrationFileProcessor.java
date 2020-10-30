@@ -17,6 +17,7 @@ public class CourseRegistrationFileProcessor extends FileProcessor<ICourseRegist
 
     /**
      * Loads a list of all the course registrations from {@value COURSE_REGISTRATION_FILE_PATH}.
+     *
      * @return A list of all the course registrations that is loaded from the file.
      */
     @Override
@@ -37,6 +38,7 @@ public class CourseRegistrationFileProcessor extends FileProcessor<ICourseRegist
 
     /**
      * Writes a new course registration into {@value COURSE_REGISTRATION_FILE_PATH}.
+     *
      * @param courseRegistration the new course registration to write to the file
      */
     @Override
@@ -54,6 +56,7 @@ public class CourseRegistrationFileProcessor extends FileProcessor<ICourseRegist
 
     /**
      * Writes the updated course registrations to {@value COURSE_REGISTRATION_FILE_PATH}.
+     *
      * @param updatedCourseRegistrations the list of all course registrations,
      *                                   with updated course registrations
      */
@@ -67,4 +70,5 @@ public class CourseRegistrationFileProcessor extends FileProcessor<ICourseRegist
             e.printStackTrace();
         }
     }
+
 }

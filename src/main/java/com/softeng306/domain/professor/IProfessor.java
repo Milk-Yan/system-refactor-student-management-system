@@ -10,7 +10,6 @@ public interface IProfessor {
      *
      * @return the ID of this professor
      */
-
     String getProfessorId();
 
     /**
@@ -33,4 +32,5 @@ public interface IProfessor {
      * @param profDepartment this professor's department
      */
     void setDepartment(Department profDepartment);
+
 }
