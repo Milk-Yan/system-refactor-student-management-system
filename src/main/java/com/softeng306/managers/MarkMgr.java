@@ -123,7 +123,6 @@ public class MarkMgr implements IMarkMgr {
     }
 
     @Override
-
     public List<Mark> getMarks() {
         return marks;
     }
