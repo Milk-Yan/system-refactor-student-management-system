@@ -16,8 +16,7 @@ import java.util.Random;
 import java.util.Optional;
 
 /**
- * Manages the student related operations.
- * Contains addStudent, generateStudentId
+ * Manages the operations on students enrolled in the academic institute.
  */
 public class StudentMgr implements IStudentMgr {
     /**
@@ -25,8 +24,14 @@ public class StudentMgr implements IStudentMgr {
      */
     private List<IStudent> students;
 
+    /**
+     * Singleton instance of the manager.
+     */
     private static StudentMgr singleInstance = null;
 
+    /**
+     * The file processor to use for persisting student data.
+     */
     private final IFileProcessor<IStudent> studentFileProcessor;
 
     /**
@@ -38,7 +43,8 @@ public class StudentMgr implements IStudentMgr {
     }
 
     /**
-     * Return the IStudentMgr singleton, if not initialised already, create an instance.
+     * Return the IStudentMgr singleton
+     * If not initialised already, create an instance.
      *
      * @return IStudentMgr the singleton instance
      */
@@ -131,15 +137,17 @@ public class StudentMgr implements IStudentMgr {
     /**
      * Return the list of all students in the system.
      *
-     * @return An list of all students.
+     * @return The list of students.
      */
     private List<IStudent> getStudents() {
         return students;
     }
 
     /**
-     * Find the largest student ID by the number value in all the students.
-     * If there is no student in DB, this is default 1800000 (2018 into Uni)
+     * Find the largest student ID by the numerical value.
+     * If there are no students, this is default 1800000 (enrolled in 2018)
+     *
+     * @return The largest student ID
      */
     private int findLargestStudentID() {
         int recentStudentID = 0;
