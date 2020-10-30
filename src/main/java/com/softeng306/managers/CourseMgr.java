@@ -1,7 +1,6 @@
 package com.softeng306.managers;
 
 
-import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.enums.CourseType;
@@ -21,7 +20,6 @@ import com.softeng306.io.MainMenuIO;
 
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -385,7 +383,7 @@ public class CourseMgr {
         List<String> courseInformation = new ArrayList<String>();
         courseInformation.add(course.getCourseID());
         courseInformation.add(course.getCourseName());
-        courseInformation.add(String.valueOf(course.getAU()));
+        courseInformation.add(String.valueOf(course.getAcademicUnits()));
         courseInformation.add(String.valueOf(course.getTotalSeats()));
         courseInformation.add(String.valueOf(course.getVacancies()));
         return courseInformation;
@@ -452,24 +450,24 @@ public class CourseMgr {
         return new CourseMgrIO().readNoOfGroup(GroupType.LECTURE_GROUP.toString(), compareTo, totalSeats);
     }
 
-    public int getReadWeeklyLectureHour(int AU) {
-        return new CourseMgrIO().readWeeklyHour(GroupType.LECTURE_GROUP.toString(), AU);
+    public int getReadWeeklyLectureHour(int academicUnits) {
+        return new CourseMgrIO().readWeeklyHour(GroupType.LECTURE_GROUP.toString(), academicUnits);
     }
 
     public int getNumberOfLabGroups(int compareTo, int totalSeats) {
         return new CourseMgrIO().readNoOfGroup(GroupType.LAB_GROUP.toString(), compareTo, totalSeats);
     }
 
-    public int getReadWeeklyLabHour(int AU) {
-        return new CourseMgrIO().readWeeklyHour(GroupType.LAB_GROUP.toString(), AU);
+    public int getReadWeeklyLabHour(int academicUnits) {
+        return new CourseMgrIO().readWeeklyHour(GroupType.LAB_GROUP.toString(), academicUnits);
     }
 
     public int getNumberOfTutorialGroups(int compareTo, int totalSeats) {
         return new CourseMgrIO().readNoOfGroup(GroupType.TUTORIAL_GROUP.toString(), compareTo, totalSeats);
     }
 
-    public int getReadWeeklyTutorialHour(int AU) {
-        return new CourseMgrIO().readWeeklyHour(GroupType.TUTORIAL_GROUP.toString(), AU);
+    public int getReadWeeklyTutorialHour(int academicUnits) {
+        return new CourseMgrIO().readWeeklyHour(GroupType.TUTORIAL_GROUP.toString(), academicUnits);
     }
 
     public List<String> getListCourseTypes() {

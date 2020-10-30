@@ -56,8 +56,7 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" :  {
       "groupName" : "Lec1",
@@ -130,8 +129,7 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "Lec1",
@@ -209,8 +207,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -293,8 +290,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -377,8 +373,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -461,8 +456,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -545,8 +539,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -629,8 +622,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -713,8 +705,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -797,8 +788,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -881,8 +871,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -965,8 +954,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -1049,8 +1037,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -1133,8 +1120,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -1217,8 +1203,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -1301,8 +1286,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -1385,8 +1369,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -1469,8 +1452,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -1553,8 +1535,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -1637,8 +1618,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -1721,8 +1701,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -1805,8 +1784,7 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -1884,8 +1862,7 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "Lec1",
@@ -1967,8 +1944,7 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -2061,8 +2037,7 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "Lec1",
@@ -2144,8 +2119,7 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -2217,8 +2191,7 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",
@@ -2280,8 +2253,7 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC2",
@@ -2343,8 +2315,7 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC2",
@@ -2406,8 +2377,7 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC2",
@@ -2469,8 +2439,7 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC2",
@@ -2532,8 +2501,7 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC2",
@@ -2595,8 +2563,7 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC3",
@@ -2658,8 +2625,7 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC3",
@@ -2721,8 +2687,7 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC3",
@@ -2784,8 +2749,7 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
       "groupName" : "LEC1",

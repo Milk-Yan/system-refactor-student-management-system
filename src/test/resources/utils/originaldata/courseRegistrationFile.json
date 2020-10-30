@@ -56,21 +56,20 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" :  {
-    "groupName" : "Lec1",
-    "availableVacancies" : 14,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 20
-  } ,
+      "groupName" : "Lec1",
+      "availableVacancies" : 14,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 20
+    } ,
   "tutorialGroup" : {
-    "groupName" : "Tut2",
-    "availableVacancies" : 16,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 20
-  } ,
+      "groupName" : "Tut2",
+      "availableVacancies" : 16,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 20
+    } ,
   "labGroup" : null
 }, {
   "student" : {
@@ -130,21 +129,20 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "Lec1",
-    "availableVacancies" : 13,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 20
-  } ,
+      "groupName" : "Lec1",
+      "availableVacancies" : 13,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 20
+    } ,
   "tutorialGroup" : {
-    "groupName" : "Tut2",
-    "availableVacancies" : 15,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 20
-  },
+      "groupName" : "Tut2",
+      "availableVacancies" : 15,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 20
+    },
   "labGroup" : null
 }, {
   "student" : {
@@ -209,27 +207,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 9,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 9,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT2",
-    "availableVacancies" : 4,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  } ,
+      "groupName" : "TUT2",
+      "availableVacancies" : 4,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    } ,
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 9,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 9,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    }
 }, {
   "student" : {
     "studentID" : "U1723456K",
@@ -293,27 +290,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 8,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 8,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT2",
-    "availableVacancies" : 3,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT2",
+      "availableVacancies" : 3,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 8,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 8,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    }
 }, {
   "student" : {
     "studentID" : "U1234567J",
@@ -377,27 +373,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 7,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 7,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT2",
-    "availableVacancies" : 2,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  } ,
+      "groupName" : "TUT2",
+      "availableVacancies" : 2,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    } ,
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 7,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 7,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    }
 }, {
   "student" : {
     "studentID" : "U1822835D",
@@ -461,27 +456,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 6,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  } ,
+      "groupName" : "LEC1",
+      "availableVacancies" : 6,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    } ,
   "tutorialGroup" : {
-    "groupName" : "TUT2",
-    "availableVacancies" : 1,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  } ,
+      "groupName" : "TUT2",
+      "availableVacancies" : 1,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    } ,
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 6,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 6,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    }
 }, {
   "student" : {
     "studentID" : "U1822836B",
@@ -545,27 +539,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 5,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  } ,
+      "groupName" : "LEC1",
+      "availableVacancies" : 5,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    } ,
   "tutorialGroup" : {
-    "groupName" : "TUT2",
-    "availableVacancies" : 0,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  } ,
+      "groupName" : "TUT2",
+      "availableVacancies" : 0,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    } ,
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 5,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 5,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    }
 }, {
   "student" : {
     "studentID" : "U1822837K",
@@ -629,27 +622,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 9,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  } ,
+      "groupName" : "LEC1",
+      "availableVacancies" : 9,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    } ,
   "tutorialGroup" : {
-    "groupName" : "TUT2",
-    "availableVacancies" : 4,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT2",
+      "availableVacancies" : 4,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 9,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 9,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    } 
 }, {
   "student" : {
     "studentID" : "U1822838J",
@@ -713,27 +705,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 8,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  } ,
+      "groupName" : "LEC1",
+      "availableVacancies" : 8,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    } ,
   "tutorialGroup" : {
-    "groupName" : "TUT2",
-    "availableVacancies" : 3,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT2",
+      "availableVacancies" : 3,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 8,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 8,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    }
 }, {
   "student" : {
     "studentID" : "U1822839K",
@@ -797,27 +788,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 7,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 7,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT2",
-    "availableVacancies" : 2,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  } ,
+      "groupName" : "TUT2",
+      "availableVacancies" : 2,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    } ,
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 7,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 7,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    } 
 }, {
   "student" : {
     "studentID" : "U1822840D",
@@ -881,27 +871,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 6,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 6,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT2",
-    "availableVacancies" : 1,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT2",
+      "availableVacancies" : 1,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 6,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 6,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    } 
 }, {
   "student" : {
     "studentID" : "U1822841A",
@@ -965,27 +954,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 5,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 5,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT2",
-    "availableVacancies" : 0,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT2",
+      "availableVacancies" : 0,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 5,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 5,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    } 
 }, {
   "student" : {
     "studentID" : "U1822842F",
@@ -1049,27 +1037,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 9,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 9,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT1",
-    "availableVacancies" : 4,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT1",
+      "availableVacancies" : 4,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 9,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 9,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    } 
 }, {
   "student" : {
     "studentID" : "U1822843I",
@@ -1133,27 +1120,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 8,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 8,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT1",
-    "availableVacancies" : 3,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT1",
+      "availableVacancies" : 3,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 8,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 8,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    } 
 }, {
   "student" : {
     "studentID" : "U1822821E",
@@ -1217,27 +1203,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 7,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  } ,
+      "groupName" : "LEC1",
+      "availableVacancies" : 7,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    } ,
   "tutorialGroup" : {
-    "groupName" : "TUT1",
-    "availableVacancies" : 2,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT1",
+      "availableVacancies" : 2,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 7,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 7,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    } 
 }, {
   "student" : {
     "studentID" : "U1712312B",
@@ -1301,27 +1286,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 6,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 6,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT1",
-    "availableVacancies" : 1,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT1",
+      "availableVacancies" : 1,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 6,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 6,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    } 
 }, {
   "student" : {
     "studentID" : "U1812312D",
@@ -1385,27 +1369,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 5,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  } ,
+      "groupName" : "LEC1",
+      "availableVacancies" : 5,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    } ,
   "tutorialGroup" : {
-    "groupName" : "TUT1",
-    "availableVacancies" : 0,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT1",
+      "availableVacancies" : 0,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 5,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 5,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    }
 }, {
   "student" : {
     "studentID" : "U1829392I",
@@ -1469,27 +1452,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 9,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  } ,
+      "groupName" : "LEC1",
+      "availableVacancies" : 9,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    } ,
   "tutorialGroup" : {
-    "groupName" : "TUT1",
-    "availableVacancies" : 4,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT1",
+      "availableVacancies" : 4,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 9,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 9,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    } 
 }, {
   "student" : {
     "studentID" : "U1822023E",
@@ -1553,27 +1535,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 8,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  } ,
+      "groupName" : "LEC1",
+      "availableVacancies" : 8,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    } ,
   "tutorialGroup" : {
-    "groupName" : "TUT1",
-    "availableVacancies" : 3,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT1",
+      "availableVacancies" : 3,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 8,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 8,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    }
 }, {
   "student" : {
     "studentID" : "U1829393K",
@@ -1637,27 +1618,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 7,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 7,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT1",
-    "availableVacancies" : 2,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT1",
+      "availableVacancies" : 2,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 7,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 7,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    } 
 }, {
   "student" : {
     "studentID" : "U1722744J",
@@ -1721,27 +1701,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 6,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 6,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT1",
-    "availableVacancies" : 1,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT1",
+      "availableVacancies" : 1,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 6,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 6,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    } 
 }, {
   "student" : {
     "studentID" : "U1800001L",
@@ -1805,27 +1784,26 @@
         "componentWeight" : 75
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 5,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 30
-  } ,
+      "groupName" : "LEC1",
+      "availableVacancies" : 5,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 30
+    } ,
   "tutorialGroup" : {
-    "groupName" : "TUT1",
-    "availableVacancies" : 0,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 15
-  },
+      "groupName" : "TUT1",
+      "availableVacancies" : 0,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 15
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 5,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 30
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 5,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 30
+    }
 }, {
   "student" : {
     "studentID" : "U1800001L",
@@ -1884,21 +1862,20 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "Lec1",
-    "availableVacancies" : 16,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 20
-  },
+      "groupName" : "Lec1",
+      "availableVacancies" : 16,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 20
+    },
   "tutorialGroup" : {
-    "groupName" : "Tut1",
-    "availableVacancies" : 17,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 20
-  },
+      "groupName" : "Tut1",
+      "availableVacancies" : 17,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 20
+    },
   "labGroup" : null
 }, {
   "student" : {
@@ -1967,27 +1944,26 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 97,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 97,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    },
   "tutorialGroup" : {
-    "groupName" : "TUT2",
-    "availableVacancies" : 48,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 50
-  },
+      "groupName" : "TUT2",
+      "availableVacancies" : 48,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 50
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 47,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 50
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 47,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 50
+    }
 }, {
   "student" : {
     "studentID" : "U1800001L",
@@ -2061,21 +2037,20 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "Lec1",
-    "availableVacancies" : 48,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 50
-  } ,
+      "groupName" : "Lec1",
+      "availableVacancies" : 48,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 50
+    } ,
   "tutorialGroup" : {
-    "groupName" : "SS4",
-    "availableVacancies" : 18,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 20
-  },
+      "groupName" : "SS4",
+      "availableVacancies" : 18,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 20
+    },
   "labGroup" : null
 }, {
   "student" : {
@@ -2144,27 +2119,26 @@
         "componentWeight" : 30
       } ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 96,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  } ,
+      "groupName" : "LEC1",
+      "availableVacancies" : 96,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    } ,
   "tutorialGroup" : {
-    "groupName" : "TUT1",
-    "availableVacancies" : 48,
-    "groupType" : "TUTORIAL_GROUP",
-    "totalSeats" : 50
-  },
+      "groupName" : "TUT1",
+      "availableVacancies" : 48,
+      "groupType" : "TUTORIAL_GROUP",
+      "totalSeats" : 50
+    },
   "labGroup" : {
-    "groupName" : "LAB1",
-    "availableVacancies" : 46,
-    "groupType" : "LAB_GROUP",
-    "totalSeats" : 50
-  }
+      "groupName" : "LAB1",
+      "availableVacancies" : 46,
+      "groupType" : "LAB_GROUP",
+      "totalSeats" : 50
+    }
 }, {
   "student" : {
     "studentID" : "U1800001L",
@@ -2217,15 +2191,14 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 97,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 97,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
@@ -2280,15 +2253,14 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC2",
-    "availableVacancies" : 94,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  },
+      "groupName" : "LEC2",
+      "availableVacancies" : 94,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
@@ -2343,15 +2315,14 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC2",
-    "availableVacancies" : 93,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  },
+      "groupName" : "LEC2",
+      "availableVacancies" : 93,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
@@ -2406,15 +2377,14 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC2",
-    "availableVacancies" : 92,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  },
+      "groupName" : "LEC2",
+      "availableVacancies" : 92,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
@@ -2469,15 +2439,14 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC2",
-    "availableVacancies" : 91,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  },
+      "groupName" : "LEC2",
+      "availableVacancies" : 91,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
@@ -2532,15 +2501,14 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC2",
-    "availableVacancies" : 90,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  },
+      "groupName" : "LEC2",
+      "availableVacancies" : 90,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
@@ -2595,15 +2563,14 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC3",
-    "availableVacancies" : 96,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  },
+      "groupName" : "LEC3",
+      "availableVacancies" : 96,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
@@ -2658,15 +2625,14 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC3",
-    "availableVacancies" : 95,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  },
+      "groupName" : "LEC3",
+      "availableVacancies" : 95,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
@@ -2721,15 +2687,14 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC3",
-    "availableVacancies" : 94,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  },
+      "groupName" : "LEC3",
+      "availableVacancies" : 94,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
@@ -2784,15 +2749,14 @@
       "componentWeight" : 40,
       "subComponents" : [ ]
     } ],
-    "au" : 3,
-    "AU" : 3
+    "academicUnits" : 3
   },
   "lectureGroup" : {
-    "groupName" : "LEC1",
-    "availableVacancies" : 96,
-    "groupType" : "LECTURE_GROUP",
-    "totalSeats" : 100
-  },
+      "groupName" : "LEC1",
+      "availableVacancies" : 96,
+      "groupType" : "LECTURE_GROUP",
+      "totalSeats" : 100
+    },
   "tutorialGroup" : null,
   "labGroup" : null
 } ]

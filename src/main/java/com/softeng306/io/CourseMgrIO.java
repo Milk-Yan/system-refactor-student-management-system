@@ -80,10 +80,9 @@ public class CourseMgrIO {
 
     /**
      * Read in the number of academic units for a course
-     *
-     * @return int AU representing number of Academic Units
+     * @return number of Academic Units for the course.
      */
-    public int readAU() {
+    public int readAcademicUnitsForCourse() {
         int AU;
         while (true) {
             System.out.println("Enter number of academic unit(s): ");
@@ -159,17 +158,17 @@ public class CourseMgrIO {
      * Reads in a weekly hour for a group from the user
      *
      * @param type the type of the group the weekly hour is for
-     * @param AU   the number of academic units for the course
+     * @param academicUnits   the number of academic units for the course
      * @return int the number of weekly hours for that group
      */
-    public int readWeeklyHour(String type, int AU) {
+    public int readWeeklyHour(String type, int academicUnits) {
         int weeklyHour;
         while (true) {
             System.out.format("Enter the weekly %s hour for this course: %n", type);
             if (scanner.hasNextInt()) {
                 weeklyHour = scanner.nextInt();
                 scanner.nextLine();
-                if (weeklyHour < 0 || weeklyHour > AU) {
+                if (weeklyHour < 0 || weeklyHour > academicUnits) {
                     System.out.format("Weekly %s hour out of bound. Please re-enter.%n", type);
                 } else {
                     break;
@@ -908,7 +907,7 @@ public class CourseMgrIO {
         String courseName = readCourseName();
 
         int totalSeats = readTotalSeats();
-        int AU = readAU();
+        int AU = readAcademicUnitsForCourse();
 
         String courseDepartment = readAnyCourseDepartment();
 
@@ -943,7 +942,7 @@ public class CourseMgrIO {
 
         builder.setTotalSeats(totalSeats);
 
-        builder.setAU(AU);
+        builder.setAcademicUnits(AU);
 
         builder.setCourseDepartment(courseDepartment);
 

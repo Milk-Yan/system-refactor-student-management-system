@@ -243,6 +243,26 @@ public class CourseRegistrationMgr {
         return courseIds;
     }
 
+    public int getStudentTotalAU(Student student) {
+        int total = 0;
+        for (CourseRegistration courseRegistration : courseRegistrations) {
+            if (courseRegistration.getStudent().equals(student)) {
+                total += courseRegistration.getCourse().getAcademicUnits();
+            }
+        }
+        return total;
+    }
+
+    public List<String> getUniqueGroupNames(List<CourseRegistration> courseRegistrations, GroupType groupType) throws GroupTypeNotFoundException {
+        List<String> uniqueGroupNames = new ArrayList<>();
+        for (CourseRegistration courseRegistration : courseRegistrations) {
+            if (!uniqueGroupNames.contains(courseRegistration.getGroupByType(groupType).getGroupName())) {
+                uniqueGroupNames.add(courseRegistration.getTutorialGroup().getGroupName());
+            }
+        }
+        return uniqueGroupNames;
+    }
+
 
     /**
      * This method prints the students of a given group
