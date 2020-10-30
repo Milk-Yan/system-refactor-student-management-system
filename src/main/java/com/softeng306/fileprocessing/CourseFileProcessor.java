@@ -10,8 +10,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Concrete implementation of a file processor for courses.
+ * Used to read and write course objects from a file.
+ */
 public class CourseFileProcessor extends FileProcessor<ICourse> {
-
+    /**
+     * The path to the file for course data.
+     */
     private static final String COURSE_FILE_PATH = "data/courseFile.json";
 
     /**
@@ -38,7 +44,7 @@ public class CourseFileProcessor extends FileProcessor<ICourse> {
     /**
      * Writes a new course into {@value COURSE_FILE_PATH}.
      *
-     * @param course the new course to write to the file
+     * @param course The new course to write to the file.
      */
     @Override
     public void writeNewEntryToFile(ICourse course) {
@@ -54,9 +60,9 @@ public class CourseFileProcessor extends FileProcessor<ICourse> {
     }
 
     /**
-     * Writes the updated courses to {@value COURSE_FILE_PATH}.
+     * Writes a list of updated courses to {@value COURSE_FILE_PATH}.
      *
-     * @param updatedCourses the list of all courses, with updated courses
+     * @param updatedCourses The list of all courses to modify in the file.
      */
     @Override
     public void updateFileContents(List<ICourse> updatedCourses) {
