@@ -6,6 +6,11 @@ import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.student.IStudent;
 import com.softeng306.enums.GroupType;
 
+/**
+ * Concrete representation of a course registration
+ * Subclass of {@code ICourseRegistration}
+ * Stores registration data, and implements methods to return this data
+ */
 public class CourseRegistration implements ICourseRegistration {
     private IStudent student;
     private ICourse course;

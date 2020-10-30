@@ -9,7 +9,6 @@ import com.softeng306.enums.Department;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Course implements ICourse {
 
     private String courseId;
