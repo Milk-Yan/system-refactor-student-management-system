@@ -1,6 +1,6 @@
 package com.softeng306.managers;
 
-import com.softeng306.domain.course.Course;
+import com.softeng306.domain.course.ICourse;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.domain.mark.MainComponentMark;
@@ -61,7 +61,7 @@ public class MarkMgr {
      * @param course  the course this mark record about.
      * @return the new added mark.
      */
-    public Mark initialiseMark(Student student, Course course) {
+    public Mark initialiseMark(Student student, ICourse course) {
         List<MainComponentMark> courseWorkMarks = new ArrayList<>();
         double totalMark = 0d;
         List<MainComponent> mainComponents = course.getMainComponents();

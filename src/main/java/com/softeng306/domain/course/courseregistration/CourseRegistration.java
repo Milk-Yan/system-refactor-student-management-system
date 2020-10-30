@@ -1,17 +1,17 @@
 package com.softeng306.domain.course.courseregistration;
 
-import com.softeng306.domain.course.Course;
-import com.softeng306.domain.course.group.Group;
+import com.softeng306.domain.course.ICourse;
+import com.softeng306.domain.course.group.IGroup;
 import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.student.Student;
 import com.softeng306.enums.GroupType;
 
-public class CourseRegistration {
+public class CourseRegistration implements ICourseRegistration {
     private Student student;
-    private Course course;
-    private Group lectureGroup;
-    private Group tutorialGroup;
-    private Group labGroup;
+    private ICourse course;
+    private IGroup lectureGroup;
+    private IGroup tutorialGroup;
+    private IGroup labGroup;
 
     /**
      * Default constructor. Required for Jackson serialization.
@@ -20,7 +20,7 @@ public class CourseRegistration {
 
     }
 
-    public CourseRegistration(Student student, Course course, Group lectureGroup, Group tutorialGroup, Group labGroup) {
+    public CourseRegistration(Student student, ICourse course, IGroup lectureGroup, IGroup tutorialGroup, IGroup labGroup) {
         this.student = student;
         this.course = course;
         this.lectureGroup = lectureGroup;
@@ -28,27 +28,33 @@ public class CourseRegistration {
         this.labGroup = labGroup;
     }
 
+    @Override
     public Student getStudent() {
         return student;
     }
 
-    public Course getCourse() {
+    @Override
+    public ICourse getCourse() {
         return course;
     }
 
-    public Group getLectureGroup() {
+    @Override
+    public IGroup getLectureGroup() {
         return lectureGroup;
     }
 
-    public Group getTutorialGroup() {
+    @Override
+    public IGroup getTutorialGroup() {
         return tutorialGroup;
     }
 
-    public Group getLabGroup() {
+    @Override
+    public IGroup getLabGroup() {
         return labGroup;
     }
 
-    public Group getGroupByType(GroupType type) throws GroupTypeNotFoundException {
+    @Override
+    public IGroup getGroupByType(GroupType type) throws GroupTypeNotFoundException {
         if (type == GroupType.LECTURE_GROUP) {
             return lectureGroup;
         } else if (type == GroupType.TUTORIAL_GROUP) {

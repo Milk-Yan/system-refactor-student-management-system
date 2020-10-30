@@ -1,6 +1,7 @@
 package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.softeng306.domain.course.ICourse;
 import com.softeng306.domain.course.Course;
 
 import java.io.File;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CourseFileProcessor extends FileProcessor<Course> {
+public class CourseFileProcessor extends FileProcessor<ICourse> {
 
     private static final String COURSE_FILE_PATH = "data/courseFile.json";
 
@@ -19,10 +20,10 @@ public class CourseFileProcessor extends FileProcessor<Course> {
      * @return A list of all the courses that is loaded from the file.
      */
     @Override
-    public List<Course> loadFile() {
+    public List<ICourse> loadFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         File courseFile = Paths.get(COURSE_FILE_PATH).toFile();
-        ArrayList<Course> allCourses = new ArrayList<>();
+        ArrayList<ICourse> allCourses = new ArrayList<>();
 
         try {
             allCourses = new ArrayList<>(Arrays.asList(objectMapper.readValue(courseFile, Course[].class)));
@@ -39,9 +40,9 @@ public class CourseFileProcessor extends FileProcessor<Course> {
      * @param course the new course to write to the file
      */
     @Override
-    public void writeNewEntryToFile(Course course) {
+    public void writeNewEntryToFile(ICourse course) {
         try {
-            List<Course> courses = loadFile();
+            List<ICourse> courses = loadFile();
             courses.add(course);
 
             writeToFile(COURSE_FILE_PATH, courses);
@@ -56,7 +57,7 @@ public class CourseFileProcessor extends FileProcessor<Course> {
      * @param updatedCourses the list of all courses, with updated courses
      */
     @Override
-    public void updateFileContents(List<Course> updatedCourses) {
+    public void updateFileContents(List<ICourse> updatedCourses) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.writeValue(Paths.get(COURSE_FILE_PATH).toFile(), updatedCourses);
