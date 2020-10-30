@@ -63,7 +63,7 @@ public class CourseRegistrationMgr {
         }
 
         if (currentCourse.getMainComponents().isEmpty()) {
-            io.printNoAssessmentMessage(currentCourse.getProfInCharge().getProfName());
+            io.printNoAssessmentMessage(currentCourse.getCourseCoordinator().getName());
             throw new InvalidCourseRegistrationException();
         }
 
@@ -72,7 +72,7 @@ public class CourseRegistrationMgr {
             throw new InvalidCourseRegistrationException();
         }
 
-        io.printRegistrationRequestDetails(currentStudent.getStudentName(), currentStudent.getStudentID(), currentCourse.getCourseID(), currentCourse.getCourseName());
+        io.printRegistrationRequestDetails(currentStudent.getName(), currentStudent.getStudentID(), currentCourse.getCourseId(), currentCourse.getName());
 
         List<Group> lecGroups = currentCourse.getLectureGroups();
         GroupMgr groupMgr = GroupMgr.getInstance();
@@ -84,7 +84,7 @@ public class CourseRegistrationMgr {
         List<Group> labGroups = currentCourse.getLabGroups();
         Group selectedLabGroup = groupMgr.printGroupWithVacancyInfo(GroupType.LAB_GROUP, labGroups);
 
-        currentCourse.enrolledIn();
+        currentCourse.updateVacanciesForEnrollment();
         CourseRegistration courseRegistration = new CourseRegistration(currentStudent, currentCourse, selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
         courseRegistrationFileProcessor.writeNewEntryToFile(courseRegistration);
 
@@ -93,7 +93,7 @@ public class CourseRegistrationMgr {
         courseRegistrations.add(courseRegistration);
 
         List<String> registrationInfo = new ArrayList<>();
-        registrationInfo.add(currentStudent.getStudentName());
+        registrationInfo.add(currentStudent.getName());
 
         registrationInfo.add(selectedLectureGroup.getGroupName());
 
@@ -125,7 +125,7 @@ public class CourseRegistrationMgr {
 
         List<CourseRegistration> courseRegistrationList = new ArrayList<>();
         for (CourseRegistration courseRegistration : allCourseRegistrations) {
-            if (courseRegistration.getCourse().getCourseID().equals(currentCourse.getCourseID())) {
+            if (courseRegistration.getCourse().getCourseId().equals(currentCourse.getCourseId())) {
                 courseRegistrationList.add(courseRegistration);
             }
         }
@@ -236,7 +236,7 @@ public class CourseRegistrationMgr {
         List<String> courseIds = new ArrayList<>();
         for (CourseRegistration courseRegistration : courseRegistrations) {
             if (courseRegistration.getStudent().getStudentID().equals(studentId)) {
-                courseIds.add(courseRegistration.getCourse().getCourseID());
+                courseIds.add(courseRegistration.getCourse().getCourseId());
             }
         }
 
@@ -284,7 +284,7 @@ public class CourseRegistrationMgr {
                 groupStringInfo.add(groupType.getNameWithCapital() + " group : " + groupName);
             }
 
-            groupStringInfo.add("Student Name: " + courseRegistration.getStudent().getStudentName() + " Student ID: " + courseRegistration.getStudent().getStudentID());
+            groupStringInfo.add("Student Name: " + courseRegistration.getStudent().getName() + " Student ID: " + courseRegistration.getStudent().getStudentID());
         }
         groupStringInfo.add("");
 
@@ -301,7 +301,7 @@ public class CourseRegistrationMgr {
     public boolean courseRegistrationExists(String studentID, String courseID) {
         Optional<CourseRegistration> courseRegistration = courseRegistrations.stream()
                 .filter(cr -> studentID.equals(cr.getStudent().getStudentID()))
-                .filter(cr -> courseID.equals(cr.getCourse().getCourseID()))
+                .filter(cr -> courseID.equals(cr.getCourse().getCourseId()))
                 .findFirst();
 
         return courseRegistration.isPresent();

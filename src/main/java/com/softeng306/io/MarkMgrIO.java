@@ -95,7 +95,7 @@ public class MarkMgrIO {
 
         try {
             String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
-            String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
+            String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseId();
             markMgr.setCourseworkMark(isExam, studentID, courseID);
         } catch (CourseNotFoundException e) {
             e.printStackTrace();

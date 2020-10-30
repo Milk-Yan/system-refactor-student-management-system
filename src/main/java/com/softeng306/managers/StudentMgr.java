@@ -1,7 +1,6 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.exceptions.StudentNotFoundException;
-import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.student.Student;
 
 import com.softeng306.fileprocessing.IFileProcessor;
@@ -53,9 +52,9 @@ public class StudentMgr {
     public void addStudent(String id, String name, String school, String gender, int year) {
         Student currentStudent = new Student(id, name);
 
-        currentStudent.setStudentSchool(Department.valueOf(school));  //Set school
+        currentStudent.setAcademicInstitution(Department.valueOf(school));  //Set school
         currentStudent.setGender(Gender.valueOf(gender));      //gender
-        currentStudent.setStudentYear(year);   //student year
+        currentStudent.setYearLevel(year);   //student year
 
         studentFileProcessor.writeNewEntryToFile(currentStudent);
         students.add(currentStudent);
@@ -133,17 +132,17 @@ public class StudentMgr {
 
     public String getStudentName(String studentId) throws StudentNotFoundException {
         Student student = getStudentFromId(studentId);
-        return student.getStudentName();
+        return student.getName();
     }
 
     public List<String> generateStudentInformationStrings() {
         List<String> studentInformationStrings = new ArrayList<>();
         for (Student student : StudentMgr.getInstance().getStudents()) {
             String GPA = "not available";
-            if (Double.compare(student.getGPA(), 0.0) != 0) {
-                GPA = String.valueOf(student.getGPA());
+            if (Double.compare(student.getGpa(), 0.0) != 0) {
+                GPA = String.valueOf(student.getGpa());
             }
-            studentInformationStrings.add(" " + student.getStudentID() + " | " + student.getStudentName() + " | " + student.getStudentSchool() + " | " + student.getGender() + " | " + student.getStudentYear() + " | " + GPA);
+            studentInformationStrings.add(" " + student.getStudentID() + " | " + student.getName() + " | " + student.getAcademicInstitution() + " | " + student.getGender() + " | " + student.getYearLevel() + " | " + GPA);
         }
         return studentInformationStrings;
     }

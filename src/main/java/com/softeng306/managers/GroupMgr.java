@@ -64,7 +64,7 @@ public class GroupMgr {
                 } else {
                     // valid selection
                     Group selectedGroup = groups.get(selectedGroupNum - 1);
-                    selectedGroup.enrolledIn();
+                    selectedGroup.updateVacanciesForEnrollment();
                     return selectedGroup;
                 }
             } while (true);

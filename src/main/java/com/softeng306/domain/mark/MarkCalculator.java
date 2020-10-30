@@ -12,7 +12,7 @@ public class MarkCalculator {
     public double computeAverageMarkForCourseComponent(String courseID, String componentName){
         List<Mark> marksForCourse = new ArrayList<>();
         for (Mark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getCourse().getCourseID().equals(courseID)) {
+            if (mark.getCourse().getCourseId().equals(courseID)) {
                 marksForCourse.add(mark);
             }
         }
@@ -23,7 +23,7 @@ public class MarkCalculator {
     public double computeOverallMarkForCourse(String courseID){
         List<Mark> marksForCourse = new ArrayList<>();
         for (Mark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getCourse().getCourseID().equals(courseID)) {
+            if (mark.getCourse().getCourseId().equals(courseID)) {
                 marksForCourse.add(mark);
             }
         }
@@ -46,14 +46,14 @@ public class MarkCalculator {
 
             for (MainComponentMark mainComponentMark : thisComponentMarks) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();
-                if (mainComponent.getComponentName().equals((thisComponentName))) {
+                if (mainComponent.getName().equals((thisComponentName))) {
                     averageMark += mainComponentMark.getMark();
                     break;
                 }
 
                 for (SubComponentMark subComponentMark : mainComponentMark.getSubComponentMarks()) {
                     SubComponent subComponent = subComponentMark.getSubComponent();
-                    if (subComponent.getComponentName().equals((thisComponentName))) {
+                    if (subComponent.getName().equals((thisComponentName))) {
                         averageMark += subComponentMark.getMark();
                         break;
                     }
@@ -82,7 +82,7 @@ public class MarkCalculator {
      *
      * @return the grade (in A, B ... )
      */
-    public double gpaCalculator(Mark mark) {
+    public double convertMarkToGradePoints(Mark mark) {
         double gradePercentage = mark.getTotalMark();
 
         if (gradePercentage > 85) {

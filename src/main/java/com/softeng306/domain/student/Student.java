@@ -12,13 +12,13 @@ import com.softeng306.enums.Gender;
 public class Student {
 
     private String studentID;
-    private String studentName;
-    private Department studentSchool;
+    private String name;
+    private Department academicInstitution;
     private Gender gender;
 
     @JsonProperty("GPA")
-    private double GPA = 0;
-    private int studentYear;
+    private double Gpa = 0;
+    private int yearLevel;
 
 
     /**
@@ -32,11 +32,11 @@ public class Student {
      * Creates student with the student name and student's ID.
      *
      * @param studentID   This student's name.
-     * @param studentName This student's ID.
+     * @param name This student's ID.
      */
-    public Student(String studentID, String studentName) {
+    public Student(String studentID, String name) {
         this.studentID = studentID;
-        this.studentName = studentName;
+        this.name = name;
     }
 
     /**
@@ -53,8 +53,8 @@ public class Student {
      *
      * @return this student's name.
      */
-    public String getStudentName() {
-        return studentName;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -62,8 +62,8 @@ public class Student {
      *
      * @return this student's school.
      */
-    public Department getStudentSchool() {
-        return studentSchool;
+    public Department getAcademicInstitution() {
+        return academicInstitution;
     }
 
     /**
@@ -80,8 +80,8 @@ public class Student {
      *
      * @return this student's GPA.
      */
-    public double getGPA() {
-        return GPA;
+    public double getGpa() {
+        return Gpa;
     }
 
     /**
@@ -89,8 +89,8 @@ public class Student {
      *
      * @return this student's year.
      */
-    public int getStudentYear() {
-        return studentYear;
+    public int getYearLevel() {
+        return yearLevel;
     }
 
     /**
@@ -105,10 +105,10 @@ public class Student {
     /**
      * Sets the school of this student.
      *
-     * @param studentSchool this student's school.
+     * @param academicInstitution this student's school.
      */
-    public void setStudentSchool(Department studentSchool) {
-        this.studentSchool = studentSchool;
+    public void setAcademicInstitution(Department academicInstitution) {
+        this.academicInstitution = academicInstitution;
     }
 
     /**
@@ -123,19 +123,19 @@ public class Student {
     /**
      * Sets the GPA of this student.
      *
-     * @param GPA this student's GPA.
+     * @param gpa this student's GPA.
      */
-    public void setGPA(double GPA) {
-        this.GPA = GPA;
+    public void setGpa(double gpa) {
+        this.Gpa = gpa;
     }
 
     /**
      * Sets the year of this student.
      *
-     * @param studentYear this student's year.
+     * @param yearLevel this student's year.
      */
-    public void setStudentYear(int studentYear) {
-        this.studentYear = studentYear;
+    public void setYearLevel(int yearLevel) {
+        this.yearLevel = yearLevel;
     }
 
 }
