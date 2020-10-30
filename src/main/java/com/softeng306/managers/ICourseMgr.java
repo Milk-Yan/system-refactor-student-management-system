@@ -70,7 +70,7 @@ public interface ICourseMgr {
      * @throws CourseNotFoundException If there is no course with the given ID.
      */
     ICourse getCourseFromId(String courseID) throws CourseNotFoundException;
-    
+
     int getNumberOfLectureGroups(int compareTo, int totalSeats);
 
     int readWeeklyLectureHour(int academicUnits);
