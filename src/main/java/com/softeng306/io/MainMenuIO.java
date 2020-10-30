@@ -6,7 +6,7 @@ public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
 
     private static ICourseRegistrationMgrIO ICourseRegistrationMgrIO = new CourseRegistrationMgrIO();
-    private static StudentMgrIO studentMgrIO = new StudentMgrIO();
+    private static IStudentMgrIO IStudentMgrIO = new StudentMgrIO();
     private static IMarkMgrIO IMarkMgrIO = new MarkMgrIO();
     private static ICourseMgrIO ICourseMgrIO = new CourseMgrIO();
 
@@ -56,7 +56,7 @@ public class MainMenuIO {
             case 0:
                 break;
             case 1:
-                studentMgrIO.addStudent();
+                IStudentMgrIO.addStudent();
                 break;
             case 2:
                 ICourseMgrIO.addCourse();
@@ -83,7 +83,7 @@ public class MainMenuIO {
                 ICourseMgrIO.printCourseStatistics();
                 break;
             case 10:
-                studentMgrIO.printStudentTranscript();
+                IStudentMgrIO.printStudentTranscript();
                 break;
             case 11:
                 exitApplication();
