@@ -4,8 +4,7 @@ import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
 
 /**
- * Represents a student enrolled in an academic institute.
- * A student can enrol in courses offered by the academic institute.
+ * Concrete implementation of a student enrolled in an academic institute.
  * This class implements {@code IStudent}.
  */
 public class Student implements IStudent {
