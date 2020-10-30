@@ -60,7 +60,7 @@ public class StudentMgrIO implements IStudentMgrIO {
         System.out.println("AU for this semester: " + studentsAcademicUnits);
         System.out.println();
 
-        List<String> stringList = MarkMgr.getInstance().getMarkStringForStudent(studentId, studentsAcademicUnits);
+        List<String> stringList = MarkMgr.getInstance().getMarkMessageForStudent(studentId, studentsAcademicUnits);
         stringList.forEach(System.out::println);
 
         System.out.println("------------------ End of Transcript -------------------");

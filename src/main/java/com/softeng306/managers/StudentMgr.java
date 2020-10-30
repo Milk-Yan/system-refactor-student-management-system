@@ -107,12 +107,6 @@ public class StudentMgr {
         return recentStudentID > 0 ? recentStudentID : 1800000;
     }
 
-    public List<String> getExistingStudentIds() {
-        List<String> existingStudentIds = new ArrayList<>();
-        students.forEach(student -> existingStudentIds.add(student.getStudentID()));
-        return existingStudentIds;
-    }
-
     public boolean studentHasCourses(String studentId) {
         List<String> studentCourses = CourseRegistrationMgr.getInstance().getCourseIdsForStudentId(studentId);
         return !studentCourses.isEmpty();

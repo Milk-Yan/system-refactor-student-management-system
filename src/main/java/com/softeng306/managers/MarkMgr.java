@@ -200,7 +200,7 @@ public class MarkMgr {
         return studentMarks;
     }
 
-    public List<String> getMarkStringForStudent(String studentId, int totalAU) {
+    public List<String> getMarkMessageForStudent(String studentId, int totalAU) {
         List<String> markString = new ArrayList<>();
         List<Mark> marksForStudent = getMarksForStudent(studentId);
         double studentGPA = 0d;
