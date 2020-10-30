@@ -28,5 +28,32 @@ public interface IStudentCourseMarkMgrIO {
      */
     double readExamMark();
 
+    /**
+     * Initiate the mark entering process for setting a student mark.
+     *
+     * @param isExam If the component is an Exam or not.
+     */
     void initiateEnteringCourseworkMark(boolean isExam);
+
+    /**
+     * Print the result after a sub component mark has been successfully set.
+     *
+     * @param resultList List of calculated results to print.
+     */
+    void printSubComponentMarkSetMessage(List<Double> resultList);
+
+    /**
+     * Print the result after a main component mark has been successfully set (can also be an exam mark).
+     *
+     * @param resultList List of calculated results to print.
+     */
+    void printMainComponentMarkSetMessage(List<Double> resultList);
+
+    /**
+     * Print an error message if a main component to enter a mark for is not found.
+     *
+     * @param message the error message to print.
+     */
+    void printMainComponentDoesNotExistMessage(String message);
+
 }
