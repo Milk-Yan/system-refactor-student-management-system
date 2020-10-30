@@ -108,7 +108,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         groupType = groupType.substring(0, 1).toUpperCase() + groupType.substring(1);
         for (String[] groupInfo : groupInformationForType) {
             System.out.format("%s group %s (Available/Total): %s/%s%n",
-                    groupType, groupInfo[0], groupInfo[1], groupInfo[2]);
+              groupType, groupInfo[0], groupInfo[1], groupInfo[2]);
         }
     }
 
@@ -425,7 +425,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         String courseType = readCourseType();
 
         int noOfLectureGroups = courseMgr.getNumberOfLectureGroups(totalSeats, totalSeats);
-        int lecWeeklyHour = courseMgr.getReadWeeklyLectureHour(academicUnits);
+        int lecWeeklyHour = courseMgr.readWeeklyLectureHour(academicUnits);
 
         //Name, total seats
         Map<String, Double> lectureGroups = readLectureGroups(totalSeats, noOfLectureGroups);
@@ -433,14 +433,14 @@ public class CourseMgrIO implements ICourseMgrIO {
         int noOfTutorialGroups = courseMgr.getNumberOfTutorialGroups(noOfLectureGroups, totalSeats);
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
-            tutWeeklyHour = courseMgr.getReadWeeklyTutorialHour(academicUnits);
+            tutWeeklyHour = courseMgr.readWeeklyTutorialHour(academicUnits);
         }
         Map<String, Double> tutorialGroups = readGroup(noOfTutorialGroups, totalSeats, GroupType.TUTORIAL_GROUP.toString());
 
         int noOfLabGroups = courseMgr.getNumberOfLabGroups(noOfLectureGroups, totalSeats);
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
-            labWeeklyHour = courseMgr.getReadWeeklyLabHour(academicUnits);
+            labWeeklyHour = courseMgr.readWeeklyLabHour(academicUnits);
         }
         Map<String, Double> labGroups = readGroup(noOfLabGroups, totalSeats, GroupType.LAB_GROUP.toString());
 
@@ -548,7 +548,7 @@ public class CourseMgrIO implements ICourseMgrIO {
      * @param groupDisplayString The group string to use in outputs
      * @return User-specficied group name
      */
-    private String readExistingGroupName(Map<String, Double> existingGroups, String groupDisplayString) {
+    private String readNewGroupName(Map<String, Double> existingGroups, String groupDisplayString) {
         boolean groupNameExists;
         String groupName;
 
@@ -676,41 +676,16 @@ public class CourseMgrIO implements ICourseMgrIO {
     /**
      * Read in the number of academic units for a course
      *
-     * @return int AU representing number of Academic Units
-     */
-    private int readAU() {
-        int AU;
-        while (true) {
-            System.out.println("Enter number of academic unit(s): ");
-            if (reader.hasNextInt()) {
-                AU = reader.nextInt();
-                reader.nextLine();
-                if (AU < 0 || AU > 10) {
-                    System.out.println("AU out of bound. Please re-enter.");
-                } else {
-                    break;
-                }
-            } else {
-                System.out.println("Your input " + reader.nextLine() + " is not an integer.");
-            }
-        }
-
-        return AU;
-    }
-
-    /**
-     * Read in the number of academic units for a course
-     *
      * @return number of Academic Units for the course.
      */
     private int readAcademicUnitsForCourse() {
-        int AU;
+        int academicUnits;
         while (true) {
             System.out.println("Enter number of academic unit(s): ");
             if (reader.hasNextInt()) {
-                AU = reader.nextInt();
+                academicUnits = reader.nextInt();
                 reader.nextLine();
-                if (AU < 0 || AU > 10) {
+                if (academicUnits < 0 || academicUnits > 10) {
                     System.out.println("AU out of bound. Please re-enter.");
                 } else {
                     break;
@@ -720,7 +695,7 @@ public class CourseMgrIO implements ICourseMgrIO {
             }
         }
 
-        return AU;
+        return academicUnits;
     }
 
     /**
@@ -808,7 +783,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         int groupCapacity;
         int totalAllocatedSeats = 0;
         for (int i = 0; i < numGroups; i++) {
-            groupName = readExistingGroupName(groups, groupDisplayString);
+            groupName = readNewGroupName(groups, groupDisplayString);
 
             while (true) {
                 System.out.println("Enter this " + groupDisplayString + " group's capacity: ");
@@ -899,7 +874,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         Map<String, Double> lectureGroups = new HashMap<>();
 
         for (int i = 0; i < noOfLectureGroups; i++) {
-            lectureGroupName = readExistingGroupName(lectureGroups, GroupType.LECTURE_GROUP.toString());
+            lectureGroupName = readNewGroupName(lectureGroups, GroupType.LECTURE_GROUP.toString());
 
             while (true) {
                 System.out.println("Enter this lecture group's capacity: ");

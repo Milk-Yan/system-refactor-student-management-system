@@ -28,11 +28,6 @@ public class SubComponentMark implements ISubComponentMark {
     }
 
     @Override
-    public void setSubComponent(SubComponent subComponent) {
-        this.subComponent = subComponent;
-    }
-
-    @Override
     public double getMark() {
         return mark;
     }

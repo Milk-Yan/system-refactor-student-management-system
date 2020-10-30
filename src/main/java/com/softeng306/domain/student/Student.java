@@ -67,11 +67,6 @@ public class Student implements IStudent {
     }
 
     @Override
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
-    @Override
     public void setDepartment(Department department) {
         this.department = department;
     }
@@ -79,12 +74,6 @@ public class Student implements IStudent {
     @Override
     public void setGender(Gender gender) {
         this.gender = gender;
-    }
-
-
-    @Override
-    public void setGpa(double gpa) {
-        this.gpa = gpa;
     }
 
     @Override

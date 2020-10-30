@@ -83,9 +83,5 @@ public class MainComponentMark implements IMainComponentMark {
     public List<ISubComponentMark> getSubComponentMarks() {
         return subComponentMarks;
     }
-
-    @Override
-    public void setSubComponentMarks(List<ISubComponentMark> subComponentMarks) {
-        this.subComponentMarks = subComponentMarks;
-    }
+    
 }

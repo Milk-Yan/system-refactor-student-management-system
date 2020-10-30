@@ -25,12 +25,4 @@ public interface IProfessor {
      * @return the department of this professor
      */
     Department getDepartment();
-
-    /**
-     * Sets the department of the professor
-     *
-     * @param profDepartment this professor's department
-     */
-    void setDepartment(Department profDepartment);
-
 }

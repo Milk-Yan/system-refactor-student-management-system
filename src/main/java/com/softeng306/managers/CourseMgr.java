@@ -41,7 +41,8 @@ public class CourseMgr implements ICourseMgr {
     }
 
     /**
-     * Return the CourseMgr singleton, if not initialised already, create an instance.
+     * Return the CourseMgr singleton, if not initialised already, create an
+     * instance.
      *
      * @return CourseMgr the singleton instance
      */
@@ -81,7 +82,7 @@ public class CourseMgr implements ICourseMgr {
     public void checkAvailableSlots() {
         ICourseMgrIO io = new CourseMgrIO();
 
-        //printout the result directly
+        // printout the result directly
         MainMenuIO.printMethodCall("checkAvailableSlots");
 
         while (true) {
@@ -95,16 +96,19 @@ public class CourseMgr implements ICourseMgr {
 
             if (currentCourse != null) {
                 io.printCourseInfoString(generateCourseInformation(currentCourse));
-                io.printVacanciesForGroups(currentCourse.generateLectureGroupInformation(), GroupType.LECTURE_GROUP.toString());
+                io.printVacanciesForGroups(currentCourse.generateLectureGroupInformation(),
+                  GroupType.LECTURE_GROUP.toString());
 
                 if (currentCourse.getTutorialGroups() != null) {
                     io.printEmptySpace();
-                    io.printVacanciesForGroups(currentCourse.generateTutorialGroupInformation(), GroupType.TUTORIAL_GROUP.toString());
+                    io.printVacanciesForGroups(currentCourse.generateTutorialGroupInformation(),
+                      GroupType.TUTORIAL_GROUP.toString());
                 }
 
                 if (currentCourse.getLabGroups() != null) {
                     io.printEmptySpace();
-                    io.printVacanciesForGroups(currentCourse.generateLabGroupInformation(), GroupType.LAB_GROUP.toString());
+                    io.printVacanciesForGroups(currentCourse.generateLabGroupInformation(),
+                      GroupType.LAB_GROUP.toString());
 
                 }
                 io.printEmptySpace();
@@ -141,7 +145,8 @@ public class CourseMgr implements ICourseMgr {
             io.printCourseworkWeightageEnteredError();
         }
 
-        io.printComponentsForCourse(currentCourse.getCourseId(), currentCourse.getName(), generateComponentInformationForACourses(currentCourse));
+        io.printComponentsForCourse(currentCourse.getCourseId(), currentCourse.getName(),
+          generateComponentInformationForACourses(currentCourse));
 
         // Update course into course.csv
     }
@@ -193,21 +198,24 @@ public class CourseMgr implements ICourseMgr {
             String componentName = mainComponent.getName();
 
             if (componentName.equals("Exam")) {
-//                Leave the exam report to the last
+                // Leave the exam report to the last
                 exam = mainComponent;
             } else {
-                io.printMainComponent(mainComponent.getName(), mainComponent.getWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getName()));
+                io.printMainComponent(mainComponent.getName(), mainComponent.getWeight(),
+                  markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
-                    Map<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents, courseID);
+                    Map<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents,
+                      courseID);
                     io.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
             }
         }
 
         if (exam != null) {
-            io.printExamStatistics(exam.getWeight(), markCalculator.computeAverageMarkForCourseComponent(courseID, "Exam"));
+            io.printExamStatistics(exam.getWeight(),
+              markCalculator.computeAverageMarkForCourseComponent(courseID, "Exam"));
 
         } else {
             io.printNoExamMessage();
@@ -229,9 +237,7 @@ public class CourseMgr implements ICourseMgr {
 
     @Override
     public ICourse getCourseFromId(String courseID) throws CourseNotFoundException {
-        Optional<ICourse> course = courses.stream()
-                .filter(c -> courseID.equals(c.getCourseId()))
-                .findAny();
+        Optional<ICourse> course = courses.stream().filter(c -> courseID.equals(c.getCourseId())).findAny();
 
         if (!course.isPresent()) {
             throw new CourseNotFoundException(courseID);
@@ -245,7 +251,7 @@ public class CourseMgr implements ICourseMgr {
     }
 
     @Override
-    public int getReadWeeklyLectureHour(int academicUnits) {
+    public int readWeeklyLectureHour(int academicUnits) {
         return new CourseMgrIO().readWeeklyHour(GroupType.LECTURE_GROUP.toString(), academicUnits);
     }
 
@@ -255,7 +261,7 @@ public class CourseMgr implements ICourseMgr {
     }
 
     @Override
-    public int getReadWeeklyLabHour(int academicUnits) {
+    public int readWeeklyLabHour(int academicUnits) {
         return new CourseMgrIO().readWeeklyHour(GroupType.LAB_GROUP.toString(), academicUnits);
     }
 
@@ -265,7 +271,7 @@ public class CourseMgr implements ICourseMgr {
     }
 
     @Override
-    public int getReadWeeklyTutorialHour(int academicUnits) {
+    public int readWeeklyTutorialHour(int academicUnits) {
         return new CourseMgrIO().readWeeklyHour(GroupType.TUTORIAL_GROUP.toString(), academicUnits);
     }
 
@@ -286,9 +292,7 @@ public class CourseMgr implements ICourseMgr {
 
     @Override
     public boolean checkCourseExists(String courseID) {
-        Optional<ICourse> course = courses.stream()
-          .filter(c -> courseID.equals(c.getCourseId()))
-          .findFirst();
+        Optional<ICourse> course = courses.stream().filter(c -> courseID.equals(c.getCourseId())).findFirst();
 
         return course.isPresent();
     }
@@ -332,7 +336,8 @@ public class CourseMgr implements ICourseMgr {
      * @param mainComponents         List of components to add main components to
      * @return
      */
-    private int addMainComponents(ICourseMgrIO io, int examWeight, int numberOfMainComponents, List<MainComponent> mainComponents) {
+    private int addMainComponents(ICourseMgrIO io, int examWeight, int numberOfMainComponents,
+                                  List<MainComponent> mainComponents) {
         Set<String> mainComponentNames = new HashSet<>();
         int totalWeightage = 100 - examWeight;
 
@@ -387,7 +392,8 @@ public class CourseMgr implements ICourseMgr {
     }
 
     private String generateCourseInformation(ICourse course) {
-        String infoString = course.getCourseId() + " " + course.getName() + " (Available/Total): " + course.getVacancies() + "/" + course.getCapacity();
+        String infoString = course.getCourseId() + " " + course.getName() + " (Available/Total): "
+          + course.getVacancies() + "/" + course.getCapacity();
         return infoString;
     }
 
@@ -456,4 +462,5 @@ public class CourseMgr implements ICourseMgr {
         }
         return map;
     }
+
 }
