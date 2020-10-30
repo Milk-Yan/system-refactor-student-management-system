@@ -3,6 +3,9 @@ package com.softeng306.enums;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Enumerated type for genders that a student can identify as.
+ */
 public enum Gender {
     FEMALE, MALE, UNKNOWN;
 
@@ -24,9 +27,12 @@ public enum Gender {
      */
     public static List<String> getListOfAllGenderNames(){
         List<String> allGenderNames = new ArrayList<>();
+
         for(Gender gender: Gender.values()){
             allGenderNames.add(gender.toString());
         }
+
         return allGenderNames;
     }
+
 }
