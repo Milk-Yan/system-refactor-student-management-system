@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Enumerated type to represent the different departments within the academic institute.
+ * Enumerated for the different departments within the academic institute.
  */
 public enum Department {
     ECSE, CS, CHEM_ENG;
@@ -18,7 +18,7 @@ public enum Department {
                 return true;
             }
         }
-        
+
         return false;
     }
 
@@ -34,4 +34,5 @@ public enum Department {
 
         return allDepartmentNames;
     }
+
 }

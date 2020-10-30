@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Enumerated type to represent different course types.
+ * Enumerated type for the different course types.
  */
 public enum CourseType {
     CORE, MPE, GREPEBM, GREPELA, GREPESTS, UE;
