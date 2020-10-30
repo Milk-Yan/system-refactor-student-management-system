@@ -11,9 +11,9 @@
     "courseId" : "SE2001",
     "name" : "Algorithm",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -83,9 +83,9 @@
     "courseId" : "SE2001",
     "name" : "Algorithm",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -155,9 +155,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -237,9 +237,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -319,9 +319,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -401,9 +401,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -483,9 +483,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -565,9 +565,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -647,9 +647,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -729,9 +729,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -811,9 +811,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -893,9 +893,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -975,9 +975,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1057,9 +1057,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1139,9 +1139,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1221,9 +1221,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1303,9 +1303,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1385,9 +1385,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1467,9 +1467,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1549,9 +1549,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1631,9 +1631,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1713,9 +1713,9 @@
     "courseId" : "SE2005",
     "name" : "Operating System",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1795,9 +1795,9 @@
     "courseId" : "SE2001",
     "name" : "Algorithm",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1867,9 +1867,9 @@
     "courseId" : "SE1006",
     "name" : "COA",
     "courseCoordinator" : {
-      "profID" : "P1234567J",
-      "profName" : "Ewan Tempero",
-      "profDepartment" : "CS"
+      "professorId" : "P1234567J",
+      "name" : "Ewan Tempero",
+      "department" : "CS"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -1953,9 +1953,9 @@
     "courseId" : "SE2007",
     "name" : "Database",
     "courseCoordinator" : {
-      "profID" : "P1234567J",
-      "profName" : "Ewan Tempero",
-      "profDepartment" : "CS"
+      "professorId" : "P1234567J",
+      "name" : "Ewan Tempero",
+      "department" : "CS"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -2040,9 +2040,9 @@
     "courseId" : "SE1006",
     "name" : "COA",
     "courseCoordinator" : {
-      "profID" : "P1234567J",
-      "profName" : "Ewan Tempero",
-      "profDepartment" : "CS"
+      "professorId" : "P1234567J",
+      "name" : "Ewan Tempero",
+      "department" : "CS"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -2126,9 +2126,9 @@
     "courseId" : "SE0001",
     "name" : "ENS",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -2187,9 +2187,9 @@
     "courseId" : "SE0001",
     "name" : "ENS",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -2248,9 +2248,9 @@
     "courseId" : "SE0001",
     "name" : "ENS",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -2309,9 +2309,9 @@
     "courseId" : "SE0001",
     "name" : "ENS",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -2370,9 +2370,9 @@
     "courseId" : "SE0001",
     "name" : "ENS",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -2431,9 +2431,9 @@
     "courseId" : "SE0001",
     "name" : "ENS",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -2492,9 +2492,9 @@
     "courseId" : "SE0001",
     "name" : "ENS",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -2553,9 +2553,9 @@
     "courseId" : "SE0001",
     "name" : "ENS",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -2614,9 +2614,9 @@
     "courseId" : "SE0001",
     "name" : "ENS",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
@@ -2675,9 +2675,9 @@
     "courseId" : "SE0001",
     "name" : "ENS",
     "courseCoordinator" : {
-      "profID" : "P1234561A",
-      "profName" : "Reza Shahamiri",
-      "profDepartment" : "ECSE"
+      "professorId" : "P1234561A",
+      "name" : "Reza Shahamiri",
+      "department" : "ECSE"
     },
     "department" : "ECSE",
     "courseType" : "CORE",
