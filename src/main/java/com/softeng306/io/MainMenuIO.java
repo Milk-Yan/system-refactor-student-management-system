@@ -8,7 +8,7 @@ public class MainMenuIO {
     private static CourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
     private static StudentMgrIO studentMgrIO = new StudentMgrIO();
     private static MarkMgrIO markMgrIO = new MarkMgrIO();
-    private static CourseMgrIO courseMgrIO = new CourseMgrIO();
+    private static ICourseMgrIO ICourseMgrIO = new CourseMgrIO();
 
     /**
      * Startup the main menu for the application
@@ -59,19 +59,19 @@ public class MainMenuIO {
                 studentMgrIO.addStudent();
                 break;
             case 2:
-                courseMgrIO.addCourse();
+                ICourseMgrIO.addCourse();
                 break;
             case 3:
                 courseRegistrationMgrIO.registerStudentForCourse();
                 break;
             case 4:
-                courseMgrIO.checkAvailableSlots();
+                ICourseMgrIO.checkAvailableSlots();
                 break;
             case 5:
                 courseRegistrationMgrIO.printStudents();
                 break;
             case 6:
-                courseMgrIO.enterCourseWorkComponentWeightage();
+                ICourseMgrIO.enterCourseWorkComponentWeightage();
                 break;
             case 7:
                 markMgrIO.initiateEnteringCourseworkMark(false);
@@ -80,7 +80,7 @@ public class MainMenuIO {
                 markMgrIO.initiateEnteringCourseworkMark(true);
                 break;
             case 9:
-                courseMgrIO.printCourseStatistics();
+                ICourseMgrIO.printCourseStatistics();
                 break;
             case 10:
                 studentMgrIO.printStudentTranscript();
