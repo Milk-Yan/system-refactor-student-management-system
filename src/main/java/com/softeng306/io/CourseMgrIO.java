@@ -675,41 +675,16 @@ public class CourseMgrIO implements ICourseMgrIO {
     /**
      * Read in the number of academic units for a course
      *
-     * @return int AU representing number of Academic Units
-     */
-    private int readAU() {
-        int AU;
-        while (true) {
-            System.out.println("Enter number of academic unit(s): ");
-            if (reader.hasNextInt()) {
-                AU = reader.nextInt();
-                reader.nextLine();
-                if (AU < 0 || AU > 10) {
-                    System.out.println("AU out of bound. Please re-enter.");
-                } else {
-                    break;
-                }
-            } else {
-                System.out.println("Your input " + reader.nextLine() + " is not an integer.");
-            }
-        }
-
-        return AU;
-    }
-
-    /**
-     * Read in the number of academic units for a course
-     *
      * @return number of Academic Units for the course.
      */
     private int readAcademicUnitsForCourse() {
-        int AU;
+        int academicUnits;
         while (true) {
             System.out.println("Enter number of academic unit(s): ");
             if (reader.hasNextInt()) {
-                AU = reader.nextInt();
+                academicUnits = reader.nextInt();
                 reader.nextLine();
-                if (AU < 0 || AU > 10) {
+                if (academicUnits < 0 || academicUnits > 10) {
                     System.out.println("AU out of bound. Please re-enter.");
                 } else {
                     break;
@@ -719,7 +694,7 @@ public class CourseMgrIO implements ICourseMgrIO {
             }
         }
 
-        return AU;
+        return academicUnits;
     }
 
     /**
