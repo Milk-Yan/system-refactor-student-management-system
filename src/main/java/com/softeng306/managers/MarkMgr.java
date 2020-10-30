@@ -3,7 +3,6 @@ package com.softeng306.managers;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
-import com.softeng306.domain.exceptions.SubComponentNotFoundException;
 import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
@@ -87,7 +86,6 @@ public class MarkMgr {
      */
     public void setCourseworkMark(boolean isExam, String studentID, String courseID) throws SubComponentNotFoundException {
         IMarkMgrIO io = new MarkMgrIO();
-
         List<String> componentNameList = new ArrayList<>();
         List<String> availableChoices = new ArrayList<>();
         List<Integer> weights = new ArrayList<>();
@@ -137,8 +135,7 @@ public class MarkMgr {
     }
 
 
-    private void setComponentMark(Mark mark, boolean isMainComponent, String componentName,
-                                  double assessmentMark) throws SubComponentNotFoundException {
+    private void setComponentMark(Mark mark, boolean isMainComponent, String componentName, double assessmentMark) {
         if (isMainComponent) {
             // This is a stand alone main assessment
             mark.setMainComponentMark(componentName, assessmentMark);
@@ -213,7 +210,7 @@ public class MarkMgr {
 
             for (MainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();
-                Double result = mainComponentMark.getMark();
+                double result = mainComponentMark.getMark();
 
                 markString.add("Main Assessment: " + mainComponent.getComponentName() + " ----- (" + mainComponent.getComponentWeight() + "%)");
                 int mainAssessmentWeight = mainComponent.getComponentWeight();

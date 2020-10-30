@@ -522,7 +522,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         System.out.print("Total Slots: " + courseInfo.get(3));
         int enrolledNumber = (Integer.parseInt(courseInfo.get(3)) - Integer.parseInt(courseInfo.get(4)));
         System.out.println("\tEnrolled Student: " + enrolledNumber);
-        System.out.printf("Enrollment Rate: %4.2f %%\n", ((double) enrolledNumber / (double) Double.parseDouble(courseInfo.get(3)) * 100d));
+        System.out.printf("Enrollment Rate: %4.2f %%\n", ((double) enrolledNumber / Double.parseDouble(courseInfo.get(3)) * 100d));
         System.out.println();
     }
 

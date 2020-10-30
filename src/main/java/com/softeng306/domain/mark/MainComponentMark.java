@@ -1,7 +1,6 @@
 package com.softeng306.domain.mark;
 
 import com.softeng306.domain.course.component.MainComponent;
-import com.softeng306.domain.exceptions.SubComponentNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
 public class MainComponentMark {
 
     private MainComponent mainComponent;
-    private Double mark;
+    private double mark;
     private List<SubComponentMark> subComponentMarks;
 
     /**
@@ -23,13 +22,13 @@ public class MainComponentMark {
 
     }
 
-    public MainComponentMark(MainComponent mainComponent, Double mark) {
+    public MainComponentMark(MainComponent mainComponent, double mark) {
         this.mainComponent = mainComponent;
         this.mark = mark;
         this.subComponentMarks = new ArrayList<>();
     }
 
-    public MainComponentMark(MainComponent mainComponent, Double mark, List<SubComponentMark> subComponentMarks) {
+    public MainComponentMark(MainComponent mainComponent, double mark, List<SubComponentMark> subComponentMarks) {
         this.mainComponent = mainComponent;
         this.mark = mark;
         this.subComponentMarks = subComponentMarks;
@@ -43,7 +42,7 @@ public class MainComponentMark {
         return true;
     }
 
-    public SubComponentMark getSubComponentMark(String courseWorkName) throws SubComponentNotFoundException {
+    public SubComponentMark getSubComponentMark(String courseWorkName) {
         for (SubComponentMark subComponentMark : subComponentMarks) {
             if (subComponentMark.getSubComponent().getComponentName().equals(courseWorkName)) {
                 return subComponentMark;
@@ -65,11 +64,11 @@ public class MainComponentMark {
         this.mainComponent = mainComponent;
     }
 
-    public Double getMark() {
+    public double getMark() {
         return mark;
     }
 
-    public void setMark(Double mark) {
+    public void setMark(double mark) {
         this.mark = mark;
     }
 
