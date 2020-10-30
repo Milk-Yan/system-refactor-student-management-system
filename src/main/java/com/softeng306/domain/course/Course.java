@@ -9,6 +9,11 @@ import com.softeng306.enums.Department;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Concrete implementation the {@code ICourse} interface.
+ * Stores information about a course.
+ * Provides implementations of methods to get and set course information.
+ */
 public class Course implements ICourse {
 
     private String courseId;
@@ -30,6 +35,9 @@ public class Course implements ICourse {
     private List<IGroup> tutorialGroups = new ArrayList<>();
     private List<IGroup> labGroups = new ArrayList<>();
 
+    /**
+     * The main assessment components for this course
+     */
     private List<MainComponent> mainComponents = new ArrayList<>();
 
     /**
@@ -208,6 +216,13 @@ public class Course implements ICourse {
         return generateGroupInformation(lectureGroups);
     }
 
+    /**
+     * Local method used to generate string list of information for provided groups.
+     * Each item in the returned list contains the information for one group.
+     *
+     * @param groups The groups to generate a string for
+     * @return List containing, for each group provided: [Name, Vacancies, Capacity]
+     */
     private String[][] generateGroupInformation(List<IGroup> groups) {
         String[][] groupInfo = new String[groups.size()][3];
         for (int i = 0; i < groups.size(); i++) {
@@ -217,4 +232,5 @@ public class Course implements ICourse {
         }
         return groupInfo;
     }
+
 }
