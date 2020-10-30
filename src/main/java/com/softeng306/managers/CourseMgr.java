@@ -2,6 +2,7 @@ package com.softeng306.managers;
 
 
 import com.softeng306.domain.exceptions.CourseNotFoundException;
+import com.softeng306.domain.mark.IMarkCalculator;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.enums.CourseType;
 
@@ -34,7 +35,7 @@ public class CourseMgr {
     private static CourseMgr singleInstance = null;
 
     private final IFileProcessor<Course> courseFileProcessor;
-    private MarkCalculator markCalculator = new MarkCalculator();
+    private IMarkCalculator markCalculator = new MarkCalculator();
 
     /**
      * Override default constructor to implement singleton pattern
