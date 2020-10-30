@@ -181,7 +181,7 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
 
     private void setComponentMark(IStudentCourseMark studentCourseMark, boolean isMainComponent, String componentName,
                                   double assessmentMark) {
-        StudentCourseMarkMgrIO io = new StudentCourseMarkMgrIO();
+        IStudentCourseMarkMgrIO io = new StudentCourseMarkMgrIO();
         if (isMainComponent) {
             try {
                 // This is a stand alone main assessment
@@ -198,7 +198,7 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
     }
 
     private void setExamMark(IStudentCourseMark studentCourseMark) {
-        StudentCourseMarkMgrIO io = new StudentCourseMarkMgrIO();
+        IStudentCourseMarkMgrIO io = new StudentCourseMarkMgrIO();
         double examMark = new StudentCourseMarkMgrIO().readExamMark();
 
         try {

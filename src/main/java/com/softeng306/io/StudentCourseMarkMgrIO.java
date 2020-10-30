@@ -74,11 +74,6 @@ public class StudentCourseMarkMgrIO implements IStudentCourseMarkMgrIO {
         return examMark;
     }
 
-    /**
-     * Initiate the mark entering process for setting a student mark
-     *
-     * @param isExam If the component is an Exam or not
-     */
     @Override
     public void initiateEnteringCourseworkMark(boolean isExam) {
         printFunctionCall("enterCourseWorkMark");
@@ -92,18 +87,6 @@ public class StudentCourseMarkMgrIO implements IStudentCourseMarkMgrIO {
         }
     }
 
-    /**
-     * Prints to console that a function has been called.
-     */
-    private void printFunctionCall(String functionName) {
-        System.out.println(functionName + " is called");
-    }
-
-    /**
-     * Print the result after a sub component mark has been successfully set
-     *
-     * @param resultList List of calculated results to print
-     */
     @Override
     public void printSubComponentMarkSetMessage(List<Double> resultList) {
         System.out.println("The sub course work component is successfully set to: " + resultList.get(0));
@@ -111,11 +94,6 @@ public class StudentCourseMarkMgrIO implements IStudentCourseMarkMgrIO {
         System.out.println("The course total mark is updated to: " + resultList.get(2));
     }
 
-    /**
-     * Print the result after a main component mark has been successfully set (can also be an exam mark)
-     *
-     * @param resultList List of calculated results to print
-     */
     @Override
     public void printMainComponentMarkSetMessage(List<Double> resultList) {
         if (resultList.isEmpty()) {
@@ -126,13 +104,16 @@ public class StudentCourseMarkMgrIO implements IStudentCourseMarkMgrIO {
         }
     }
 
-    /**
-     * Print an error message if a main component to enter a mark for is not found
-     *
-     * @param message the error message to print
-     */
     @Override
     public void printMainComponentDoesNotExistMessage(String message) {
         System.out.println(message);
     }
+
+    /**
+     * Prints to console that a function has been called.
+     */
+    private void printFunctionCall(String functionName) {
+        System.out.println(functionName + " is called");
+    }
+
 }
