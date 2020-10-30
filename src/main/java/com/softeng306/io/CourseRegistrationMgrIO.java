@@ -10,50 +10,106 @@ import com.softeng306.managers.CourseRegistrationMgr;
 import java.util.List;
 import java.util.Scanner;
 
-public class CourseRegistrationMgrIO {
-    private Scanner scanner = new Scanner(System.in);
+public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
+    private Scanner reader = new Scanner(System.in);
     private CourseRegistrationMgr courseRegistrationMgr = CourseRegistrationMgr.getInstance();
 
-    /**
-     * This method prints the menu options when printing student lists
-     */
-    public void printOptions() {
-        System.out.println("Print student by: ");
-        System.out.println("(1) Lecture group");
-        System.out.println("(2) Tutorial group");
-        System.out.println("(3) Lab group");
-    }
-
-
-    /**
-     * When there is no group of the given type, this method will be called
-     */
+    @Override
     public void printContainsNoGroupMessage(String type) {
         System.out.format("This course does not contain any %s group.%n", type);
     }
 
-    /**
-     * When there are no registrations for a course, this method will print an error
-     * to the user
-     */
+    @Override
     public void printNoRegistrationsForCourseMessage() {
         System.out.println("No one has registered this course yet.");
     }
 
+    @Override
     public void printAlreadyRegisteredError() {
         System.out.println("Sorry. This student already registers this course.");
     }
 
-    /**
-     * If the user input is invalid, this method will let the user know
-     */
+    @Override
     public void printInvalidUserInputMessage() {
         System.out.println("Invalid input. Please re-enter.");
     }
 
 
+    @Override
     public void printEndOfSection() {
         System.out.println("------------------------------------------------------");
+    }
+
+    @Override
+    public void printNoVacancies() {
+        System.out.println("Sorry, the course has no vacancies any more.");
+    }
+
+    @Override
+    public void printNoAssessmentMessage(String profName) {
+        System.out.println("Professor " + profName + " is preparing the assessment. Please try to register other courses.");
+    }
+
+    @Override
+    public void printRegistrationRequestDetails(String studentName, String studentId, String courseId, String courseName) {
+        System.out.println("Student " + studentName + " with ID: " + studentId +
+          " wants to register " + courseId + " " + courseName);
+    }
+
+    @Override
+    public void registerStudentForCourse() {
+        MainMenuIO.printMethodCall("registerCourse");
+
+        ICourseMgrIO courseIO = new CourseMgrIO();
+
+        String studentID = new StudentMgrIO().readExistingStudentID();
+        CourseMgr.getInstance().readExistingDepartment();
+        String courseID = courseIO.readExistingCourseId();
+
+        try {
+            List<String> newRegistrationInfo = courseRegistrationMgr.registerCourse(studentID, courseID);
+            printSuccessfulRegistration(newRegistrationInfo);
+        } catch (CourseNotFoundException | StudentNotFoundException | InvalidCourseRegistrationException ignored) {
+
+        }
+    }
+
+    @Override
+    public void printStudents() {
+        MainMenuIO.printMethodCall("printStudent");
+        ICourseMgrIO courseIO = new CourseMgrIO();
+
+        String courseID = courseIO.readExistingCourseId();
+        printOptions();
+
+        int userOption;
+        do {
+            userOption = reader.nextInt();
+            reader.nextLine();
+
+            System.out.println("------------------------------------------------------");
+
+            try {
+                courseRegistrationMgr.printStudents(courseID, userOption);
+            } catch (CourseNotFoundException | GroupTypeNotFoundException e) {
+                e.printStackTrace();
+            }
+        } while (userOption < 1 || userOption > 3);
+    }
+
+    @Override
+    public void printGroupString(List<String> groupString) {
+        groupString.forEach(System.out::println);
+    }
+
+    /**
+     * This method prints the menu options when printing student lists
+     */
+    private void printOptions() {
+        System.out.println("Print student by: ");
+        System.out.println("(1) Lecture group");
+        System.out.println("(2) Tutorial group");
+        System.out.println("(3) Lab group");
     }
 
     /**
@@ -62,7 +118,7 @@ public class CourseRegistrationMgrIO {
      *
      * @param newRegistrationInfo The new registration information to display
      */
-    public void printSuccessfulRegistration(List<String> newRegistrationInfo) {
+    private void printSuccessfulRegistration(List<String> newRegistrationInfo) {
         String studentName = newRegistrationInfo.get(0);
         String lectureGroup = newRegistrationInfo.get(1);
         String tutorialGroup = newRegistrationInfo.get(2);
@@ -80,73 +136,4 @@ public class CourseRegistrationMgrIO {
         System.out.println();
     }
 
-    public void printNoVacancies() {
-        System.out.println("Sorry, the course has no vacancies any more.");
-    }
-
-    public void printNoAssessmentMessage(String profName) {
-        System.out.println("Professor " + profName + " is preparing the assessment. Please try to register other courses.");
-    }
-
-    /**
-     * Before registration details are known, this will print an pending message.
-     *
-     * @param studentName is the name of the student
-     * @param studentId   is the id of the student
-     * @param courseId    is a course id that we are registering a student for.
-     * @param courseName  is a course name that we are registering a student for.
-     */
-    public void printRegistrationRequestDetails(String studentName, String studentId, String courseId, String courseName) {
-        System.out.println("Student " + studentName + " with ID: " + studentId +
-                " wants to register " + courseId + " " + courseName);
-    }
-
-    /**
-     * Gets a student and course from the user to create a new registration for
-     */
-    public void registerStudentForCourse() {
-        MainMenuIO.printMethodCall("registerCourse");
-
-        CourseMgrIO courseIO = new CourseMgrIO();
-
-        String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
-        CourseMgr.getInstance().readDepartmentFromUser();
-        String courseID = courseIO.readValidCourseIdFromUser();
-
-        try {
-            List<String> newRegistrationInfo = courseRegistrationMgr.registerCourse(studentID, courseID);
-            printSuccessfulRegistration(newRegistrationInfo);
-        } catch (CourseNotFoundException | StudentNotFoundException | InvalidCourseRegistrationException ignored) {
-
-        }
-    }
-
-    /**
-     * Gets a course id from the user to print student registrations for
-     */
-    public void printStudents() {
-        MainMenuIO.printMethodCall("printStudent");
-        CourseMgrIO courseIO = new CourseMgrIO();
-
-        String courseID = courseIO.readValidCourseIdFromUser();
-        printOptions();
-
-        int opt;
-        do {
-            opt = scanner.nextInt();
-            scanner.nextLine();
-
-            System.out.println("------------------------------------------------------");
-
-            try {
-                courseRegistrationMgr.printStudents(courseID, opt);
-            } catch (CourseNotFoundException |  GroupTypeNotFoundException e) {
-                e.printStackTrace();
-            }
-        } while (opt < 1 || opt > 3);
-    }
-
-    public void printGroupString(List<String> groupString) {
-        groupString.forEach(System.out::println);
-    }
 }
