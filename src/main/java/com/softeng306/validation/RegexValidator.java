@@ -2,8 +2,13 @@ package com.softeng306.validation;
 
 import java.util.regex.Pattern;
 
+/**
+ * Validation class used to compare inputs with known string formats.
+ */
 public class RegexValidator {
-
+    /**
+     * Regex strings used to validate inputs.
+     */
     private static final String COURSE_ID_REGEX = "^[A-Z]{2}[0-9]{3,4}$";
     private static final String GROUP_NAME_REGEX = "^[a-zA-Z0-9]+$";
     private static final String STUDENT_ID_REGEX = "^U[0-9]{7}[A-Z]$";
@@ -75,4 +80,5 @@ public class RegexValidator {
         }
         return valid;
     }
+    
 }
