@@ -45,4 +45,5 @@ public interface IFileProcessor<T> {
      * @param updatedList list that contains updated information
      */
     void updateFileContents(List<T> updatedList);
+
 }

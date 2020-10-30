@@ -7,6 +7,11 @@ import java.io.*;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * Abstract implementation of a file processor for a given domain type.
+ *
+ * @param <T> The domain type that this file processor deals with.
+ */
 public abstract class FileProcessor<T> implements IFileProcessor<T> {
 
     /**
@@ -24,6 +29,11 @@ public abstract class FileProcessor<T> implements IFileProcessor<T> {
         objectMapper.writeValue(fileWriter, listToWrite);
     }
 
+    /**
+     * Clears the contents of a file.
+     *
+     * @param filePath The path to the file to clear.
+     */
     @Override
     public void clearFileContents(String filePath) {
         try (PrintWriter ignored = new PrintWriter(filePath)) {
@@ -32,4 +42,5 @@ public abstract class FileProcessor<T> implements IFileProcessor<T> {
             // that doesn't exist.
         }
     }
+    
 }
