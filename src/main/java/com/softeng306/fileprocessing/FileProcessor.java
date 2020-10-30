@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Abstract implementation of a file processor for a given domain type.
+ * This class implements {@code IFileProcessor}.
  *
  * @param <T> The domain type that this file processor deals with.
  */
@@ -42,5 +43,5 @@ public abstract class FileProcessor<T> implements IFileProcessor<T> {
             // that doesn't exist.
         }
     }
-    
+
 }
