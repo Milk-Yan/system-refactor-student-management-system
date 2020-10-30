@@ -83,5 +83,5 @@ public class MainComponentMark implements IMainComponentMark {
     public List<ISubComponentMark> getSubComponentMarks() {
         return subComponentMarks;
     }
-    
+
 }

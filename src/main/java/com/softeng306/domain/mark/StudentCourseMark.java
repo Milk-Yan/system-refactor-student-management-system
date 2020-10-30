@@ -9,7 +9,7 @@ import java.util.List;
  * Represents a student mark record associated with one student and a course.
  * Both students and courses can have multiple student mark record, but cannot be duplicate.
  */
-public class Mark implements IMark {
+public class StudentCourseMark implements IStudentCourseMark {
 
     private IStudent student;
     private ICourse course;
@@ -21,7 +21,7 @@ public class Mark implements IMark {
     /**
      * Default constructor. Required for Jackson serialization.
      */
-    public Mark() {
+    public StudentCourseMark() {
 
     }
 
@@ -34,7 +34,7 @@ public class Mark implements IMark {
      * @param courseWorkMarks The course work marks of this student mark record.
      * @param totalMark       The total mark of this student mark record.
      */
-    public Mark(IStudent student, ICourse course, List<IMainComponentMark> courseWorkMarks, double totalMark) {
+    public StudentCourseMark(IStudent student, ICourse course, List<IMainComponentMark> courseWorkMarks, double totalMark) {
         this.student = student;
         this.course = course;
         this.courseWorkMarks = courseWorkMarks;

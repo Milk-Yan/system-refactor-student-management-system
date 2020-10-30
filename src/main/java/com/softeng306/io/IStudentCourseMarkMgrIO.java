@@ -2,7 +2,7 @@ package com.softeng306.io;
 
 import java.util.List;
 
-public interface IMarkMgrIO {
+public interface IStudentCourseMarkMgrIO {
     /**
      * Prints to console that a student is not registered for a course.
      */

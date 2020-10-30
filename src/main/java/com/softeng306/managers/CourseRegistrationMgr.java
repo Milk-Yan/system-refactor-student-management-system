@@ -78,7 +78,7 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
                 selectedLectureGroup, selectedTutorialGroup, selectedLabGroup);
         courseRegistrationFileProcessor.writeNewEntryToFile(courseRegistration);
 
-        MarkMgr.getInstance().getMarks().add(MarkMgr.getInstance().initialiseMark(currentStudent, currentCourse));
+        StudentCourseMarkMgr.getInstance().getStudentCourseMarks().add(StudentCourseMarkMgr.getInstance().initialiseStudentCourseMark(currentStudent, currentCourse));
 
         courseRegistrations.add(courseRegistration);
 
