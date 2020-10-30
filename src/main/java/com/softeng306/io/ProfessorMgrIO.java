@@ -8,10 +8,6 @@ import java.util.List;
  */
 public class ProfessorMgrIO implements IProfessorMgrIO {
 
-
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void printAllProfIDsInDepartment(List<String> professors) {
         if (professors == null || professors.isEmpty()) {
