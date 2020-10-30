@@ -42,7 +42,7 @@ public interface IStudentCourseMark {
      * @param courseWorkName The name of this main course work.
      * @param result         The mark obtained in this main course work.
      */
-    void setMainComponentMark(String courseWorkName, double result);
+    List<Double> setMainComponentMark(String courseWorkName, double result);
 
     /**
      * Sets the sub course work marks of this student mark record.
@@ -50,5 +50,5 @@ public interface IStudentCourseMark {
      * @param courseWorkName The name of this sub course work.
      * @param result         The mark obtained in this sub course work.
      */
-    void setSubComponentMark(String courseWorkName, double result);
+    List<Double> setSubComponentMark(String courseWorkName, double result);
 }
