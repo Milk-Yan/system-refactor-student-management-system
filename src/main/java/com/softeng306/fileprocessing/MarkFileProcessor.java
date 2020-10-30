@@ -60,7 +60,7 @@ public class MarkFileProcessor extends FileProcessor<IStudentCourseMark> {
     }
 
     /**
-     * Writes the updated marks to {@value STUDENT_COURSE_MARK_FILE}.
+     * Modifies a list of marks in {@value STUDENT_COURSE_MARK_FILE}.
      *
      * @param updatedStudentCourseMarks The list of all marks to modify in the file.
      */
