@@ -5,7 +5,7 @@ import com.softeng306.domain.course.component.SubComponent;
 /**
  * Stores the mark for a student for a sub component.
  */
-public class SubComponentMark {
+public class SubComponentMark implements ISubComponentMark {
 
     private SubComponent subComponent;
     private double mark;
@@ -22,18 +22,22 @@ public class SubComponentMark {
         this.mark = mark;
     }
 
+    @Override
     public SubComponent getSubComponent() {
         return subComponent;
     }
 
+    @Override
     public void setSubComponent(SubComponent subComponent) {
         this.subComponent = subComponent;
     }
 
+    @Override
     public double getMark() {
         return mark;
     }
 
+    @Override
     public void setMark(double mark) {
         this.mark = mark;
     }
