@@ -17,14 +17,6 @@ public class CourseMgrIO implements ICourseMgrIO {
     private Scanner scanner = new Scanner(System.in);
     private CourseMgr courseMgr = CourseMgr.getInstance();
 
-    /**
-     * Read in the number of groups for a particular stream (lecture, lab, tutorial)
-     *
-     * @param type       the type of group we are reading in
-     * @param compareTo  the upper limit to compare it to
-     * @param totalSeats the total number of seats available
-     * @return the number of groups the user has inputted
-     */
     @Override
     public int readNoOfGroup(String type, int compareTo, int totalSeats) {
         int noOfGroups;
@@ -53,13 +45,6 @@ public class CourseMgrIO implements ICourseMgrIO {
         return noOfGroups;
     }
 
-    /**
-     * Reads in a weekly hour for a group from the user
-     *
-     * @param type          the type of the group the weekly hour is for
-     * @param academicUnits the number of academic units for the course
-     * @return int the number of weekly hours for that group
-     */
     @Override
     public int readWeeklyHour(String type, int academicUnits) {
         int weeklyHour;
@@ -81,12 +66,6 @@ public class CourseMgrIO implements ICourseMgrIO {
         return weeklyHour;
     }
 
-
-    /**
-     * Reads in the user's choice for creating components now
-     *
-     * @return int the choice the user specified for creating a component
-     */
     @Override
     public int readCreateCourseComponentChoice() {
         int addCourseComponentChoice;

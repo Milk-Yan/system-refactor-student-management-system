@@ -43,13 +43,11 @@ public interface ICourseMgrIO {
      *
      * @param courseID the course that the components have not been initialised for
      */
-
     void printComponentsNotInitialisedMessage(String courseID);
 
     /**
      * Print course information to the console for a user
      */
-
     void printCourseInfoString(String courseInfoString);
 
     /**
@@ -158,7 +156,6 @@ public interface ICourseMgrIO {
     /**
      * Print course statistics header for a particular course
      */
-
     void printCourseStatisticsHeader(List<String> courseInfo);
 
     /**
