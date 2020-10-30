@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Concrete implementation the {@code ICourse} interface.
+ * Concrete implementation of an academic course.
  * Stores information about a course.
  * Provides implementations of methods to get and set course information.
+ * This is a subclass of {@code ICourse}
  */
 public class Course implements ICourse {
 

@@ -6,8 +6,8 @@ import java.util.List;
 
 /**
  * Represents a main assessment component of a course.
- * This class is a subclass of {@code CourseworkComponent}.
  * A course can have many main assessment components.
+ * This class extends {@code CourseworkComponent}.
  */
 public class MainComponent extends CourseworkComponent {
 

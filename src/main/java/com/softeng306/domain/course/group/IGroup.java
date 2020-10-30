@@ -5,7 +5,10 @@ import com.softeng306.enums.GroupType;
 
 /**
  * Interface for a group.
- * Used to represent a lecture group, tutorial group, or lab group for a course.
+ * Represents study groups (LectureGroup, TutorialGroup and LabGroup) for a course.
+ * A course must have at least one lecture group.
+ * A course can have many or no tutorial groups and lab groups.
+ * Students enrolled in this course must also be enrolled in one of the groups of each type.
  * Provides methods for getting and setting group information.
  */
 @JsonDeserialize(as = Group.class)

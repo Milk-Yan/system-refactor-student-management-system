@@ -8,8 +8,8 @@ import com.softeng306.enums.GroupType;
 
 /**
  * Concrete representation of a course registration.
- * Subclass of {@code ICourseRegistration}.
  * Stores registration data, and implements methods to return this data.
+ * This class implements {@code ICourseRegistration}.
  */
 public class CourseRegistration implements ICourseRegistration {
     private IStudent student;
@@ -70,5 +70,5 @@ public class CourseRegistration implements ICourseRegistration {
 
         throw new GroupTypeNotFoundException(type.toString());
     }
-    
+
 }

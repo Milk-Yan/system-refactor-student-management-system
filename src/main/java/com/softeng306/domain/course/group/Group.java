@@ -3,12 +3,10 @@ package com.softeng306.domain.course.group;
 import com.softeng306.enums.GroupType;
 
 /**
- * Represents study groups (LectureGroup, TutorialGroup and LabGroup) for a course.
- * A course must have at least one lecture group.
- * A course can have many or no tutorial groups and lab groups.
- * Student enrolled in this course must also be enrolled in one of the groups of each type.
+ * Concrete implementation of a course group.
+ * Stores information about a lecture group, lab group, or tutorial group for a course
+ * This is a subclass of {@code IGroup}
  */
-
 public class Group implements IGroup {
 
     private String groupName;
