@@ -1,26 +1,24 @@
 package com.softeng306.managers;
 
-
+import com.softeng306.domain.course.ICourse;
 import com.softeng306.domain.exceptions.CourseNotFoundException;
+import com.softeng306.domain.mark.IMarkCalculator;
 import com.softeng306.domain.mark.MarkCalculator;
-import com.softeng306.enums.CourseType;
-
-import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.ICourseBuilder;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.component.SubComponent;
 
+import com.softeng306.enums.CourseType;
+import com.softeng306.enums.GroupType;
+
 import com.softeng306.fileprocessing.CourseFileProcessor;
 import com.softeng306.fileprocessing.IFileProcessor;
-
-import com.softeng306.enums.GroupType;
 
 import com.softeng306.io.ICourseMgrIO;
 import com.softeng306.io.MainMenuIO;
 import com.softeng306.io.CourseMgrIO;
 
 import java.util.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,11 +26,11 @@ public class CourseMgr implements ICourseMgr {
     /**
      * A list of all the courses in this school.
      */
-    private List<Course> courses;
-    private static CourseMgr singleInstance;
+    private List<ICourse> courses;
+    private static ICourseMgr singleInstance;
 
-    private final IFileProcessor<Course> courseFileProcessor;
-    private MarkCalculator markCalculator = new MarkCalculator();
+    private final IFileProcessor<ICourse> courseFileProcessor;
+    private IMarkCalculator markCalculator = new MarkCalculator();
 
     /**
      * Override default constructor to implement singleton pattern
@@ -47,7 +45,7 @@ public class CourseMgr implements ICourseMgr {
      *
      * @return CourseMgr the singleton instance
      */
-    public static CourseMgr getInstance() {
+    public static ICourseMgr getInstance() {
         if (singleInstance == null) {
             singleInstance = new CourseMgr();
         }
@@ -59,7 +57,7 @@ public class CourseMgr implements ICourseMgr {
     public void addCourse(ICourseBuilder completeBuilder) {
         ICourseMgrIO courseMgrIO = new CourseMgrIO();
 
-        Course course = completeBuilder.build();
+        ICourse course = completeBuilder.build();
         int addCourseComponentChoice;
 
         // Update Course in files
@@ -87,7 +85,7 @@ public class CourseMgr implements ICourseMgr {
         MainMenuIO.printMethodCall("checkAvailableSlots");
 
         while (true) {
-            Course currentCourse;
+            ICourse currentCourse;
             try {
                 currentCourse = readExistingCourse();
             } catch (CourseNotFoundException e) {
@@ -118,7 +116,7 @@ public class CourseMgr implements ICourseMgr {
     }
 
     @Override
-    public void enterCourseWorkComponentWeightage(Course currentCourse) {
+    public void enterCourseWorkComponentWeightage(ICourse currentCourse) {
         ICourseMgrIO io = new CourseMgrIO();
 
         // Assume when course is created, no components are added yet
@@ -155,7 +153,7 @@ public class CourseMgr implements ICourseMgr {
 
     @Override
     public List<String> getCourseIdsInDepartment(String departmentName) {
-        List<Course> validCourses = new ArrayList<>();
+        List<ICourse> validCourses = new ArrayList<>();
         courses.forEach(course -> {
             if (departmentName.equals(course.getDepartment().toString())) {
                 validCourses.add(course);
@@ -176,7 +174,7 @@ public class CourseMgr implements ICourseMgr {
 
         MainMenuIO.printMethodCall("printCourseStatistics");
 
-        Course currentCourse;
+        ICourse currentCourse;
         String courseID;
         try {
             currentCourse = readExistingCourse();
@@ -219,7 +217,7 @@ public class CourseMgr implements ICourseMgr {
     }
 
     @Override
-    public Course readExistingCourse() throws CourseNotFoundException {
+    public ICourse readExistingCourse() throws CourseNotFoundException {
         String validCourseID = new CourseMgrIO().readExistingCourseId();
         return getCourseFromId(validCourseID);
     }
@@ -230,8 +228,8 @@ public class CourseMgr implements ICourseMgr {
     }
 
     @Override
-    public Course getCourseFromId(String courseID) throws CourseNotFoundException {
-        Optional<Course> course = courses.stream()
+    public ICourse getCourseFromId(String courseID) throws CourseNotFoundException {
+        Optional<ICourse> course = courses.stream()
                 .filter(c -> courseID.equals(c.getCourseId()))
                 .findAny();
 
@@ -288,7 +286,7 @@ public class CourseMgr implements ICourseMgr {
 
     @Override
     public boolean checkCourseExists(String courseID) {
-        Optional<Course> course = courses.stream()
+        Optional<ICourse> course = courses.stream()
           .filter(c -> courseID.equals(c.getCourseId()))
           .findFirst();
 
@@ -302,7 +300,7 @@ public class CourseMgr implements ICourseMgr {
      * @param currentCourse The course to create components for
      * @return
      */
-    private List<MainComponent> addMainComponentsToCourse(ICourseMgrIO io, Course currentCourse) {
+    private List<MainComponent> addMainComponentsToCourse(ICourseMgrIO io, ICourse currentCourse) {
         List<MainComponent> mainComponents = new ArrayList<>(0);
 
         io.printEmptyCourseComponents(currentCourse.getCourseId(), currentCourse.getName());
@@ -388,7 +386,7 @@ public class CourseMgr implements ICourseMgr {
         return examWeight;
     }
 
-    private String generateCourseInformation(Course course) {
+    private String generateCourseInformation(ICourse course) {
         String infoString = course.getCourseId() + " " + course.getName() + " (Available/Total): " + course.getVacancies() + "/" + course.getCapacity();
         return infoString;
     }
@@ -413,7 +411,7 @@ public class CourseMgr implements ICourseMgr {
         return map;
     }
 
-    private List<String> generateCourseInformationFromCourse(Course course) {
+    public List<String> generateCourseInformationFromCourse(ICourse course) {
         List<String> courseInformation = new ArrayList<String>();
         courseInformation.add(course.getCourseId());
         courseInformation.add(course.getName());
@@ -425,7 +423,7 @@ public class CourseMgr implements ICourseMgr {
 
     private List<String> generateListOfAllCourseIDs() {
         List<String> courseIDs = new ArrayList<>();
-        for (Course course : courses) {
+        for (ICourse course : courses) {
             courseIDs.add(course.getCourseId());
         }
         return courseIDs;
@@ -433,7 +431,7 @@ public class CourseMgr implements ICourseMgr {
 
     private Map<String, List<String>> generateGeneralInformationForAllCourses() {
         Map<String, List<String>> generalCourseInfoMap = new HashMap<>();
-        for (Course course : courses) {
+        for (ICourse course : courses) {
             List<String> generalCourseInfo = new ArrayList<>();
             generalCourseInfo.add(course.getName());
             generalCourseInfo.add(course.getCourseCoordinator().getName());
@@ -443,7 +441,7 @@ public class CourseMgr implements ICourseMgr {
 
     }
 
-    private Map<Map<String, String>, Map<String, String>> generateComponentInformationForACourses(Course course) {
+    private Map<Map<String, String>, Map<String, String>> generateComponentInformationForACourses(ICourse course) {
         Map<Map<String, String>, Map<String, String>> map = new HashMap<>();
         for (MainComponent eachComp : course.getMainComponents()) {
             Map<String, String> mainComponentInfo = new HashMap<>();

@@ -1,7 +1,7 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.exceptions.ProfessorNotFoundException;
-import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.professor.IProfessor;
 
 import com.softeng306.fileprocessing.IFileProcessor;
 import com.softeng306.fileprocessing.ProfessorFileProcessor;
@@ -19,11 +19,11 @@ public class ProfessorMgr implements IProfessorMgr {
     /**
      * A list of all the professors in this school.
      */
-    private List<Professor> professors;
+    private List<IProfessor> professors;
 
-    private static ProfessorMgr singleInstance = null;
+    private static IProfessorMgr singleInstance = null;
 
-    private final IFileProcessor<Professor> professorFileProcessor;
+    private final IFileProcessor<IProfessor> professorFileProcessor;
 
     /**
      * Override default constructor to implement singleton pattern
@@ -38,7 +38,7 @@ public class ProfessorMgr implements IProfessorMgr {
      *
      * @return IProfessorMgr the singleton instance
      */
-    public static ProfessorMgr getInstance() {
+    public static IProfessorMgr getInstance() {
         if (singleInstance == null) {
             singleInstance = new ProfessorMgr();
         }
@@ -57,10 +57,8 @@ public class ProfessorMgr implements IProfessorMgr {
     }
 
     @Override
-    public Professor getProfessorFromID(String professorID) throws ProfessorNotFoundException {
-        Optional<Professor> professor = ProfessorMgr
-                .getInstance()
-                .getProfessors()
+    public IProfessor getProfessorFromID(String professorID) throws ProfessorNotFoundException {
+        Optional<IProfessor> professor = professors
                 .stream()
                 .filter(p -> professorID.equals(p.getProfessorId()))
                 .findFirst();
@@ -74,20 +72,11 @@ public class ProfessorMgr implements IProfessorMgr {
 
     @Override
     public boolean checkProfessorExists(String profID){
-        Optional<Professor> professor = professors.stream()
+        Optional<IProfessor> professor = professors.stream()
                 .filter(p -> profID.equals(p.getProfessorId()))
                 .findFirst();
 
         return professor.isPresent();
-    }
-
-    /**
-     * Return the list of all professors in the system.
-     *
-     * @return An list of all professors.
-     */
-    private List<Professor> getProfessors() {
-        return professors;
     }
 
 }

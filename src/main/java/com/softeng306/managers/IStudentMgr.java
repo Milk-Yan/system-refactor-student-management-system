@@ -1,6 +1,7 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.exceptions.StudentNotFoundException;
+import com.softeng306.domain.student.IStudent;
 import com.softeng306.domain.student.Student;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface IStudentMgr {
 
     boolean studentHasCourses(String studentId);
 
-    Student getStudentFromId(String studentId) throws StudentNotFoundException;
+    IStudent getStudentFromId(String studentId) throws StudentNotFoundException;
 
     String getStudentName(String studentId) throws StudentNotFoundException;
 

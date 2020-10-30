@@ -108,7 +108,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         groupType = groupType.substring(0, 1).toUpperCase() + groupType.substring(1);
         for (String[] groupInfo : groupInformationForType) {
             System.out.format("%s group %s (Available/Total): %s/%s%n",
-              groupType, groupInfo[0], groupInfo[1], groupInfo[2]);
+                    groupType, groupInfo[0], groupInfo[1], groupInfo[2]);
         }
     }
 
@@ -937,6 +937,5 @@ public class CourseMgrIO implements ICourseMgrIO {
         System.out.print("Sub Component: " + subComponentName);
         System.out.print("\tWeight: " + subComponentWeight + "% (in main component)");
     }
-
 
 }

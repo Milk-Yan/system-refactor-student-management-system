@@ -9,7 +9,7 @@ import com.softeng306.enums.GroupType;
  * Student enrolled in this course must also be enrolled in one of the groups of each type.
  */
 
-public class Group {
+public class Group implements IGroup {
 
     private String groupName;
     private int availableVacancies;
@@ -29,7 +29,7 @@ public class Group {
      *
      * @param groupName          This group's name.
      * @param availableVacancies This group's current available vacancy.
-     * @param groupCapacity         This group's total seats.
+     * @param groupCapacity      This group's total seats.
      */
     public Group(String groupName, int availableVacancies, int groupCapacity, GroupType groupType) {
         this.groupType = groupType;
@@ -38,41 +38,27 @@ public class Group {
         this.capacity = groupCapacity;
     }
 
-    /**
-     * Gets the name of this group.
-     *
-     * @return this group's name.
-     */
+    @Override
     public String getGroupName() {
         return this.groupName;
     }
 
-    /**
-     * Gets the current available vacancies for this group.
-     *
-     * @return this group's current available vacancy.
-     */
+    @Override
     public int getAvailableVacancies() {
         return this.availableVacancies;
     }
 
-    /**
-     * Gets the total seats for this group.
-     *
-     * @return this group's total seats.
-     */
+    @Override
     public int getCapacity() {
         return capacity;
     }
 
-    /**
-     * Updates the available vacancies of this group after someone has registered this group.
-     */
+    @Override
     public void updateVacanciesForEnrollment() {
         this.availableVacancies -= 1;
     }
 
-
+    @Override
     public GroupType getGroupType() {
         return groupType;
     }

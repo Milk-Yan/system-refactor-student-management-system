@@ -1,7 +1,7 @@
 package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.softeng306.domain.course.courseregistration.CourseRegistration;
+import com.softeng306.domain.course.courseregistration.ICourseRegistration;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,22 +10,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CourseRegistrationFileProcessor extends FileProcessor<CourseRegistration> {
+public class CourseRegistrationFileProcessor extends FileProcessor<ICourseRegistration> {
 
     private static final String COURSE_REGISTRATION_FILE_PATH = "data/courseRegistrationFile.json";
 
     /**
      * Loads a list of all the course registrations from {@value COURSE_REGISTRATION_FILE_PATH}.
+     *
      * @return A list of all the course registrations that is loaded from the file.
      */
     @Override
-    public List<CourseRegistration> loadFile() {
+    public List<ICourseRegistration> loadFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         File courseRegistrationFile = Paths.get(COURSE_REGISTRATION_FILE_PATH).toFile();
-        ArrayList<CourseRegistration> allCourseRegistrations = new ArrayList<>();
+        ArrayList<ICourseRegistration> allCourseRegistrations = new ArrayList<>();
 
         try {
-            allCourseRegistrations = new ArrayList<>(Arrays.asList(objectMapper.readValue(courseRegistrationFile, CourseRegistration[].class)));
+            allCourseRegistrations = new ArrayList<>(Arrays.asList(objectMapper.readValue(courseRegistrationFile, ICourseRegistration[].class)));
         } catch (IOException e) {
             System.out.println("Error happens when loading courses.");
             e.printStackTrace();
@@ -36,12 +37,13 @@ public class CourseRegistrationFileProcessor extends FileProcessor<CourseRegistr
 
     /**
      * Writes a new course registration into {@value COURSE_REGISTRATION_FILE_PATH}.
+     *
      * @param courseRegistration the new course registration to write to the file
      */
     @Override
-    public void writeNewEntryToFile(CourseRegistration courseRegistration) {
+    public void writeNewEntryToFile(ICourseRegistration courseRegistration) {
         try {
-            List<CourseRegistration> courseRegistrations = loadFile();
+            List<ICourseRegistration> courseRegistrations = loadFile();
             courseRegistrations.add(courseRegistration);
 
             writeToFile(COURSE_REGISTRATION_FILE_PATH, courseRegistrations);
@@ -53,11 +55,12 @@ public class CourseRegistrationFileProcessor extends FileProcessor<CourseRegistr
 
     /**
      * Writes the updated course registrations to {@value COURSE_REGISTRATION_FILE_PATH}.
+     *
      * @param updatedCourseRegistrations the list of all course registrations,
      *                                   with updated course registrations
      */
     @Override
-    public void updateFileContents(List<CourseRegistration> updatedCourseRegistrations) {
+    public void updateFileContents(List<ICourseRegistration> updatedCourseRegistrations) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.writeValue(Paths.get(COURSE_REGISTRATION_FILE_PATH).toFile(), updatedCourseRegistrations);
@@ -66,4 +69,5 @@ public class CourseRegistrationFileProcessor extends FileProcessor<CourseRegistr
             e.printStackTrace();
         }
     }
+
 }

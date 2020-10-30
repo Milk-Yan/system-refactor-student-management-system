@@ -31,5 +31,5 @@ public interface ICourseBuilder {
 
     void setLabWeeklyHour(int labWeeklyHour);
 
-    Course build();
+    ICourse build();
 }

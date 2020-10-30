@@ -1,7 +1,7 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.exceptions.ProfessorNotFoundException;
-import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.professor.IProfessor;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface IProfessorMgr {
      */
     List<String> getAllProfIDInDepartment(String departmentName);
 
-    Professor getProfessorFromID(String professorID) throws ProfessorNotFoundException;
+    IProfessor getProfessorFromID(String professorID) throws ProfessorNotFoundException;
 
     /**
      * Finds if a professor with the profID is in the system.

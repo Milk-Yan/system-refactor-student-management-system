@@ -1,7 +1,7 @@
 package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.softeng306.domain.mark.Mark;
+import com.softeng306.domain.mark.IMark;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MarkFileProcessor extends FileProcessor<Mark> {
+public class MarkFileProcessor extends FileProcessor<IMark> {
 
     private static final String MARK_FILE_PATH = "data/markFile.json";
 
@@ -19,13 +19,13 @@ public class MarkFileProcessor extends FileProcessor<Mark> {
      * @return A list of all the marks that is loaded from the file.
      */
     @Override
-    public List<Mark> loadFile() {
+    public List<IMark> loadFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         File markFile = Paths.get(MARK_FILE_PATH).toFile();
-        ArrayList<Mark> allStudentMarks = new ArrayList<>();
+        ArrayList<IMark> allStudentMarks = new ArrayList<>();
 
         try {
-            allStudentMarks = new ArrayList<>(Arrays.asList(objectMapper.readValue(markFile, Mark[].class)));
+            allStudentMarks = new ArrayList<>(Arrays.asList(objectMapper.readValue(markFile, IMark[].class)));
         } catch (IOException e) {
             System.out.println("Error occurs when loading student marks.");
             e.printStackTrace();
@@ -39,9 +39,9 @@ public class MarkFileProcessor extends FileProcessor<Mark> {
      * @param mark the new mark to write to the file
      */
     @Override
-    public void writeNewEntryToFile(Mark mark) {
+    public void writeNewEntryToFile(IMark mark) {
         try {
-            List<Mark> marks = loadFile();
+            List<IMark> marks = loadFile();
             marks.add(mark);
 
             writeToFile(MARK_FILE_PATH, marks);
@@ -56,7 +56,7 @@ public class MarkFileProcessor extends FileProcessor<Mark> {
      * @param updatedMarks the list of all marks, with updated marks
      */
     @Override
-    public void updateFileContents(List<Mark> updatedMarks) {
+    public void updateFileContents(List<IMark> updatedMarks) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.writeValue(Paths.get(MARK_FILE_PATH).toFile(), updatedMarks);

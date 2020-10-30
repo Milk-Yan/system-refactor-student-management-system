@@ -1,8 +1,9 @@
 package com.softeng306.domain.course;
 
+import com.softeng306.domain.course.group.IGroup;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.exceptions.ProfessorNotFoundException;
-import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.professor.IProfessor;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.GroupType;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CourseBuilder implements ICourseBuilder {
-    private Course course;
+    private ICourse course;
 
     public CourseBuilder() {
         course = new Course();
@@ -34,7 +35,7 @@ public class CourseBuilder implements ICourseBuilder {
     public void setCourseCoordinator(String profID) throws ProfessorNotFoundException {
         IProfessorMgr profMgr = ProfessorMgr.getInstance();
         //Guaranteed at this point that the ID is valid
-        Professor profInCharge = profMgr.getProfessorFromID(profID);
+        IProfessor profInCharge = profMgr.getProfessorFromID(profID);
         course.setCourseCoordinator(profInCharge);
     }
 
@@ -46,30 +47,30 @@ public class CourseBuilder implements ICourseBuilder {
 
     @Override
     public void setLectureGroups(Map<String, Double> lectureGroups) {
-        List<Group> newLectureGroups = convertMapToGroups(lectureGroups, GroupType.LECTURE_GROUP);
+        List<IGroup> newLectureGroups = convertMapToGroups(lectureGroups, GroupType.LECTURE_GROUP);
 
         course.setLectureGroups(newLectureGroups);
     }
 
     @Override
     public void setTutorialGroups(Map<String, Double> tutorialGroups) {
-        List<Group> newTutorialGroups = convertMapToGroups(tutorialGroups, GroupType.TUTORIAL_GROUP);
+        List<IGroup> newTutorialGroups = convertMapToGroups(tutorialGroups, GroupType.TUTORIAL_GROUP);
 
         course.setTutorialGroups(newTutorialGroups);
     }
 
     @Override
     public void setLabGroups(Map<String, Double> labGroups) {
-        List<Group> newLabGroups = convertMapToGroups(labGroups, GroupType.LAB_GROUP);
+        List<IGroup> newLabGroups = convertMapToGroups(labGroups, GroupType.LAB_GROUP);
 
         course.setLabGroups(newLabGroups);
     }
 
-    private List<Group> convertMapToGroups(Map<String, Double> groups, GroupType type) {
-        List<Group> newGroups = new ArrayList<>();
+    private List<IGroup> convertMapToGroups(Map<String, Double> groups, GroupType type) {
+        List<IGroup> newGroups = new ArrayList<>();
 
-        for(String groupName : groups.keySet()){
-            Group group = new Group(groupName, groups.get(groupName).intValue(), groups.get(groupName).intValue(), type);
+        for (String groupName : groups.keySet()) {
+            IGroup group = new Group(groupName, groups.get(groupName).intValue(), groups.get(groupName).intValue(), type);
             newGroups.add(group);
         }
 
@@ -107,7 +108,8 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public Course build() {
+    public ICourse build() {
         return course;
     }
+
 }

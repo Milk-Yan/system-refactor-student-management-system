@@ -1,6 +1,7 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.exceptions.StudentNotFoundException;
+import com.softeng306.domain.student.IStudent;
 import com.softeng306.domain.student.Student;
 
 import com.softeng306.fileprocessing.IFileProcessor;
@@ -22,11 +23,11 @@ public class StudentMgr implements IStudentMgr {
     /**
      * A list of all the students in this school.
      */
-    private List<Student> students;
+    private List<IStudent> students;
 
     private static StudentMgr singleInstance = null;
 
-    private final IFileProcessor<Student> studentFileProcessor;
+    private final IFileProcessor<IStudent> studentFileProcessor;
 
     /**
      * Override default constructor to implement singleton pattern
@@ -51,7 +52,7 @@ public class StudentMgr implements IStudentMgr {
 
     @Override
     public void createNewStudent(String id, String name, String school, String gender, int year) {
-        Student currentStudent = new Student(id, name);
+        IStudent currentStudent = new Student(id, name);
 
         currentStudent.setDepartment(Department.valueOf(school));  //Set school
         currentStudent.setGender(Gender.valueOf(gender));      //gender
@@ -63,7 +64,7 @@ public class StudentMgr implements IStudentMgr {
 
     @Override
     public void printAllStudentIds() {
-        for (Student s : students) {
+        for (IStudent s : students) {
             System.out.println(s.getStudentId());
         }
     }
@@ -86,8 +87,8 @@ public class StudentMgr implements IStudentMgr {
     }
 
     @Override
-    public Student getStudentFromId(String studentId) throws StudentNotFoundException {
-        Optional<Student> student = students
+    public IStudent getStudentFromId(String studentId) throws StudentNotFoundException {
+        Optional<IStudent> student = students
                 .stream()
                 .filter(s -> studentId.equals(s.getStudentId()))
                 .findFirst();
@@ -101,14 +102,14 @@ public class StudentMgr implements IStudentMgr {
 
     @Override
     public String getStudentName(String studentId) throws StudentNotFoundException {
-        Student student = getStudentFromId(studentId);
+        IStudent student = getStudentFromId(studentId);
         return student.getName();
     }
 
     @Override
     public List<String> generateStudentInformationStrings() {
         List<String> studentInformationStrings = new ArrayList<>();
-        for (Student student : StudentMgr.getInstance().getStudents()) {
+        for (IStudent student : StudentMgr.getInstance().getStudents()) {
             String GPA = "not available";
             if (Double.compare(student.getGpa(), 0.0) != 0) {
                 GPA = String.valueOf(student.getGpa());
@@ -120,7 +121,7 @@ public class StudentMgr implements IStudentMgr {
 
     @Override
     public boolean studentExists(String studentID) {
-        Optional<Student> student = students.stream()
+        Optional<IStudent> student = students.stream()
                 .filter(s -> studentID.equals(s.getStudentId()))
                 .findFirst();
 
@@ -132,7 +133,7 @@ public class StudentMgr implements IStudentMgr {
      *
      * @return An list of all students.
      */
-    private List<Student> getStudents() {
+    private List<IStudent> getStudents() {
         return students;
     }
 
@@ -142,7 +143,7 @@ public class StudentMgr implements IStudentMgr {
      */
     private int findLargestStudentID() {
         int recentStudentID = 0;
-        for (Student student : students) {
+        for (IStudent student : students) {
             recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentId().substring(1, 8)));
         }
 

@@ -1,7 +1,7 @@
 package com.softeng306.domain.mark;
 
-import com.softeng306.domain.course.Course;
-import com.softeng306.domain.student.Student;
+import com.softeng306.domain.course.ICourse;
+import com.softeng306.domain.student.IStudent;
 
 import java.util.List;
 
@@ -9,13 +9,12 @@ import java.util.List;
  * Represents a student mark record associated with one student and a course.
  * Both students and courses can have multiple student mark record, but cannot be duplicate.
  */
+public class Mark implements IMark {
 
-public class Mark {
+    private IStudent student;
+    private ICourse course;
 
-    private Student student;
-    private Course course;
-
-    private List<MainComponentMark> courseWorkMarks;
+    private List<IMainComponentMark> courseWorkMarks;
 
     private double totalMark;
 
@@ -35,57 +34,36 @@ public class Mark {
      * @param courseWorkMarks The course work marks of this student mark record.
      * @param totalMark       The total mark of this student mark record.
      */
-    public Mark(Student student, Course course, List<MainComponentMark> courseWorkMarks, double totalMark) {
+    public Mark(IStudent student, ICourse course, List<IMainComponentMark> courseWorkMarks, double totalMark) {
         this.student = student;
         this.course = course;
         this.courseWorkMarks = courseWorkMarks;
         this.totalMark = totalMark;
     }
 
-    /**
-     * Gets the student of this student mark record.
-     *
-     * @return the student of this student mark record.
-     */
-    public Student getStudent() {
+    @Override
+    public IStudent getStudent() {
         return student;
     }
 
-    /**
-     * Gets the course of this student mark record.
-     *
-     * @return the course of this student mark record.
-     */
-    public Course getCourse() {
+    @Override
+    public ICourse getCourse() {
         return course;
     }
 
-    /**
-     * Gets the course work marks of this student mark record.
-     *
-     * @return a list contains the course work marks of this student mark record.
-     */
-    public List<MainComponentMark> getCourseWorkMarks() {
+    @Override
+    public List<IMainComponentMark> getCourseWorkMarks() {
         return courseWorkMarks;
     }
 
-    /**
-     * Gets the total mark of this student mark record.
-     *
-     * @return the total mark of this student mark record.
-     */
+    @Override
     public double getTotalMark() {
         return totalMark;
     }
 
-    /**
-     * Sets the main course work marks of this student mark record.
-     *
-     * @param courseWorkName The name of this main course work.
-     * @param result         The mark obtained in this main course work.
-     */
+    @Override
     public void setMainComponentMark(String courseWorkName, double result) {
-        for (MainComponentMark mainComponentMark : courseWorkMarks) {
+        for (IMainComponentMark mainComponentMark : courseWorkMarks) {
             if (mainComponentMark.getMainComponent().getName().equals(courseWorkName)) {
                 if (mainComponentMark.hasSubComponentMarks()) {
                     System.out.println("This main assessment is not stand alone");
@@ -106,16 +84,10 @@ public class Mark {
 
     }
 
-
-    /**
-     * Sets the sub course work marks of this student mark record.
-     *
-     * @param courseWorkName The name of this sub course work.
-     * @param result         The mark obtained in this sub course work.
-     */
+    @Override
     public void setSubComponentMark(String courseWorkName, double result) {
-        for (MainComponentMark mainComponentMark : courseWorkMarks) {
-            SubComponentMark subComponentMark = mainComponentMark.getSubComponentMark(courseWorkName);
+        for (IMainComponentMark mainComponentMark : courseWorkMarks) {
+            ISubComponentMark subComponentMark = mainComponentMark.getSubComponentMark(courseWorkName);
             if (subComponentMark != null) {
                 // update subcomponent value
                 double previousResult = subComponentMark.getMark();
@@ -135,4 +107,5 @@ public class Mark {
             }
         }
     }
+
 }

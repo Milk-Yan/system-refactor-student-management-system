@@ -1,8 +1,8 @@
 package com.softeng306.domain.course;
 
 import com.softeng306.domain.course.component.MainComponent;
-import com.softeng306.domain.course.group.Group;
-import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.course.group.IGroup;
+import com.softeng306.domain.professor.IProfessor;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 
@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Course {
+public class Course implements ICourse {
 
     private String courseId;
     private String name;
     private int academicUnits;
 
-    private Professor courseCoordinator;
+    private IProfessor courseCoordinator;
     private Department department;
     private CourseType courseType;
 
@@ -27,9 +27,9 @@ public class Course {
     private int tutorialHoursPerWeek = 0;
     private int labHoursPerWeek = 0;
 
-    private List<Group> lectureGroups;
-    private List<Group> tutorialGroups = new ArrayList<>();
-    private List<Group> labGroups = new ArrayList<>();
+    private List<IGroup> lectureGroups;
+    private List<IGroup> tutorialGroups = new ArrayList<>();
+    private List<IGroup> labGroups = new ArrayList<>();
 
     private List<MainComponent> mainComponents = new ArrayList<>();
 
@@ -39,284 +39,177 @@ public class Course {
     public Course() {
     }
 
-    /**
-     * Gets the course's ID.
-     *
-     * @return the ID of this course.
-     */
+    @Override
     public String getCourseId() {
         return courseId;
     }
 
-    /**
-     * Gets the course's name.
-     *
-     * @return the name of this course.
-     */
+    @Override
     public String getName() {
         return name;
     }
 
-    /**
-     * @return the number of academic units for this course.
-     */
+    @Override
     public int getAcademicUnits() {
         return academicUnits;
     }
 
-    /**
-     * Gets the course's professor in charge.
-     *
-     * @return the professor in charge of this course.
-     */
-    public Professor getCourseCoordinator() {
+    @Override
+    public IProfessor getCourseCoordinator() {
         return courseCoordinator;
     }
 
-    /**
-     * Gets the course's current vacancy.
-     *
-     * @return the current vacancy of this course.
-     */
+    @Override
     public int getVacancies() {
         return vacancies;
     }
 
-    /**
-     * Gets the course's total seats.
-     *
-     * @return the total seats of this course.
-     */
+    @Override
     public int getCapacity() {
         return capacity;
     }
 
-    /**
-     * Gets the course's department.
-     *
-     * @return the department of this course.
-     */
+    @Override
     public Department getDepartment() {
         return department;
     }
 
-    /**
-     * Gets the course's type.
-     *
-     * @return the type of this course.
-     */
+    @Override
     public CourseType getCourseType() {
         return courseType;
     }
 
-    /**
-     * Gets the course's weekly lecture hour.
-     *
-     * @return the weekly lecture hour of this course.
-     */
+    @Override
     public int getLectureHoursPerWeek() {
         return lectureHoursPerWeek;
     }
 
-    /**
-     * Gets the course's weekly tutorial hour.
-     *
-     * @return the weekly tutorial hour of this course.
-     */
+    @Override
     public int getTutorialHoursPerWeek() {
         return tutorialHoursPerWeek;
     }
 
-    /**
-     * Gets the course's weekly lab hour.
-     *
-     * @return the weekly lab hour of this course.
-     */
+    @Override
     public int getLabHoursPerWeek() {
         return labHoursPerWeek;
     }
 
-    /**
-     * Gets the course's lecture groups.
-     *
-     * @return the lecture groups of this course.
-     */
-    public List<Group> getLectureGroups() {
+    @Override
+    public List<IGroup> getLectureGroups() {
         return lectureGroups;
     }
 
-    /**
-     * Gets the course's tutorial groups
-     *
-     * @return the tutorial groups of this course
-     */
-    public List<Group> getTutorialGroups() {
+    @Override
+    public List<IGroup> getTutorialGroups() {
         return this.tutorialGroups;
     }
 
-    /**
-     * Gets the course's lab groups.
-     *
-     * @return the lab groups of this course.
-     */
-    public List<Group> getLabGroups() {
+    @Override
+    public List<IGroup> getLabGroups() {
         return this.labGroups;
     }
 
-    /**
-     * Gets the course's main assessment components.
-     *
-     * @return the main assessment components of this course.
-     */
+    @Override
     public List<MainComponent> getMainComponents() {
         return this.mainComponents;
     }
 
-    /**
-     * Sets the course's current current vacancy.
-     *
-     * @param vacancies this course's vacancy.
-     */
+    @Override
     public void setVacancies(int vacancies) {
         this.vacancies = vacancies;
     }
 
-    /**
-     * Updates the available vacancies of this course after someone has registered this group.
-     */
+    @Override
     public void updateVacanciesForEnrollment() {
         this.vacancies = vacancies - 1;
     }
 
-    /**
-     * Sets the tutorial groups of the lecture groups.
-     *
-     * @param tutorialGroups this course's tutorial groups.
-     */
-    public void setTutorialGroups(List<Group> tutorialGroups) {
+    @Override
+    public void setTutorialGroups(List<IGroup> tutorialGroups) {
         this.tutorialGroups = tutorialGroups;
     }
 
-    /**
-     * Sets the lab groups of the lecture groups.
-     *
-     * @param labGroups this course's lab groups.
-     */
-    public void setLabGroups(List<Group> labGroups) {
+    @Override
+    public void setLabGroups(List<IGroup> labGroups) {
         this.labGroups = labGroups;
     }
 
-    /**
-     * Sets the main assessment of the lecture groups.
-     *
-     * @param mainComponents this course's main assessment.
-     */
+    @Override
     public void setMainComponents(List<MainComponent> mainComponents) {
         this.mainComponents = mainComponents;
     }
 
-    /**
-     * Sets the weekly hour of the tutorials.
-     *
-     * @param tutorialHoursPerWeek this course's weekly tutorial hour.
-     */
+    @Override
     public void setTutorialHoursPerWeek(int tutorialHoursPerWeek) {
         this.tutorialHoursPerWeek = tutorialHoursPerWeek;
     }
 
+    @Override
     public void setLectureHoursPerWeek(int lectureHoursPerWeek) {
         this.lectureHoursPerWeek = lectureHoursPerWeek;
     }
 
-    /**
-     * Sets the weekly hour of the labs.
-     *
-     * @param labHoursPerWeek this course's weekly lab hour.
-     */
+    @Override
     public void setLabHoursPerWeek(int labHoursPerWeek) {
         this.labHoursPerWeek = labHoursPerWeek;
     }
 
-    /**
-     * Sets the academic unit for the course.
-     *
-     * @param academicUnits Academic unit for course.
-     */
+    @Override
     public void setAcademicUnits(int academicUnits) {
         this.academicUnits = academicUnits;
     }
 
-    /**
-     * Sets the IDfor the course.
-     *
-     * @param id ID for course.
-     */
+    @Override
     public void setCourseId(String id) {
         this.courseId = id;
     }
 
-    /**
-     * Sets the name for the course.
-     *
-     * @param name Name for course.
-     */
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * Sets the Professor in charge of the course.
-     *
-     * @param professor Professor in charge of course.
-     */
-    public void setCourseCoordinator(Professor professor) {
+    @Override
+    public void setCourseCoordinator(IProfessor professor) {
         this.courseCoordinator = professor;
     }
 
-    /**
-     * Sets the total seats available for this course.
-     *
-     * @param courseCapacity Total seats available for this course.
-     */
+    @Override
     public void setCapacity(int courseCapacity) {
         this.capacity = courseCapacity;
     }
 
-    /**
-     * Sets the lecture groups for this course.
-     *
-     * @param lectureGroups Lecture groups for this course.
-     */
-    public void setLectureGroups(List<Group> lectureGroups) {
+    @Override
+    public void setLectureGroups(List<IGroup> lectureGroups) {
         this.lectureGroups = lectureGroups;
     }
 
-    /**
-     * Sets the department for this course.
-     *
-     * @param department Department for this course.
-     */
+    @Override
     public void setDepartment(Department department) {
         this.department = department;
     }
 
+    @Override
     public void setType(CourseType type) {
         this.courseType = type;
     }
 
+    @Override
     public String[][] generateLabGroupInformation() {
         return generateGroupInformation(labGroups);
     }
 
+    @Override
     public String[][] generateTutorialGroupInformation() {
         return generateGroupInformation(tutorialGroups);
     }
 
+    @Override
     public String[][] generateLectureGroupInformation() {
         return generateGroupInformation(lectureGroups);
     }
 
-    private String[][] generateGroupInformation(List<Group> groups) {
+    private String[][] generateGroupInformation(List<IGroup> groups) {
         String[][] groupInfo = new String[groups.size()][3];
         for (int i = 0; i < groups.size(); i++) {
             groupInfo[i][0] = groups.get(i).getGroupName();
