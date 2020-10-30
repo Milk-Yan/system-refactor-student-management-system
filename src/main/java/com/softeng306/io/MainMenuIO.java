@@ -3,7 +3,7 @@ package com.softeng306.io;
 import java.util.Scanner;
 
 public class MainMenuIO {
-    public static Scanner scanner = new Scanner(System.in);
+    public static Scanner reader = new Scanner(System.in);
 
     private static ICourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
     private static IStudentMgrIO studentMgrIO = new StudentMgrIO();
@@ -19,8 +19,8 @@ public class MainMenuIO {
         int highestChoiceInt = 11;
         while (choice != 11) {
             printOptions();
-            choice = getIntInputFromUser(lowestChoiceInt, highestChoiceInt);
-            doActionFromUserChoice(choice);
+            choice = readMenuOptionChosen(lowestChoiceInt, highestChoiceInt);
+            executeUserChoice(choice);
         }
     }
 
@@ -31,17 +31,17 @@ public class MainMenuIO {
      * @param upperLimit The highest valid number for a user to enter
      * @return
      */
-    private static int getIntInputFromUser(int lowerLimit, int upperLimit) {
+    private static int readMenuOptionChosen(int lowerLimit, int upperLimit) {
         int choice;
 
         while (true) {
             System.out.println("Enter your choice, let me help you:");
-            while (!scanner.hasNextInt()) {
-                System.out.println("Sorry. " + scanner.nextLine() + " is not an integer.");
+            while (!reader.hasNextInt()) {
+                System.out.println("Sorry. " + reader.nextLine() + " is not an integer.");
                 System.out.println("Enter your choice, let me help you:");
             }
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            choice = reader.nextInt();
+            reader.nextLine();
             if (choice < lowerLimit || choice > upperLimit) {
                 System.out.println("Please enter " + lowerLimit + " ~ " + upperLimit + " for your choice:");
             } else {
@@ -50,7 +50,7 @@ public class MainMenuIO {
         }
     }
 
-    private static void doActionFromUserChoice(int choice) {
+    private static void executeUserChoice(int choice) {
         // Choose command based on user input choice
         switch (choice) {
             case 0:

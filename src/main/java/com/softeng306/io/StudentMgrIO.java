@@ -38,7 +38,7 @@ public class StudentMgrIO implements IStudentMgrIO {
 
     @Override
     public void printStudentTranscript() {
-        String studentId = readStudentIdFromUser();
+        String studentId = readExistingStudentId();
 
         int studentsAcademicUnits;
         String studentName;
@@ -68,7 +68,7 @@ public class StudentMgrIO implements IStudentMgrIO {
     }
 
     @Override
-    public String readExistingStudentIDFromUser() {
+    public String readExistingStudentID() {
         String studentID;
 
         while (true) {
@@ -196,7 +196,7 @@ public class StudentMgrIO implements IStudentMgrIO {
      *
      * @return the inputted student.
      */
-    private String readStudentIdFromUser() {
+    private String readExistingStudentId() {
         String studentID;
         while (true) {
             System.out.println("Enter Student ID (-h to print all the student ID):");

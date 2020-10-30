@@ -14,7 +14,7 @@ import com.softeng306.validation.RegexValidator;
 import java.util.*;
 
 public class CourseMgrIO implements ICourseMgrIO {
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner reader = new Scanner(System.in);
     private CourseMgr courseMgr = CourseMgr.getInstance();
 
     @Override
@@ -24,21 +24,21 @@ public class CourseMgrIO implements ICourseMgrIO {
         while (true) {
             System.out.println("Enter the number of " + type + " groups: ");
 
-            if (scanner.hasNextInt()) {
-                noOfGroups = scanner.nextInt();
-                scanner.nextLine();
-                boolean checkLimit;
+            if (reader.hasNextInt()) {
+                noOfGroups = reader.nextInt();
+                reader.nextLine();
+                boolean withinLimits;
                 if (type.equals(GroupType.LECTURE_GROUP.toString())) {
-                    checkLimit = noOfGroups > 0 && noOfGroups <= totalSeats;
+                    withinLimits = noOfGroups > 0 && noOfGroups <= totalSeats;
                 } else {
-                    checkLimit = noOfGroups >= 0 && compareTo <= totalSeats;
+                    withinLimits = noOfGroups >= 0 && compareTo <= totalSeats;
                 }
-                if (checkLimit) break;
+                if (withinLimits) break;
                 System.out.println("Invalid input.");
                 printInvalidNoGroup(type);
                 System.out.println("Please re-enter");
             } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+                System.out.println("Your input " + reader.nextLine() + " is not an integer.");
             }
         }
 
@@ -50,16 +50,16 @@ public class CourseMgrIO implements ICourseMgrIO {
         int weeklyHour;
         while (true) {
             System.out.format("Enter the weekly %s hour for this course: %n", type);
-            if (scanner.hasNextInt()) {
-                weeklyHour = scanner.nextInt();
-                scanner.nextLine();
+            if (reader.hasNextInt()) {
+                weeklyHour = reader.nextInt();
+                reader.nextLine();
                 if (weeklyHour < 0 || weeklyHour > academicUnits) {
                     System.out.format("Weekly %s hour out of bound. Please re-enter.%n", type);
                 } else {
                     break;
                 }
             } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+                System.out.println("Your input " + reader.nextLine() + " is not an integer.");
             }
         }
 
@@ -72,15 +72,15 @@ public class CourseMgrIO implements ICourseMgrIO {
         System.out.println("Create course components and set component weightage now?");
         System.out.println("1. Yes");
         System.out.println("2. Not yet");
-        addCourseComponentChoice = scanner.nextInt();
-        scanner.nextLine();
+        addCourseComponentChoice = reader.nextInt();
+        reader.nextLine();
 
         while (addCourseComponentChoice > 2 || addCourseComponentChoice < 0) {
             System.out.println("Invalid choice, please choose again.");
             System.out.println("1. Yes");
             System.out.println("2. Not yet");
-            addCourseComponentChoice = scanner.nextInt();
-            scanner.nextLine();
+            addCourseComponentChoice = reader.nextInt();
+            reader.nextLine();
         }
 
         return addCourseComponentChoice;
@@ -103,11 +103,11 @@ public class CourseMgrIO implements ICourseMgrIO {
     }
 
     @Override
-    public void printVacanciesForGroups(String[][] groupInformation, String groupType) {
+    public void printVacanciesForGroups(String[][] groupInformationForType, String groupType) {
         groupType = groupType.substring(0, 1).toUpperCase() + groupType.substring(1);
-        for (String[] group : groupInformation) {
+        for (String[] groupInfo : groupInformationForType) {
             System.out.format("%s group %s (Available/Total): %s/%s%n",
-                    groupType, group[0], group[1], group[2]);
+              groupType, groupInfo[0], groupInfo[1], groupInfo[2]);
         }
     }
 
@@ -123,8 +123,8 @@ public class CourseMgrIO implements ICourseMgrIO {
         System.out.println("Does this course have a final exam? Enter your choice:");
         System.out.println("1. Yes! ");
         System.out.println("2. No, all CAs.");
-        hasFinalExamChoice = scanner.nextInt();
-        scanner.nextLine();
+        hasFinalExamChoice = reader.nextInt();
+        reader.nextLine();
 
         return hasFinalExamChoice;
     }
@@ -134,15 +134,15 @@ public class CourseMgrIO implements ICourseMgrIO {
         int examWeight;
 
         System.out.println("Please enter weight of the exam: ");
-        examWeight = scanner.nextInt();
-        scanner.nextLine();
+        examWeight = reader.nextInt();
+        reader.nextLine();
         while (examWeight > 80 || examWeight <= 0) {
             if (examWeight > 80 && examWeight <= 100) {
                 System.out.println("According to the course assessment policy, final exam cannot take up more than 80%...");
             }
             System.out.println("Weight entered is invalid, please enter again: ");
-            examWeight = scanner.nextInt();
-            scanner.nextLine();
+            examWeight = reader.nextInt();
+            reader.nextLine();
         }
 
         return examWeight;
@@ -155,25 +155,25 @@ public class CourseMgrIO implements ICourseMgrIO {
 
     @Override
     public int readNoOfMainComponents() {
-        int numberOfMain;
+        int noOfMainComponents;
 
         while (true) {
             System.out.println("Enter number of main component(s) to add:");
-            while (!scanner.hasNextInt()) {
-                String input = scanner.next();
+            while (!reader.hasNextInt()) {
+                String input = reader.next();
                 System.out.println("Sorry. " + input + " is not an integer.");
                 System.out.println("Enter number of main component(s) to add:");
             }
-            numberOfMain = scanner.nextInt();
-            if (numberOfMain < 0) {
+            noOfMainComponents = reader.nextInt();
+            if (noOfMainComponents < 0) {
                 System.out.println("Please enter a valid positive integer:");
                 continue;
             }
             break;
         }
-        scanner.nextLine();
+        reader.nextLine();
 
-        return numberOfMain;
+        return noOfMainComponents;
     }
 
     @Override
@@ -181,44 +181,44 @@ public class CourseMgrIO implements ICourseMgrIO {
         int weight;
         while (true) {
             System.out.println("Enter main component " + (i + 1) + " weightage: ");
-            while (!scanner.hasNextInt()) {
-                String input = scanner.next();
+            while (!reader.hasNextInt()) {
+                String input = reader.next();
                 System.out.println("Sorry. " + input + " is not an integer.");
                 System.out.println("Enter main component " + (i + 1) + " weightage:");
             }
-            weight = scanner.nextInt();
+            weight = reader.nextInt();
             if (weight < 0 || weight > totalWeightage) {
                 System.out.println("Please enter a weight between 0 ~ " + totalWeightage + ":");
                 continue;
             }
             break;
         }
-        scanner.nextLine();
+        reader.nextLine();
 
         return weight;
     }
 
     @Override
     public int readNoOfSubComponents(int mainComponentNo) {
-        int noOfSub;
+        int noOfSubComponents;
 
         while (true) {
             System.out.println("Enter number of sub component under main component " + (mainComponentNo + 1) + ":");
-            while (!scanner.hasNextInt()) {
-                String input = scanner.next();
+            while (!reader.hasNextInt()) {
+                String input = reader.next();
                 System.out.println("Sorry. " + input + " is not an integer.");
                 System.out.println("Enter number of sub component under main component " + (mainComponentNo + 1) + ":");
             }
-            noOfSub = scanner.nextInt();
-            if (noOfSub < 0) {
+            noOfSubComponents = reader.nextInt();
+            if (noOfSubComponents < 0) {
                 System.out.println("Please enter a valid integer:");
                 continue;
             }
             break;
         }
-        scanner.nextLine();
+        reader.nextLine();
 
-        return noOfSub;
+        return noOfSubComponents;
     }
 
     @Override
@@ -259,7 +259,7 @@ public class CourseMgrIO implements ICourseMgrIO {
             int subComponentTotalWeight = 100;
             for (int j = 0; j < numberOfSubComponents; j++) {
                 subComponentName = readComponentName(subComponentTotalWeight, subComponentNames, j, CourseMgr.getInstance().getSubComponentString());
-                subComponentWeight = readSubWeight(j, subComponentTotalWeight);
+                subComponentWeight = readSubComponentWeight(j, subComponentTotalWeight);
                 subComponentNames.add(subComponentName);
                 subComponents.put(subComponentName, subComponentWeight);
                 subComponentTotalWeight -= subComponentWeight;
@@ -360,14 +360,14 @@ public class CourseMgrIO implements ICourseMgrIO {
     }
 
     @Override
-    public String readValidCourseIdFromUser() {
+    public String readExistingCourseId() {
         String courseID;
         while (true) {
             System.out.println("Enter course ID (-h to print all the course ID):");
-            courseID = scanner.nextLine();
+            courseID = reader.nextLine();
             while ("-h".equals(courseID)) {
                 courseMgr.printAllCourseIds();
-                courseID = scanner.nextLine();
+                courseID = reader.nextLine();
             }
             if (!courseMgr.checkCourseExists(courseID)) {
                 System.out.println("Invalid Course ID. Please re-enter.");
@@ -384,14 +384,14 @@ public class CourseMgrIO implements ICourseMgrIO {
      * @return the inputted department.
      */
     @Override
-    public String readDepartmentWithMoreThanOneCourseFromUser() {
+    public String readExistingDepartment() {
         String courseDepartment;
         while (true) {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
-            courseDepartment = scanner.nextLine();
+            courseDepartment = reader.nextLine();
             while ("-h".equals(courseDepartment)) {
                 printAllStringsInListByIndex(Department.getListOfAllDepartmentNames());
-                courseDepartment = scanner.nextLine();
+                courseDepartment = reader.nextLine();
             }
             if (Department.contains(courseDepartment)) {
                 List<String> validCourseString;
@@ -417,14 +417,14 @@ public class CourseMgrIO implements ICourseMgrIO {
         String courseName = readCourseName();
 
         int totalSeats = readTotalSeats();
-        int AU = readAcademicUnitsForCourse();
+        int academicUnits = readAcademicUnitsForCourse();
 
         String courseDepartment = readAnyCourseDepartment();
 
         String courseType = readCourseType();
 
         int noOfLectureGroups = courseMgr.getNumberOfLectureGroups(totalSeats, totalSeats);
-        int lecWeeklyHour = courseMgr.getReadWeeklyLectureHour(AU);
+        int lecWeeklyHour = courseMgr.getReadWeeklyLectureHour(academicUnits);
 
         //Name, total seats
         Map<String, Double> lectureGroups = readLectureGroups(totalSeats, noOfLectureGroups);
@@ -432,18 +432,18 @@ public class CourseMgrIO implements ICourseMgrIO {
         int noOfTutorialGroups = courseMgr.getNumberOfTutorialGroups(noOfLectureGroups, totalSeats);
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
-            tutWeeklyHour = courseMgr.getReadWeeklyTutorialHour(AU);
+            tutWeeklyHour = courseMgr.getReadWeeklyTutorialHour(academicUnits);
         }
         Map<String, Double> tutorialGroups = readGroup(noOfTutorialGroups, totalSeats, GroupType.TUTORIAL_GROUP.toString());
 
         int noOfLabGroups = courseMgr.getNumberOfLabGroups(noOfLectureGroups, totalSeats);
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
-            labWeeklyHour = courseMgr.getReadWeeklyLabHour(AU);
+            labWeeklyHour = courseMgr.getReadWeeklyLabHour(academicUnits);
         }
         Map<String, Double> labGroups = readGroup(noOfLabGroups, totalSeats, GroupType.LAB_GROUP.toString());
 
-        String profID = readProfessor(courseDepartment);
+        String profID = readExistingProfessorId(courseDepartment);
 
         //Setting the objects in the builder
         builder.setCourseID(courseID);
@@ -452,7 +452,7 @@ public class CourseMgrIO implements ICourseMgrIO {
 
         builder.setTotalSeats(totalSeats);
 
-        builder.setAcademicUnits(AU);
+        builder.setAcademicUnits(academicUnits);
 
         builder.setCourseDepartment(courseDepartment);
 
@@ -547,7 +547,7 @@ public class CourseMgrIO implements ICourseMgrIO {
      * @param groupDisplayString The group string to use in outputs
      * @return User-specficied group name
      */
-    private String readValidGroupNameFromUser(Map<String, Double> existingGroups, String groupDisplayString) {
+    private String readExistingGroupName(Map<String, Double> existingGroups, String groupDisplayString) {
         boolean groupNameExists;
         String groupName;
 
@@ -555,7 +555,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         do {
             groupNameExists = false;
             System.out.println("Enter a group Name: ");
-            groupName = scanner.nextLine();
+            groupName = reader.nextLine();
 
             if (!RegexValidator.checkValidGroupNameInput(groupName)) {
                 groupNameExists = true;
@@ -580,7 +580,7 @@ public class CourseMgrIO implements ICourseMgrIO {
      * @param courseDepartment the course department that the professor should be in
      * @return Professor the professor the user has specified
      */
-    private String readProfessor(String courseDepartment) {
+    private String readExistingProfessorId(String courseDepartment) {
         IProfessorMgrIO professorIO = new ProfessorMgrIO();
 
         List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
@@ -589,10 +589,10 @@ public class CourseMgrIO implements ICourseMgrIO {
         while (true) {
             System.out.println("Enter the ID for the professor in charge please:");
             System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
-            profID = scanner.nextLine();
+            profID = reader.nextLine();
             while ("-h".equals(profID)) {
                 professorIO.printAllProfIDsInDepartment(professorsInDepartment);
-                profID = scanner.nextLine();
+                profID = reader.nextLine();
             }
 
             if (ProfessorMgr.getInstance().checkProfessorExists(profID)) {
@@ -621,7 +621,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         // Can make the sameCourseID as boolean, set to false.
         while (true) {
             System.out.println("Give this course an ID: ");
-            courseID = scanner.nextLine();
+            courseID = reader.nextLine();
             if (RegexValidator.checkValidCourseIDInput(courseID)) {
 
                 // Check course ID does not already exist for a course
@@ -643,7 +643,7 @@ public class CourseMgrIO implements ICourseMgrIO {
      */
     private String readCourseName() {
         System.out.println("Enter course Name: ");
-        return scanner.nextLine();
+        return reader.nextLine();
     }
 
 
@@ -656,15 +656,15 @@ public class CourseMgrIO implements ICourseMgrIO {
         int totalSeats;
         while (true) {
             System.out.println("Enter the total vacancy of this course: ");
-            if (scanner.hasNextInt()) {
-                totalSeats = scanner.nextInt();
+            if (reader.hasNextInt()) {
+                totalSeats = reader.nextInt();
                 if (totalSeats <= 0) {
                     System.out.println("Please enter a valid vacancy (greater than 0)");
                 } else {
                     break;
                 }
             } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+                System.out.println("Your input " + reader.nextLine() + " is not an integer.");
                 System.out.println("Please re-enter");
             }
         }
@@ -681,16 +681,16 @@ public class CourseMgrIO implements ICourseMgrIO {
         int AU;
         while (true) {
             System.out.println("Enter number of academic unit(s): ");
-            if (scanner.hasNextInt()) {
-                AU = scanner.nextInt();
-                scanner.nextLine();
+            if (reader.hasNextInt()) {
+                AU = reader.nextInt();
+                reader.nextLine();
                 if (AU < 0 || AU > 10) {
                     System.out.println("AU out of bound. Please re-enter.");
                 } else {
                     break;
                 }
             } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+                System.out.println("Your input " + reader.nextLine() + " is not an integer.");
             }
         }
 
@@ -706,16 +706,16 @@ public class CourseMgrIO implements ICourseMgrIO {
         int AU;
         while (true) {
             System.out.println("Enter number of academic unit(s): ");
-            if (scanner.hasNextInt()) {
-                AU = scanner.nextInt();
-                scanner.nextLine();
+            if (reader.hasNextInt()) {
+                AU = reader.nextInt();
+                reader.nextLine();
                 if (AU < 0 || AU > 10) {
                     System.out.println("AU out of bound. Please re-enter.");
                 } else {
                     break;
                 }
             } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+                System.out.println("Your input " + reader.nextLine() + " is not an integer.");
             }
         }
 
@@ -729,25 +729,25 @@ public class CourseMgrIO implements ICourseMgrIO {
      * @param sub_totWeight  the total subcomponent weightage
      * @return int the sub component weight
      */
-    private int readSubWeight(int subComponentNo, int sub_totWeight) {
-        int sub_weight;
+    private int readSubComponentWeight(int subComponentNo, int sub_totWeight) {
+        int subComponentWeight;
         while (true) {
             System.out.println("Enter sub component " + (subComponentNo + 1) + " weightage: ");
-            while (!scanner.hasNextInt()) {
-                String input = scanner.next();
+            while (!reader.hasNextInt()) {
+                String input = reader.next();
                 System.out.println("Sorry. " + input + " is not an integer.");
                 System.out.println("Enter sub component " + (subComponentNo + 1) + " weightage (out of the main component): ");
             }
-            sub_weight = scanner.nextInt();
-            if (sub_weight < 0 || sub_weight > sub_totWeight) {
+            subComponentWeight = reader.nextInt();
+            if (subComponentWeight < 0 || subComponentWeight > sub_totWeight) {
                 System.out.println("Please enter a weight between 0 ~ " + sub_totWeight + ":");
                 continue;
             }
             break;
         }
-        scanner.nextLine();
+        reader.nextLine();
 
-        return sub_weight;
+        return subComponentWeight;
     }
 
     /**
@@ -772,7 +772,7 @@ public class CourseMgrIO implements ICourseMgrIO {
                 System.out.println("Total weightage left to assign to sub component: " + totalWeightAssignable);
             }
             System.out.println("Enter " + componentType + " " + (componentNumber + 1) + " name: ");
-            componentName = scanner.nextLine();
+            componentName = reader.nextLine();
 
             if (componentNames.isEmpty()) {
                 break;
@@ -807,13 +807,13 @@ public class CourseMgrIO implements ICourseMgrIO {
         int groupCapacity;
         int totalAllocatedSeats = 0;
         for (int i = 0; i < numGroups; i++) {
-            groupName = readValidGroupNameFromUser(groups, groupDisplayString);
+            groupName = readExistingGroupName(groups, groupDisplayString);
 
             while (true) {
                 System.out.println("Enter this " + groupDisplayString + " group's capacity: ");
-                if (scanner.hasNextInt()) {
-                    groupCapacity = scanner.nextInt();
-                    scanner.nextLine();
+                if (reader.hasNextInt()) {
+                    groupCapacity = reader.nextInt();
+                    reader.nextLine();
                     totalAllocatedSeats += groupCapacity;
 
                     if ((i != numGroups - 1) || (totalAllocatedSeats >= maxSeats)) {
@@ -825,7 +825,7 @@ public class CourseMgrIO implements ICourseMgrIO {
                         totalAllocatedSeats -= groupCapacity;
                     }
                 } else {
-                    System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+                    System.out.println("Your input " + reader.nextLine() + " is not an integer.");
                 }
             }
         }
@@ -844,10 +844,10 @@ public class CourseMgrIO implements ICourseMgrIO {
         while (true) {
             System.out.println("Enter course's department (uppercase): ");
             System.out.println("Enter -h to print all the departments.");
-            courseDepartment = scanner.nextLine();
+            courseDepartment = reader.nextLine();
             while ("-h".equals(courseDepartment)) {
                 printAllStringsInListByIndex(Department.getListOfAllDepartmentNames());
-                courseDepartment = scanner.nextLine();
+                courseDepartment = reader.nextLine();
             }
             if (Department.contains(courseDepartment)) {
                 break;
@@ -869,10 +869,10 @@ public class CourseMgrIO implements ICourseMgrIO {
         while (true) {
             System.out.println("Enter course type (uppercase): ");
             System.out.println("Enter -h to print all the course types.");
-            courseType = scanner.nextLine();
+            courseType = reader.nextLine();
             while (courseType.equals("-h")) {
                 printAllCourseType(CourseMgr.getInstance().getListCourseTypes());
-                courseType = scanner.nextLine();
+                courseType = reader.nextLine();
             }
             if (CourseType.contains(courseType)) {
                 break;
@@ -898,20 +898,20 @@ public class CourseMgrIO implements ICourseMgrIO {
         Map<String, Double> lectureGroups = new HashMap<>();
 
         for (int i = 0; i < noOfLectureGroups; i++) {
-            lectureGroupName = readValidGroupNameFromUser(lectureGroups, GroupType.LECTURE_GROUP.toString());
+            lectureGroupName = readExistingGroupName(lectureGroups, GroupType.LECTURE_GROUP.toString());
 
             while (true) {
                 System.out.println("Enter this lecture group's capacity: ");
                 while (true) {
-                    if (scanner.hasNextInt()) {
-                        lectureGroupCapacity = scanner.nextInt();
-                        scanner.nextLine();
+                    if (reader.hasNextInt()) {
+                        lectureGroupCapacity = reader.nextInt();
+                        reader.nextLine();
                         if (lectureGroupCapacity > 0) {
                             break;
                         }
                         System.out.println("Capacity must be positive. Please re-enter.");
                     } else {
-                        System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
+                        System.out.println("Your input " + reader.nextLine() + " is not an integer.");
                     }
                 }
                 seatsLeft -= lectureGroupCapacity;

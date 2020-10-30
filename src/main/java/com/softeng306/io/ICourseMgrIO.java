@@ -190,14 +190,14 @@ public interface ICourseMgrIO {
      *
      * @return the inputted course.
      */
-    String readValidCourseIdFromUser();
+    String readExistingCourseId();
 
     /**
      * Prompts the user to input an existing department.
      *
      * @return the inputted department.
      */
-    String readDepartmentWithMoreThanOneCourseFromUser();
+    String readExistingDepartment();
 
     void addCourse();
 

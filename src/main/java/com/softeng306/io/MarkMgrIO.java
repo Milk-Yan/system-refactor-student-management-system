@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MarkMgrIO implements IMarkMgrIO {
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner reader = new Scanner(System.in);
     private MarkMgr markMgr = MarkMgr.getInstance();
-    
+
     @Override
     public void printStudentNotRegisteredToCourse(String courseID) {
         System.out.println("This student haven't registered " + courseID);
@@ -30,14 +30,14 @@ public class MarkMgrIO implements IMarkMgrIO {
     public int readCourseComponentChoice(int numChoices) {
         int choice;
         System.out.println("Enter your choice");
-        choice = scanner.nextInt();
-        scanner.nextLine();
+        choice = reader.nextInt();
+        reader.nextLine();
 
         while (choice > (numChoices + 1) || choice < 0) {
             System.out.println("Please enter choice between " + 0 + "~" + (numChoices + 1));
             System.out.println("Enter your choice");
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            choice = reader.nextInt();
+            reader.nextLine();
         }
 
         return choice;
@@ -47,12 +47,12 @@ public class MarkMgrIO implements IMarkMgrIO {
     public double readCourseComponentMark() {
         double assessmentMark;
         System.out.println("Enter the mark for this assessment:");
-        assessmentMark = scanner.nextDouble();
-        scanner.nextLine();
+        assessmentMark = reader.nextDouble();
+        reader.nextLine();
         while (assessmentMark > 100 || assessmentMark < 0) {
             System.out.println("Please enter mark in range 0 ~ 100.");
-            assessmentMark = scanner.nextDouble();
-            scanner.nextLine();
+            assessmentMark = reader.nextDouble();
+            reader.nextLine();
         }
 
         return assessmentMark;
@@ -62,12 +62,12 @@ public class MarkMgrIO implements IMarkMgrIO {
     public double readExamMark() {
         double examMark;
         System.out.println("Enter exam mark:");
-        examMark = scanner.nextDouble();
-        scanner.nextLine();
+        examMark = reader.nextDouble();
+        reader.nextLine();
         while (examMark > 100 || examMark < 0) {
             System.out.println("Please enter mark in range 0 ~ 100.");
-            examMark = scanner.nextDouble();
-            scanner.nextLine();
+            examMark = reader.nextDouble();
+            reader.nextLine();
         }
 
         return examMark;
@@ -78,8 +78,8 @@ public class MarkMgrIO implements IMarkMgrIO {
         printFunctionCall("enterCourseWorkMark");
 
         try {
-            String studentID = new StudentMgrIO().readExistingStudentIDFromUser();
-            String courseID = CourseMgr.getInstance().readCourseFromUser().getCourseID();
+            String studentID = new StudentMgrIO().readExistingStudentID();
+            String courseID = CourseMgr.getInstance().readExistingCourse().getCourseID();
             markMgr.setCourseworkMark(isExam, studentID, courseID);
         } catch (CourseNotFoundException e) {
             e.printStackTrace();

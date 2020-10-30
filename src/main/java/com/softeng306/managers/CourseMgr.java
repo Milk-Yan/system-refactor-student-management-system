@@ -95,7 +95,7 @@ public class CourseMgr {
         while (true) {
             Course currentCourse;
             try {
-                currentCourse = readCourseFromUser();
+                currentCourse = readExistingCourse();
             } catch (CourseNotFoundException e) {
                 e.printStackTrace();
                 return;
@@ -137,7 +137,7 @@ public class CourseMgr {
         MainMenuIO.printMethodCall("enterCourseWorkComponentWeightage");
         if (currentCourse == null) {
             try {
-                currentCourse = readCourseFromUser();
+                currentCourse = readExistingCourse();
             } catch (CourseNotFoundException e) {
                 e.printStackTrace();
                 return;
@@ -285,7 +285,7 @@ public class CourseMgr {
         Course currentCourse;
         String courseID;
         try {
-            currentCourse = readCourseFromUser();
+            currentCourse = readExistingCourse();
             courseID = currentCourse.getCourseID();
         } catch (CourseNotFoundException e) {
             e.printStackTrace();
@@ -330,8 +330,8 @@ public class CourseMgr {
      *
      * @return the inputted course.
      */
-    public Course readCourseFromUser() throws CourseNotFoundException {
-        String validCourseID = new CourseMgrIO().readValidCourseIdFromUser();
+    public Course readExistingCourse() throws CourseNotFoundException {
+        String validCourseID = new CourseMgrIO().readExistingCourseId();
         return getCourseFromId(validCourseID);
     }
 
@@ -340,8 +340,8 @@ public class CourseMgr {
      *
      * @return the inputted department.
      */
-    public String readDepartmentFromUser() {
-        return new CourseMgrIO().readDepartmentWithMoreThanOneCourseFromUser();
+    public String readExistingDepartment() {
+        return new CourseMgrIO().readExistingDepartment();
     }
 
     /**
