@@ -6,6 +6,10 @@ import com.softeng306.domain.exceptions.CourseNotFoundException;
 
 import java.util.List;
 
+/**
+ * Interface for course manager operations.
+ * Defines the responsibilities of what functions must be performed on courses in the academic institute.
+ */
 public interface ICourseMgr {
 
     /**
@@ -30,6 +34,12 @@ public interface ICourseMgr {
      */
     void printAllCourseIds();
 
+    /**
+     * Get a list of course IDs for courses registered in a given department.
+     *
+     * @param departmentName The department to get course IDs for.
+     * @return A list of course IDs.
+     */
     List<String> getCourseIdsInDepartment(String departmentName);
 
     /**
@@ -41,6 +51,7 @@ public interface ICourseMgr {
      * Prompts the user to input an existing course.
      *
      * @return the inputted course.
+     * @throws CourseNotFoundException If the user enters an invalid course.
      */
     ICourse readExistingCourse() throws CourseNotFoundException;
 
@@ -56,9 +67,10 @@ public interface ICourseMgr {
      *
      * @param courseID The inputted course ID.
      * @return the existing course or else null.
+     * @throws CourseNotFoundException If there is no course with the given ID.
      */
     ICourse getCourseFromId(String courseID) throws CourseNotFoundException;
-
+    
     int getNumberOfLectureGroups(int compareTo, int totalSeats);
 
     int readWeeklyLectureHour(int academicUnits);

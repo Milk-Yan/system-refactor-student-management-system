@@ -73,5 +73,5 @@ public interface IStudentMgr {
      * @return Whether or not the given ID has been used.
      */
     boolean studentExists(String studentID);
-    
+
 }
