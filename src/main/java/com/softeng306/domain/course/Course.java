@@ -21,7 +21,7 @@ public class Course {
     private CourseType courseType;
 
     private int vacancies;
-    private int courseCapacity;
+    private int capacity;
 
     private int lectureHoursPerWeek;
     private int tutorialHoursPerWeek = 0;
@@ -87,8 +87,8 @@ public class Course {
      *
      * @return the total seats of this course.
      */
-    public int getCourseCapacity() {
-        return courseCapacity;
+    public int getCapacity() {
+        return capacity;
     }
 
     /**
@@ -278,8 +278,8 @@ public class Course {
      *
      * @param courseCapacity Total seats available for this course.
      */
-    public void setCourseCapacity(int courseCapacity) {
-        this.courseCapacity = courseCapacity;
+    public void setCapacity(int courseCapacity) {
+        this.capacity = courseCapacity;
     }
 
     /**
@@ -321,7 +321,7 @@ public class Course {
         for (int i = 0; i < groups.size(); i++) {
             groupInfo[i][0] = groups.get(i).getGroupName();
             groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
-            groupInfo[i][2] = String.valueOf(groups.get(i).getGroupCapacity());
+            groupInfo[i][2] = String.valueOf(groups.get(i).getCapacity());
         }
         return groupInfo;
     }

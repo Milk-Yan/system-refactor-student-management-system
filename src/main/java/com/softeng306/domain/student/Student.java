@@ -13,7 +13,7 @@ public class Student {
 
     private String studentID;
     private String name;
-    private Department academicInstitution;
+    private Department department;
     private Gender gender;
 
     @JsonProperty("GPA")
@@ -62,8 +62,8 @@ public class Student {
      *
      * @return this student's school.
      */
-    public Department getAcademicInstitution() {
-        return academicInstitution;
+    public Department getDepartment() {
+        return department;
     }
 
     /**
@@ -105,10 +105,10 @@ public class Student {
     /**
      * Sets the school of this student.
      *
-     * @param academicInstitution this student's school.
+     * @param department this student's school.
      */
-    public void setAcademicInstitution(Department academicInstitution) {
-        this.academicInstitution = academicInstitution;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     /**

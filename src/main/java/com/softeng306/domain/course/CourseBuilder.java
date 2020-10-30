@@ -39,7 +39,7 @@ public class CourseBuilder implements ICourseBuilder {
 
     @Override
     public void setCourseCapacity(int courseCapacity) {
-        course.setCourseCapacity(courseCapacity);
+        course.setCapacity(courseCapacity);
         course.setVacancies(courseCapacity);
     }
 

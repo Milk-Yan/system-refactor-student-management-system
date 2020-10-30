@@ -1,59 +1,58 @@
 [ {
   "student" : {
-    "studentID" : "U1722744J",
-    "studentName" : "Chloe",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1722744J",
+    "name" : "Chloe",
+    "department" : "ECSE",
     "gender" : "FEMALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2001",
-    "courseName" : "Algorithm",
-    "profInCharge" : {
+    "courseId" : "SE2001",
+    "name" : "Algorithm",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 14,
-    "totalSeats" : 20,
-    "lecWeeklyHour" : 3,
+    "capacity" : 20,
+    "lectureHoursPerWeek" : 3,
     "lectureGroups" : [ {
       "groupName" : "Lec1",
       "availableVacancies" : 14,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     } ],
-    "tutWeeklyHour" : 2,
+    "tutorialHoursPerWeek" : 2,
     "tutorialGroups" : [ {
       "groupName" : "Tut1",
       "availableVacancies" : 18,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     }, {
       "groupName" : "Tut2",
       "availableVacancies" : 16,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     } ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Coursework",
-      "componentWeight" : 40,
+      "name" : "Coursework",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Assignment",
-        "componentWeight" : 70
+        "name" : "Assignment",
+        "weight" : 70
       }, {
-        "componentName" : "ClassPart",
-        "componentWeight" : 30
+        "name" : "ClassPart",
+        "weight" : 30
       } ]
     } ],
     "academicUnits" : 3
@@ -62,71 +61,70 @@
       "groupName" : "Lec1",
       "availableVacancies" : 14,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     } ,
   "tutorialGroup" : {
       "groupName" : "Tut2",
       "availableVacancies" : 16,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     } ,
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1234567L",
-    "studentName" : "Eric",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1234567L",
+    "name" : "Eric",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2001",
-    "courseName" : "Algorithm",
-    "profInCharge" : {
+    "courseId" : "SE2001",
+    "name" : "Algorithm",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 13,
-    "totalSeats" : 20,
-    "lecWeeklyHour" : 3,
+    "capacity" : 20,
+    "lectureHoursPerWeek" : 3,
     "lectureGroups" : [ {
       "groupName" : "Lec1",
       "availableVacancies" : 13,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     } ],
-    "tutWeeklyHour" : 2,
+    "tutorialHoursPerWeek" : 2,
     "tutorialGroups" : [ {
       "groupName" : "Tut1",
       "availableVacancies" : 18,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     }, {
       "groupName" : "Tut2",
       "availableVacancies" : 15,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     } ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Coursework",
-      "componentWeight" : 40,
+      "name" : "Coursework",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Assignment",
-        "componentWeight" : 70
+        "name" : "Assignment",
+        "weight" : 70
       }, {
-        "componentName" : "ClassPart",
-        "componentWeight" : 30
+        "name" : "ClassPart",
+        "weight" : 30
       } ]
     } ],
     "academicUnits" : 3
@@ -135,76 +133,75 @@
       "groupName" : "Lec1",
       "availableVacancies" : 13,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     } ,
   "tutorialGroup" : {
       "groupName" : "Tut2",
       "availableVacancies" : 15,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     },
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1822832L",
-    "studentName" : "Chloe",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822832L",
+    "name" : "Chloe",
+    "department" : "CHEM_ENG",
     "gender" : "FEMALE",
-    "studentYear" : 3,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 3,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 9,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 4,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -213,81 +210,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 9,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 4,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ,
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     }
 }, {
   "student" : {
-    "studentID" : "U1723456K",
-    "studentName" : "Ashley",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1723456K",
+    "name" : "Ashley",
+    "department" : "CHEM_ENG",
     "gender" : "MALE",
-    "studentYear" : 4,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 4,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 8,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 3,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -296,81 +292,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 8,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 3,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     }
 }, {
   "student" : {
-    "studentID" : "U1234567J",
-    "studentName" : "Daniel",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1234567J",
+    "name" : "Daniel",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 7,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 2,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -379,81 +374,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 7,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 2,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ,
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     }
 }, {
   "student" : {
-    "studentID" : "U1822835D",
-    "studentName" : "Charlie",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822835D",
+    "name" : "Charlie",
+    "department" : "CHEM_ENG",
     "gender" : "MALE",
-    "studentYear" : 3,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 3,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 6,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 1,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -462,81 +456,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 6,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 1,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ,
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     }
 }, {
   "student" : {
-    "studentID" : "U1822836B",
-    "studentName" : "Gauss",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822836B",
+    "name" : "Gauss",
+    "department" : "CHEM_ENG",
     "gender" : "MALE",
-    "studentYear" : 3,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 3,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 5,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 0,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -545,81 +538,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 5,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 0,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ,
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     }
 }, {
   "student" : {
-    "studentID" : "U1822837K",
-    "studentName" : "Clara",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822837K",
+    "name" : "Clara",
+    "department" : "CHEM_ENG",
     "gender" : "FEMALE",
-    "studentYear" : 1,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 1,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 9,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 4,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -628,81 +620,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 9,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 4,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } 
 }, {
   "student" : {
-    "studentID" : "U1822838J",
-    "studentName" : "Kevin",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1822838J",
+    "name" : "Kevin",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 8,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 3,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -711,81 +702,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 8,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 3,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     }
 }, {
   "student" : {
-    "studentID" : "U1822839K",
-    "studentName" : "Shannon",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822839K",
+    "name" : "Shannon",
+    "department" : "CHEM_ENG",
     "gender" : "FEMALE",
-    "studentYear" : 1,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 1,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 7,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 2,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -794,81 +784,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 7,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 2,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ,
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } 
 }, {
   "student" : {
-    "studentID" : "U1822840D",
-    "studentName" : "Shaun",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822840D",
+    "name" : "Shaun",
+    "department" : "CHEM_ENG",
     "gender" : "MALE",
-    "studentYear" : 3,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 3,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 6,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 1,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -877,81 +866,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 6,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 1,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } 
 }, {
   "student" : {
-    "studentID" : "U1822841A",
-    "studentName" : "Steven",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1822841A",
+    "name" : "Steven",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 4,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 4,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 5,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 0,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -960,81 +948,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 5,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 0,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } 
 }, {
   "student" : {
-    "studentID" : "U1822842F",
-    "studentName" : "Stefan",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822842F",
+    "name" : "Stefan",
+    "department" : "CHEM_ENG",
     "gender" : "MALE",
-    "studentYear" : 1,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 1,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 9,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 4,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -1043,81 +1030,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 9,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 4,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } 
 }, {
   "student" : {
-    "studentID" : "U1822843I",
-    "studentName" : "Sebas",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1822843I",
+    "name" : "Sebas",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 1,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 1,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 8,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 3,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -1126,81 +1112,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 8,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 3,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } 
 }, {
   "student" : {
-    "studentID" : "U1822821E",
-    "studentName" : "Freddy",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1822821E",
+    "name" : "Freddy",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 1,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 1,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 7,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 2,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -1209,81 +1194,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 7,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 2,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } 
 }, {
   "student" : {
-    "studentID" : "U1712312B",
-    "studentName" : "Leigh",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1712312B",
+    "name" : "Leigh",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 6,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 1,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -1292,81 +1276,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 6,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 1,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } 
 }, {
   "student" : {
-    "studentID" : "U1812312D",
-    "studentName" : "Hakeem",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1812312D",
+    "name" : "Hakeem",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 1,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 1,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 5,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 0,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -1375,81 +1358,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 5,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 0,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     }
 }, {
   "student" : {
-    "studentID" : "U1829392I",
-    "studentName" : "Kourtney",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1829392I",
+    "name" : "Kourtney",
+    "department" : "CHEM_ENG",
     "gender" : "FEMALE",
-    "studentYear" : 1,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 1,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 9,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 9,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 4,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -1458,81 +1440,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 9,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 4,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 9,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } 
 }, {
   "student" : {
-    "studentID" : "U1822023E",
-    "studentName" : "Elaina",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822023E",
+    "name" : "Elaina",
+    "department" : "CHEM_ENG",
     "gender" : "FEMALE",
-    "studentYear" : 1,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 1,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 8,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 8,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 3,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -1541,81 +1522,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 8,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 3,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 8,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     }
 }, {
   "student" : {
-    "studentID" : "U1829393K",
-    "studentName" : "Chloe",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1829393K",
+    "name" : "Chloe",
+    "department" : "CHEM_ENG",
     "gender" : "MALE",
-    "studentYear" : 1,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 1,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 7,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 7,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 2,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -1624,81 +1604,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 7,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 2,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 7,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } 
 }, {
   "student" : {
-    "studentID" : "U1722744J",
-    "studentName" : "Chloe",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1722744J",
+    "name" : "Chloe",
+    "department" : "ECSE",
     "gender" : "FEMALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 6,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 6,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 1,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -1707,81 +1686,80 @@
       "groupName" : "LEC1",
       "availableVacancies" : 6,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     },
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 1,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 6,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } 
 }, {
   "student" : {
-    "studentID" : "U1800001L",
-    "studentName" : "Eric",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1800001L",
+    "name" : "Eric",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2005",
-    "courseName" : "Operating System",
-    "profInCharge" : {
+    "courseId" : "SE2005",
+    "name" : "Operating System",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 5,
-    "totalSeats" : 30,
-    "lecWeeklyHour" : 2,
+    "capacity" : 30,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 5,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 0,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 5,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Lab Assignments",
-      "componentWeight" : 40,
+      "name" : "Lab Assignments",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Oral Assessment",
-        "componentWeight" : 25
+        "name" : "Oral Assessment",
+        "weight" : 25
       }, {
-        "componentName" : "Lab Report",
-        "componentWeight" : 75
+        "name" : "Lab Report",
+        "weight" : 75
       } ]
     } ],
     "academicUnits" : 3
@@ -1790,76 +1768,75 @@
       "groupName" : "LEC1",
       "availableVacancies" : 5,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 0,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 15
+      "capacity" : 15
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 5,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 30
+      "capacity" : 30
     }
 }, {
   "student" : {
-    "studentID" : "U1800001L",
-    "studentName" : "Eric",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1800001L",
+    "name" : "Eric",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2001",
-    "courseName" : "Algorithm",
-    "profInCharge" : {
+    "courseId" : "SE2001",
+    "name" : "Algorithm",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 16,
-    "totalSeats" : 20,
-    "lecWeeklyHour" : 3,
+    "capacity" : 20,
+    "lectureHoursPerWeek" : 3,
     "lectureGroups" : [ {
       "groupName" : "Lec1",
       "availableVacancies" : 16,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     } ],
-    "tutWeeklyHour" : 2,
+    "tutorialHoursPerWeek" : 2,
     "tutorialGroups" : [ {
       "groupName" : "Tut1",
       "availableVacancies" : 17,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     }, {
       "groupName" : "Tut2",
       "availableVacancies" : 19,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     } ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Coursework",
-      "componentWeight" : 40,
+      "name" : "Coursework",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Assignment",
-        "componentWeight" : 70
+        "name" : "Assignment",
+        "weight" : 70
       }, {
-        "componentName" : "ClassPart",
-        "componentWeight" : 30
+        "name" : "ClassPart",
+        "weight" : 30
       } ]
     } ],
     "academicUnits" : 3
@@ -1868,80 +1845,79 @@
       "groupName" : "Lec1",
       "availableVacancies" : 16,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     },
   "tutorialGroup" : {
       "groupName" : "Tut1",
       "availableVacancies" : 17,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     },
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1800001L",
-    "studentName" : "Eric",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1800001L",
+    "name" : "Eric",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE1006",
-    "courseName" : "COA",
-    "profInCharge" : {
+    "courseId" : "SE1006",
+    "name" : "COA",
+    "courseCoordinator" : {
       "profID" : "P1234567J",
       "profName" : "Ewan Tempero",
       "profDepartment" : "CS"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 97,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 49,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 48,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     } ],
-    "labWeeklyHour" : 2,
+    "labHoursPerWeek" : 2,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 47,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     }, {
       "groupName" : "LAB2",
       "availableVacancies" : 50,
-      "totalSeats" : 50
+      "capacity" : 50
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Course Work",
-      "componentWeight" : 40,
+      "name" : "Course Work",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Assignment",
-        "componentWeight" : 70
+        "name" : "Assignment",
+        "weight" : 70
       }, {
-        "componentName" : "Paticipation",
-        "componentWeight" : 30
+        "name" : "Paticipation",
+        "weight" : 30
       } ]
     } ],
     "academicUnits" : 3
@@ -1950,91 +1926,90 @@
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     },
   "tutorialGroup" : {
       "groupName" : "TUT2",
       "availableVacancies" : 48,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 47,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     }
 }, {
   "student" : {
-    "studentID" : "U1800001L",
-    "studentName" : "Eric",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1800001L",
+    "name" : "Eric",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE2007",
-    "courseName" : "Database",
-    "profInCharge" : {
+    "courseId" : "SE2007",
+    "name" : "Database",
+    "courseCoordinator" : {
       "profID" : "P1234567J",
       "profName" : "Ewan Tempero",
       "profDepartment" : "CS"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 48,
-    "totalSeats" : 50,
-    "lecWeeklyHour" : 3,
+    "capacity" : 50,
+    "lectureHoursPerWeek" : 3,
     "lectureGroups" : [ {
       "groupName" : "Lec1",
       "availableVacancies" : 48,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     } ],
-    "tutWeeklyHour" : 2,
+    "tutorialHoursPerWeek" : 2,
     "tutorialGroups" : [ {
       "groupName" : "SS1",
       "availableVacancies" : 20,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     }, {
       "groupName" : "SS2",
       "availableVacancies" : 20,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     }, {
       "groupName" : "SS3",
       "availableVacancies" : 20,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     }, {
       "groupName" : "SS4",
       "availableVacancies" : 18,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     }, {
       "groupName" : "SS5",
       "availableVacancies" : 20,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     } ],
-    "labWeeklyHour" : 1,
+    "labHoursPerWeek" : 1,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Coursework",
-      "componentWeight" : 40,
+      "name" : "Coursework",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Labwork",
-        "componentWeight" : 70
+        "name" : "Labwork",
+        "weight" : 70
       }, {
-        "componentName" : "Presentation",
-        "componentWeight" : 30
+        "name" : "Presentation",
+        "weight" : 30
       } ]
     } ],
     "academicUnits" : 3
@@ -2043,80 +2018,79 @@
       "groupName" : "Lec1",
       "availableVacancies" : 48,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     } ,
   "tutorialGroup" : {
       "groupName" : "SS4",
       "availableVacancies" : 18,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 20
+      "capacity" : 20
     },
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1822836B",
-    "studentName" : "Gauss",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822836B",
+    "name" : "Gauss",
+    "department" : "CHEM_ENG",
     "gender" : "MALE",
-    "studentYear" : 3,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 3,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE1006",
-    "courseName" : "COA",
-    "profInCharge" : {
+    "courseId" : "SE1006",
+    "name" : "COA",
+    "courseCoordinator" : {
       "profID" : "P1234567J",
       "profName" : "Ewan Tempero",
       "profDepartment" : "CS"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 96,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 96,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 1,
+    "tutorialHoursPerWeek" : 1,
     "tutorialGroups" : [ {
       "groupName" : "TUT1",
       "availableVacancies" : 48,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     }, {
       "groupName" : "TUT2",
       "availableVacancies" : 48,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     } ],
-    "labWeeklyHour" : 2,
+    "labHoursPerWeek" : 2,
     "labGroups" : [ {
       "groupName" : "LAB1",
       "availableVacancies" : 46,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     }, {
       "groupName" : "LAB2",
       "availableVacancies" : 50,
-      "totalSeats" : 50
+      "capacity" : 50
     } ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "Course Work",
-      "componentWeight" : 40,
+      "name" : "Course Work",
+      "weight" : 40,
       "subComponents" : [ {
-        "componentName" : "Assignment",
-        "componentWeight" : 70
+        "name" : "Assignment",
+        "weight" : 70
       }, {
-        "componentName" : "Paticipation",
-        "componentWeight" : 30
+        "name" : "Paticipation",
+        "weight" : 30
       } ]
     } ],
     "academicUnits" : 3
@@ -2125,70 +2099,69 @@
       "groupName" : "LEC1",
       "availableVacancies" : 96,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ,
   "tutorialGroup" : {
       "groupName" : "TUT1",
       "availableVacancies" : 48,
       "groupType" : "TUTORIAL_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     },
   "labGroup" : {
       "groupName" : "LAB1",
       "availableVacancies" : 46,
       "groupType" : "LAB_GROUP",
-      "totalSeats" : 50
+      "capacity" : 50
     }
 }, {
   "student" : {
-    "studentID" : "U1800001L",
-    "studentName" : "Eric",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1800001L",
+    "name" : "Eric",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE0001",
-    "courseName" : "ENS",
-    "profInCharge" : {
+    "courseId" : "SE0001",
+    "name" : "ENS",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 98,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 95,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 0,
+    "tutorialHoursPerWeek" : 0,
     "tutorialGroups" : [ ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "CourseWork",
-      "componentWeight" : 40,
+      "name" : "CourseWork",
+      "weight" : 40,
       "subComponents" : [ ]
     } ],
     "academicUnits" : 3
@@ -2197,60 +2170,59 @@
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1723456K",
-    "studentName" : "Ashley",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1723456K",
+    "name" : "Ashley",
+    "department" : "CHEM_ENG",
     "gender" : "MALE",
-    "studentYear" : 4,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 4,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE0001",
-    "courseName" : "ENS",
-    "profInCharge" : {
+    "courseId" : "SE0001",
+    "name" : "ENS",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 97,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 94,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 0,
+    "tutorialHoursPerWeek" : 0,
     "tutorialGroups" : [ ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "CourseWork",
-      "componentWeight" : 40,
+      "name" : "CourseWork",
+      "weight" : 40,
       "subComponents" : [ ]
     } ],
     "academicUnits" : 3
@@ -2259,60 +2231,59 @@
       "groupName" : "LEC2",
       "availableVacancies" : 94,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1234567J",
-    "studentName" : "Daniel",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1234567J",
+    "name" : "Daniel",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE0001",
-    "courseName" : "ENS",
-    "profInCharge" : {
+    "courseId" : "SE0001",
+    "name" : "ENS",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 96,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 93,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 0,
+    "tutorialHoursPerWeek" : 0,
     "tutorialGroups" : [ ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "CourseWork",
-      "componentWeight" : 40,
+      "name" : "CourseWork",
+      "weight" : 40,
       "subComponents" : [ ]
     } ],
     "academicUnits" : 3
@@ -2321,60 +2292,59 @@
       "groupName" : "LEC2",
       "availableVacancies" : 93,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1822835D",
-    "studentName" : "Charlie",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822835D",
+    "name" : "Charlie",
+    "department" : "CHEM_ENG",
     "gender" : "MALE",
-    "studentYear" : 3,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 3,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE0001",
-    "courseName" : "ENS",
-    "profInCharge" : {
+    "courseId" : "SE0001",
+    "name" : "ENS",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 95,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 92,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 0,
+    "tutorialHoursPerWeek" : 0,
     "tutorialGroups" : [ ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "CourseWork",
-      "componentWeight" : 40,
+      "name" : "CourseWork",
+      "weight" : 40,
       "subComponents" : [ ]
     } ],
     "academicUnits" : 3
@@ -2383,60 +2353,59 @@
       "groupName" : "LEC2",
       "availableVacancies" : 92,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1822836B",
-    "studentName" : "Gauss",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822836B",
+    "name" : "Gauss",
+    "department" : "CHEM_ENG",
     "gender" : "MALE",
-    "studentYear" : 3,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 3,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE0001",
-    "courseName" : "ENS",
-    "profInCharge" : {
+    "courseId" : "SE0001",
+    "name" : "ENS",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 94,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 91,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 0,
+    "tutorialHoursPerWeek" : 0,
     "tutorialGroups" : [ ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "CourseWork",
-      "componentWeight" : 40,
+      "name" : "CourseWork",
+      "weight" : 40,
       "subComponents" : [ ]
     } ],
     "academicUnits" : 3
@@ -2445,60 +2414,59 @@
       "groupName" : "LEC2",
       "availableVacancies" : 91,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1822837K",
-    "studentName" : "Clara",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822837K",
+    "name" : "Clara",
+    "department" : "CHEM_ENG",
     "gender" : "FEMALE",
-    "studentYear" : 1,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 1,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE0001",
-    "courseName" : "ENS",
-    "profInCharge" : {
+    "courseId" : "SE0001",
+    "name" : "ENS",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 93,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 90,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 0,
+    "tutorialHoursPerWeek" : 0,
     "tutorialGroups" : [ ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "CourseWork",
-      "componentWeight" : 40,
+      "name" : "CourseWork",
+      "weight" : 40,
       "subComponents" : [ ]
     } ],
     "academicUnits" : 3
@@ -2507,60 +2475,59 @@
       "groupName" : "LEC2",
       "availableVacancies" : 90,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1822838J",
-    "studentName" : "Kevin",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1822838J",
+    "name" : "Kevin",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 2,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 2,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE0001",
-    "courseName" : "ENS",
-    "profInCharge" : {
+    "courseId" : "SE0001",
+    "name" : "ENS",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 92,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 90,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 96,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 0,
+    "tutorialHoursPerWeek" : 0,
     "tutorialGroups" : [ ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "CourseWork",
-      "componentWeight" : 40,
+      "name" : "CourseWork",
+      "weight" : 40,
       "subComponents" : [ ]
     } ],
     "academicUnits" : 3
@@ -2569,60 +2536,59 @@
       "groupName" : "LEC3",
       "availableVacancies" : 96,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1822839K",
-    "studentName" : "Shannon",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822839K",
+    "name" : "Shannon",
+    "department" : "CHEM_ENG",
     "gender" : "FEMALE",
-    "studentYear" : 1,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 1,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE0001",
-    "courseName" : "ENS",
-    "profInCharge" : {
+    "courseId" : "SE0001",
+    "name" : "ENS",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 91,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 90,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 95,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 0,
+    "tutorialHoursPerWeek" : 0,
     "tutorialGroups" : [ ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "CourseWork",
-      "componentWeight" : 40,
+      "name" : "CourseWork",
+      "weight" : 40,
       "subComponents" : [ ]
     } ],
     "academicUnits" : 3
@@ -2631,60 +2597,59 @@
       "groupName" : "LEC3",
       "availableVacancies" : 95,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1822840D",
-    "studentName" : "Shaun",
-    "studentSchool" : "CHEM_ENG",
+    "studentId" : "U1822840D",
+    "name" : "Shaun",
+    "department" : "CHEM_ENG",
     "gender" : "MALE",
-    "studentYear" : 3,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 3,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE0001",
-    "courseName" : "ENS",
-    "profInCharge" : {
+    "courseId" : "SE0001",
+    "name" : "ENS",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 90,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 97,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 90,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 94,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 0,
+    "tutorialHoursPerWeek" : 0,
     "tutorialGroups" : [ ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "CourseWork",
-      "componentWeight" : 40,
+      "name" : "CourseWork",
+      "weight" : 40,
       "subComponents" : [ ]
     } ],
     "academicUnits" : 3
@@ -2693,60 +2658,59 @@
       "groupName" : "LEC3",
       "availableVacancies" : 94,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     },
   "tutorialGroup" : null,
   "labGroup" : null
 }, {
   "student" : {
-    "studentID" : "U1822841A",
-    "studentName" : "Steven",
-    "studentSchool" : "ECSE",
+    "studentId" : "U1822841A",
+    "name" : "Steven",
+    "department" : "ECSE",
     "gender" : "MALE",
-    "studentYear" : 4,
-    "gpa" : 0.0,
-    "GPA" : 0.0
+    "yearLevel" : 4,
+    "Gpa" : 0.0
   },
   "course" : {
-    "courseID" : "SE0001",
-    "courseName" : "ENS",
-    "profInCharge" : {
+    "courseId" : "SE0001",
+    "name" : "ENS",
+    "courseCoordinator" : {
       "profID" : "P1234561A",
       "profName" : "Reza Shahamiri",
       "profDepartment" : "ECSE"
     },
-    "courseDepartment" : "ECSE",
+    "department" : "ECSE",
     "courseType" : "CORE",
     "vacancies" : 89,
-    "totalSeats" : 100,
-    "lecWeeklyHour" : 2,
+    "capacity" : 100,
+    "lectureHoursPerWeek" : 2,
     "lectureGroups" : [ {
       "groupName" : "LEC1",
       "availableVacancies" : 96,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC2",
       "availableVacancies" : 90,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     }, {
       "groupName" : "LEC3",
       "availableVacancies" : 94,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     } ],
-    "tutWeeklyHour" : 0,
+    "tutorialHoursPerWeek" : 0,
     "tutorialGroups" : [ ],
-    "labWeeklyHour" : 0,
+    "labHoursPerWeek" : 0,
     "labGroups" : [ ],
     "mainComponents" : [ {
-      "componentName" : "Exam",
-      "componentWeight" : 60,
+      "name" : "Exam",
+      "weight" : 60,
       "subComponents" : [ ]
     }, {
-      "componentName" : "CourseWork",
-      "componentWeight" : 40,
+      "name" : "CourseWork",
+      "weight" : 40,
       "subComponents" : [ ]
     } ],
     "academicUnits" : 3
@@ -2755,7 +2719,7 @@
       "groupName" : "LEC1",
       "availableVacancies" : 96,
       "groupType" : "LECTURE_GROUP",
-      "totalSeats" : 100
+      "capacity" : 100
     },
   "tutorialGroup" : null,
   "labGroup" : null

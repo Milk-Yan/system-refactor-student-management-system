@@ -354,7 +354,7 @@ public class CourseMgr {
 
 
     public String generateCourseInformation(Course course) {
-        String infoString = course.getCourseId() + " " + course.getName() + " (Available/Total): " + course.getVacancies() + "/" + course.getCourseCapacity();
+        String infoString = course.getCourseId() + " " + course.getName() + " (Available/Total): " + course.getVacancies() + "/" + course.getCapacity();
         return infoString;
     }
 
@@ -384,7 +384,7 @@ public class CourseMgr {
         courseInformation.add(course.getCourseId());
         courseInformation.add(course.getName());
         courseInformation.add(String.valueOf(course.getAcademicUnits()));
-        courseInformation.add(String.valueOf(course.getCourseCapacity()));
+        courseInformation.add(String.valueOf(course.getCapacity()));
         courseInformation.add(String.valueOf(course.getVacancies()));
         return courseInformation;
     }

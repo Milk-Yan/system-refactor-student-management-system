@@ -15,7 +15,7 @@ public class Group {
     private int availableVacancies;
     private GroupType groupType;
 
-    private int groupCapacity;
+    private int capacity;
 
     /**
      * Default constructor. Required for Jackson serialization.
@@ -35,7 +35,7 @@ public class Group {
         this.groupType = groupType;
         this.groupName = groupName;
         this.availableVacancies = availableVacancies;
-        this.groupCapacity = groupCapacity;
+        this.capacity = groupCapacity;
     }
 
     /**
@@ -61,8 +61,8 @@ public class Group {
      *
      * @return this group's total seats.
      */
-    public int getGroupCapacity() {
-        return groupCapacity;
+    public int getCapacity() {
+        return capacity;
     }
 
     /**

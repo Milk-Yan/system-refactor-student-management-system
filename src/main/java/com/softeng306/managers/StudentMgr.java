@@ -52,7 +52,7 @@ public class StudentMgr {
     public void addStudent(String id, String name, String school, String gender, int year) {
         Student currentStudent = new Student(id, name);
 
-        currentStudent.setAcademicInstitution(Department.valueOf(school));  //Set school
+        currentStudent.setDepartment(Department.valueOf(school));  //Set school
         currentStudent.setGender(Gender.valueOf(gender));      //gender
         currentStudent.setYearLevel(year);   //student year
 
@@ -142,7 +142,7 @@ public class StudentMgr {
             if (Double.compare(student.getGpa(), 0.0) != 0) {
                 GPA = String.valueOf(student.getGpa());
             }
-            studentInformationStrings.add(" " + student.getStudentID() + " | " + student.getName() + " | " + student.getAcademicInstitution() + " | " + student.getGender() + " | " + student.getYearLevel() + " | " + GPA);
+            studentInformationStrings.add(" " + student.getStudentID() + " | " + student.getName() + " | " + student.getDepartment() + " | " + student.getGender() + " | " + student.getYearLevel() + " | " + GPA);
         }
         return studentInformationStrings;
     }
