@@ -9,7 +9,7 @@ import com.softeng306.domain.student.IStudent;
 import com.softeng306.enums.GroupType;
 
 /**
- * Interface for course registrations
+ * Interface for course registrations, used for registering a student in a course
  * Provides methods for returning registration data
  */
 @JsonDeserialize(as = CourseRegistration.class)
