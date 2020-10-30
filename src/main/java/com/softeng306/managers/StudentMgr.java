@@ -1,7 +1,6 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.exceptions.StudentNotFoundException;
-import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.student.Student;
 
 import com.softeng306.fileprocessing.IFileProcessor;
