@@ -11,6 +11,7 @@ import com.softeng306.domain.student.Student;
 import com.softeng306.enums.GroupType;
 import com.softeng306.fileprocessing.CourseRegistrationFileProcessor;
 import com.softeng306.fileprocessing.IFileProcessor;
+import com.softeng306.io.ICourseRegistrationMgrIO;
 import com.softeng306.io.CourseRegistrationMgrIO;
 
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class CourseRegistrationMgr {
      * Registers a course for a student
      */
     public List<String> registerCourse(String studentID, String courseID) throws InvalidCourseRegistrationException, StudentNotFoundException, CourseNotFoundException {
-        CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
+        ICourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         Student currentStudent = StudentMgr.getInstance().getStudentFromId(studentID);
         Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
 
@@ -116,7 +117,7 @@ public class CourseRegistrationMgr {
      * Prints the students in a course according to their lecture group, tutorial group or lab group.
      */
     public void printStudents(String courseID, int opt) throws CourseNotFoundException, GroupTypeNotFoundException {
-        CourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
+        ICourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
         Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
 
         // READ courseRegistrationFILE

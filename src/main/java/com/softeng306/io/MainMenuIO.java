@@ -5,10 +5,10 @@ import java.util.Scanner;
 public class MainMenuIO {
     public static Scanner scanner = new Scanner(System.in);
 
-    private static CourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
-    private static StudentMgrIO studentMgrIO = new StudentMgrIO();
-    private static MarkMgrIO markMgrIO = new MarkMgrIO();
-    private static CourseMgrIO courseMgrIO = new CourseMgrIO();
+    private static ICourseRegistrationMgrIO courseRegistrationMgrIO = new CourseRegistrationMgrIO();
+    private static IStudentMgrIO studentMgrIO = new StudentMgrIO();
+    private static IMarkMgrIO markMgrIO = new MarkMgrIO();
+    private static ICourseMgrIO courseMgrIO = new CourseMgrIO();
 
     /**
      * Startup the main menu for the application

@@ -15,8 +15,9 @@ import com.softeng306.fileprocessing.IFileProcessor;
 
 import com.softeng306.enums.GroupType;
 
-import com.softeng306.io.CourseMgrIO;
+import com.softeng306.io.ICourseMgrIO;
 import com.softeng306.io.MainMenuIO;
+import com.softeng306.io.CourseMgrIO;
 
 
 import java.util.*;
@@ -60,7 +61,7 @@ public class CourseMgr {
      * Creates a new course and stores it in the file.
      */
     public void addCourse(ICourseBuilder completeBuilder) {
-        CourseMgrIO courseMgrIO = new CourseMgrIO();
+        ICourseMgrIO courseMgrIO = new CourseMgrIO();
 
         Course course = completeBuilder.build();
         int addCourseComponentChoice;
@@ -86,7 +87,7 @@ public class CourseMgr {
      * Checks whether a course (with all of its groups) have available slots and displays the result.
      */
     public void checkAvailableSlots() {
-        CourseMgrIO io = new CourseMgrIO();
+        ICourseMgrIO io = new CourseMgrIO();
 
         //printout the result directly
         MainMenuIO.printMethodCall("checkAvailableSlots");
@@ -128,7 +129,7 @@ public class CourseMgr {
      * @param currentCourse The course which course work component is to be set.
      */
     public void enterCourseWorkComponentWeightage(Course currentCourse) {
-        CourseMgrIO io = new CourseMgrIO();
+        ICourseMgrIO io = new CourseMgrIO();
 
         // Assume when course is created, no components are added yet
         // Assume once components are created and set, cannot be changed.
@@ -164,7 +165,7 @@ public class CourseMgr {
      * @param currentCourse The course to create components for
      * @return
      */
-    private List<MainComponent> addMainComponentsToCourse(CourseMgrIO io, Course currentCourse) {
+    private List<MainComponent> addMainComponentsToCourse(ICourseMgrIO io, Course currentCourse) {
         List<MainComponent> mainComponents = new ArrayList<>(0);
 
         io.printEmptyCourseComponents(currentCourse.getCourseID(), currentCourse.getCourseName());
@@ -196,7 +197,7 @@ public class CourseMgr {
      * @param mainComponents         List of components to add main components to
      * @return
      */
-    private int addMainComponents(CourseMgrIO io, int examWeight, int numberOfMainComponents, List<MainComponent> mainComponents) {
+    private int addMainComponents(ICourseMgrIO io, int examWeight, int numberOfMainComponents, List<MainComponent> mainComponents) {
         Set<String> mainComponentNames = new HashSet<>();
         int totalWeightage = 100 - examWeight;
 
@@ -232,7 +233,7 @@ public class CourseMgr {
      * @param mainComponents List of components to add exam to
      * @return
      */
-    private int addExamComponent(CourseMgrIO io, List<MainComponent> mainComponents) {
+    private int addExamComponent(ICourseMgrIO io, List<MainComponent> mainComponents) {
         int hasFinalExamChoice = 0;
         int examWeight = 0;
 
@@ -277,7 +278,7 @@ public class CourseMgr {
      * Prints the course statics including enrollment rate, average result for every assessment component and the average overall performance of this course.
      */
     public void printCourseStatistics() {
-        CourseMgrIO io = new CourseMgrIO();
+        ICourseMgrIO io = new CourseMgrIO();
 
         MainMenuIO.printMethodCall("printCourseStatistics");
 
