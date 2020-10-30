@@ -450,7 +450,7 @@ public class CourseMgrIO implements ICourseMgrIO {
 
         builder.setCourseName(courseName);
 
-        builder.setTotalSeats(totalSeats);
+        builder.setCourseCapacity(totalSeats);
 
         builder.setAcademicUnits(academicUnits);
 
@@ -473,7 +473,7 @@ public class CourseMgrIO implements ICourseMgrIO {
 
         //Professor
         try {
-            builder.setProfInCharge(profID);
+            builder.setCourseCoordinator(profID);
             courseMgr.addCourse(builder);
         } catch (ProfessorNotFoundException e) {
             e.printStackTrace();

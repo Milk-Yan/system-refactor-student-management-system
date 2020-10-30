@@ -21,7 +21,7 @@ public class CourseBuilder implements ICourseBuilder {
 
     @Override
     public void setCourseID(String id) {
-        course.setID(id);
+        course.setCourseId(id);
     }
 
     @Override
@@ -30,17 +30,17 @@ public class CourseBuilder implements ICourseBuilder {
     }
 
     @Override
-    public void setProfInCharge(String profID) throws ProfessorNotFoundException {
+    public void setCourseCoordinator(String profID) throws ProfessorNotFoundException {
         ProfessorMgr profMgr = ProfessorMgr.getInstance();
         //Guaranteed at this point that the ID is valid
         Professor profInCharge = profMgr.getProfessorFromID(profID);
-        course.setProfInCharge(profInCharge);
+        course.setCourseCoordinator(profInCharge);
     }
 
     @Override
-    public void setTotalSeats(int totalSeats) {
-        course.setTotalSeat(totalSeats);
-        course.setVacancies(totalSeats);
+    public void setCourseCapacity(int courseCapacity) {
+        course.setCapacity(courseCapacity);
+        course.setVacancies(courseCapacity);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class CourseBuilder implements ICourseBuilder {
 
     @Override
     public void setCourseDepartment(String department) {
-        course.setCourseDepartment(Department.valueOf(department));
+        course.setDepartment(Department.valueOf(department));
     }
 
     @Override
@@ -92,17 +92,17 @@ public class CourseBuilder implements ICourseBuilder {
 
     @Override
     public void setLecWeeklyHour(int lecWeeklyHour) {
-        course.setLecWeeklyHour(lecWeeklyHour);
+        course.setLectureHoursPerWeek(lecWeeklyHour);
     }
 
     @Override
     public void setTutWeeklyHour(int tutWeeklyHour) {
-        course.setTutWeeklyHour(tutWeeklyHour);
+        course.setTutorialHoursPerWeek(tutWeeklyHour);
     }
 
     @Override
     public void setLabWeeklyHour(int labWeeklyHour) {
-        course.setLabWeeklyHour(labWeeklyHour);
+        course.setLabHoursPerWeek(labWeeklyHour);
     }
 
     @Override

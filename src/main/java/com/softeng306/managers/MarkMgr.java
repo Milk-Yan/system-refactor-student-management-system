@@ -93,13 +93,13 @@ public class MarkMgr {
 
 
         for (Mark mark : marks) {
-            if (mark.getCourse().getCourseID().equals(courseID) && mark.getStudent().getStudentID().equals(studentID)) {
+            if (mark.getCourse().getCourseId().equals(courseID) && mark.getStudent().getStudentId().equals(studentID)) {
                 //put the set mark function here
                 if (!isExam) {
                     for (MainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
                         MainComponent mainComponent = mainComponentMark.getMainComponent();
 
-                        if (!mainComponent.getComponentName().equals("Exam")
+                        if (!mainComponent.getName().equals("Exam")
                                 && !mainComponentMark.hasSubComponentMarks()) {
 
                             extractMainComponentDetails(mainComponent, componentNameList,
@@ -153,10 +153,10 @@ public class MarkMgr {
     private void extractMainComponentDetails(MainComponent mainComponent, List<String> componentNameList,
                                              List<String> availableChoices, List<Integer> weights,
                                              List<Boolean> isMainComponent) {
-        String mainComponentName = mainComponent.getComponentName();
+        String mainComponentName = mainComponent.getName();
         availableChoices.add(mainComponentName);
         componentNameList.add(mainComponentName);
-        weights.add(mainComponent.getComponentWeight());
+        weights.add(mainComponent.getWeight());
         isMainComponent.add(true);
     }
 
@@ -165,9 +165,9 @@ public class MarkMgr {
                                             List<Boolean> isMainComponent) {
 
         for (SubComponent subComponent : mainComponent.getSubComponents()) {
-            componentNameList.add(subComponent.getComponentName());
-            availableChoices.add(mainComponent.getComponentName() + "-" + subComponent.getComponentName());
-            weights.add(mainComponent.getComponentWeight() * subComponent.getComponentWeight() / 100);
+            componentNameList.add(subComponent.getName());
+            availableChoices.add(mainComponent.getName() + "-" + subComponent.getName());
+            weights.add(mainComponent.getWeight() * subComponent.getWeight() / 100);
             isMainComponent.add(false);
         }
     }
@@ -193,7 +193,7 @@ public class MarkMgr {
     public List<Mark> getMarksForStudent(String studentId) {
         List<Mark> studentMarks = new ArrayList<>();
         for (Mark mark : MarkMgr.getInstance().getMarks()) {
-            if (mark.getStudent().getStudentID().equals(studentId)) {
+            if (mark.getStudent().getStudentId().equals(studentId)) {
                 studentMarks.add(mark);
             }
         }
@@ -206,25 +206,25 @@ public class MarkMgr {
         double studentGPA = 0d;
 
         for (Mark mark : marksForStudent) {
-            markString.add("Course ID: " + mark.getCourse().getCourseID() + "\tCourse Name: " + mark.getCourse().getCourseName());
+            markString.add("Course ID: " + mark.getCourse().getCourseId() + "\tCourse Name: " + mark.getCourse().getName());
 
             for (MainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();
                 double result = mainComponentMark.getMark();
 
-                markString.add("Main Assessment: " + mainComponent.getComponentName() + " ----- (" + mainComponent.getComponentWeight() + "%)");
-                int mainAssessmentWeight = mainComponent.getComponentWeight();
+                markString.add("Main Assessment: " + mainComponent.getName() + " ----- (" + mainComponent.getWeight() + "%)");
+                int mainAssessmentWeight = mainComponent.getWeight();
 
                 for (SubComponentMark subComponentMark : mainComponentMark.getSubComponentMarks()) {
                     SubComponent subComponent = subComponentMark.getSubComponent();
-                    markString.add("Sub Assessment: " + subComponent.getComponentName() + " -- (" + subComponent.getComponentWeight() + "% * " + mainAssessmentWeight + "%) --- Mark: " + subComponentMark.getMark());
+                    markString.add("Sub Assessment: " + subComponent.getName() + " -- (" + subComponent.getWeight() + "% * " + mainAssessmentWeight + "%) --- Mark: " + subComponentMark.getMark());
                 }
 
                 markString.add("Main Assessment Total: " + result + "\n");
             }
 
             markString.add("Course Total: " + mark.getTotalMark() + "\n");
-            studentGPA += new MarkCalculator().gpaCalculator(mark) * mark.getCourse().getAcademicUnits();
+            studentGPA += new MarkCalculator().convertMarkToGradePoints(mark) * mark.getCourse().getAcademicUnits();
         }
         studentGPA /= totalAU;
         markString.add("GPA for this semester: " + studentGPA);

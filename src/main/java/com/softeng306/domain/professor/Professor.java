@@ -8,10 +8,9 @@ import com.softeng306.enums.Department;
 
 public class Professor {
 
-    private String profID;
-    private String profName;
-
-    private Department profDepartment;
+    private String professorId;
+    private String name;
+    private Department department;
 
     /**
      * Default constructor. Required for Jackson serialization.
@@ -23,12 +22,12 @@ public class Professor {
     /**
      * Creates professor with professor ID and professor name.
      *
-     * @param profID   the ID of the professor
-     * @param profName the name of the professor
+     * @param professorId   the ID of the professor
+     * @param name the name of the professor
      */
-    public Professor(String profID, String profName) {
-        this.profID = profID;
-        this.profName = profName;
+    public Professor(String professorId, String name) {
+        this.professorId = professorId;
+        this.name = name;
     }
 
     /**
@@ -37,8 +36,8 @@ public class Professor {
      * @return the ID of this professor
      */
 
-    public String getProfID() {
-        return profID;
+    public String getProfessorId() {
+        return professorId;
     }
 
     /**
@@ -46,8 +45,8 @@ public class Professor {
      *
      * @return the name of this professor
      */
-    public String getProfName() {
-        return profName;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -55,17 +54,17 @@ public class Professor {
      *
      * @return the department of this professor
      */
-    public Department getProfDepartment() {
-        return profDepartment;
+    public Department getDepartment() {
+        return department;
     }
 
     /**
      * Sets the department of the professor
      *
-     * @param profDepartment this professor's department
+     * @param department this professor's department
      */
-    public void setProfDepartment(Department profDepartment) {
-        this.profDepartment = profDepartment;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
 }
