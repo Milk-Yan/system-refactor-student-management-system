@@ -7,6 +7,7 @@ import com.softeng306.domain.exceptions.CourseNotFoundException;
 import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.exceptions.InvalidCourseRegistrationException;
 import com.softeng306.domain.exceptions.StudentNotFoundException;
+import com.softeng306.domain.student.IStudent;
 import com.softeng306.domain.student.Student;
 import com.softeng306.enums.GroupType;
 import com.softeng306.fileprocessing.CourseRegistrationFileProcessor;
@@ -55,7 +56,7 @@ public class CourseRegistrationMgr {
      */
     public List<String> registerCourse(String studentID, String courseID) throws InvalidCourseRegistrationException, StudentNotFoundException, CourseNotFoundException {
         ICourseRegistrationMgrIO io = new CourseRegistrationMgrIO();
-        Student currentStudent = StudentMgr.getInstance().getStudentFromId(studentID);
+        IStudent currentStudent = StudentMgr.getInstance().getStudentFromId(studentID);
         Course currentCourse = CourseMgr.getInstance().getCourseFromId(courseID);
 
         if (courseRegistrationExists(studentID, courseID)) {
@@ -244,7 +245,7 @@ public class CourseRegistrationMgr {
         return courseIds;
     }
 
-    public int getStudentTotalAU(Student student) {
+    public int getStudentTotalAU(IStudent student) {
         int total = 0;
         for (CourseRegistration courseRegistration : courseRegistrations) {
             if (courseRegistration.getStudent().equals(student)) {

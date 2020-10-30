@@ -7,7 +7,7 @@ import com.softeng306.domain.mark.MainComponentMark;
 import com.softeng306.domain.mark.Mark;
 import com.softeng306.domain.mark.MarkCalculator;
 import com.softeng306.domain.mark.SubComponentMark;
-import com.softeng306.domain.student.Student;
+import com.softeng306.domain.student.IStudent;
 
 import com.softeng306.fileprocessing.IFileProcessor;
 import com.softeng306.fileprocessing.MarkFileProcessor;
@@ -61,7 +61,7 @@ public class MarkMgr {
      * @param course  the course this mark record about.
      * @return the new added mark.
      */
-    public Mark initialiseMark(Student student, Course course) {
+    public Mark initialiseMark(IStudent student, Course course) {
         List<MainComponentMark> courseWorkMarks = new ArrayList<>();
         double totalMark = 0d;
         List<MainComponent> mainComponents = course.getMainComponents();

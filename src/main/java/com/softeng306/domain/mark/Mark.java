@@ -1,7 +1,7 @@
 package com.softeng306.domain.mark;
 
 import com.softeng306.domain.course.Course;
-import com.softeng306.domain.student.Student;
+import com.softeng306.domain.student.IStudent;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Mark {
 
-    private Student student;
+    private IStudent student;
     private Course course;
 
     private List<MainComponentMark> courseWorkMarks;
@@ -35,7 +35,7 @@ public class Mark {
      * @param courseWorkMarks The course work marks of this student mark record.
      * @param totalMark       The total mark of this student mark record.
      */
-    public Mark(Student student, Course course, List<MainComponentMark> courseWorkMarks, double totalMark) {
+    public Mark(IStudent student, Course course, List<MainComponentMark> courseWorkMarks, double totalMark) {
         this.student = student;
         this.course = course;
         this.courseWorkMarks = courseWorkMarks;
@@ -47,7 +47,7 @@ public class Mark {
      *
      * @return the student of this student mark record.
      */
-    public Student getStudent() {
+    public IStudent getStudent() {
         return student;
     }
 

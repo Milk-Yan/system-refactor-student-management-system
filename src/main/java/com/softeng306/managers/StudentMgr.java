@@ -1,9 +1,9 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.exceptions.StudentNotFoundException;
-import com.softeng306.domain.mark.MarkCalculator;
-import com.softeng306.domain.student.Student;
+import com.softeng306.domain.student.IStudent;
 
+import com.softeng306.domain.student.Student;
 import com.softeng306.fileprocessing.IFileProcessor;
 import com.softeng306.fileprocessing.StudentFileProcessor;
 
@@ -23,11 +23,11 @@ public class StudentMgr {
     /**
      * A list of all the students in this school.
      */
-    private List<Student> students;
+    private List<IStudent> students;
 
     private static StudentMgr singleInstance = null;
 
-    private final IFileProcessor<Student> studentFileProcessor;
+    private final IFileProcessor<IStudent> studentFileProcessor;
 
     /**
      * Override default constructor to implement singleton pattern
@@ -51,7 +51,7 @@ public class StudentMgr {
     }
 
     public void createNewStudent(String id, String name, String school, String gender, int year) {
-        Student currentStudent = new Student(id, name);
+        IStudent currentStudent = new Student(id, name);
 
         currentStudent.setStudentSchool(Department.valueOf(school));  //Set school
         currentStudent.setGender(Gender.valueOf(gender));      //gender
@@ -66,7 +66,7 @@ public class StudentMgr {
      *
      * @return An list of all students.
      */
-    public List<Student> getStudents() {
+    public List<IStudent> getStudents() {
         return students;
     }
 
@@ -74,7 +74,7 @@ public class StudentMgr {
      * Displays a list of IDs of all the students.
      */
     public void printAllStudentIds() {
-        for (Student s : students) {
+        for (IStudent s : students) {
             System.out.println(s.getStudentID());
         }
     }
@@ -100,7 +100,7 @@ public class StudentMgr {
      */
     private int findLargestStudentID() {
         int recentStudentID = 0;
-        for (Student student : students) {
+        for (IStudent student : students) {
             recentStudentID = Math.max(recentStudentID, Integer.parseInt(student.getStudentID().substring(1, 8)));
         }
 
@@ -112,8 +112,8 @@ public class StudentMgr {
         return !studentCourses.isEmpty();
     }
 
-    public Student getStudentFromId(String studentId) throws StudentNotFoundException {
-        Optional<Student> student = students
+    public IStudent getStudentFromId(String studentId) throws StudentNotFoundException {
+        Optional<IStudent> student = students
                 .stream()
                 .filter(s -> studentId.equals(s.getStudentID()))
                 .findFirst();
@@ -126,13 +126,13 @@ public class StudentMgr {
     }
 
     public String getStudentName(String studentId) throws StudentNotFoundException {
-        Student student = getStudentFromId(studentId);
+        IStudent student = getStudentFromId(studentId);
         return student.getStudentName();
     }
 
     public List<String> generateStudentInformationStrings() {
         List<String> studentInformationStrings = new ArrayList<>();
-        for (Student student : StudentMgr.getInstance().getStudents()) {
+        for (IStudent student : StudentMgr.getInstance().getStudents()) {
             String GPA = "not available";
             if (Double.compare(student.getGPA(), 0.0) != 0) {
                 GPA = String.valueOf(student.getGPA());
@@ -149,7 +149,7 @@ public class StudentMgr {
      * @return the existing student or else null.
      */
     public boolean studentExists(String studentID) {
-        Optional<Student> student = students.stream()
+        Optional<IStudent> student = students.stream()
                 .filter(s -> studentID.equals(s.getStudentID()))
                 .findFirst();
 

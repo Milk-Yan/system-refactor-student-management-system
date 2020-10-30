@@ -9,7 +9,7 @@ import com.softeng306.enums.Gender;
  * A student has studentID, studentName, studentSchool, gender, GPA and year.
  * A student can enroll many courses.
  */
-public class Student {
+public class Student implements IStudent {
 
     private String studentID;
     private String studentName;
@@ -39,101 +39,57 @@ public class Student {
         this.studentName = studentName;
     }
 
-    /**
-     * Gets the student's ID.
-     *
-     * @return this student's ID.
-     */
+    @Override
     public String getStudentID() {
         return studentID;
     }
 
-    /**
-     * Gets the student's name.
-     *
-     * @return this student's name.
-     */
+    @Override
     public String getStudentName() {
         return studentName;
     }
 
-    /**
-     * Gets the student's school.
-     *
-     * @return this student's school.
-     */
+    @Override
     public Department getStudentSchool() {
         return studentSchool;
     }
 
-    /**
-     * Gets the student's gender.
-     *
-     * @return this student's gender.
-     */
+    @Override
     public Gender getGender() {
         return gender;
     }
 
-    /**
-     * Gets the student's GPA.
-     *
-     * @return this student's GPA.
-     */
+    @Override
     public double getGPA() {
         return GPA;
     }
 
-    /**
-     * Gets the student's year.
-     *
-     * @return this student's year.
-     */
+    @Override
     public int getStudentYear() {
         return studentYear;
     }
 
-    /**
-     * Sets the ID of this student.
-     *
-     * @param studentID this student's ID.
-     */
+    @Override
     public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
 
-    /**
-     * Sets the school of this student.
-     *
-     * @param studentSchool this student's school.
-     */
+    @Override
     public void setStudentSchool(Department studentSchool) {
         this.studentSchool = studentSchool;
     }
 
-    /**
-     * Sets the gender of this student.
-     *
-     * @param gender this student's gender.
-     */
+    @Override
     public void setGender(Gender gender) {
         this.gender = gender;
     }
 
-    /**
-     * Sets the GPA of this student.
-     *
-     * @param GPA this student's GPA.
-     */
+    @Override
     public void setGPA(double GPA) {
         this.GPA = GPA;
     }
 
-    /**
-     * Sets the year of this student.
-     *
-     * @param studentYear this student's year.
-     */
+    @Override
     public void setStudentYear(int studentYear) {
         this.studentYear = studentYear;
     }

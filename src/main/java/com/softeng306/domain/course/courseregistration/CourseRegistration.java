@@ -3,11 +3,12 @@ package com.softeng306.domain.course.courseregistration;
 import com.softeng306.domain.course.Course;
 import com.softeng306.domain.course.group.Group;
 import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
+import com.softeng306.domain.student.IStudent;
 import com.softeng306.domain.student.Student;
 import com.softeng306.enums.GroupType;
 
 public class CourseRegistration {
-    private Student student;
+    private IStudent student;
     private Course course;
     private Group lectureGroup;
     private Group tutorialGroup;
@@ -20,7 +21,7 @@ public class CourseRegistration {
 
     }
 
-    public CourseRegistration(Student student, Course course, Group lectureGroup, Group tutorialGroup, Group labGroup) {
+    public CourseRegistration(IStudent student, Course course, Group lectureGroup, Group tutorialGroup, Group labGroup) {
         this.student = student;
         this.course = course;
         this.lectureGroup = lectureGroup;
@@ -28,7 +29,7 @@ public class CourseRegistration {
         this.labGroup = labGroup;
     }
 
-    public Student getStudent() {
+    public IStudent getStudent() {
         return student;
     }
 
