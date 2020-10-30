@@ -9,11 +9,11 @@ import java.util.List;
  * Stores the mark of a student for one main component
  * and stores the subcomponent marks that make it up.
  */
-public class MainComponentMark {
+public class MainComponentMark implements IMainComponentMark {
 
     private MainComponent mainComponent;
     private double mark;
-    private List<SubComponentMark> subComponentMarks;
+    private List<ISubComponentMark> subComponentMarks;
 
     /**
      * Default constructor. Required for Jackson serialization.
@@ -28,12 +28,13 @@ public class MainComponentMark {
         this.subComponentMarks = new ArrayList<>();
     }
 
-    public MainComponentMark(MainComponent mainComponent, double mark, List<SubComponentMark> subComponentMarks) {
+    public MainComponentMark(MainComponent mainComponent, double mark, List<ISubComponentMark> subComponentMarks) {
         this.mainComponent = mainComponent;
         this.mark = mark;
         this.subComponentMarks = subComponentMarks;
     }
 
+    @Override
     public boolean hasSubComponentMarks() {
         if (subComponentMarks == null || subComponentMarks.isEmpty()) {
             return false;
@@ -42,8 +43,9 @@ public class MainComponentMark {
         return true;
     }
 
-    public SubComponentMark getSubComponentMark(String courseWorkName) {
-        for (SubComponentMark subComponentMark : subComponentMarks) {
+    @Override
+    public ISubComponentMark getSubComponentMark(String courseWorkName) {
+        for (ISubComponentMark subComponentMark : subComponentMarks) {
             if (subComponentMark.getSubComponent().getComponentName().equals(courseWorkName)) {
                 return subComponentMark;
             }
@@ -52,31 +54,38 @@ public class MainComponentMark {
         return null;
     }
 
-    public void addSubComponentMark(SubComponentMark subComponentMark) {
+    @Override
+    public void addSubComponentMark(ISubComponentMark subComponentMark) {
         subComponentMarks.add(subComponentMark);
     }
 
+    @Override
     public MainComponent getMainComponent() {
         return mainComponent;
     }
 
+    @Override
     public void setMainComponent(MainComponent mainComponent) {
         this.mainComponent = mainComponent;
     }
 
+    @Override
     public double getMark() {
         return mark;
     }
 
+    @Override
     public void setMark(double mark) {
         this.mark = mark;
     }
 
-    public List<SubComponentMark> getSubComponentMarks() {
+    @Override
+    public List<ISubComponentMark> getSubComponentMarks() {
         return subComponentMarks;
     }
 
-    public void setSubComponentMarks(List<SubComponentMark> subComponentMarks) {
+    @Override
+    public void setSubComponentMarks(List<ISubComponentMark> subComponentMarks) {
         this.subComponentMarks = subComponentMarks;
     }
 }
