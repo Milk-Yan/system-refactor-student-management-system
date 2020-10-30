@@ -12,6 +12,7 @@ import com.softeng306.domain.student.Student;
 import com.softeng306.fileprocessing.IFileProcessor;
 import com.softeng306.fileprocessing.MarkFileProcessor;
 
+import com.softeng306.io.IMarkMgrIO;
 import com.softeng306.io.MarkMgrIO;
 
 import java.util.ArrayList;
@@ -84,8 +85,7 @@ public class MarkMgr {
      * @param isExam whether this coursework component refers to "Exam"
      */
     public void setCourseworkMark(boolean isExam, String studentID, String courseID) {
-        MarkMgrIO io = new MarkMgrIO();
-
+        IMarkMgrIO io = new MarkMgrIO();
         List<String> componentNameList = new ArrayList<>();
         List<String> availableChoices = new ArrayList<>();
         List<Integer> weights = new ArrayList<>();
@@ -200,7 +200,7 @@ public class MarkMgr {
         return studentMarks;
     }
 
-    public List<String> getMarkStringForStudent(String studentId, int totalAU) {
+    public List<String> getMarkMessageForStudent(String studentId, int totalAU) {
         List<String> markString = new ArrayList<>();
         List<Mark> marksForStudent = getMarksForStudent(studentId);
         double studentGPA = 0d;
