@@ -925,7 +925,7 @@ public class CourseMgrIO implements ICourseMgrIO {
      * @return Professor the professor the user has specified
      */
     private String readProfessor(String courseDepartment) {
-        ProfessorMgrIO professorIO = new ProfessorMgrIO();
+        IProfessorMgrIO professorIO = new ProfessorMgrIO();
 
         List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
         String profID;
