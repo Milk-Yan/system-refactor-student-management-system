@@ -75,9 +75,17 @@ public class CourseBuilder implements ICourseBuilder {
         course.setLabGroups(newLabGroups);
     }
 
+    /**
+     * Local method used to convert a map of primitive information to new group instances.
+     *
+     * @param groups The information for each new group.
+     * @param type   The type of group to make.
+     * @return List of new groups.
+     */
     private List<IGroup> convertMapToGroups(Map<String, Double> groups, GroupType type) {
         List<IGroup> newGroups = new ArrayList<>();
 
+        //Go through each item in the given map, and make a new group from the data.
         for (String groupName : groups.keySet()) {
             IGroup group = new Group(groupName, groups.get(groupName).intValue(), groups.get(groupName).intValue(), type);
             newGroups.add(group);

@@ -226,6 +226,9 @@ public class Course implements ICourse {
      */
     private String[][] generateGroupInformation(List<IGroup> groups) {
         String[][] groupInfo = new String[groups.size()][3];
+
+        //Go through each of the given groups and get the relevant information.
+        //We will retrieve the name, vacancy, and capacity.
         for (int i = 0; i < groups.size(); i++) {
             groupInfo[i][0] = groups.get(i).getGroupName();
             groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
