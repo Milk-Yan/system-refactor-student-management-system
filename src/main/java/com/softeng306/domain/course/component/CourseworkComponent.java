@@ -1,5 +1,9 @@
 package com.softeng306.domain.course.component;
 
+/**
+ * Abstract representation of an assessment component of a course
+ * Subclasses by {@code MainComponent}, {@code SubComponent}
+ */
 public abstract class CourseworkComponent {
 
     private String name;
@@ -40,4 +44,5 @@ public abstract class CourseworkComponent {
     public int getWeight() {
         return this.weight;
     }
+    
 }

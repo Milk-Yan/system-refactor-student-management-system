@@ -9,13 +9,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public class SubComponent extends CourseworkComponent {
 
-    /**
-     * Default constructor. Required for Jackson serialization.
-     */
     @JsonIgnore
     public final static String COMPONENT_NAME = "sub component";
 
-
+    /**
+     * Default constructor. Required for Jackson serialization.
+     */
     public SubComponent() {
 
     }
@@ -30,4 +29,5 @@ public class SubComponent extends CourseworkComponent {
     public SubComponent(String componentName, int componentWeight) {
         super(componentName, componentWeight);
     }
+
 }
