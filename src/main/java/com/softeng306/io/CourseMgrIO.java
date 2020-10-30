@@ -18,68 +18,8 @@ public class CourseMgrIO implements ICourseMgrIO {
     private CourseMgr courseMgr = CourseMgr.getInstance();
 
     /**
-     * Read in a courseId from the user
-     *
-     * @return String courseId
-     */
-    public String readCourseId() {
-        String courseID;
-        // Can make the sameCourseID as boolean, set to false.
-        while (true) {
-            System.out.println("Give this course an ID: ");
-            courseID = scanner.nextLine();
-            if (RegexValidator.checkValidCourseIDInput(courseID)) {
-
-                // Check course ID does not already exist for a course
-                if (courseMgr.checkCourseExists(courseID)) {
-                    System.out.println("Sorry. The course ID is used. This course already exists.");
-                } else {
-                    break;
-                }
-            }
-        }
-
-        return courseID;
-    }
-
-    /**
-     * Read in a course name from the user
-     *
-     * @return String courseName
-     */
-    public String readCourseName() {
-        System.out.println("Enter course Name: ");
-        return scanner.nextLine();
-    }
-
-
-    /**
-     * Read in the total number of seats for a course
-     *
-     * @return int totalSeats for a course
-     */
-    public int readTotalSeats() {
-        int totalSeats;
-        while (true) {
-            System.out.println("Enter the total vacancy of this course: ");
-            if (scanner.hasNextInt()) {
-                totalSeats = scanner.nextInt();
-                if (totalSeats <= 0) {
-                    System.out.println("Please enter a valid vacancy (greater than 0)");
-                } else {
-                    break;
-                }
-            } else {
-                System.out.println("Your input " + scanner.nextLine() + " is not an integer.");
-                System.out.println("Please re-enter");
-            }
-        }
-
-        return totalSeats;
-    }
-
-    /**
      * Read in the number of academic units for a course
+     *
      * @return number of Academic Units for the course.
      */
     public int readAcademicUnitsForCourse() {
@@ -141,8 +81,8 @@ public class CourseMgrIO implements ICourseMgrIO {
     /**
      * Reads in a weekly hour for a group from the user
      *
-     * @param type the type of the group the weekly hour is for
-     * @param academicUnits   the number of academic units for the course
+     * @param type          the type of the group the weekly hour is for
+     * @param academicUnits the number of academic units for the course
      * @return int the number of weekly hours for that group
      */
     public int readWeeklyHour(String type, int academicUnits) {
