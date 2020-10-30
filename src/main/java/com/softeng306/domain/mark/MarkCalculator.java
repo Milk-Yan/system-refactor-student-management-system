@@ -5,7 +5,6 @@ import com.softeng306.domain.course.component.SubComponent;
 import com.softeng306.managers.MarkMgr;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MarkCalculator {

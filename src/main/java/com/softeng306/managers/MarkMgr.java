@@ -210,7 +210,7 @@ public class MarkMgr {
 
             for (MainComponentMark mainComponentMark : mark.getCourseWorkMarks()) {
                 MainComponent mainComponent = mainComponentMark.getMainComponent();
-                Double result = mainComponentMark.getMark();
+                double result = mainComponentMark.getMark();
 
                 markString.add("Main Assessment: " + mainComponent.getComponentName() + " ----- (" + mainComponent.getComponentWeight() + "%)");
                 int mainAssessmentWeight = mainComponent.getComponentWeight();
