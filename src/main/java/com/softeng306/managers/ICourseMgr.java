@@ -61,15 +61,15 @@ public interface ICourseMgr {
 
     int getNumberOfLectureGroups(int compareTo, int totalSeats);
 
-    int getReadWeeklyLectureHour(int academicUnits);
+    int readWeeklyLectureHour(int academicUnits);
 
     int getNumberOfLabGroups(int compareTo, int totalSeats);
 
-    int getReadWeeklyLabHour(int academicUnits);
+    int readWeeklyLabHour(int academicUnits);
 
     int getNumberOfTutorialGroups(int compareTo, int totalSeats);
 
-    int getReadWeeklyTutorialHour(int academicUnits);
+    int readWeeklyTutorialHour(int academicUnits);
 
     List<String> getListCourseTypes();
 
