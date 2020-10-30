@@ -1,7 +1,7 @@
 package com.softeng306.fileprocessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.professor.IProfessor;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProfessorFileProcessor extends FileProcessor<Professor> {
+public class ProfessorFileProcessor extends FileProcessor<IProfessor> {
 
     private static final String PROFESSOR_FILE_PATH = "data/professorFile.json";
 
@@ -19,13 +19,13 @@ public class ProfessorFileProcessor extends FileProcessor<Professor> {
      * @return A list of all the professors that is loaded from the file.
      */
     @Override
-    public List<Professor> loadFile() {
+    public List<IProfessor> loadFile() {
         ObjectMapper objectMapper = new ObjectMapper();
         File professorFile = Paths.get(PROFESSOR_FILE_PATH).toFile();
-        ArrayList<Professor> allProfessors = new ArrayList<>();
+        ArrayList<IProfessor> allProfessors = new ArrayList<>();
 
         try {
-            allProfessors = new ArrayList<>(Arrays.asList(objectMapper.readValue(professorFile, Professor[].class)));
+            allProfessors = new ArrayList<>(Arrays.asList(objectMapper.readValue(professorFile, IProfessor[].class)));
         } catch (IOException e) {
             System.out.println("Error occurs when loading professors.");
             e.printStackTrace();
@@ -38,7 +38,7 @@ public class ProfessorFileProcessor extends FileProcessor<Professor> {
      * Dummy method without functionality since we don't need it.
      */
     @Override
-    public void writeNewEntryToFile(Professor professor) {
+    public void writeNewEntryToFile(IProfessor professor) {
         // dummy method
     }
 
@@ -46,7 +46,7 @@ public class ProfessorFileProcessor extends FileProcessor<Professor> {
      * Dummy method without functionality since we don't need it.
      */
     @Override
-    public void updateFileContents(List<Professor> updatedProfessors) {
+    public void updateFileContents(List<IProfessor> updatedProfessors) {
         // dummy method
     }
 }

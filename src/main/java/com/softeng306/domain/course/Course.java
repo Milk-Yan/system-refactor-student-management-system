@@ -1,9 +1,8 @@
 package com.softeng306.domain.course;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.softeng306.domain.course.component.MainComponent;
 import com.softeng306.domain.course.group.Group;
-import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.professor.IProfessor;
 import com.softeng306.enums.CourseType;
 import com.softeng306.enums.Department;
 
@@ -17,7 +16,7 @@ public class Course {
     private String courseName;
     private int academicUnits;
 
-    private Professor profInCharge;
+    private IProfessor profInCharge;
     private Department courseDepartment;
     private CourseType courseType;
 
@@ -70,7 +69,7 @@ public class Course {
      *
      * @return the professor in charge of this course.
      */
-    public Professor getProfInCharge() {
+    public IProfessor getProfInCharge() {
         return profInCharge;
     }
 
@@ -270,7 +269,7 @@ public class Course {
      *
      * @param professor Professor in charge of course.
      */
-    public void setProfInCharge(Professor professor) {
+    public void setProfInCharge(IProfessor professor) {
         this.profInCharge = professor;
     }
 

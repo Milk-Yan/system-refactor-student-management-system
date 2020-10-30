@@ -6,7 +6,7 @@ import com.softeng306.enums.Department;
  * Represents a professor at school
  */
 
-public class Professor {
+public class Professor implements IProfessor {
 
     private String profID;
     private String profName;
@@ -31,39 +31,22 @@ public class Professor {
         this.profName = profName;
     }
 
-    /**
-     * Gets this professor's ID
-     *
-     * @return the ID of this professor
-     */
-
+    @Override
     public String getProfID() {
         return profID;
     }
 
-    /**
-     * Gets this professor's name
-     *
-     * @return the name of this professor
-     */
+    @Override
     public String getProfName() {
         return profName;
     }
 
-    /**
-     * Gets this professor's department
-     *
-     * @return the department of this professor
-     */
+    @Override
     public Department getProfDepartment() {
         return profDepartment;
     }
 
-    /**
-     * Sets the department of the professor
-     *
-     * @param profDepartment this professor's department
-     */
+    @Override
     public void setProfDepartment(Department profDepartment) {
         this.profDepartment = profDepartment;
     }

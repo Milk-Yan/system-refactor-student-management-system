@@ -1,7 +1,7 @@
 package com.softeng306.managers;
 
 import com.softeng306.domain.exceptions.ProfessorNotFoundException;
-import com.softeng306.domain.professor.Professor;
+import com.softeng306.domain.professor.IProfessor;
 
 import com.softeng306.fileprocessing.IFileProcessor;
 import com.softeng306.fileprocessing.ProfessorFileProcessor;
@@ -19,11 +19,11 @@ public class ProfessorMgr {
     /**
      * A list of all the professors in this school.
      */
-    private List<Professor> professors;
+    private List<IProfessor> professors;
 
     private static ProfessorMgr singleInstance = null;
 
-    private final IFileProcessor<Professor> professorFileProcessor;
+    private final IFileProcessor<IProfessor> professorFileProcessor;
 
     /**
      * Override default constructor to implement singleton pattern
@@ -66,12 +66,12 @@ public class ProfessorMgr {
      *
      * @return An list of all professors.
      */
-    public List<Professor> getProfessors() {
+    public List<IProfessor> getProfessors() {
         return professors;
     }
 
-    public static Professor getProfessorFromID(String professorID) throws ProfessorNotFoundException {
-        Optional<Professor> professor = ProfessorMgr
+    public static IProfessor getProfessorFromID(String professorID) throws ProfessorNotFoundException {
+        Optional<IProfessor> professor = ProfessorMgr
                 .getInstance()
                 .getProfessors()
                 .stream()
@@ -91,7 +91,7 @@ public class ProfessorMgr {
      * @return If the professor exists.
      */
     public boolean checkProfessorExists(String profID){
-        Optional<Professor> professor = professors.stream()
+        Optional<IProfessor> professor = professors.stream()
                 .filter(p -> profID.equals(p.getProfID()))
                 .findFirst();
 
