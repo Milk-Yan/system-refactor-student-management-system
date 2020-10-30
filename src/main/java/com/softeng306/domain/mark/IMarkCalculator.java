@@ -23,5 +23,5 @@ public interface IMarkCalculator {
      *
      * @return the grade (in A, B ... )
      */
-    double gpaCalculator(IMark mark);
+    double convertMarkToGradePoints(IMark mark);
 }

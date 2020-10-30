@@ -11,26 +11,26 @@ public interface IProfessor {
      * @return the ID of this professor
      */
 
-    String getProfID();
+    String getProfessorId();
 
     /**
      * Gets this professor's name
      *
      * @return the name of this professor
      */
-    String getProfName();
+    String getName();
 
     /**
      * Gets this professor's department
      *
      * @return the department of this professor
      */
-    Department getProfDepartment();
+    Department getDepartment();
 
     /**
      * Sets the department of the professor
      *
      * @param profDepartment this professor's department
      */
-    void setProfDepartment(Department profDepartment);
+    void setDepartment(Department profDepartment);
 }

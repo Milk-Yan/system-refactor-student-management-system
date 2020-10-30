@@ -11,21 +11,21 @@ public interface IStudent {
      *
      * @return this student's ID.
      */
-    String getStudentID();
+    String getStudentId();
 
     /**
      * Gets the student's name.
      *
      * @return this student's name.
      */
-    String getStudentName();
+    String getName();
 
     /**
      * Gets the student's school.
      *
      * @return this student's school.
      */
-    Department getStudentSchool();
+    Department getDepartment();
 
     /**
      * Gets the student's gender.
@@ -39,28 +39,28 @@ public interface IStudent {
      *
      * @return this student's GPA.
      */
-    double getGPA();
+    double getGpa();
 
     /**
      * Gets the student's year.
      *
      * @return this student's year.
      */
-    int getStudentYear();
+    int getYearLevel();
 
     /**
      * Sets the ID of this student.
      *
      * @param studentID this student's ID.
      */
-    void setStudentID(String studentID);
+    void setStudentId(String studentID);
 
     /**
      * Sets the school of this student.
      *
      * @param studentSchool this student's school.
      */
-    void setStudentSchool(Department studentSchool);
+    void setDepartment(Department studentSchool);
 
     /**
      * Sets the gender of this student.
@@ -74,12 +74,12 @@ public interface IStudent {
      *
      * @param GPA this student's GPA.
      */
-    void setGPA(double GPA);
+    void setGpa(double GPA);
 
     /**
      * Sets the year of this student.
      *
      * @param studentYear this student's year.
      */
-    void setStudentYear(int studentYear);
+    void setYearLevel(int studentYear);
 }

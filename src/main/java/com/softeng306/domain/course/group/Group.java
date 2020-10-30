@@ -29,7 +29,7 @@ public class Group implements IGroup {
      *
      * @param groupName          This group's name.
      * @param availableVacancies This group's current available vacancy.
-     * @param groupCapacity         This group's total seats.
+     * @param groupCapacity      This group's total seats.
      */
     public Group(String groupName, int availableVacancies, int groupCapacity, GroupType groupType) {
         this.groupType = groupType;

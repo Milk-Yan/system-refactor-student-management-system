@@ -24,12 +24,12 @@ public interface IGroup {
      *
      * @return this group's total seats.
      */
-    int getTotalSeats();
+    int getCapacity();
 
     /**
      * Updates the available vacancies of this group after someone has registered this group.
      */
-    void enrolledIn();
+    void updateVacanciesForEnrollment();
 
     GroupType getGroupType();
 }

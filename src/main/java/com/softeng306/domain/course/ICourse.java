@@ -17,14 +17,14 @@ public interface ICourse {
      *
      * @return the ID of this course.
      */
-    String getCourseID();
+    String getCourseId();
 
     /**
      * Gets the course's name.
      *
      * @return the name of this course.
      */
-    String getCourseName();
+    String getName();
 
     /**
      * @return the number of academic units for this course.
@@ -36,7 +36,7 @@ public interface ICourse {
      *
      * @return the professor in charge of this course.
      */
-    IProfessor getProfInCharge();
+    IProfessor getCourseCoordinator();
 
     /**
      * Gets the course's current vacancy.
@@ -50,14 +50,14 @@ public interface ICourse {
      *
      * @return the total seats of this course.
      */
-    int getTotalSeats();
+    int getCapacity();
 
     /**
      * Gets the course's department.
      *
      * @return the department of this course.
      */
-    Department getCourseDepartment();
+    Department getDepartment();
 
     /**
      * Gets the course's type.
@@ -71,21 +71,21 @@ public interface ICourse {
      *
      * @return the weekly lecture hour of this course.
      */
-    int getLecWeeklyHour();
+    int getLectureHoursPerWeek();
 
     /**
      * Gets the course's weekly tutorial hour.
      *
      * @return the weekly tutorial hour of this course.
      */
-    int getTutWeeklyHour();
+    int getTutorialHoursPerWeek();
 
     /**
      * Gets the course's weekly lab hour.
      *
      * @return the weekly lab hour of this course.
      */
-    int getLabWeeklyHour();
+    int getLabHoursPerWeek();
 
     /**
      * Gets the course's lecture groups.
@@ -125,7 +125,7 @@ public interface ICourse {
     /**
      * Updates the available vacancies of this course after someone has registered this group.
      */
-    void enrolledIn();
+    void updateVacanciesForEnrollment();
 
     /**
      * Sets the tutorial groups of the lecture groups.
@@ -153,16 +153,16 @@ public interface ICourse {
      *
      * @param tutWeeklyHour this course's weekly tutorial hour.
      */
-    void setTutWeeklyHour(int tutWeeklyHour);
+    void setTutorialHoursPerWeek(int tutWeeklyHour);
 
-    void setLecWeeklyHour(int lecWeeklyHour);
+    void setLectureHoursPerWeek(int lecWeeklyHour);
 
     /**
      * Sets the weekly hour of the labs.
      *
      * @param labWeeklyHour this course's weekly lab hour.
      */
-    void setLabWeeklyHour(int labWeeklyHour);
+    void setLabHoursPerWeek(int labWeeklyHour);
 
     /**
      * Sets the academic unit for the course.
@@ -176,7 +176,7 @@ public interface ICourse {
      *
      * @param id ID for course.
      */
-    void setID(String id);
+    void setCourseId(String id);
 
     /**
      * Sets the name for the course.
@@ -190,14 +190,14 @@ public interface ICourse {
      *
      * @param professor Professor in charge of course.
      */
-    void setProfInCharge(IProfessor professor);
+    void setCourseCoordinator(IProfessor professor);
 
     /**
      * Sets the total seats available for this course.
      *
-     * @param totalSeats Total seats available for this course.
+     * @param courseCapacity Total seats available for this course.
      */
-    void setTotalSeat(int totalSeats);
+    void setCapacity(int courseCapacity);
 
     /**
      * Sets the lecture groups for this course.
@@ -211,7 +211,7 @@ public interface ICourse {
      *
      * @param department Department for this course.
      */
-    void setCourseDepartment(Department department);
+    void setDepartment(Department department);
 
     void setType(CourseType type);
 
@@ -221,13 +221,5 @@ public interface ICourse {
 
     String[][] generateLectureGroupInformation();
 
-    default String[][] generateGroupInformation(List<IGroup> groups) {
-        String[][] groupInfo = new String[groups.size()][3];
-        for (int i = 0; i < groups.size(); i++) {
-            groupInfo[i][0] = groups.get(i).getGroupName();
-            groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
-            groupInfo[i][2] = String.valueOf(groups.get(i).getTotalSeats());
-        }
-        return groupInfo;
-    }
+
 }
