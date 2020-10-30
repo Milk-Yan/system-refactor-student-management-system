@@ -407,11 +407,11 @@ public class CourseMgr {
      */
     public Course getCourseFromId(String courseID) throws CourseNotFoundException {
         Optional<Course> course = CourseMgr
-          .getInstance()
-          .getCourses()
-          .stream()
-          .filter(c -> courseID.equals(c.getCourseId()))
-          .findAny();
+                .getInstance()
+                .getCourses()
+                .stream()
+                .filter(c -> courseID.equals(c.getCourseId()))
+                .findAny();
 
         if (!course.isPresent()) {
             throw new CourseNotFoundException(courseID);
@@ -485,8 +485,8 @@ public class CourseMgr {
 
     public boolean checkCourseExists(String courseID) {
         Optional<Course> course = courses.stream()
-          .filter(c -> courseID.equals(c.getCourseId()))
-          .findFirst();
+                .filter(c -> courseID.equals(c.getCourseId()))
+                .findFirst();
 
         return course.isPresent();
     }
