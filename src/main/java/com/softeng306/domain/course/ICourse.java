@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Interface for a Course.
  * Used to represent a Course offered by the relevant academic institute.
+ * Provides methods to get and set course information.
  */
 @JsonDeserialize(as = Course.class)
 public interface ICourse {
