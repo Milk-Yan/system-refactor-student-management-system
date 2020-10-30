@@ -448,7 +448,7 @@ public class CourseMgr {
         return new CourseMgrIO().readNoOfGroup(GroupType.LECTURE_GROUP.toString(), compareTo, totalSeats);
     }
 
-    public int getReadWeeklyLectureHour(int academicUnits) {
+    public int readWeeklyLectureHour(int academicUnits) {
         return new CourseMgrIO().readWeeklyHour(GroupType.LECTURE_GROUP.toString(), academicUnits);
     }
 
@@ -456,7 +456,7 @@ public class CourseMgr {
         return new CourseMgrIO().readNoOfGroup(GroupType.LAB_GROUP.toString(), compareTo, totalSeats);
     }
 
-    public int getReadWeeklyLabHour(int academicUnits) {
+    public int readWeeklyLabHour(int academicUnits) {
         return new CourseMgrIO().readWeeklyHour(GroupType.LAB_GROUP.toString(), academicUnits);
     }
 
@@ -464,7 +464,7 @@ public class CourseMgr {
         return new CourseMgrIO().readNoOfGroup(GroupType.TUTORIAL_GROUP.toString(), compareTo, totalSeats);
     }
 
-    public int getReadWeeklyTutorialHour(int academicUnits) {
+    public int readWeeklyTutorialHour(int academicUnits) {
         return new CourseMgrIO().readWeeklyHour(GroupType.TUTORIAL_GROUP.toString(), academicUnits);
     }
 

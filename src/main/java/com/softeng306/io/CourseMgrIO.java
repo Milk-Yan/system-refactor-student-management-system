@@ -424,7 +424,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         String courseType = readCourseType();
 
         int noOfLectureGroups = courseMgr.getNumberOfLectureGroups(totalSeats, totalSeats);
-        int lecWeeklyHour = courseMgr.getReadWeeklyLectureHour(academicUnits);
+        int lecWeeklyHour = courseMgr.readWeeklyLectureHour(academicUnits);
 
         //Name, total seats
         Map<String, Double> lectureGroups = readLectureGroups(totalSeats, noOfLectureGroups);
@@ -432,14 +432,14 @@ public class CourseMgrIO implements ICourseMgrIO {
         int noOfTutorialGroups = courseMgr.getNumberOfTutorialGroups(noOfLectureGroups, totalSeats);
         int tutWeeklyHour = 0;
         if (noOfTutorialGroups != 0) {
-            tutWeeklyHour = courseMgr.getReadWeeklyTutorialHour(academicUnits);
+            tutWeeklyHour = courseMgr.readWeeklyTutorialHour(academicUnits);
         }
         Map<String, Double> tutorialGroups = readGroup(noOfTutorialGroups, totalSeats, GroupType.TUTORIAL_GROUP.toString());
 
         int noOfLabGroups = courseMgr.getNumberOfLabGroups(noOfLectureGroups, totalSeats);
         int labWeeklyHour = 0;
         if (noOfLabGroups != 0) {
-            labWeeklyHour = courseMgr.getReadWeeklyLabHour(academicUnits);
+            labWeeklyHour = courseMgr.readWeeklyLabHour(academicUnits);
         }
         Map<String, Double> labGroups = readGroup(noOfLabGroups, totalSeats, GroupType.LAB_GROUP.toString());
 
