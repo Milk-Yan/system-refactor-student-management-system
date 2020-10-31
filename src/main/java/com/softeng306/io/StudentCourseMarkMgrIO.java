@@ -8,6 +8,10 @@ import com.softeng306.managers.StudentCourseMarkMgr;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Concrete implementation of {@code IStudentCourseMarkMgrIO}.
+ * Provide methods to print and read marks for students and courses
+ */
 public class StudentCourseMarkMgrIO implements IStudentCourseMarkMgrIO {
     private Scanner reader = new Scanner(System.in);
     private IStudentCourseMarkMgr studentCourseMarkMgr = StudentCourseMarkMgr.getInstance();
