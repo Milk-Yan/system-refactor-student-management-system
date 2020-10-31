@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Stores the mark of a student for one main component
- * and stores the subcomponent marks that make it up.
+ * Concrete implementation for MainComponentMark
+ * Stores the mark of a student for one main component and stores the SubComponent marks that make it up.
  */
 public class MainComponentMark implements IMainComponentMark {
 
@@ -21,6 +21,7 @@ public class MainComponentMark implements IMainComponentMark {
     public MainComponentMark() {
 
     }
+
 
     public MainComponentMark(MainComponent mainComponent, double mark) {
         this.mainComponent = mainComponent;
