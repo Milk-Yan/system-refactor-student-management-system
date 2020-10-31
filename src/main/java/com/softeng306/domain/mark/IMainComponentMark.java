@@ -34,28 +34,33 @@ public interface IMainComponentMark {
 
     /**
      * Gets the MainComponent this mark is for
-     * @return MainComponent
+     * @return the mainComponent
      */
     MainComponent getMainComponent();
 
     /**
      * Sets the MainComponent this mark is for
-     * @param mainComponent
+     * @param mainComponent the mainComponent
      */
     void setMainComponent(MainComponent mainComponent);
 
     /**
      * Gets the mark for the MainComponent this MainComponentMark is for
-     * @return mark
+     * @return mark as double
      */
     double getMark();
 
     /**
      * Sets the mark for the MainComponent this MainComponentMark is for
-     * @param mark
+     * @param mark as double
      */
     void setMark(double mark);
 
+    /**
+     * Gets a List of the SubComponentMarks stored within this MainComponentMark, for all the subComponents which make up
+     * the MainComponent stored in this MainComponentMark.
+     * @return list of SubComponentMarks
+     */
     List<ISubComponentMark> getSubComponentMarks();
 
 }
