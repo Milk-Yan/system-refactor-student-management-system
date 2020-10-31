@@ -27,10 +27,10 @@ public interface IMarkCalculator {
     double computeOverallMarkForCourse(String courseID);
 
     /**
-     * Computes the overall marks for a particular course.
+     * Computes the overall marks for a List of Marks.
      *
-     * @param thisCourseMark The marks for the course.
-     * @return The exam marks for the course.
+     * @param thisCourseMark The list of Marks.
+     * @return The overall grade.
      */
     double computeOverallMark(List<IStudentCourseMark> thisCourseMark);
 
