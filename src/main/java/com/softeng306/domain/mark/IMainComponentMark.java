@@ -14,24 +14,28 @@ import java.util.List;
 public interface IMainComponentMark {
 
     /**
-     * Gets whether the MainComponent has SubComponent Marks or not.
-     * @return true if the MainComponent has SubComponent Marks, otherwise false.
+     * Gets whether the MainComponentMark has SubComponentMarks or not.
+     * @return true if the MainComponentMark has SubComponentMarks, otherwise false.
      */
     boolean hasSubComponentMarks();
 
     /**
-     * Gets the SubComponentMark for a given SubComponent of this MainComponent, identified by the SubComponents name.
+     * Gets the SubComponentMark for a given SubComponent of the MainComponent, identified by the SubComponents name.
      * @param courseWorkName the name of the SubComponent to get marks for
      * @return SubComponentMark for courseWorkName
      */
     ISubComponentMark getSubComponentMark(String courseWorkName);
 
     /**
-     * Adds a mark for a SubComponent within this MainComponent.
+     * Adds a mark for a SubComponent within the MainComponent.
      * @param subComponentMark the subComponentMark to add.
      */
     void addSubComponentMark(ISubComponentMark subComponentMark);
 
+    /**
+     * Gets the MainComponent this mark is for
+     * @return MainComponent
+     */
     MainComponent getMainComponent();
 
     void setMainComponent(MainComponent mainComponent);
