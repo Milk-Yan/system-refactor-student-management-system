@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Interface for CourseMgrIO.
+ * CourseMgr IO acts as a central module to manipulate courses.
+ * Provides methods to manipulate courses.
+ */
 public interface ICourseMgrIO {
     /**
      * Read in the number of groups for a particular stream (lecture, lab, tutorial)
@@ -199,13 +204,30 @@ public interface ICourseMgrIO {
      */
     String readExistingDepartment();
 
+    /**
+     * Begins the process of adding a course to the system.
+     * This work is handed down to CourseMgr.
+     */
     void addCourse();
 
+    /**
+     * Checks the number of available slots for a course, and prints this information to console.
+     */
     void checkAvailableSlots();
 
+    /**
+     * Begins the process of entering the CourseWorkComponent weightage.
+     * The weightage's are first read in using methods in CourseMgrIO, and then adding the data read in to the system is delegated to CourseMgr.
+     */
     void enterCourseWorkComponentWeightage();
 
+    /**
+     * Obtains course statistics and prints them to console.
+     */
     void printCourseStatistics();
 
+    /**
+     * Prints an empty line. Used to keep spacing consistent.
+     */
     void printEmptySpace();
 }
