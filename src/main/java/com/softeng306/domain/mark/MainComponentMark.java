@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Stores the mark of a student for one main component
- * and stores the subcomponent marks that make it up.
+ * Concrete implementation for MainComponentMark
+ * Stores the mark of a student for one MainComponent and stores the SubComponent marks that make it up.
  */
 public class MainComponentMark implements IMainComponentMark {
 
@@ -22,12 +22,23 @@ public class MainComponentMark implements IMainComponentMark {
 
     }
 
+    /**
+     * Non-default constructor to create an instance of this class.
+     * @param mainComponent a MainComponent
+     * @param mark the mark for that mainComponent
+     */
     public MainComponentMark(MainComponent mainComponent, double mark) {
         this.mainComponent = mainComponent;
         this.mark = mark;
         this.subComponentMarks = new ArrayList<>();
     }
 
+    /**
+     * Non-default constructor to create an instance of this class.
+     * @param mainComponent a MainComponent
+     * @param mark the mark for that MainComponent
+     * @param subComponentMarks a List of SubComponentMarks for SubComponents which make up the MainComponent
+     */
     public MainComponentMark(MainComponent mainComponent, double mark, List<ISubComponentMark> subComponentMarks) {
         this.mainComponent = mainComponent;
         this.mark = mark;

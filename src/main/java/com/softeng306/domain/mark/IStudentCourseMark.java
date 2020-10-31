@@ -6,6 +6,11 @@ import com.softeng306.domain.student.IStudent;
 
 import java.util.List;
 
+/**
+ * Interface for a StudentCourseMark.
+ * Used to represent a Mark a student receives in a course.
+ * Provides methods to get the student and course this mark is for, and to give access to the overall and MainComponentMarks for this course.
+ */
 @JsonDeserialize(as = StudentCourseMark.class)
 public interface IStudentCourseMark {
     /**
@@ -17,14 +22,12 @@ public interface IStudentCourseMark {
 
     /**
      * Gets the course of this student mark record.
-     *
      * @return the course of this student mark record.
      */
     ICourse getCourse();
 
     /**
      * Gets the course work marks of this student mark record.
-     *
      * @return a list contains the course work marks of this student mark record.
      */
     List<IMainComponentMark> getCourseWorkMarks();
