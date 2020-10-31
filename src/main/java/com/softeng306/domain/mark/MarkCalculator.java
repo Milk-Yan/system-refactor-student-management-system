@@ -7,6 +7,10 @@ import com.softeng306.managers.StudentCourseMarkMgr;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Concrete implementation for the MarkCalculator class.
+ * Implements methods which are used to get the marks for Courses and their components.
+ */
 public class MarkCalculator implements IMarkCalculator {
 
     @Override
