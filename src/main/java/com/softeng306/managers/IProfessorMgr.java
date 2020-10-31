@@ -5,6 +5,10 @@ import com.softeng306.domain.professor.IProfessor;
 
 import java.util.List;
 
+/**
+ * Interface for defining professor operations.
+ * Defines the responsibilities of what functions should be done with professors.
+ */
 public interface IProfessorMgr {
     /**
      * Returns the IDs of all professors in the department.
@@ -14,6 +18,13 @@ public interface IProfessorMgr {
      */
     List<String> getAllProfIDInDepartment(String departmentName);
 
+    /**
+     * Gets professor from specified professor ID
+     *
+     * @param professorID The ID of the specified professor
+     * @return the professor specified by ID
+     * @throws ProfessorNotFoundException
+     */
     IProfessor getProfessorFromID(String professorID) throws ProfessorNotFoundException;
 
     /**

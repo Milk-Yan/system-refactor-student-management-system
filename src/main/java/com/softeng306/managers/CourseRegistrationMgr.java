@@ -19,6 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Concrete implementation for course registration manager operations.
+ * Provides implementations for functions must be performed on courses registrations in the academic institute.
+ * This is a subclass of {@code ICourseRegistrationMgr}
+ */
 public class CourseRegistrationMgr implements ICourseRegistrationMgr {
 
     /**
