@@ -26,6 +26,10 @@ public interface IMainComponentMark {
      */
     ISubComponentMark getSubComponentMark(String courseWorkName);
 
+    /**
+     * Adds a mark for a SubComponent within this MainComponent.
+     * @param subComponentMark the subComponentMark to add.
+     */
     void addSubComponentMark(ISubComponentMark subComponentMark);
 
     MainComponent getMainComponent();
