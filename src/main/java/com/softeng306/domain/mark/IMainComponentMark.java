@@ -5,6 +5,11 @@ import com.softeng306.domain.course.component.MainComponent;
 
 import java.util.List;
 
+/**
+ * Interface for a MainComponentMark.
+ * Used to represent a Mark for a MainComponent of a Course.
+ * Provides methods to get and set the MainComponents marks, and it's SubComponents
+ */
 @JsonDeserialize(as = MainComponentMark.class)
 public interface IMainComponentMark {
     boolean hasSubComponentMarks();
