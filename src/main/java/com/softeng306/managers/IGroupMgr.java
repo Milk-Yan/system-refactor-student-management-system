@@ -5,6 +5,10 @@ import com.softeng306.enums.GroupType;
 
 import java.util.List;
 
+/**
+ * Interface for defining course group operations.
+ * Defines the responsibilities of what functions should be done with course lecture/tutorial/lab groups.
+ */
 public interface IGroupMgr {
     /**
      * Checks whether the inputted department is valid.
@@ -14,4 +18,5 @@ public interface IGroupMgr {
      * @return the name of the group chosen by the user.
      */
     IGroup printGroupWithVacancyInfo(GroupType groupType, List<IGroup> groups);
+
 }

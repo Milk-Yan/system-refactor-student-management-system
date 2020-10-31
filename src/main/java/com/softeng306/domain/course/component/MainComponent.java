@@ -6,8 +6,8 @@ import java.util.List;
 
 /**
  * Represents a main assessment component of a course.
- * This class is a subclass of {@code CourseworkComponent}.
  * A course can have many main assessment components.
+ * This class extends {@code CourseworkComponent}.
  */
 public class MainComponent extends CourseworkComponent {
 
@@ -26,9 +26,9 @@ public class MainComponent extends CourseworkComponent {
     /**
      * Creates a main component with component name, component weightage and sub components.
      *
-     * @param componentName   the name of the assessment component
-     * @param componentWeight the componentWeight of the assessment component
-     * @param subComponents   the sub components of the assessment component
+     * @param componentName   the name of the assessment component.
+     * @param componentWeight the componentWeight of the assessment component.
+     * @param subComponents   the sub components of the assessment component.
      */
     public MainComponent(String componentName, int componentWeight, List<SubComponent> subComponents) {
         super(componentName, componentWeight);

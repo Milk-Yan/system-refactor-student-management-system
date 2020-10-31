@@ -17,6 +17,11 @@ public class SubComponentMark implements ISubComponentMark {
 
     }
 
+    /**
+     * Non default constructor for creating a SubComponentMark
+     * @param subComponent the SubComponent this mark is for
+     * @param mark the grade given to this SubComponent for a particular student
+     */
     public SubComponentMark(SubComponent subComponent, double mark) {
         this.subComponent = subComponent;
         this.mark = mark;

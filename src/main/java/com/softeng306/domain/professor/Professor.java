@@ -3,7 +3,8 @@ package com.softeng306.domain.professor;
 import com.softeng306.enums.Department;
 
 /**
- * Represents a professor at school
+ * Concrete implementation of a professor.
+ * This class implements {@code IProfessor}.
  */
 public class Professor implements IProfessor {
 
@@ -19,10 +20,10 @@ public class Professor implements IProfessor {
     }
 
     /**
-     * Creates professor with professor ID and professor name.
+     * Creates professor with professor ID and name.
      *
-     * @param professorId the ID of the professor
-     * @param name        the name of the professor
+     * @param professorId The ID of the professor.
+     * @param name        The name of the professor
      */
     public Professor(String professorId, String name) {
         this.professorId = professorId;

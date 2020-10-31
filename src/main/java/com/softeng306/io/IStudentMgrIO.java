@@ -1,5 +1,10 @@
 package com.softeng306.io;
 
+/**
+ * Interface for StudentMgrIO.
+ * StudentMgrIO acts as a central module to manipulate students.
+ * Provides methods to manipulate students.
+ */
 public interface IStudentMgrIO {
     /**
      * Adds a student and put the student into file

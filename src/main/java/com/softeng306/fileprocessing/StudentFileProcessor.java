@@ -10,14 +10,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Concrete implementation of a file processor for student data.
+ * Used to read and write student data from a file.
+ * This class extends {@code FileProcessor}
+ */
 public class StudentFileProcessor extends FileProcessor<IStudent> {
-
+    /**
+     * Path to the file storing student data.
+     */
     private static final String STUDENT_FILE_PATH = "data/studentFile.json";
 
     /**
      * Loads a list of all the students from {@value STUDENT_FILE_PATH}.
      *
-     * @return A list of all the students that is loaded from the file.
+     * @return A list of all the students loaded from the file.
      */
     @Override
     public List<IStudent> loadFile() {
@@ -38,7 +45,7 @@ public class StudentFileProcessor extends FileProcessor<IStudent> {
     /**
      * Writes a new student into {@value STUDENT_FILE_PATH}.
      *
-     * @param student the new professor to write to the file
+     * @param student The new student to write to the file.
      */
     @Override
     public void writeNewEntryToFile(IStudent student) {
@@ -54,9 +61,9 @@ public class StudentFileProcessor extends FileProcessor<IStudent> {
     }
 
     /**
-     * Writes the updated students to {@value STUDENT_FILE_PATH}.
+     * Modifies a list of students in {@value STUDENT_FILE_PATH}.
      *
-     * @param updatedStudents the list of all students, with updated students
+     * @param updatedStudents the list of all students to modify
      */
     @Override
     public void updateFileContents(List<IStudent> updatedStudents) {
@@ -68,4 +75,5 @@ public class StudentFileProcessor extends FileProcessor<IStudent> {
             e.printStackTrace();
         }
     }
+
 }

@@ -11,6 +11,10 @@ import com.softeng306.managers.CourseRegistrationMgr;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Concrete implementation of {@code ICourseRegistrationMgrIO}.
+ * Provides methods to add a course registration and print students for a course
+ */
 public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
     private Scanner reader = new Scanner(System.in);
     private ICourseRegistrationMgr courseRegistrationMgr = CourseRegistrationMgr.getInstance();
@@ -63,6 +67,7 @@ public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
 
         ICourseMgrIO courseIO = new CourseMgrIO();
 
+        // Read studentId, department, and courseId to make a new CourseRegistration
         String studentID = new StudentMgrIO().readExistingStudentID();
         CourseMgr.getInstance().readExistingDepartment();
         String courseID = courseIO.readExistingCourseId();
@@ -80,6 +85,7 @@ public class CourseRegistrationMgrIO implements ICourseRegistrationMgrIO {
         MainMenuIO.printMethodCall("printStudent");
         ICourseMgrIO courseIO = new CourseMgrIO();
 
+        // Read in courseId and type of group to print students
         String courseID = courseIO.readExistingCourseId();
         printOptions();
 

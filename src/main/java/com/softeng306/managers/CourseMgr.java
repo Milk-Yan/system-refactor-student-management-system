@@ -22,6 +22,11 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Concrete implementation for course manager operations.
+ * Provides implementations for functions must be performed on courses in the academic institute.
+ * This is a subclass of {@code ICourseMgr}
+ */
 public class CourseMgr implements ICourseMgr {
     /**
      * A list of all the courses in this school.
@@ -97,18 +102,18 @@ public class CourseMgr implements ICourseMgr {
             if (currentCourse != null) {
                 io.printCourseInfoString(generateCourseInformation(currentCourse));
                 io.printVacanciesForGroups(currentCourse.generateLectureGroupInformation(),
-                  GroupType.LECTURE_GROUP.toString());
+                        GroupType.LECTURE_GROUP.toString());
 
                 if (currentCourse.getTutorialGroups() != null) {
                     io.printEmptySpace();
                     io.printVacanciesForGroups(currentCourse.generateTutorialGroupInformation(),
-                      GroupType.TUTORIAL_GROUP.toString());
+                            GroupType.TUTORIAL_GROUP.toString());
                 }
 
                 if (currentCourse.getLabGroups() != null) {
                     io.printEmptySpace();
                     io.printVacanciesForGroups(currentCourse.generateLabGroupInformation(),
-                      GroupType.LAB_GROUP.toString());
+                            GroupType.LAB_GROUP.toString());
 
                 }
                 io.printEmptySpace();
@@ -146,7 +151,7 @@ public class CourseMgr implements ICourseMgr {
         }
 
         io.printComponentsForCourse(currentCourse.getCourseId(), currentCourse.getName(),
-          generateComponentInformationForACourses(currentCourse));
+                generateComponentInformationForACourses(currentCourse));
 
         // Update course into course.csv
     }
@@ -202,12 +207,12 @@ public class CourseMgr implements ICourseMgr {
                 exam = mainComponent;
             } else {
                 io.printMainComponent(mainComponent.getName(), mainComponent.getWeight(),
-                  markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getName()));
+                        markCalculator.computeAverageMarkForCourseComponent(courseID, mainComponent.getName()));
                 List<SubComponent> subComponents = mainComponent.getSubComponents();
                 if (!subComponents.isEmpty()) {
                     String[][] subComponentInformation = this.generateSubComponentInformation(subComponents);
                     Map<String, Double> subComponentMarks = this.generateComponentMarkInformation(subComponents,
-                      courseID);
+                            courseID);
                     io.printSubcomponents(subComponentInformation, subComponentMarks);
                 }
             }
@@ -215,7 +220,7 @@ public class CourseMgr implements ICourseMgr {
 
         if (exam != null) {
             io.printExamStatistics(exam.getWeight(),
-              markCalculator.computeAverageMarkForCourseComponent(courseID, "Exam"));
+                    markCalculator.computeAverageMarkForCourseComponent(courseID, "Exam"));
 
         } else {
             io.printNoExamMessage();
@@ -298,11 +303,11 @@ public class CourseMgr implements ICourseMgr {
     }
 
     /**
-     * Creates components for a given course through user input
+     * Adds main assessment components to a given course.
      *
-     * @param io            A CourseMgrIO to use for output
-     * @param currentCourse The course to create components for
-     * @return
+     * @param io            A CourseMgrIO to use for output.
+     * @param currentCourse The course to create components for.
+     * @return The list of new main components.
      */
     private List<MainComponent> addMainComponentsToCourse(ICourseMgrIO io, ICourse currentCourse) {
         List<MainComponent> mainComponents = new ArrayList<>(0);
@@ -334,13 +339,13 @@ public class CourseMgr implements ICourseMgr {
      * @param examWeight             Weight of associated course exam
      * @param numberOfMainComponents Number of main components to create
      * @param mainComponents         List of components to add main components to
-     * @return
+     * @return The total weight of all created main assessment components.
      */
     private int addMainComponents(ICourseMgrIO io, int examWeight, int numberOfMainComponents,
                                   List<MainComponent> mainComponents) {
         Set<String> mainComponentNames = new HashSet<>();
         int totalWeightage = 100 - examWeight;
-
+        // loops through number of main components specified
         for (int i = 0; i < numberOfMainComponents; i++) {
             Map<String, Double> subComponentsMap;
             String mainComponentName = io.readMainComponentName(totalWeightage, i, mainComponentNames);
@@ -353,6 +358,7 @@ public class CourseMgr implements ICourseMgr {
             int noOfSub = io.readNoOfSubComponents(i);
             subComponentsMap = io.readSubComponents(noOfSub);
 
+            // create list of subcomponents
             List<SubComponent> subComponentsList = new ArrayList<SubComponent>();
             for (String key : subComponentsMap.keySet()) {
                 SubComponent subComponent = new SubComponent(key, subComponentsMap.get(key).intValue());
@@ -367,23 +373,24 @@ public class CourseMgr implements ICourseMgr {
     }
 
     /**
-     * Creates an exam main component for a course
+     * Creates an exam assessment component for a course
      *
      * @param io             CourseMgrIO to use for user I/O
      * @param mainComponents List of components to add exam to
-     * @return
+     * @return The weight of the exam (or 0 if no exam).
      */
     private int addExamComponent(ICourseMgrIO io, List<MainComponent> mainComponents) {
         int hasFinalExamChoice = 0;
         int examWeight = 0;
 
+
         while (hasFinalExamChoice < 1 || hasFinalExamChoice > 2) {
             hasFinalExamChoice = io.readHasFinalExamChoice();
-            if (hasFinalExamChoice == 1) {
+            if (hasFinalExamChoice == 1) { // course has a final exam
                 examWeight = io.readExamWeight();
                 MainComponent exam = new MainComponent("Exam", examWeight, new ArrayList<>());
                 mainComponents.add(exam);
-            } else if (hasFinalExamChoice == 2) {
+            } else if (hasFinalExamChoice == 2) { //  course does not have a final exam
                 io.printEnterContinuousAssessments();
             }
         }
@@ -391,12 +398,26 @@ public class CourseMgr implements ICourseMgr {
         return examWeight;
     }
 
+    /**\
+     * Generates the course information containing the id, name, vancancies and capacity
+     *
+     * @param course The course to generate information for
+     * @return a string of information about the course
+     */
     private String generateCourseInformation(ICourse course) {
         String infoString = course.getCourseId() + " " + course.getName() + " (Available/Total): "
-          + course.getVacancies() + "/" + course.getCapacity();
+                + course.getVacancies() + "/" + course.getCapacity();
         return infoString;
     }
 
+    /**
+     * Generates the sub component information containing the name and the weight of each subcomponent
+     *
+     * @param subComponents List of subcomponents to generate the list of information for
+     * @return a 2d String array with the first dimension comprising the subcomponents and the second dimension
+     *      indicating the information for said component. The first index indicates the name whilst the second
+     *      index indicates at the weight of the subcomponent
+     */
     private String[][] generateSubComponentInformation(List<SubComponent> subComponents) {
         String[][] map = new String[subComponents.size()][2];
         int i = 0;
@@ -408,6 +429,13 @@ public class CourseMgr implements ICourseMgr {
         return map;
     }
 
+    /**
+     * Generates the component mark information containing name and mark associated to each component
+     *
+     * @param subComponents The list of subcomponents to generate the mark information for
+     * @param courseID The ID of the course in which the subcomponents belong to
+     * @return a map containing the name of the subcomponent as a key and marks for said subcomponent as a value
+     */
     private Map<String, Double> generateComponentMarkInformation(List<SubComponent> subComponents, String courseID) {
         Map<String, Double> map = new HashMap<>();
         for (SubComponent subComponent : subComponents) {
@@ -417,6 +445,13 @@ public class CourseMgr implements ICourseMgr {
         return map;
     }
 
+    /**
+     * Generates the course information from the specified course including the id, name, academic units, capacity
+     * and the number of vacancies
+     *
+     * @param course The course to generate information for
+     * @return the list of information of the specified course
+     */
     public List<String> generateCourseInformationFromCourse(ICourse course) {
         List<String> courseInformation = new ArrayList<String>();
         courseInformation.add(course.getCourseId());
@@ -427,6 +462,11 @@ public class CourseMgr implements ICourseMgr {
         return courseInformation;
     }
 
+    /**
+     * Generates the list of all course IDs
+     *
+     * @return the list of all course IDs
+     */
     private List<String> generateListOfAllCourseIDs() {
         List<String> courseIDs = new ArrayList<>();
         for (ICourse course : courses) {
@@ -435,6 +475,12 @@ public class CourseMgr implements ICourseMgr {
         return courseIDs;
     }
 
+    /**
+     * Generates a general map of information for all courses
+     *
+     * @return a map with the key of type string indicating the course ID and the value containing a list of information
+     *      related to specified course
+     */
     private Map<String, List<String>> generateGeneralInformationForAllCourses() {
         Map<String, List<String>> generalCourseInfoMap = new HashMap<>();
         for (ICourse course : courses) {
@@ -447,17 +493,29 @@ public class CourseMgr implements ICourseMgr {
 
     }
 
+    /**
+     * Generates the component information for a specified course
+     *
+     * @param course A course for which to generate information for
+     * @return A map containing key values of type map, with the keys of this map containing the name of each
+     *      of each main component and the value containing the weight of each main component
+     *      The exterior map contains a value of type Map, with this map containing each sub component name as a key,
+     *      and each weight for said sub component as a value.
+     */
     private Map<Map<String, String>, Map<String, String>> generateComponentInformationForACourses(ICourse course) {
         Map<Map<String, String>, Map<String, String>> map = new HashMap<>();
+        // create a map of main components
         for (MainComponent eachComp : course.getMainComponents()) {
             Map<String, String> mainComponentInfo = new HashMap<>();
             mainComponentInfo.put(eachComp.getName(), String.valueOf(eachComp.getWeight()));
 
             Map<String, String> subComponentsInfo = new HashMap<>();
+            // create a map of sub components for each one in specified main component
             for (SubComponent eachSub : eachComp.getSubComponents()) {
                 subComponentsInfo.put(eachSub.getName(), String.valueOf(eachSub.getWeight()));
             }
 
+            // map the main component to the sub component
             map.put(mainComponentInfo, subComponentsInfo);
         }
         return map;

@@ -10,12 +10,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Concrete implementation a file processor for marks. Used to write mark data
+ * to and from a file. This class extends {@code FileProcessor}
+ */
 public class StudentCourseMarkFileProcessor extends FileProcessor<IStudentCourseMark> {
-
+    /**
+     * The path to the file for mark data.
+     */
     private static final String STUDENT_COURSE_MARK_FILE = "data/studentCourseMarkFile.json";
 
     /**
      * Loads a list of all the marks from {@value STUDENT_COURSE_MARK_FILE}.
+     *
      * @return A list of all the marks that is loaded from the file.
      */
     @Override
@@ -25,7 +32,8 @@ public class StudentCourseMarkFileProcessor extends FileProcessor<IStudentCourse
         ArrayList<IStudentCourseMark> allStudentMarks = new ArrayList<>();
 
         try {
-            allStudentMarks = new ArrayList<>(Arrays.asList(objectMapper.readValue(studentCourseMarkFile, IStudentCourseMark[].class)));
+            allStudentMarks = new ArrayList<>(
+                    Arrays.asList(objectMapper.readValue(studentCourseMarkFile, IStudentCourseMark[].class)));
         } catch (IOException e) {
             System.out.println("Error occurs when loading student marks.");
             e.printStackTrace();
@@ -35,8 +43,9 @@ public class StudentCourseMarkFileProcessor extends FileProcessor<IStudentCourse
     }
 
     /**
-     * Writes a new studentCourseMark into {@value STUDENT_COURSE_MARK_FILE}.
-     * @param studentCourseMark the new studentCourseMark to write to the file
+     * Writes a new mark into {@value STUDENT_COURSE_MARK_FILE}.
+     *
+     * @param studentCourseMark The new studentCourseMark to write to the file
      */
     @Override
     public void writeNewEntryToFile(IStudentCourseMark studentCourseMark) {
@@ -52,8 +61,9 @@ public class StudentCourseMarkFileProcessor extends FileProcessor<IStudentCourse
     }
 
     /**
-     * Writes the updated marks to {@value STUDENT_COURSE_MARK_FILE}.
-     * @param updatedStudentCourseMarks the list of all marks, with updated marks
+     * Modifies a list of marks in {@value STUDENT_COURSE_MARK_FILE}.
+     *
+     * @param updatedStudentCourseMarks The list of all marks to modify in the file.
      */
     @Override
     public void updateFileContents(List<IStudentCourseMark> updatedStudentCourseMarks) {
@@ -65,4 +75,5 @@ public class StudentCourseMarkFileProcessor extends FileProcessor<IStudentCourse
             e.printStackTrace();
         }
     }
+
 }

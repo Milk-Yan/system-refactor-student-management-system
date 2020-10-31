@@ -2,7 +2,13 @@ package com.softeng306.io;
 
 import java.util.List;
 
+/**
+ * Interface for ProfessorMgrIO.
+ * CourseMgrIO acts as a central module to manipulate professors.
+ * Provides methods to manipulate professors.
+ */
 public interface IProfessorMgrIO {
+
     /**
      * Displays all the professors in the inputted department.
      *

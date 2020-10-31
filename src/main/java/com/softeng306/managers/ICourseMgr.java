@@ -6,6 +6,10 @@ import com.softeng306.domain.exceptions.CourseNotFoundException;
 
 import java.util.List;
 
+/**
+ * Interface for course manager operations.
+ * Defines the responsibilities of what functions must be performed on courses in the academic institute.
+ */
 public interface ICourseMgr {
 
     /**
@@ -30,6 +34,12 @@ public interface ICourseMgr {
      */
     void printAllCourseIds();
 
+    /**
+     * Get a list of course IDs for courses registered in a given department.
+     *
+     * @param departmentName The department to get course IDs for.
+     * @return A list of course IDs.
+     */
     List<String> getCourseIdsInDepartment(String departmentName);
 
     /**
@@ -41,6 +51,7 @@ public interface ICourseMgr {
      * Prompts the user to input an existing course.
      *
      * @return the inputted course.
+     * @throws CourseNotFoundException If the user enters an invalid course.
      */
     ICourse readExistingCourse() throws CourseNotFoundException;
 
@@ -56,26 +67,87 @@ public interface ICourseMgr {
      *
      * @param courseID The inputted course ID.
      * @return the existing course or else null.
+     * @throws CourseNotFoundException If there is no course with the given ID.
      */
     ICourse getCourseFromId(String courseID) throws CourseNotFoundException;
 
+    /**
+     * Gets number of lecture groups
+     *
+     * @param compareTo The limit of the number of lecture groups
+     * @param totalSeats The total number of seats in the course
+     * @return the number of lecture groups
+     */
     int getNumberOfLectureGroups(int compareTo, int totalSeats);
 
+    /**
+     * Reads the number of weekly lecture hours
+     *
+     * @param academicUnits The number of academic units which limits the number of hours it can be
+     * @return the number of weekly lecture hours
+     */
     int readWeeklyLectureHour(int academicUnits);
 
+    /**
+     * Gets number of lab groups
+     *
+     * @param compareTo The limit of the number of lab groups
+     * @param totalSeats The total number of seats in the course
+     * @return the number of lab groups
+     */
     int getNumberOfLabGroups(int compareTo, int totalSeats);
 
+    /**
+     * Reads the number of weekly lab hours
+     *
+     * @param academicUnits The number of academic units which limits the number of hours it can be
+     * @return the number of weekly lab hours
+     */
     int readWeeklyLabHour(int academicUnits);
 
+    /**
+     * Gets number of tutorial groups
+     *
+     * @param compareTo The limit af the number tutorial groups
+     * @param totalSeats The total number of seats in the course
+     * @return the number of tutorial groups
+     */
     int getNumberOfTutorialGroups(int compareTo, int totalSeats);
 
+    /**
+     * Reads the number of weekly tutorial hours
+     *
+     * @param academicUnits The number of academic units which limits the number of hours it can be
+     * @return the number of weekly tutorial hours
+     */
     int readWeeklyTutorialHour(int academicUnits);
 
+    /**
+     * Gets the list of course types
+     *
+     * @return The list of course types of type String
+     */
     List<String> getListCourseTypes();
 
+    /**
+     * Gets the String indicating a main component
+     *
+     * @return a string with the contents "main component"
+     */
     String getMainComponentString();
 
+    /**
+     * Gets the String indicating a main component
+     *
+     * @return a string with the contents "main component"
+     */
     String getSubComponentString();
 
+    /**
+     * Checks if the course with specified courseID exists
+     *
+     * @param courseID The courseID to check if the course exists
+     * @return a boolean indicating if the course exists
+     */
     boolean checkCourseExists(String courseID);
 }

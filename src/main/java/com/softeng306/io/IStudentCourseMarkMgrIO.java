@@ -2,7 +2,13 @@ package com.softeng306.io;
 
 import java.util.List;
 
+/**
+ * Interface for StudentCourseMarkMgrIO.
+ * StudentCourseMarkMgrIO acts as a central module to manipulate marks for students and courses.
+ * Provides methods to manipulate marks for both students and courses.
+ */
 public interface IStudentCourseMarkMgrIO {
+
     /**
      * Prints to console that a student is not registered for a course.
      */

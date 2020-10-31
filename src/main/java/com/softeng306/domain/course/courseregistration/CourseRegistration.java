@@ -6,6 +6,11 @@ import com.softeng306.domain.exceptions.GroupTypeNotFoundException;
 import com.softeng306.domain.student.IStudent;
 import com.softeng306.enums.GroupType;
 
+/**
+ * Concrete representation of a course registration.
+ * Stores registration data, and implements methods to return this data.
+ * This class implements {@code ICourseRegistration}.
+ */
 public class CourseRegistration implements ICourseRegistration {
     private IStudent student;
     private ICourse course;
@@ -20,6 +25,15 @@ public class CourseRegistration implements ICourseRegistration {
 
     }
 
+    /**
+     * Creates a course registration with a student in a course enrolled in a lecture group, tutorial group, and labgroup
+     *
+     * @param student       The student for this registration
+     * @param course        The course being enrolled in
+     * @param lectureGroup  The lecture group for this registration
+     * @param tutorialGroup The tutorial group for this registration
+     * @param labGroup      The lab group for this registration
+     */
     public CourseRegistration(IStudent student, ICourse course, IGroup lectureGroup, IGroup tutorialGroup, IGroup labGroup) {
         this.student = student;
         this.course = course;
@@ -65,4 +79,5 @@ public class CourseRegistration implements ICourseRegistration {
 
         throw new GroupTypeNotFoundException(type.toString());
     }
+
 }

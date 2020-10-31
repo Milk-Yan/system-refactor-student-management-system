@@ -2,6 +2,11 @@ package com.softeng306.io;
 
 import java.util.List;
 
+/**
+ * Interface for CourseRegistrationMgrIO.
+ * CourseRegistrationMgrIO acts as a central module to manipulate course registrations.
+ * Provides methods to manipulate course registrations.
+ */
 public interface ICourseRegistrationMgrIO {
     /**
      * When there is no group of the given type, this method will be called
@@ -14,6 +19,9 @@ public interface ICourseRegistrationMgrIO {
      */
     void printNoRegistrationsForCourseMessage();
 
+    /**
+     * Displays the error message given when the user tries to register a student for a course that they're already registered in.
+     */
     void printAlreadyRegisteredError();
 
     /**
@@ -21,10 +29,19 @@ public interface ICourseRegistrationMgrIO {
      */
     void printInvalidUserInputMessage();
 
+    /**
+     * Displays the end of section separator.
+     */
     void printEndOfSection();
 
+    /**
+     * Displays the message given when the user when they try to register a student to a course that has no vacancies.
+     */
     void printNoVacancies();
 
+    /**
+     * Displays the message for course information when a course has no exam.
+     */
     void printNoAssessmentMessage(String profName);
 
     /**
@@ -47,5 +64,9 @@ public interface ICourseRegistrationMgrIO {
      */
     void printStudents();
 
+    /**
+     * Prints a list of group names to console.
+     * @param groupString List of group names
+     */
     void printGroupString(List<String> groupString);
 }

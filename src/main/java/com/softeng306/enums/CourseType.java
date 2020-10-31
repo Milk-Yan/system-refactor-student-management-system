@@ -3,6 +3,9 @@ package com.softeng306.enums;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Enumerated type for the different course types.
+ */
 public enum CourseType {
     CORE, MPE, GREPEBM, GREPELA, GREPESTS, UE;
 
@@ -24,9 +27,12 @@ public enum CourseType {
      */
     public static List<String> getListOfAllCourseTypeNames() {
         List<String> courseTypes = new ArrayList<>();
+
         for (CourseType courseType : CourseType.values()) {
             courseTypes.add(courseType.toString());
         }
+
         return courseTypes;
     }
+
 }

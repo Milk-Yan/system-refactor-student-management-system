@@ -4,6 +4,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
 
+/**
+ * Interface for students enrolled in an academic institute.
+ * A student can enrol in courses offered by the academic institute.
+ * Provides methods to get and set student information.
+ */
 @JsonDeserialize(as = Student.class)
 public interface IStudent {
     /**

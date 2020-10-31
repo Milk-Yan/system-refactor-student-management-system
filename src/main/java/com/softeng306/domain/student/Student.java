@@ -4,9 +4,8 @@ import com.softeng306.enums.Department;
 import com.softeng306.enums.Gender;
 
 /**
- * Represents a student enrolled in a school.
- * A student has studentID, studentName, studentSchool, gender, GPA and year.
- * A student can enroll many courses.
+ * Concrete implementation of a student enrolled in an academic institute.
+ * This class implements {@code IStudent}.
  */
 public class Student implements IStudent {
 
@@ -17,7 +16,6 @@ public class Student implements IStudent {
     private double gpa = 0;
     private int yearLevel;
 
-
     /**
      * Default constructor, required for Jackson serialization.
      */
@@ -26,10 +24,10 @@ public class Student implements IStudent {
     }
 
     /**
-     * Creates student with the student name and student's ID.
+     * Creates a student with a name and ID.
      *
-     * @param studentId   This student's name.
-     * @param name This student's ID.
+     * @param studentId This student's name.
+     * @param name      This student's ID.
      */
     public Student(String studentId, String name) {
         this.studentId = studentId;

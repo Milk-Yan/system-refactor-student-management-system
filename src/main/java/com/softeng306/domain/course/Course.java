@@ -9,7 +9,12 @@ import com.softeng306.enums.Department;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Concrete implementation of an academic course.
+ * Stores information about a course.
+ * Provides implementations of methods to get and set course information.
+ * This is a subclass of {@code ICourse}
+ */
 public class Course implements ICourse {
 
     private String courseId;
@@ -31,6 +36,9 @@ public class Course implements ICourse {
     private List<IGroup> tutorialGroups = new ArrayList<>();
     private List<IGroup> labGroups = new ArrayList<>();
 
+    /**
+     * The main assessment components for this course
+     */
     private List<MainComponent> mainComponents = new ArrayList<>();
 
     /**
@@ -209,8 +217,18 @@ public class Course implements ICourse {
         return generateGroupInformation(lectureGroups);
     }
 
+    /**
+     * Local method used to generate string list of information for provided groups.
+     * Each item in the returned list contains the information for one group.
+     *
+     * @param groups The groups to generate a string for
+     * @return List containing, for each group provided: [Name, Vacancies, Capacity]
+     */
     private String[][] generateGroupInformation(List<IGroup> groups) {
         String[][] groupInfo = new String[groups.size()][3];
+
+        //Go through each of the given groups and get the relevant information.
+        //We will retrieve the name, vacancy, and capacity.
         for (int i = 0; i < groups.size(); i++) {
             groupInfo[i][0] = groups.get(i).getGroupName();
             groupInfo[i][1] = String.valueOf(groups.get(i).getAvailableVacancies());
@@ -218,4 +236,5 @@ public class Course implements ICourse {
         }
         return groupInfo;
     }
+
 }
