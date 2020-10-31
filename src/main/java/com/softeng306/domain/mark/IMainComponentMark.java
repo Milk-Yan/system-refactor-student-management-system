@@ -19,6 +19,11 @@ public interface IMainComponentMark {
      */
     boolean hasSubComponentMarks();
 
+    /**
+     * Gets the SubComponentMark for a given SubComponent of this MainComponent, identified by the SubComponents name.
+     * @param courseWorkName the name of the SubComponent to get marks for
+     * @return SubComponentMark for courseWorkName
+     */
     ISubComponentMark getSubComponentMark(String courseWorkName);
 
     void addSubComponentMark(ISubComponentMark subComponentMark);
