@@ -22,12 +22,14 @@ public class CourseMgrIO implements ICourseMgrIO {
     public int readNoOfGroup(String type, int compareTo, int totalSeats) {
         int noOfGroups;
 
+        // Loop until user enters a valid number for number of groups
         while (true) {
             System.out.println("Enter the number of " + type + " groups: ");
 
             if (reader.hasNextInt()) {
                 noOfGroups = reader.nextInt();
                 reader.nextLine();
+                // Check if user number is within specified limits
                 boolean withinLimits;
                 if (type.equals(GroupType.LECTURE_GROUP.toString())) {
                     withinLimits = noOfGroups > 0 && noOfGroups <= totalSeats;
@@ -49,6 +51,7 @@ public class CourseMgrIO implements ICourseMgrIO {
     @Override
     public int readWeeklyHour(String type, int academicUnits) {
         int weeklyHour;
+        // Loop until user inputs weekly number of hours below the number of academic units
         while (true) {
             System.out.format("Enter the weekly %s hour for this course: %n", type);
             if (reader.hasNextInt()) {
@@ -76,6 +79,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         addCourseComponentChoice = reader.nextInt();
         reader.nextLine();
 
+        // If user inputs invalid choice, loop until input is 1 or 2
         while (addCourseComponentChoice > 2 || addCourseComponentChoice < 0) {
             System.out.println("Invalid choice, please choose again.");
             System.out.println("1. Yes");
@@ -133,7 +137,7 @@ public class CourseMgrIO implements ICourseMgrIO {
     @Override
     public int readExamWeight() {
         int examWeight;
-
+        // Loop until user inputs exam is between 0 and 80, as per university policy
         System.out.println("Please enter weight of the exam: ");
         examWeight = reader.nextInt();
         reader.nextLine();
@@ -157,7 +161,7 @@ public class CourseMgrIO implements ICourseMgrIO {
     @Override
     public int readNoOfMainComponents() {
         int noOfMainComponents;
-
+        // Loop until user inputs number of main components that is a number and positive
         while (true) {
             System.out.println("Enter number of main component(s) to add:");
             while (!reader.hasNextInt()) {
@@ -180,6 +184,7 @@ public class CourseMgrIO implements ICourseMgrIO {
     @Override
     public int readMainComponentWeightage(int i, int totalWeightage) {
         int weight;
+        // Loops until user inputs weightage between 0 and the current total weightage
         while (true) {
             System.out.println("Enter main component " + (i + 1) + " weightage: ");
             while (!reader.hasNextInt()) {
@@ -202,7 +207,7 @@ public class CourseMgrIO implements ICourseMgrIO {
     @Override
     public int readNoOfSubComponents(int mainComponentNo) {
         int noOfSubComponents;
-
+        // Loops until the user inputs a number of subcomponents above 0
         while (true) {
             System.out.println("Enter number of sub component under main component " + (mainComponentNo + 1) + ":");
             while (!reader.hasNextInt()) {
@@ -231,6 +236,7 @@ public class CourseMgrIO implements ICourseMgrIO {
     @Override
     public void printComponentsForCourse(String courseId, String courseName, Map<Map<String, String>, Map<String, String>> allGroupInformation) {
         System.out.println(courseId + " " + courseName + " components: ");
+        // Print all the component information for a course
         for (Map<String, String> mainComponentInfo : allGroupInformation.keySet()) {
             Map.Entry<String, String> entry = mainComponentInfo.entrySet().iterator().next();
             System.out.println("    " + entry.getKey() + " : " + entry.getValue() + "%");
@@ -255,6 +261,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         double subComponentWeight;
         String subComponentName;
 
+        // Read subcomponents until they add up to the total weight specified by the user
         while (invalidDistributionOfWeights) {
 
             int subComponentTotalWeight = 100;
@@ -363,6 +370,7 @@ public class CourseMgrIO implements ICourseMgrIO {
     @Override
     public String readExistingCourseId() {
         String courseID;
+        // Loop until user enters a course id that is used by an existing course
         while (true) {
             System.out.println("Enter course ID (-h to print all the course ID):");
             courseID = reader.nextLine();
@@ -387,6 +395,7 @@ public class CourseMgrIO implements ICourseMgrIO {
     @Override
     public String readExistingDepartment() {
         String courseDepartment;
+        // Loop until the user inputs an existing department
         while (true) {
             System.out.println("Which department's courses are you interested? (-h to print all the departments)");
             courseDepartment = reader.nextLine();
@@ -414,6 +423,7 @@ public class CourseMgrIO implements ICourseMgrIO {
 
         ICourseBuilder builder = new CourseBuilder();
 
+        // Read in all the information needed for creating a new course
         String courseID = readCourseId();
         String courseName = readCourseName();
 
@@ -472,9 +482,10 @@ public class CourseMgrIO implements ICourseMgrIO {
         builder.setLabGroups(labGroups);
 
 
-        //Professor
+        // Professor
         try {
             builder.setCourseCoordinator(profID);
+            // Add the new course to our data system
             courseMgr.addCourse(builder);
         } catch (ProfessorNotFoundException e) {
             e.printStackTrace();
@@ -551,7 +562,7 @@ public class CourseMgrIO implements ICourseMgrIO {
     private String readNewGroupName(Map<String, Double> existingGroups, String groupDisplayString) {
         boolean groupNameExists;
         String groupName;
-
+        // Loop until user inputs group name which passes regex and is not currently used
         System.out.println("Give a name to this " + groupDisplayString + " group");
         do {
             groupNameExists = false;
@@ -587,6 +598,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         List<String> professorsInDepartment = ProfessorMgr.getInstance().getAllProfIDInDepartment(courseDepartment);
         String profID;
 
+        // Loop until the user inputs a professor id of an exiting professor
         while (true) {
             System.out.println("Enter the ID for the professor in charge please:");
             System.out.println("Enter -h to print all the professors in " + courseDepartment + ".");
