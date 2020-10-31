@@ -11,6 +11,10 @@ import com.softeng306.validation.RegexValidator;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Concrete implementation of {@code IStudentMgrIO}.
+ * Provide methods to add a new student and print a student transcript
+ */
 public class StudentMgrIO implements IStudentMgrIO {
     private Scanner reader = new Scanner(System.in);
     private IStudentMgr studentMgr = StudentMgr.getInstance();
@@ -43,6 +47,7 @@ public class StudentMgrIO implements IStudentMgrIO {
 
         int studentsAcademicUnits;
         String studentName;
+        // Get the student's academic units and name
         try {
             studentsAcademicUnits = StudentCourseMarkMgr.getInstance().getAcademicUnitsForStudent(studentId);
             studentName = studentMgr.getStudentName(studentId);
@@ -51,6 +56,7 @@ public class StudentMgrIO implements IStudentMgrIO {
             return;
         }
 
+        // Start printing the student transcript
         if (!studentMgr.studentHasCourses(studentId)) {
             System.out.println("------ No transcript ready for this student yet ------");
             return;
@@ -72,6 +78,7 @@ public class StudentMgrIO implements IStudentMgrIO {
     public String readExistingStudentID() {
         String studentID;
 
+        // Loop input until the user enters student id of an existing student
         while (true) {
             System.out.println("Enter Student ID (-h to print all the student ID):");
             studentID = reader.nextLine();
@@ -98,6 +105,7 @@ public class StudentMgrIO implements IStudentMgrIO {
      */
     private String readStudentName() {
         String studentName;
+        // Loop until user enters student name which is valid (matches regex)
         while (true) {
             System.out.println("Enter student Name: ");
             studentName = reader.nextLine();
@@ -114,6 +122,7 @@ public class StudentMgrIO implements IStudentMgrIO {
      */
     private String readSchoolName() {
         String studentSchool;
+        // Loop reading student school until department currently exists
         while (true) {
             System.out.println("Enter student's school (uppercase): ");
             System.out.println("Enter -h to print all the schools.");
@@ -139,6 +148,7 @@ public class StudentMgrIO implements IStudentMgrIO {
      */
     private String readStudentGender() {
         String studentGender;
+        // Loop until user enters gender which is valid/exists
         while (true) {
             System.out.println("Enter student gender (uppercase): ");
             System.out.println("Enter -h to print all the genders.");
@@ -163,6 +173,7 @@ public class StudentMgrIO implements IStudentMgrIO {
      */
     private int readStudentYear() {
         int studentYear;
+        // Loop until user enters year level between 1 and 4
         do {
             System.out.println("Enter student's school year (1-4) : ");
             if (reader.hasNextInt()) {
@@ -221,6 +232,8 @@ public class StudentMgrIO implements IStudentMgrIO {
      */
     private boolean readWhetherToGenerateStudentId() {
         int choice;
+        // Loop until user enters 1 or 2. 1 represents that the user would like to manually
+        // enter a student id, and 2 represents the user would like to generate a student id
         do {
             System.out.println("Please input your choice:");
             if (reader.hasNextInt()) {
@@ -247,6 +260,8 @@ public class StudentMgrIO implements IStudentMgrIO {
      * @return student ID
      */
     private String readUnusedStudentId() {
+        // Loops until the user enters a student id which is not used by an existing student and
+        // is valid (regex)
         while (true) {
             System.out.println("The student ID should follow:");
             System.out.println("Length is exactly 9");
