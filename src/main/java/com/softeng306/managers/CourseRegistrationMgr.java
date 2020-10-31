@@ -19,6 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Concrete implementation for course registration manager operations.
+ * Provides implementations for functions must be performed on courses registrations in the academic institute.
+ * This is a subclass of {@code ICourseRegistrationMgr}
+ */
 public class CourseRegistrationMgr implements ICourseRegistrationMgr {
 
     /**
@@ -122,11 +127,11 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
             io.printNoRegistrationsForCourseMessage();
         }
 
-        if (opt == 1) {
+        if (opt == 1) { // user chose to print by lecture group
             sortByLectureGroup(courseRegistrationList);
             List<String> groupString = getGroupString(courseRegistrationList, GroupType.LECTURE_GROUP);
             io.printGroupString(groupString);
-        } else if (opt == 2) {
+        } else if (opt == 2) { // user chose to print by tutorial group
             if (!courseRegistrationList.isEmpty()
                     && courseRegistrationList.get(0).getCourse().getTutorialGroups().isEmpty()) {
                 io.printContainsNoGroupMessage(GroupType.TUTORIAL_GROUP.toString());
@@ -137,7 +142,7 @@ public class CourseRegistrationMgr implements ICourseRegistrationMgr {
             List<String> groupString = getGroupString(courseRegistrationList, GroupType.TUTORIAL_GROUP);
             io.printGroupString(groupString);
 
-        } else if (opt == 3) {
+        } else if (opt == 3) { // user chose to print by lab group
             if (!courseRegistrationList.isEmpty()
                     && courseRegistrationList.get(0).getCourse().getLabGroups().isEmpty()) {
                 io.printContainsNoGroupMessage(GroupType.LAB_GROUP.toString());
