@@ -10,6 +10,13 @@ import java.util.List;
  */
 @JsonDeserialize(as = MarkCalculator.class)
 public interface IMarkCalculator {
+
+    /**
+     * Computes the average mark of all students for a specific course component of a course.
+     * @param courseID the courseId of the course
+     * @param componentName the name of the component within that course
+     * @return the average mark across all students
+     */
     double computeAverageMarkForCourseComponent(String courseID, String componentName);
 
     double computeOverallMarkForCourse(String courseID);
