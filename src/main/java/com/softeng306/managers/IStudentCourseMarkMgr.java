@@ -6,6 +6,10 @@ import com.softeng306.domain.student.IStudent;
 
 import java.util.List;
 
+/**
+ * Interface for defining student mark operations.
+ * Defines the responsibilities of what functions should be done with student course marks.
+ */
 public interface IStudentCourseMarkMgr {
     /**
      * Initializes marks for a student when he/she just registered a course.
@@ -30,7 +34,21 @@ public interface IStudentCourseMarkMgr {
      */
     List<IStudentCourseMark> getStudentCourseMarks();
 
+    /**
+     * Returns the academic units for a student
+     *
+     * @param studentId The student ID of specified student
+     * @return the academic units for said student
+     */
     int getAcademicUnitsForStudent(String studentId);
 
+    /**
+     * Returns the mark message for the student, containing each mark each course that the student is registered for
+     * This includes marks for each assessment component for each course, as well as the overall GPA for said student
+     *
+     * @param studentId The student ID for said student
+     * @param totalAU The total academic units for said student
+     * @return The list containing the mark message for said student
+     */
     List<String> getMarkMessageForStudent(String studentId, int totalAU);
 }
