@@ -14,6 +14,11 @@ import com.softeng306.validation.RegexValidator;
 
 import java.util.*;
 
+/**
+ * Concrete implementation of {@code ICourseMgrIO}.
+ * Provides methods to add a new course, check slots for an existing course, enter component weightages
+ * for a course, and print a course's statistics
+ */
 public class CourseMgrIO implements ICourseMgrIO {
     private Scanner reader = new Scanner(System.in);
     private ICourseMgr courseMgr = CourseMgr.getInstance();
