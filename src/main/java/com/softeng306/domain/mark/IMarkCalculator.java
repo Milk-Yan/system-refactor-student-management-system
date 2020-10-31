@@ -19,6 +19,11 @@ public interface IMarkCalculator {
      */
     double computeAverageMarkForCourseComponent(String courseID, String componentName);
 
+    /**
+     * Computes the average mark of all students for a course.
+     * @param courseID the courseId of the course
+     * @return the average mark across all students
+     */
     double computeOverallMarkForCourse(String courseID);
 
     /**
