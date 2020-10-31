@@ -4,6 +4,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.List;
 
+/**
+ * Interface for the MarkCalculator class.
+ * Defines methods which are used to get the marks for Courses and their components.
+ */
 @JsonDeserialize(as = MarkCalculator.class)
 public interface IMarkCalculator {
     double computeAverageMarkForCourseComponent(String courseID, String componentName);
@@ -21,7 +25,7 @@ public interface IMarkCalculator {
     /**
      * Computes the gpa gained for this course from the result of this course.
      *
-     * @return the grade (in A, B ... )
+     * @return the grade in gpa points
      */
     double convertMarkToGradePoints(IStudentCourseMark studentCourseMark);
 }
