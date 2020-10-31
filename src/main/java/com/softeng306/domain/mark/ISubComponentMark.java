@@ -17,7 +17,15 @@ public interface ISubComponentMark {
      */
     SubComponent getSubComponent();
 
+    /**
+     * Gets the grade given for this mark as a double.
+     * @return the grade given for this mark as a double.
+     */
     double getMark();
 
+    /**
+     * Sets the grade given for this mark as a double.
+     * @param mark the grade given for this mark as a double.
+     */
     void setMark(double mark);
 }
