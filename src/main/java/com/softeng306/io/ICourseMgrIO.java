@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Interface for CourseMgrIO.
+ * CourseMgr IO acts as a central module to manipulate courses.
+ * Provides methods to manipulate courses.
+ */
 public interface ICourseMgrIO {
     /**
      * Read in the number of groups for a particular stream (lecture, lab, tutorial)
