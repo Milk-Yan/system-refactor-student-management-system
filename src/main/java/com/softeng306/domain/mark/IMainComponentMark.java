@@ -12,6 +12,11 @@ import java.util.List;
  */
 @JsonDeserialize(as = MainComponentMark.class)
 public interface IMainComponentMark {
+
+    /**
+     * Gets whether the MainComponent has SubComponent Marks or not.
+     * @return true if the MainComponent has SubComponent Marks, otherwise false.
+     */
     boolean hasSubComponentMarks();
 
     ISubComponentMark getSubComponentMark(String courseWorkName);
