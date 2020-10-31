@@ -3,6 +3,7 @@ package com.softeng306.domain.mark;
 import com.softeng306.domain.course.ICourse;
 import com.softeng306.domain.student.IStudent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,30 +63,31 @@ public class StudentCourseMark implements IStudentCourseMark {
     }
 
     @Override
-    public void setMainComponentMark(String courseWorkName, double result) {
+    public List<Double> setMainComponentMark(String courseWorkName, double result) throws IllegalArgumentException {
+        List<Double> resultList = new ArrayList<>();
         for (IMainComponentMark mainComponentMark : courseWorkMarks) {
             if (mainComponentMark.getMainComponent().getName().equals(courseWorkName)) {
                 if (mainComponentMark.hasSubComponentMarks()) {
-                    System.out.println("This main assessment is not stand alone");
-                    return;
+
+                    return resultList;
                 }
 
                 double previousResult = mainComponentMark.getMark();
                 mainComponentMark.setMark(result);
 
-                this.totalMark += (result - previousResult) * mainComponentMark.getMainComponent().getWeight() / 100d;
-                System.out.println("The course work component is successfully set to: " + result);
-                System.out.println("The course total mark is updated to: " + this.totalMark);
-                return;
+                totalMark += (result - previousResult) * mainComponentMark.getMainComponent().getWeight() / 100d;
+                resultList.add(result);
+                resultList.add(totalMark);
+                return resultList;
             }
         }
 
-        System.out.println("This main assessment component does not exist...");
-
+        throw new IllegalArgumentException("This main assessment component does not exist...");
     }
 
     @Override
-    public void setSubComponentMark(String courseWorkName, double result) {
+    public List<Double> setSubComponentMark(String courseWorkName, double result) {
+        List<Double> resultList = new ArrayList<>();
         for (IMainComponentMark mainComponentMark : courseWorkMarks) {
             ISubComponentMark subComponentMark = mainComponentMark.getSubComponentMark(courseWorkName);
             if (subComponentMark != null) {
@@ -94,18 +96,20 @@ public class StudentCourseMark implements IStudentCourseMark {
                 subComponentMark.setMark(result);
                 double markIncInMain = (result - previousResult) * subComponentMark.getSubComponent().getWeight() / 100d;
 
-                System.out.println("The sub course work component is successfully set to: " + result);
-                System.out.println("The main course work component increase by: " + markIncInMain);
+                resultList.add(result);
+                resultList.add(markIncInMain);
 
                 // update main component value
                 mainComponentMark.setMark(mainComponentMark.getMark() + markIncInMain);
 
                 // update total mark
-                this.totalMark += markIncInMain * mainComponentMark.getMainComponent().getWeight() / 100d;
+                totalMark += markIncInMain * mainComponentMark.getMainComponent().getWeight() / 100d;
 
-                System.out.println("The course total mark is updated to: " + this.totalMark);
+                resultList.add(totalMark);
             }
         }
+
+        return resultList;
     }
 
 }

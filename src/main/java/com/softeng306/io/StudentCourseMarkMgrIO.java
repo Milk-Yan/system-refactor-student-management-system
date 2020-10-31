@@ -87,10 +87,33 @@ public class StudentCourseMarkMgrIO implements IStudentCourseMarkMgrIO {
         }
     }
 
+    @Override
+    public void printSubComponentMarkSetMessage(List<Double> resultList) {
+        System.out.println("The sub course work component is successfully set to: " + resultList.get(0));
+        System.out.println("The main course work component increase by: " + resultList.get(1));
+        System.out.println("The course total mark is updated to: " + resultList.get(2));
+    }
+
+    @Override
+    public void printMainComponentMarkSetMessage(List<Double> resultList) {
+        if (resultList.isEmpty()) {
+            System.out.println("This main assessment is not stand alone");
+        } else {
+            System.out.println("The course work component is successfully set to: " + resultList.get(0));
+            System.out.println("The course total mark is updated to: " + resultList.get(1));
+        }
+    }
+
+    @Override
+    public void printMainComponentDoesNotExistMessage(String message) {
+        System.out.println(message);
+    }
+
     /**
      * Prints to console that a function has been called.
      */
     private void printFunctionCall(String functionName) {
         System.out.println(functionName + " is called");
     }
+
 }

@@ -11,11 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Concrete implementation a file processor for marks.
- * Used to write mark data to and from a file.
- * This class extends {@code FileProcessor}
+ * Concrete implementation a file processor for marks. Used to write mark data
+ * to and from a file. This class extends {@code FileProcessor}
  */
-public class MarkFileProcessor extends FileProcessor<IStudentCourseMark> {
+public class StudentCourseMarkFileProcessor extends FileProcessor<IStudentCourseMark> {
     /**
      * The path to the file for mark data.
      */
@@ -33,7 +32,8 @@ public class MarkFileProcessor extends FileProcessor<IStudentCourseMark> {
         ArrayList<IStudentCourseMark> allStudentMarks = new ArrayList<>();
 
         try {
-            allStudentMarks = new ArrayList<>(Arrays.asList(objectMapper.readValue(studentCourseMarkFile, IStudentCourseMark[].class)));
+            allStudentMarks = new ArrayList<>(
+                    Arrays.asList(objectMapper.readValue(studentCourseMarkFile, IStudentCourseMark[].class)));
         } catch (IOException e) {
             System.out.println("Error occurs when loading student marks.");
             e.printStackTrace();

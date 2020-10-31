@@ -7,7 +7,7 @@ import com.softeng306.domain.mark.*;
 import com.softeng306.domain.student.IStudent;
 
 import com.softeng306.fileprocessing.IFileProcessor;
-import com.softeng306.fileprocessing.MarkFileProcessor;
+import com.softeng306.fileprocessing.StudentCourseMarkFileProcessor;
 
 import com.softeng306.io.IStudentCourseMarkMgrIO;
 import com.softeng306.io.StudentCourseMarkMgrIO;
@@ -26,14 +26,14 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
 
     private static IStudentCourseMarkMgr singleInstance = null;
 
-    private final IFileProcessor<IStudentCourseMark> markFileProcessor;
+    private final IFileProcessor<IStudentCourseMark> studentCourseMarkFileProcessor;
 
     /**
      * Override default constructor to implement singleteon pattern
      */
     private StudentCourseMarkMgr() {
-        markFileProcessor = new MarkFileProcessor();
-        studentCourseMarks = markFileProcessor.loadFile();
+        studentCourseMarkFileProcessor = new StudentCourseMarkFileProcessor();
+        studentCourseMarks = studentCourseMarkFileProcessor.loadFile();
     }
 
     /**
@@ -64,7 +64,7 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
             courseWorkMarks.add(mainComponentMark);
         }
         IStudentCourseMark studentCourseMark = new StudentCourseMark(student, course, courseWorkMarks, totalMark);
-        markFileProcessor.writeNewEntryToFile(studentCourseMark);
+        studentCourseMarkFileProcessor.writeNewEntryToFile(studentCourseMark);
         return studentCourseMark;
     }
 
@@ -84,14 +84,14 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
                         MainComponent mainComponent = mainComponentMark.getMainComponent();
 
                         if (!mainComponent.getName().equals("Exam")
-                          && !mainComponentMark.hasSubComponentMarks()) {
+                                && !mainComponentMark.hasSubComponentMarks()) {
 
                             extractMainComponentDetails(mainComponent, componentNameList,
-                              availableChoices, weights, isMainComponent);
+                                    availableChoices, weights, isMainComponent);
                         }
 
                         extractSubComponentDetails(mainComponent, componentNameList,
-                          availableChoices, weights, isMainComponent);
+                                availableChoices, weights, isMainComponent);
                     }
 
                     io.printCourseComponentChoices(availableChoices, weights);
@@ -110,7 +110,7 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
                     setExamMark(studentCourseMark);
                 }
 
-                markFileProcessor.updateFileContents(studentCourseMarks);
+                studentCourseMarkFileProcessor.updateFileContents(studentCourseMarks);
                 return;
             }
         }
@@ -179,18 +179,35 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
         }
     }
 
-    private void setComponentMark(IStudentCourseMark studentCourseMark, boolean isMainComponent, String componentName, double assessmentMark) {
+    private void setComponentMark(IStudentCourseMark studentCourseMark, boolean isMainComponent, String componentName,
+                                  double assessmentMark) {
+        IStudentCourseMarkMgrIO io = new StudentCourseMarkMgrIO();
         if (isMainComponent) {
-            // This is a stand alone main assessment
-            studentCourseMark.setMainComponentMark(componentName, assessmentMark);
+            try {
+                // This is a stand alone main assessment
+                List<Double> resultList = studentCourseMark.setMainComponentMark(componentName, assessmentMark);
+                io.printMainComponentMarkSetMessage(resultList);
+            } catch (IllegalArgumentException e) {
+                io.printMainComponentDoesNotExistMessage(e.getMessage());
+            }
+
         } else {
-            studentCourseMark.setSubComponentMark(componentName, assessmentMark);
+            List<Double> resultList = studentCourseMark.setSubComponentMark(componentName, assessmentMark);
+            io.printSubComponentMarkSetMessage(resultList);
         }
     }
 
     private void setExamMark(IStudentCourseMark studentCourseMark) {
+        IStudentCourseMarkMgrIO io = new StudentCourseMarkMgrIO();
         double examMark = new StudentCourseMarkMgrIO().readExamMark();
-        studentCourseMark.setMainComponentMark("Exam", examMark);
+
+        try {
+            List<Double> resultList = studentCourseMark.setMainComponentMark("Exam", examMark);
+            io.printMainComponentMarkSetMessage(resultList);
+        }
+        catch(IllegalArgumentException e) {
+            io.printMainComponentDoesNotExistMessage(e.getMessage());
+        }
     }
 
     private void extractMainComponentDetails(MainComponent mainComponent, List<String> componentNameList,
