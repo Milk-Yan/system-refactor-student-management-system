@@ -71,23 +71,83 @@ public interface ICourseMgr {
      */
     ICourse getCourseFromId(String courseID) throws CourseNotFoundException;
 
+    /**
+     * Gets number of lecture groups
+     *
+     * @param compareTo The limit of the number of lecture groups
+     * @param totalSeats The total number of seats in the course
+     * @return the number of lecture groups
+     */
     int getNumberOfLectureGroups(int compareTo, int totalSeats);
 
+    /**
+     * Reads the number of weekly lecture hours
+     *
+     * @param academicUnits The number of academic units which limits the number of hours it can be
+     * @return the number of weekly lecture hours
+     */
     int readWeeklyLectureHour(int academicUnits);
 
+    /**
+     * Gets number of lab groups
+     *
+     * @param compareTo The limit of the number of lab groups
+     * @param totalSeats The total number of seats in the course
+     * @return the number of lab groups
+     */
     int getNumberOfLabGroups(int compareTo, int totalSeats);
 
+    /**
+     * Reads the number of weekly lab hours
+     *
+     * @param academicUnits The number of academic units which limits the number of hours it can be
+     * @return the number of weekly lab hours
+     */
     int readWeeklyLabHour(int academicUnits);
 
+    /**
+     * Gets number of tutorial groups
+     *
+     * @param compareTo The limit af the number tutorial groups
+     * @param totalSeats The total number of seats in the course
+     * @return the number of tutorial groups
+     */
     int getNumberOfTutorialGroups(int compareTo, int totalSeats);
 
+    /**
+     * Reads the number of weekly tutorial hours
+     *
+     * @param academicUnits The number of academic units which limits the number of hours it can be
+     * @return the number of weekly tutorial hours
+     */
     int readWeeklyTutorialHour(int academicUnits);
 
+    /**
+     * Gets the list of course types
+     *
+     * @return The list of course types of type String
+     */
     List<String> getListCourseTypes();
 
+    /**
+     * Gets the String indicating a main component
+     *
+     * @return a string with the contents "main component"
+     */
     String getMainComponentString();
 
+    /**
+     * Gets the String indicating a main component
+     *
+     * @return a string with the contents "main component"
+     */
     String getSubComponentString();
 
+    /**
+     * Checks if the course with specified courseID exists
+     *
+     * @param courseID The courseID to check if the course exists
+     * @return a boolean indicating if the course exists
+     */
     boolean checkCourseExists(String courseID);
 }
