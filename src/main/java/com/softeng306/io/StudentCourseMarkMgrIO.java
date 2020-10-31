@@ -21,6 +21,7 @@ public class StudentCourseMarkMgrIO implements IStudentCourseMarkMgrIO {
     public void printCourseComponentChoices(List<String> availableChoices, List<Integer> weights) {
         System.out.println("Here are the choices you can have: ");
 
+        //Iterate through the available course component choices and print each out
         for (int i = 0; i < availableChoices.size(); i++) {
             System.out.println((i + 1) + ". " + availableChoices.get(i) + " Weight in Total: " + (double) weights.get(i) + "%");
         }
@@ -34,6 +35,7 @@ public class StudentCourseMarkMgrIO implements IStudentCourseMarkMgrIO {
         choice = reader.nextInt();
         reader.nextLine();
 
+        //While the choice is invalid, prompt the user to re-enter another choice
         while (choice > (numChoices + 1) || choice < 0) {
             System.out.println("Please enter choice between " + 0 + "~" + (numChoices + 1));
             System.out.println("Enter your choice");
@@ -50,6 +52,8 @@ public class StudentCourseMarkMgrIO implements IStudentCourseMarkMgrIO {
         System.out.println("Enter the mark for this assessment:");
         assessmentMark = reader.nextDouble();
         reader.nextLine();
+
+        //While the course component mark is invalid, prompt the user to re-enter the mark
         while (assessmentMark > 100 || assessmentMark < 0) {
             System.out.println("Please enter mark in range 0 ~ 100.");
             assessmentMark = reader.nextDouble();
@@ -65,6 +69,8 @@ public class StudentCourseMarkMgrIO implements IStudentCourseMarkMgrIO {
         System.out.println("Enter exam mark:");
         examMark = reader.nextDouble();
         reader.nextLine();
+
+        //While the exam mark is invalid, prompt the user to re-enter the mark
         while (examMark > 100 || examMark < 0) {
             System.out.println("Please enter mark in range 0 ~ 100.");
             examMark = reader.nextDouble();
@@ -79,9 +85,11 @@ public class StudentCourseMarkMgrIO implements IStudentCourseMarkMgrIO {
         printFunctionCall("enterCourseWorkMark");
 
         try {
+            //Try set the courseWorkMark for the given studentId and courseId
             String studentID = new StudentMgrIO().readExistingStudentID();
             String courseID = CourseMgr.getInstance().readExistingCourse().getCourseId();
             studentCourseMarkMgr.setCourseworkMark(isExam, studentID, courseID);
+
         } catch (CourseNotFoundException e) {
             e.printStackTrace();
         }
