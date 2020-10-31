@@ -10,6 +10,11 @@ import com.softeng306.domain.course.component.SubComponent;
  */
 @JsonDeserialize(as = SubComponentMark.class)
 public interface ISubComponentMark {
+
+    /**
+     * Gets the SubComponent this mark is for.
+     * @return the SubComponent this mark is for.
+     */
     SubComponent getSubComponent();
 
     double getMark();
