@@ -55,6 +55,7 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
         double totalMark = 0d;
         List<MainComponent> mainComponents = course.getMainComponents();
 
+        // loop through all main components and all sub components to set mark to 0
         for (MainComponent mainComponent : mainComponents) {
             IMainComponentMark mainComponentMark = new MainComponentMark(mainComponent, 0d);
 
@@ -76,7 +77,7 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
         List<Integer> weights = new ArrayList<>();
         List<Boolean> isMainComponent = new ArrayList<>();
 
-
+        // loop through all coursework marks to find one corresponding to same course and student
         for (IStudentCourseMark studentCourseMark : studentCourseMarks) {
             if (studentCourseMark.getCourse().getCourseId().equals(courseID) && studentCourseMark.getStudent().getStudentId().equals(studentID)) {
                 if (!isExam) {
@@ -85,22 +86,25 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
 
                         if (!mainComponent.getName().equals("Exam")
                                 && !mainComponentMark.hasSubComponentMarks()) {
-
+                            // get main component details, directly changes params
                             extractMainComponentDetails(mainComponent, componentNameList,
                                     availableChoices, weights, isMainComponent);
                         }
 
+                        // get sub component details, directly changes params
                         extractSubComponentDetails(mainComponent, componentNameList,
                                 availableChoices, weights, isMainComponent);
                     }
 
                     io.printCourseComponentChoices(availableChoices, weights);
 
+                    // get choice from user
                     int choice = io.readCourseComponentChoice(availableChoices.size());
-                    if (choice == (availableChoices.size() + 1)) {
+                    if (choice == (availableChoices.size() + 1)) { // option to quit selected
                         return;
                     }
 
+                    // get mark from user and set for student
                     double assessmentMark = io.readCourseComponentMark();
                     String componentName = componentNameList.get(choice - 1);
                     setComponentMark(studentCourseMark, isMainComponent.get(choice - 1), componentName, assessmentMark);
@@ -165,6 +169,12 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
         return markString;
     }
 
+    /**
+     * Gets the GPA message depending on the students GPA
+     *
+     * @param studentGPA The GPA for said student
+     * @return The GPA message depending on GPA from said student
+     */
     private String getGPAMessage(double studentGPA) {
         if (studentGPA >= 4.50) {
             return "On track of First Class Honor!";
@@ -179,12 +189,21 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
         }
     }
 
+    /**
+     * Sets the component mark for said for specified studentCourseMark
+     *
+     * @param studentCourseMark The student course mark to set mark for
+     * @param isMainComponent Whether the student course mark is for a main component
+     * @param componentName The name of the component to set
+     * @param assessmentMark The mark to set for the component
+     */
     private void setComponentMark(IStudentCourseMark studentCourseMark, boolean isMainComponent, String componentName,
                                   double assessmentMark) {
         IStudentCourseMarkMgrIO io = new StudentCourseMarkMgrIO();
         if (isMainComponent) {
             try {
                 // This is a stand alone main assessment
+                // Set mark and print results
                 List<Double> resultList = studentCourseMark.setMainComponentMark(componentName, assessmentMark);
                 io.printMainComponentMarkSetMessage(resultList);
             } catch (IllegalArgumentException e) {
@@ -192,16 +211,23 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
             }
 
         } else {
+            // Set mark and print result message
             List<Double> resultList = studentCourseMark.setSubComponentMark(componentName, assessmentMark);
             io.printSubComponentMarkSetMessage(resultList);
         }
     }
 
+    /**
+     * Sets the exam mark
+     *
+     * @param studentCourseMark The coursework mark to set the result for
+     */
     private void setExamMark(IStudentCourseMark studentCourseMark) {
         IStudentCourseMarkMgrIO io = new StudentCourseMarkMgrIO();
         double examMark = new StudentCourseMarkMgrIO().readExamMark();
 
         try {
+            // Sets and prints results
             List<Double> resultList = studentCourseMark.setMainComponentMark("Exam", examMark);
             io.printMainComponentMarkSetMessage(resultList);
         }
@@ -210,6 +236,15 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
         }
     }
 
+    /**
+     * Extracts the main component details to the values passed in
+     *
+     * @param mainComponent The main component to extract details from
+     * @param componentNameList The list of the component names to add to
+     * @param availableChoices The list of choices to add to
+     * @param weights The list of integer weights to add to
+     * @param isMainComponent The list of booleans dictating whether the componenet is a main component to add to
+     */
     private void extractMainComponentDetails(MainComponent mainComponent, List<String> componentNameList,
                                              List<String> availableChoices, List<Integer> weights,
                                              List<Boolean> isMainComponent) {
@@ -220,10 +255,20 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
         isMainComponent.add(true);
     }
 
+    /**
+     * Extracts the sub component details to the values passed in
+     *
+     * @param mainComponent The sub components to extract the sub component details from
+     * @param componentNameList The list of the component names to add to
+     * @param availableChoices The list of choices to add to
+     * @param weights The list of integer weights to add to
+     * @param isMainComponent The list of booleans dictating whether the componenet is a main component to add to
+     */
     private void extractSubComponentDetails(MainComponent mainComponent, List<String> componentNameList,
                                             List<String> availableChoices, List<Integer> weights,
                                             List<Boolean> isMainComponent) {
 
+        // loop through all sub components to extract information
         for (SubComponent subComponent : mainComponent.getSubComponents()) {
             componentNameList.add(subComponent.getName());
             availableChoices.add(mainComponent.getName() + "-" + subComponent.getName());
@@ -232,9 +277,16 @@ public class StudentCourseMarkMgr implements IStudentCourseMarkMgr {
         }
     }
 
+    /**
+     * Gets the list of coursework marks for specified student
+     *
+     * @param studentId The student ID to get the list of coursework marks for
+     * @return the list of student course marks for specified student
+     */
     private List<IStudentCourseMark> getCourseMarksForStudent(String studentId) {
         List<IStudentCourseMark> studentMarks = new ArrayList<>();
         for (IStudentCourseMark studentCourseMark : StudentCourseMarkMgr.getInstance().getStudentCourseMarks()) {
+            // If student course mark is for student, then add to the list
             if (studentCourseMark.getStudent().getStudentId().equals(studentId)) {
                 studentMarks.add(studentCourseMark);
             }

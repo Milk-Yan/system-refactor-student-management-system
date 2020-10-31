@@ -53,7 +53,7 @@ public interface IStudentCourseMark {
      *
      * @param courseWorkName The name of this sub course work.
      * @param result         The mark obtained in this sub course work.
-     *                       @return resultList List of calculated results to print.
+     * @return resultList List of calculated results to print.
      */
     List<Double> setSubComponentMark(String courseWorkName, double result);
 }
