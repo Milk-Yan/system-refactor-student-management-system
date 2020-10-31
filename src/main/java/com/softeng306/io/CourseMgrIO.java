@@ -631,7 +631,7 @@ public class CourseMgrIO implements ICourseMgrIO {
      */
     private String readCourseId() {
         String courseID;
-        // Can make the sameCourseID as boolean, set to false.
+        // Loop until the user inputs a course id which is not already used and passes regex
         while (true) {
             System.out.println("Give this course an ID: ");
             courseID = reader.nextLine();
@@ -667,6 +667,7 @@ public class CourseMgrIO implements ICourseMgrIO {
      */
     private int readTotalSeats() {
         int totalSeats;
+        // Loop until the user inputs a positive number vacancy
         while (true) {
             System.out.println("Enter the total vacancy of this course: ");
             if (reader.hasNextInt()) {
@@ -692,6 +693,7 @@ public class CourseMgrIO implements ICourseMgrIO {
      */
     private int readAcademicUnitsForCourse() {
         int academicUnits;
+        // Loop until the number academic units is between 0-10
         while (true) {
             System.out.println("Enter number of academic unit(s): ");
             if (reader.hasNextInt()) {
@@ -719,6 +721,7 @@ public class CourseMgrIO implements ICourseMgrIO {
      */
     private int readSubComponentWeight(int subComponentNo, int sub_totWeight) {
         int subComponentWeight;
+        // Loop until sub component weightage is less than or equal to the total sub component weight
         while (true) {
             System.out.println("Enter sub component " + (subComponentNo + 1) + " weightage: ");
             while (!reader.hasNextInt()) {
@@ -750,7 +753,7 @@ public class CourseMgrIO implements ICourseMgrIO {
 
         String componentName;
         boolean componentExist;
-
+        // Loop until user inputs a component names which is unused for the course
         do {
             componentExist = false;
 
@@ -797,6 +800,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         for (int i = 0; i < numGroups; i++) {
             groupName = readNewGroupName(groups, groupDisplayString);
 
+            // Loop until user inputs groups capacity that is less than the max number of seats
             while (true) {
                 System.out.println("Enter this " + groupDisplayString + " group's capacity: ");
                 if (reader.hasNextInt()) {
@@ -829,6 +833,7 @@ public class CourseMgrIO implements ICourseMgrIO {
      */
     private String readAnyCourseDepartment() {
         String courseDepartment;
+        // Loop until user inputs course department which currently exists
         while (true) {
             System.out.println("Enter course's department (uppercase): ");
             System.out.println("Enter -h to print all the departments.");
@@ -854,6 +859,7 @@ public class CourseMgrIO implements ICourseMgrIO {
      */
     private String readCourseType() {
         String courseType;
+        // Loop until user inputs course type which currently exists
         while (true) {
             System.out.println("Enter course type (uppercase): ");
             System.out.println("Enter -h to print all the course types.");
@@ -888,6 +894,7 @@ public class CourseMgrIO implements ICourseMgrIO {
         for (int i = 0; i < noOfLectureGroups; i++) {
             lectureGroupName = readNewGroupName(lectureGroups, GroupType.LECTURE_GROUP.toString());
 
+            // Loop until user inputs a positive lecture group capacity
             while (true) {
                 System.out.println("Enter this lecture group's capacity: ");
                 while (true) {
